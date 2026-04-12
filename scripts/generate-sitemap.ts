@@ -13,7 +13,12 @@ interface SitemapEntry {
 
 function readJsonArray<T>(filePath: string): T[] {
   if (!fs.existsSync(filePath)) return [];
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 }
 
 function getCodesFromDir(dir: string): { code: string }[] {
@@ -95,6 +100,57 @@ function buildSitemap(): string {
   }
   for (const bd of brandDevices) {
     entries.push({ url: `${SITE_URL}/appliance/${bd}`, priority: 0.7, changefreq: "weekly" });
+  }
+
+  // HVAC pages
+  const hvacDir = path.join(DATA_DIR, "hvac");
+  if (fs.existsSync(hvacDir)) {
+    entries.push({ url: `${SITE_URL}/hvac`, priority: 0.9, changefreq: "weekly" });
+    const hvacBrands = new Set<string>();
+    const hvacBrandDevices = new Set<string>();
+    for (const brand of fs.readdirSync(hvacDir).filter((f) => fs.statSync(path.join(hvacDir, f)).isDirectory())) {
+      const brandDir = path.join(hvacDir, brand);
+      for (const file of fs.readdirSync(brandDir).filter((f) => f.endsWith(".json"))) {
+        const dt = file.replace(".json", "");
+        const data = readJsonArray<{ code: string }>(path.join(brandDir, file));
+        hvacBrands.add(brand);
+        hvacBrandDevices.add(`${brand}/${dt}`);
+        for (const item of data) {
+          entries.push({ url: `${SITE_URL}/hvac/${brand}/${dt}/${item.code.toLowerCase()}`, priority: 0.8, changefreq: "monthly" });
+        }
+      }
+    }
+    for (const b of hvacBrands) entries.push({ url: `${SITE_URL}/hvac/${b}`, priority: 0.7, changefreq: "weekly" });
+    for (const bd of hvacBrandDevices) entries.push({ url: `${SITE_URL}/hvac/${bd}`, priority: 0.7, changefreq: "weekly" });
+  }
+
+  // Printer pages
+  const printerDir = path.join(DATA_DIR, "printer");
+  if (fs.existsSync(printerDir)) {
+    entries.push({ url: `${SITE_URL}/printer`, priority: 0.9, changefreq: "weekly" });
+    for (const file of fs.readdirSync(printerDir).filter((f) => f.endsWith(".json"))) {
+      const brand = file.replace(".json", "");
+      const data = readJsonArray<{ code: string; brandSlug: string }>(path.join(printerDir, file));
+      entries.push({ url: `${SITE_URL}/printer/${brand}`, priority: 0.7, changefreq: "weekly" });
+      for (const item of data) {
+        entries.push({ url: `${SITE_URL}/printer/${brand}/${item.code.toLowerCase()}`, priority: 0.8, changefreq: "monthly" });
+      }
+    }
+  }
+
+  // Windows pages
+  const winDir = path.join(DATA_DIR, "windows");
+  if (fs.existsSync(winDir)) {
+    entries.push({ url: `${SITE_URL}/windows`, priority: 0.9, changefreq: "weekly" });
+    for (const file of fs.readdirSync(winDir).filter((f) => f.endsWith(".json"))) {
+      const cat = file.replace(".json", "");
+      const catSlug = cat.replace("update-errors", "update").replace("system-errors", "system").replace("browser-errors", "browser");
+      entries.push({ url: `${SITE_URL}/windows/${catSlug}`, priority: 0.7, changefreq: "weekly" });
+      const data = readJsonArray<{ code: string }>(path.join(winDir, file));
+      for (const item of data) {
+        entries.push({ url: `${SITE_URL}/windows/${catSlug}/${item.code.toLowerCase()}`, priority: 0.8, changefreq: "monthly" });
+      }
+    }
   }
 
   const today = new Date().toISOString().split("T")[0];

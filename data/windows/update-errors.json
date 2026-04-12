@@ -1,0 +1,1372 @@
+[
+  {
+    "id": "update-0x80070002",
+    "category": "update",
+    "code": "0x80070002",
+    "displayCode": "0x80070002",
+    "title": "Windows Update File Not Found",
+    "shortDescription": "Windows Update could not find a required file during the update process.",
+    "fullDescription": "Error 0x80070002 (ERROR_FILE_NOT_FOUND) occurs when Windows Update attempts to access a file that is missing or has been moved. This commonly happens when the Windows Update cache is corrupted, when system files are damaged, or when a previous update was interrupted and left partial files behind.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted Windows Update cache (SoftwareDistribution folder)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Missing or corrupted system files", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Previous update interrupted or failed partially", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Third-party software interfering with update files", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070002",
+      "Update downloads but fails to install",
+      "Windows Update stuck checking for updates",
+      "Specific KB update repeatedly fails"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run Windows Update Troubleshooter", "instruction": "Go to Settings > Update & Security > Troubleshoot > Additional troubleshooters > Windows Update > Run the troubleshooter.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clear Windows Update cache", "instruction": "Open elevated Command Prompt. Run: net stop wuauserv && net stop cryptSvc && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "Open elevated Command Prompt: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Manually download and install the update", "instruction": "Go to the Microsoft Update Catalog (catalog.update.microsoft.com), search for the KB number, download the standalone package, and install manually.", "tools": ["Browser", "Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If clearing the cache and running DISM do not resolve the issue, and manual installation also fails.",
+    "relatedCodes": ["0x80070003", "0x80070005", "0x8007000d"],
+    "faq": [
+      {"q": "Is it safe to delete the SoftwareDistribution folder?", "a": "Yes. Renaming or deleting SoftwareDistribution forces Windows Update to recreate it with fresh data. No personal files are affected."},
+      {"q": "Can I skip this update?", "a": "You can temporarily hide the update, but security updates should be installed. Try manual installation from the Microsoft Update Catalog."},
+      {"q": "Why does this keep happening?", "a": "Recurring failures often indicate underlying system file corruption. Running SFC and DISM thoroughly usually breaks the cycle."}
+    ]
+  },
+  {
+    "id": "update-0x80070005",
+    "category": "update",
+    "code": "0x80070005",
+    "displayCode": "0x80070005",
+    "title": "Windows Update Access Denied",
+    "shortDescription": "Windows Update does not have the required permissions to install the update.",
+    "fullDescription": "Error 0x80070005 (E_ACCESSDENIED) occurs when Windows Update lacks the necessary permissions to access files, registry keys, or services needed for the update. This can happen due to corrupted user profiles, restrictive security policies, antivirus interference, or corrupted Windows Update components.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Windows Update service running with incorrect permissions", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Antivirus blocking Windows Update operations", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted user profile or SID", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Group Policy restricting update installation", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails with Access Denied error",
+      "Updates download but fail during installation phase",
+      "Store apps fail to update with the same error",
+      "Windows Activation fails with 0x80070005"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run Windows Update Troubleshooter", "instruction": "Go to Settings > Update & Security > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reset Windows Update components", "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Temporarily disable antivirus", "instruction": "Disable third-party antivirus protection temporarily and retry the update.", "tools": ["Antivirus settings"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Grant full control to update folders", "instruction": "Open elevated Command Prompt: icacls C:\\Windows\\SoftwareDistribution /grant administrators:F /t && icacls C:\\Windows\\System32\\catroot2 /grant administrators:F /t", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the access denied error persists after resetting components and adjusting permissions, there may be deeper permission issues requiring professional repair.",
+    "relatedCodes": ["0x80070002", "0x80070422", "0x80080005"],
+    "faq": [
+      {"q": "Can antivirus cause this error?", "a": "Yes. Antivirus software with real-time protection can block Windows Update from accessing or modifying system files. Temporarily disabling it often resolves the issue."},
+      {"q": "Does this affect Windows Activation too?", "a": "Yes. The same error code can appear during Windows Activation if the licensing service lacks necessary permissions."},
+      {"q": "Is my computer secure if updates fail?", "a": "No. Failed security updates leave your system vulnerable. Resolve this error promptly and install pending security updates."}
+    ]
+  },
+  {
+    "id": "update-0x8007000d",
+    "category": "update",
+    "code": "0x8007000d",
+    "displayCode": "0x8007000d",
+    "title": "Invalid Data in Update Package",
+    "shortDescription": "Windows Update encountered invalid data during the update process.",
+    "fullDescription": "Error 0x8007000d (ERROR_INVALID_DATA) occurs when Windows Update detects corrupted or invalid data in the update package or component store. This frequently happens after incomplete downloads, corrupted Windows component store, or registry issues.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted Windows component store (WinSxS)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Incomplete or corrupted update download", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted Windows Update registry keys", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk errors corrupting update files", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x8007000d",
+      "DISM reports errors about the component store",
+      "Feature updates fail repeatedly",
+      "In-place upgrade fails"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM to repair component store", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RestoreHealth. If this fails, use Windows installation media: DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC", "instruction": "After DISM completes, run: sfc /scannow", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Clear update cache and retry", "instruction": "Stop Windows Update services, delete contents of C:\\Windows\\SoftwareDistribution\\Download, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Use Media Creation Tool", "instruction": "Download the Windows Media Creation Tool from Microsoft. Select Upgrade this PC now to perform an in-place upgrade that repairs the component store.", "tools": ["Media Creation Tool"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If DISM cannot repair the component store and in-place upgrade also fails.",
+    "relatedCodes": ["0x80070002", "0x80073712", "0x800f081f"],
+    "faq": [
+      {"q": "What is the component store?", "a": "The Windows component store (WinSxS folder) contains files needed for Windows operation and updates. When it becomes corrupted, updates fail."},
+      {"q": "Will an in-place upgrade erase my files?", "a": "No. An in-place upgrade using the Media Creation Tool repairs Windows while preserving your files, applications, and settings."},
+      {"q": "Can I delete the WinSxS folder to fix this?", "a": "Absolutely not. The WinSxS folder is essential to Windows. Deleting it will break the system. Use DISM to repair it properly."}
+    ]
+  },
+  {
+    "id": "update-0x80070057",
+    "category": "update",
+    "code": "0x80070057",
+    "displayCode": "0x80070057",
+    "title": "Invalid Parameter in Update Operation",
+    "shortDescription": "An invalid parameter was passed to a Windows Update function.",
+    "fullDescription": "Error 0x80070057 (E_INVALIDARG) occurs when Windows Update receives an invalid parameter during its operation. This is a generic error that can stem from corrupted update components, incorrect regional settings, problematic registry entries, or disk partition issues during feature updates.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted Windows Update components", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Incorrect decimal symbol in regional settings", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Registry corruption in update parameters", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk partition issues during feature update", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070057",
+      "Feature updates fail during installation",
+      "Backup operations fail with the same error",
+      "Windows installation fails with invalid parameter"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check regional settings", "instruction": "Go to Control Panel > Region > Additional settings. Ensure the Decimal symbol is set to a period (.) not a comma.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Reset Windows Update components", "instruction": "Run the Windows Update Troubleshooter, then clear the SoftwareDistribution folder as described in standard WU reset steps.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Run DISM and SFC", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Modify update registry entry", "instruction": "Open Registry Editor. Navigate to HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings. Delete or rename the IsConvergedUpdateStackEnabled value if it exists.", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the error occurs during Windows installation or feature updates and standard fixes do not help.",
+    "relatedCodes": ["0x8007000d", "0x80070002", "0x80070005"],
+    "faq": [
+      {"q": "Why does the decimal symbol matter?", "a": "Some Windows Update components parse version numbers and sizes using the system's regional decimal symbol. A comma instead of a period can cause parsing failures."},
+      {"q": "Can this affect Windows installation?", "a": "Yes. During clean installs or feature updates, this error can occur due to partition configuration issues or invalid setup parameters."},
+      {"q": "Is this error dangerous?", "a": "The error itself is not dangerous, but failing updates leave your system without security patches. Resolve it to keep Windows updated."}
+    ]
+  },
+  {
+    "id": "update-0x80240034",
+    "category": "update",
+    "code": "0x80240034",
+    "displayCode": "0x80240034",
+    "title": "Windows Update Download Failure",
+    "shortDescription": "Windows Update failed to download the update package from Microsoft servers.",
+    "fullDescription": "Error 0x80240034 (WU_E_DOWNLOAD_FAILED) indicates that Windows Update was unable to download one or more update packages. This can be caused by network connectivity issues, proxy or firewall blocking, corrupted update cache, or server-side problems.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Network connectivity issues or unstable connection", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firewall or proxy blocking Windows Update servers", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted Windows Update cache", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Microsoft update servers temporarily unavailable", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Update download progress stops or fails",
+      "Error 0x80240034 appears in update history",
+      "Multiple updates fail to download simultaneously",
+      "Download progress resets repeatedly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check network connectivity", "instruction": "Test internet connection by opening a browser. Try switching between Wi-Fi and Ethernet. Reset router if needed.", "tools": ["Browser"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset Windows Update cache", "instruction": "Stop WU services, clear SoftwareDistribution\\Download folder, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Temporarily disable firewall/VPN", "instruction": "Disable third-party firewall and VPN temporarily. Retry the update.", "tools": ["Firewall/VPN settings"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Download update manually", "instruction": "Visit catalog.update.microsoft.com, search for the KB number, download and install the standalone package.", "tools": ["Browser", "Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If the issue is related to corporate network/proxy configuration that you cannot modify.",
+    "relatedCodes": ["0x80244022", "0x80244018", "0x80246007"],
+    "faq": [
+      {"q": "Can a VPN cause this error?", "a": "Yes. VPNs can interfere with Windows Update downloads by routing traffic through servers that have poor connectivity to Microsoft's CDN."},
+      {"q": "Should I wait and try later?", "a": "If other internet services work fine, try resetting the cache first. If nothing works, wait 24 hours as Microsoft servers may have temporary issues."},
+      {"q": "Can I use a metered connection?", "a": "By default, Windows does not download updates over metered connections. Unmark the connection as metered in Network Settings if applicable."}
+    ]
+  },
+  {
+    "id": "update-0x80244022",
+    "category": "update",
+    "code": "0x80244022",
+    "displayCode": "0x80244022",
+    "title": "Windows Update HTTP 503 Service Unavailable",
+    "shortDescription": "The Windows Update server returned a 503 (Service Unavailable) error.",
+    "fullDescription": "Error 0x80244022 (WU_E_PT_HTTP_STATUS_SERVICE_UNAVAIL) indicates that Windows Update received an HTTP 503 response from Microsoft's update servers, meaning the service is temporarily overloaded or undergoing maintenance.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Microsoft update servers temporarily overloaded", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Network proxy or firewall interfering", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "WSUS server issues (enterprise environments)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "DNS resolution issues", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Windows Update fails with 0x80244022",
+      "All updates fail at the same time",
+      "Error occurs primarily on Patch Tuesday",
+      "Update check itself fails"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait and retry", "instruction": "This error is usually temporary. Wait 30 minutes to a few hours and try again. It is common immediately after Patch Tuesday.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Flush DNS cache", "instruction": "Open elevated Command Prompt: ipconfig /flushdns", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Reset network settings", "instruction": "Open elevated Command Prompt: netsh winsock reset && netsh int ip reset. Restart the computer.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Change DNS servers", "instruction": "Change DNS to Google (8.8.8.8, 8.8.4.4) or Cloudflare (1.1.1.1, 1.0.0.1) in network adapter settings.", "tools": ["Network Settings"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes to 2 hours (mostly waiting)",
+    "whenToCallPro": "In enterprise environments, this may indicate WSUS server issues requiring IT admin intervention.",
+    "relatedCodes": ["0x80240034", "0x80244018", "0x8024402c"],
+    "faq": [
+      {"q": "Is this a problem with my computer?", "a": "Usually not. This error indicates the Microsoft update server is temporarily overloaded. It typically resolves itself within hours."},
+      {"q": "Why does this happen on Patch Tuesday?", "a": "Patch Tuesday (second Tuesday of each month) creates a surge of update requests worldwide, sometimes overwhelming Microsoft's servers."},
+      {"q": "Can my ISP cause this?", "a": "Rarely. However, ISP-level DNS issues or network problems can occasionally contribute to connectivity failures with update servers."}
+    ]
+  },
+  {
+    "id": "update-0x80073712",
+    "category": "update",
+    "code": "0x80073712",
+    "displayCode": "0x80073712",
+    "title": "Component Store Corruption",
+    "shortDescription": "The Windows component store (WinSxS) is corrupted, preventing update installation.",
+    "fullDescription": "Error 0x80073712 (ERROR_SXS_COMPONENT_STORE_CORRUPT) indicates that the Windows side-by-side component store has become corrupted. This store contains all Windows components and is essential for updates. Corruption can result from interrupted updates, disk errors, or system file corruption.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Component store corruption from interrupted update", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Disk errors in WinSxS folder", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party cleanup tool removed necessary components", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed feature update left partial components", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails with 0x80073712",
+      "DISM reports component store corruption",
+      "Multiple unrelated updates all fail",
+      "SFC finds errors it cannot repair"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM RestoreHealth", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RestoreHealth. If it fails, use installation media: DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC", "instruction": "After DISM: sfc /scannow", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Run StartComponentCleanup", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /StartComponentCleanup", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "In-place upgrade repair", "instruction": "Download Windows Media Creation Tool, select Upgrade this PC now. This replaces corrupted components while keeping files.", "tools": ["Media Creation Tool"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If DISM with installation media source and in-place upgrade both fail to repair the component store.",
+    "relatedCodes": ["0x8007000d", "0x800f081f", "0x80073701"],
+    "faq": [
+      {"q": "Can cleanup tools cause this?", "a": "Yes. Third-party cleanup tools (like CCleaner) that delete files from the WinSxS folder can corrupt the component store. Never manually clean WinSxS."},
+      {"q": "Will DISM always fix it?", "a": "DISM can repair most component store corruption, especially when pointed at a clean Windows installation image. For severe corruption, an in-place upgrade may be needed."},
+      {"q": "How do I prevent component store corruption?", "a": "Do not interrupt Windows updates in progress, avoid third-party cleanup tools that target WinSxS, and ensure your disk is healthy."}
+    ]
+  },
+  {
+    "id": "update-0x800f0922",
+    "category": "update",
+    "code": "0x800f0922",
+    "displayCode": "0x800f0922",
+    "title": "Update Installation Failed - Insufficient Space or VPN Connected",
+    "shortDescription": "Windows Update failed to install because of insufficient System Reserved partition space or VPN interference.",
+    "fullDescription": "Error 0x800f0922 typically indicates one of two problems: the System Reserved partition does not have enough free space to apply the update, or an active VPN connection is preventing the update from connecting to required servers. This is particularly common during feature updates.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "System Reserved partition too small (less than 500MB)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "VPN connection active during update", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": ".NET Framework update failure", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Secure Boot or UEFI configuration issue", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Feature update fails during installation phase",
+      "Update rolls back after restart",
+      "Error appears after update downloads successfully",
+      "0x800f0922 in Windows Update history"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect VPN", "instruction": "Disconnect any active VPN connection before running Windows Update. This includes both app-based and system-level VPNs.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Check System Reserved partition", "instruction": "Open Disk Management (diskmgmt.msc). Check if the System Reserved or EFI System Partition has at least 500MB. If less, it may need to be expanded.", "tools": ["Disk Management"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Expand System Reserved partition", "instruction": "Use a third-party partition manager (MiniTool Partition Wizard) to expand the System Reserved partition, or free space by removing extra language packs and fonts.", "tools": ["Partition manager software"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 4, "title": "Repair .NET Framework", "instruction": "Open elevated Command Prompt: DISM /Online /Enable-Feature /FeatureName:NetFx3 /All. Also run the .NET Framework Repair Tool from Microsoft.", "tools": ["Command Prompt", ".NET Repair Tool"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If the System Reserved partition needs to be expanded, this can be risky. Professional help ensures boot configuration is preserved.",
+    "relatedCodes": ["0x80070070", "0x800f081f", "0x800f0831"],
+    "faq": [
+      {"q": "Why does VPN cause update failures?", "a": "VPN connections can prevent Windows Update from reaching Microsoft's update verification servers, causing the installation to fail."},
+      {"q": "How big should the System Reserved partition be?", "a": "Microsoft recommends at least 500MB for UEFI systems. Some feature updates require even more space temporarily."},
+      {"q": "Can I just skip this update?", "a": "For feature updates, you can defer them. For security updates, try the fixes above to install them as soon as possible."}
+    ]
+  },
+  {
+    "id": "update-0x800f081f",
+    "category": "update",
+    "code": "0x800f081f",
+    "displayCode": "0x800f081f",
+    "title": "Source Files for Feature Not Found",
+    "shortDescription": "Windows could not find the source files needed to install a Windows feature or update.",
+    "fullDescription": "Error 0x800f081f (CBS_E_SOURCE_MISSING) occurs when DISM or Windows Update cannot find the source files needed to install a feature or repair components. This commonly happens when trying to enable .NET Framework 3.5, install optional features, or when DISM RestoreHealth cannot connect to Windows Update.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "DISM unable to download source files from Windows Update", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Group Policy blocking access to Windows Update for repair", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": ".NET Framework source files missing", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted component store", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "DISM /RestoreHealth fails with 0x800f081f",
+      "Enabling .NET Framework 3.5 fails",
+      "Optional Windows features fail to install",
+      "Windows Update fails to install cumulative updates"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Use Windows installation media as source", "instruction": "Mount Windows ISO or insert USB. Run: DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /Source:D:\\Sources\\sxs /LimitAccess", "tools": ["Command Prompt", "Windows ISO/USB"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Check Group Policy", "instruction": "Open gpedit.msc > Computer Configuration > Administrative Templates > System > Specify settings for optional component installation and repair. Set to Enabled and check Contact Windows Update directly.", "tools": ["Group Policy Editor"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Clear WSUS setting in registry", "instruction": "Open Registry Editor: HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU. Set UseWUServer to 0, retry, then set it back.", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Run DISM with alternative source", "instruction": "DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim (where D: is your Windows media)", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "In enterprise environments where Group Policy and WSUS configuration requires IT administrator changes.",
+    "relatedCodes": ["0x80073712", "0x800f0831", "0x8007000d"],
+    "faq": [
+      {"q": "Why can't DISM find the source files?", "a": "DISM tries to download repair sources from Windows Update. If WU access is blocked by Group Policy, firewall, or WSUS settings, it cannot get the files."},
+      {"q": "Do I need a Windows ISO?", "a": "For .NET Framework 3.5 and some features, having Windows installation media as an alternative source is the most reliable fix."},
+      {"q": "Does this affect managed/enterprise PCs more?", "a": "Yes. Enterprise environments often use WSUS and Group Policies that restrict access to Windows Update, making this error much more common."}
+    ]
+  },
+  {
+    "id": "update-0x800f0831",
+    "category": "update",
+    "code": "0x800f0831",
+    "displayCode": "0x800f0831",
+    "title": "Update Prerequisite Missing",
+    "shortDescription": "A prerequisite update required before this update could be installed is missing.",
+    "fullDescription": "Error 0x800f0831 (CBS_E_STORE_CORRUPTION or prerequisite missing) occurs when a cumulative update requires a previous update that is not installed. This is common when updates are skipped or when the component store has gaps. It can also indicate delta update failures.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Missing prerequisite cumulative update", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Component store inconsistency", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Delta update manifests missing", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted update cache", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Cumulative update fails to install",
+      "Update reverts after restart",
+      "Error appears only for specific KB updates",
+      "Update works on other machines with the same OS version"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Install previous cumulative update first", "instruction": "Check the KB article for the failing update to identify prerequisites. Download and install the previous month's cumulative update from the Microsoft Update Catalog.", "tools": ["Browser", "Microsoft Update Catalog"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Run DISM and SFC", "instruction": "DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Clear update cache", "instruction": "Stop WU services, delete SoftwareDistribution folder contents, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Install full SSU and LCU", "instruction": "Download and install the latest Servicing Stack Update (SSU) first, then retry the cumulative update.", "tools": ["Microsoft Update Catalog"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the prerequisite chain cannot be determined or if multiple months of updates are missing.",
+    "relatedCodes": ["0x800f081f", "0x80073712", "0x80070490"],
+    "faq": [
+      {"q": "How do I find the prerequisite update?", "a": "Check the Microsoft support page for the failing KB article. It will list prerequisites. Also try installing the previous month's cumulative update first."},
+      {"q": "Can I skip directly to the latest update?", "a": "Sometimes yes. Try downloading the full (non-delta) version of the latest cumulative update from the Microsoft Update Catalog."},
+      {"q": "What is a Servicing Stack Update?", "a": "An SSU updates the component that installs Windows updates. It must be current for cumulative updates to install correctly."}
+    ]
+  },
+  {
+    "id": "update-0x80070490",
+    "category": "update",
+    "code": "0x80070490",
+    "displayCode": "0x80070490",
+    "title": "Element Not Found in Update Store",
+    "shortDescription": "Windows Update could not find a required element in the update component store.",
+    "fullDescription": "Error 0x80070490 (ERROR_NOT_FOUND) occurs when Windows Update's Component-Based Servicing (CBS) cannot find a required element in the component store. This indicates corruption in the update manifest or missing component registrations.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted CBS manifest or component registration", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Missing update components in WinSxS", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party cleanup tool removed components", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Interrupted update process", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails with 0x80070490",
+      "CBS log shows element not found errors",
+      "SFC finds unrepairable corruption",
+      "Specific updates repeatedly fail while others succeed"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM CheckHealth and RestoreHealth", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /CheckHealth then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC", "instruction": "After DISM: sfc /scannow", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Reset Windows Update components", "instruction": "Run the comprehensive Windows Update reset script that stops all services, clears caches, re-registers DLLs, and restarts services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Manually install the update", "instruction": "Download the standalone update package from Microsoft Update Catalog and install it directly.", "tools": ["Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If DISM cannot repair the missing elements and manual installation also fails.",
+    "relatedCodes": ["0x80073712", "0x800f0831", "0x80070002"],
+    "faq": [
+      {"q": "What is CBS?", "a": "Component-Based Servicing is the Windows subsystem responsible for installing, updating, and removing Windows components and updates."},
+      {"q": "Can I check the CBS log?", "a": "Yes. Open C:\\Windows\\Logs\\CBS\\CBS.log in Notepad. Search for the error code to find detailed information about what component is missing."},
+      {"q": "Will an in-place upgrade fix this?", "a": "Yes. An in-place upgrade using the Media Creation Tool replaces all components, which is the most thorough fix for persistent CBS errors."}
+    ]
+  },
+  {
+    "id": "update-0x800736b3",
+    "category": "update",
+    "code": "0x800736b3",
+    "displayCode": "0x800736b3",
+    "title": "Assembly Reference Mismatch",
+    "shortDescription": "The referenced assembly is not installed on the system, preventing the update from applying.",
+    "fullDescription": "Error 0x800736b3 (ERROR_SXS_ASSEMBLY_NOT_FOUND) occurs when Windows Update references a component assembly that is not installed or registered on the system. This is a side-by-side (SxS) assembly resolution failure.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Missing SxS assembly from component store", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted component manifests", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party tool removed assembly files", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed previous update left inconsistent state", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Update fails with assembly reference error",
+      "DISM reports SxS assembly not found",
+      "Multiple updates fail with same error",
+      "SFC reports unrepairable files"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM with source", "instruction": "Mount Windows ISO. Run: DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim /LimitAccess", "tools": ["Command Prompt", "DISM", "Windows ISO"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC", "instruction": "After DISM: sfc /scannow", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Clean component store", "instruction": "DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "In-place upgrade", "instruction": "Use the Media Creation Tool to perform an in-place upgrade, which replaces all system assemblies.", "tools": ["Media Creation Tool"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If DISM with a clean source and in-place upgrade both fail to resolve the assembly mismatch.",
+    "relatedCodes": ["0x80073712", "0x80070490", "0x800f081f"],
+    "faq": [
+      {"q": "What is a SxS assembly?", "a": "Side-by-side assemblies are Windows components stored in the WinSxS folder. They allow multiple versions of the same component to coexist safely."},
+      {"q": "Can I copy assemblies from another PC?", "a": "No. Manually copying WinSxS files can cause further corruption. Use DISM with a proper source image instead."},
+      {"q": "Is an in-place upgrade safe?", "a": "Yes. An in-place upgrade repairs Windows while preserving your files, applications, and settings. It is the most thorough repair option."}
+    ]
+  },
+  {
+    "id": "update-0x80070003",
+    "category": "update",
+    "code": "0x80070003",
+    "displayCode": "0x80070003",
+    "title": "Windows Update Path Not Found",
+    "shortDescription": "Windows Update could not find a required file path during the update process.",
+    "fullDescription": "Error 0x80070003 (ERROR_PATH_NOT_FOUND) is closely related to 0x80070002 and occurs when Windows Update cannot locate a required directory or file path. The update cache may be corrupted or the path may have been modified.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted SoftwareDistribution folder structure", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Update cache pointing to non-existent paths", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Redirected update paths in registry", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk corruption in Windows directory", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails with 0x80070003",
+      "Update gets stuck at download or install phase",
+      "CBS log shows path not found errors",
+      "Windows Update Troubleshooter reports cache issue"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clear Windows Update cache", "instruction": "Stop WU services, rename SoftwareDistribution to SoftwareDistribution.old, restart services.", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Run Windows Update Troubleshooter", "instruction": "Settings > Update & Security > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Run DISM and SFC", "instruction": "DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Re-register Windows Update DLLs", "instruction": "Open elevated Command Prompt and re-register WU DLLs: regsvr32 wuaueng.dll, regsvr32 wuapi.dll, regsvr32 wups.dll, etc.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If clearing the cache and re-registering DLLs do not resolve the path error.",
+    "relatedCodes": ["0x80070002", "0x8007000d", "0x80070005"],
+    "faq": [
+      {"q": "Can I just delete the SoftwareDistribution folder?", "a": "Renaming it is safer than deleting. Windows will create a new one. If the rename works, you can delete the old folder after updates succeed."},
+      {"q": "What is the SoftwareDistribution folder?", "a": "It stores Windows Update files including downloaded updates, update history, and the update database. Recreating it forces a fresh start."},
+      {"q": "Why does this keep recurring?", "a": "Recurring failures may indicate a deeper system file issue. Run a full SFC and DISM repair cycle to address the root cause."}
+    ]
+  },
+  {
+    "id": "update-0x80070422",
+    "category": "update",
+    "code": "0x80070422",
+    "displayCode": "0x80070422",
+    "title": "Windows Update Service Disabled",
+    "shortDescription": "The Windows Update service is not running or has been disabled.",
+    "fullDescription": "Error 0x80070422 occurs when the Windows Update service (wuauserv), BITS service, or other dependent services are stopped or disabled. This can happen when third-party optimization tools disable Windows services, when Group Policy restricts updates, or when malware disables the update mechanism.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Windows Update service disabled by optimization tool", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "BITS service not running", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Group Policy disabling Windows Update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware disabling update services", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update fails immediately with 0x80070422",
+      "Windows Update says Service is not running",
+      "Cannot check for updates at all",
+      "Windows Firewall may also fail with same error"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Enable Windows Update service", "instruction": "Open services.msc. Find Windows Update, double-click it, set Startup type to Automatic, click Start.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Enable BITS service", "instruction": "In services.msc, find Background Intelligent Transfer Service. Set to Automatic and Start.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Enable other dependent services", "instruction": "Ensure Cryptographic Services and Windows Installer services are also set to Automatic and running.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Check Group Policy", "instruction": "Open gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update. Ensure no policies are blocking updates.", "tools": ["Group Policy Editor"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If services keep disabling themselves after being started, malware may be responsible. Professional malware removal may be needed.",
+    "relatedCodes": ["0x80070005", "0x80080005", "0x80070002"],
+    "faq": [
+      {"q": "Why was the service disabled?", "a": "Third-party 'optimization' tools and some privacy tools disable Windows Update. Some malware also disables it to prevent security patches from being installed."},
+      {"q": "What other services does Windows Update need?", "a": "Windows Update depends on BITS, Cryptographic Services, Windows Installer, and Windows Event Log services. All must be running."},
+      {"q": "Is it safe to disable Windows Update?", "a": "No. Disabling Windows Update leaves your system vulnerable to security exploits. If you want to defer updates, use the built-in pause feature instead."}
+    ]
+  },
+  {
+    "id": "update-0x80070643",
+    "category": "update",
+    "code": "0x80070643",
+    "displayCode": "0x80070643",
+    "title": "Windows Update Installation Error - MSI Failure",
+    "shortDescription": "A Windows Installer (MSI) package failed during the update installation.",
+    "fullDescription": "Error 0x80070643 (ERROR_INSTALL_FAILURE) occurs when a Windows Installer-based update package fails to install. This commonly affects .NET Framework updates, Windows Defender definition updates, and other MSI-based components. Corrupted .NET Framework, antivirus conflicts, or MSI service issues are typical causes.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted .NET Framework installation", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Windows Installer service issue", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Antivirus blocking MSI installation", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted Windows Defender files", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Specific updates fail with 0x80070643",
+      ".NET Framework updates consistently fail",
+      "Windows Defender definition updates fail",
+      "Update log shows MSI installation failure"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Repair .NET Framework", "instruction": "Download and run the Microsoft .NET Framework Repair Tool. It automatically detects and fixes .NET issues.", "tools": [".NET Framework Repair Tool"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Reset Windows Installer", "instruction": "Open elevated Command Prompt: msiexec /unregister then msiexec /regserver", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Manually update Windows Defender", "instruction": "Open Windows Security > Virus & threat protection > Protection updates > Check for updates. Or download definitions from microsoft.com/wdsi.", "tools": ["Windows Security"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Run DISM and SFC", "instruction": "DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If .NET Framework is severely corrupted and the repair tool cannot fix it.",
+    "relatedCodes": ["0x80070002", "0x80070005", "0x8007000d"],
+    "faq": [
+      {"q": "Why does this mainly affect .NET updates?", "a": ".NET Framework updates use MSI packages. If the existing .NET installation is corrupted, new updates cannot apply their changes."},
+      {"q": "Can I ignore Windows Defender definition failures?", "a": "No. Defender definitions are critical for security. Update manually if automatic updates fail."},
+      {"q": "What is MSI?", "a": "MSI (Microsoft Installer) is the standard Windows installation technology. Many updates use MSI packages, which require the Windows Installer service."}
+    ]
+  },
+  {
+    "id": "update-0x80073701",
+    "category": "update",
+    "code": "0x80073701",
+    "displayCode": "0x80073701",
+    "title": "Assembly Missing from Component Store",
+    "shortDescription": "A required assembly is missing from the Windows component store.",
+    "fullDescription": "Error 0x80073701 (ERROR_SXS_ASSEMBLY_MISSING) indicates that one or more component assemblies needed for the update are missing from the WinSxS store. This is similar to 0x800736b3 but indicates complete absence rather than reference mismatch.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Component cleanup removed required assemblies", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted component store", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Interrupted previous update", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Disk errors damaging WinSxS files", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Cumulative updates fail with 0x80073701",
+      "DISM reports missing assemblies",
+      "SFC finds files it cannot repair",
+      "Error appears for feature updates"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM RestoreHealth with source", "instruction": "DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim (from Windows ISO)", "tools": ["Command Prompt", "DISM", "Windows ISO"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC", "instruction": "sfc /scannow after DISM completes", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Component cleanup", "instruction": "DISM /Online /Cleanup-Image /StartComponentCleanup", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "In-place upgrade", "instruction": "Use Media Creation Tool to perform in-place upgrade repair.", "tools": ["Media Creation Tool"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If in-place upgrade fails to restore the missing assemblies.",
+    "relatedCodes": ["0x800736b3", "0x80073712", "0x80070490"],
+    "faq": [
+      {"q": "Can Disk Cleanup cause this?", "a": "The built-in Disk Cleanup with Windows Update Cleanup option can sometimes cause this if it removes assemblies still needed by pending updates. This is uncommon but possible."},
+      {"q": "Is an in-place upgrade different from a clean install?", "a": "Yes. An in-place upgrade repairs Windows while keeping your files and applications. A clean install erases everything and starts fresh."},
+      {"q": "How do I prevent assembly loss?", "a": "Avoid third-party cleanup tools that target WinSxS. Do not interrupt Windows updates in progress. Run regular disk health checks."}
+    ]
+  },
+  {
+    "id": "update-0x80080005",
+    "category": "update",
+    "code": "0x80080005",
+    "displayCode": "0x80080005",
+    "title": "Server Execution Failed",
+    "shortDescription": "A Windows Update COM server execution failed.",
+    "fullDescription": "Error 0x80080005 (CO_E_SERVER_EXEC_FAILURE) indicates that a COM server required by Windows Update failed to start or execute properly. This is typically related to the BITS or Windows Update Agent service failing to initialize.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "BITS service not starting properly", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted Windows Update Agent", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "COM registration issues", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Security software blocking COM server execution", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Windows Update fails with 0x80080005",
+      "BITS service crashes or fails to start",
+      "Windows Store also fails with same error",
+      "Update check fails immediately"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restart BITS and WU services", "instruction": "Open elevated Command Prompt: net stop bits && net stop wuauserv && net start bits && net start wuauserv", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Re-register COM components", "instruction": "Run: regsvr32 qmgr.dll && regsvr32 qmgrprxy.dll", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Reset Windows Update components", "instruction": "Run the full Windows Update reset procedure: stop services, clear caches, re-register DLLs, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Temporarily disable security software", "instruction": "Disable third-party antivirus and firewall temporarily, then retry the update.", "tools": ["Antivirus settings"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If COM registration repairs do not work and the BITS service continues to fail.",
+    "relatedCodes": ["0x80070422", "0x80070005", "0x80240034"],
+    "faq": [
+      {"q": "What is BITS?", "a": "Background Intelligent Transfer Service handles asynchronous file downloads. Windows Update uses it to download update packages in the background."},
+      {"q": "Can I reinstall BITS?", "a": "BITS is a built-in Windows component and cannot be uninstalled/reinstalled. Re-registering its COM components (qmgr.dll) usually fixes initialization failures."},
+      {"q": "Does this affect the Microsoft Store too?", "a": "Yes. The Microsoft Store uses similar COM infrastructure, so this error can affect both Windows Update and Store app downloads."}
+    ]
+  },
+  {
+    "id": "update-0x8024000b",
+    "category": "update",
+    "code": "0x8024000B",
+    "displayCode": "0x8024000B",
+    "title": "Update Operation Cancelled",
+    "shortDescription": "The Windows Update operation was cancelled before completion.",
+    "fullDescription": "Error 0x8024000B (WU_E_CALL_CANCELLED) indicates that a Windows Update operation was cancelled before it could complete. This can happen when the user cancels an update, when Windows restarts during an update, or when a service timeout occurs.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Update cancelled by user or system restart", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Service timeout during long update operation", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Third-party software interfering with update process", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "System sleep or hibernate interrupting update", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Update shows as cancelled in update history",
+      "Updates start but never complete",
+      "Error appears after system restart during update",
+      "Updates seem to download but then show cancelled"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Retry the update", "instruction": "Simply go to Windows Update and click Check for updates to retry. Ensure the PC stays on and connected.", "tools": ["Windows Update"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Disable sleep during updates", "instruction": "Go to Power Options and set Sleep to Never while updates are installing.", "tools": ["Power Options"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Close background applications", "instruction": "Close all running applications before starting the update to prevent conflicts and timeouts.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Run update from clean boot", "instruction": "Perform a clean boot (msconfig > Services > Hide Microsoft services > Disable all) and then run Windows Update.", "tools": ["msconfig", "Windows Update"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If updates are consistently cancelled despite keeping the system awake and online.",
+    "relatedCodes": ["0x80240034", "0x80070002", "0x80240016"],
+    "faq": [
+      {"q": "Did I accidentally cancel the update?", "a": "Possibly. Some actions like restarting the computer, closing the lid, or putting the PC to sleep during updates can cause cancellation."},
+      {"q": "How long should I wait for updates?", "a": "Most quality updates take 15-30 minutes. Feature updates can take 1-2 hours. Do not interrupt the process."},
+      {"q": "Can my PC sleep during updates?", "a": "No. Active Windows Update operations can be interrupted by sleep or hibernate. Disable these during update installation."}
+    ]
+  },
+  {
+    "id": "update-0x8024001e",
+    "category": "update",
+    "code": "0x8024001E",
+    "displayCode": "0x8024001E",
+    "title": "Windows Update Service Failed to Start",
+    "shortDescription": "The Windows Update service failed to complete its startup properly.",
+    "fullDescription": "Error 0x8024001E (WU_E_SERVICE_STOP) indicates that the Windows Update service stopped or failed during startup. This can be caused by corrupted service configuration, dependency failures, or resource exhaustion.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Windows Update service dependency failure", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted service configuration in registry", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Insufficient system resources", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Malware disrupting update service", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Windows Update immediately fails with 0x8024001E",
+      "Windows Update service stops unexpectedly",
+      "Cannot check for updates",
+      "Event Viewer shows Windows Update service stop events"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Start dependent services", "instruction": "Open services.msc. Start these services in order: Remote Procedure Call (RPC), DCOM Server Process Launcher, BITS, Cryptographic Services, Windows Update.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset Windows Update components", "instruction": "Stop all WU services, clear caches, re-register DLLs, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Check Event Viewer", "instruction": "Open Event Viewer > Windows Logs > System. Filter for Windows Update Client events to identify the specific failure reason.", "tools": ["Event Viewer"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the service continues to stop after resetting components, professional registry or service repair may be needed.",
+    "relatedCodes": ["0x80070422", "0x80080005", "0x80070005"],
+    "faq": [
+      {"q": "What services does Windows Update depend on?", "a": "Key dependencies include BITS, Cryptographic Services, Remote Procedure Call (RPC), and DCOM Server Process Launcher."},
+      {"q": "Can too many running programs cause this?", "a": "If the system is extremely low on memory, services may fail to start. Close unnecessary applications and try again."},
+      {"q": "How do I check if malware disabled the service?", "a": "Run a full malware scan. Also check if the service startup type is set to Disabled in services.msc, which you did not set yourself."}
+    ]
+  },
+  {
+    "id": "update-0x80240016",
+    "category": "update",
+    "code": "0x80240016",
+    "displayCode": "0x80240016",
+    "title": "Another Update Installation in Progress",
+    "shortDescription": "Another installation is already in progress, preventing this update from installing.",
+    "fullDescription": "Error 0x80240016 (WU_E_INSTALL_NOT_ALLOWED) occurs when Windows Update detects that another installation process is already running. Windows can only install one update at a time, and attempts to install a second update while one is in progress will fail.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Another Windows Update installation in progress", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Stuck/hung update installation", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "MSI installation blocking Windows Update", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "SCCM or WSUS client conflicting", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Cannot install updates while another is in progress",
+      "Update appears stuck at a percentage",
+      "Multiple update attempts all fail with same error",
+      "Task Manager shows TiWorker.exe or wuauserv high activity"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait for current installation to complete", "instruction": "Check Task Manager for TiWorker.exe or Windows Modules Installer Worker activity. Wait until it finishes.", "tools": ["Task Manager"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Restart the computer", "instruction": "If the installation appears stuck, restart the computer. Pending updates will resume after reboot.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Stop Windows Update and retry", "instruction": "If stuck, open elevated Command Prompt: net stop wuauserv && net stop bits. Wait 30 seconds, then: net start wuauserv && net start bits", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Clear pending installations", "instruction": "Delete contents of C:\\Windows\\SoftwareDistribution\\Download. Restart Windows Update service.", "tools": ["Command Prompt", "File Explorer"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 45 minutes",
+    "whenToCallPro": "If the installation is genuinely stuck and cannot be cleared by standard methods.",
+    "relatedCodes": ["0x8024000b", "0x80070422", "0x80240034"],
+    "faq": [
+      {"q": "How do I know if an update is stuck?", "a": "If TiWorker.exe shows no CPU or disk activity for over 30 minutes but the update appears in progress, it may be stuck."},
+      {"q": "Can I install two updates simultaneously?", "a": "No. Windows installs updates sequentially. Attempting to force a second installation will result in this error."},
+      {"q": "Is it safe to force-stop a stuck update?", "a": "Yes, if the update has been stuck for over an hour with no activity. Stop the services, clear the cache, and restart."}
+    ]
+  },
+  {
+    "id": "update-0x80242006",
+    "category": "update",
+    "code": "0x80242006",
+    "displayCode": "0x80242006",
+    "title": "Windows Update Handler Failure",
+    "shortDescription": "The Windows Update handler encountered an unexpected failure during processing.",
+    "fullDescription": "Error 0x80242006 (WU_E_UH_INVALIDMETADATA) indicates that the update handler received invalid metadata from the update package. This can occur due to corrupted update downloads, proxy server caching issues, or WSUS synchronization problems.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted update metadata in cache", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Proxy server serving stale cached content", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "WSUS server synchronization issue", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Incomplete update download", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Update fails during installation with metadata error",
+      "Specific updates fail while others succeed",
+      "Error appears consistently for same update",
+      "Update handler shows failure in CBS log"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clear update cache", "instruction": "Stop WU services, delete C:\\Windows\\SoftwareDistribution\\Download contents, restart services.", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Run Windows Update Troubleshooter", "instruction": "Settings > Update & Security > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Download update manually", "instruction": "Get the standalone update from catalog.update.microsoft.com.", "tools": ["Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Bypass proxy for Windows Update", "instruction": "Configure proxy exclusions for *.windowsupdate.com and *.microsoft.com.", "tools": ["Proxy settings"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "In enterprise environments where WSUS or proxy configuration needs IT admin changes.",
+    "relatedCodes": ["0x80240034", "0x80244022", "0x80070002"],
+    "faq": [
+      {"q": "What is update metadata?", "a": "Metadata describes the update package, its dependencies, applicability, and installation instructions. If corrupted, Windows cannot process the update correctly."},
+      {"q": "Can a proxy cause this error?", "a": "Yes. Caching proxy servers may serve outdated metadata. Bypassing the proxy for Windows Update URLs often fixes this."},
+      {"q": "Does this affect all updates?", "a": "Usually only specific updates with corrupted cached metadata. Clearing the cache and re-downloading typically resolves it."}
+    ]
+  },
+  {
+    "id": "update-0x80244018",
+    "category": "update",
+    "code": "0x80244018",
+    "displayCode": "0x80244018",
+    "title": "Windows Update HTTP 403 Forbidden",
+    "shortDescription": "Access to Windows Update servers was blocked with an HTTP 403 response.",
+    "fullDescription": "Error 0x80244018 (WU_E_PT_HTTP_STATUS_FORBIDDEN) indicates that a firewall, proxy, or content filter is blocking access to Windows Update servers with a 403 Forbidden response. This is common in enterprise and school networks.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corporate firewall blocking Windows Update URLs", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Proxy server denying access", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Content filter blocking update downloads", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "ISP-level blocking or filtering", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Cannot check for or download updates",
+      "Error 0x80244018 in update history",
+      "Updates work on other networks but not current one",
+      "Store app downloads also fail"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Try a different network", "instruction": "Connect to a different network (mobile hotspot, home network) to verify if it is a network-level block.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Configure proxy exclusions", "instruction": "Add *.windowsupdate.com, *.microsoft.com, and *.windows.com to proxy bypass list.", "tools": ["Proxy settings"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Reset network settings", "instruction": "netsh winsock reset && netsh int ip reset && ipconfig /flushdns", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Manual update installation", "instruction": "Download updates from catalog.update.microsoft.com on a different network and transfer via USB.", "tools": ["Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If on a corporate network, contact your IT department to allow Windows Update through the firewall.",
+    "relatedCodes": ["0x80244022", "0x80240034", "0x8024402c"],
+    "faq": [
+      {"q": "Why is my network blocking Windows Update?", "a": "Some corporate and school networks restrict Windows Update to force updates through a managed server (WSUS/SCCM). Contact IT for assistance."},
+      {"q": "Can I use a VPN to bypass the block?", "a": "A VPN can bypass network-level blocks, but this may violate network policies. Check with your IT department first."},
+      {"q": "What URLs need to be unblocked?", "a": "Key domains include windowsupdate.com, update.microsoft.com, download.windowsupdate.com, and related CDN domains."}
+    ]
+  },
+  {
+    "id": "update-0x80246007",
+    "category": "update",
+    "code": "0x80246007",
+    "displayCode": "0x80246007",
+    "title": "Update Download Incomplete",
+    "shortDescription": "The update download did not complete because the download manager could not map the file.",
+    "fullDescription": "Error 0x80246007 (WU_E_DM_NOTDOWNLOADED) occurs when BITS fails to complete the update download. The download manager could not finalize the downloaded file, typically due to disk space issues, corrupted BITS queue, or network interruptions.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Insufficient disk space for download", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted BITS download queue", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Network disconnection during download", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Antivirus quarantining download files", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Download progress shows then fails",
+      "Update stuck at a download percentage",
+      "Error 0x80246007 in update history",
+      "BITS queue shows failed downloads"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Free disk space", "instruction": "Ensure at least 10GB free on C: drive. Use Disk Cleanup to remove temporary files, previous Windows installations, and update cache.", "tools": ["Disk Cleanup"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reset BITS queue", "instruction": "Open elevated Command Prompt: bitsadmin /reset /allusers", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 3, "title": "Clear download cache", "instruction": "Stop WU and BITS services. Delete contents of C:\\Windows\\SoftwareDistribution\\Download. Restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Manual download", "instruction": "Download the update directly from Microsoft Update Catalog.", "tools": ["Microsoft Update Catalog"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If the BITS queue is consistently corrupted and manual methods do not resolve it.",
+    "relatedCodes": ["0x80240034", "0x80244022", "0x80070070"],
+    "faq": [
+      {"q": "How much disk space do updates need?", "a": "Quality updates need 2-5GB free. Feature updates can require 10-20GB or more. Always maintain adequate free space on the system drive."},
+      {"q": "What is BITS queue?", "a": "BITS manages download jobs in a queue. Corrupted queue entries can prevent new downloads from completing. Resetting the queue clears stuck entries."},
+      {"q": "Can a network interruption cause this?", "a": "Yes. If the network disconnects during download, the file may be incomplete. BITS normally resumes, but corruption can prevent this."}
+    ]
+  },
+  {
+    "id": "update-0x80248007",
+    "category": "update",
+    "code": "0x80248007",
+    "displayCode": "0x80248007",
+    "title": "Update Metadata Integrity Verification Failed",
+    "shortDescription": "Windows Update failed to verify the integrity of update metadata.",
+    "fullDescription": "Error 0x80248007 (WU_E_DS_NODATA) indicates that the Windows Update data store does not contain the expected metadata for the update. This can occur when the update database is corrupted or when metadata integrity checks fail.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted Windows Update database", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed integrity verification of metadata", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Tampered or modified update metadata", "likelihood": "low", "fixDifficulty": "intermediate"},
+      {"cause": "Clock/time synchronization issue affecting cert validation", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Cannot check for updates",
+      "Updates fail with integrity error",
+      "Windows Update database seems empty or corrupted",
+      "Checking for updates returns no results"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Sync system clock", "instruction": "Right-click clock > Adjust date/time > Sync now. Ensure time zone is correct.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Reset Windows Update database", "instruction": "Stop WU services. Rename C:\\Windows\\SoftwareDistribution to SoftwareDistribution.old. Restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Re-register update DLLs", "instruction": "Run: regsvr32 wuaueng.dll && regsvr32 wuapi.dll && regsvr32 wups.dll && regsvr32 wups2.dll", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Run Windows Update Troubleshooter", "instruction": "Settings > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If metadata integrity failures persist after database reset, there may be security concerns requiring investigation.",
+    "relatedCodes": ["0x80242006", "0x80070002", "0x80244022"],
+    "faq": [
+      {"q": "Can an incorrect system clock cause this?", "a": "Yes. Certificate validation and metadata signing rely on correct system time. An incorrect clock can cause integrity checks to fail."},
+      {"q": "Is this a security concern?", "a": "Usually not - it is most often caused by database corruption. However, if it occurs alongside other suspicious activity, investigation may be warranted."},
+      {"q": "How do I reset the update database safely?", "a": "Renaming the SoftwareDistribution folder is safe. Windows creates a new one automatically with a fresh database."}
+    ]
+  },
+  {
+    "id": "update-0x8024a105",
+    "category": "update",
+    "code": "0x8024A105",
+    "displayCode": "0x8024A105",
+    "title": "Windows Update Restart Required",
+    "shortDescription": "A system restart is required to complete the update, but the restart was not performed.",
+    "fullDescription": "Error 0x8024A105 (WU_E_AU_OOBE_IN_PROGRESS or restart needed) indicates that Windows Update cannot proceed because a pending restart is required. Previous updates need to be finalized through a restart before new updates can be installed.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Pending restart from previous update not completed", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "System stuck in pending restart state", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Multiple pending restarts queued", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Group Policy preventing automatic restart", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Cannot install new updates",
+      "Windows shows restart pending notification",
+      "Update history shows waiting for restart",
+      "Multiple updates queued behind restart"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restart the computer", "instruction": "Save all work and restart the computer. Do not use Shut down; use Restart to ensure pending updates are applied.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clear pending restart flag", "instruction": "If restart does not clear the error, check registry: HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired. Delete this key.", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Run Windows Update Troubleshooter", "instruction": "Settings > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Clear pending operations", "instruction": "Delete C:\\Windows\\WinSxS\\pending.xml if it exists (boot from recovery to access this file if Windows is stuck).", "tools": ["File Explorer", "Windows Recovery"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If the system is stuck in a restart loop and cannot complete the pending updates.",
+    "relatedCodes": ["0x80240016", "0x8024000b", "0x80070422"],
+    "faq": [
+      {"q": "Why does Restart work but Shut down does not?", "a": "Windows 10/11 uses Fast Startup which does not fully shut down. Restart performs a full shutdown and restart, allowing pending updates to finalize."},
+      {"q": "Can I defer the restart?", "a": "Yes, but deferred restarts prevent new updates from installing. Schedule the restart for a convenient time using Active hours."},
+      {"q": "What if my PC is stuck restarting?", "a": "If the PC keeps restarting and applying updates, let it complete. If it loops for more than 3 restarts, it may need recovery mode intervention."}
+    ]
+  },
+  {
+    "id": "update-0x8024402c",
+    "category": "update",
+    "code": "0x8024402C",
+    "displayCode": "0x8024402C",
+    "title": "Windows Update Proxy Authentication Required",
+    "shortDescription": "The proxy server requires authentication that was not provided.",
+    "fullDescription": "Error 0x8024402C (WU_E_PT_WINHTTP_NAME_NOT_RESOLVED or proxy auth needed) indicates that Windows Update cannot connect because a proxy server requires authentication credentials. This is common in enterprise environments with authenticated proxy servers.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Proxy requiring authentication not configured for WU", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Proxy credentials expired or changed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "WinHTTP proxy settings incorrect", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "DNS resolution failure for update servers", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Cannot check for or download updates",
+      "Error occurs only on corporate/enterprise network",
+      "Updates work on home network but not office",
+      "Browser can access internet but WU cannot"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Configure WinHTTP proxy", "instruction": "Open elevated Command Prompt: netsh winhttp set proxy proxy-server=\"proxyserver:port\" bypass-list=\"*.local\"", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Import browser proxy settings", "instruction": "Run: netsh winhttp import proxy source=ie to import proxy settings from Internet Explorer/Edge.", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Reset WinHTTP proxy", "instruction": "If proxy is not needed: netsh winhttp reset proxy", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Flush DNS and reset network", "instruction": "ipconfig /flushdns && netsh winsock reset && netsh int ip reset", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "Contact IT support for proper proxy configuration in enterprise environments.",
+    "relatedCodes": ["0x80244018", "0x80244022", "0x80240034"],
+    "faq": [
+      {"q": "Why does my browser work but Windows Update does not?", "a": "Browsers use their own proxy settings, while Windows Update uses WinHTTP proxy settings which are configured separately."},
+      {"q": "How do I find my proxy settings?", "a": "Check with IT, or look in browser settings. Also run: netsh winhttp show proxy to see current WinHTTP settings."},
+      {"q": "Can I bypass the proxy for Windows Update?", "a": "In some cases, yes. Add Windows Update URLs to the proxy bypass list if your network allows direct connections."}
+    ]
+  },
+  {
+    "id": "update-0xc1900101",
+    "category": "update",
+    "code": "0xC1900101",
+    "displayCode": "0xC1900101",
+    "title": "Feature Update Driver Compatibility Error",
+    "shortDescription": "A driver compatibility issue prevented a Windows feature update from completing.",
+    "fullDescription": "Error 0xC1900101 is a generic rollback code for Windows feature updates (version upgrades). It indicates that a driver caused the upgrade to fail during one of its phases. The sub-code (e.g., 0xC1900101 - 0x20017) identifies which phase failed. This is the most common feature update failure.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Incompatible device driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Outdated BIOS or firmware", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Insufficient disk space", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Third-party antivirus or security software", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Peripheral devices causing driver conflicts", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Feature update rolls back after reaching a percentage",
+      "Error code 0xC1900101 with various sub-codes",
+      "Update process starts but reverts to previous version",
+      "Computer restarts multiple times then rolls back"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update all device drivers", "instruction": "Update all drivers, especially GPU, network, storage, and chipset drivers. Download from manufacturer websites, not Windows Update.", "tools": ["Device Manager", "Manufacturer websites"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Disconnect non-essential peripherals", "instruction": "Disconnect all USB devices, external displays, printers, and docking stations. Keep only keyboard and mouse.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Uninstall third-party antivirus", "instruction": "Fully uninstall third-party antivirus software before the feature update. Reinstall after successful upgrade.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Free disk space", "instruction": "Ensure at least 20GB free on C: drive. Run Disk Cleanup with system file cleanup option.", "tools": ["Disk Cleanup"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 5, "title": "Update BIOS", "instruction": "Check for and install BIOS updates from your computer or motherboard manufacturer.", "tools": ["Manufacturer utility"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If the feature update continues to fail after all driver updates and peripheral disconnection.",
+    "relatedCodes": ["0xC1900200", "0xC1900208", "0xC190020E"],
+    "faq": [
+      {"q": "What do the sub-codes mean?", "a": "The sub-code indicates which upgrade phase failed. For example, 0x20017 means failure during the first boot phase, 0x30018 means during the second boot phase."},
+      {"q": "Can I skip this feature update?", "a": "You can defer feature updates, but they will eventually be required. It is better to fix the driver issue."},
+      {"q": "Should I try a clean install instead?", "a": "As a last resort, yes. A clean install avoids driver compatibility issues since all drivers are installed fresh."}
+    ]
+  },
+  {
+    "id": "update-0xc1900200",
+    "category": "update",
+    "code": "0xC1900200",
+    "displayCode": "0xC1900200",
+    "title": "System Does Not Meet Requirements for Update",
+    "shortDescription": "The computer does not meet the minimum requirements for the Windows feature update.",
+    "fullDescription": "Error 0xC1900200 indicates that the system does not meet the minimum hardware or software requirements for the target Windows version. This became very common with the Windows 11 upgrade due to its TPM 2.0, Secure Boot, and CPU requirements.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "CPU not on supported processor list (Windows 11)", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "TPM 2.0 not present or not enabled", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Secure Boot not enabled", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Insufficient RAM (less than 4GB for Win 11)", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Feature update blocked with requirements not met",
+      "PC Health Check shows incompatibility",
+      "Windows Update says this PC does not meet requirements",
+      "Setup wizard shows system requirements error"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run PC Health Check", "instruction": "Download and run the PC Health Check app from Microsoft to identify which requirements are not met.", "tools": ["PC Health Check"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Enable TPM in BIOS", "instruction": "Enter BIOS > Security > TPM. Enable Intel PTT or AMD fTPM. This enables the firmware TPM.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Enable Secure Boot", "instruction": "Enter BIOS > Boot > Secure Boot. Set to Enabled. Note: disk may need to be GPT format.", "tools": ["BIOS/UEFI"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Check CPU compatibility", "instruction": "Check Microsoft's supported processor list for Windows 11. If your CPU is not listed, you may need to use the registry bypass or remain on Windows 10.", "tools": ["Microsoft documentation"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If hardware upgrades (RAM, TPM module) are needed and you are not comfortable with hardware installation.",
+    "relatedCodes": ["0xC1900208", "0xC190020E", "0xC1900101"],
+    "faq": [
+      {"q": "Can I install Windows 11 on unsupported hardware?", "a": "Microsoft offers a registry bypass for TPM and CPU requirements, but warns that unsupported PCs may not receive future updates."},
+      {"q": "Do I need a discrete TPM chip?", "a": "No. Most modern CPUs have firmware TPM (Intel PTT, AMD fTPM) built in. You just need to enable it in BIOS."},
+      {"q": "What if my CPU is not supported?", "a": "You can continue using Windows 10 (supported until October 2025) or upgrade your hardware. Some users install Windows 11 using the registry bypass at their own risk."}
+    ]
+  },
+  {
+    "id": "update-0xc1900208",
+    "category": "update",
+    "code": "0xC1900208",
+    "displayCode": "0xC1900208",
+    "title": "Incompatible Application Blocking Update",
+    "shortDescription": "An installed application is incompatible with the target Windows version and is blocking the update.",
+    "fullDescription": "Error 0xC1900208 indicates that one or more installed applications are known to be incompatible with the target Windows version. Windows blocks the update to prevent application issues. The setup log identifies the specific blocking application(s).",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Incompatible application on Microsoft's block list", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Outdated application version", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Legacy driver or system tool", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Old antivirus version", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Feature update blocked with compatibility warning",
+      "Setup mentions specific application as blocker",
+      "Update refuses to start installation",
+      "Compatibility Appraiser shows blocking issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify the blocking application", "instruction": "Check the setup log at C:\\$WINDOWS.~BT\\Sources\\Panther\\compat*.xml or run the Windows Setup directly to see which app is flagged.", "tools": ["File Explorer", "Windows Setup"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Update or uninstall the blocking application", "instruction": "Update the application to its latest version. If no compatible version exists, uninstall it before the update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Retry the feature update", "instruction": "After removing the blocker, go to Windows Update and retry the feature update.", "tools": ["Windows Update"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Reinstall application after update", "instruction": "After the feature update succeeds, reinstall the application. The latest version may now be compatible.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If the blocking application is critical for work and no compatible version is available.",
+    "relatedCodes": ["0xC1900200", "0xC1900101", "0xC190020E"],
+    "faq": [
+      {"q": "Will I lose the application if I uninstall it?", "a": "You can reinstall it after the update. Back up application data and license keys before uninstalling."},
+      {"q": "Can I force the update to ignore the block?", "a": "Not through normal Windows Update. You can try using the Media Creation Tool with a manual installation, but the application may not work correctly after the update."},
+      {"q": "How does Microsoft decide which apps to block?", "a": "Microsoft maintains a compatibility database of applications known to cause issues with new Windows versions. This database is updated regularly."}
+    ]
+  },
+  {
+    "id": "update-0xc190020e",
+    "category": "update",
+    "code": "0xC190020E",
+    "displayCode": "0xC190020E",
+    "title": "Feature Update Rolled Back During Migration",
+    "shortDescription": "The feature update failed during the migration phase and rolled back to the previous version.",
+    "fullDescription": "Error 0xC190020E indicates that the Windows feature update failed during the migration phase (transferring data and settings from the old version to the new). This can be caused by corrupted user profiles, application data issues, or filesystem problems.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Corrupted user profile data", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Application data incompatible with new version", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Filesystem errors on system drive", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Insufficient disk space during migration", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Feature update progresses then rolls back",
+      "Rollback occurs during migration or OOBE phase",
+      "Multiple upgrade attempts all fail at same point",
+      "SetupDiag shows migration failure"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run SetupDiag", "instruction": "Download Microsoft SetupDiag tool. Run it to identify the specific migration failure cause.", "tools": ["SetupDiag"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Free disk space", "instruction": "Ensure at least 20GB free on C: drive for the migration phase.", "tools": ["Disk Cleanup"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Run CHKDSK", "instruction": "chkdsk C: /f /r to repair any filesystem errors.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Create new user profile and migrate", "instruction": "Create a new local admin account, copy data, and try the update from the new profile. This bypasses corrupted profile data.", "tools": ["Windows Settings"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If the migration continues to fail after disk repairs and profile recreation.",
+    "relatedCodes": ["0xC1900101", "0xC1900200", "0xC1900208"],
+    "faq": [
+      {"q": "Will I lose data if the update rolls back?", "a": "No. When a feature update rolls back, your previous Windows version is restored with all data intact."},
+      {"q": "What is SetupDiag?", "a": "SetupDiag is a Microsoft tool that analyzes Windows Setup log files to determine why an upgrade failed. It provides specific failure reasons and remediation steps."},
+      {"q": "Should I try a clean install?", "a": "If migration repeatedly fails, a clean install may be the most reliable option. Back up all data first."}
+    ]
+  },
+  {
+    "id": "update-0x80070070",
+    "category": "update",
+    "code": "0x80070070",
+    "displayCode": "0x80070070",
+    "title": "Insufficient Disk Space for Update",
+    "shortDescription": "There is not enough disk space to install the Windows update.",
+    "fullDescription": "Error 0x80070070 (ERROR_DISK_FULL) is one of the most straightforward update errors - the system drive does not have enough free space to download, extract, and install the update. Quality updates need several gigabytes, and feature updates can require 20GB or more.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "System drive is full or nearly full", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Large temporary files consuming disk space", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Previous Windows installation taking up space", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "System drive is too small for current Windows version", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Update fails with 0x80070070 or disk full error",
+      "C: drive shows very low free space",
+      "Feature update fails during extraction phase",
+      "Download succeeds but installation fails"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run Disk Cleanup with system files", "instruction": "Open Disk Cleanup, click Clean up system files. Select Windows Update Cleanup, Previous Windows installations, and Temporary files.", "tools": ["Disk Cleanup"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clear temp files", "instruction": "Open Run (Win+R), type %temp%, delete all files in the folder. Also type temp and delete contents.", "tools": ["File Explorer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Move files to external storage", "instruction": "Move large files (Downloads, Videos, Documents) to an external drive or cloud storage.", "tools": ["File Explorer"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Use external storage for update", "instruction": "For feature updates, Windows can use a USB drive as temporary storage. Plug in an empty 16GB+ USB drive and retry the update.", "tools": ["USB drive"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If the system drive is permanently too small and needs to be upgraded to a larger one.",
+    "relatedCodes": ["0x80246007", "0xC1900101", "0x800f0922"],
+    "faq": [
+      {"q": "How much space do I need?", "a": "Quality updates need about 5-10GB free. Feature updates need at least 20GB free. Maintaining 15-20% free space on C: is recommended."},
+      {"q": "Can I use an external drive for the update?", "a": "Yes. Windows 10 and later can use an external USB drive as temporary storage during feature updates. The drive needs to be at least 16GB."},
+      {"q": "What takes up so much space?", "a": "Common space consumers include previous Windows installations (Windows.old), Windows Update cache, temporary files, and the hibernation file."}
+    ]
+  },
+  {
+    "id": "update-0x80070bc9",
+    "category": "update",
+    "code": "0x80070BC9",
+    "displayCode": "0x80070BC9",
+    "title": "Windows Update Transaction Error",
+    "shortDescription": "A transaction error occurred during Windows Update installation.",
+    "fullDescription": "Error 0x80070BC9 (ERROR_FAIL_NOACTION_REBOOT) occurs when the Windows servicing infrastructure encounters a transaction error. This typically means a previous update is still pending completion or the servicing stack has pending transactions that need to be resolved.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Pending servicing transactions from previous update", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted servicing stack", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Component store pending state", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Registry corruption in servicing keys", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Update installation fails with transaction error",
+      "Multiple restarts do not clear the pending state",
+      "DISM reports pending operations",
+      "CBS log shows transaction rollback"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restart the computer", "instruction": "Restart (not shut down) the computer to complete any pending transactions.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clear pending transactions", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RevertPendingActions", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Reset servicing stack", "instruction": "Install the latest Servicing Stack Update manually from the Microsoft Update Catalog.", "tools": ["Microsoft Update Catalog"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If pending transactions cannot be cleared and the servicing stack is in a broken state.",
+    "relatedCodes": ["0x80073712", "0x80070490", "0x800f0831"],
+    "faq": [
+      {"q": "What is a servicing transaction?", "a": "Windows uses transactional updates to ensure they can be rolled back if something goes wrong. Pending transactions are incomplete update operations."},
+      {"q": "Can I force-clear pending operations?", "a": "DISM /RevertPendingActions is the safest way to clear pending operations. It cancels any queued changes that have not been committed."},
+      {"q": "Will clearing pending operations lose my updates?", "a": "It will revert any pending (not yet committed) update changes. Successfully installed updates are not affected."}
+    ]
+  },
+  {
+    "id": "update-0x80240fff",
+    "category": "update",
+    "code": "0x80240FFF",
+    "displayCode": "0x80240FFF",
+    "title": "Unspecified Windows Update Error",
+    "shortDescription": "An unspecified error occurred in Windows Update.",
+    "fullDescription": "Error 0x80240FFF (WU_E_UNEXPECTED) is a catch-all error code that does not map to a specific failure condition. It is commonly seen after a fresh Windows installation or when Windows Update's internal state is inconsistent. The error often resolves on its own after waiting or performing basic troubleshooting.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Windows Update service in inconsistent state", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Fresh Windows installation not yet synced", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Network connectivity issue during check", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted Windows Update components", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Generic error when checking for updates",
+      "No specific error details provided",
+      "Error appears after clean Windows installation",
+      "Updates worked before but suddenly fail"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait and retry", "instruction": "Wait 15-30 minutes and try checking for updates again. This error often resolves on its own.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Run Windows Update Troubleshooter", "instruction": "Settings > Troubleshoot > Windows Update.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Reset Windows Update components", "instruction": "Stop WU services, clear SoftwareDistribution and catroot2, restart services.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Run SFC and DISM", "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If the error persists after multiple days and all standard troubleshooting steps have been exhausted.",
+    "relatedCodes": ["0x80070002", "0x80240034", "0x80080005"],
+    "faq": [
+      {"q": "Why is this error so vague?", "a": "0x80240FFF is Windows Update's generic error code used when the specific failure does not match any defined error. It often indicates a transient issue."},
+      {"q": "Does a fresh install need time to sync?", "a": "Yes. After a fresh Windows installation, Windows Update may need time to synchronize its database. Waiting a few hours and retrying often works."},
+      {"q": "Should I worry about this error?", "a": "If it is a one-time occurrence, no. If it persists for multiple days, use the troubleshooting steps above to resolve it."}
+    ]
+  },
+  {
+    "id": "update-0x800b0109",
+    "category": "update",
+    "code": "0x800B0109",
+    "displayCode": "0x800B0109",
+    "title": "Update Certificate Chain Validation Failed",
+    "shortDescription": "The certificate chain used to sign the update could not be validated.",
+    "fullDescription": "Error 0x800B0109 (CERT_E_UNTRUSTEDROOT) occurs when Windows cannot validate the digital signature of an update package because the signing certificate chain is not trusted. This can happen due to missing root certificates, incorrect system time, or certificate store corruption.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Incorrect system date/time affecting certificate validation", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Missing or corrupted root certificates", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Certificate store corruption", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Man-in-the-middle proxy modifying certificates", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "All updates fail with certificate error",
+      "Windows Update says signature verification failed",
+      "Manual update installation also fails",
+      "Error occurs after date/time change"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fix system date and time", "instruction": "Right-click the clock > Adjust date/time. Ensure Set time automatically is on. Click Sync now.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Install root certificate updates", "instruction": "Download and install the latest Microsoft Root Certificate Update from the Microsoft Update Catalog.", "tools": ["Microsoft Update Catalog"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Reset Cryptographic Services", "instruction": "Open services.msc, restart the Cryptographic Services service.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Check for proxy interference", "instruction": "If behind a corporate proxy, verify it is not performing SSL inspection that breaks Windows Update certificate chains.", "tools": ["Browser", "Network Settings"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If certificate issues persist after time correction and root certificate installation, there may be security concerns.",
+    "relatedCodes": ["0x80244018", "0x80248007", "0x80070005"],
+    "faq": [
+      {"q": "Why does system time matter for certificates?", "a": "Digital certificates have validity periods. If your system clock is wrong, a valid certificate may appear expired or not-yet-valid, causing validation failure."},
+      {"q": "Can a dead CMOS battery cause this?", "a": "Yes. A dead CMOS battery causes the system clock to reset on each boot, which can invalidate certificate timestamps. Replace the battery."},
+      {"q": "Is this a security threat?", "a": "Usually not - it is typically a time sync or certificate cache issue. However, if all other causes are ruled out, a man-in-the-middle attack should be investigated."}
+    ]
+  },
+  {
+    "id": "update-0x80d02002",
+    "category": "update",
+    "code": "0x80D02002",
+    "displayCode": "0x80D02002",
+    "title": "Delivery Optimization Download Failure",
+    "shortDescription": "Windows Delivery Optimization failed to download update content.",
+    "fullDescription": "Error 0x80D02002 indicates a failure in Windows Delivery Optimization (DO), the peer-to-peer content delivery system used by Windows Update. This can occur when DO cannot download content from peers or Microsoft CDN servers.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Delivery Optimization service not running", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Network configuration blocking DO traffic", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "DO cache corruption", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Group Policy restricting DO settings", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Update download fails with DO error",
+      "Store app downloads also fail",
+      "Downloads are extremely slow",
+      "DO monitor shows 0% download progress"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restart Delivery Optimization service", "instruction": "Open services.msc, find Delivery Optimization, restart it. Ensure startup type is Automatic.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Clear DO cache", "instruction": "Open elevated Command Prompt: net stop dosvc && del /q C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local\\Microsoft\\Windows\\DeliveryOptimization\\Cache\\* && net start dosvc", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Check DO settings", "instruction": "Settings > Update & Security > Delivery Optimization. Ensure Allow downloads from other PCs is enabled.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Disable DO temporarily", "instruction": "If DO continues to fail, disable it in Settings and rely on direct download from Microsoft servers.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 3}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 20 minutes",
+    "whenToCallPro": "In enterprise environments where DO is configured through Group Policy and needs IT admin changes.",
+    "relatedCodes": ["0x80240034", "0x80246007", "0x80244022"],
+    "faq": [
+      {"q": "What is Delivery Optimization?", "a": "DO is a Windows peer-to-peer content delivery system that downloads updates from both Microsoft servers and other PCs on your network to speed up downloads."},
+      {"q": "Can I disable it?", "a": "Yes. Disabling DO forces all downloads directly from Microsoft servers. This may be slower but can resolve DO-specific errors."},
+      {"q": "Does DO use my bandwidth to upload to others?", "a": "By default, yes. DO may share downloaded update content with other PCs. You can limit this or disable it in Settings > Delivery Optimization."}
+    ]
+  },
+  {
+    "id": "update-0x80070bc2",
+    "category": "update",
+    "code": "0x80070BC2",
+    "displayCode": "0x80070BC2",
+    "title": "Update Requires Restart to Complete",
+    "shortDescription": "The update was partially installed and requires a system restart to complete.",
+    "fullDescription": "Error 0x80070BC2 (ERROR_SUCCESS_REBOOT_REQUIRED) actually indicates a partial success - the update has been staged and requires a system restart to complete installation. However, if the restart was interrupted or failed, this code persists as an error.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "System restart pending for staged update", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed restart interrupted update finalization", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Pending restart from another update blocking this one", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Group Policy preventing automatic restart", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Update shows as pending restart",
+      "New updates cannot install until restart is done",
+      "System shows update pending for extended period",
+      "Restart does not seem to complete the update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restart the computer", "instruction": "Use Start > Restart (not Shut down) to properly restart and apply pending updates.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Check for stuck pending state", "instruction": "After restart, if still pending, check registry key: HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Run DISM cleanup", "instruction": "DISM /Online /Cleanup-Image /StartComponentCleanup", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Clear pending operations if stuck", "instruction": "If restart does not help: DISM /Online /Cleanup-Image /RevertPendingActions", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If the system is stuck in a pending restart state that cannot be cleared.",
+    "relatedCodes": ["0x8024a105", "0x80240016", "0x80070bc9"],
+    "faq": [
+      {"q": "Is this actually an error?", "a": "Not exactly. It means the update was successfully staged but needs a restart to finalize. A simple restart usually resolves it."},
+      {"q": "What if the restart does not work?", "a": "If the update does not complete after restart, the staging may have been corrupted. Use DISM /RevertPendingActions and retry the update."},
+      {"q": "Why does Shut down not work the same as Restart?", "a": "Windows 10/11 uses Fast Startup with Shut down, which does not fully restart the system. Restart performs a full shutdown and restart, allowing pending updates to apply."}
+    ]
+  }
+]

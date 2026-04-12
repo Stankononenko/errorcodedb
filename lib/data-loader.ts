@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { OBDCode, ApplianceCode, UnifiedCode } from "./types";
+import { OBDCode, ApplianceCode, HVACCode, PrinterCode, WindowsCode, UnifiedCode } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 
@@ -9,23 +9,34 @@ function readJson<T>(filePath: string): T {
   return JSON.parse(raw) as T;
 }
 
+function readJsonSafe<T>(filePath: string): T[] {
+  if (!fs.existsSync(filePath)) return [];
+  return readJson<T[]>(filePath);
+}
+
+function getDirsIn(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => fs.statSync(path.join(dir, f)).isDirectory());
+}
+
+function getJsonFilesIn(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+}
+
 // ── OBD-II ──
 
 export function getAllOBDCodes(): OBDCode[] {
   const dir = path.join(DATA_DIR, "obd2");
-  if (!fs.existsSync(dir)) return [];
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
   const allCodes: OBDCode[] = [];
-  for (const file of files) {
-    const data = readJson<OBDCode[]>(path.join(dir, file));
-    allCodes.push(...data);
+  for (const file of getJsonFilesIn(dir)) {
+    allCodes.push(...readJsonSafe<OBDCode>(path.join(dir, file)));
   }
   return allCodes;
 }
 
 export function getOBDCodeBySlug(slug: string): OBDCode | undefined {
-  const codes = getAllOBDCodes();
-  return codes.find((c) => c.code.toLowerCase() === slug.toLowerCase());
+  return getAllOBDCodes().find((c) => c.code.toLowerCase() === slug.toLowerCase());
 }
 
 // ── Appliance ──
@@ -35,33 +46,101 @@ export function getApplianceCodes(brand?: string, deviceType?: string): Applianc
   if (!fs.existsSync(baseDir)) return [];
 
   const allCodes: ApplianceCode[] = [];
-  const brands = brand ? [brand] : fs.readdirSync(baseDir).filter((f) => {
-    return fs.statSync(path.join(baseDir, f)).isDirectory();
-  });
+  const brands = brand ? [brand] : getDirsIn(baseDir);
 
   for (const b of brands) {
     const brandDir = path.join(baseDir, b);
-    if (!fs.existsSync(brandDir)) continue;
-    const files = fs.readdirSync(brandDir).filter((f) => f.endsWith(".json"));
-    for (const file of files) {
+    for (const file of getJsonFilesIn(brandDir)) {
       if (deviceType && file !== `${deviceType}.json`) continue;
-      const data = readJson<ApplianceCode[]>(path.join(brandDir, file));
-      allCodes.push(...data);
+      allCodes.push(...readJsonSafe<ApplianceCode>(path.join(brandDir, file)));
     }
   }
   return allCodes;
 }
 
-export function getApplianceCode(
-  brand: string,
-  deviceType: string,
-  code: string
-): ApplianceCode | undefined {
-  const codes = getApplianceCodes(brand, deviceType);
-  return codes.find((c) => c.code.toLowerCase() === code.toLowerCase());
+export function getApplianceCode(brand: string, deviceType: string, code: string): ApplianceCode | undefined {
+  return getApplianceCodes(brand, deviceType).find((c) => c.code.toLowerCase() === code.toLowerCase());
 }
 
-// ── Unified Converter ──
+// ── HVAC ──
+
+export function getHVACCodes(brand?: string, deviceType?: string): HVACCode[] {
+  const baseDir = path.join(DATA_DIR, "hvac");
+  if (!fs.existsSync(baseDir)) return [];
+
+  const allCodes: HVACCode[] = [];
+  const brands = brand ? [brand] : getDirsIn(baseDir);
+
+  for (const b of brands) {
+    const brandDir = path.join(baseDir, b);
+    for (const file of getJsonFilesIn(brandDir)) {
+      if (deviceType && file !== `${deviceType}.json`) continue;
+      allCodes.push(...readJsonSafe<HVACCode>(path.join(brandDir, file)));
+    }
+  }
+  return allCodes;
+}
+
+export function getHVACCode(brand: string, deviceType: string, code: string): HVACCode | undefined {
+  return getHVACCodes(brand, deviceType).find((c) => c.code.toLowerCase() === code.toLowerCase());
+}
+
+// ── Printer ──
+
+export function getPrinterCodes(brand?: string): PrinterCode[] {
+  const dir = path.join(DATA_DIR, "printer");
+  if (!fs.existsSync(dir)) return [];
+
+  const allCodes: PrinterCode[] = [];
+  for (const file of getJsonFilesIn(dir)) {
+    if (brand && file !== `${brand}.json`) continue;
+    allCodes.push(...readJsonSafe<PrinterCode>(path.join(dir, file)));
+  }
+  return allCodes;
+}
+
+export function getPrinterCode(brand: string, code: string): PrinterCode | undefined {
+  return getPrinterCodes(brand).find((c) => c.code.toLowerCase() === code.toLowerCase());
+}
+
+// ── Windows ──
+
+// Maps category slugs to possible filenames
+const WINDOWS_FILE_MAP: Record<string, string[]> = {
+  bsod: ["bsod.json"],
+  update: ["update-errors.json", "update.json"],
+  system: ["system-errors.json", "system.json"],
+  browser: ["browser-errors.json", "browser.json"],
+};
+
+export function getWindowsCodes(category?: string): WindowsCode[] {
+  const dir = path.join(DATA_DIR, "windows");
+  if (!fs.existsSync(dir)) return [];
+
+  const allCodes: WindowsCode[] = [];
+
+  if (category) {
+    const possibleFiles = WINDOWS_FILE_MAP[category] || [`${category}.json`];
+    for (const file of possibleFiles) {
+      const filePath = path.join(dir, file);
+      if (fs.existsSync(filePath)) {
+        allCodes.push(...readJsonSafe<WindowsCode>(filePath));
+        break;
+      }
+    }
+  } else {
+    for (const file of getJsonFilesIn(dir)) {
+      allCodes.push(...readJsonSafe<WindowsCode>(path.join(dir, file)));
+    }
+  }
+  return allCodes;
+}
+
+export function getWindowsCode(category: string, code: string): WindowsCode | undefined {
+  return getWindowsCodes(category).find((c) => c.code.toLowerCase() === code.toLowerCase());
+}
+
+// ── Unified Converters ──
 
 export function obdToUnified(obd: OBDCode): UnifiedCode {
   return {
@@ -112,5 +191,78 @@ export function applianceToUnified(a: ApplianceCode): UnifiedCode {
     partsNeeded: a.partsNeeded,
     alternativeCodes: a.alternativeCodes,
     videoSearchQuery: a.videoSearchQuery,
+  };
+}
+
+export function hvacToUnified(h: HVACCode): UnifiedCode {
+  return {
+    category: "hvac",
+    code: h.code,
+    displayCode: h.displayCode,
+    title: h.title,
+    shortDescription: h.shortDescription,
+    fullDescription: h.fullDescription,
+    safetyWarning: h.safetyWarning,
+    causes: h.causes,
+    symptoms: h.symptoms,
+    fixSteps: h.fixSteps,
+    estimatedCost: h.estimatedCost,
+    diyDifficulty: h.diyDifficulty,
+    repairTime: h.repairTime,
+    whenToCallPro: h.whenToCallPro,
+    relatedCodes: h.relatedCodes,
+    faq: h.faq,
+    brand: h.brand,
+    brandSlug: h.brandSlug,
+    deviceType: h.deviceType,
+    deviceTypeSlug: h.deviceTypeSlug,
+    isBlinkCode: h.isBlinkCode,
+    blinkCount: h.blinkCount,
+  };
+}
+
+export function printerToUnified(p: PrinterCode): UnifiedCode {
+  return {
+    category: "printer",
+    code: p.code,
+    displayCode: p.displayCode,
+    title: p.title,
+    shortDescription: p.shortDescription,
+    fullDescription: p.fullDescription,
+    causes: p.causes,
+    symptoms: p.symptoms,
+    fixSteps: p.fixSteps,
+    estimatedCost: p.estimatedCost,
+    diyDifficulty: p.diyDifficulty,
+    repairTime: p.repairTime,
+    whenToCallPro: p.whenToCallPro,
+    relatedCodes: p.relatedCodes,
+    faq: p.faq,
+    brand: p.brand,
+    brandSlug: p.brandSlug,
+    affectedSeries: p.affectedSeries,
+    errorType: p.errorType,
+  };
+}
+
+export function windowsToUnified(w: WindowsCode): UnifiedCode {
+  return {
+    category: "windows",
+    code: w.code,
+    displayCode: w.displayCode,
+    title: w.title,
+    shortDescription: w.shortDescription,
+    fullDescription: w.fullDescription,
+    causes: w.causes,
+    symptoms: w.symptoms,
+    fixSteps: w.fixSteps,
+    estimatedCost: w.estimatedCost,
+    diyDifficulty: w.diyDifficulty,
+    repairTime: w.repairTime,
+    whenToCallPro: w.whenToCallPro,
+    relatedCodes: w.relatedCodes,
+    faq: w.faq,
+    affectedVersions: w.affectedVersions,
+    windowsCategory: w.category,
   };
 }

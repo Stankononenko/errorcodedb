@@ -1,0 +1,41 @@
+[
+  {
+    "id": "browser-err-connection-refused",
+    "category": "browser",
+    "code": "ERR_CONNECTION_REFUSED",
+    "displayCode": "ERR_CONNECTION_REFUSED",
+    "title": "Connection Refused by Server",
+    "shortDescription": "The browser cannot connect to the website because the server actively refused the connection.",
+    "fullDescription": "ERR_CONNECTION_REFUSED occurs when your browser attempts to connect to a web server but the server rejects the connection. This typically means the server is not running, the port is blocked, or a firewall is preventing access. It can affect a single website or all websites depending on the cause.",
+    "affectedVersions": ["Chrome", "Edge", "Brave", "Opera", "All Chromium browsers"],
+    "causes": [
+      {"cause": "Website server is down or not running", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firewall or antivirus blocking the connection", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Incorrect proxy settings", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "DNS cache contains stale entries", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Browser extensions interfering with connections", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Page displays 'This site can't be reached' with ERR_CONNECTION_REFUSED",
+      "Only specific websites are affected while others load normally",
+      "The error appears immediately without a loading delay",
+      "Refreshing the page does not resolve the issue"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check if the website is down", "instruction": "Try accessing the website from a different device or use a service like downdetector.com to check if the site is experiencing widespread issues. If the site is down for everyone, you need to wait for the server to come back online.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Clear browser cache and cookies", "instruction": "Open Chrome Settings > Privacy and Security > Clear browsing data. Select 'Cached images and files' and 'Cookies and other site data'. Click Clear data, then try the website again.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Flush DNS cache", "instruction": "Open Command Prompt as Administrator. Type 'ipconfig /flushdns' and press Enter. You should see 'Successfully flushed the DNS Resolver Cache'. Try the website again.", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Disable firewall temporarily", "instruction": "Temporarily disable your firewall and antivirus to test if they are blocking the connection. If the site works with them disabled, add an exception for the website. Remember to re-enable your firewall after testing.", "tools": [], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the error persists across all websites and devices on your network, contact your ISP.",
+    "relatedCodes": ["ERR_CONNECTION_RESET", "ERR_CONNECTION_TIMED_OUT", "DNS_PROBE_FINISHED_NXDOMAIN"],
+    "faq": [
+      {"q": "What does ERR_CONNECTION_REFUSED mean?", "a": "It means your browser tried to connect to a website's server, but the server refused the connection. This is usually a server-side issue, not a problem with your computer."},
+      {"q": "How do I fix ERR_CONNECTION_REFUSED in Chrome?", "a": "First check if the website is down for everyone. If not, try clearing your browser cache, flushing DNS (ipconfig /flushdns), checking your firewall settings, and disabling proxy settings."},
+      {"q": "Is ERR_CONNECTION_REFUSED a virus?", "a": "No, this is not a virus. It is a standard network error. However, malware can sometimes cause it by modifying your network settings. Run a malware scan if the error affects all websites."}
+    ]
+  }
+]

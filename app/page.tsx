@@ -17,28 +17,28 @@ const CATEGORIES = [
     description: "Samsung, LG, Whirlpool, Bosch, GE — washers, dryers, dishwashers, refrigerators, and more.",
     href: "/appliance",
     icon: "\uD83E\uDDFA",
-    available: false,
+    available: true,
   },
   {
     title: "HVAC Error Codes",
     description: "Furnace blink codes, AC errors, heat pumps, mini-splits, thermostats, and water heaters.",
     href: "/hvac",
     icon: "\u2744\uFE0F",
-    available: false,
+    available: true,
   },
   {
     title: "Printer Error Codes",
     description: "HP, Canon, Epson, Brother — paper jams, ink errors, hardware faults, and connectivity issues.",
     href: "/printer",
     icon: "\uD83D\uDDA8\uFE0F",
-    available: false,
+    available: true,
   },
   {
     title: "Windows Error Codes",
     description: "BSOD stop codes, Windows Update errors, system errors, and browser/network errors.",
     href: "/windows",
     icon: "\uD83D\uDCBB",
-    available: false,
+    available: true,
   },
 ];
 

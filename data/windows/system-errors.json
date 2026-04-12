@@ -1,0 +1,996 @@
+[
+  {
+    "id": "system-0xc000021a",
+    "category": "system",
+    "code": "0xC000021A",
+    "displayCode": "0xC000021A",
+    "title": "Windows Logon Process System Error",
+    "shortDescription": "The Windows Logon Process (winlogon.exe) or Client Server Runtime Subsystem (csrss.exe) terminated unexpectedly.",
+    "fullDescription": "Status 0xC000021A is a critical system error that occurs when either winlogon.exe or csrss.exe fails. These are essential Windows subsystem processes that Windows cannot run without. When either terminates, Windows forces a system halt to prevent potential data corruption. This is typically caused by corrupted system files, incompatible software, or failed updates.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted winlogon.exe or csrss.exe system files", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Incompatible third-party software or driver", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed Windows Update corrupting system files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware damaging critical system processes", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "System halts with STATUS_SYSTEM_PROCESS_TERMINATED",
+      "Windows cannot boot past the loading screen",
+      "Blue screen immediately after Windows logo",
+      "Boot loop after Windows Update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Boot into Recovery Environment", "instruction": "Boot from Windows installation media > Repair your computer > Troubleshoot > Advanced Options.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Run SFC offline", "instruction": "From Recovery Command Prompt: sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows", "tools": ["Command Prompt", "SFC"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Uninstall recent update", "instruction": "From Advanced Options > Uninstall Updates > Uninstall latest quality update or feature update.", "tools": ["Windows Recovery"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "System Restore", "instruction": "From Advanced Options > System Restore. Choose a restore point from before the issue started.", "tools": ["System Restore"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If all recovery options fail and Windows cannot boot at all, professional repair or reinstallation may be needed.",
+    "relatedCodes": ["0xC0000034", "0xC0000225", "0xC000014C"],
+    "faq": [
+      {"q": "Why is this error so serious?", "a": "Winlogon.exe and csrss.exe are critical to Windows operation. Without them, Windows cannot provide basic functionality like user logon or win32 subsystem support."},
+      {"q": "Can I fix this without Windows installation media?", "a": "If the PC can reach Advanced Startup Options (hold Shift while clicking Restart, or interrupt boot 3 times), you can access recovery tools without media."},
+      {"q": "Will I lose my data?", "a": "The repair steps preserve your data. Even if a clean install is ultimately needed, you can usually access files by booting from USB first."}
+    ]
+  },
+  {
+    "id": "system-0xc0000034",
+    "category": "system",
+    "code": "0xC0000034",
+    "displayCode": "0xC0000034",
+    "title": "Boot Configuration Data File Missing",
+    "shortDescription": "The Windows Boot Configuration Data (BCD) file is missing or corrupted.",
+    "fullDescription": "Error 0xC0000034 indicates that the BCD file required for Windows boot is missing or corrupted. The BCD file contains boot configuration entries that tell the Windows Boot Manager how to start Windows. Without it, the system cannot boot.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted or deleted BCD file", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Boot sector damage from disk error", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Dual-boot configuration gone wrong", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware modifying boot records", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "System will not boot at all",
+      "Error message about missing BCD file",
+      "Recovery environment loads instead of Windows",
+      "Boot menu is empty or shows no entries"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Boot from Windows installation media", "instruction": "Insert Windows USB/DVD > Boot from it > Repair your computer > Command Prompt.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Rebuild BCD", "instruction": "In Command Prompt run: bootrec /fixmbr && bootrec /fixboot && bootrec /scanos && bootrec /rebuildbcd", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Manually recreate BCD", "instruction": "If bootrec fails: bcdedit /createstore C:\\Boot\\BCD && bcdedit /store C:\\Boot\\BCD /create {bootmgr} /d \"Windows Boot Manager\" && bcdedit /store C:\\Boot\\BCD /create /d \"Windows\" /application osloader", "tools": ["Command Prompt"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 4, "title": "Run Startup Repair", "instruction": "From recovery options, try Startup Repair which automatically rebuilds boot records.", "tools": ["Windows Recovery"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If manual BCD recreation fails and Windows cannot be recovered through any boot repair method.",
+    "relatedCodes": ["0xC0000225", "0xC000000E", "0xC000000F"],
+    "faq": [
+      {"q": "What is the BCD?", "a": "The Boot Configuration Data is a firmware-independent database for boot-time configuration data. It replaced boot.ini from earlier Windows versions."},
+      {"q": "Can disk cloning cause this?", "a": "Yes. Improperly cloned disks may have incorrect BCD entries. The BCD must reference the correct disk and partition UUIDs."},
+      {"q": "Does this mean data loss?", "a": "No. The BCD is a small boot configuration file. Your Windows installation and personal data remain intact on the disk."}
+    ]
+  },
+  {
+    "id": "system-0xc0000225",
+    "category": "system",
+    "code": "0xC0000225",
+    "displayCode": "0xC0000225",
+    "title": "Required Device Not Connected or Accessible",
+    "shortDescription": "A required device is not connected or cannot be accessed, preventing Windows from booting.",
+    "fullDescription": "Error 0xC0000225 indicates that Windows Boot Manager cannot find or access a required boot device. This usually means the BCD entry points to a disk or partition that is missing, the boot sector is corrupted, or the system partition is damaged.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted boot sector or BCD", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Changed disk order in BIOS after adding a drive", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "System partition corruption", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disconnected or failed boot drive", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Error 0xC0000225 on boot screen",
+      "Message: A required device is not connected",
+      "Error appears after adding or removing a hard drive",
+      "Boot fails after BIOS update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check BIOS boot order", "instruction": "Enter BIOS and verify the boot drive is listed first. If drives were reordered, set the correct one as primary.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Run Startup Repair", "instruction": "Boot from Windows media > Repair your computer > Troubleshoot > Startup Repair.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Rebuild BCD", "instruction": "From recovery Command Prompt: bootrec /fixmbr && bootrec /fixboot && bootrec /rebuildbcd", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Repair system partition", "instruction": "From Command Prompt: chkdsk C: /f /r to repair the system partition.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If the boot drive is not detected in BIOS, it may have failed and require data recovery.",
+    "relatedCodes": ["0xC0000034", "0xC000000E", "0xC000000F"],
+    "faq": [
+      {"q": "Why did this happen after adding a new drive?", "a": "Adding a drive can change the disk numbering in BIOS, causing the BCD to reference the wrong disk. Correcting the boot order or rebuilding BCD fixes this."},
+      {"q": "Can a BIOS update cause this?", "a": "Yes. BIOS updates can reset boot order settings and change how disks are enumerated. Check boot order after any BIOS update."},
+      {"q": "Is my data safe?", "a": "Usually yes. This is a boot configuration issue, not a data loss issue. Your files remain on the drive."}
+    ]
+  },
+  {
+    "id": "system-0xc0000001",
+    "category": "system",
+    "code": "0xC0000001",
+    "displayCode": "0xC0000001",
+    "title": "Unsuccessful System Operation",
+    "shortDescription": "An unsuccessful operation prevented the system from starting correctly.",
+    "fullDescription": "Error 0xC0000001 (STATUS_UNSUCCESSFUL) is a generic boot error indicating that an essential operation failed during Windows startup. It can be caused by corrupted system files, damaged SAM registry hive, failing hardware, or corrupted boot configuration.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted SAM registry hive", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Corrupted system files (ntoskrnl.exe, etc.)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed Windows Update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failing hard drive", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Error 0xC0000001 during boot",
+      "Windows cannot start normally",
+      "Boot loop after system crash",
+      "Recovery Environment loads automatically"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run Startup Repair", "instruction": "Boot from Windows media > Troubleshoot > Advanced Options > Startup Repair.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Run SFC offline", "instruction": "From Recovery Command Prompt: sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows", "tools": ["Command Prompt", "SFC"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Restore SAM registry hive", "instruction": "From Command Prompt: copy C:\\Windows\\System32\\config\\RegBack\\SAM C:\\Windows\\System32\\config\\SAM (if RegBack has recent copies)", "tools": ["Command Prompt"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 4, "title": "System Restore", "instruction": "From Advanced Options > System Restore.", "tools": ["System Restore"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If registry restoration fails and System Restore does not work.",
+    "relatedCodes": ["0xC000021A", "0xC0000225", "0xC000000E"],
+    "faq": [
+      {"q": "What is the SAM hive?", "a": "The Security Accounts Manager (SAM) registry hive stores user account and security information. If corrupted, Windows cannot authenticate users and fails to boot."},
+      {"q": "Will restoring SAM lose my password?", "a": "If you restore from a backup, your password may revert to what it was when the backup was made."},
+      {"q": "Can a power failure cause this?", "a": "Yes. Power loss during a write to the registry can corrupt the SAM or SYSTEM hives, causing this boot failure."}
+    ]
+  },
+  {
+    "id": "system-0xc000000e",
+    "category": "system",
+    "code": "0xC000000E",
+    "displayCode": "0xC000000E",
+    "title": "Boot Selection Failed - Required Device Inaccessible",
+    "shortDescription": "The boot selection failed because a required device is inaccessible.",
+    "fullDescription": "Error 0xC000000E indicates that the Windows Boot Manager could not find the OS partition specified in the BCD. This commonly occurs when the boot drive's disk order changes, the BCD is corrupted, or the system partition is damaged.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "BCD pointing to wrong disk or partition", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Boot drive not detected or failed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "BIOS boot order changed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted system partition", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Boot error 0xC000000E with device inaccessible message",
+      "Windows fails to start after hardware change",
+      "Error after cloning or moving disk to new computer",
+      "Boot fails after disconnecting secondary drive"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify BIOS boot settings", "instruction": "Enter BIOS. Confirm the correct drive is set as first boot device and is detected.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Run Startup Repair", "instruction": "Boot from Windows media > Repair > Troubleshoot > Startup Repair.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Rebuild BCD", "instruction": "From recovery Command Prompt: bootrec /rebuildbcd. If it finds a Windows installation, type Y to add it.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Fix BCD device reference", "instruction": "Use bcdedit to update the device and osdevice entries to point to the correct partition.", "tools": ["Command Prompt", "bcdedit"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the drive is not detected in BIOS or if bcdedit commands cannot resolve the reference.",
+    "relatedCodes": ["0xC0000225", "0xC0000034", "0xC000000F"],
+    "faq": [
+      {"q": "Why did this happen after removing a drive?", "a": "If the BCD was stored on the removed drive, or if removing it changed the boot drive's disk number, the BCD references become invalid."},
+      {"q": "Can disk cloning cause this?", "a": "Yes. Cloned disks may have BCD entries pointing to the source disk's UUID. Rebuilding BCD on the cloned disk fixes this."},
+      {"q": "Is the fix the same for UEFI and Legacy BIOS?", "a": "The general approach is the same, but UEFI systems use different partition structures. Ensure you are working with the correct EFI System Partition."}
+    ]
+  },
+  {
+    "id": "system-0xc000000f",
+    "category": "system",
+    "code": "0xC000000F",
+    "displayCode": "0xC000000F",
+    "title": "Boot Configuration Data Error",
+    "shortDescription": "The boot configuration data for the PC is missing or contains errors.",
+    "fullDescription": "Error 0xC000000F indicates that the BCD file exists but contains errors that prevent Windows from booting. Unlike 0xC0000034 where the BCD is missing entirely, this error means the BCD is present but has invalid or corrupted entries.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted BCD entries", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Invalid boot entry references", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Disk errors corrupting BCD file", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Dual-boot configuration errors", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Boot error message mentioning BCD data",
+      "Windows Boot Manager shows error 0xC000000F",
+      "Error after modifying boot configuration",
+      "Cannot select any boot option"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Startup Repair", "instruction": "Boot from Windows media > Repair > Startup Repair.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Rebuild BCD from scratch", "instruction": "From Command Prompt: bcdedit /export C:\\BCD_Backup && attrib C:\\Boot\\BCD -h -r -s && del C:\\Boot\\BCD && bootrec /rebuildbcd", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Fix boot records", "instruction": "bootrec /fixmbr && bootrec /fixboot", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Run CHKDSK on system partition", "instruction": "chkdsk C: /f to repair any filesystem errors affecting the BCD.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If BCD recreation fails repeatedly, there may be underlying disk issues.",
+    "relatedCodes": ["0xC0000034", "0xC000000E", "0xC0000225"],
+    "faq": [
+      {"q": "Can I back up the BCD before fixing it?", "a": "Yes. Use bcdedit /export to create a backup. This allows you to restore the original BCD if the fix does not work."},
+      {"q": "Is this related to the bootloader?", "a": "Yes. The BCD is used by the Windows Boot Manager (bootloader) to determine how to start Windows. Corruption prevents the bootloader from working."},
+      {"q": "Can third-party boot managers cause this?", "a": "Yes. Tools like EasyBCD or GRUB can inadvertently corrupt the Windows BCD if not used carefully."}
+    ]
+  },
+  {
+    "id": "system-0xc000014c",
+    "category": "system",
+    "code": "0xC000014C",
+    "displayCode": "0xC000014C",
+    "title": "Registry Hive Could Not Be Loaded",
+    "shortDescription": "One or more registry hives could not be loaded during boot, preventing Windows from starting.",
+    "fullDescription": "Error 0xC000014C indicates that the Windows kernel could not load one or more critical registry hives (SYSTEM, SOFTWARE, SAM, SECURITY, DEFAULT) during boot. These hives are essential for Windows operation. Corruption is usually caused by power loss, disk errors, or malware.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted SYSTEM or SOFTWARE registry hive", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Power loss during registry write operation", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Disk errors in registry file area", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware corrupting registry hives", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Boot error about registry hive loading failure",
+      "Windows cannot start at all",
+      "Error appears after unexpected power loss",
+      "System enters boot loop"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "System Restore", "instruction": "Boot from Windows media > Advanced Options > System Restore.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Restore registry from backup", "instruction": "From Command Prompt: copy C:\\Windows\\System32\\config\\RegBack\\* C:\\Windows\\System32\\config\\ (overwrite when prompted). Note: RegBack may be empty on newer Windows 10 versions.", "tools": ["Command Prompt"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 3, "title": "Run CHKDSK", "instruction": "chkdsk C: /f /r to repair disk errors that may have corrupted the registry files.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Run SFC offline", "instruction": "sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows", "tools": ["Command Prompt", "SFC"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If registry backup files are not available and System Restore has no restore points.",
+    "relatedCodes": ["0xC0000001", "0xC000021A", "0xC0000225"],
+    "faq": [
+      {"q": "What are registry hives?", "a": "Registry hives are files in C:\\Windows\\System32\\config that store the Windows registry. They include SYSTEM, SOFTWARE, SAM, SECURITY, and DEFAULT."},
+      {"q": "Why is RegBack empty on Windows 10?", "a": "Microsoft disabled automatic registry backups in Windows 10 version 1803 and later to save disk space. You can re-enable it through a registry setting."},
+      {"q": "Can a UPS prevent this?", "a": "Yes. An uninterruptible power supply prevents sudden power loss, which is a major cause of registry corruption during write operations."}
+    ]
+  },
+  {
+    "id": "system-0xc0000185",
+    "category": "system",
+    "code": "0xC0000185",
+    "displayCode": "0xC0000185",
+    "title": "Boot Device Access Failure",
+    "shortDescription": "The system could not access the boot device properly, indicating I/O or connection issues.",
+    "fullDescription": "Error 0xC0000185 (STATUS_IO_DEVICE_ERROR) indicates an I/O error when accessing the boot device. This commonly points to physical connection issues (loose cables), failing storage hardware, or corrupted disk sectors in the boot area.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Loose or damaged SATA/NVMe connection", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failing hard drive or SSD", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Corrupted boot sectors", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Bad sectors in system file area", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Boot error 0xC0000185 with I/O device message",
+      "System cannot find or read boot device",
+      "Intermittent boot failures",
+      "Drive makes unusual noises"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check physical connections", "instruction": "Power off, open case. Reseat SATA data and power cables. For NVMe, reseat the M.2 SSD. Try different SATA port.", "tools": ["Screwdriver"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Check drive in BIOS", "instruction": "Enter BIOS and verify the boot drive is detected with correct capacity.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Run CHKDSK from recovery", "instruction": "Boot from Windows media > Command Prompt: chkdsk C: /f /r", "tools": ["Windows Installation Media", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Rebuild boot records", "instruction": "From Command Prompt: bootrec /fixmbr && bootrec /fixboot && bootrec /rebuildbcd", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 75, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If the drive is not detected in BIOS or shows incorrect capacity, it is likely failing and needs professional data recovery.",
+    "relatedCodes": ["0xC0000225", "0xC000000E", "0xC0000001"],
+    "faq": [
+      {"q": "Is this always a hardware problem?", "a": "Not always. While hardware issues are the most common cause, corrupted boot sectors can also cause I/O errors. CHKDSK can fix software-level issues."},
+      {"q": "Can a loose cable really cause this?", "a": "Absolutely. A slightly loose SATA cable can cause intermittent I/O errors. This is one of the most common and cheapest fixes."},
+      {"q": "Should I replace my drive?", "a": "If the drive is not detected in BIOS or CHKDSK finds many bad sectors, replacement is recommended. Check S.M.A.R.T. data if possible."}
+    ]
+  },
+  {
+    "id": "system-0xc0000221",
+    "category": "system",
+    "code": "0xC0000221",
+    "displayCode": "0xC0000221",
+    "title": "Bad Image - System File Corrupted",
+    "shortDescription": "A critical system file is corrupted and cannot be loaded, preventing Windows from starting.",
+    "fullDescription": "Error 0xC0000221 (STATUS_IMAGE_CHECKSUM_MISMATCH) indicates that a critical system DLL or executable has a checksum mismatch, meaning the file is corrupted. Windows cannot load the damaged file and halts boot. The error usually names the specific corrupted file.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "System file corrupted by disk error", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Incomplete Windows Update corrupting DLL", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "RAM errors causing file corruption during write", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware replacing or corrupting system files", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Boot error naming a specific corrupted file (e.g., ntdll.dll, kernel32.dll)",
+      "Bad Image error message during startup",
+      "Windows fails to load after update",
+      "Random Bad Image errors for different files"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run SFC offline", "instruction": "Boot from Windows media > Command Prompt: sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows", "tools": ["Windows Installation Media", "SFC"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Run DISM offline", "instruction": "DISM /Image:C:\\ /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim (D: = Windows media)", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Replace specific file manually", "instruction": "If the error names a specific file, copy it from the Windows installation media: expand D:\\Sources\\install.wim /F:filename.dll C:\\Windows\\System32\\", "tools": ["Command Prompt"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 4, "title": "Run memory diagnostic", "instruction": "After fixing boot, run MemTest86 to check if RAM errors are causing file corruption.", "tools": ["MemTest86"], "difficulty": "easy", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If multiple system files are corrupted and SFC/DISM cannot repair them.",
+    "relatedCodes": ["0xC0000001", "0xC000021A", "0xC000014C"],
+    "faq": [
+      {"q": "What does checksum mismatch mean?", "a": "Every system file has a checksum (hash) that verifies its integrity. A mismatch means the file contents have changed from the expected values, indicating corruption."},
+      {"q": "Can I copy the file from another computer?", "a": "Only if the other computer runs the exact same Windows version and build. Using Windows installation media is safer and more reliable."},
+      {"q": "Why does this keep happening to different files?", "a": "If multiple files become corrupted over time, the underlying cause is likely failing RAM or a failing drive. Test both to find the root cause."}
+    ]
+  },
+  {
+    "id": "system-0xc000007b",
+    "category": "system",
+    "code": "0xC000007B",
+    "displayCode": "0xC000007B",
+    "title": "Application Unable to Start - Bad Image Format",
+    "shortDescription": "An application failed to start because a required DLL has an incorrect format (32/64-bit mismatch).",
+    "fullDescription": "Error 0xC000007B (STATUS_INVALID_IMAGE_FORMAT) occurs when an application tries to load a DLL with an incompatible architecture (e.g., a 64-bit app loading a 32-bit DLL, or vice versa). This commonly affects games and applications that depend on Visual C++ Redistributables, DirectX, or .NET Framework.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Missing or corrupted Visual C++ Redistributable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Missing or corrupted DirectX runtime files", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "32/64-bit DLL architecture mismatch", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted .NET Framework installation", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Incomplete application installation", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Application was unable to start correctly (0xC000007B)",
+      "Error appears when launching games or applications",
+      "Program crashes immediately on startup",
+      "Error appears after Windows Update or runtime update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Install all Visual C++ Redistributables", "instruction": "Download and install all versions (2008, 2010, 2012, 2013, 2015-2022) of Visual C++ Redistributable in both x86 and x64 versions from Microsoft.", "tools": ["Browser", "Microsoft downloads"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Install DirectX End-User Runtime", "instruction": "Download and run the DirectX End-User Runtime Web Installer from Microsoft to install all legacy DirectX components.", "tools": ["Browser", "Microsoft downloads"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Repair .NET Framework", "instruction": "Download and run the Microsoft .NET Framework Repair Tool.", "tools": [".NET Framework Repair Tool"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Reinstall the application", "instruction": "Uninstall the affected application completely, then reinstall it. Use the application's official installer.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If the error persists for all applications, there may be deeper system file corruption requiring professional repair.",
+    "relatedCodes": ["0xC0000005", "0xC0000135", "0xC0000142"],
+    "faq": [
+      {"q": "Why do I need both x86 and x64 runtimes?", "a": "Many 64-bit applications include 32-bit (x86) components or plugins. Both versions of the runtime libraries may be needed even on a 64-bit system."},
+      {"q": "Which Visual C++ versions do I need?", "a": "Install all versions from 2008 through 2022. Different applications depend on different versions, and they can all coexist without conflict."},
+      {"q": "Can this be caused by a virus?", "a": "Rarely, but malware that replaces system DLLs can cause this. If the error affects many applications, run a full malware scan."}
+    ]
+  },
+  {
+    "id": "system-0xc0000005",
+    "category": "system",
+    "code": "0xC0000005",
+    "displayCode": "0xC0000005",
+    "title": "Access Violation - Application Crash",
+    "shortDescription": "An application attempted to access memory it was not allowed to, causing a crash.",
+    "fullDescription": "Error 0xC0000005 (STATUS_ACCESS_VIOLATION) is one of the most common Windows application errors. It occurs when a program tries to read or write to a memory address that it does not have permission to access. This can be caused by software bugs, corrupted files, malware, or hardware issues like bad RAM.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Software bug causing invalid memory access", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted application files", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Incompatible application version", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Faulty RAM causing memory corruption", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Overaggressive DEP (Data Execution Prevention)", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Application crashes with access violation error",
+      "Error dialog showing 0xC0000005",
+      "Application Error in Event Viewer with exception code 0xC0000005",
+      "Game crashes during loading or gameplay"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update the application", "instruction": "Check for and install the latest version or patches for the crashing application.", "tools": ["Application updater"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reinstall the application", "instruction": "Uninstall the application, restart, then reinstall from scratch.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Run as administrator", "instruction": "Right-click the application > Properties > Compatibility > Run as administrator. Also try Windows 7/8 compatibility mode.", "tools": ["File Explorer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Add DEP exception", "instruction": "Open System Properties > Advanced > Performance Settings > DEP. Select Turn on DEP for all programs except those I select and add the application.", "tools": ["System Properties"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 5, "title": "Test RAM", "instruction": "If multiple applications crash, run MemTest86 to check for RAM errors.", "tools": ["MemTest86"], "difficulty": "easy", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If multiple applications crash with this error, it may indicate a RAM or system-level problem requiring professional diagnosis.",
+    "relatedCodes": ["0xC000007B", "0xC0000135", "0xC0000142"],
+    "faq": [
+      {"q": "Is an access violation always the application's fault?", "a": "Usually yes. Most access violations are caused by software bugs. However, faulty RAM can also cause random access violations across multiple programs."},
+      {"q": "Can antivirus cause this?", "a": "Yes. Some antivirus software injects code into applications for monitoring, which can conflict and cause access violations. Try temporarily disabling it."},
+      {"q": "Should I worry about data loss?", "a": "The application crash may lose unsaved work, but it does not damage your system or other files. Save frequently when using crash-prone applications."}
+    ]
+  },
+  {
+    "id": "system-runtime-error",
+    "category": "system",
+    "code": "RUNTIME_ERROR",
+    "displayCode": "Runtime Error",
+    "title": "Microsoft Visual C++ Runtime Error",
+    "shortDescription": "A Visual C++ runtime library error occurred, causing an application to terminate abnormally.",
+    "fullDescription": "Visual C++ Runtime Errors occur when an application built with Microsoft Visual C++ encounters an error in the runtime library. Common variants include R6025 (pure virtual function call), R6034 (manifest error), and R6002 (floating point not loaded). These are typically caused by corrupted runtime files, software conflicts, or application bugs.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted Visual C++ Redistributable installation", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Application bug or compatibility issue", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Conflicting Visual C++ versions", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted application files", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Dialog box showing Microsoft Visual C++ Runtime Library Error",
+      "Application terminates immediately after launch",
+      "Runtime error R6025, R6034, or R6002",
+      "Error during specific application operations"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Repair Visual C++ Redistributables", "instruction": "Go to Settings > Apps. Find all Microsoft Visual C++ Redistributable entries. Click Modify > Repair for each one.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reinstall all Visual C++ versions", "instruction": "Uninstall all Visual C++ Redistributable packages, restart, then reinstall all versions (2008 through 2022, both x86 and x64).", "tools": ["Windows Settings", "Microsoft downloads"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 3, "title": "Reinstall the affected application", "instruction": "Uninstall and reinstall the application that triggers the error.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Perform clean boot test", "instruction": "Use msconfig to perform a clean boot and identify if a background service conflicts with the application.", "tools": ["msconfig"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If the runtime error affects multiple applications and reinstalling runtimes does not help.",
+    "relatedCodes": ["0xC000007B", "0xC0000005", "0xC0000142"],
+    "faq": [
+      {"q": "What is a Visual C++ Runtime?", "a": "It is a set of libraries needed by applications built with Microsoft Visual C++. Most Windows applications depend on one or more versions."},
+      {"q": "Why are there so many versions of Visual C++?", "a": "Each version of Visual Studio produces applications that need its specific runtime. Applications cannot share runtimes across versions, so all required versions must be installed."},
+      {"q": "Can I just install the latest version?", "a": "No. You need the specific version that each application was compiled with. Install all versions from 2008 through 2022 to cover all applications."}
+    ]
+  },
+  {
+    "id": "system-dotnet-framework-error",
+    "category": "system",
+    "code": "CLR_ERROR",
+    "displayCode": ".NET Framework Error",
+    "title": ".NET Framework Initialization or Runtime Error",
+    "shortDescription": "The .NET Framework encountered an error during initialization or application execution.",
+    "fullDescription": ".NET Framework errors occur when the Common Language Runtime (CLR) encounters a problem loading, initializing, or executing a .NET application. Common errors include CLR20r3, System.BadImageFormatException, System.IO.FileNotFoundException, and general framework initialization failures.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted .NET Framework installation", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Missing .NET Framework version required by application", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Conflicting .NET Framework versions", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Windows Update failed to update .NET components", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Application fails with .NET Framework error",
+      "CLR20r3 error in Event Viewer",
+      "Application requires a .NET version not installed",
+      "Framework initialization errors on startup"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run .NET Framework Repair Tool", "instruction": "Download and run the Microsoft .NET Framework Repair Tool from Microsoft's website.", "tools": [".NET Framework Repair Tool"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Enable .NET Framework 3.5", "instruction": "Go to Windows Features (optionalfeatures.exe) and ensure .NET Framework 3.5 is enabled. May need Windows media as a source.", "tools": ["Windows Features"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Install latest .NET runtimes", "instruction": "Download and install the latest .NET Framework 4.8.x and .NET 6/7/8 runtimes from dotnet.microsoft.com.", "tools": ["Browser"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Run DISM to repair .NET", "instruction": "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /Source:D:\\Sources\\sxs", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If .NET Framework repair and reinstallation do not resolve the issue, deeper system repair may be needed.",
+    "relatedCodes": ["0x80070643", "0x800f081f", "0xC000007B"],
+    "faq": [
+      {"q": "What is the difference between .NET Framework and .NET?", "a": ".NET Framework (up to 4.8) is the legacy version bundled with Windows. .NET (5, 6, 7, 8) is the modern cross-platform version. Some apps need one, some need the other."},
+      {"q": "Why do some apps need .NET 3.5?", "a": "Older applications were built against .NET 2.0/3.0/3.5. These are included in the .NET 3.5 feature that must be enabled separately in Windows 10/11."},
+      {"q": "Can I have multiple .NET versions installed?", "a": "Yes. Different .NET Framework versions coexist peacefully. An application uses the specific version it was built for."}
+    ]
+  },
+  {
+    "id": "system-event-viewer-1000",
+    "category": "system",
+    "code": "EVENT_1000",
+    "displayCode": "Event ID 1000",
+    "title": "Application Error - Event ID 1000",
+    "shortDescription": "An application faulted and was terminated, logged as Event ID 1000 in the Application event log.",
+    "fullDescription": "Event ID 1000 is logged by Windows Error Reporting (WER) when an application crashes. The event details include the faulting application name, faulting module, exception code, and fault offset. This information is essential for diagnosing the root cause of application crashes.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Application bug or instability", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted application files", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Incompatible DLL or dependency", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Memory corruption from faulty RAM", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Application crashes without error dialog",
+      "Event ID 1000 entries in Application log",
+      "Faulting module identified in event details",
+      "Repeated crashes of the same application"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check Event Viewer details", "instruction": "Open Event Viewer > Windows Logs > Application. Find Event ID 1000 entries. Note the Faulting application name and Faulting module name.", "tools": ["Event Viewer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Update the application", "instruction": "Install the latest version or patches for the faulting application.", "tools": ["Application updater"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Reinstall the faulting module", "instruction": "If the faulting module is a system DLL (like ntdll.dll), run sfc /scannow. If it is an app DLL, reinstall the application.", "tools": ["Command Prompt", "SFC"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Update Visual C++ and .NET runtimes", "instruction": "Install all Visual C++ Redistributable versions and update .NET Framework.", "tools": ["Microsoft downloads"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If the faulting module is a system DLL and SFC cannot repair it.",
+    "relatedCodes": ["0xC0000005", "0xC000007B", "EVENT_1001"],
+    "faq": [
+      {"q": "How do I read Event ID 1000 details?", "a": "Look for Faulting application name (the crashing program), Faulting module name (the specific DLL causing the crash), and Exception code (the type of error)."},
+      {"q": "What does ntdll.dll as faulting module mean?", "a": "ntdll.dll is a core Windows library. When it appears as faulting module, the actual cause is usually the calling application, not ntdll.dll itself."},
+      {"q": "Should I report the crash to the developer?", "a": "If the application is maintained, yes. Include the Event ID 1000 details, especially the exception code and fault offset."}
+    ]
+  },
+  {
+    "id": "system-dcom-10016",
+    "category": "system",
+    "code": "EVENT_10016",
+    "displayCode": "DCOM Event ID 10016",
+    "title": "DCOM Permissions Error",
+    "shortDescription": "A DCOM server could not be started because the configured permissions do not grant the required access.",
+    "fullDescription": "Event ID 10016 from DistributedCOM is one of the most common entries in the Windows System event log. It occurs when a DCOM (Distributed Component Object Model) component attempts to start but the requesting user or service does not have the required Launch or Activation permissions in the DCOM configuration.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Default DCOM permissions not matching component requirements", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Windows Update changing DCOM component permissions", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party software installing DCOM components with wrong permissions", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "User account permissions conflict", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Event ID 10016 flooding the System event log",
+      "Multiple DCOM permission errors for different CLSIDs",
+      "Typically does not cause visible problems",
+      "May cause some Windows Store apps to not function properly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify the DCOM component", "instruction": "Open Event Viewer, find Event 10016. Note the CLSID and APPID values. Search these in Component Services (dcomcnfg).", "tools": ["Event Viewer", "Component Services"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Take ownership of registry key", "instruction": "Open Registry Editor. Navigate to HKCR\\CLSID\\{CLSID-value}. Right-click > Permissions > Advanced > Change owner to Administrators.", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Edit DCOM permissions", "instruction": "Open Component Services (dcomcnfg) > Computers > My Computer > DCOM Config. Find the component, right-click > Properties > Security > Edit launch and activation permissions.", "tools": ["Component Services"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Consider ignoring benign entries", "instruction": "Many DCOM 10016 errors are benign and do not affect system operation. Microsoft has acknowledged some as expected behavior.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 30 minutes per component",
+    "whenToCallPro": "If DCOM errors are causing actual functionality problems (Store apps not working, services failing to start).",
+    "relatedCodes": ["EVENT_10010", "EVENT_1000", "0x80070005"],
+    "faq": [
+      {"q": "Are DCOM 10016 errors serious?", "a": "Usually not. Most DCOM 10016 errors are benign and do not affect system operation. Microsoft considers some of them expected behavior."},
+      {"q": "Should I fix every 10016 error?", "a": "Only fix them if they are causing actual problems. The effort to fix each one is significant, and most have no impact on system functionality."},
+      {"q": "Why are there so many of these?", "a": "Windows has hundreds of DCOM components, and permission mismatches are common, especially after updates. Microsoft has not prioritized fixing them because they are mostly harmless."}
+    ]
+  },
+  {
+    "id": "system-sfc-error",
+    "category": "system",
+    "code": "SFC_ERROR",
+    "displayCode": "SFC Found Corrupt Files",
+    "title": "System File Checker Found Integrity Violations",
+    "shortDescription": "System File Checker (SFC) detected corrupted system files that it could not repair.",
+    "fullDescription": "When SFC (sfc /scannow) reports that it found corrupt files but was unable to fix some of them, it means the Windows Resource Protection mechanism detected system files that do not match their expected versions, but the repair source was also corrupted or unavailable. The CBS.log file contains details about which files are affected.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Component store (WinSxS) corruption", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Disk errors damaging system files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed Windows Update leaving partial files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party software modifying system files", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "SFC reports: found corrupt files but unable to fix some",
+      "Multiple SFC runs produce same result",
+      "CBS.log shows specific corrupted files",
+      "Windows features or applications malfunction"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run DISM RestoreHealth first", "instruction": "DISM must repair the component store before SFC can work. Run: DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Run SFC again", "instruction": "After DISM completes: sfc /scannow. SFC should now be able to repair files using the restored component store.", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Use Windows media as DISM source", "instruction": "If DISM fails: DISM /Online /Cleanup-Image /RestoreHealth /Source:D:\\Sources\\install.wim /LimitAccess", "tools": ["Command Prompt", "DISM", "Windows ISO"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Check CBS.log for details", "instruction": "Open C:\\Windows\\Logs\\CBS\\CBS.log. Search for Cannot repair to see exactly which files are corrupted.", "tools": ["Notepad"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If DISM with an installation media source also fails to repair the component store.",
+    "relatedCodes": ["0x80073712", "0x800f081f", "0x80070490"],
+    "faq": [
+      {"q": "Why does SFC fail to repair?", "a": "SFC uses the component store (WinSxS) as its repair source. If the component store itself is corrupted, SFC has no good copy to restore from. DISM must fix the store first."},
+      {"q": "Should I run SFC or DISM first?", "a": "Always run DISM /RestoreHealth first, then SFC. DISM repairs the component store, which SFC then uses to repair system files."},
+      {"q": "Is it safe to ignore SFC errors?", "a": "Minor SFC errors may not cause noticeable problems. However, they should be addressed to prevent accumulating corruption."}
+    ]
+  },
+  {
+    "id": "system-0xc0000135",
+    "category": "system",
+    "code": "0xC0000135",
+    "displayCode": "0xC0000135",
+    "title": "Unable to Locate DLL",
+    "shortDescription": "The application could not start because a required DLL was not found on the system.",
+    "fullDescription": "Error 0xC0000135 (STATUS_DLL_NOT_FOUND) occurs when an application references a DLL that is not present on the system. The application cannot load without this dependency and fails to start.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Required runtime library not installed", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Application installed without dependencies", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DLL deleted by cleanup tool or antivirus", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted application installation", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Application fails to start with DLL not found error",
+      "Error dialog naming the missing DLL file",
+      "Program worked before but stopped after cleanup or update",
+      "Multiple applications fail to start"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify and install the missing runtime", "instruction": "Note the DLL name in the error. Search online to determine which runtime package provides it (Visual C++, DirectX, .NET, etc.) and install it.", "tools": ["Browser"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reinstall the application", "instruction": "Uninstall and reinstall the application. The installer should install required dependencies.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Install all common runtimes", "instruction": "Install Visual C++ Redistributables (all versions, x86 and x64), DirectX End-User Runtime, and .NET Framework.", "tools": ["Microsoft downloads"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 4, "title": "Run SFC", "instruction": "If the missing DLL is a Windows system file, run: sfc /scannow", "tools": ["Command Prompt", "SFC"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If the missing DLL is a system file that SFC cannot repair.",
+    "relatedCodes": ["0xC000007B", "0xC0000005", "0xC0000142"],
+    "faq": [
+      {"q": "Should I download DLLs from the internet?", "a": "Never download individual DLL files from third-party websites. They may contain malware. Always install the complete runtime package or reinstall the application."},
+      {"q": "Why did the DLL disappear?", "a": "Common causes include antivirus false positives quarantining the file, cleanup tools removing it, or an incomplete application update."},
+      {"q": "Can I copy the DLL from another computer?", "a": "This is not recommended. The DLL version must match exactly. Installing the proper runtime package ensures the correct version."}
+    ]
+  },
+  {
+    "id": "system-0xc0000142",
+    "category": "system",
+    "code": "0xC0000142",
+    "displayCode": "0xC0000142",
+    "title": "Application Failed to Initialize Properly",
+    "shortDescription": "The application was unable to start correctly due to a DLL initialization failure.",
+    "fullDescription": "Error 0xC0000142 (STATUS_DLL_INIT_FAILED) occurs when a DLL that the application depends on fails during its initialization routine (DllMain). This can be caused by corrupted DLLs, conflicting software, or resource exhaustion.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted system or application DLLs", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Conflicting third-party software", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "User profile corruption", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Insufficient system resources", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Application was unable to start correctly (0xC0000142)",
+      "Error appears for cmd.exe or other system tools",
+      "Multiple applications fail to start",
+      "Error appears after Windows Update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run SFC and DISM", "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Perform clean boot", "instruction": "msconfig > Services > Hide all Microsoft services > Disable all. Restart and test.", "tools": ["msconfig"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Create new user profile", "instruction": "Create a new local admin account and test the application from the new profile.", "tools": ["Windows Settings"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Reinstall Visual C++ runtimes", "instruction": "Uninstall and reinstall all Visual C++ Redistributable packages.", "tools": ["Windows Settings", "Microsoft downloads"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If system tools like cmd.exe are affected, the system corruption may be severe enough to require professional repair.",
+    "relatedCodes": ["0xC0000135", "0xC000007B", "0xC0000005"],
+    "faq": [
+      {"q": "What does DLL initialization failure mean?", "a": "When a DLL is loaded, its DllMain function runs initialization code. If this code fails (due to corruption, missing dependencies, or resource issues), the DLL cannot be used."},
+      {"q": "Why does cmd.exe get this error?", "a": "If core Windows DLLs are corrupted, even basic tools like cmd.exe can fail to initialize. This indicates serious system file corruption."},
+      {"q": "Does a new user profile help?", "a": "If the error is caused by user-specific settings or corrupted profile data, a new profile eliminates those factors."}
+    ]
+  },
+  {
+    "id": "system-event-41-kernel-power",
+    "category": "system",
+    "code": "EVENT_41",
+    "displayCode": "Event ID 41 (Kernel-Power)",
+    "title": "Unexpected Shutdown - Kernel Power Event 41",
+    "shortDescription": "The system rebooted without cleanly shutting down first, indicating a crash, power loss, or hardware issue.",
+    "fullDescription": "Event ID 41 from Microsoft-Windows-Kernel-Power is logged when Windows starts after an unexpected shutdown. It indicates the previous shutdown was not clean - caused by a crash, power failure, held power button, or hardware reset. It is one of the most common and important diagnostic events.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Power supply failure or instability", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "System crash (BSOD) that did not generate a dump", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Overheating causing emergency shutdown", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Power outage or loose power cable", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Computer restarts unexpectedly",
+      "Event ID 41 Kernel-Power in System log",
+      "No BSOD screen visible before restart",
+      "System shuts off suddenly during use"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check Event Viewer for preceding events", "instruction": "Open Event Viewer > System log. Look at events immediately before the Event 41 for clues about the cause.", "tools": ["Event Viewer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Monitor temperatures", "instruction": "Install HWMonitor and check CPU and GPU temperatures. Overheating causes emergency shutdowns.", "tools": ["HWMonitor"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Check power supply", "instruction": "Verify all power connections. For desktops, test with a different PSU or use a PSU tester. For laptops, try with and without battery.", "tools": ["PSU tester"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Disable Fast Startup", "instruction": "Control Panel > Power Options > Choose what the power buttons do > Change settings > Uncheck Turn on fast startup.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 3}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If unexpected shutdowns continue after checking temperatures and power supply, professional hardware diagnosis is recommended.",
+    "relatedCodes": ["WHEA_UNCORRECTABLE_ERROR", "CRITICAL_PROCESS_DIED", "MACHINE_CHECK_EXCEPTION"],
+    "faq": [
+      {"q": "Is Event 41 always a problem?", "a": "Not always. It also logs after manual power-offs (holding the power button), power outages, or forced restarts. Investigate only if it occurs unexpectedly."},
+      {"q": "Why is there no BSOD?", "a": "Some hardware failures (PSU, overheating) cut power instantly before Windows can display a BSOD or save a crash dump."},
+      {"q": "Can a failing PSU cause this?", "a": "Yes. An unstable or failing power supply is one of the most common causes of sudden shutdowns without BSOD."}
+    ]
+  },
+  {
+    "id": "system-wmi-event-10",
+    "category": "system",
+    "code": "EVENT_10_WMI",
+    "displayCode": "WMI Event ID 10",
+    "title": "WMI Event Filter Error",
+    "shortDescription": "A WMI event filter query failed due to an invalid namespace, class, or query syntax.",
+    "fullDescription": "Event ID 10 from WMI (Windows Management Instrumentation) indicates that a WMI event subscription has an invalid query. This is commonly caused by orphaned WMI subscriptions from uninstalled software, or built-in Windows subscriptions that reference components not present on the system.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Orphaned WMI subscription from uninstalled software", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Built-in Windows subscription referencing absent component", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted WMI repository", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party management software misconfiguration", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Event ID 10 entries in Application log",
+      "WMI errors referencing specific namespaces or classes",
+      "Usually no visible impact on system operation",
+      "Errors may fill event log over time"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify the subscription", "instruction": "Open Event Viewer and note the full error details including the namespace and query. This identifies which component is responsible.", "tools": ["Event Viewer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Remove orphaned subscription", "instruction": "Open elevated PowerShell. Use Get-WmiObject -Namespace root\\subscription -Class __EventFilter to list subscriptions. Remove orphaned ones.", "tools": ["PowerShell"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 3, "title": "Rebuild WMI repository", "instruction": "Open elevated Command Prompt: winmgmt /salvagerepository. If that fails: winmgmt /resetrepository", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Consider ignoring benign errors", "instruction": "Many WMI Event 10 errors are harmless. If they do not affect system functionality, they can be safely ignored.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If WMI errors are causing actual functionality issues (management tools failing, scripts not working).",
+    "relatedCodes": ["EVENT_10016", "EVENT_1000"],
+    "faq": [
+      {"q": "Are WMI Event 10 errors serious?", "a": "Usually not. Most are harmless orphaned subscriptions that generate log entries but do not affect system operation."},
+      {"q": "What is WMI?", "a": "Windows Management Instrumentation is an infrastructure for managing data and operations on Windows systems. It is used by scripts, management tools, and Windows itself."},
+      {"q": "Will resetting the WMI repository cause problems?", "a": "It can affect applications that registered WMI providers. Use /salvagerepository first, which is less destructive. Use /resetrepository only as a last resort."}
+    ]
+  },
+  {
+    "id": "system-chkdsk-errors",
+    "category": "system",
+    "code": "CHKDSK_ERROR",
+    "displayCode": "CHKDSK Errors Found",
+    "title": "CHKDSK Disk Errors Detected",
+    "shortDescription": "CHKDSK detected filesystem errors, bad sectors, or index inconsistencies on the disk.",
+    "fullDescription": "When CHKDSK reports errors, it indicates problems with the filesystem structure on the disk. These can range from minor index inconsistencies to serious bad sectors. The severity depends on whether errors are in the filesystem metadata (fixable) or indicate physical disk damage (requires replacement).",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Improper shutdown or power loss", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Aging hard drive developing bad sectors", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "File system metadata corruption", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "SSD firmware bug", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "CHKDSK reports errors during scan",
+      "Windows suggests scanning the drive for errors",
+      "Files become corrupted or inaccessible",
+      "Drive performance degrades"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run CHKDSK with repair", "instruction": "Open elevated Command Prompt: chkdsk C: /f /r. Schedule the scan for next restart if the drive is in use.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "Check S.M.A.R.T. status", "instruction": "Download CrystalDiskInfo. Check Reallocated Sectors Count and Current Pending Sector Count.", "tools": ["CrystalDiskInfo"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Back up data immediately", "instruction": "If bad sectors are found, back up all important data to another drive immediately before the drive potentially fails further.", "tools": ["File Explorer", "External drive"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 4, "title": "Replace drive if necessary", "instruction": "If S.M.A.R.T. shows degradation or CHKDSK finds many bad sectors, replace the drive.", "tools": ["New drive", "Cloning software"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 50, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If the drive has critical data and is failing, professional data recovery may be needed.",
+    "relatedCodes": ["KERNEL_DATA_INPAGE_ERROR", "NTFS_FILE_SYSTEM", "0xC0000185"],
+    "faq": [
+      {"q": "Can CHKDSK fix all disk errors?", "a": "CHKDSK can fix filesystem metadata errors and mark bad sectors so they are not used. It cannot repair physically damaged sectors or recover data from them."},
+      {"q": "How long does CHKDSK take?", "a": "A basic scan takes minutes. A full scan with /r flag (surface scan) can take 1-6 hours depending on drive size."},
+      {"q": "Should I run CHKDSK on an SSD?", "a": "CHKDSK /f (fix filesystem) is fine on SSDs. Avoid /r (surface scan) on SSDs as it is unnecessary - SSDs handle bad blocks internally via their controller."}
+    ]
+  },
+  {
+    "id": "system-windows-activation-0x803f7001",
+    "category": "system",
+    "code": "0x803F7001",
+    "displayCode": "0x803F7001",
+    "title": "Windows Activation Error - No Valid License",
+    "shortDescription": "Windows could not be activated because no valid digital license or product key was found.",
+    "fullDescription": "Error 0x803F7001 indicates that Windows cannot find a valid activation license or product key for the current hardware configuration. This commonly occurs after significant hardware changes (motherboard replacement), after a clean install without entering a product key, or when the digital license is tied to a different hardware configuration.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Significant hardware change (motherboard replacement)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Clean install without product key entry", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Digital license linked to different Microsoft account", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "OEM license used on non-original hardware", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Activate Windows watermark on desktop",
+      "Settings shows Windows is not activated",
+      "Cannot personalize desktop or settings",
+      "Error 0x803F7001 in activation settings"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run activation troubleshooter", "instruction": "Go to Settings > Update & Security > Activation > Troubleshoot. If you changed hardware, select I changed hardware on this device recently.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Link Microsoft account", "instruction": "Sign in with the Microsoft account that was linked to the digital license before the hardware change. Go to Activation > Add an account.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Enter product key", "instruction": "If you have a product key: Settings > Activation > Change product key. Enter your 25-character product key.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Contact Microsoft support", "instruction": "If the troubleshooter cannot activate, use the Get Help app or call Microsoft support for manual activation.", "tools": ["Get Help app"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 140}, "professional": {"min": 0, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "If you need a new Windows license due to OEM restrictions or cannot recover your digital license.",
+    "relatedCodes": ["0x80070005", "0xC004C003", "0xC004F074"],
+    "faq": [
+      {"q": "Can I reactivate after changing my motherboard?", "a": "If your license is a retail license linked to a Microsoft account, yes. Use the activation troubleshooter and select I changed hardware. OEM licenses are tied to the original motherboard."},
+      {"q": "What is a digital license?", "a": "A digital license (digital entitlement) is an activation method in Windows 10/11 that ties your license to your hardware configuration and Microsoft account, without needing a product key."},
+      {"q": "Is my license OEM or Retail?", "a": "Open elevated Command Prompt: slmgr /dli. The Description field shows whether it is OEM, Retail, or Volume licensed."}
+    ]
+  },
+  {
+    "id": "system-disk-100-percent",
+    "category": "system",
+    "code": "DISK_100_PERCENT",
+    "displayCode": "100% Disk Usage",
+    "title": "Persistent 100% Disk Usage",
+    "shortDescription": "The system drive shows 100% disk utilization in Task Manager, causing severe performance degradation.",
+    "fullDescription": "Persistent 100% disk usage is a very common Windows issue where the system drive is constantly at maximum utilization, making the entire system extremely slow. This is especially prevalent on systems with traditional hard drives (HDDs). Common causes include Windows Search indexing, Superfetch/SysMain, Windows Update, and faulty drivers.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Windows Search indexing consuming disk I/O", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "SysMain (Superfetch) service on HDD systems", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Windows Update downloading or installing in background", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Faulty AHCI/SATA driver", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk firmware issue or failing drive", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Task Manager shows Disk column at 100%",
+      "System is extremely slow and unresponsive",
+      "Applications take minutes to open",
+      "Mouse cursor lags or freezes",
+      "Boot takes unusually long"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disable SysMain service", "instruction": "Open services.msc. Find SysMain (or Superfetch). Set Startup type to Disabled and Stop the service.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Disable Windows Search indexing", "instruction": "Open services.msc. Find Windows Search. Set to Disabled and Stop. Or selectively exclude drives from indexing.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Check for Windows Update activity", "instruction": "Open Task Manager > Details. Check if svchost.exe or TiWorker.exe is consuming disk. Wait for updates to complete.", "tools": ["Task Manager"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Update AHCI/SATA driver", "instruction": "Install the latest storage controller driver from your motherboard manufacturer instead of the generic Microsoft driver.", "tools": ["Device Manager", "Manufacturer website"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 5, "title": "Upgrade to SSD", "instruction": "The most effective permanent fix is upgrading from HDD to SSD. Clone the existing drive to an SSD.", "tools": ["SSD", "Cloning software"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes to 2 hours",
+    "whenToCallPro": "If 100% disk usage persists after all software fixes, the drive may be failing. Professional diagnosis can confirm.",
+    "relatedCodes": ["DPC_WATCHDOG_VIOLATION", "KERNEL_DATA_INPAGE_ERROR"],
+    "faq": [
+      {"q": "Is this normal on HDDs?", "a": "Unfortunately, somewhat. Windows 10/11 performs many background tasks that overwhelm traditional HDDs. An SSD is the best permanent solution."},
+      {"q": "Will disabling SysMain hurt performance?", "a": "On HDD systems, disabling SysMain usually improves perceived performance because the disk I/O reduction outweighs the caching benefit. On SSD systems, SysMain is typically not problematic."},
+      {"q": "How much does an SSD help?", "a": "Dramatically. Upgrading from HDD to SSD is the single most impactful performance improvement for most computers. Boot times, application launches, and overall responsiveness improve by 5-10x."}
+    ]
+  },
+  {
+    "id": "system-0xc00000e9",
+    "category": "system",
+    "code": "0xC00000E9",
+    "displayCode": "0xC00000E9",
+    "title": "Unexpected I/O Error During Boot",
+    "shortDescription": "An unexpected I/O error occurred during Windows boot, typically indicating a hardware communication problem.",
+    "fullDescription": "Error 0xC00000E9 (STATUS_UNEXPECTED_IO_ERROR) indicates that Windows encountered an I/O error while communicating with the boot device. This is almost always a hardware connection issue - loose cables, failing ports, or a drive that is intermittently disconnecting.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Loose SATA data or power cable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failing SATA port on motherboard", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Drive beginning to fail", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "USB boot device disconnection", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Boot error 0xC00000E9",
+      "Message about unexpected I/O error",
+      "Error is intermittent - sometimes boots fine",
+      "Error appeared after moving or transporting the PC"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat all drive cables", "instruction": "Power off, open case, disconnect and reconnect all SATA data and power cables. Ensure they click firmly into place.", "tools": ["Screwdriver"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Try different SATA port", "instruction": "Move the drive's SATA data cable to a different SATA port on the motherboard.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Replace SATA cable", "instruction": "Try a new SATA data cable. Cables can develop intermittent faults, especially if bent or kinked.", "tools": ["SATA cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Check drive health", "instruction": "If the PC boots, run CrystalDiskInfo to check S.M.A.R.T. status. Also run chkdsk C: /f /r.", "tools": ["CrystalDiskInfo", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 10}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If cable replacement does not fix the issue and the drive's S.M.A.R.T. status shows degradation.",
+    "relatedCodes": ["0xC0000185", "0xC0000225", "KERNEL_DATA_INPAGE_ERROR"],
+    "faq": [
+      {"q": "Why is this intermittent?", "a": "Loose cables or failing ports can cause intermittent connections. The drive works when the connection is good but fails when it momentarily disconnects."},
+      {"q": "Can laptop movement cause this?", "a": "On laptops with HDDs, movement can cause momentary read failures. SSDs are not affected by physical movement. Consider upgrading to an SSD."},
+      {"q": "Should I replace the cable or the drive?", "a": "Try the cable first - it is the cheapest and most common fix. Only replace the drive if SMART data shows degradation."}
+    ]
+  },
+  {
+    "id": "system-windows-installer-error",
+    "category": "system",
+    "code": "MSI_ERROR",
+    "displayCode": "Windows Installer Error",
+    "title": "Windows Installer Service Error",
+    "shortDescription": "The Windows Installer service encountered an error during software installation or update.",
+    "fullDescription": "Windows Installer (MSI) errors occur when the Windows Installer service fails to install, update, or remove software. Common error codes include 1603 (fatal error), 1722 (script error), 2502/2503 (permission error), and 1719 (service not found). These affect both third-party software and Windows components.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Windows Installer service not running or corrupted", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Insufficient permissions for installation", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Previous installation left partial state", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted Windows Installer cache", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Software installation fails with MSI error",
+      "Error codes 1603, 1722, 2502, 2503, or 1719",
+      "Cannot install, update, or remove programs",
+      "Installation rolls back during process"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Re-register Windows Installer", "instruction": "Open elevated Command Prompt: msiexec /unregister then msiexec /regserver", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Start Windows Installer service", "instruction": "Open services.msc, find Windows Installer, set to Manual, click Start.", "tools": ["Services console"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Run as administrator", "instruction": "Right-click the installer file and select Run as administrator.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 4, "title": "Use Microsoft Program Install/Uninstall Troubleshooter", "instruction": "Download and run the Microsoft Program Install and Uninstall troubleshooter from Microsoft's website.", "tools": ["Microsoft troubleshooter"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If the Windows Installer service is severely corrupted and cannot be re-registered.",
+    "relatedCodes": ["0x80070643", "0x80070005", "0x80070422"],
+    "faq": [
+      {"q": "What is Windows Installer error 1603?", "a": "Error 1603 is a generic fatal error during installation. It usually means a previous installation of the same product exists, or there are permission issues."},
+      {"q": "What are errors 2502 and 2503?", "a": "These indicate the installer does not have proper permissions. Running the installer as administrator or fixing the Temp folder permissions usually resolves them."},
+      {"q": "Can I manually delete MSI cache?", "a": "Never delete the C:\\Windows\\Installer folder. It contains data needed to repair and uninstall programs. Deleting it will break installed software."}
+    ]
+  },
+  {
+    "id": "system-group-policy-error",
+    "category": "system",
+    "code": "EVENT_1096",
+    "displayCode": "Group Policy Error (Event 1096)",
+    "title": "Group Policy Processing Error",
+    "shortDescription": "Windows failed to process Group Policy settings, which may affect system configuration and security.",
+    "fullDescription": "Event ID 1096 from GroupPolicy indicates that Windows failed to read or apply Group Policy objects. This affects system configuration, security settings, and managed deployments. It is common in domain-joined environments but can also affect standalone systems with local Group Policy modifications.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Network connectivity issue to domain controller", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted local Group Policy cache", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "DNS resolution failure", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted GPO on domain controller", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Event ID 1096 in Application log",
+      "Group Policy settings not applying correctly",
+      "Login scripts not running",
+      "Drive mappings not appearing"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Force Group Policy update", "instruction": "Open elevated Command Prompt: gpupdate /force", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clear local GP cache", "instruction": "Delete files in C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol and User\\Registry.pol. Run gpupdate /force.", "tools": ["Command Prompt", "File Explorer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Verify network connectivity", "instruction": "Ensure the computer can reach the domain controller: ping dc-hostname and nslookup domain.name", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Run GP Results diagnostics", "instruction": "Run: gpresult /h C:\\GPReport.html and open the HTML file to review applied and failed policies.", "tools": ["Command Prompt", "Browser"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 40, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "In enterprise environments, Group Policy issues often require domain admin intervention.",
+    "relatedCodes": ["EVENT_1000", "DCOM_10016", "0x80070005"],
+    "faq": [
+      {"q": "Does this affect home/standalone computers?", "a": "Rarely. Group Policy is mainly used in business/enterprise environments. Standalone PCs may see errors if local policy was manually configured."},
+      {"q": "Can I ignore this error?", "a": "In enterprise environments, no. GP failures mean security policies and configurations are not being applied correctly. In home environments, it is usually not impactful."},
+      {"q": "What is gpupdate /force?", "a": "It forces an immediate refresh of all Group Policy settings instead of waiting for the next scheduled refresh (typically every 90 minutes)."}
+    ]
+  }
+]
