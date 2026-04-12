@@ -7,143 +7,48 @@
     "deviceTypeSlug": "dishwasher",
     "code": "E01",
     "displayCode": "E01",
-    "alternativeCodes": [
-      "E1"
-    ],
-    "title": "Water Heating Timeout",
-    "shortDescription": "The water has not reached the target temperature within the allotted time.",
-    "fullDescription": "Error E01 on Thermador dishwashers (BSH platform) indicates the water temperature did not reach the target within the allowed heating time. The heating element, temperature sensor, or water supply temperature may be the cause.",
+    "alternativeCodes": [],
+    "title": "Heating Element Failure",
+    "shortDescription": "The heating element or its control circuit has failed, preventing water from reaching proper temperature.",
+    "fullDescription": "Error code E01 on Thermador dishwashers indicates the control module has detected that water temperature is not rising as expected. As a BSH group product, Thermador shares diagnostic systems with Bosch and Gaggenau. The heater relay, heating element, or NTC sensor may be at fault. The dishwasher will attempt to continue with cold water but cleaning performance will be severely degraded.",
     "causes": [
-      {
-        "cause": "Heating element has failed",
-        "likelihood": "high",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Incoming water temperature is too low",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Temperature sensor is inaccurate",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Control board heater relay failed",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "Heating element has burned out or developed an open circuit", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "NTC temperature sensor is providing incorrect readings", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Control board heater relay has failed", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Wiring harness between heater and control board is damaged", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "Thermal fuse on the heating element has tripped", "likelihood": "medium", "fixDifficulty": "intermediate"}
     ],
     "symptoms": [
-      "E01 error on display",
-      "Dishes not clean",
-      "Cycle takes excessively long",
-      "Water not hot during wash",
-      "No steam from vent"
+      "Dishes come out cold and greasy after a cycle",
+      "Water does not feel warm during the wash phase",
+      "E01 displayed on the control panel",
+      "Cycle takes significantly longer than normal",
+      "Sanitize light does not illuminate",
+      "Food residue remains on dishes after washing"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Check hot water supply",
-        "instruction": "Run the kitchen faucet until hot before starting the dishwasher. Incoming water should be at least 120F.",
-        "tools": [
-          "thermometer"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 2,
-        "title": "Test the heating element",
-        "instruction": "Access from below. Measure resistance: 10-25 ohms. OL means burned out.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 20
-      },
-      {
-        "step": 3,
-        "title": "Test temperature sensor",
-        "instruction": "Measure sensor resistance. Compare to BSH specifications for your model.",
-        "tools": [
-          "multimeter"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      },
-      {
-        "step": 4,
-        "title": "Replace the heater",
-        "instruction": "Disconnect power and water. Remove old heater and install replacement.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 30
-      }
+      {"step": 1, "title": "Power cycle the dishwasher", "instruction": "Turn off the dishwasher and disconnect power at the circuit breaker for 5 minutes. Restore power and run a test cycle to check if the error clears.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Test the heating element", "instruction": "Access the heating element at the bottom of the tub. Using a multimeter, measure resistance across the terminals. A functional element should read between 10-30 ohms. An open circuit indicates failure.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Check the NTC temperature sensor", "instruction": "Locate the NTC sensor near the sump area. Disconnect and measure resistance with a multimeter. At room temperature it should read approximately 50k ohms and decrease with heat.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Inspect wiring and connections", "instruction": "Examine all wiring between the heating element, NTC sensor, and control board. Look for burned, corroded, or loose connections and repair as needed.", "tools": ["screwdriver", "wire connectors"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 5, "title": "Replace the heating element", "instruction": "If the element tested faulty, order a Thermador-compatible replacement. Remove the lower spray arm, disconnect wiring, remove mounting hardware, and install the new element.", "tools": ["screwdriver", "pliers", "multimeter"], "difficulty": "intermediate", "timeMinutes": 45}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Heating Element",
-        "partNumber": "00480317",
-        "estimatedCost": {
-          "min": 30,
-          "max": 80
-        }
-      },
-      {
-        "part": "Temperature Sensor",
-        "partNumber": "00165281",
-        "estimatedCost": {
-          "min": 10,
-          "max": 30
-        }
-      }
+      {"part": "Heating Element", "partNumber": "00751950", "estimatedCost": {"min": 50, "max": 90}},
+      {"part": "NTC Temperature Sensor", "partNumber": "00611341", "estimatedCost": {"min": 15, "max": 35}},
+      {"part": "Thermal Fuse", "partNumber": "00189252", "estimatedCost": {"min": 10, "max": 25}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 10,
-        "max": 85
-      },
-      "professional": {
-        "min": 100,
-        "max": 300
-      }
-    },
+    "estimatedCost": {"diy": {"min": 50, "max": 120}, "professional": {"min": 200, "max": 450}},
     "diyDifficulty": "intermediate",
-    "repairTime": "20 minutes to 45 minutes",
-    "whenToCallPro": "If heater and sensor are fine, the board relay needs diagnosis.",
-    "relatedCodes": [
-      "E02",
-      "E09",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E01 water heating error fix",
+    "repairTime": "45 minutes to 1.5 hours",
+    "whenToCallPro": "If the control board relay is suspected or if you are not comfortable working with electrical components near water. Thermador repairs may require authorized service for warranty coverage.",
+    "relatedCodes": ["E02", "E09", "E10"],
+    "videoSearchQuery": "Thermador dishwasher E01 error heating element fix",
     "faq": [
-      {
-        "q": "Is the Thermador dishwasher the same as Bosch?",
-        "a": "Yes. Thermador dishwashers are built on the BSH (Bosch) platform and share many components and error codes."
-      },
-      {
-        "q": "Should I run hot water before starting?",
-        "a": "Yes. Running the faucet until hot ensures the dishwasher fills with hot water from the start."
-      },
-      {
-        "q": "Can hard water affect heating?",
-        "a": "Scale buildup on the heater from hard water reduces heating efficiency over time."
-      }
+      {"q": "Can I still use my Thermador dishwasher with an E01 error?", "a": "The dishwasher may run but will wash with cold water, resulting in poor cleaning and no sanitization. Repair promptly."},
+      {"q": "Is the Thermador E01 code the same as the Bosch E01?", "a": "Yes. Thermador, Bosch, and Gaggenau are all BSH group brands and share the same diagnostic error code system."},
+      {"q": "How much does it cost to fix a Thermador dishwasher E01?", "a": "DIY repair costs $50-$120 for parts. Professional repair typically runs $200-$450 due to Thermador's premium service rates."}
     ]
   },
   {
@@ -154,131 +59,243 @@
     "deviceTypeSlug": "dishwasher",
     "code": "E02",
     "displayCode": "E02",
-    "alternativeCodes": [
-      "E2"
-    ],
-    "title": "Temperature Sensor Failure",
-    "shortDescription": "The water temperature sensor has failed or is out of range.",
-    "fullDescription": "Error E02 indicates the NTC temperature sensor is open, shorted, or reading outside the expected range. The dishwasher cannot regulate water heating.",
+    "alternativeCodes": [],
+    "title": "NTC Temperature Sensor Fault",
+    "shortDescription": "The NTC temperature sensor is providing out-of-range readings to the control module.",
+    "fullDescription": "Error code E02 on Thermador dishwashers indicates the NTC (Negative Temperature Coefficient) temperature sensor is sending readings outside the expected range. The control board cannot properly regulate water temperature, which impacts wash performance and sanitization. This BSH group code is shared across Thermador, Bosch, and Gaggenau dishwashers.",
     "causes": [
-      {
-        "cause": "Temperature sensor has failed",
-        "likelihood": "high",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Sensor connector is loose",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Sensor wiring damaged",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Board sensor input failed",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "NTC temperature sensor has failed or drifted out of calibration", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring to the NTC sensor is broken or corroded", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Connector at the control board is loose or oxidized", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Control board input circuit is damaged", "likelihood": "low", "fixDifficulty": "professional"}
     ],
     "symptoms": [
-      "E02 on display",
-      "Water not heating correctly",
-      "Cycle too long",
-      "Dishes not clean",
-      "Steam issues"
+      "E02 error code on the display panel",
+      "Dishwasher stops mid-cycle unexpectedly",
+      "Water temperature seems inconsistent between cycles",
+      "Dishes not cleaned effectively",
+      "Cycle does not complete properly"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Access the sensor",
-        "instruction": "The sensor is near the sump/heater area. Access from below by removing the kick plate.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      },
-      {
-        "step": 2,
-        "title": "Test resistance",
-        "instruction": "Disconnect and measure. At room temp approximately 50K ohms. At 120F approximately 12K ohms.",
-        "tools": [
-          "multimeter"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Check connections",
-        "instruction": "Ensure connector is firm and clean.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 4,
-        "title": "Replace sensor",
-        "instruction": "Remove old sensor and install replacement.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      }
+      {"step": 1, "title": "Power reset", "instruction": "Disconnect the dishwasher from power for 5 minutes. Reconnect and start a cycle. If E02 returns, proceed to further diagnosis.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Locate and access the NTC sensor", "instruction": "The NTC sensor is typically in the sump area at the bottom of the tub. Remove the lower rack and spray arm, then access the sump cover.", "tools": ["screwdriver", "T20 Torx bit"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Test the NTC sensor", "instruction": "Disconnect the sensor harness and measure resistance. At room temperature it should read around 50k ohms. Submerge in warm water and verify resistance decreases smoothly.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Replace the NTC sensor", "instruction": "If the sensor tests faulty, disconnect the old sensor from the sump housing, install the new one, and reconnect the wiring harness. Run a test cycle to confirm.", "tools": ["screwdriver", "pliers"], "difficulty": "intermediate", "timeMinutes": 20}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Temperature Sensor",
-        "partNumber": "00165281",
-        "estimatedCost": {
-          "min": 10,
-          "max": 30
-        }
-      }
+      {"part": "NTC Temperature Sensor", "partNumber": "00611341", "estimatedCost": {"min": 15, "max": 35}},
+      {"part": "Wiring Harness", "partNumber": "00648986", "estimatedCost": {"min": 20, "max": 50}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 10,
-        "max": 35
-      },
-      "professional": {
-        "min": 80,
-        "max": 200
-      }
-    },
+    "estimatedCost": {"diy": {"min": 15, "max": 50}, "professional": {"min": 150, "max": 300}},
     "diyDifficulty": "intermediate",
-    "repairTime": "15 minutes to 30 minutes",
-    "whenToCallPro": "If new sensor does not fix E02.",
-    "relatedCodes": [
-      "E01",
-      "E09",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E02 temperature sensor error fix",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If replacing the sensor does not resolve the issue, the control board may need professional diagnosis.",
+    "relatedCodes": ["E01", "E09"],
+    "videoSearchQuery": "Thermador dishwasher E02 NTC sensor replacement",
     "faq": [
-      {
-        "q": "Is this the same sensor as Bosch?",
-        "a": "Yes, same BSH part number."
-      },
-      {
-        "q": "Can the dishwasher run with E02?",
-        "a": "It may run but cannot heat water properly."
-      },
-      {
-        "q": "How do I access the sensor?",
-        "a": "Remove the kick plate and access from below the tub."
-      }
+      {"q": "What does the NTC sensor do in a Thermador dishwasher?", "a": "The NTC sensor monitors water temperature so the control board can regulate heating for optimal wash and sanitization cycles."},
+      {"q": "Is E02 related to E01?", "a": "They are related. E01 typically points to the heater itself while E02 specifically targets the temperature sensor, but both affect water heating."},
+      {"q": "Can a faulty NTC sensor damage the dishwasher?", "a": "It will not cause physical damage but cleaning performance will suffer significantly without proper temperature regulation."}
+    ]
+  },
+  {
+    "id": "thermador-dishwasher-e03",
+    "brand": "Thermador",
+    "brandSlug": "thermador",
+    "deviceType": "Dishwasher",
+    "deviceTypeSlug": "dishwasher",
+    "code": "E03",
+    "displayCode": "E03",
+    "alternativeCodes": [],
+    "title": "Water Fill Timeout",
+    "shortDescription": "The dishwasher failed to fill with enough water within the allowed time period.",
+    "fullDescription": "Error E03 is triggered when the Thermador dishwasher control board detects that the tub has not filled with adequate water within the allotted time (typically 5-8 minutes). The water level sensor indicates insufficient water despite the fill valve being activated. This can stem from supply issues, a faulty inlet valve, or a malfunctioning pressure switch.",
+    "causes": [
+      {"cause": "Water supply valve to the dishwasher is closed or restricted", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Water inlet valve is clogged or defective", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Inlet hose is kinked or blocked", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Water level sensor or pressure switch is faulty", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Float switch is stuck in the raised position", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "E03 error displayed on the panel",
+      "Dishwasher does not start the wash cycle",
+      "No sound of water entering the tub",
+      "Cycle starts but stops within minutes",
+      "Partial fill with very little water in the tub"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check water supply", "instruction": "Verify the water supply valve under the sink is fully open. Run the kitchen faucet to confirm adequate water pressure.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect the inlet hose", "instruction": "Pull the dishwasher out enough to access the rear. Check the inlet hose for kinks, bends, or blockages. Straighten or replace if needed.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Clean the inlet valve filter", "instruction": "Disconnect the water supply hose from the inlet valve. Remove and clean the small mesh filter screen. Debris buildup can restrict flow significantly.", "tools": ["pliers", "small brush"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Test the water inlet valve", "instruction": "Using a multimeter, test the inlet valve solenoid coil for continuity. It should read between 500-1500 ohms. No continuity means the valve must be replaced.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 5, "title": "Check the float switch", "instruction": "Locate the float assembly inside the tub at the bottom. Lift and release it to ensure it moves freely. Clean any debris preventing movement.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP"],
+    "partsNeeded": [
+      {"part": "Water Inlet Valve", "partNumber": "00622058", "estimatedCost": {"min": 40, "max": 80}},
+      {"part": "Float Switch", "partNumber": "00165886", "estimatedCost": {"min": 15, "max": 30}},
+      {"part": "Inlet Hose", "partNumber": "00668113", "estimatedCost": {"min": 15, "max": 30}}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If supply pressure is normal and the inlet valve tests good, the control board may need professional diagnosis.",
+    "relatedCodes": ["E04", "E17"],
+    "videoSearchQuery": "Thermador dishwasher E03 water fill error fix",
+    "faq": [
+      {"q": "Why won't my Thermador dishwasher fill with water?", "a": "The most common cause is a closed or restricted water supply valve. Check the valve under the sink first, then inspect the inlet hose and filter screen."},
+      {"q": "Can low water pressure cause E03?", "a": "Yes. Thermador dishwashers require a minimum of 20 PSI water pressure. Low pressure can trigger E03."},
+      {"q": "How do I reset my Thermador dishwasher after fixing E03?", "a": "After fixing the issue, disconnect power for 5 minutes, then reconnect and run a normal cycle. The error should clear automatically."}
+    ]
+  },
+  {
+    "id": "thermador-dishwasher-e04",
+    "brand": "Thermador",
+    "brandSlug": "thermador",
+    "deviceType": "Dishwasher",
+    "deviceTypeSlug": "dishwasher",
+    "code": "E04",
+    "displayCode": "E04",
+    "alternativeCodes": [],
+    "title": "Water Flow Sensor Error",
+    "shortDescription": "The flow sensor detects insufficient or no water flow through the spray system.",
+    "fullDescription": "Error E04 indicates the flow sensor in the Thermador dishwasher is detecting inadequate water circulation through the spray arms. While the tub may have filled with water, the circulation pump is not moving water effectively. This can result from a blocked spray arm, a faulty circulation pump, or a defective flow sensor.",
+    "causes": [
+      {"cause": "Spray arms are clogged with food debris or mineral deposits", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Circulation pump impeller is damaged or jammed", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Flow sensor is faulty", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Sump filter is severely clogged", "likelihood": "high", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "E04 error on the display",
+      "Dishes remain dirty after a full cycle",
+      "Weak or no spray from the wash arms",
+      "Unusual humming from the circulation pump",
+      "Cycle completes but dishes are not wet"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clean the spray arms", "instruction": "Remove the upper and lower spray arms. Clear all nozzle holes with a toothpick or thin wire. Rinse under running water to flush debris.", "tools": ["toothpick"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Clean the sump filter", "instruction": "Remove the filter assembly from the bottom of the tub. Clean all three filter sections under running water using a soft brush.", "tools": ["soft brush"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Check the circulation pump", "instruction": "With filters removed, inspect the pump impeller area for debris or broken glass. Remove any obstructions carefully.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Test the flow sensor", "instruction": "Locate the flow sensor on the circulation pump housing. Check wiring connections and test with a multimeter for proper resistance values per the service manual.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 25}
+    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD870WFP"],
+    "partsNeeded": [
+      {"part": "Circulation Pump", "partNumber": "00752606", "estimatedCost": {"min": 100, "max": 200}},
+      {"part": "Flow Sensor", "partNumber": "00611317", "estimatedCost": {"min": 25, "max": 50}},
+      {"part": "Spray Arm Set", "partNumber": "00744998", "estimatedCost": {"min": 30, "max": 60}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 150, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes to 1 hour",
+    "whenToCallPro": "If cleaning does not resolve the issue and the circulation pump or flow sensor needs replacement.",
+    "relatedCodes": ["E03", "E05"],
+    "videoSearchQuery": "Thermador dishwasher E04 flow sensor spray arm fix",
+    "faq": [
+      {"q": "How often should I clean my Thermador dishwasher filters?", "a": "Clean the filter assembly at least once a month, or weekly if you wash heavily soiled dishes frequently."},
+      {"q": "Can mineral buildup cause E04?", "a": "Yes. Hard water deposits can clog spray arm nozzles and restrict flow. Use a dishwasher cleaner monthly in hard water areas."},
+      {"q": "Is E04 a serious problem?", "a": "It often has a simple fix like cleaning spray arms and filters. Only if the pump or sensor is faulty does it require parts replacement."}
+    ]
+  },
+  {
+    "id": "thermador-dishwasher-e05",
+    "brand": "Thermador",
+    "brandSlug": "thermador",
+    "deviceType": "Dishwasher",
+    "deviceTypeSlug": "dishwasher",
+    "code": "E05",
+    "displayCode": "E05",
+    "alternativeCodes": [],
+    "title": "Overflow Protection Activated",
+    "shortDescription": "The dishwasher has detected excess water in the base pan, triggering flood protection.",
+    "fullDescription": "Error E05 indicates the Thermador dishwasher's AquaStop flood protection system has detected water in the base pan beneath the tub. A float switch in the base activates and triggers the drain pump to remove water while displaying this error. This protects against flooding from leaks in the tub seal, hose connections, or internal components.",
+    "causes": [
+      {"cause": "Leaking door seal or gasket", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Loose or damaged internal hose connection", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Cracked sump housing or tub", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "AquaStop float switch stuck or faulty", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Spray arm seal leaking", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "E05 error on the display panel",
+      "Drain pump runs continuously even when dishwasher is off",
+      "Water visible beneath the dishwasher",
+      "Dishwasher will not start a new cycle",
+      "Musty smell from under the dishwasher"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect power and water", "instruction": "Turn off the circuit breaker and shut off the water supply valve. Pull the dishwasher forward to access the base.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Remove base panel and dry the base pan", "instruction": "Remove the kick plate and base panel. Use towels and a wet-dry vacuum to remove all water from the base pan.", "tools": ["towels", "wet-dry vacuum", "screwdriver"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Inspect for the source of the leak", "instruction": "With the base pan dry, reconnect power and water. Run a short cycle while watching from below with a flashlight to identify the leak source.", "tools": ["flashlight"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Check the door seal", "instruction": "Inspect the door gasket for cracks, tears, or deformation. Clean the seal and the tub edge where it sits. Replace if damaged.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 5, "title": "Check the float switch", "instruction": "Locate the AquaStop float in the base pan. Ensure it moves freely up and down. Clean any debris around it. If stuck, gently free it.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
+    "partsNeeded": [
+      {"part": "Door Gasket", "partNumber": "00704760", "estimatedCost": {"min": 30, "max": 60}},
+      {"part": "AquaStop Float Switch", "partNumber": "00622057", "estimatedCost": {"min": 20, "max": 40}},
+      {"part": "Sump Seal Kit", "partNumber": "00754570", "estimatedCost": {"min": 15, "max": 35}}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If the leak source is from a cracked sump or tub, or if you cannot identify where the water is entering the base pan.",
+    "relatedCodes": ["E03", "E17", "E24"],
+    "videoSearchQuery": "Thermador dishwasher E05 leak flood protection fix",
+    "faq": [
+      {"q": "Why does my Thermador dishwasher drain pump keep running?", "a": "When E05 triggers, the drain pump activates to remove water from the base pan. It will keep running until the water is removed and the float switch resets."},
+      {"q": "Can I just dry the base pan to fix E05?", "a": "Drying the base pan will clear the immediate error, but you must find and fix the leak source or the error will return."},
+      {"q": "What is AquaStop on Thermador dishwashers?", "a": "AquaStop is BSH's flood protection system that uses a float switch in the base pan and an automatic shutoff valve on the supply hose to prevent water damage."}
+    ]
+  },
+  {
+    "id": "thermador-dishwasher-e06",
+    "brand": "Thermador",
+    "brandSlug": "thermador",
+    "deviceType": "Dishwasher",
+    "deviceTypeSlug": "dishwasher",
+    "code": "E06",
+    "displayCode": "E06",
+    "alternativeCodes": [],
+    "title": "Door Switch Fault",
+    "shortDescription": "The door latch sensor or switch is not registering that the door is properly closed.",
+    "fullDescription": "Error E06 on Thermador dishwashers means the control board cannot confirm the door is securely latched. The door switch or latch mechanism may be faulty, misaligned, or the wiring to the switch may be damaged. The dishwasher will not start a cycle without confirmation that the door is properly sealed.",
+    "causes": [
+      {"cause": "Door latch mechanism is misaligned or worn", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Door switch has failed electrically", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring to the door switch is damaged", "likelihood": "low", "fixDifficulty": "intermediate"},
+      {"cause": "Control board door switch input circuit failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "E06 error displayed on the panel",
+      "Dishwasher does not start when door is closed",
+      "Door feels loose when latched",
+      "Clicking sound when trying to start but no cycle begins",
+      "Intermittent starting issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect the door latch", "instruction": "Open the door and examine the latch mechanism on the top of the door. Look for visible damage, wear, or misalignment. Check that the strike plate on the tub frame is not bent.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clean the latch area", "instruction": "Clean any detergent buildup or debris from the latch mechanism and strike plate. This can prevent proper engagement.", "tools": ["soft cloth", "mild cleaner"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Test the door switch", "instruction": "Access the door switch behind the inner door panel. Use a multimeter to test for continuity when the switch is pressed. No continuity when activated means the switch is faulty.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Replace the door switch or latch", "instruction": "If the switch or latch is faulty, remove the inner door panel, disconnect the old switch, and install the replacement. Reassemble and test.", "tools": ["screwdriver", "pliers"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP"],
+    "partsNeeded": [
+      {"part": "Door Latch Assembly", "partNumber": "00630783", "estimatedCost": {"min": 25, "max": 55}},
+      {"part": "Door Switch", "partNumber": "00424410", "estimatedCost": {"min": 10, "max": 25}}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 55}, "professional": {"min": 120, "max": 280}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 45 minutes",
+    "whenToCallPro": "If the latch and switch test good but E06 persists, the control board may need diagnosis.",
+    "relatedCodes": ["E07"],
+    "videoSearchQuery": "Thermador dishwasher E06 door switch latch fix",
+    "faq": [
+      {"q": "Why won't my Thermador dishwasher start even though the door is closed?", "a": "The door switch may not be registering the closure. Even if the door feels closed, a worn latch or faulty switch can prevent the signal from reaching the control board."},
+      {"q": "Can I force start the dishwasher with E06?", "a": "No. The door switch is a safety interlock and the dishwasher will not operate without proper door confirmation."},
+      {"q": "Is E06 covered under Thermador warranty?", "a": "If your dishwasher is within the standard warranty period, door latch and switch defects are typically covered. Contact Thermador or your dealer."}
     ]
   },
   {
@@ -289,135 +306,44 @@
     "deviceTypeSlug": "dishwasher",
     "code": "E09",
     "displayCode": "E09",
-    "alternativeCodes": [
-      "E9"
-    ],
-    "title": "Water Heating Element Open Circuit",
-    "shortDescription": "The heating element circuit is open \u2014 the element has burned out.",
-    "fullDescription": "Error E09 specifically indicates the heating element has an open circuit (burned out). Unlike E01 which is a timeout, E09 detects that the element itself is not conducting.",
+    "alternativeCodes": [],
+    "title": "Heating Circuit Relay Failure",
+    "shortDescription": "The control board's heating circuit relay has failed, preventing the heater from activating.",
+    "fullDescription": "Error E09 specifically points to a failure in the heating relay circuit on the main control board. Unlike E01 which can indicate the heater or sensor, E09 confirms the control board itself is unable to switch power to the heating element. This is a board-level fault requiring control board repair or replacement.",
     "causes": [
-      {
-        "cause": "Heating element has burned out",
-        "likelihood": "high",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Heater wiring disconnected",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Heater connector corroded",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Board heater relay circuit open",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "Heating relay on the control board has failed", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Control board solder joint on the relay has cracked", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Power surge damaged the relay circuit", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Shorted heating element caused relay to burn out", "likelihood": "low", "fixDifficulty": "professional"}
     ],
     "symptoms": [
-      "E09 on display",
-      "No water heating at all",
-      "Dishes not clean",
-      "No drying performance",
-      "Cool water throughout cycle"
+      "E09 error on the display",
+      "Water never heats during any cycle",
+      "Dishwasher may otherwise function normally",
+      "E01 may appear intermittently before E09",
+      "Drying performance is very poor"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Test the heater",
-        "instruction": "Access from below. Measure resistance: 10-25 ohms. OL confirms burned out.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 20
-      },
-      {
-        "step": 2,
-        "title": "Check connections",
-        "instruction": "Inspect heater wiring and connectors for damage.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Check for leaks",
-        "instruction": "Water leaking onto the heater can cause premature failure. Inspect the tub and hoses.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 4,
-        "title": "Replace the heater",
-        "instruction": "Disconnect power and water. Remove old heater from sump, install replacement.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 30
-      }
+      {"step": 1, "title": "Power reset", "instruction": "Disconnect power for 10 minutes. Reconnect and run a cycle. If E09 returns immediately, the board relay has failed.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Test the heating element first", "instruction": "Before replacing the board, test the heating element for shorts. A shorted element can damage a new board. Measure resistance and ensure no continuity to ground.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Inspect the control board", "instruction": "Remove the door panel to access the control board. Look for visible burn marks, discolored components, or cracked solder joints around the relay area.", "tools": ["screwdriver", "T20 Torx bit"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Replace the control board", "instruction": "Order the correct replacement control board. Photograph all wire connections before disconnecting. Install the new board and reconnect all harnesses.", "tools": ["screwdriver", "camera/phone"], "difficulty": "advanced", "timeMinutes": 45}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Heating Element",
-        "partNumber": "00480317",
-        "estimatedCost": {
-          "min": 30,
-          "max": 80
-        }
-      }
+      {"part": "Main Control Board", "partNumber": "00753994", "estimatedCost": {"min": 200, "max": 400}},
+      {"part": "Heating Element (if shorted)", "partNumber": "00751950", "estimatedCost": {"min": 50, "max": 90}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 30,
-        "max": 85
-      },
-      "professional": {
-        "min": 120,
-        "max": 300
-      }
-    },
-    "diyDifficulty": "intermediate",
-    "repairTime": "25 minutes to 45 minutes",
-    "whenToCallPro": "If heater tests good but E09 persists.",
-    "relatedCodes": [
-      "E01",
-      "E02",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E09 heating element open fix",
+    "estimatedCost": {"diy": {"min": 200, "max": 400}, "professional": {"min": 400, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "Control board replacement is recommended for professional service, especially if under warranty. Incorrect installation can cause further damage.",
+    "relatedCodes": ["E01", "E02", "E10"],
+    "videoSearchQuery": "Thermador dishwasher E09 control board relay replacement",
     "faq": [
-      {
-        "q": "Is E09 the same as E01?",
-        "a": "No. E01 is a heating timeout. E09 specifically means the element is burned out."
-      },
-      {
-        "q": "How long do dishwasher heaters last?",
-        "a": "8-12 years typically."
-      },
-      {
-        "q": "Can hard water shorten heater life?",
-        "a": "Yes. Scale buildup insulates the heater, causing it to overheat and fail prematurely."
-      }
+      {"q": "Can the E09 relay be repaired instead of replacing the whole board?", "a": "Some appliance repair shops can resolder or replace individual relays on the board for less cost. Ask about board-level repair services."},
+      {"q": "How much does a Thermador dishwasher control board cost?", "a": "A replacement control board typically costs $200-$400 for the part. Professional installation adds $150-$300."},
+      {"q": "Can a power surge cause E09?", "a": "Yes. Power surges can damage the relay circuit. Use a surge protector on the dishwasher circuit to prevent future damage."}
     ]
   },
   {
@@ -429,138 +355,43 @@
     "code": "E14",
     "displayCode": "E14",
     "alternativeCodes": [],
-    "title": "Water Flow Sensor Error",
-    "shortDescription": "The water flow sensor is not detecting proper water flow.",
-    "fullDescription": "Error E14 indicates the flow sensor (flow meter) is not detecting water entering the dishwasher. The sensor may have failed, or no water is reaching the dishwasher.",
+    "title": "Flow Meter Sensor Error",
+    "shortDescription": "The flow meter is not detecting proper water intake during the fill cycle.",
+    "fullDescription": "Error E14 indicates the flow meter sensor in the Thermador dishwasher is not registering expected water flow during filling. The flow meter counts water pulses to determine how much water has entered the tub. If the pulse count does not match the expected range, this error triggers.",
     "causes": [
-      {
-        "cause": "Flow sensor has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Water supply valve is closed",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Water inlet valve has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Flow sensor wiring damaged",
-        "likelihood": "low",
-        "fixDifficulty": "intermediate"
-      }
+      {"cause": "Flow meter sensor is faulty or blocked", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Water supply pressure is too low", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Inlet valve is partially clogged", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring to the flow meter is damaged", "likelihood": "low", "fixDifficulty": "intermediate"}
     ],
     "symptoms": [
-      "E14 on display",
-      "No water entering dishwasher",
-      "Cycle does not progress",
-      "Humming but no fill",
-      "Dishes remain dry"
+      "E14 error on the display",
+      "Dishwasher underfills or overfills",
+      "Inconsistent water levels between cycles",
+      "Cycle may abort during fill phase",
+      "Long fill times before cycle starts"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Check water supply",
-        "instruction": "Ensure shutoff valve under the sink is fully open.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 2,
-        "title": "Test the inlet valve",
-        "instruction": "Access the valve. Test solenoid resistance (200-500 ohms).",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 20
-      },
-      {
-        "step": 3,
-        "title": "Test the flow sensor",
-        "instruction": "The flow sensor is in the water inlet path. Check for debris blocking the impeller.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      },
-      {
-        "step": 4,
-        "title": "Replace flow sensor or valve",
-        "instruction": "Replace the faulty component.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 25
-      }
+      {"step": 1, "title": "Check water supply pressure", "instruction": "Verify the supply valve is fully open and water pressure is adequate. Run the kitchen faucet to check flow.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clean the inlet valve filter", "instruction": "Disconnect the supply hose and clean the mesh filter at the inlet valve.", "tools": ["pliers", "small brush"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Test the flow meter", "instruction": "Locate the flow meter on the inlet assembly. Disconnect and test with a multimeter.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Replace the flow meter", "instruction": "If the sensor is faulty, remove the old flow meter from the inlet assembly and install the replacement.", "tools": ["screwdriver", "pliers"], "difficulty": "intermediate", "timeMinutes": 25}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Flow Sensor",
-        "partNumber": "00611317",
-        "estimatedCost": {
-          "min": 15,
-          "max": 45
-        }
-      },
-      {
-        "part": "Water Inlet Valve",
-        "partNumber": "00622058",
-        "estimatedCost": {
-          "min": 20,
-          "max": 55
-        }
-      }
+      {"part": "Flow Meter Sensor", "partNumber": "00611317", "estimatedCost": {"min": 25, "max": 55}},
+      {"part": "Water Inlet Valve", "partNumber": "00622058", "estimatedCost": {"min": 40, "max": 80}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 15,
-        "max": 60
-      },
-      "professional": {
-        "min": 80,
-        "max": 250
-      }
-    },
+    "estimatedCost": {"diy": {"min": 25, "max": 80}, "professional": {"min": 150, "max": 350}},
     "diyDifficulty": "intermediate",
-    "repairTime": "15 minutes to 35 minutes",
-    "whenToCallPro": "If supply is good and both components test fine.",
-    "relatedCodes": [
-      "E01",
-      "E02",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E14 flow sensor error fix",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the flow meter and inlet valve both test good, the control board may need professional evaluation.",
+    "relatedCodes": ["E03", "E17"],
+    "videoSearchQuery": "Thermador dishwasher E14 flow meter sensor fix",
     "faq": [
-      {
-        "q": "What is a flow sensor?",
-        "a": "A small turbine that measures water flow rate entering the dishwasher."
-      },
-      {
-        "q": "Can debris block the flow sensor?",
-        "a": "Yes. Small particles can jam the flow sensor impeller."
-      },
-      {
-        "q": "Is the flow sensor shared with Bosch?",
-        "a": "Yes, same BSH component."
-      }
+      {"q": "What does the flow meter do in a Thermador dishwasher?", "a": "The flow meter counts pulses of water entering the tub to precisely measure fill volume. This ensures the correct amount of water for each cycle."},
+      {"q": "Can hard water cause E14?", "a": "Yes. Mineral deposits from hard water can clog the flow meter or inlet valve filter, restricting flow and triggering E14."},
+      {"q": "Is E14 an urgent repair?", "a": "It should be addressed promptly as incorrect water levels can lead to poor cleaning or potential overflow conditions."}
     ]
   },
   {
@@ -572,140 +403,94 @@
     "code": "E15",
     "displayCode": "E15",
     "alternativeCodes": [],
-    "title": "Water in Base Pan \u2014 Leak Protection Activated",
-    "shortDescription": "Water has been detected in the base pan, activating the anti-flood system.",
-    "fullDescription": "Error E15 is the BSH anti-flood protection code. A float switch in the base pan has detected accumulated water. The dishwasher shuts down to prevent water damage. This is one of the most common Thermador/Bosch dishwasher errors.",
+    "title": "Water in Base Pan (AquaStop)",
+    "shortDescription": "The AquaStop system has detected water in the base pan, indicating a leak somewhere in the system.",
+    "fullDescription": "Error E15 is the primary AquaStop flood protection code for Thermador dishwashers. It indicates the float switch in the base pan has risen due to water accumulation. The dishwasher will activate the drain pump and prevent operation until the water is removed and the leak is fixed. This is one of the most common error codes on BSH group dishwashers.",
     "causes": [
-      {
-        "cause": "Hose connection is leaking",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Door seal is leaking",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Spray arm seal is leaking",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Sump assembly is cracked",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "Leaking tub gasket or spray arm seal", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Loose or cracked hose connection inside the machine", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Sump seal is deteriorated", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Condensation buildup from repeated short cycles", "likelihood": "low", "fixDifficulty": "easy"},
+      {"cause": "AquaStop float switch is stuck", "likelihood": "medium", "fixDifficulty": "easy"}
     ],
     "symptoms": [
-      "E15 on display",
-      "Dishwasher will not run",
-      "Water pooling under the unit",
+      "E15 flashing on the display",
       "Drain pump runs continuously",
-      "Alarm beeping"
+      "Dishwasher will not start any cycle",
+      "Water visible under or around the dishwasher",
+      "Musty or mildew smell from the base area"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Tilt the dishwasher",
-        "instruction": "Turn off the dishwasher. Carefully tilt it back about 45 degrees to drain water off the float switch. Place towels underneath.",
-        "tools": [
-          "towels"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Drain the base pan",
-        "instruction": "Remove the kick plate. Use towels or a wet-dry vacuum to remove water from the base pan.",
-        "tools": [
-          "towels",
-          "screwdriver"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 15
-      },
-      {
-        "step": 3,
-        "title": "Find the leak source",
-        "instruction": "Run a short cycle and watch underneath for the leak source. Common locations: door seal, hose connections, sump gaskets.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 30
-      },
-      {
-        "step": 4,
-        "title": "Fix the leak",
-        "instruction": "Tighten loose hose connections, replace damaged seals, or repair the sump gasket.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 30
-      }
+      {"step": 1, "title": "Disconnect power and water", "instruction": "Turn off the circuit breaker and close the water supply valve before any inspection.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Tilt the dishwasher to drain base pan", "instruction": "Carefully tilt the dishwasher forward about 45 degrees to drain water from the base pan into towels.", "tools": ["towels"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Remove base panel and inspect", "instruction": "Remove the kick plate and base panel. Dry any remaining water. Look for signs of the leak source such as water trails or stains.", "tools": ["screwdriver", "flashlight", "towels"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Check all hose connections", "instruction": "Inspect every hose connection inside the machine. Tighten any loose clamps and replace cracked hoses.", "tools": ["pliers", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 25},
+      {"step": 5, "title": "Test run and monitor", "instruction": "With the base panel removed, reconnect power and water. Run a short cycle while monitoring the base area with a flashlight.", "tools": ["flashlight"], "difficulty": "intermediate", "timeMinutes": 20}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Door Seal",
-        "partNumber": "00263096",
-        "estimatedCost": {
-          "min": 15,
-          "max": 40
-        }
-      },
-      {
-        "part": "Sump Gasket",
-        "partNumber": "00263102",
-        "estimatedCost": {
-          "min": 5,
-          "max": 15
-        }
-      }
+      {"part": "Door Gasket", "partNumber": "00704760", "estimatedCost": {"min": 30, "max": 60}},
+      {"part": "Sump Seal Kit", "partNumber": "00754570", "estimatedCost": {"min": 15, "max": 35}},
+      {"part": "Hose Clamp Set", "partNumber": "00604751", "estimatedCost": {"min": 5, "max": 15}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 55
-      },
-      "professional": {
-        "min": 100,
-        "max": 300
-      }
-    },
+    "estimatedCost": {"diy": {"min": 5, "max": 60}, "professional": {"min": 150, "max": 400}},
     "diyDifficulty": "intermediate",
-    "repairTime": "20 minutes to 1 hour",
-    "whenToCallPro": "If you cannot identify the leak source or if the sump is cracked.",
-    "relatedCodes": [
-      "E01",
-      "E14",
-      "E24"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E15 water in base pan leak fix",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If you cannot identify the leak source, or if the sump housing is cracked.",
+    "relatedCodes": ["E05", "E24"],
+    "videoSearchQuery": "Thermador dishwasher E15 AquaStop water in base fix",
     "faq": [
-      {
-        "q": "Is E15 common?",
-        "a": "Yes. E15 is one of the most frequently reported errors on BSH (Bosch/Thermador/Siemens) dishwashers."
-      },
-      {
-        "q": "Why does the drain pump run continuously?",
-        "a": "The control activates the drain pump when water is detected in the base to try to remove it."
-      },
-      {
-        "q": "Will tilting fix E15 permanently?",
-        "a": "No. Tilting clears the float switch temporarily. You must find and fix the leak source."
-      }
+      {"q": "How do I reset E15 on my Thermador dishwasher?", "a": "Tilt the dishwasher forward about 45 degrees to drain the base pan. This resets the float switch. However, you must fix the underlying leak or E15 will return."},
+      {"q": "Is E15 the same as E05?", "a": "Both relate to water in the base pan. E15 is the standard AquaStop code while E05 may appear depending on the model. The diagnosis is similar."},
+      {"q": "Can condensation cause E15?", "a": "In rare cases, excessive condensation from short or cool cycles can accumulate in the base pan. Running a full hot cycle periodically can help prevent this."}
+    ]
+  },
+  {
+    "id": "thermador-dishwasher-e17",
+    "brand": "Thermador",
+    "brandSlug": "thermador",
+    "deviceType": "Dishwasher",
+    "deviceTypeSlug": "dishwasher",
+    "code": "E17",
+    "displayCode": "E17",
+    "alternativeCodes": [],
+    "title": "Overfill Protection Activated",
+    "shortDescription": "The dishwasher has detected excess water in the tub beyond the maximum fill level.",
+    "fullDescription": "Error E17 indicates the water level in the Thermador dishwasher tub has exceeded the maximum threshold. The overfill protection system triggers the drain pump to remove excess water. This can be caused by a stuck inlet valve, a faulty water level sensor, or a problem with the drain system.",
+    "causes": [
+      {"cause": "Water inlet valve is stuck open and not shutting off", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Pressure switch or water level sensor is faulty", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Drain hose is partially blocked causing residual water buildup", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Flow meter is not accurately counting water intake", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "E17 error on the display",
+      "Excess water visible in the tub when door is opened",
+      "Drain pump runs to remove water",
+      "Water on the floor around the dishwasher",
+      "Dishwasher aborts the cycle during fill"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Turn off water supply immediately", "instruction": "Shut off the water supply valve under the sink to stop water from entering the dishwasher. Then disconnect power.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Drain excess water", "instruction": "Let the drain pump run by reconnecting power briefly, or manually bail out excess water from the tub.", "tools": ["towels", "bucket"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Test the water inlet valve", "instruction": "With the supply off and power disconnected, check the inlet valve. If water still drips in after the valve is shut, the solenoid is stuck open.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Check the drain system", "instruction": "Inspect the drain hose for clogs or kinks. Ensure the drain hose connects properly with a high loop.", "tools": [], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP"],
+    "partsNeeded": [
+      {"part": "Water Inlet Valve", "partNumber": "00622058", "estimatedCost": {"min": 40, "max": 80}},
+      {"part": "Pressure Switch", "partNumber": "00497570", "estimatedCost": {"min": 20, "max": 45}}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 80}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the inlet valve is stuck open, it should be replaced promptly to prevent flooding.",
+    "relatedCodes": ["E03", "E14", "E15"],
+    "videoSearchQuery": "Thermador dishwasher E17 overfill inlet valve fix",
+    "faq": [
+      {"q": "Is E17 an emergency?", "a": "It can be. If the inlet valve is stuck open, water will continue to enter the dishwasher. Shut off the water supply valve immediately."},
+      {"q": "Can a blocked drain cause E17?", "a": "Yes. If the dishwasher cannot drain properly between cycles, residual water can accumulate and trigger the overfill sensor."},
+      {"q": "How do I prevent E17 from happening?", "a": "Ensure the drain hose has a proper high loop, clean the drain filter regularly, and have the inlet valve inspected if it is more than 5 years old."}
     ]
   },
   {
@@ -717,140 +502,45 @@
     "code": "E22",
     "displayCode": "E22",
     "alternativeCodes": [],
-    "title": "Filter or Drain Blockage",
-    "shortDescription": "The dishwasher drain system is blocked, preventing water removal.",
-    "fullDescription": "Error E22 indicates the dishwasher cannot drain properly. The filters may be clogged, the drain pump may be blocked, or the drain hose has an obstruction.",
+    "title": "Clogged Filter or Drain Pump Issue",
+    "shortDescription": "The dishwasher is not draining properly due to a clogged filter or faulty drain pump.",
+    "fullDescription": "Error E22 indicates the Thermador dishwasher is unable to drain water from the tub within the expected time. The most common cause is a clogged filter assembly, but a faulty drain pump, blocked drain hose, or garbage disposal blockage can also be responsible.",
     "causes": [
-      {
-        "cause": "Filters are clogged with food debris",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Drain pump impeller is jammed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Drain hose is kinked or clogged",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Drain pump motor has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      }
+      {"cause": "Filter assembly is clogged with food debris", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Drain pump impeller is jammed or faulty", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Drain hose is kinked or clogged", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Garbage disposal knockout plug was not removed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Check valve in drain line is stuck closed", "likelihood": "low", "fixDifficulty": "intermediate"}
     ],
     "symptoms": [
-      "E22 on display",
-      "Standing water in tub",
-      "Dirty water after cycle",
-      "Bad smell",
-      "Dishes not clean"
+      "E22 error on the display",
+      "Standing water in the bottom of the tub after a cycle",
+      "Foul odor from the dishwasher",
+      "Dishwasher stops before cycle completion",
+      "Gurgling sounds during drain attempts"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Clean the filters",
-        "instruction": "Remove lower rack, spray arm, and filter assembly. Clean thoroughly under running water.",
-        "tools": [
-          "soft brush"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Check drain hose",
-        "instruction": "Inspect for kinks. If connected to a disposal, run the disposal. Check knockout plug.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 15
-      },
-      {
-        "step": 3,
-        "title": "Inspect drain pump",
-        "instruction": "Access from below. Check impeller for debris. Ensure it spins freely.",
-        "tools": [
-          "screwdriver",
-          "flashlight"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 20
-      },
-      {
-        "step": 4,
-        "title": "Test drain pump motor",
-        "instruction": "If pump does not run, test resistance. Replace if failed.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 25
-      }
+      {"step": 1, "title": "Clean the filter assembly", "instruction": "Remove the bottom rack, twist and lift out the cylindrical microfilter and the flat mesh filter. Clean thoroughly under running water with a soft brush.", "tools": ["soft brush"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Check the drain hose", "instruction": "Inspect the drain hose from the dishwasher to the sink drain or disposal. Look for kinks or clogs.", "tools": ["bucket", "pliers"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Verify garbage disposal connection", "instruction": "If connected to a garbage disposal, ensure the knockout plug inside the disposal inlet was removed during installation.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Check the drain pump", "instruction": "Remove the filter and sump cover to access the drain pump impeller. Remove any glass, food, or debris jamming the impeller.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 25}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Drain Pump",
-        "partNumber": "00620774",
-        "estimatedCost": {
-          "min": 25,
-          "max": 65
-        }
-      },
-      {
-        "part": "Drain Hose",
-        "partNumber": "00668113",
-        "estimatedCost": {
-          "min": 10,
-          "max": 25
-        }
-      }
+      {"part": "Drain Pump", "partNumber": "00753730", "estimatedCost": {"min": 60, "max": 120}},
+      {"part": "Filter Assembly", "partNumber": "00645038", "estimatedCost": {"min": 20, "max": 40}},
+      {"part": "Drain Hose", "partNumber": "00668113", "estimatedCost": {"min": 15, "max": 30}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 70
-      },
-      "professional": {
-        "min": 100,
-        "max": 260
-      }
-    },
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 120, "max": 300}},
     "diyDifficulty": "easy",
-    "repairTime": "15 minutes to 45 minutes",
-    "whenToCallPro": "If cleaning does not resolve E22 and the pump has failed.",
-    "relatedCodes": [
-      "E15",
-      "E24",
-      "E01"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E22 drain blockage error fix",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If cleaning the filter and drain hose does not resolve the issue and the drain pump needs replacement.",
+    "relatedCodes": ["E24", "E25"],
+    "videoSearchQuery": "Thermador dishwasher E22 drain clogged filter fix",
     "faq": [
-      {
-        "q": "How often should I clean the filter?",
-        "a": "Thermador recommends cleaning the filter after every few cycles, or at minimum once per month."
-      },
-      {
-        "q": "What is the knockout plug?",
-        "a": "A plastic plug in new garbage disposals that must be knocked out for the dishwasher drain connection."
-      },
-      {
-        "q": "Can I manually drain the dishwasher?",
-        "a": "Yes. Bail out water with a cup and soak up the rest with towels."
-      }
+      {"q": "How do I clean the filter on my Thermador dishwasher?", "a": "Remove the bottom rack, twist the cylindrical filter counterclockwise and lift out. Remove the flat mesh filter beneath it. Clean both under running water."},
+      {"q": "Can I run the dishwasher with E22?", "a": "The dishwasher will not complete cycles properly with E22. Standing water can cause odors and mold. Fix the drainage issue before using."},
+      {"q": "What if I just installed a new garbage disposal?", "a": "When connecting a dishwasher to a new disposal, the knockout plug inside the disposal inlet must be removed. This is the most common cause of E22 after a disposal replacement."}
     ]
   },
   {
@@ -862,129 +552,45 @@
     "code": "E24",
     "displayCode": "E24",
     "alternativeCodes": [],
-    "title": "Drain Pump Error",
-    "shortDescription": "The drain pump is not removing water within the expected time.",
-    "fullDescription": "Error E24 indicates the dishwasher detected water remaining after the drain cycle timed out. This is similar to E22 but specifically indicates a drain timeout rather than just a blockage detection.",
+    "title": "Drain Hose Blockage or Kink",
+    "shortDescription": "The drain system cannot evacuate water due to a blockage or restriction in the drain hose.",
+    "fullDescription": "Error E24 on Thermador dishwashers is specifically related to the drain hose path. The drain hose may be kinked, improperly installed without a high loop, connected to a clogged garbage disposal, or the air gap may be blocked.",
     "causes": [
-      {
-        "cause": "Drain hose kinked or blocked",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Drain pump impeller jammed",
-        "likelihood": "high",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Drain pump motor has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Air gap or high loop in drain hose missing",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      }
+      {"cause": "Drain hose is kinked behind or under the dishwasher", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Drain hose connection to disposal or drain pipe is blocked", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "No high loop or air gap in the drain hose installation", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Air gap device is clogged (if installed)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Drain pump is weak but still partially functional", "likelihood": "low", "fixDifficulty": "intermediate"}
     ],
     "symptoms": [
-      "E24 on display",
-      "Water standing in the tub",
-      "Drain pump runs but water stays",
-      "Drain pump does not run at all",
-      "Gurgling sounds from drain"
+      "E24 error on the display",
+      "Water backs up into the tub",
+      "Slow draining with standing water",
+      "Water leaks from under the sink",
+      "Cycle completes but tub still has water"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Check drain hose routing",
-        "instruction": "Ensure the drain hose has a high loop under the counter or connects through an air gap. Without this, water can siphon back.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Clean filters and sump",
-        "instruction": "Remove and clean all filters. Check the sump for debris.",
-        "tools": [
-          "soft brush"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Check drain hose and disposal",
-        "instruction": "Run the disposal to clear it. Check hose for kinks.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 4,
-        "title": "Test and replace drain pump",
-        "instruction": "If pump does not run, test motor resistance and replace if failed.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 25
-      }
+      {"step": 1, "title": "Inspect drain hose routing", "instruction": "Pull the dishwasher forward enough to inspect the drain hose. Straighten any kinks or sharp bends.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Ensure proper high loop", "instruction": "The drain hose must loop up to the underside of the countertop before going down to the drain connection. Secure with a hose clip.", "tools": ["hose clip"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Clean drain connection point", "instruction": "Disconnect the hose from the disposal or drain pipe. Clear any buildup from both the hose end and the connection point.", "tools": ["pliers", "bucket"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Clean the air gap (if present)", "instruction": "If your installation has an air gap device on the countertop, remove the cap and clean out any debris inside.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Drain Pump",
-        "partNumber": "00620774",
-        "estimatedCost": {
-          "min": 25,
-          "max": 65
-        }
-      }
+      {"part": "Drain Hose", "partNumber": "00668113", "estimatedCost": {"min": 15, "max": 30}},
+      {"part": "Hose Clamp", "partNumber": "00604751", "estimatedCost": {"min": 3, "max": 8}},
+      {"part": "Air Gap Kit", "partNumber": "00617330", "estimatedCost": {"min": 10, "max": 25}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 70
-      },
-      "professional": {
-        "min": 100,
-        "max": 260
-      }
-    },
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 100, "max": 250}},
     "diyDifficulty": "easy",
-    "repairTime": "15 minutes to 40 minutes",
-    "whenToCallPro": "If all drain paths are clear and the pump has failed.",
-    "relatedCodes": [
-      "E22",
-      "E15",
-      "E01"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E24 drain pump error fix",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If the drain path is clear but E24 persists, the drain pump may be weakening and need professional evaluation.",
+    "relatedCodes": ["E22", "E25"],
+    "videoSearchQuery": "Thermador dishwasher E24 drain hose blockage fix",
     "faq": [
-      {
-        "q": "What is a drain high loop?",
-        "a": "A loop in the drain hose that goes up to the underside of the counter before going down to the disposal or drain. Prevents backflow."
-      },
-      {
-        "q": "Is E24 the same as E22?",
-        "a": "Similar. E22 is a general drain blockage. E24 is specifically a drain timeout."
-      },
-      {
-        "q": "Should the drain hose connect to the disposal or drain pipe?",
-        "a": "Either is acceptable. Connection to a disposal is most common but a direct drain connection with proper air gap also works."
-      }
+      {"q": "What is the difference between E22 and E24?", "a": "E22 is a general drain fault that often points to a clogged filter or faulty pump. E24 specifically indicates a drain hose routing or connection issue."},
+      {"q": "What is a high loop and why does my dishwasher need one?", "a": "A high loop means the drain hose rises to the underside of the countertop before descending to the drain. This prevents dirty water from siphoning back into the dishwasher."},
+      {"q": "Can I extend the Thermador dishwasher drain hose?", "a": "The drain hose should not exceed 10 feet total length. If extension is needed, use the same diameter hose and secure connections with proper clamps."}
     ]
   },
   {
@@ -997,518 +603,90 @@
     "displayCode": "E25",
     "alternativeCodes": [],
     "title": "Drain Pump Impeller Blocked",
-    "shortDescription": "The drain pump cover or impeller area has a blockage.",
-    "fullDescription": "Error E25 is specific to a physical blockage at the drain pump cover or impeller. Unlike E22/E24 which may indicate hose issues, E25 points specifically to the pump area.",
+    "shortDescription": "The drain pump impeller is obstructed by debris, preventing proper water evacuation.",
+    "fullDescription": "Error E25 on Thermador dishwashers indicates the drain pump impeller is blocked or unable to rotate freely. Common culprits include broken glass, food particles, toothpicks, or small utensils that have passed through the filter.",
     "causes": [
-      {
-        "cause": "Debris blocking the drain pump impeller",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Drain pump cover is not properly seated",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Broken glass or bones in the pump",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Pump impeller is damaged",
-        "likelihood": "low",
-        "fixDifficulty": "intermediate"
-      }
+      {"cause": "Broken glass or hard debris lodged in the pump impeller", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Food particles accumulated around the impeller", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Pump cover not properly seated after cleaning", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Drain pump motor has seized", "likelihood": "low", "fixDifficulty": "intermediate"}
     ],
     "symptoms": [
-      "E25 on display",
-      "Water not draining",
-      "Pump makes grinding noise",
-      "Pump hums but does not drain",
-      "Standing water in sump area"
+      "E25 error on the display",
+      "No drain pump motor sound during drain cycle",
+      "Standing water after every cycle",
+      "Buzzing or humming from the pump area",
+      "Intermittent draining that gets worse over time"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Remove the drain pump cover",
-        "instruction": "Inside the tub, remove the fine filter and coarse filter. Locate the drain pump cover (usually a small round cap near the filter). Twist to remove.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Clear the impeller",
-        "instruction": "Check the pump impeller for debris. Remove any glass, bones, or foreign objects.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Check impeller rotation",
-        "instruction": "The impeller should spin freely. If it is stuck even after clearing debris, it may be damaged.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 4,
-        "title": "Reseat the pump cover",
-        "instruction": "Replace the pump cover, making sure it clicks into the locked position. Reinstall filters.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      }
+      {"step": 1, "title": "Access the drain pump area", "instruction": "Remove the bottom rack and filter assembly. Remove the sump cover to expose the drain pump impeller area.", "tools": ["screwdriver"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Remove debris from the impeller", "instruction": "Carefully inspect and remove any glass, food, or foreign objects from around the impeller. Use gloves if broken glass is present.", "tools": ["gloves", "needle-nose pliers", "flashlight"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Verify the impeller spins freely", "instruction": "Gently rotate the impeller by hand. It should spin freely without resistance. If stiff, the pump may need replacement.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Reassemble and test", "instruction": "Replace the sump cover, filter assembly, and bottom rack. Run a drain cycle to verify E25 has cleared.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD660WFP", "DWHD560CFP", "DWHD650WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Drain Pump Cover",
-        "partNumber": "00645038",
-        "estimatedCost": {
-          "min": 5,
-          "max": 15
-        }
-      }
+      {"part": "Drain Pump", "partNumber": "00753730", "estimatedCost": {"min": 60, "max": 120}},
+      {"part": "Sump Cover Seal", "partNumber": "00754570", "estimatedCost": {"min": 10, "max": 20}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 20
-      },
-      "professional": {
-        "min": 60,
-        "max": 150
-      }
-    },
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 100, "max": 280}},
     "diyDifficulty": "easy",
-    "repairTime": "10 minutes to 25 minutes",
-    "whenToCallPro": "If the impeller is physically damaged and the pump needs replacement.",
-    "relatedCodes": [
-      "E22",
-      "E24",
-      "E15"
-    ],
+    "repairTime": "15 to 40 minutes",
+    "whenToCallPro": "If the impeller does not spin after clearing debris, the pump motor has likely seized and needs professional replacement.",
+    "relatedCodes": ["E22", "E24"],
     "videoSearchQuery": "Thermador dishwasher E25 drain pump impeller blocked fix",
     "faq": [
-      {
-        "q": "How do I prevent E25?",
-        "a": "Scrape all food off dishes before loading. Avoid putting items with bones or broken glass in the dishwasher."
-      },
-      {
-        "q": "Is the pump cover easy to remove?",
-        "a": "Yes. It twists off without tools on most Thermador/BSH dishwashers."
-      },
-      {
-        "q": "Can broken glass damage the pump?",
-        "a": "Yes. Small glass shards can jam and damage the impeller, requiring pump replacement."
-      }
+      {"q": "How does debris get to the drain pump?", "a": "Small items like broken glass, seeds, or food particles can pass through gaps in the filter system and reach the pump impeller."},
+      {"q": "Can I run the dishwasher with E25?", "a": "No. The dishwasher cannot drain with a blocked impeller. Running it will result in standing water and potential overflow."},
+      {"q": "How do I prevent E25?", "a": "Scrape dishes thoroughly before loading, clean the filter regularly, and avoid placing items that could break in positions where they might chip."}
     ]
   },
   {
-    "id": "thermador-dishwasher-e27",
+    "id": "thermador-dishwasher-e10",
     "brand": "Thermador",
     "brandSlug": "thermador",
     "deviceType": "Dishwasher",
     "deviceTypeSlug": "dishwasher",
-    "code": "E27",
-    "displayCode": "E27",
+    "code": "E10",
+    "displayCode": "E10",
     "alternativeCodes": [],
-    "title": "Power Supply Voltage Error",
-    "shortDescription": "The dishwasher is detecting incorrect supply voltage.",
-    "fullDescription": "Error E27 indicates the control board has detected that the supply voltage is outside the acceptable range. Thermador dishwashers require a dedicated 120V 15A circuit.",
+    "title": "Drying Fan Motor Failure",
+    "shortDescription": "The drying fan motor is not functioning, preventing proper drying of dishes.",
+    "fullDescription": "Error E10 on Thermador dishwashers indicates the drying fan motor or its circuit has malfunctioned. Thermador uses a condensation drying system augmented by a fan in many models. When the fan does not operate, dishes remain wet after the drying phase.",
     "causes": [
-      {
-        "cause": "Low voltage from shared circuit or long wire run",
-        "likelihood": "high",
-        "fixDifficulty": "professional"
-      },
-      {
-        "cause": "Loose connection at the junction box",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Voltage drop during high-demand periods",
-        "likelihood": "medium",
-        "fixDifficulty": "professional"
-      },
-      {
-        "cause": "Control board voltage sensing circuit failed",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "Drying fan motor has failed", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Fan motor wiring has a loose connection", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Control board fan relay has failed", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Fan blade is jammed by debris", "likelihood": "low", "fixDifficulty": "easy"}
     ],
     "symptoms": [
-      "E27 on display",
-      "Dishwasher will not start",
-      "Display may be dim",
-      "Error during heavy home electrical use",
-      "Intermittent operation"
+      "E10 error on the display",
+      "Dishes are very wet after the drying phase",
+      "No fan sound during the drying cycle",
+      "Excessive condensation on the inner door",
+      "Cycle completes but drying is ineffective"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Check outlet voltage",
-        "instruction": "Measure voltage at the dishwasher junction box. Should be 120V (+/- 10%).",
-        "tools": [
-          "multimeter"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Check circuit dedication",
-        "instruction": "Verify the dishwasher is on its own dedicated 15A circuit, not shared with other appliances.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 3,
-        "title": "Tighten connections",
-        "instruction": "Turn off breaker. Check and tighten all wire connections at the junction box.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      },
-      {
-        "step": 4,
-        "title": "Contact an electrician",
-        "instruction": "If voltage is consistently low, the circuit may need upgrading.",
-        "tools": [],
-        "difficulty": "professional",
-        "timeMinutes": 60
-      }
+      {"step": 1, "title": "Listen for the fan during drying", "instruction": "Start a cycle and wait for the drying phase. Listen for the fan motor. If silent, the motor may be faulty.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Access the fan motor", "instruction": "The drying fan is typically located in the door or side panel area. Remove the inner door panel or side panel to access it.", "tools": ["screwdriver", "T20 Torx bit"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Test the fan motor", "instruction": "Disconnect the fan motor wiring and test with a multimeter for continuity.", "tools": ["multimeter", "screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Replace the fan motor", "instruction": "If the motor tests faulty, remove the mounting screws, disconnect wiring, and install the new motor.", "tools": ["screwdriver", "pliers"], "difficulty": "intermediate", "timeMinutes": 30}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD870WFP", "DWHD660WFP"],
+    "partsNeeded": [
+      {"part": "Drying Fan Motor", "partNumber": "00751179", "estimatedCost": {"min": 40, "max": 80}},
+      {"part": "Fan Motor Wiring Harness", "partNumber": "00648986", "estimatedCost": {"min": 15, "max": 30}}
     ],
-    "partsNeeded": [],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 0
-      },
-      "professional": {
-        "min": 80,
-        "max": 300
-      }
-    },
+    "estimatedCost": {"diy": {"min": 40, "max": 80}, "professional": {"min": 150, "max": 300}},
     "diyDifficulty": "intermediate",
-    "repairTime": "10 minutes to 1 hour",
-    "whenToCallPro": "If voltage is low, call an electrician.",
-    "relatedCodes": [
-      "E01",
-      "E02",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E27 power voltage error fix",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the fan motor and wiring test good, the control board fan relay may need professional diagnosis.",
+    "relatedCodes": ["E01", "E09"],
+    "videoSearchQuery": "Thermador dishwasher E10 drying fan motor replacement",
     "faq": [
-      {
-        "q": "Does the dishwasher need its own circuit?",
-        "a": "Yes. A dedicated 120V 15A circuit is required."
-      },
-      {
-        "q": "Can an extension cord cause E27?",
-        "a": "Dishwashers should never be on an extension cord. Direct wiring or a proper outlet is required."
-      },
-      {
-        "q": "Will a surge protector help?",
-        "a": "A whole-house surge protector can help, but E27 is about voltage level, not surges."
-      }
-    ]
-  },
-  {
-    "id": "thermador-dishwasher-e04",
-    "brand": "Thermador",
-    "brandSlug": "thermador",
-    "deviceType": "Dishwasher",
-    "deviceTypeSlug": "dishwasher",
-    "code": "E04",
-    "displayCode": "E04",
-    "alternativeCodes": [
-      "E4"
-    ],
-    "title": "Water Fill Timeout",
-    "shortDescription": "The dishwasher did not fill with water within the allowed time.",
-    "fullDescription": "Error E04 indicates the dishwasher did not detect sufficient water level within the fill time limit. The water supply may be restricted or the inlet valve may have failed.",
-    "causes": [
-      {
-        "cause": "Water supply valve is closed or restricted",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Inlet valve solenoid has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Supply line is kinked",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Float switch is stuck in the up position",
-        "likelihood": "low",
-        "fixDifficulty": "intermediate"
-      }
-    ],
-    "symptoms": [
-      "E04 on display",
-      "No water in the tub",
-      "Cycle aborts early",
-      "No fill sounds",
-      "Dishes remain dry"
-    ],
-    "fixSteps": [
-      {
-        "step": 1,
-        "title": "Check water supply",
-        "instruction": "Ensure the shutoff valve under the sink is fully open.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 2,
-        "title": "Check supply line",
-        "instruction": "Inspect for kinks or blockages. A kinked copper or braided line restricts flow.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Test inlet valve",
-        "instruction": "Access from below. Test solenoid resistance (200-500 ohms).",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 20
-      },
-      {
-        "step": 4,
-        "title": "Replace inlet valve",
-        "instruction": "Turn off water. Disconnect and replace the valve.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 25
-      }
-    ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
-    "partsNeeded": [
-      {
-        "part": "Water Inlet Valve",
-        "partNumber": "00622058",
-        "estimatedCost": {
-          "min": 20,
-          "max": 55
-        }
-      }
-    ],
-    "estimatedCost": {
-      "diy": {
-        "min": 0,
-        "max": 60
-      },
-      "professional": {
-        "min": 80,
-        "max": 220
-      }
-    },
-    "diyDifficulty": "easy",
-    "repairTime": "10 minutes to 30 minutes",
-    "whenToCallPro": "If supply is fine and valve tests good.",
-    "relatedCodes": [
-      "E14",
-      "E01",
-      "E15"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E04 water fill timeout error fix",
-    "faq": [
-      {
-        "q": "What is the minimum water pressure?",
-        "a": "20 psi minimum for proper valve operation."
-      },
-      {
-        "q": "Can a clogged supply screen cause E04?",
-        "a": "Yes. The inlet valve has a small screen that can clog with mineral deposits."
-      },
-      {
-        "q": "Is E04 related to E14?",
-        "a": "Both are water supply issues. E14 is specifically the flow sensor. E04 is a general fill timeout."
-      }
-    ]
-  },
-  {
-    "id": "thermador-dishwasher-e06",
-    "brand": "Thermador",
-    "brandSlug": "thermador",
-    "deviceType": "Dishwasher",
-    "deviceTypeSlug": "dishwasher",
-    "code": "E06",
-    "displayCode": "E06",
-    "alternativeCodes": [
-      "E6"
-    ],
-    "title": "Door Switch or Latch Error",
-    "shortDescription": "The door switch does not confirm the door is securely closed.",
-    "fullDescription": "Error E06 indicates the door latch switch is not registering a secure door closure. The dishwasher will not start or will stop mid-cycle for safety.",
-    "causes": [
-      {
-        "cause": "Door latch has worn out",
-        "likelihood": "high",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Door switch has failed",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Door is misaligned",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Wiring to door switch is damaged",
-        "likelihood": "low",
-        "fixDifficulty": "intermediate"
-      }
-    ],
-    "symptoms": [
-      "E06 on display",
-      "Dishwasher will not start",
-      "Door does not click closed",
-      "Cycle stops randomly",
-      "Control panel active but no cycle"
-    ],
-    "fixSteps": [
-      {
-        "step": 1,
-        "title": "Close door firmly",
-        "instruction": "Push door firmly and listen for a click. Check for obstructions.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 5
-      },
-      {
-        "step": 2,
-        "title": "Inspect latch",
-        "instruction": "Check the latch mechanism for wear or damage.",
-        "tools": [
-          "flashlight"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 3,
-        "title": "Test door switch",
-        "instruction": "Test continuity when door is latched.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 15
-      },
-      {
-        "step": 4,
-        "title": "Replace latch/switch",
-        "instruction": "Remove old component and install replacement.",
-        "tools": [
-          "screwdriver"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 20
-      }
-    ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM",
-      "DWHD560CFM"
-    ],
-    "partsNeeded": [
-      {
-        "part": "Door Latch Assembly",
-        "partNumber": "00630783",
-        "estimatedCost": {
-          "min": 15,
-          "max": 40
-        }
-      }
-    ],
-    "estimatedCost": {
-      "diy": {
-        "min": 15,
-        "max": 45
-      },
-      "professional": {
-        "min": 80,
-        "max": 200
-      }
-    },
-    "diyDifficulty": "easy",
-    "repairTime": "10 minutes to 25 minutes",
-    "whenToCallPro": "If latch and switch are fine but E06 persists.",
-    "relatedCodes": [
-      "E15",
-      "E22",
-      "E01"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E06 door latch switch error fix",
-    "faq": [
-      {
-        "q": "Can I bypass the door switch?",
-        "a": "Never. It prevents flooding by ensuring the dishwasher only runs with the door closed."
-      },
-      {
-        "q": "Why does the latch wear out?",
-        "a": "Daily opening and closing wears the plastic mechanism over 5-10 years."
-      },
-      {
-        "q": "Is the latch the same as Bosch?",
-        "a": "Yes, same BSH platform component."
-      }
+      {"q": "Can I still wash dishes with E10?", "a": "Yes. The washing function is not affected by E10. However, dishes will not dry properly and you will need to towel-dry them."},
+      {"q": "Why are my Thermador dishes always wet?", "a": "If E10 is displayed, the drying fan is not working. If no error is shown, try using the Extra Dry option and a rinse aid."},
+      {"q": "Does E10 affect energy efficiency?", "a": "Not directly, but running the dishwasher without effective drying means you may need to re-run cycles or dry dishes manually."}
     ]
   },
   {
@@ -1520,129 +698,43 @@
     "code": "E19",
     "displayCode": "E19",
     "alternativeCodes": [],
-    "title": "Diverter Valve Error",
-    "shortDescription": "The water diverter valve is not functioning correctly.",
-    "fullDescription": "Error E19 indicates the diverter valve motor that switches water between spray arms is not operating. This results in only partial spray arm coverage during the wash cycle.",
+    "title": "Diverter Valve Malfunction",
+    "shortDescription": "The wash zone diverter valve is not switching correctly between upper and lower spray arms.",
+    "fullDescription": "Error E19 on Thermador dishwashers indicates the diverter valve that directs water between the upper and lower spray arms is not functioning correctly. When it fails, one set of spray arms may not receive water, leading to poor cleaning on those racks.",
     "causes": [
-      {
-        "cause": "Diverter motor has failed",
-        "likelihood": "high",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Diverter mechanism jammed with debris",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Diverter wiring damaged",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Control board diverter output failed",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
-      }
+      {"cause": "Diverter valve motor has failed", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Diverter valve is jammed by debris", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Wiring to the diverter valve is damaged", "likelihood": "low", "fixDifficulty": "intermediate"},
+      {"cause": "Control board signal to diverter is faulty", "likelihood": "low", "fixDifficulty": "professional"}
     ],
     "symptoms": [
-      "E19 on display",
-      "Top or bottom rack dishes not clean",
-      "Inconsistent cleaning results",
-      "Motor noise from sump",
-      "Only one spray arm works"
+      "E19 error on the display",
+      "Top rack dishes not cleaned properly",
+      "Bottom rack dishes not cleaned properly",
+      "Only one spray arm seems to be working",
+      "Clicking or grinding sound from the diverter area"
     ],
     "fixSteps": [
-      {
-        "step": 1,
-        "title": "Power reset",
-        "instruction": "Turn off breaker for 5 minutes.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
-        "step": 2,
-        "title": "Clean sump area",
-        "instruction": "Remove filters and clean thoroughly. Debris can jam the diverter.",
-        "tools": [
-          "soft brush"
-        ],
-        "difficulty": "easy",
-        "timeMinutes": 15
-      },
-      {
-        "step": 3,
-        "title": "Access diverter motor",
-        "instruction": "From underneath, locate the diverter on the sump assembly. Test operation.",
-        "tools": [
-          "multimeter",
-          "screwdriver"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 25
-      },
-      {
-        "step": 4,
-        "title": "Replace diverter motor",
-        "instruction": "Disconnect power and water. Remove and replace the motor.",
-        "tools": [
-          "screwdriver",
-          "pliers"
-        ],
-        "difficulty": "intermediate",
-        "timeMinutes": 30
-      }
+      {"step": 1, "title": "Power reset", "instruction": "Disconnect power for 5 minutes. Sometimes the diverter valve motor gets stuck temporarily.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Access the diverter valve", "instruction": "The diverter is in the sump area. Remove the lower rack, spray arm, and filter assembly to access it.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Clean and inspect the diverter", "instruction": "Check for debris around the valve. Clean any buildup. Try to manually move the diverter.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Test and replace the diverter motor", "instruction": "Test the motor electrically. If faulty, disconnect and replace the diverter valve assembly.", "tools": ["multimeter", "screwdriver", "pliers"], "difficulty": "intermediate", "timeMinutes": 30}
     ],
-    "affectedModels": [
-      "DWHD660WFP",
-      "DWHD760CFP",
-      "DWHD860RF",
-      "DWHD770WFM",
-      "DWHD650WFM"
-    ],
+    "affectedModels": ["DWHD760CFP", "DWHD771WFP", "DWHD870WFP"],
     "partsNeeded": [
-      {
-        "part": "Diverter Motor",
-        "partNumber": "00645701",
-        "estimatedCost": {
-          "min": 25,
-          "max": 60
-        }
-      }
+      {"part": "Diverter Valve Assembly", "partNumber": "00752554", "estimatedCost": {"min": 50, "max": 100}},
+      {"part": "Diverter Motor", "partNumber": "00631653", "estimatedCost": {"min": 30, "max": 65}}
     ],
-    "estimatedCost": {
-      "diy": {
-        "min": 25,
-        "max": 65
-      },
-      "professional": {
-        "min": 100,
-        "max": 280
-      }
-    },
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 150, "max": 350}},
     "diyDifficulty": "intermediate",
-    "repairTime": "15 minutes to 45 minutes",
-    "whenToCallPro": "If cleaning and motor replacement do not resolve E19.",
-    "relatedCodes": [
-      "E22",
-      "E24",
-      "E01"
-    ],
-    "videoSearchQuery": "Thermador dishwasher E19 diverter valve error fix",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the diverter motor tests good but the valve is still not switching, the control board may need attention.",
+    "relatedCodes": ["E04"],
+    "videoSearchQuery": "Thermador dishwasher E19 diverter valve fix",
     "faq": [
-      {
-        "q": "What does the diverter do?",
-        "a": "It alternates water flow between upper and lower spray arms for full rack coverage."
-      },
-      {
-        "q": "Can I run the dishwasher with E19?",
-        "a": "It will run but only partially clean since one spray zone will not receive water."
-      },
-      {
-        "q": "Is the Thermador diverter the same as Bosch?",
-        "a": "Yes, same BSH component."
-      }
+      {"q": "What does the diverter valve do?", "a": "The diverter valve alternates water flow between the upper and lower spray arms during the wash cycle for thorough cleaning of all rack levels."},
+      {"q": "Can I bypass the diverter valve?", "a": "No. Without the diverter, water would only flow to one spray zone, resulting in poor cleaning."},
+      {"q": "Is E19 common on Thermador dishwashers?", "a": "It is less common than drain or heating errors but does occur, especially in models over 3-4 years old."}
     ]
   }
 ]
