@@ -1,0 +1,1178 @@
+[
+  {
+    "code": "U0001",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus",
+    "shortDescription": "Fault detected on the high-speed CAN (Controller Area Network) communication bus.",
+    "fullDescription": "Code U0001 indicates a general fault on the high-speed CAN bus, which is the primary communication network connecting major vehicle modules such as the ECM, TCM, ABS, and instrument cluster. The high-speed CAN bus operates at 500 kbps and carries critical powertrain and chassis data. A bus fault can cause multiple module communication failures and widespread vehicle symptoms.",
+    "severity": "high",
+    "safetyImpact": "Multiple vehicle systems may lose communication, potentially disabling critical functions like engine management, transmission control, and ABS.",
+    "causes": [
+      {"cause": "Damaged CAN bus wiring (open, short, or shorted wires together)", "likelihood": "high"},
+      {"cause": "Failed CAN bus terminating resistor", "likelihood": "medium"},
+      {"cause": "A single module shorting down the entire bus", "likelihood": "medium"},
+      {"cause": "Corroded connector on the CAN bus circuit", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Multiple warning lights on dashboard",
+      "Multiple U-codes stored across various modules",
+      "Instrument cluster gauges not working",
+      "Engine may not start or runs poorly",
+      "Multiple systems disabled simultaneously"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Perform a full vehicle scan of all modules. A high-speed CAN bus fault will typically show U-codes in many modules simultaneously.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure CAN bus signals", "instruction": "Measure the CAN-High and CAN-Low voltage at the DLC (diagnostic connector). CAN-H should be approximately 3.5V and CAN-L approximately 1.5V with the key on. Termination resistance should be 60 ohms between CAN-H and CAN-L.", "tools": ["Multimeter", "Oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Isolate faulty module", "instruction": "If the bus is shorted, disconnect modules one at a time while monitoring CAN bus voltage. When the bus recovers, the last disconnected module is the culprit.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair wiring or replace module", "instruction": "Repair damaged CAN bus wiring or replace the module that is shorting the bus. Verify all modules communicate after repair.", "tools": ["Wire repair kit", "Replacement module if needed"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 150, "max": 1000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "relatedCodes": ["U0002", "U0100", "U0073"],
+    "faq": [
+      {"q": "What is the CAN bus?", "a": "The Controller Area Network (CAN) bus is a communication system that allows all vehicle electronic modules to share data over a pair of twisted wires, eliminating the need for individual wires between every module."},
+      {"q": "Can a single bad module take down the entire CAN bus?", "a": "Yes. If a module shorts the CAN bus wires, it can disrupt communication for all modules on that bus segment, causing widespread failures."},
+      {"q": "Why are there so many U-codes at once?", "a": "When the CAN bus has a fundamental fault, every module that depends on it will set a communication loss code for every other module it cannot reach, creating a cascade of U-codes."}
+    ]
+  },
+  {
+    "code": "U0002",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus Performance",
+    "shortDescription": "Performance issue detected on the high-speed CAN communication bus.",
+    "fullDescription": "Code U0002 indicates a performance degradation on the high-speed CAN bus rather than a complete failure. The bus is still functioning but experiencing excessive errors, noise, or reduced bandwidth. This can cause intermittent communication issues between modules, resulting in sporadic symptoms that may be difficult to reproduce.",
+    "severity": "medium",
+    "safetyImpact": "Intermittent communication losses can cause unexpected behavior in safety systems like ABS and engine control.",
+    "causes": [
+      {"cause": "Marginal wiring connection or chafed CAN bus wire", "likelihood": "high"},
+      {"cause": "Electromagnetic interference from aftermarket accessories", "likelihood": "medium"},
+      {"cause": "CAN bus termination resistance slightly out of spec", "likelihood": "medium"},
+      {"cause": "Module sending excessive error frames", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Intermittent warning lights",
+      "Occasional gauge dropout or flickering",
+      "Sporadic module communication codes",
+      "Symptoms may appear and disappear randomly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Full system scan", "instruction": "Scan all modules for codes. Note which codes are current vs. history. A pattern of intermittent U-codes across multiple modules points to bus performance issues.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect CAN bus wiring", "instruction": "Visually inspect accessible CAN bus wiring for chafing, pinching, or areas where the wires run near high-power cables or aftermarket equipment.", "tools": ["Flashlight", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Monitor bus with oscilloscope", "instruction": "Connect an oscilloscope to the CAN-H and CAN-L lines. Look for noise, ringing, or abnormal signal patterns that indicate bus interference.", "tools": ["Oscilloscope"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair or eliminate interference", "instruction": "Repair any damaged wiring, separate CAN wiring from interference sources, or disconnect aftermarket equipment that may be causing noise.", "tools": ["Wire repair kit", "Cable ties"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0001", "U0003", "U0100"],
+    "faq": [
+      {"q": "Can aftermarket stereos cause CAN bus issues?", "a": "Yes. Poorly installed aftermarket stereos, amplifiers, or lighting systems can introduce electrical noise that interferes with CAN bus communication."},
+      {"q": "Why are the symptoms intermittent?", "a": "CAN bus performance issues cause occasional lost messages rather than complete communication failure. The effects are seen as sporadic glitches rather than consistent failures."},
+      {"q": "What is CAN bus termination?", "a": "The CAN bus requires a 120-ohm termination resistor at each end of the bus. These prevent signal reflections. If one is missing or damaged, communication quality degrades."}
+    ]
+  },
+  {
+    "code": "U0003",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (+) Open",
+    "shortDescription": "Open circuit detected on the CAN-High (+) wire of the high-speed CAN bus.",
+    "fullDescription": "Code U0003 indicates that an open circuit has been detected on the CAN-High (CAN-H) wire of the high-speed CAN bus. The CAN bus requires both CAN-H and CAN-L wires to communicate. An open on CAN-H prevents proper differential signaling, though some limited communication may still occur on the remaining wire at reduced reliability.",
+    "severity": "high",
+    "safetyImpact": "CAN bus communication is severely degraded. Multiple control modules may lose communication with each other.",
+    "causes": [
+      {"cause": "Broken CAN-H wire in wiring harness", "likelihood": "high"},
+      {"cause": "Disconnected or corroded connector with CAN-H pin", "likelihood": "high"},
+      {"cause": "Physical damage to harness from collision or rodent chew", "likelihood": "medium"},
+      {"cause": "Failed module with internal CAN-H open", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Multiple U-codes across many modules",
+      "Multiple warning lights on dash",
+      "Some modules may communicate intermittently",
+      "Gauges may not function"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify CAN bus voltage", "instruction": "Measure CAN-H voltage at the OBD-II DLC pin 6. It should be approximately 3.5V with key on. If 0V or battery voltage, the CAN-H line has an issue.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check termination resistance", "instruction": "Measure resistance between DLC pins 6 (CAN-H) and 14 (CAN-L) with ignition off. Should read approximately 60 ohms. Higher resistance suggests an open in the bus.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Locate the open", "instruction": "Using a wiring diagram, trace the CAN-H wire through the vehicle. Check connectors and sections where the harness is routed near potential damage points.", "tools": ["Wiring diagram", "Multimeter", "Tone generator"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair wire", "instruction": "Splice and solder the broken CAN-H wire. Use proper automotive-grade wire and heat-shrink insulation. Verify the bus recovers and all modules communicate.", "tools": ["Soldering iron", "Automotive wire", "Heat shrink"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0004", "U0001", "U0002"],
+    "faq": [
+      {"q": "What are the CAN-H and CAN-L wires?", "a": "The CAN bus uses two wires: CAN-High and CAN-Low. Data is transmitted as a voltage difference between the two wires. This differential signaling provides noise immunity."},
+      {"q": "Can rodents damage CAN bus wiring?", "a": "Yes. Rodents frequently chew vehicle wiring, and CAN bus wires are a common target. Soy-based wire insulation used by some manufacturers is particularly attractive to rodents."},
+      {"q": "Where are CAN bus wires located?", "a": "CAN bus wires run throughout the vehicle, typically in the main wiring harness. They connect to all electronic modules, so the wires route through the engine bay, dashboard, and to each module location."}
+    ]
+  },
+  {
+    "code": "U0004",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (-) Open",
+    "shortDescription": "Open circuit detected on the CAN-Low (-) wire of the high-speed CAN bus.",
+    "fullDescription": "Code U0004 indicates an open circuit on the CAN-Low (CAN-L) wire of the high-speed CAN bus. Similar to a CAN-H open, this severely degrades bus communication. The CAN bus may still partially function on the remaining wire but with significantly reduced noise immunity and reliability.",
+    "severity": "high",
+    "safetyImpact": "CAN bus communication is severely degraded, affecting multiple safety-critical control modules.",
+    "causes": [
+      {"cause": "Broken CAN-L wire", "likelihood": "high"},
+      {"cause": "Corroded or disconnected connector pin", "likelihood": "high"},
+      {"cause": "Harness damage from accident or service work", "likelihood": "medium"},
+      {"cause": "Module with internal CAN-L failure", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Multiple U-codes stored in many modules",
+      "Dashboard warning lights illuminated",
+      "Intermittent or complete loss of module communication",
+      "Vehicle may have driveability issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Measure CAN-L voltage", "instruction": "Check CAN-L voltage at DLC pin 14. Should read approximately 1.5V with key on. Abnormal voltage indicates a CAN-L wire issue.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check bus resistance", "instruction": "Measure between DLC pins 6 and 14 with key off. Should be 60 ohms. An abnormal reading points to a CAN-L open or short.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Trace and locate break", "instruction": "Follow the CAN-L wire from the DLC through the vehicle harness. Check at all connectors and known damage-prone areas.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair", "instruction": "Repair the broken CAN-L wire using solder and heat-shrink. Verify bus restoration by scanning all modules.", "tools": ["Soldering iron", "Wire", "Heat shrink"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0003", "U0001", "U0005"],
+    "faq": [
+      {"q": "Can the vehicle still run with one CAN wire broken?", "a": "In some cases, the vehicle may still operate in a degraded mode with one wire open. However, communication will be unreliable and many systems will not function correctly."},
+      {"q": "How do I find a broken wire in a wiring harness?", "a": "Use a multimeter to check continuity in sections, working from the DLC outward. A tone generator and probe can also help locate breaks. Focus on areas where the harness bends or has been previously repaired."},
+      {"q": "Can I use a regular wire to repair the CAN bus?", "a": "Use the same gauge wire as the original. The CAN bus wires are typically twisted pair; maintaining the twist is important for noise rejection. Keep the repair as short as possible."}
+    ]
+  },
+  {
+    "code": "U0005",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (+) High",
+    "shortDescription": "CAN-High wire voltage is stuck high or shorted to battery voltage.",
+    "fullDescription": "Code U0005 indicates that the CAN-High wire is stuck at an abnormally high voltage level, typically shorted to battery voltage. Normal CAN-H voltage alternates between approximately 2.5V (recessive) and 3.5V (dominant). A short to battery voltage locks the bus in an invalid state, preventing communication.",
+    "severity": "high",
+    "safetyImpact": "CAN bus communication is disabled. Multiple vehicle systems will not function.",
+    "causes": [
+      {"cause": "CAN-H wire chafed and shorted to a power wire", "likelihood": "high"},
+      {"cause": "Module with internal CAN-H short to battery", "likelihood": "medium"},
+      {"cause": "Connector back-probing causing wire contact", "likelihood": "medium"},
+      {"cause": "Aftermarket wiring spliced into CAN-H", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Vehicle may not start",
+      "No communication with any module",
+      "OBD-II scanner cannot connect",
+      "All dashboard lights may be on or off"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify CAN-H voltage", "instruction": "Measure voltage on DLC pin 6 (CAN-H). If it reads near battery voltage (12V+), the line is shorted to power.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Disconnect modules to isolate", "instruction": "Disconnect modules one at a time from the CAN bus while monitoring CAN-H voltage. When voltage drops to normal, the last disconnected module or its wiring contains the short.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 3, "title": "Inspect wiring route", "instruction": "Once the section is identified, inspect the CAN-H wire route for chafing against power wires, connector damage, or improper aftermarket taps.", "tools": ["Flashlight", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair short", "instruction": "Repair the short by separating and insulating the CAN-H wire from the power source. Verify all modules communicate after repair.", "tools": ["Electrical tape", "Heat shrink", "Wire loom"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0006", "U0001", "U0003"],
+    "faq": [
+      {"q": "Why can't my scanner connect at all?", "a": "If the CAN bus is shorted to battery voltage, the OBD-II scanner cannot establish communication because the bus protocol requires proper voltage levels to function."},
+      {"q": "Can this damage my vehicle's modules?", "a": "A CAN-H short to battery voltage can potentially damage the CAN transceiver chips in connected modules if they are not adequately protected. Repair should be prompt."},
+      {"q": "How do I know if a module caused the short or if it is wiring?", "a": "If the voltage drops to normal when you disconnect a specific module, try reconnecting it. If the short returns, the module's internal CAN transceiver may have failed and is pulling the bus high."}
+    ]
+  },
+  {
+    "code": "U0006",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (-) Low",
+    "shortDescription": "CAN-Low wire voltage is stuck low or shorted to ground.",
+    "fullDescription": "Code U0006 indicates that the CAN-Low wire is stuck at ground or near-ground voltage. Normal CAN-L alternates between approximately 2.5V (recessive) and 1.5V (dominant). A short to ground prevents the differential signaling from working, disabling the CAN bus.",
+    "severity": "high",
+    "safetyImpact": "CAN bus is non-functional. All modules on the high-speed bus cannot communicate.",
+    "causes": [
+      {"cause": "CAN-L wire chafed and shorted to chassis ground", "likelihood": "high"},
+      {"cause": "Module with internal CAN-L short to ground", "likelihood": "medium"},
+      {"cause": "Water-damaged connector shorting CAN-L to ground pin", "likelihood": "medium"},
+      {"cause": "Improper wiring repair bridging CAN-L to ground", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Vehicle may not start",
+      "No OBD-II communication",
+      "All dashboard warning lights on",
+      "No module communication"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check CAN-L voltage", "instruction": "Measure CAN-L at DLC pin 14. If it reads 0V or very low, the line is shorted to ground.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Module isolation test", "instruction": "Systematically disconnect modules while checking if CAN-L voltage recovers. This identifies the circuit segment containing the short.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 3, "title": "Locate short", "instruction": "In the identified segment, trace the CAN-L wire and look for contact with metal body parts, ground wires, or water-damaged connectors.", "tools": ["Flashlight", "Multimeter"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair", "instruction": "Insulate the CAN-L wire from ground contact. Dry and clean any water-damaged connectors. Replace module if it has an internal short.", "tools": ["Wire repair kit", "Contact cleaner", "Dielectric grease"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0005", "U0001", "U0004"],
+    "faq": [
+      {"q": "Is a CAN-L short to ground different from a CAN-H short?", "a": "Yes. CAN-L normally operates at 1.5-2.5V, so a short to ground pulls it below normal range. CAN-H normally operates at 2.5-3.5V. Both types of shorts can disable the bus."},
+      {"q": "Can water damage cause CAN bus shorts?", "a": "Yes. Water entering a connector can create conductive paths between CAN bus pins and ground pins, effectively shorting the bus."},
+      {"q": "How do I prevent CAN bus wiring damage?", "a": "Ensure wire looms and grommets are intact, avoid routing aftermarket wiring near the CAN bus harness, and repair any water leaks that could affect connectors."}
+    ]
+  },
+  {
+    "code": "U0007",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (+) Low",
+    "shortDescription": "CAN-High wire is stuck at abnormally low voltage or shorted to ground.",
+    "fullDescription": "Code U0007 indicates the CAN-High wire is pulled low, either shorted to ground or to the CAN-Low wire. This prevents the CAN-H line from reaching its normal dominant voltage of 3.5V, effectively disabling differential signaling on the bus.",
+    "severity": "high",
+    "safetyImpact": "CAN bus communication is disabled. Safety-critical modules cannot exchange data.",
+    "causes": [
+      {"cause": "CAN-H wire shorted to ground", "likelihood": "high"},
+      {"cause": "CAN-H shorted to CAN-L (wires touching)", "likelihood": "high"},
+      {"cause": "Module internal CAN transceiver pulling H line low", "likelihood": "medium"},
+      {"cause": "Connector damage shorting H to ground pin", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "No OBD-II communication",
+      "Vehicle may not start or run",
+      "All dashboard lights on or blank",
+      "Multiple systems inoperative"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Measure bus voltages", "instruction": "Check CAN-H (pin 6) and CAN-L (pin 14) at the DLC. If both read the same voltage, the wires may be shorted together.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check for wire-to-wire short", "instruction": "With key off and modules disconnected, check resistance between CAN-H and CAN-L. Very low resistance (near 0 ohms) indicates the wires are touching.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Trace and isolate", "instruction": "Follow the CAN bus wiring looking for points where H and L wires may be damaged and contacting each other or ground.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair", "instruction": "Separate and insulate the damaged wires. Verify CAN-H and CAN-L voltages return to normal with all modules reconnected.", "tools": ["Wire repair kit", "Heat shrink"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0008", "U0001", "U0005"],
+    "faq": [
+      {"q": "Can the CAN-H and CAN-L wires short to each other?", "a": "Yes. Since they run as a twisted pair in the harness, if the insulation is damaged, they can contact each other, effectively shorting the bus."},
+      {"q": "What voltage should I see on CAN-H and CAN-L?", "a": "With key on and engine off: CAN-H should be roughly 2.5-3.5V and CAN-L should be roughly 1.5-2.5V. Both lines should have some activity (voltage fluctuation)."},
+      {"q": "Can I test the CAN bus without a scan tool?", "a": "Yes. A simple multimeter can check bus voltages and termination resistance at the DLC connector, which can identify many bus faults without needing scanner communication."}
+    ]
+  },
+  {
+    "code": "U0008",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus (-) High",
+    "shortDescription": "CAN-Low wire is stuck at abnormally high voltage or shorted to battery.",
+    "fullDescription": "Code U0008 indicates the CAN-Low wire is stuck at an abnormally high voltage, typically shorted to battery voltage or to the CAN-High wire. The CAN-L line should never exceed 2.5V in normal operation. This condition prevents proper CAN bus differential signaling.",
+    "severity": "high",
+    "safetyImpact": "CAN bus communication is disabled. All modules on the high-speed bus are non-communicative.",
+    "causes": [
+      {"cause": "CAN-L wire chafed and touching power wire", "likelihood": "high"},
+      {"cause": "CAN-L shorted to CAN-H", "likelihood": "high"},
+      {"cause": "Module with internal CAN-L driver fault", "likelihood": "medium"},
+      {"cause": "Connector pin damage bridging CAN-L to voltage source", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "No OBD-II communication",
+      "Vehicle systems non-functional",
+      "Dashboard may be completely dark or all lights on",
+      "Engine may not start"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check CAN-L voltage", "instruction": "Measure CAN-L at DLC pin 14. If it reads near battery voltage or matches CAN-H exactly, there is a short.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Disconnect and isolate", "instruction": "Disconnect modules and segments of the CAN bus systematically to isolate where the short is originating.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 3, "title": "Find and fix short", "instruction": "Locate the point where CAN-L is contacting a power source or CAN-H. Repair insulation and separate wires.", "tools": ["Flashlight", "Wire repair kit"], "difficulty": "advanced"},
+      {"step": 4, "title": "Verify repair", "instruction": "Reconnect all modules and verify proper CAN bus voltages and communication with a scanner.", "tools": ["Multimeter", "OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0007", "U0001", "U0006"],
+    "faq": [
+      {"q": "What is the normal voltage range for CAN-L?", "a": "CAN-L normally operates between 1.5V (dominant/active) and 2.5V (recessive/idle). Any voltage significantly outside this range indicates a fault."},
+      {"q": "Can I use a test light to check CAN bus wires?", "a": "No. A test light can damage CAN bus transceivers by drawing too much current. Always use a high-impedance digital multimeter or oscilloscope."},
+      {"q": "How many modules are on the high-speed CAN bus?", "a": "Typically 10-20 modules depending on the vehicle. Major modules include ECM, TCM, ABS, airbag, instrument cluster, and body control module."}
+    ]
+  },
+  {
+    "code": "U0009",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "High Speed CAN Communication Bus Shorted Together",
+    "shortDescription": "CAN-High and CAN-Low wires are shorted to each other.",
+    "fullDescription": "Code U0009 indicates that the CAN-High and CAN-Low wires are shorted together. When both wires are at the same voltage, the differential signal that carries data is eliminated. No communication is possible on the bus while this short exists. This is often caused by physical wire damage or connector issues.",
+    "severity": "high",
+    "safetyImpact": "Complete CAN bus failure. No module communication is possible.",
+    "causes": [
+      {"cause": "Harness damage shorting CAN-H to CAN-L", "likelihood": "high"},
+      {"cause": "Connector pin bridge between H and L", "likelihood": "high"},
+      {"cause": "Module with internal H-to-L short", "likelihood": "medium"},
+      {"cause": "Improper repair or splice connecting both wires", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Complete loss of module communication",
+      "OBD-II scanner cannot connect",
+      "Vehicle may not start",
+      "No instrument cluster function"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm short", "instruction": "Measure resistance between DLC pins 6 (CAN-H) and 14 (CAN-L) with key off and battery disconnected. Near 0 ohms confirms a direct short (normal is about 60 ohms).", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Isolate section", "instruction": "Disconnect modules to isolate bus segments. Check resistance in each segment to find where the short exists.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "professional"},
+      {"step": 3, "title": "Locate physical short", "instruction": "In the affected segment, inspect wiring for physical damage. Pay attention to harness bends, connector junctions, and areas of prior repair.", "tools": ["Flashlight", "Magnifying glass"], "difficulty": "advanced"},
+      {"step": 4, "title": "Separate and repair wires", "instruction": "Separate the shorted wires and repair insulation. Verify resistance returns to approximately 60 ohms and all modules communicate.", "tools": ["Wire repair kit", "Heat shrink tubing"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0001", "U0007", "U0008"],
+    "faq": [
+      {"q": "Why is the resistance 60 ohms normally?", "a": "The CAN bus has two 120-ohm termination resistors, one at each end. In parallel, they measure 60 ohms. If you read 120 ohms, one terminator is missing. If near 0 ohms, the lines are shorted together."},
+      {"q": "Can a connector that got wet cause this?", "a": "Yes. Water in a connector can create a conductive bridge between the CAN-H and CAN-L pins, effectively shorting the bus."},
+      {"q": "Is this a difficult repair?", "a": "Finding the location of the short can be time-consuming since the CAN bus runs throughout the entire vehicle. Once found, the actual wire repair is straightforward."}
+    ]
+  },
+  {
+    "code": "U0010",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Medium Speed CAN Communication Bus",
+    "shortDescription": "Fault detected on the medium-speed CAN communication bus.",
+    "fullDescription": "Code U0010 indicates a general fault on the medium-speed CAN bus, which typically operates at 125 kbps or 250 kbps. The medium-speed bus typically connects body and comfort modules such as the HVAC, seat modules, door modules, and entertainment system. A fault on this bus affects convenience features but usually does not affect powertrain or safety-critical systems.",
+    "severity": "medium",
+    "safetyImpact": "Primarily affects comfort and convenience features. May affect exterior lighting on some vehicles.",
+    "causes": [
+      {"cause": "Damaged medium-speed CAN bus wiring", "likelihood": "high"},
+      {"cause": "Failed body-side module pulling down the bus", "likelihood": "medium"},
+      {"cause": "Connector corrosion on medium-speed bus segment", "likelihood": "medium"},
+      {"cause": "Missing bus termination", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Door locks, windows, or mirrors not responding",
+      "Climate control not communicating",
+      "Interior lights malfunctioning",
+      "Multiple B-codes and U-codes in body modules"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Perform a full vehicle scan. Identify which modules are on the medium-speed bus and which are reporting communication faults.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check bus voltages", "instruction": "Medium-speed CAN uses the same voltage levels as high-speed (CAN-H ~3.5V, CAN-L ~1.5V). Verify at the relevant connector.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Isolate faulty segment", "instruction": "Disconnect body modules one at a time while monitoring bus health. Identify the module or wiring segment causing the fault.", "tools": ["Wiring diagram", "Multimeter"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair", "instruction": "Repair wiring or replace the faulty module. Verify all body functions restore to normal.", "tools": ["Wire repair kit", "Replacement module if needed"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 200}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0001", "U0140", "U0151"],
+    "faq": [
+      {"q": "What is the difference between high-speed and medium-speed CAN?", "a": "High-speed CAN (500 kbps) carries time-critical data for powertrain and safety systems. Medium-speed CAN (125-250 kbps) handles less time-critical body and comfort functions."},
+      {"q": "Can a medium-speed bus fault affect the engine?", "a": "Generally no. The engine and powertrain are on the high-speed bus. However, some vehicles use gateway modules that could relay errors between buses."},
+      {"q": "Are the two CAN buses physically separate?", "a": "Yes. They are separate sets of wires with their own termination resistors. They may be connected through a gateway module that translates messages between them."}
+    ]
+  },
+  {
+    "code": "U0073",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Communication Bus",
+    "title": "Control Module Communication Bus Off",
+    "shortDescription": "A control module has gone to bus-off state on the CAN network.",
+    "fullDescription": "Code U0073 indicates that a control module has entered the CAN bus-off state. The CAN protocol includes an error management mechanism where a module that accumulates too many communication errors will disconnect itself from the bus (bus-off) to prevent it from disrupting other modules. This is a protective measure but results in that module being completely unreachable.",
+    "severity": "high",
+    "safetyImpact": "The affected module is completely disconnected from the network and non-functional until the bus-off condition is resolved.",
+    "causes": [
+      {"cause": "CAN bus wiring fault causing excessive errors for one module", "likelihood": "high"},
+      {"cause": "Module with failing CAN transceiver generating errors", "likelihood": "high"},
+      {"cause": "Bus noise or interference at one module's connection point", "likelihood": "medium"},
+      {"cause": "Module firmware bug causing bus-off condition", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Specific module completely unresponsive",
+      "Functions controlled by that module are all inoperative",
+      "U-code in other modules indicating lost communication with the affected module",
+      "Problem may resolve temporarily after ignition cycle"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify affected module", "instruction": "Scan all modules. The module in bus-off state will not respond to the scanner. Other modules will have U-codes indicating they lost communication with the affected module.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check module wiring", "instruction": "Inspect the CAN bus wiring specifically at the affected module's connector and its connection to the main bus harness.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test module CAN transceiver", "instruction": "With the module disconnected, check if the CAN bus is otherwise healthy. Then check the module's CAN pin resistance and behavior when reconnected.", "tools": ["Multimeter", "Oscilloscope"], "difficulty": "professional"},
+      {"step": 4, "title": "Repair or replace", "instruction": "Repair wiring issues or replace the module if its CAN transceiver has failed. Verify the module stays on the bus after repair.", "tools": ["Wire repair kit", "Replacement module"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 500}, "mechanic": {"min": 100, "max": 1000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0001", "U0100", "U0002"],
+    "faq": [
+      {"q": "What does bus-off mean?", "a": "Bus-off is a CAN protocol safety feature. When a module detects too many communication errors, it disconnects itself from the bus to protect other modules from being affected by its errors."},
+      {"q": "Will cycling the ignition fix it?", "a": "Temporarily, possibly. When the module powers up again, it will attempt to rejoin the bus. However, if the underlying cause persists, it will accumulate errors and go bus-off again."},
+      {"q": "Can a bad ground at one module cause bus-off?", "a": "Yes. A poor ground can cause the module's CAN transceiver to operate at incorrect voltage levels, generating bus errors until it reaches the bus-off threshold."}
+    ]
+  },
+  {
+    "code": "U0100",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with ECM/PCM",
+    "shortDescription": "A module has lost communication with the Engine Control Module (ECM) or Powertrain Control Module (PCM).",
+    "fullDescription": "Code U0100 indicates that one or more modules have lost communication with the Engine Control Module (ECM) or Powertrain Control Module (PCM). The ECM/PCM is the most critical module on the vehicle network, controlling fuel injection, ignition, and emissions. Other modules depend on ECM data for their own functions. This code can be set in any module that expects to receive data from the ECM.",
+    "severity": "high",
+    "safetyImpact": "Engine may not run. If it does run, multiple systems relying on ECM data will not function properly.",
+    "causes": [
+      {"cause": "CAN bus wiring fault between ECM and the rest of the network", "likelihood": "high"},
+      {"cause": "ECM power supply or ground fault preventing the module from operating", "likelihood": "high"},
+      {"cause": "Failed ECM", "likelihood": "medium"},
+      {"cause": "Corroded ECM connector", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Engine no-start or stalling",
+      "Check engine light on",
+      "Multiple U-codes in other modules (TCM, ABS, BCM, etc.)",
+      "Instrument cluster not showing engine data (RPM, temperature)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify ECM communication", "instruction": "Attempt to communicate with the ECM directly using a scanner. If the ECM responds, the issue may be intermittent. If it does not respond, check power and ground.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check ECM power and ground", "instruction": "Verify battery voltage at the ECM main power supply connector and verify all ground connections are clean and tight.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect ECM CAN bus connection", "instruction": "Check the CAN bus wires at the ECM connector for damage. Verify continuity from the ECM CAN pins to the main bus harness.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace ECM if necessary", "instruction": "If power, ground, and wiring are all verified good and the ECM still does not communicate, replace the ECM. Program and configure to the vehicle.", "tools": ["Replacement ECM", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0001", "U0101", "U0102"],
+    "faq": [
+      {"q": "Can a bad battery cause U0100?", "a": "Yes. If the battery voltage drops too low, the ECM may not have enough power to operate and communicate on the CAN bus."},
+      {"q": "Why do so many other codes appear with U0100?", "a": "The ECM broadcasts critical data (engine speed, temperature, vehicle speed) that many other modules need. When the ECM stops communicating, all dependent modules set their own lost-communication codes."},
+      {"q": "Is this always an expensive repair?", "a": "Not necessarily. Many U0100 cases are caused by wiring issues or poor connections that are inexpensive to repair. ECM replacement is less common."}
+    ]
+  },
+  {
+    "code": "U0101",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with TCM",
+    "shortDescription": "A module has lost communication with the Transmission Control Module (TCM).",
+    "fullDescription": "Code U0101 indicates that one or more vehicle modules have lost communication with the Transmission Control Module (TCM). The TCM controls automatic transmission shift points, torque converter lockup, and gear selection. Loss of communication can result in the transmission entering a fail-safe mode with limited gear availability.",
+    "severity": "high",
+    "safetyImpact": "Transmission may enter limp mode (single gear), limiting vehicle speed and acceleration. This can be dangerous in highway merging situations.",
+    "causes": [
+      {"cause": "CAN bus wiring fault near TCM", "likelihood": "high"},
+      {"cause": "TCM power or ground fault", "likelihood": "high"},
+      {"cause": "Failed TCM", "likelihood": "medium"},
+      {"cause": "Corroded TCM connector (especially on external-mount TCMs)", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Transmission stuck in one gear (limp mode)",
+      "Check engine light on",
+      "Transmission warning light on",
+      "Harsh or no shifting",
+      "U0101 code in ECM, BCM, or other modules"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Attempt TCM communication", "instruction": "Try to communicate with the TCM using a scanner. If it does not respond, check for power and ground at the TCM connector.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check TCM power supply", "instruction": "Locate the TCM (on or attached to the transmission on some vehicles, or under the dashboard on others). Check power supply voltage and grounds.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect TCM connector", "instruction": "TCMs mounted on the transmission are exposed to heat, vibration, and moisture. Inspect the connector for corrosion, water intrusion, or heat damage.", "tools": ["Flashlight", "Contact cleaner"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Repair or replace", "instruction": "Repair wiring or connector issues. If the TCM itself has failed, replace and program it. Clear codes and verify proper shifting.", "tools": ["Wire repair kit", "Replacement TCM if needed", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0100", "U0102", "U0103"],
+    "faq": [
+      {"q": "What is transmission limp mode?", "a": "Limp mode is a fail-safe condition where the transmission defaults to a single gear (usually 3rd or 4th) to allow the vehicle to be driven at reduced speed to a repair facility."},
+      {"q": "Can I still drive in limp mode?", "a": "Yes, but at reduced speed and power. Avoid highway driving as acceleration will be severely limited. Drive carefully to a repair shop."},
+      {"q": "Is the TCM inside the transmission?", "a": "On some vehicles, the TCM is mounted externally on the transmission case. On others, it is located inside the vehicle cabin under the dashboard or center console."}
+    ]
+  },
+  {
+    "code": "U0102",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Transfer Case Control Module",
+    "shortDescription": "A module has lost communication with the transfer case control module.",
+    "fullDescription": "Code U0102 indicates loss of communication with the transfer case control module on 4WD or AWD vehicles. The transfer case module controls the engagement and disengagement of four-wheel drive modes and distributes torque between the front and rear axles. Loss of communication can lock the transfer case in its current mode.",
+    "severity": "medium",
+    "safetyImpact": "Four-wheel drive selection may be unavailable or the system may be stuck in one mode, affecting vehicle handling.",
+    "causes": [
+      {"cause": "CAN bus wiring fault near transfer case module", "likelihood": "high"},
+      {"cause": "Transfer case module connector corrosion", "likelihood": "high"},
+      {"cause": "Failed transfer case control module", "likelihood": "medium"},
+      {"cause": "Module power supply issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "4WD indicator lights not working or flashing",
+      "Cannot switch between 2WD, 4WD, or AWD modes",
+      "Service 4WD message",
+      "Transfer case stuck in current mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for codes", "instruction": "Read all codes. Check if the transfer case module is communicating. Note if other modules also report communication losses.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check module connections", "instruction": "Locate the transfer case control module (usually near the transfer case under the vehicle). Inspect connector for water, corrosion, and damage.", "tools": ["Jack and jack stands", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test power and CAN bus", "instruction": "Verify power supply, ground, and CAN bus signal at the module connector.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair or replace", "instruction": "Repair wiring or connector issues. Replace the module if it has failed. Program and configure as needed.", "tools": ["Wire repair kit", "Replacement module"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "relatedCodes": ["U0100", "U0101", "U0103"],
+    "faq": [
+      {"q": "Can I still drive without the transfer case module communicating?", "a": "The vehicle is usually drivable, but you cannot change 4WD modes. If stuck in 4WD-Lock on dry pavement, drive carefully to avoid drivetrain binding."},
+      {"q": "Why does the module corrode so easily?", "a": "Transfer case modules mounted under the vehicle are exposed to road spray, salt, mud, and debris. Their connectors are particularly vulnerable to water intrusion."},
+      {"q": "Can a low battery affect the transfer case module?", "a": "Yes. Transfer case motors draw significant current during mode changes. A weak battery can cause voltage drops that disrupt communication during shifting."}
+    ]
+  },
+  {
+    "code": "U0103",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Gear Shift Module",
+    "shortDescription": "A module has lost communication with the gear shift control module.",
+    "fullDescription": "Code U0103 indicates that communication has been lost with the gear shift module. On vehicles with electronic gear selectors (shift-by-wire), this module translates the driver's gear selection into electronic commands sent to the transmission. Loss of communication can prevent gear changes and may lock the transmission in park or its current gear.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not be able to shift gears. If stuck in park, the vehicle cannot be moved. If stuck in drive, stopping the engine may be the only way to prevent movement.",
+    "causes": [
+      {"cause": "Gear shift module connector fault", "likelihood": "high"},
+      {"cause": "CAN bus wiring damage near shifter", "likelihood": "medium"},
+      {"cause": "Failed gear shift module", "likelihood": "medium"},
+      {"cause": "Spilled liquid in center console affecting module", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Cannot shift out of park",
+      "Gear indicator not showing current gear",
+      "Transmission stuck in one gear",
+      "Shift-by-wire system warning message"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan codes", "instruction": "Read all module codes. Check if the gear shift module is responding to the scanner.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect shifter area", "instruction": "Remove the center console trim to access the gear shift module. Check for liquid damage, loose connectors, or visible wire damage.", "tools": ["Trim tools", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Check module power and communication", "instruction": "Verify power supply, ground, and CAN bus signals at the gear shift module connector.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace module", "instruction": "If the module has failed, replace it. Some modules require programming. Clear codes and verify all gear selections work correctly.", "tools": ["Replacement module", "Programming tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 150, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "relatedCodes": ["U0101", "U0100", "U0102"],
+    "faq": [
+      {"q": "What is shift-by-wire?", "a": "Shift-by-wire systems replace the mechanical cable between the gear selector and transmission with electronic signals. The shifter sends commands through a module over the CAN bus to the TCM."},
+      {"q": "Can I move the vehicle if it is stuck in park?", "a": "Many vehicles have an emergency shift release button or procedure. Check your owner's manual for the override method."},
+      {"q": "Can a drink spill cause this?", "a": "Yes. The gear shift module is often located in the center console area. Liquid spills can damage the module electronics or corrode its connector."}
+    ]
+  },
+  {
+    "code": "U0104",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Cruise Control Module",
+    "shortDescription": "A module has lost communication with the cruise control module.",
+    "fullDescription": "Code U0104 indicates that communication has been lost with the cruise control module. This module manages conventional cruise control and, on some vehicles, adaptive cruise control (ACC). Loss of communication disables cruise control functionality and may trigger related fault codes in the ECM or BCM.",
+    "severity": "low",
+    "safetyImpact": "Cruise control is unavailable. No immediate safety hazard, but convenience is affected.",
+    "causes": [
+      {"cause": "Cruise control module connector fault", "likelihood": "high"},
+      {"cause": "Module power supply issue", "likelihood": "medium"},
+      {"cause": "CAN bus wiring fault to cruise module", "likelihood": "medium"},
+      {"cause": "Failed cruise control module", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Cruise control does not engage",
+      "Cruise control indicator light not illuminating",
+      "No set speed display",
+      "Cruise control warning message"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for codes", "instruction": "Scan all modules. Check if the cruise control module is on the network. Some vehicles integrate cruise control into the ECM.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check fuses and power", "instruction": "Verify the cruise control module fuse and power supply. Also check the clock spring (on vehicles with steering wheel cruise buttons).", "tools": ["Fuse puller", "Multimeter"], "difficulty": "easy"},
+      {"step": 3, "title": "Inspect module wiring", "instruction": "Check wiring and connectors for the cruise control module. On vehicles with a separate module, it may be located in the engine bay.", "tools": ["Flashlight", "Multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace module", "instruction": "Replace the cruise control module if it has failed. Some may require programming or calibration.", "tools": ["Replacement module"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 80, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "0.5 to 2 hours",
+    "relatedCodes": ["U0100", "U0105", "U0121"],
+    "faq": [
+      {"q": "Is cruise control a separate module?", "a": "On many modern vehicles, cruise control is integrated into the ECM or a combined module. Older vehicles and those with adaptive cruise control may have a dedicated module."},
+      {"q": "Can a faulty brake switch disable cruise control?", "a": "Yes. A brake switch that appears to always be activated will prevent cruise control from engaging as a safety measure."},
+      {"q": "Does this affect adaptive cruise control radar?", "a": "If the vehicle has ACC, loss of communication with the cruise module will disable both conventional and adaptive cruise control functionality."}
+    ]
+  },
+  {
+    "code": "U0105",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Fuel Injector Control Module",
+    "shortDescription": "A module has lost communication with the fuel injector control module.",
+    "fullDescription": "Code U0105 indicates lost communication with the fuel injector control module. On some diesel vehicles and advanced direct-injection gasoline engines, a separate module controls the high-pressure fuel injectors. Loss of communication results in the engine being unable to inject fuel properly, causing no-start or severe running problems.",
+    "severity": "high",
+    "safetyImpact": "Engine may not start or may run very poorly, creating a hazardous driving situation.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to fuel injector module", "likelihood": "high"},
+      {"cause": "Fuel injector module connector corrosion", "likelihood": "medium"},
+      {"cause": "Failed fuel injector control module", "likelihood": "medium"},
+      {"cause": "Module power supply fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Engine cranks but does not start",
+      "Engine runs rough or misfires",
+      "Check engine light on",
+      "Reduced engine power"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify module presence", "instruction": "Not all vehicles have a separate fuel injector module. Confirm your vehicle uses one. Scan to check if it responds.", "tools": ["OBD-II scanner", "Service manual"], "difficulty": "easy"},
+      {"step": 2, "title": "Check power and ground", "instruction": "Verify the fuel injector module has proper power supply and ground connections.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect CAN bus connection", "instruction": "Check CAN bus wiring from the fuel injector module to the main bus. Look for heat damage as this module is often in the engine compartment.", "tools": ["Multimeter", "Flashlight"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace module", "instruction": "If the module has failed, replace and program it. Clear codes and verify proper fuel injection operation.", "tools": ["Replacement module", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0100", "U0106", "U0107"],
+    "faq": [
+      {"q": "Do all vehicles have a separate fuel injector module?", "a": "No. Many gasoline vehicles control injectors directly from the ECM. Diesel vehicles and some advanced direct-injection gasoline engines use a separate module for high-pressure injection control."},
+      {"q": "Can engine heat damage this module?", "a": "Yes. The fuel injector module is often located in the engine compartment and can be affected by extreme heat, which can damage electronics and connectors over time."},
+      {"q": "Will the engine run without this module?", "a": "No. If the fuel injector module controls the injectors, the engine cannot inject fuel without it and will not run."}
+    ]
+  },
+  {
+    "code": "U0106",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Glow Plug Control Module",
+    "shortDescription": "A module has lost communication with the glow plug control module (diesel vehicles).",
+    "fullDescription": "Code U0106 indicates loss of communication with the glow plug control module on diesel-powered vehicles. Glow plugs preheat the combustion chamber for cold starting. The module controls glow plug timing and duration. Loss of communication means glow plugs may not activate, making cold starting difficult or impossible.",
+    "severity": "medium",
+    "safetyImpact": "Diesel engine may not start in cold weather, potentially stranding the driver.",
+    "causes": [
+      {"cause": "Connector corrosion at glow plug module", "likelihood": "high"},
+      {"cause": "CAN bus wiring fault to module", "likelihood": "medium"},
+      {"cause": "Failed glow plug control module", "likelihood": "medium"},
+      {"cause": "Module power supply fuse blown", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Glow plug indicator light not illuminating",
+      "Hard starting in cold weather",
+      "Excessive white smoke on cold start",
+      "Check engine light on"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check glow plug light", "instruction": "When turning the key to the ON position, the glow plug indicator should illuminate briefly. If it does not, the module may not be communicating.", "tools": ["Visual inspection"], "difficulty": "easy"},
+      {"step": 2, "title": "Check fuse and power", "instruction": "Verify the glow plug module fuse (often high amperage, 60A+) and power supply to the module.", "tools": ["Fuse puller", "Multimeter"], "difficulty": "easy"},
+      {"step": 3, "title": "Inspect module connector", "instruction": "The glow plug module is usually located on top of the engine. Check for connector corrosion, heat damage, or loose connections.", "tools": ["Flashlight", "Contact cleaner"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace module", "instruction": "Replace the glow plug control module if faulty. Clear codes and verify glow plug operation on cold start.", "tools": ["Replacement module", "Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "relatedCodes": ["U0100", "U0105", "U0107"],
+    "faq": [
+      {"q": "Will my diesel start without glow plugs?", "a": "In warm weather, most diesel engines will start without glow plugs. In cold weather, starting becomes very difficult or impossible without preheat."},
+      {"q": "How do glow plugs work?", "a": "Glow plugs are electrically heated elements inside each cylinder that preheat the air in the combustion chamber to help ignite diesel fuel during cold starting."},
+      {"q": "Can I test glow plugs individually?", "a": "Yes. Each glow plug can be tested for resistance with a multimeter. A good glow plug typically reads 0.5-2 ohms. An open reading indicates a failed plug."}
+    ]
+  },
+  {
+    "code": "U0107",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Throttle Actuator Control Module",
+    "shortDescription": "A module has lost communication with the electronic throttle control module.",
+    "fullDescription": "Code U0107 indicates lost communication with the throttle actuator control module. On vehicles with electronic throttle control (drive-by-wire), this module or function controls the throttle plate position based on accelerator pedal input. Loss of communication can result in the engine entering reduced power mode or not responding to the accelerator.",
+    "severity": "high",
+    "safetyImpact": "Engine may not respond to accelerator input or may enter reduced power mode, which can be dangerous in traffic.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to throttle module", "likelihood": "high"},
+      {"cause": "Throttle body electronic failure", "likelihood": "medium"},
+      {"cause": "Module connector corrosion from engine bay moisture", "likelihood": "medium"},
+      {"cause": "ECM communication port fault", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Reduced engine power warning",
+      "Engine idles but does not respond to accelerator",
+      "Check engine light on",
+      "Limp mode with limited throttle response"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for codes", "instruction": "Read all codes from the ECM and any throttle-related modules. Check for both U-codes and throttle-specific P-codes.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect throttle body connections", "instruction": "Check the electrical connector at the throttle body for corrosion, damage, or loose fit. Clean with contact cleaner if needed.", "tools": ["Contact cleaner", "Flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Test throttle circuit", "instruction": "Verify power supply, ground, and CAN bus signals at the throttle body connector. Check accelerator pedal position sensor output.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace throttle body or module", "instruction": "Replace the throttle body assembly if the internal electronics have failed. Some vehicles require a throttle relearn procedure after replacement.", "tools": ["Replacement throttle body", "Basic tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "relatedCodes": ["U0100", "U0108", "U0109"],
+    "faq": [
+      {"q": "What is drive-by-wire?", "a": "Drive-by-wire replaces the mechanical throttle cable with an electronic system. The accelerator pedal sensor sends a signal to the ECM, which commands the throttle motor to open or close the throttle plate."},
+      {"q": "Can I clean the throttle body to fix this?", "a": "Cleaning the throttle body can fix throttle plate sticking issues but will not fix electronic communication faults. This code requires electrical diagnosis."},
+      {"q": "What is reduced power mode?", "a": "When the throttle system detects a fault, it limits throttle opening to protect the engine and occupants. The vehicle may only idle or have very limited acceleration."}
+    ]
+  },
+  {
+    "code": "U0108",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Alternative Fuel Control Module",
+    "shortDescription": "A module has lost communication with the alternative fuel system control module.",
+    "fullDescription": "Code U0108 indicates lost communication with the alternative fuel control module. This applies to vehicles equipped with alternative fuel systems such as CNG (compressed natural gas), LPG (liquefied petroleum gas), E85 flex-fuel, or hydrogen fuel systems. The module manages fuel system switching and alternative fuel injection parameters.",
+    "severity": "medium",
+    "safetyImpact": "Alternative fuel system may be disabled. Vehicle may default to conventional fuel operation if available.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to alternative fuel module", "likelihood": "high"},
+      {"cause": "Module connector issue", "likelihood": "medium"},
+      {"cause": "Failed alternative fuel control module", "likelihood": "medium"},
+      {"cause": "Aftermarket alternative fuel conversion module incompatibility", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Cannot switch to alternative fuel",
+      "Alternative fuel indicator not working",
+      "Running only on conventional fuel",
+      "Check engine light on"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan codes", "instruction": "Read all codes. Identify if the alternative fuel module is on the network.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check module connections", "instruction": "Locate the alternative fuel module and inspect its connector and wiring for damage.", "tools": ["Flashlight", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test power and communication", "instruction": "Verify the module has power, ground, and CAN bus connectivity.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace or reconfigure", "instruction": "Replace the module if faulty. For aftermarket conversions, verify compatibility with the vehicle's CAN bus protocol.", "tools": ["Replacement module"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "relatedCodes": ["U0100", "U0107", "U0109"],
+    "faq": [
+      {"q": "Will my vehicle still run on gasoline?", "a": "In most bi-fuel systems, the vehicle will default to gasoline if the alternative fuel system is unavailable. Dedicated alternative fuel vehicles may not start."},
+      {"q": "Are aftermarket CNG/LPG conversions reliable?", "a": "Quality varies significantly. Well-engineered conversions from reputable manufacturers with proper CAN bus integration are generally reliable. Budget conversions may have communication issues."},
+      {"q": "Can I ignore this code if I only use gasoline?", "a": "If you have a flex-fuel vehicle and only use gasoline, the code may not cause immediate problems. However, the check engine light will remain on, masking other potential issues."}
+    ]
+  },
+  {
+    "code": "U0109",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Fuel Pump Control Module",
+    "shortDescription": "A module has lost communication with the fuel pump control module.",
+    "fullDescription": "Code U0109 indicates lost communication with the fuel pump control module. Modern vehicles use a dedicated module to control fuel pump speed based on engine demand, improving fuel efficiency and reducing pump wear. Loss of communication can cause the fuel pump to run at full speed constantly or not run at all.",
+    "severity": "high",
+    "safetyImpact": "Engine may stall or not start if the fuel pump cannot be controlled. Running at full speed constantly wastes fuel and can overheat the pump.",
+    "causes": [
+      {"cause": "Fuel pump module connector corrosion", "likelihood": "high"},
+      {"cause": "CAN bus wiring fault to pump module", "likelihood": "medium"},
+      {"cause": "Failed fuel pump control module", "likelihood": "medium"},
+      {"cause": "Water intrusion into module housing", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Engine cranks but does not start",
+      "Fuel pump runs continuously or not at all",
+      "Reduced engine performance",
+      "Check engine light on"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuel pump operation", "instruction": "Turn key to ON (do not start). Listen for fuel pump priming. If no pump sound, the module may not be commanding the pump.", "tools": ["Ears"], "difficulty": "easy"},
+      {"step": 2, "title": "Locate and inspect module", "instruction": "The fuel pump control module is often located under the vehicle near the fuel tank or under the rear seat. Inspect for damage and connector condition.", "tools": ["Jack and jack stands", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test module circuits", "instruction": "Check power supply, ground, CAN bus signals, and fuel pump output at the module.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace module", "instruction": "Replace the fuel pump control module if faulty. Clear codes and verify the fuel pump operates correctly at various engine loads.", "tools": ["Replacement module", "Basic tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "relatedCodes": ["U0100", "U0110", "U0107"],
+    "faq": [
+      {"q": "Is the fuel pump module the same as the fuel pump?", "a": "No. The fuel pump is inside the fuel tank. The fuel pump control module is an electronic unit that regulates the voltage/signal to the pump to control its speed."},
+      {"q": "Can the module be bypassed?", "a": "Bypassing the module to run the pump at full speed is possible as an emergency measure but wastes fuel and can overheat the pump. It is not a permanent solution."},
+      {"q": "Where is the fuel pump module located?", "a": "Typically under the vehicle near the fuel tank, on the frame rail, or sometimes under the rear seat. It is usually in a location exposed to road spray."}
+    ]
+  },
+  {
+    "code": "U0110",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Drive Motor Control Module",
+    "shortDescription": "A module has lost communication with the electric drive motor control module (hybrid/EV).",
+    "fullDescription": "Code U0110 indicates loss of communication with the drive motor control module on hybrid or electric vehicles. This module controls the electric motor that provides propulsion. Loss of communication can disable electric drive capability, potentially leaving the vehicle on engine power only (hybrids) or immobile (pure EVs).",
+    "severity": "high",
+    "safetyImpact": "Electric drive capability is lost. Hybrids may operate on engine only with reduced performance. Pure EVs may not be drivable.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to motor controller", "likelihood": "high"},
+      {"cause": "Motor control module internal failure", "likelihood": "medium"},
+      {"cause": "High-voltage interlock open", "likelihood": "medium"},
+      {"cause": "Module connector issue from vibration", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Hybrid/EV system warning light",
+      "Loss of electric drive capability",
+      "Reduced power warning",
+      "Vehicle may not move (pure EV)",
+      "Engine running more than expected (hybrid)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Use a scanner capable of reading hybrid/EV systems. Check the motor control module and related high-voltage system codes.", "tools": ["Hybrid-capable OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check high-voltage safety", "instruction": "Before working on any hybrid/EV high-voltage component, ensure the high-voltage system is properly de-energized following manufacturer procedures.", "tools": ["Insulated gloves", "High-voltage safety equipment"], "difficulty": "professional"},
+      {"step": 3, "title": "Inspect module connections", "instruction": "Check the motor controller connector for damage, corrosion, or vibration-related looseness. Also check the high-voltage interlock circuit.", "tools": ["Insulated tools", "Flashlight"], "difficulty": "professional"},
+      {"step": 4, "title": "Professional repair", "instruction": "Due to high-voltage safety risks, motor controller replacement should be performed by trained hybrid/EV technicians.", "tools": ["Specialized HV tools", "Replacement module"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 500, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "relatedCodes": ["U0100", "U0109", "U0121"],
+    "faq": [
+      {"q": "Is it safe to work on the motor controller?", "a": "No. The motor controller operates at high voltage (200-800V) which is lethal. Only trained and equipped technicians should work on high-voltage hybrid/EV components."},
+      {"q": "Can my hybrid still drive on the engine alone?", "a": "Most hybrids can operate on the engine alone in a degraded mode, but with reduced performance and no regenerative braking."},
+      {"q": "How much does a motor controller cost?", "a": "Motor controllers for hybrid/EV vehicles can range from $500 to $3000+ depending on the vehicle. Labor for high-voltage work adds significant cost."}
+    ]
+  },
+  {
+    "code": "U0121",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with ABS Control Module",
+    "shortDescription": "A module has lost communication with the Anti-lock Braking System control module.",
+    "fullDescription": "Code U0121 indicates that one or more modules have lost communication with the ABS control module. The ABS module provides critical wheel speed data to other modules and controls ABS, traction control, and stability control. Loss of communication disables all these functions and may affect the speedometer on vehicles that derive speed from ABS data.",
+    "severity": "high",
+    "safetyImpact": "ABS, traction control, and stability control are all non-functional. Speedometer may not work.",
+    "causes": [
+      {"cause": "CAN bus wiring fault near ABS module", "likelihood": "high"},
+      {"cause": "ABS module power or ground fault", "likelihood": "high"},
+      {"cause": "Failed ABS module", "likelihood": "medium"},
+      {"cause": "Corroded ABS module connector", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "ABS, traction, and stability control lights on",
+      "Speedometer may not work",
+      "Other modules report lost ABS communication",
+      "Cruise control may not function (no speed signal)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Perform a full scan. Multiple modules reporting lost ABS communication confirms the ABS module is offline.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check ABS module power", "instruction": "Verify battery voltage at the ABS module connector. Check main power fuse, relay, and ground connections.", "tools": ["Multimeter", "Fuse puller"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect CAN bus at ABS module", "instruction": "Check CAN bus voltage and continuity at the ABS module connector. Verify the module's CAN connection to the main bus.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace ABS module", "instruction": "If power, ground, and CAN bus are verified good, the ABS module has likely failed internally. Replace, program, and bleed brakes.", "tools": ["Replacement ABS module", "Brake bleeder kit", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0122", "U0100", "U0001"],
+    "faq": [
+      {"q": "Why does the speedometer stop working when ABS communication is lost?", "a": "Many vehicles derive the vehicle speed signal from the ABS module's wheel speed data. If the ABS module is offline, the speed signal is lost."},
+      {"q": "Can water damage the ABS module?", "a": "Yes. The ABS module is often located in the engine bay where it can be exposed to water spray, especially on the driver-side fender. Water intrusion into the connector is a common failure mode."},
+      {"q": "Is the ABS module expensive?", "a": "New OEM ABS modules can cost $500-$2000+. Remanufactured units are often available at significant savings and are generally reliable with proper programming."}
+    ]
+  },
+  {
+    "code": "U0122",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Vehicle Dynamics Control Module",
+    "shortDescription": "A module has lost communication with the vehicle dynamics control (stability) module.",
+    "fullDescription": "Code U0122 indicates lost communication with the vehicle dynamics control module, which is the stability control system's primary controller. This module integrates data from wheel speed sensors, yaw rate sensor, steering angle sensor, and lateral accelerometer to maintain vehicle stability. Loss of communication disables all stability control functions.",
+    "severity": "high",
+    "safetyImpact": "Vehicle stability control is completely disabled, removing one of the most important active safety systems.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to dynamics module", "likelihood": "high"},
+      {"cause": "Module power or ground failure", "likelihood": "high"},
+      {"cause": "Module internal failure", "likelihood": "medium"},
+      {"cause": "Connector corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Stability control light on",
+      "ABS and traction control also disabled",
+      "No stability intervention during driving",
+      "U0122 in other modules (ECM, BCM, etc.)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Full vehicle scan", "instruction": "Scan all modules to confirm which ones are reporting lost communication with the dynamics module.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check power and ground", "instruction": "Verify power supply and ground connections at the vehicle dynamics module. Check related fuses.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test CAN bus at module", "instruction": "Verify CAN bus signals at the module connector. Check for proper voltage on CAN-H and CAN-L.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace module", "instruction": "Replace the vehicle dynamics module if it has failed. Program, calibrate sensors, and clear codes.", "tools": ["Replacement module", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 200, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0121", "U0100", "U0131"],
+    "faq": [
+      {"q": "Is the vehicle dynamics module separate from the ABS module?", "a": "On some vehicles they are separate modules; on many modern vehicles, ABS and stability control are integrated into a single module."},
+      {"q": "How important is stability control?", "a": "Stability control is one of the most significant safety advances in automotive history, credited with reducing single-vehicle crashes by up to 50%. Repair should be prioritized."},
+      {"q": "Can I disable stability control intentionally?", "a": "Most vehicles have a button to temporarily disable stability control for specific situations (deep snow, track driving). It typically re-enables automatically at the next ignition cycle."}
+    ]
+  },
+  {
+    "code": "U0131",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Power Steering Control Module",
+    "shortDescription": "A module has lost communication with the electric power steering (EPS) control module.",
+    "fullDescription": "Code U0131 indicates lost communication with the power steering control module. Modern vehicles use electric power steering (EPS) that relies on electronic control. Loss of communication can result in the loss of power steering assist, requiring significantly more effort to steer, especially at low speeds.",
+    "severity": "high",
+    "safetyImpact": "Power steering assist may be lost, making the vehicle very difficult to steer at low speeds and in parking situations.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to EPS module", "likelihood": "high"},
+      {"cause": "EPS module connector fault", "likelihood": "medium"},
+      {"cause": "Failed EPS control module", "likelihood": "medium"},
+      {"cause": "EPS module power supply fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Power steering warning light on",
+      "Heavy/stiff steering effort",
+      "Steering may feel normal at highway speed but very heavy when parking",
+      "EPS fault message on dash"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan codes", "instruction": "Read all codes. Check if the EPS module is responding to the scanner.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check EPS fuse and power", "instruction": "The EPS system draws significant current. Check the EPS main fuse (often 60-80A) and verify power supply to the module.", "tools": ["Multimeter", "Fuse puller"], "difficulty": "easy"},
+      {"step": 3, "title": "Inspect EPS module connections", "instruction": "The EPS module is typically integrated with the steering column or rack. Check its connector and CAN bus wiring.", "tools": ["Flashlight", "Multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace EPS module", "instruction": "If the module has failed, replacement may involve the steering column or rack assembly depending on design. Programming and calibration are usually required.", "tools": ["Replacement EPS assembly", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0100", "U0121", "U0140"],
+    "faq": [
+      {"q": "Can I still steer without power steering?", "a": "Yes, but it requires much more physical effort, especially at low speeds and when parking. At highway speeds, the difference is less noticeable."},
+      {"q": "Is electric power steering the same as hydraulic?", "a": "No. EPS uses an electric motor to provide assist, while hydraulic systems use a pump and fluid. EPS is more efficient and allows for variable assist, but is entirely dependent on electronics."},
+      {"q": "Is this a common failure?", "a": "EPS module failures are not uncommon in vehicles with high mileage. Certain models are known for higher failure rates."}
+    ]
+  },
+  {
+    "code": "U0140",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Body Control Module",
+    "shortDescription": "A module has lost communication with the Body Control Module (BCM).",
+    "fullDescription": "Code U0140 indicates that one or more modules have lost communication with the Body Control Module (BCM). The BCM manages body electrical functions and often serves as a gateway module between different vehicle networks. Loss of BCM communication can affect numerous convenience features and may impact the gateway function between CAN buses.",
+    "severity": "medium",
+    "safetyImpact": "Body electrical functions including lighting may be affected. Gateway function loss can cascade to other systems.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to BCM", "likelihood": "high"},
+      {"cause": "BCM power or ground fault", "likelihood": "high"},
+      {"cause": "Failed BCM", "likelihood": "medium"},
+      {"cause": "Water damage to BCM or connector", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Multiple body electrical features not working",
+      "Interior and exterior lighting issues",
+      "Power locks and windows inoperative",
+      "Multiple U-codes in other modules",
+      "Remote keyless entry not working"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Full system scan", "instruction": "Scan all modules. If many modules report lost BCM communication, the BCM itself is offline.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check BCM power and ground", "instruction": "Locate the BCM (usually under the dashboard or in the kick panel). Verify power supply and ground connections.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect for water damage", "instruction": "The BCM location can be susceptible to water leaks from the windshield, sunroof, or A/C drain. Inspect for moisture or corrosion.", "tools": ["Flashlight"], "difficulty": "easy"},
+      {"step": 4, "title": "Replace BCM", "instruction": "If the BCM has failed, replace and program it to the vehicle with all correct option configurations.", "tools": ["Replacement BCM", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 5 hours",
+    "relatedCodes": ["U0100", "U0141", "U0151"],
+    "faq": [
+      {"q": "Can a water leak cause BCM failure?", "a": "Yes. Water leaks from the windshield, sunroof drains, or A/C condensation can reach the BCM and cause corrosion and eventual failure. This is one of the most common causes."},
+      {"q": "What is the BCM gateway function?", "a": "On many vehicles, the BCM acts as a gateway between different CAN bus networks, routing messages between the high-speed and medium-speed buses. If the BCM fails, inter-bus communication is lost."},
+      {"q": "Do I need the dealer to program a new BCM?", "a": "BCM programming typically requires a manufacturer-level or professional diagnostic tool with the vehicle's specific option data. Some aftermarket tools can also perform this function."}
+    ]
+  },
+  {
+    "code": "U0141",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Body Control Module A",
+    "shortDescription": "A module has lost communication with Body Control Module A (on vehicles with multiple BCMs).",
+    "fullDescription": "Code U0141 indicates lost communication with Body Control Module A. Some vehicles use multiple BCMs to distribute body electrical control. BCM A typically handles a specific set of functions. Loss of communication with this specific module affects only the functions it controls.",
+    "severity": "medium",
+    "safetyImpact": "Functions controlled by BCM A are disabled. Impact depends on which functions are assigned to this module.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to BCM A", "likelihood": "high"},
+      {"cause": "BCM A power or ground issue", "likelihood": "high"},
+      {"cause": "Failed BCM A module", "likelihood": "medium"},
+      {"cause": "Water intrusion into BCM A location", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Subset of body electrical features not working",
+      "U0141 code in other modules",
+      "Specific lighting or convenience features disabled",
+      "Warning lights related to BCM A functions"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify BCM A functions", "instruction": "Determine which functions BCM A controls on your specific vehicle. Scan all modules for related codes.", "tools": ["OBD-II scanner", "Service manual"], "difficulty": "easy"},
+      {"step": 2, "title": "Check power and ground", "instruction": "Verify BCM A has proper power supply and ground connections at its location.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect wiring", "instruction": "Check CAN bus wiring between BCM A and the main bus. Also inspect for environmental damage at the module location.", "tools": ["Multimeter", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace if needed", "instruction": "Replace BCM A if it has failed. Program with correct configuration data.", "tools": ["Replacement BCM A", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0140", "U0151", "U0100"],
+    "faq": [
+      {"q": "Why does my vehicle have multiple BCMs?", "a": "Vehicles with many electronic features distribute control across multiple BCMs to manage the wiring complexity and processing load. Each BCM handles a subset of body functions."},
+      {"q": "Can I use a BCM from a different vehicle?", "a": "Generally no. BCMs are programmed with vehicle-specific options and VIN. A used BCM from the same model may work but will need reprogramming."},
+      {"q": "How do I know which features BCM A controls?", "a": "Your vehicle's service manual will detail which functions are assigned to each BCM. The features that stopped working when this code appeared are likely BCM A functions."}
+    ]
+  },
+  {
+    "code": "U0151",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Restraints Control Module",
+    "shortDescription": "A module has lost communication with the airbag/restraints control module (ACM/RCM).",
+    "fullDescription": "Code U0151 indicates lost communication with the Restraints Control Module (also called the Airbag Control Module or ACM). This is the central controller for all airbags, seat belt pretensioners, and occupant protection systems. Loss of communication means the entire SRS system is non-functional.",
+    "severity": "high",
+    "safetyImpact": "All airbags and restraint systems are non-functional. No protection devices will deploy in a collision.",
+    "causes": [
+      {"cause": "CAN bus wiring fault to ACM", "likelihood": "high"},
+      {"cause": "ACM power or ground fault", "likelihood": "high"},
+      {"cause": "Failed airbag control module", "likelihood": "medium"},
+      {"cause": "Connector damage from under-seat storage or service", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Airbag warning light on",
+      "SRS system completely disabled",
+      "Other modules report lost communication with restraints module",
+      "No airbag readiness indication"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify communication loss", "instruction": "Attempt to communicate with the ACM using a scanner. If no response, the module is offline.", "tools": ["OBD-II scanner with SRS capability"], "difficulty": "easy"},
+      {"step": 2, "title": "Check ACM power and ground", "instruction": "The ACM is typically under the center console. Verify power supply, ignition input, and ground connections.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect CAN bus connection", "instruction": "Check CAN bus wires at the ACM connector. Also inspect for connector damage from items stored under seats.", "tools": ["Multimeter", "Flashlight"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace ACM", "instruction": "If the ACM has failed, replace and program it. All airbag circuits should be tested after module replacement.", "tools": ["Replacement ACM", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 200, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "relatedCodes": ["U0140", "U0100", "B0130"],
+    "faq": [
+      {"q": "How serious is lost ACM communication?", "a": "Very serious. Without the ACM communicating, no airbags will deploy in a crash. This should be treated as an urgent safety repair."},
+      {"q": "Can moving items under the seat disconnect the ACM?", "a": "Yes. On vehicles where the ACM is under the driver or passenger seat, large items stored under the seat can push against and disconnect the module's electrical connector."},
+      {"q": "Will the vehicle pass inspection without ACM communication?", "a": "No. An illuminated airbag warning light will fail a safety inspection in most jurisdictions."}
+    ]
+  },
+  {
+    "code": "U0155",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with Instrument Cluster",
+    "shortDescription": "A module has lost communication with the instrument cluster (dashboard display module).",
+    "fullDescription": "Code U0155 indicates lost communication with the instrument cluster module. The instrument cluster displays critical vehicle information including speed, RPM, fuel level, temperature, and warning lights. It receives data from multiple modules over the CAN bus. Loss of communication results in a non-functional or partially functional dashboard.",
+    "severity": "medium",
+    "safetyImpact": "The driver cannot see critical vehicle information including speed, fuel level, and warning lights. This is a significant safety concern.",
+    "causes": [
+      {"cause": "Instrument cluster power or ground fault", "likelihood": "high"},
+      {"cause": "CAN bus wiring fault to instrument cluster", "likelihood": "medium"},
+      {"cause": "Failed instrument cluster module", "likelihood": "medium"},
+      {"cause": "Connector issue behind dashboard", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Dashboard completely dark or blank",
+      "Gauges all at zero or not moving",
+      "No warning lights visible",
+      "Speedometer not working",
+      "U0155 code in other modules"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check cluster power", "instruction": "Verify the instrument cluster fuse and check for power at the cluster connector behind the dashboard.", "tools": ["Fuse puller", "Multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect cluster connector", "instruction": "Remove the instrument cluster (usually held by a few screws) and inspect the electrical connector for corrosion or bent pins.", "tools": ["Screwdriver", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test CAN bus at cluster", "instruction": "Check CAN bus voltage at the cluster connector. Verify the cluster has proper CAN-H and CAN-L signal.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace cluster", "instruction": "If the cluster has failed, replace it. The replacement may need to be programmed with the correct mileage and vehicle options.", "tools": ["Replacement instrument cluster", "Programming tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "relatedCodes": ["U0140", "U0100", "U0164"],
+    "faq": [
+      {"q": "Can I drive without a working instrument cluster?", "a": "Technically yes, but it is unsafe. Without a speedometer, fuel gauge, and warning lights, you cannot monitor critical vehicle information. Use a phone-based OBD app as a temporary alternative."},
+      {"q": "Will a replacement cluster show the correct mileage?", "a": "A replacement cluster must be programmed with the vehicle's correct mileage to comply with odometer tampering laws. Dealers and specialized shops can do this."},
+      {"q": "Can a stepper motor failure look like a communication loss?", "a": "No. Stepper motor failures cause individual gauge needles to not work but the cluster still communicates on the CAN bus. A communication loss means the entire cluster is offline."}
+    ]
+  },
+  {
+    "code": "U0164",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Lost Communication with HVAC Control Module",
+    "shortDescription": "A module has lost communication with the heating, ventilation, and air conditioning (HVAC) control module.",
+    "fullDescription": "Code U0164 indicates lost communication with the HVAC control module. This module controls the climate control system including heating, air conditioning, blower speed, and air distribution. Loss of communication can result in the HVAC system defaulting to a fail-safe mode or becoming completely inoperative.",
+    "severity": "low",
+    "safetyImpact": "Climate control is unavailable. Defogging capability may be lost, which is a safety concern in cold or wet conditions.",
+    "causes": [
+      {"cause": "HVAC module connector fault", "likelihood": "high"},
+      {"cause": "CAN bus wiring issue in dashboard area", "likelihood": "medium"},
+      {"cause": "Failed HVAC control module", "likelihood": "medium"},
+      {"cause": "Module LIN bus fault (if connected via LIN)", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Climate control panel blank or unresponsive",
+      "No heating or air conditioning",
+      "Blower not operating",
+      "Cannot defog windshield",
+      "HVAC stuck in one mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for codes", "instruction": "Read all codes. Check if the HVAC module responds to the scanner. Note if other modules also have communication faults.", "tools": ["Full-system OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check HVAC module fuse", "instruction": "Locate and check the HVAC control module fuse. Also verify the module has power by checking voltage at its connector.", "tools": ["Fuse puller", "Multimeter"], "difficulty": "easy"},
+      {"step": 3, "title": "Inspect module connector", "instruction": "Access the HVAC module behind the center dashboard panel. Check its connector for damage, corrosion, or loose pins.", "tools": ["Trim tools", "Flashlight"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace module", "instruction": "Replace the HVAC control module if it has failed. Some modules are integrated with the control panel and may require dashboard work.", "tools": ["Replacement HVAC module", "Trim tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "relatedCodes": ["U0140", "U0155", "B1200"],
+    "faq": [
+      {"q": "Why is the defroster not working?", "a": "The defroster is controlled by the HVAC module. If the module has lost communication, it cannot activate the defroster, A/C compressor, or direct airflow to the windshield."},
+      {"q": "Is the HVAC module part of the control panel?", "a": "On some vehicles, the HVAC module is integrated into the climate control panel (the buttons/display). On others, it is a separate module behind the dashboard."},
+      {"q": "Can I manually turn on the blower without the module?", "a": "Not through normal controls. Some emergency bypasses exist but they provide full-speed blower only without temperature or mode control. This is not a recommended long-term solution."}
+    ]
+  }
+]

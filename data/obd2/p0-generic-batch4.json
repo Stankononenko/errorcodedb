@@ -1,0 +1,2035 @@
+[
+  {
+    "code": "P0601",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Internal Control Module Memory Check Sum Error",
+    "shortDescription": "The PCM/ECM has detected an internal memory checksum error, indicating corrupted data in the control module's memory.",
+    "fullDescription": "Code P0601 is set when the Powertrain Control Module (PCM) or Engine Control Module (ECM) performs a self-test and discovers that its internal memory checksum does not match the expected value. This indicates that the data stored in the module's ROM or EEPROM has become corrupted. The checksum is a verification method used to ensure data integrity. When the stored checksum does not match the calculated checksum, the module knows its programming or calibration data has been compromised. This can lead to erratic engine behavior, poor performance, or a no-start condition.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may exhibit unpredictable behavior including stalling, misfires, or failure to start. Driving with a compromised control module can be unsafe.",
+    "causes": [
+      { "cause": "Failed or failing PCM/ECM (internal hardware failure)", "likelihood": "high" },
+      { "cause": "Corrupted PCM software or failed reprogramming attempt", "likelihood": "high" },
+      { "cause": "Low battery voltage or power supply issues to the PCM", "likelihood": "medium" },
+      { "cause": "Water intrusion or physical damage to the PCM", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine may not start or stalls intermittently",
+      "Erratic engine performance and misfires",
+      "Multiple unrelated DTCs stored simultaneously",
+      "Poor fuel economy"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Verify the code", "instruction": "Use an OBD-II scanner to confirm P0601 is present. Clear the code and see if it returns. Check for any Technical Service Bulletins (TSBs) for your specific vehicle.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Check PCM power and ground", "instruction": "Inspect the PCM power supply and ground circuits. Verify battery voltage is at least 12.4V with engine off. Check for corroded or loose connections at the PCM harness.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect PCM for physical damage", "instruction": "Remove the PCM and inspect for signs of water damage, corrosion, burnt components, or physical damage to the circuit board.", "tools": ["Socket set", "Torx set"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Reprogram or replace PCM", "instruction": "Attempt to reflash the PCM with the latest software calibration using a factory scan tool. If reprogramming fails or the code returns, the PCM must be replaced and programmed to the vehicle.", "tools": ["Factory scan tool", "J2534 pass-through device"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 0, "max": 100 }, "mechanic": { "min": 500, "max": 1500 } },
+    "diyDifficulty": "professional",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0602", "P0603", "P0604", "P0605", "P0606"],
+    "faq": [
+      { "q": "Can I drive with code P0601?", "a": "It is not recommended. A corrupted PCM can cause unpredictable engine behavior, stalling, or a no-start condition. Have the vehicle diagnosed as soon as possible." },
+      { "q": "Can a low battery cause P0601?", "a": "Yes, a weak battery or poor electrical connections can cause voltage fluctuations that corrupt the PCM memory, triggering this code." },
+      { "q": "Does P0601 always mean the PCM needs replacement?", "a": "Not always. Sometimes a reflash or software update can resolve the issue. However, if the internal hardware has failed, replacement is necessary." }
+    ]
+  },
+  {
+    "code": "P0602",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Control Module Programming Error",
+    "shortDescription": "The PCM has detected a programming error, meaning the software or calibration data is not correctly loaded or is incompatible.",
+    "fullDescription": "Code P0602 is triggered when the PCM determines that its internal programming is incorrect, incomplete, or incompatible with the vehicle. This often occurs after a failed reprogramming attempt, when the wrong calibration file is loaded, or when an aftermarket tune causes a conflict. The PCM relies on precise calibration data to manage fuel delivery, ignition timing, and emissions. Without correct programming, the engine cannot operate properly.",
+    "severity": "high",
+    "safetyImpact": "Engine may run poorly or not start at all. Incorrect calibration data can cause dangerous operating conditions including overheating or detonation.",
+    "causes": [
+      { "cause": "Failed or interrupted PCM reprogramming/reflash", "likelihood": "high" },
+      { "cause": "Wrong calibration file loaded during programming", "likelihood": "high" },
+      { "cause": "Aftermarket tune or software modification", "likelihood": "medium" },
+      { "cause": "PCM internal hardware failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine may not start",
+      "Reduced engine performance",
+      "Transmission shifting issues",
+      "Multiple DTCs stored"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Verify and document codes", "instruction": "Scan the vehicle and record all stored DTCs. Research TSBs for your vehicle that may address programming updates.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Check for recent service work", "instruction": "Determine if the PCM was recently reprogrammed or if any aftermarket tuning was performed. Revert to factory calibration if an aftermarket tune was applied.", "tools": ["Service records"], "difficulty": "easy" },
+      { "step": 3, "title": "Reprogram the PCM", "instruction": "Using a factory-level scan tool or J2534 pass-through device, reprogram the PCM with the correct and latest calibration file from the manufacturer.", "tools": ["Factory scan tool", "J2534 pass-through device", "Laptop with subscription"], "difficulty": "professional" },
+      { "step": 4, "title": "Replace PCM if needed", "instruction": "If reprogramming fails repeatedly, the PCM may have a hardware fault and must be replaced. The new module must be programmed to the vehicle and the immobilizer must be relearned.", "tools": ["Factory scan tool", "Socket set"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 150 }, "mechanic": { "min": 300, "max": 1200 } },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0601", "P0603", "P0604", "P0605"],
+    "faq": [
+      { "q": "What causes a PCM programming error?", "a": "Most commonly, an interrupted reflash, wrong calibration file, power loss during programming, or an incompatible aftermarket tune." },
+      { "q": "Can I fix P0602 myself?", "a": "PCM reprogramming typically requires a factory-level scan tool and the correct calibration files. This is generally best left to a dealer or professional technician." },
+      { "q": "Will clearing the code fix P0602?", "a": "No. Simply clearing the code does not fix the underlying programming issue. The PCM must be properly reprogrammed with the correct software." }
+    ]
+  },
+  {
+    "code": "P0603",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Internal Control Module KAM Error",
+    "shortDescription": "The PCM has detected an error in its Keep Alive Memory (KAM), which stores adaptive learning values and long-term fuel trim data.",
+    "fullDescription": "Code P0603 indicates the Powertrain Control Module has detected a problem with its Keep Alive Memory. KAM is a section of the PCM's memory that retains learned values even when the ignition is off, including long-term fuel trims, idle speed adjustments, and transmission shift adaptation. When this memory is lost or corrupted, the PCM must relearn these values, which can cause temporary driveability issues. Frequent loss of KAM data may indicate a deeper electrical problem.",
+    "severity": "medium",
+    "safetyImpact": "Generally safe to drive short-term, but the vehicle may exhibit rough idle, poor shifting, and reduced fuel economy until adaptive values are relearned.",
+    "causes": [
+      { "cause": "Battery disconnected or replaced recently", "likelihood": "high" },
+      { "cause": "Weak or dead battery", "likelihood": "high" },
+      { "cause": "Corroded or loose battery terminals", "likelihood": "medium" },
+      { "cause": "Faulty PCM power supply circuit or blown fuse", "likelihood": "medium" },
+      { "cause": "Failed PCM", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Rough idle after battery service",
+      "Poor fuel economy temporarily",
+      "Harsh or erratic transmission shifting",
+      "Adaptive values reset (relearning needed)"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check battery and connections", "instruction": "Inspect the battery for proper charge (12.4V+ with engine off, 13.5-14.5V running). Clean battery terminals and ensure tight connections.", "tools": ["Multimeter", "Battery terminal cleaner"], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect PCM fuses and power supply", "instruction": "Check fuses related to PCM power. Verify constant power supply to the PCM using a wiring diagram for your vehicle.", "tools": ["Multimeter", "Fuse puller", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Clear code and drive", "instruction": "Clear the DTC and drive the vehicle through a normal drive cycle. If the code does not return, the issue was likely a one-time battery event. Allow the PCM to relearn adaptive values.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 4, "title": "Diagnose PCM if code returns", "instruction": "If the code keeps returning, test the PCM constant power circuit with a multimeter. If power is stable, the PCM may need replacement.", "tools": ["Multimeter", "Factory scan tool"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 0, "max": 50 }, "mechanic": { "min": 100, "max": 1200 } },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0601", "P0604", "P0605", "P0606"],
+    "faq": [
+      { "q": "Will P0603 clear on its own?", "a": "It often does after a battery replacement or reconnection. Clear the code and drive. If it does not return, no further action is needed." },
+      { "q": "Is P0603 serious?", "a": "By itself, not usually. It often results from routine battery service. However, if it recurs, it may indicate a wiring or PCM issue." },
+      { "q": "Why did I get P0603 after replacing my battery?", "a": "Disconnecting the battery erases the PCM's Keep Alive Memory. The PCM detects this loss and sets the code. It will relearn values as you drive." }
+    ]
+  },
+  {
+    "code": "P0604",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Internal Control Module RAM Error",
+    "shortDescription": "The PCM has detected a Random Access Memory (RAM) error during its internal self-test.",
+    "fullDescription": "Code P0604 is set when the PCM detects a fault within its internal RAM during a self-diagnostic test. RAM is the working memory the PCM uses in real-time to process sensor inputs, perform calculations, and control engine and transmission outputs. A RAM failure means the PCM cannot reliably process data, which can lead to severe driveability problems or complete engine shutdown. Unlike KAM errors, a RAM fault is typically indicative of a hardware failure within the PCM itself.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may stall, misfire, or fail to start. Unreliable PCM calculations can cause dangerous driving conditions.",
+    "causes": [
+      { "cause": "Internal PCM hardware failure", "likelihood": "high" },
+      { "cause": "Voltage spikes or electrical surges damaging PCM circuits", "likelihood": "medium" },
+      { "cause": "Water intrusion or corrosion inside the PCM", "likelihood": "medium" },
+      { "cause": "Extreme heat exposure causing PCM component degradation", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine stalling or no-start condition",
+      "Erratic or unpredictable engine behavior",
+      "Multiple random DTCs stored",
+      "Loss of communication with PCM during scan"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Confirm the code and check for TSBs", "instruction": "Scan for codes and confirm P0604. Check for manufacturer TSBs that may address known PCM issues for your vehicle.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Verify PCM power and ground", "instruction": "Test PCM power and ground circuits to ensure stable voltage. Check for voltage drops in ground circuits. Repair any wiring issues found.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect PCM for damage", "instruction": "Remove and inspect the PCM for signs of water, corrosion, heat damage, or burnt components on the circuit board.", "tools": ["Socket set", "Torx set"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace the PCM", "instruction": "P0604 almost always requires PCM replacement. The new PCM must be programmed with the correct calibration and the immobilizer/security system must be relearned.", "tools": ["Factory scan tool", "Socket set", "J2534 device"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 200, "max": 600 }, "mechanic": { "min": 600, "max": 1500 } },
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0601", "P0603", "P0605", "P0606"],
+    "faq": [
+      { "q": "Can P0604 be fixed without replacing the PCM?", "a": "In rare cases, a reflash may help, but P0604 typically indicates a hardware failure in the PCM's RAM and requires replacement." },
+      { "q": "How much does it cost to replace a PCM?", "a": "A new or remanufactured PCM typically costs $300-$1000 for the part, plus $100-$500 for programming and installation." },
+      { "q": "Can a bad ground cause P0604?", "a": "It is unlikely but not impossible. A bad ground can cause voltage instability that may trigger false RAM errors. Always verify power and ground first." }
+    ]
+  },
+  {
+    "code": "P0605",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Internal Control Module ROM Error",
+    "shortDescription": "The PCM has detected a Read Only Memory (ROM) error, indicating the permanently stored programming data is corrupted.",
+    "fullDescription": "Code P0605 is set when the PCM detects an error in its Read Only Memory during self-testing. ROM contains the core firmware and calibration data that the PCM uses to operate. Unlike RAM, ROM data is not supposed to change during normal operation. A ROM error indicates that the foundational programming of the PCM has become corrupted or is no longer readable, which prevents the module from functioning correctly. This is a critical fault that typically requires PCM replacement.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start or may exhibit severe performance issues. The PCM cannot reliably control engine functions with corrupted ROM.",
+    "causes": [
+      { "cause": "PCM internal hardware failure", "likelihood": "high" },
+      { "cause": "Failed software update or reflash attempt", "likelihood": "medium" },
+      { "cause": "Electrical surge or spike damage", "likelihood": "medium" },
+      { "cause": "Age-related degradation of memory chips", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine will not start or cranks but fails to run",
+      "Severe engine performance issues",
+      "Multiple unrelated fault codes present",
+      "PCM may not communicate with scan tool"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Confirm code and check communications", "instruction": "Attempt to communicate with the PCM using an OBD-II scanner. Record all stored codes. Check for manufacturer TSBs.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Verify electrical supply to PCM", "instruction": "Test the battery and alternator output. Verify PCM power supply and ground circuits for proper voltage and continuity.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Attempt PCM reflash", "instruction": "Try to reprogram the PCM with the latest manufacturer software. If the module will not accept programming, it has failed.", "tools": ["Factory scan tool", "J2534 device"], "difficulty": "professional" },
+      { "step": 4, "title": "Replace the PCM", "instruction": "Install a new or remanufactured PCM. Program it with the correct calibration for the vehicle. Perform security/immobilizer relearn procedure.", "tools": ["Factory scan tool", "Socket set"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 200, "max": 600 }, "mechanic": { "min": 600, "max": 1500 } },
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0601", "P0602", "P0604", "P0606"],
+    "faq": [
+      { "q": "What is ROM in the PCM?", "a": "ROM (Read Only Memory) stores the permanent firmware and calibration data the PCM needs to operate the engine and transmission. It does not normally change during operation." },
+      { "q": "Can I continue driving with P0605?", "a": "Generally no. A ROM error usually causes severe driveability issues or a no-start condition. The vehicle should be towed to a shop." },
+      { "q": "Is P0605 always a PCM failure?", "a": "In most cases, yes. While a reflash may occasionally resolve the issue, ROM errors typically indicate irreversible hardware damage." }
+    ]
+  },
+  {
+    "code": "P0606",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "ECM/PCM Processor Fault",
+    "shortDescription": "The PCM's internal processor has failed a self-test, indicating the main processing unit is not functioning correctly.",
+    "fullDescription": "Code P0606 is set when the ECM or PCM internal processor fails its self-diagnostic test. The processor is the brain of the control module, responsible for executing all calculations related to fuel injection, ignition timing, emissions control, and transmission operation. When the processor itself is faulty, the entire control module is compromised. This code may be intermittent if the processor is degrading or may be persistent if it has fully failed.",
+    "severity": "high",
+    "safetyImpact": "Critical safety concern. A faulty processor can cause unpredictable engine behavior including stalling at highway speeds, loss of power steering assist, and failure to start.",
+    "causes": [
+      { "cause": "Internal PCM processor failure", "likelihood": "high" },
+      { "cause": "Overheating of the PCM due to location or cooling issues", "likelihood": "medium" },
+      { "cause": "Voltage irregularities damaging processor circuits", "likelihood": "medium" },
+      { "cause": "Manufacturing defect in the PCM", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine stalling or misfiring",
+      "No-start condition",
+      "Erratic idle speed",
+      "Vehicle enters limp mode",
+      "Multiple unrelated codes stored"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Scan and document all codes", "instruction": "Record all DTCs and freeze frame data. Note if the code is intermittent or persistent. Check for TSBs and recalls.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect PCM wiring and connectors", "instruction": "Check all PCM connectors for bent pins, corrosion, or loose terminals. Inspect wiring harness for chafing or damage.", "tools": ["Wiring diagram", "Inspection mirror"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test PCM power and grounds", "instruction": "Verify stable voltage at all PCM power pins. Check all ground circuits for excessive resistance using a voltage drop test.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace the PCM", "instruction": "If wiring checks out, replace the PCM. Ensure the replacement is correctly programmed with the latest calibration. Perform all required relearn procedures.", "tools": ["Factory scan tool", "Socket set", "J2534 device"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 200, "max": 700 }, "mechanic": { "min": 600, "max": 1600 } },
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0601", "P0604", "P0605", "P0607"],
+    "faq": [
+      { "q": "Is P0606 a serious code?", "a": "Yes. It indicates the PCM's main processor is failing, which affects all engine and transmission control functions." },
+      { "q": "Can a loose connection cause P0606?", "a": "Rarely, but poor connections to the PCM can cause voltage instability that may trigger processor faults. Always check wiring before condemning the PCM." },
+      { "q": "How common is P0606?", "a": "It is relatively uncommon but can occur in vehicles with high mileage or those exposed to harsh environmental conditions." }
+    ]
+  },
+  {
+    "code": "P0607",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Control Module Performance",
+    "shortDescription": "The PCM has detected that its overall performance does not meet expected parameters during internal diagnostics.",
+    "fullDescription": "Code P0607 is a general code indicating the PCM has failed an internal performance test. This differs from specific memory or processor fault codes in that it represents an overall performance degradation rather than a specific component failure. The PCM continuously monitors its own performance and sets this code when it determines it cannot reliably perform its required functions. This may be caused by internal component degradation, power supply issues, or environmental factors affecting the module.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may operate unreliably. Engine stalling, misfires, and transmission issues are possible. Should be diagnosed promptly.",
+    "causes": [
+      { "cause": "Degraded PCM internal components", "likelihood": "high" },
+      { "cause": "Unstable power supply to the PCM", "likelihood": "medium" },
+      { "cause": "PCM overheating due to environmental conditions", "likelihood": "medium" },
+      { "cause": "Software glitch requiring reflash", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Intermittent engine performance issues",
+      "Occasional stalling or rough idle",
+      "Transmission shift quality issues",
+      "Intermittent no-start condition"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Scan and check for TSBs", "instruction": "Read all DTCs and freeze frame data. Check manufacturer TSBs as some vehicles have known software updates that address P0607.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test PCM power circuits", "instruction": "Verify battery condition and charging system. Test all PCM power and ground circuits for proper voltage and minimal resistance.", "tools": ["Multimeter", "Battery tester"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Attempt software update", "instruction": "Reprogram the PCM with the latest available software from the manufacturer. Many P0607 cases are resolved by software updates.", "tools": ["Factory scan tool", "J2534 device"], "difficulty": "professional" },
+      { "step": 4, "title": "Replace PCM if necessary", "instruction": "If a software update does not resolve the issue, replace the PCM with a new or remanufactured unit and program it accordingly.", "tools": ["Factory scan tool", "Socket set"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 300, "max": 1500 } },
+    "diyDifficulty": "professional",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0601", "P0605", "P0606"],
+    "faq": [
+      { "q": "Can a software update fix P0607?", "a": "Yes, in many cases. Manufacturers frequently release updated calibrations that resolve PCM performance monitoring issues." },
+      { "q": "Is P0607 the same as a bad PCM?", "a": "Not necessarily. While it can indicate PCM hardware failure, it may also be caused by power supply issues or outdated software." },
+      { "q": "Should I drive with P0607?", "a": "Limit driving. The vehicle may stall or behave unpredictably. Have it diagnosed soon." }
+    ]
+  },
+  {
+    "code": "P0615",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Starter Relay Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the starter relay control circuit.",
+    "fullDescription": "Code P0615 is set when the PCM detects an abnormal condition in the starter motor relay circuit. In modern vehicles, the PCM controls or monitors the starter relay to manage engine cranking. The PCM expects specific voltage levels in this circuit during cranking and non-cranking conditions. If the voltage reading does not match the expected value, this code is stored. The fault could be in the relay itself, the wiring between the PCM and the relay, or the PCM's driver circuit.",
+    "severity": "medium",
+    "safetyImpact": "Vehicle may fail to start or may have difficulty starting. In rare cases, the starter may engage unexpectedly.",
+    "causes": [
+      { "cause": "Faulty starter relay", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the starter relay circuit", "likelihood": "high" },
+      { "cause": "Corroded or loose connections at the relay or PCM", "likelihood": "medium" },
+      { "cause": "Failed ignition switch", "likelihood": "medium" },
+      { "cause": "PCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine cranks slowly or does not crank",
+      "No-start condition",
+      "Clicking noise when turning the key",
+      "Intermittent starting problems"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check the starter relay", "instruction": "Locate the starter relay in the fuse/relay box. Swap it with an identical relay to test. Listen for clicking when turning the key.", "tools": ["Fuse/relay diagram"], "difficulty": "easy" },
+      { "step": 2, "title": "Test the relay circuit", "instruction": "Using a multimeter, verify power supply to the relay coil and control signal from the PCM. Check for proper ground at the relay.", "tools": ["Multimeter", "Wiring diagram", "Test light"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring", "instruction": "Inspect the wiring between the PCM and the starter relay for damage, chafing, corrosion, or shorts. Repair as needed.", "tools": ["Multimeter", "Wiring diagram", "Electrical tape"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace relay or repair wiring", "instruction": "Replace the faulty starter relay or repair damaged wiring. Clear the code and test for proper starting.", "tools": ["Replacement relay", "Wire crimpers", "Soldering iron"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 50 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0616", "P0617"],
+    "faq": [
+      { "q": "Can a bad starter cause P0615?", "a": "Not directly. P0615 refers to the relay circuit, not the starter motor itself. However, a shorted starter could damage the relay circuit." },
+      { "q": "Where is the starter relay located?", "a": "Typically in the underhood fuse/relay box. Consult your owner's manual or a service manual for the exact location." },
+      { "q": "Is P0615 an emergency?", "a": "Not usually an emergency, but it can cause no-start conditions. Address it promptly to avoid being stranded." }
+    ]
+  },
+  {
+    "code": "P0616",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Starter Relay Circuit Low",
+    "shortDescription": "The PCM has detected a low voltage condition in the starter relay control circuit.",
+    "fullDescription": "Code P0616 indicates the PCM has measured lower than expected voltage in the starter relay circuit. This typically means there is excessive resistance in the circuit, a poor ground connection, or the relay control wire is shorted to ground. The low voltage prevents the relay from properly energizing, which can lead to starting difficulties or failure.",
+    "severity": "medium",
+    "safetyImpact": "Vehicle may not start reliably. Typically does not present an immediate driving hazard if the engine is already running.",
+    "causes": [
+      { "cause": "Shorted wiring in the starter relay circuit (short to ground)", "likelihood": "high" },
+      { "cause": "Faulty starter relay with internal short", "likelihood": "high" },
+      { "cause": "Corroded connections causing high resistance", "likelihood": "medium" },
+      { "cause": "PCM output driver failure (pulling low)", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Difficulty starting the engine",
+      "No crank condition",
+      "Intermittent starting failures"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test the starter relay", "instruction": "Remove the starter relay and test it with a multimeter for coil resistance and contact continuity. Replace if out of specification.", "tools": ["Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Check for short to ground", "instruction": "Disconnect the relay and PCM connector. Test the control wire for continuity to ground. It should be open (no continuity) with both ends disconnected.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect and repair wiring", "instruction": "Trace the wiring harness between the PCM and relay. Look for damaged insulation, pinched wires, or areas where the wire may be contacting metal. Repair as needed.", "tools": ["Multimeter", "Wire repair supplies", "Heat shrink tubing"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Test PCM output", "instruction": "If wiring is good and relay is new, test the PCM control output with a test light or oscilloscope to verify proper signal.", "tools": ["Test light", "Oscilloscope", "Factory scan tool"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0615", "P0617"],
+    "faq": [
+      { "q": "What does 'circuit low' mean for P0616?", "a": "It means the PCM is reading lower voltage than expected in the starter relay control circuit, often indicating a short to ground or excessive resistance." },
+      { "q": "Can I just replace the relay?", "a": "Start with the relay as it is the most common and cheapest fix. If the code returns, further circuit diagnosis is needed." },
+      { "q": "Will P0616 leave me stranded?", "a": "Possibly. If the starter relay cannot energize, the engine will not crank. Have the issue repaired promptly." }
+    ]
+  },
+  {
+    "code": "P0617",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Starter Relay Circuit High",
+    "shortDescription": "The PCM has detected a high voltage condition in the starter relay control circuit.",
+    "fullDescription": "Code P0617 is set when the PCM detects higher than expected voltage in the starter relay control circuit. This could mean the control wire is shorted to battery voltage, the relay is stuck engaged, or there is a wiring issue causing unwanted voltage on the circuit. A high voltage condition can cause the starter to engage unexpectedly or remain engaged, which can damage the starter motor and flywheel.",
+    "severity": "high",
+    "safetyImpact": "The starter may engage unexpectedly or remain engaged after the engine starts, which can damage the starter, flywheel, and be a safety hazard.",
+    "causes": [
+      { "cause": "Wiring shorted to battery voltage in the relay circuit", "likelihood": "high" },
+      { "cause": "Starter relay stuck in the engaged position", "likelihood": "high" },
+      { "cause": "Faulty ignition switch holding the start signal", "likelihood": "medium" },
+      { "cause": "PCM control circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Starter remains engaged after engine starts (grinding noise)",
+      "Starter engages unexpectedly",
+      "Burning smell from starter area",
+      "Rapid starter motor wear"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Disconnect the starter relay immediately", "instruction": "Remove the starter relay from the fuse box to prevent starter damage. Test the relay for stuck contacts.", "tools": ["Fuse/relay puller", "Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Test for short to power", "instruction": "With the relay removed, test the control wire at the relay socket for unexpected voltage. There should be no voltage with the key in the off position.", "tools": ["Multimeter", "Test light"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect ignition switch and wiring", "instruction": "Check the ignition switch for proper operation. Inspect all wiring in the starter relay circuit for damage or shorts to power sources.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair and verify", "instruction": "Replace the faulty relay, repair any shorted wiring, or replace the ignition switch as needed. Install the relay and verify proper starter operation.", "tools": ["Replacement relay", "Wire repair supplies", "Socket set"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 100 }, "mechanic": { "min": 100, "max": 500 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0615", "P0616"],
+    "faq": [
+      { "q": "Can a stuck starter relay damage my engine?", "a": "Yes. A relay stuck in the on position will keep the starter engaged, which can damage the starter motor, flywheel ring gear, and associated wiring." },
+      { "q": "Why is my starter grinding after the engine starts?", "a": "This likely means the starter relay is stuck or the control circuit is holding the starter engaged. Remove the relay immediately and diagnose." },
+      { "q": "Is P0617 urgent?", "a": "Yes. An engaged starter on a running engine can cause significant damage. Address this issue immediately." }
+    ]
+  },
+  {
+    "code": "P0620",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Generator Control Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the generator (alternator) control circuit.",
+    "fullDescription": "Code P0620 is set when the PCM detects an issue with the circuit that controls the generator (alternator) output. Modern vehicles use the PCM to regulate alternator charging output based on electrical load, battery state of charge, and operating conditions. The PCM communicates with the alternator's voltage regulator through a control circuit. When this circuit malfunctions, the alternator may overcharge, undercharge, or not charge at all.",
+    "severity": "medium",
+    "safetyImpact": "The battery may discharge while driving, leading to eventual stalling. Overcharging can damage electrical components and the battery.",
+    "causes": [
+      { "cause": "Faulty alternator or internal voltage regulator", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the generator control circuit", "likelihood": "high" },
+      { "cause": "Poor connection at the alternator or PCM connector", "likelihood": "medium" },
+      { "cause": "PCM control circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light and/or battery warning light illuminated",
+      "Battery not charging properly",
+      "Dim or flickering headlights",
+      "Electrical accessories malfunctioning",
+      "Vehicle stalls due to dead battery"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test charging system", "instruction": "Check battery voltage with engine off (should be 12.4V+) and running (should be 13.5-14.5V). If charging voltage is out of range, proceed with diagnosis.", "tools": ["Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect alternator connections", "instruction": "Check all wiring connections at the alternator for corrosion, looseness, or damage. Inspect the control signal wire from the PCM.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test the control circuit", "instruction": "Using a wiring diagram, test the control signal wire between the PCM and alternator for continuity and proper resistance. Check for shorts.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace alternator if needed", "instruction": "If the control circuit wiring is good, the alternator's internal voltage regulator has likely failed. Replace the alternator, clear codes, and verify proper charging.", "tools": ["Socket set", "Wrench set", "Serpentine belt tool"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 150, "max": 400 }, "mechanic": { "min": 300, "max": 800 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0625", "P0627", "P0628"],
+    "faq": [
+      { "q": "Can I drive with P0620?", "a": "For short distances, but the battery may drain. If the battery light is on, limit driving to essential trips and have the system diagnosed promptly." },
+      { "q": "What controls the alternator output?", "a": "In modern vehicles, the PCM sends a duty cycle signal to the alternator's voltage regulator to control charging output based on demand." },
+      { "q": "Is P0620 always the alternator?", "a": "Not always. The wiring between the PCM and alternator can also cause this code. Test the circuit before replacing parts." }
+    ]
+  },
+  {
+    "code": "P0625",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Generator Field Terminal Circuit Low",
+    "shortDescription": "The PCM has detected a low voltage condition on the generator (alternator) field terminal circuit.",
+    "fullDescription": "Code P0625 is set when the PCM detects lower than expected voltage on the alternator field terminal circuit. The field terminal is used by the PCM to control the strength of the alternator's magnetic field, which directly controls charging output. A low voltage reading suggests a short to ground, excessive resistance, or a failed alternator field winding.",
+    "severity": "medium",
+    "safetyImpact": "The alternator may not charge properly, leading to battery drain and potential stalling. Electrical systems may operate intermittently.",
+    "causes": [
+      { "cause": "Faulty alternator field winding or regulator", "likelihood": "high" },
+      { "cause": "Short to ground in the field terminal wiring", "likelihood": "high" },
+      { "cause": "Corroded or damaged connector at the alternator", "likelihood": "medium" },
+      { "cause": "PCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light and battery light illuminated",
+      "Low battery voltage while driving",
+      "Dim headlights and weak electrical accessories",
+      "Battery going dead overnight or during short trips"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check charging voltage", "instruction": "Measure voltage at the battery with the engine running. Normal is 13.5-14.5V. Low voltage confirms a charging issue.", "tools": ["Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect alternator connector", "instruction": "Check the alternator connector for corrosion, bent pins, or damage. Clean and repair as needed.", "tools": ["Electrical contact cleaner", "Wire brush"], "difficulty": "easy" },
+      { "step": 3, "title": "Test field terminal circuit", "instruction": "Disconnect the alternator and test the field terminal wire for shorts to ground. Check resistance of the alternator field winding.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace alternator or repair wiring", "instruction": "Replace the alternator if the field winding is faulty. Repair any shorted wiring found in the circuit.", "tools": ["Socket set", "Wrench set", "Serpentine belt tool"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 150, "max": 400 }, "mechanic": { "min": 300, "max": 700 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0620", "P0627", "P0628"],
+    "faq": [
+      { "q": "What is the generator field terminal?", "a": "It is the circuit through which the PCM controls the alternator's electromagnetic field strength, regulating how much the alternator charges." },
+      { "q": "Can a bad battery cause P0625?", "a": "A bad battery will not directly cause P0625, but it can mask the symptoms. Always test the battery separately." },
+      { "q": "How do I test the alternator field winding?", "a": "With the alternator removed, measure resistance across the field winding terminals with a multimeter. Compare to the manufacturer's specification." }
+    ]
+  },
+  {
+    "code": "P0627",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Fuel Pump 'A' Control Circuit Open",
+    "shortDescription": "The PCM has detected an open circuit in the fuel pump relay or control circuit.",
+    "fullDescription": "Code P0627 is set when the PCM detects an open circuit in the fuel pump control circuit. The PCM energizes the fuel pump relay to power the fuel pump when the engine is running or during cranking. An open circuit means the relay is not receiving the control signal, which will prevent the fuel pump from operating. Without fuel pump operation, the engine cannot run.",
+    "severity": "high",
+    "safetyImpact": "Vehicle will likely not start or will stall while driving due to loss of fuel delivery. Being stranded in traffic is a safety concern.",
+    "causes": [
+      { "cause": "Faulty fuel pump relay", "likelihood": "high" },
+      { "cause": "Open wiring between PCM and fuel pump relay", "likelihood": "high" },
+      { "cause": "Blown fuel pump fuse", "likelihood": "medium" },
+      { "cause": "Corroded or disconnected connector", "likelihood": "medium" },
+      { "cause": "PCM fuel pump driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine cranks but does not start",
+      "Engine stalls and will not restart",
+      "No fuel pump prime sound when key is turned to ON",
+      "Loss of fuel pressure"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check fuel pump fuse and relay", "instruction": "Locate the fuel pump fuse and relay in the fuse box. Check the fuse for continuity. Swap the relay with a known good identical relay to test.", "tools": ["Fuse/relay diagram", "Test light"], "difficulty": "easy" },
+      { "step": 2, "title": "Test for relay control signal", "instruction": "Using a test light or multimeter, check for a control signal at the relay socket when the key is turned to ON. No signal indicates an open circuit upstream.", "tools": ["Multimeter", "Test light", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring for open circuit", "instruction": "Trace the control wire from the relay socket to the PCM. Check for breaks, corroded connectors, or disconnected terminals. Test continuity end-to-end.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair wiring or replace relay", "instruction": "Repair any broken wiring found. Replace the fuel pump relay if faulty. Clear codes and verify the fuel pump operates when the key is turned on.", "tools": ["Wire repair supplies", "Replacement relay", "Soldering iron"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0628", "P0629", "P0230"],
+    "faq": [
+      { "q": "Can I hear if my fuel pump is working?", "a": "Yes. Turn the key to ON (not start) and listen near the fuel tank. You should hear a brief humming sound as the pump primes. No sound suggests the pump is not receiving power." },
+      { "q": "Is the fuel pump relay the same as the fuel pump?", "a": "No. The relay is an electrical switch that supplies power to the fuel pump. The pump is in or near the fuel tank." },
+      { "q": "What does 'open circuit' mean?", "a": "An open circuit means the electrical path is broken somewhere, like a cut wire or bad connection, preventing current from flowing." }
+    ]
+  },
+  {
+    "code": "P0628",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Fuel Pump 'A' Control Circuit Low",
+    "shortDescription": "The PCM has detected low voltage in the fuel pump control circuit, indicating a short to ground or excessive resistance.",
+    "fullDescription": "Code P0628 is set when the PCM detects lower than expected voltage in the fuel pump relay control circuit. This typically indicates the control wire is shorted to ground or there is excessive resistance in the circuit. The fuel pump may still operate intermittently or at reduced capacity, but reliable fuel delivery is compromised.",
+    "severity": "high",
+    "safetyImpact": "Fuel pump may operate intermittently causing stalling. Loss of fuel delivery while driving is a safety concern.",
+    "causes": [
+      { "cause": "Wiring shorted to ground in the fuel pump relay circuit", "likelihood": "high" },
+      { "cause": "Faulty fuel pump relay with internal short", "likelihood": "high" },
+      { "cause": "Corroded wiring or connectors causing high resistance", "likelihood": "medium" },
+      { "cause": "PCM driver circuit pulling low", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Intermittent starting problems",
+      "Engine stalling during driving",
+      "Fuel pump runs erratically",
+      "Weak fuel pump prime sound"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test fuel pump relay", "instruction": "Remove the relay and test coil resistance and contact operation with a multimeter. Replace if out of specification.", "tools": ["Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Check for short to ground", "instruction": "Disconnect the relay and PCM connector. Test the control wire for continuity to ground. There should be none with both ends disconnected.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Repair shorted wiring", "instruction": "Locate and repair any areas where the wiring insulation is damaged and the wire is contacting ground. Use heat shrink tubing for repairs.", "tools": ["Wire repair supplies", "Heat shrink tubing", "Soldering iron"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Verify repair", "instruction": "Reconnect all components, clear codes, and verify proper fuel pump operation. Monitor the fuel pump circuit voltage with a scan tool.", "tools": ["OBD-II scanner", "Multimeter"], "difficulty": "easy" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0627", "P0629", "P0230"],
+    "faq": [
+      { "q": "What does circuit low mean for P0628?", "a": "It means the PCM is measuring lower voltage than expected on the fuel pump relay control wire, usually due to a short to ground." },
+      { "q": "Can a bad fuel pump cause P0628?", "a": "Not directly. P0628 refers to the relay control circuit, not the fuel pump motor circuit. However, a shorted fuel pump can blow fuses." },
+      { "q": "Is P0628 dangerous?", "a": "It can be if it causes the fuel pump to stop while driving. Have it repaired promptly." }
+    ]
+  },
+  {
+    "code": "P0629",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Fuel Pump 'A' Control Circuit High",
+    "shortDescription": "The PCM has detected high voltage in the fuel pump control circuit, indicating a short to power.",
+    "fullDescription": "Code P0629 is set when the PCM detects higher than expected voltage on the fuel pump relay control circuit. This typically means the control wire is shorted to a power source. This can cause the fuel pump to run continuously even when the engine is off, which is a fire hazard and will drain the battery. The condition must be addressed immediately.",
+    "severity": "high",
+    "safetyImpact": "Fuel pump may run continuously, creating a potential fire hazard. The fuel system may be overpressurized, and the battery will drain.",
+    "causes": [
+      { "cause": "Wiring shorted to battery voltage in the relay control circuit", "likelihood": "high" },
+      { "cause": "Fuel pump relay stuck in the closed position", "likelihood": "high" },
+      { "cause": "Aftermarket wiring modifications causing power feedback", "likelihood": "medium" },
+      { "cause": "PCM output circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Fuel pump runs continuously even with key off",
+      "Battery draining overnight",
+      "Higher than normal fuel pressure",
+      "Fuel odor from overpressurized system"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Remove fuel pump relay", "instruction": "Immediately remove the fuel pump relay to stop continuous pump operation. This prevents fire risk and battery drain.", "tools": ["Fuse/relay puller"], "difficulty": "easy" },
+      { "step": 2, "title": "Test for power on control wire", "instruction": "With the relay removed and key off, test the relay control socket for voltage. There should be no voltage on the control pin with the key off.", "tools": ["Multimeter", "Test light"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Trace short to power", "instruction": "If voltage is present on the control wire with the key off, trace the wire for areas where it may be shorted to a power source. Check for aftermarket wiring.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair and verify", "instruction": "Repair the shorted wiring or replace the stuck relay. Reinstall the relay and verify the fuel pump only runs with the key on and stops with the key off.", "tools": ["Wire repair supplies", "Replacement relay"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0627", "P0628", "P0230"],
+    "faq": [
+      { "q": "Is a continuously running fuel pump dangerous?", "a": "Yes. It can overpressurize the fuel system, create fire risk, and will drain the battery. Remove the fuel pump relay as a temporary fix." },
+      { "q": "Can a stuck relay be the problem?", "a": "Absolutely. A relay with welded contacts will keep the fuel pump powered regardless of the PCM command. Replace it immediately." },
+      { "q": "Why is there voltage on the fuel pump circuit with the key off?", "a": "A wire shorted to a constant power source, a stuck relay, or aftermarket wiring can supply unwanted power to the fuel pump circuit." }
+    ]
+  },
+  {
+    "code": "P0630",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "VIN Not Programmed or Incompatible - ECM/PCM",
+    "shortDescription": "The PCM has detected that no Vehicle Identification Number (VIN) is programmed or the stored VIN does not match the vehicle.",
+    "fullDescription": "Code P0630 is set when the PCM detects that the VIN stored in its memory is missing or does not match the vehicle it is installed in. The VIN is programmed into the PCM during manufacturing or during module replacement. If the VIN is absent or mismatched, the PCM may restrict certain functions including emissions readiness monitors and may prevent the vehicle from passing emissions testing.",
+    "severity": "medium",
+    "safetyImpact": "Vehicle will typically run normally but may not pass emissions testing. Some functions may be restricted.",
+    "causes": [
+      { "cause": "PCM replaced and not properly programmed with the vehicle VIN", "likelihood": "high" },
+      { "cause": "Used PCM installed from another vehicle", "likelihood": "high" },
+      { "cause": "VIN data corrupted in PCM memory", "likelihood": "medium" },
+      { "cause": "Programming error during PCM reflash", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Vehicle fails emissions testing",
+      "Emissions monitors may not complete",
+      "Some dealer-level functions restricted"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Verify the code", "instruction": "Confirm P0630 with an OBD-II scanner. Read the VIN stored in the PCM and compare it to the VIN on the vehicle's doorjamb sticker or dashboard plate.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Check PCM history", "instruction": "Determine if the PCM was recently replaced or reprogrammed. If a used PCM was installed, it likely has the wrong VIN.", "tools": ["Service records"], "difficulty": "easy" },
+      { "step": 3, "title": "Program VIN into PCM", "instruction": "Using a factory scan tool or equivalent, program the correct VIN into the PCM. This typically requires a subscription to the manufacturer's reprogramming service.", "tools": ["Factory scan tool", "J2534 device", "Laptop"], "difficulty": "professional" },
+      { "step": 4, "title": "Clear codes and verify", "instruction": "After programming the VIN, clear all codes and verify the code does not return. Run a drive cycle to complete emissions monitors.", "tools": ["OBD-II scanner"], "difficulty": "easy" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 150 }, "mechanic": { "min": 100, "max": 300 } },
+    "diyDifficulty": "professional",
+    "repairTime": "30 minutes - 1 hour",
+    "relatedCodes": ["P0601", "P0602"],
+    "faq": [
+      { "q": "Can I drive with P0630?", "a": "Yes, the vehicle will usually drive normally. However, you may not pass emissions testing until the VIN is programmed correctly." },
+      { "q": "Why does the PCM need the VIN?", "a": "The VIN is used by the PCM for emissions compliance reporting, security features, and ensuring the correct calibration is being used." },
+      { "q": "Can I program the VIN myself?", "a": "On some vehicles, a J2534 device and manufacturer subscription can be used. On others, it requires a dealer-level tool." }
+    ]
+  },
+  {
+    "code": "P0645",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "A/C Clutch Relay Control Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the air conditioning compressor clutch relay control circuit.",
+    "fullDescription": "Code P0645 is set when the PCM detects an abnormal condition in the A/C compressor clutch relay control circuit. The PCM controls the A/C compressor engagement through a relay to manage compressor cycling, prevent engagement during high engine load, and protect against low refrigerant conditions. A fault in this circuit means the A/C system may not engage or may engage at inappropriate times.",
+    "severity": "low",
+    "safetyImpact": "Air conditioning will not function, which can be uncomfortable but is not a safety hazard in most conditions. Defrost mode may also be affected.",
+    "causes": [
+      { "cause": "Faulty A/C clutch relay", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the relay control circuit", "likelihood": "high" },
+      { "cause": "Failed A/C compressor clutch coil", "likelihood": "medium" },
+      { "cause": "Low refrigerant causing the PCM to disable A/C", "likelihood": "medium" },
+      { "cause": "PCM A/C relay driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Air conditioning does not engage",
+      "A/C blows warm air",
+      "Defrost function reduced (uses A/C for dehumidification)",
+      "A/C compressor clutch does not click on"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test A/C clutch relay", "instruction": "Locate the A/C relay in the fuse box. Swap with an identical relay to test. Listen for the compressor clutch engaging when A/C is turned on.", "tools": ["Fuse/relay diagram"], "difficulty": "easy" },
+      { "step": 2, "title": "Check refrigerant level", "instruction": "Use an A/C gauge set to check system pressure. Low refrigerant will prevent the PCM from engaging the compressor. Verify pressures are within specification.", "tools": ["A/C manifold gauge set"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test relay control signal", "instruction": "With the A/C on, check for a control signal at the relay socket from the PCM. No signal indicates a wiring or PCM issue.", "tools": ["Multimeter", "Test light", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Inspect wiring and repair", "instruction": "Trace and test the wiring between the PCM and the A/C relay. Repair any damaged wiring. Replace the relay or compressor clutch coil as needed.", "tools": ["Multimeter", "Wiring diagram", "Wire repair supplies"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 150 }, "mechanic": { "min": 100, "max": 500 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0646", "P0647", "P0530"],
+    "faq": [
+      { "q": "Is P0645 just about the A/C?", "a": "Yes, it relates to the A/C compressor clutch relay circuit. It does not affect engine operation but will disable the air conditioning." },
+      { "q": "Can low Freon cause P0645?", "a": "Indirectly. Low refrigerant may prevent compressor engagement, but P0645 specifically indicates a circuit fault, not a pressure issue." },
+      { "q": "Will my car overheat without A/C?", "a": "No. The engine cooling system is separate from the A/C system. However, the A/C condenser fan may also be controlled by this relay on some vehicles." }
+    ]
+  },
+  {
+    "code": "P0650",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Malfunction Indicator Lamp (MIL) Control Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the Malfunction Indicator Lamp (Check Engine Light) control circuit.",
+    "fullDescription": "Code P0650 is set when the PCM detects a problem with the circuit that controls the Check Engine Light (MIL) on the instrument cluster. The PCM controls this light by grounding its circuit. If the PCM detects that the circuit is open, shorted, or not responding as expected, it stores P0650. Ironically, this code means the Check Engine Light itself may not illuminate when other fault codes are present, potentially hiding other issues from the driver.",
+    "severity": "medium",
+    "safetyImpact": "The Check Engine Light may not illuminate when other problems exist, leaving the driver unaware of engine or emissions issues.",
+    "causes": [
+      { "cause": "Burnt out MIL bulb or failed LED in the instrument cluster", "likelihood": "high" },
+      { "cause": "Open wiring between PCM and instrument cluster", "likelihood": "medium" },
+      { "cause": "Faulty instrument cluster", "likelihood": "medium" },
+      { "cause": "PCM MIL driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light does not illuminate during key-on bulb check",
+      "Check Engine Light stays on constantly regardless of codes",
+      "Other warning lights may also malfunction",
+      "Vehicle may fail emissions inspection (MIL function check)"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check bulb during key-on", "instruction": "Turn the key to ON without starting. All warning lights should briefly illuminate. If the Check Engine Light does not come on, the bulb or circuit is faulty.", "tools": [], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect the instrument cluster", "instruction": "Check if the MIL bulb is burnt out (older vehicles). On newer vehicles with LED clusters, the cluster itself may need diagnosis.", "tools": ["Service manual"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test the MIL circuit", "instruction": "Using a wiring diagram, test the circuit between the PCM and instrument cluster for continuity and proper ground signal from the PCM.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair or replace components", "instruction": "Replace the burnt bulb, repair wiring, or replace the instrument cluster as needed. Clear codes and verify the MIL illuminates during key-on check.", "tools": ["Replacement bulb", "Socket set", "Wire repair supplies"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 5, "max": 50 }, "mechanic": { "min": 100, "max": 500 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0651", "P0652"],
+    "faq": [
+      { "q": "Is P0650 serious?", "a": "It is important because a non-functional Check Engine Light can hide other problems. You may not know about engine or emissions faults." },
+      { "q": "Will P0650 cause my car to fail emissions?", "a": "Yes. Most emissions tests verify the MIL illuminates during the key-on bulb check. A non-functional MIL will fail this test." },
+      { "q": "How would I know about P0650 if my Check Engine Light does not work?", "a": "You may discover it during a routine scan, emissions test, or when diagnosing other symptoms." }
+    ]
+  },
+  {
+    "code": "P0654",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Engine RPM Output Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the engine RPM output signal circuit.",
+    "fullDescription": "Code P0654 is set when the PCM detects a fault in the circuit that outputs the engine RPM signal to other modules or the instrument cluster tachometer. The PCM generates an RPM output signal based on crankshaft position sensor data. If this output circuit has an open, short, or other fault, the tachometer may not work and other modules that rely on the RPM signal may malfunction.",
+    "severity": "low",
+    "safetyImpact": "The tachometer may not function, and other modules may not receive engine speed data. Driving is generally safe but monitoring RPM becomes difficult.",
+    "causes": [
+      { "cause": "Open or shorted wiring in the RPM output circuit", "likelihood": "high" },
+      { "cause": "Faulty instrument cluster tachometer circuit", "likelihood": "medium" },
+      { "cause": "Corroded or loose connector at the PCM or cluster", "likelihood": "medium" },
+      { "cause": "PCM RPM output driver failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Tachometer not working or reading erratically",
+      "Other modules may report RPM-related faults",
+      "Cruise control may not function"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Verify tachometer operation", "instruction": "Start the engine and observe the tachometer. If it does not move or reads erratically, the RPM output circuit is likely at fault.", "tools": [], "difficulty": "easy" },
+      { "step": 2, "title": "Check RPM output circuit", "instruction": "Using a wiring diagram, locate the RPM output wire from the PCM. Test for a signal at the PCM connector with the engine running.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test wiring continuity", "instruction": "Check the RPM output wire for continuity from the PCM to the instrument cluster or destination module. Check for shorts to ground or power.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair wiring or components", "instruction": "Repair any damaged wiring. If the signal is present at the PCM but not at the cluster, the wiring is faulty. If no signal at the PCM, the PCM output driver may have failed.", "tools": ["Wire repair supplies", "Soldering iron"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 50 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0335", "P0725"],
+    "faq": [
+      { "q": "Can I drive without a tachometer?", "a": "Yes, but you will not be able to monitor engine RPM visually. Automatic transmission vehicles are less affected than manual transmission vehicles." },
+      { "q": "Does P0654 affect engine performance?", "a": "Not directly. The engine operates based on internal sensor data, not the tachometer output. However, other modules that need RPM data may be affected." },
+      { "q": "Could this be a cluster problem instead?", "a": "Yes. A faulty instrument cluster can also cause a non-working tachometer. Test the circuit before assuming a PCM fault." }
+    ]
+  },
+  {
+    "code": "P0660",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Intake Manifold Tuning Valve Control Circuit - Bank 1",
+    "shortDescription": "The PCM has detected a malfunction in the intake manifold tuning valve (IMTV) control circuit for bank 1.",
+    "fullDescription": "Code P0660 is set when the PCM detects an electrical fault in the intake manifold tuning valve control circuit. The IMTV (also called a runner control valve or intake manifold runner control) changes the effective length or volume of the intake manifold runners to optimize airflow at different engine speeds. By varying intake runner length, the engine can produce better torque at low speeds and better power at high speeds. A fault in this circuit prevents proper valve operation.",
+    "severity": "medium",
+    "safetyImpact": "Engine performance may be reduced, particularly at certain RPM ranges. The vehicle is generally safe to drive.",
+    "causes": [
+      { "cause": "Faulty intake manifold tuning valve actuator/solenoid", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the IMTV circuit", "likelihood": "high" },
+      { "cause": "Stuck intake manifold tuning valve (carbon buildup)", "likelihood": "medium" },
+      { "cause": "Corroded connector at the actuator", "likelihood": "medium" },
+      { "cause": "PCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Reduced engine performance in certain RPM ranges",
+      "Slight decrease in fuel economy",
+      "Possible rough idle or stumble during acceleration",
+      "Rattling noise from intake manifold area"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Locate and inspect IMTV actuator", "instruction": "Find the intake manifold tuning valve actuator on the intake manifold. Inspect the connector for corrosion or damage.", "tools": ["Service manual"], "difficulty": "easy" },
+      { "step": 2, "title": "Test actuator electrically", "instruction": "Disconnect the actuator and measure coil resistance with a multimeter. Compare to manufacturer specifications. Also check for power and ground at the connector.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Check valve operation", "instruction": "Inspect the valve for free movement. Carbon buildup can cause it to stick. Clean if stuck. Apply 12V directly to the actuator to test operation.", "tools": ["Carburetor cleaner", "Jumper wires"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace actuator or repair wiring", "instruction": "Replace the faulty actuator or repair damaged wiring. Clear codes and verify proper operation.", "tools": ["Socket set", "Wire repair supplies"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 30, "max": 200 }, "mechanic": { "min": 150, "max": 500 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0661", "P0662", "P2004", "P2006"],
+    "faq": [
+      { "q": "What does the intake manifold tuning valve do?", "a": "It varies the effective length of the intake runners to optimize airflow. Short runners help at high RPM, while long runners help at low RPM." },
+      { "q": "Can I drive with P0660?", "a": "Yes, but you may notice reduced performance. The engine will not be damaged but will not perform optimally." },
+      { "q": "Why does carbon buildup affect this valve?", "a": "Carbon from the PCV system and intake gases can accumulate on the valve, causing it to stick open or closed." }
+    ]
+  },
+  {
+    "code": "P0685",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "ECM/PCM Power Relay Control Circuit Open",
+    "shortDescription": "The PCM has detected an open circuit in its own power relay control circuit.",
+    "fullDescription": "Code P0685 is set when the PCM detects an open circuit in the relay that provides its main power supply. The PCM power relay (sometimes called the main relay or ECM relay) supplies power to the PCM and often to other engine management components. When the PCM cannot control this relay properly, it may shut down unexpectedly or fail to power up. This is a critical circuit since the PCM needs stable power to operate.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may stall unexpectedly or fail to start. Loss of PCM power means complete loss of engine management.",
+    "causes": [
+      { "cause": "Faulty PCM power relay", "likelihood": "high" },
+      { "cause": "Open wiring in the relay control circuit", "likelihood": "high" },
+      { "cause": "Corroded or loose relay socket connections", "likelihood": "medium" },
+      { "cause": "Blown fuse in the relay power supply", "likelihood": "medium" },
+      { "cause": "PCM ground circuit fault", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated (when PCM has power)",
+      "Vehicle stalls and will not restart",
+      "Intermittent no-start condition",
+      "PCM loses power randomly",
+      "Multiple systems shut down simultaneously"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Locate and test the PCM power relay", "instruction": "Find the PCM main relay in the fuse/relay box. Test the relay by swapping with an identical relay. Check related fuses.", "tools": ["Fuse/relay diagram", "Multimeter"], "difficulty": "easy" },
+      { "step": 2, "title": "Test relay control circuit", "instruction": "Check for control signal at the relay socket when the key is turned on. Verify power supply to the relay coil.", "tools": ["Multimeter", "Test light", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring for open circuit", "instruction": "Test the control wire from the relay socket to the PCM for continuity. Check connectors for loose or corroded terminals.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace relay or repair wiring", "instruction": "Replace the faulty relay or repair the open wiring. Verify the PCM powers up correctly and stays powered during engine operation.", "tools": ["Replacement relay", "Wire repair supplies"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0686", "P0687", "P0690"],
+    "faq": [
+      { "q": "What is the PCM power relay?", "a": "It is a relay that supplies the main power to the PCM. Without it, the PCM cannot operate and the engine will not run." },
+      { "q": "Can a bad relay cause intermittent stalling?", "a": "Yes. A relay with worn contacts can lose connection intermittently, causing the PCM to lose power and the engine to stall." },
+      { "q": "How do I find the PCM relay?", "a": "Check the fuse/relay box diagram on the cover or in the owner's manual. It may be labeled ECM relay, main relay, or PCM relay." }
+    ]
+  },
+  {
+    "code": "P0690",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "ECM/PCM Power Relay Sense Circuit",
+    "shortDescription": "The PCM has detected a malfunction in the power relay feedback or sense circuit.",
+    "fullDescription": "Code P0690 is set when the PCM does not receive the expected feedback signal from its power relay. Modern PCMs monitor the relay output through a sense circuit to confirm the relay is functioning correctly. If the sense circuit indicates the relay is not providing the expected output, the PCM stores this code. This is a monitoring circuit issue and may indicate the relay is not closing properly or the sense wire is faulty.",
+    "severity": "medium",
+    "safetyImpact": "The vehicle may experience intermittent power loss to the PCM. If the relay actually fails, the engine will stall.",
+    "causes": [
+      { "cause": "Faulty PCM power relay not closing fully", "likelihood": "high" },
+      { "cause": "Open or shorted sense wire between relay and PCM", "likelihood": "high" },
+      { "cause": "Corroded relay socket contacts", "likelihood": "medium" },
+      { "cause": "PCM sense circuit input failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Intermittent engine stalling",
+      "Occasional no-start condition",
+      "PCM may enter limp mode",
+      "Other electrical components acting erratically"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test the PCM power relay", "instruction": "Test the relay by swapping with a known good unit. Check relay contacts for resistance and proper switching.", "tools": ["Multimeter", "Replacement relay"], "difficulty": "easy" },
+      { "step": 2, "title": "Verify relay output", "instruction": "With the relay installed and key on, verify voltage on the relay output terminal matches battery voltage. Low voltage indicates relay or supply issues.", "tools": ["Multimeter"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test the sense circuit", "instruction": "Locate the sense wire from the relay to the PCM. Test for continuity and verify voltage at the PCM sense pin matches relay output.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair as needed", "instruction": "Replace the relay if faulty. Repair or replace the sense wire if damaged. Clean corroded relay socket pins.", "tools": ["Replacement relay", "Wire repair supplies", "Contact cleaner"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0685", "P0686", "P0687"],
+    "faq": [
+      { "q": "What is a sense circuit?", "a": "A sense circuit is a feedback wire that allows the PCM to confirm a relay or component is actually operating as commanded." },
+      { "q": "Can I just ignore P0690?", "a": "Not recommended. If the relay is failing, it could cause a complete loss of PCM power and sudden engine shutdown." },
+      { "q": "Is P0690 related to the main relay?", "a": "Yes, it specifically relates to the PCM power relay feedback circuit." }
+    ]
+  },
+  {
+    "code": "P0691",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Cooling Fan 1 Control Circuit Low",
+    "shortDescription": "The PCM has detected a low voltage condition in the engine cooling fan 1 control circuit.",
+    "fullDescription": "Code P0691 is set when the PCM detects lower than expected voltage on the cooling fan 1 relay control circuit. The PCM controls the engine cooling fan(s) to maintain proper engine temperature. A low voltage condition suggests the control circuit is shorted to ground, preventing proper fan relay operation. This can lead to engine overheating if the cooling fan cannot be activated when needed.",
+    "severity": "high",
+    "safetyImpact": "Engine may overheat due to cooling fan failure. Overheating can cause severe engine damage including warped heads and blown head gaskets.",
+    "causes": [
+      { "cause": "Shorted wiring in the cooling fan relay control circuit", "likelihood": "high" },
+      { "cause": "Faulty cooling fan relay", "likelihood": "high" },
+      { "cause": "Corroded connector at the relay or PCM", "likelihood": "medium" },
+      { "cause": "Failed cooling fan motor causing excessive current draw", "likelihood": "medium" },
+      { "cause": "PCM cooling fan driver failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Engine overheating, especially at idle or low speed",
+      "Temperature gauge reading high",
+      "Cooling fan does not operate or runs constantly",
+      "A/C performance poor at idle"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check cooling fan operation", "instruction": "Start the engine and let it warm up. The cooling fan should engage before the temperature gauge reaches the red zone. Check the fan relay and fuse.", "tools": ["OBD-II scanner to monitor temperature"], "difficulty": "easy" },
+      { "step": 2, "title": "Test relay and circuit", "instruction": "Remove the fan relay and test it. Check the control wire at the relay socket for a short to ground with the relay removed.", "tools": ["Multimeter", "Test light"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring harness", "instruction": "Trace the control wire from the relay to the PCM. Look for chafed or damaged insulation where the wire may be contacting metal body or engine parts.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair and verify", "instruction": "Repair shorted wiring, replace faulty relay, or repair connector. Verify the cooling fan engages at the correct temperature and turns off normally.", "tools": ["Wire repair supplies", "Replacement relay"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 100 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": ["P0692", "P0480", "P0481"],
+    "faq": [
+      { "q": "Can a non-working cooling fan damage my engine?", "a": "Yes. Without the cooling fan, the engine can overheat quickly, especially at idle or in slow traffic, leading to serious engine damage." },
+      { "q": "Should I stop driving if the engine is overheating?", "a": "Yes. Pull over safely and turn off the engine. Driving an overheating engine can cause head gasket failure, warped cylinder heads, or complete engine failure." },
+      { "q": "Can I temporarily bypass the relay?", "a": "As an emergency measure only. A direct-wired fan will run constantly. This is not a permanent fix and can drain the battery." }
+    ]
+  },
+  {
+    "code": "P0692",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Computer and Output Circuit",
+    "title": "Cooling Fan 1 Control Circuit High",
+    "shortDescription": "The PCM has detected a high voltage condition in the engine cooling fan 1 control circuit.",
+    "fullDescription": "Code P0692 indicates the PCM has detected higher than expected voltage in the cooling fan 1 relay control circuit. This may cause the fan to run continuously or at the wrong speed. A high voltage condition typically means the control wire is shorted to a power source or the relay is stuck closed. While a constantly running fan is less dangerous than one that does not run, it wastes energy and can indicate underlying issues.",
+    "severity": "medium",
+    "safetyImpact": "The cooling fan may run constantly, draining the battery. If the fan is stuck on high speed, it may cause excessive noise and faster wear.",
+    "causes": [
+      { "cause": "Wiring shorted to battery voltage in the fan relay circuit", "likelihood": "high" },
+      { "cause": "Cooling fan relay stuck closed", "likelihood": "high" },
+      { "cause": "Faulty coolant temperature sensor providing false reading", "likelihood": "medium" },
+      { "cause": "PCM output circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Cooling fan runs constantly, even when engine is cold",
+      "Fan continues running after ignition is off",
+      "Battery drain from continuous fan operation",
+      "Excessive fan noise"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Verify fan behavior", "instruction": "Start a cold engine and observe the fan. If it runs immediately on a cold engine, the circuit is likely stuck high.", "tools": [], "difficulty": "easy" },
+      { "step": 2, "title": "Test the cooling fan relay", "instruction": "Remove the relay and check if the fan stops. Test the relay for stuck contacts with a multimeter.", "tools": ["Multimeter"], "difficulty": "easy" },
+      { "step": 3, "title": "Check for short to power", "instruction": "With the relay removed, test the control pin at the relay socket for unexpected voltage with the key off. Trace and repair any short.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace relay and verify", "instruction": "Install a new relay. Verify the fan only runs when engine temperature warrants it. Monitor with a scan tool.", "tools": ["Replacement relay", "OBD-II scanner"], "difficulty": "easy" }
+    ],
+    "estimatedCost": { "diy": { "min": 10, "max": 80 }, "mechanic": { "min": 100, "max": 350 } },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes - 1.5 hours",
+    "relatedCodes": ["P0691", "P0480", "P0481"],
+    "faq": [
+      { "q": "Is a constantly running fan bad?", "a": "It causes unnecessary battery drain and accelerated fan motor wear. It also indicates an electrical fault that should be repaired." },
+      { "q": "Can a stuck fan relay drain my battery?", "a": "Yes. If the fan runs with the key off, it will drain the battery, potentially leaving you stranded." },
+      { "q": "Why does my fan run when the engine is cold?", "a": "This is abnormal and indicates either a stuck relay, short to power in the control circuit, or a faulty temperature sensor." }
+    ]
+  },
+  {
+    "code": "P0700",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Control System (MIL Request)",
+    "shortDescription": "The Transmission Control Module (TCM) has detected a fault and is requesting the PCM to illuminate the Check Engine Light.",
+    "fullDescription": "Code P0700 is an informational code that indicates the Transmission Control Module has detected a malfunction and is requesting the MIL be illuminated. P0700 itself does not specify what the transmission fault is. It is accompanied by one or more specific transmission fault codes that identify the actual problem. You must read the specific transmission codes (often stored in the TCM) to determine the root cause of the issue.",
+    "severity": "medium",
+    "safetyImpact": "Depends on the accompanying transmission code. The transmission may enter limp mode with limited gear selection. Driving may be impaired.",
+    "causes": [
+      { "cause": "Specific transmission fault stored in the TCM (see accompanying codes)", "likelihood": "high" },
+      { "cause": "Low transmission fluid level", "likelihood": "medium" },
+      { "cause": "Faulty transmission solenoid", "likelihood": "medium" },
+      { "cause": "Wiring issue between TCM and transmission components", "likelihood": "medium" },
+      { "cause": "TCM internal failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Transmission may enter limp or fail-safe mode",
+      "Harsh or erratic shifting",
+      "Transmission slipping",
+      "Vehicle stuck in one gear"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Read all codes including TCM", "instruction": "Use a scan tool capable of reading transmission codes. P0700 is just a flag; the actual fault code(s) will be stored in the TCM.", "tools": ["OBD-II scanner with transmission capability"], "difficulty": "easy" },
+      { "step": 2, "title": "Check transmission fluid", "instruction": "Check transmission fluid level and condition. Low, burnt, or contaminated fluid can cause many transmission codes.", "tools": ["Dipstick or scan tool for sealed transmissions"], "difficulty": "easy" },
+      { "step": 3, "title": "Diagnose the specific transmission code", "instruction": "Based on the specific codes found, perform targeted diagnosis. Common causes include faulty solenoids, speed sensors, or wiring issues.", "tools": ["OBD-II scanner", "Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair based on findings", "instruction": "Repair the specific fault identified by the accompanying codes. This may range from a fluid change to solenoid replacement to transmission overhaul.", "tools": ["Varies by repair needed"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 20, "max": 300 }, "mechanic": { "min": 100, "max": 3000 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-8 hours (depends on specific fault)",
+    "relatedCodes": ["P0705", "P0715", "P0720", "P0730", "P0740"],
+    "faq": [
+      { "q": "Does P0700 mean I need a new transmission?", "a": "Not necessarily. P0700 is just a flag indicating a transmission code exists. The actual problem could be minor (sensor) or major (internal failure)." },
+      { "q": "Why does P0700 appear with other codes?", "a": "P0700 is the TCM's way of asking the PCM to turn on the Check Engine Light. It always accompanies a more specific transmission fault code." },
+      { "q": "Can I drive in limp mode?", "a": "For short distances to a repair shop, yes. Limp mode limits the transmission to one gear to prevent further damage. Do not drive at highway speeds." }
+    ]
+  },
+  {
+    "code": "P0705",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Range Sensor Circuit (PRNDL Input)",
+    "shortDescription": "The TCM/PCM has detected a malfunction in the transmission range sensor (TRS) circuit, which reports the gear selector position.",
+    "fullDescription": "Code P0705 is set when the TCM or PCM receives an invalid, irrational, or missing signal from the transmission range sensor (also known as the neutral safety switch or PRNDL sensor). This sensor tells the control module which gear position the driver has selected (Park, Reverse, Neutral, Drive, Low). If the signal is unreliable, the transmission may not shift correctly, the starter may not engage, or the backup lights may not work.",
+    "severity": "medium",
+    "safetyImpact": "The vehicle may start in gear (bypassing the neutral safety function) or may not start at all. Incorrect gear indication is a safety concern.",
+    "causes": [
+      { "cause": "Faulty transmission range sensor", "likelihood": "high" },
+      { "cause": "Misadjusted shift linkage", "likelihood": "high" },
+      { "cause": "Corroded or damaged wiring at the sensor connector", "likelihood": "medium" },
+      { "cause": "Low transmission fluid affecting sensor operation", "likelihood": "medium" },
+      { "cause": "TCM/PCM input circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Incorrect gear display on dashboard",
+      "Vehicle may not start in Park or Neutral",
+      "Backup lights malfunction",
+      "Transmission shifts erratically or enters limp mode",
+      "Engine starts in gear"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check shift linkage adjustment", "instruction": "Verify the shift linkage is properly aligned. The indicated gear position should match the actual transmission position. Adjust if needed.", "tools": ["Wrenches", "Service manual"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test transmission range sensor", "instruction": "Using a multimeter, test the TRS resistance or voltage at each gear position. Values should change smoothly and match specifications.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and connector", "instruction": "Check the sensor connector and wiring for corrosion, water intrusion, and damage. The sensor is often exposed to road debris.", "tools": ["Multimeter", "Contact cleaner"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace transmission range sensor", "instruction": "If the sensor is faulty, replace it. Ensure proper alignment during installation. Clear codes and test in all gear positions.", "tools": ["Socket set", "Wrench set", "Torque wrench"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 30, "max": 150 }, "mechanic": { "min": 150, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0706", "P0700", "P0707", "P0708"],
+    "faq": [
+      { "q": "What is the transmission range sensor?", "a": "It is a sensor on the transmission that tells the PCM/TCM which gear position the shift lever is in (Park, Reverse, Neutral, Drive, Low)." },
+      { "q": "Can a misadjusted shift cable cause P0705?", "a": "Yes. If the shift cable is stretched or misadjusted, the sensor position will not match the lever position, triggering this code." },
+      { "q": "Is P0705 related to the neutral safety switch?", "a": "Yes. On many vehicles, the transmission range sensor incorporates the neutral safety switch function." }
+    ]
+  },
+  {
+    "code": "P0706",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Range Sensor Circuit Range/Performance",
+    "shortDescription": "The transmission range sensor signal is erratic, out of range, or does not correlate with other inputs.",
+    "fullDescription": "Code P0706 is set when the TCM/PCM detects that the transmission range sensor signal is intermittent, fluctuating between positions, or providing readings that do not correlate with other transmission data such as gear ratio. Unlike P0705 which indicates a circuit fault, P0706 indicates the sensor is working but providing unreliable data. This often points to a worn or contaminated sensor.",
+    "severity": "medium",
+    "safetyImpact": "Transmission may shift erratically. The vehicle could start in an unexpected gear position. Dashboard gear display may be incorrect.",
+    "causes": [
+      { "cause": "Worn transmission range sensor with intermittent contact", "likelihood": "high" },
+      { "cause": "Contamination or debris on the sensor", "likelihood": "high" },
+      { "cause": "Loose shift linkage causing inconsistent readings", "likelihood": "medium" },
+      { "cause": "Intermittent wiring connection at the sensor", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Gear indicator on dashboard flickers or shows wrong gear",
+      "Transmission hesitates or delays shifting",
+      "Intermittent starting problems",
+      "Backup lights flickering"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Monitor sensor data", "instruction": "Use a scan tool to monitor the TRS signal in real time while moving the shift lever through all positions. Look for erratic readings, dropouts, or wrong positions.", "tools": ["OBD-II scanner with live data"], "difficulty": "easy" },
+      { "step": 2, "title": "Inspect and clean the sensor", "instruction": "Remove the sensor and clean it. Check for wear marks, contamination, or damage. Clean the mating surface on the transmission.", "tools": ["Contact cleaner", "Socket set"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Check linkage and adjustment", "instruction": "Verify the shift linkage has no play or slop. Adjust the TRS alignment so each position registers cleanly.", "tools": ["Wrenches", "Service manual"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace the sensor", "instruction": "If cleaning does not resolve the issue, replace the TRS. Align carefully during installation and verify all positions read correctly.", "tools": ["Socket set", "Torque wrench"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 30, "max": 150 }, "mechanic": { "min": 150, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0705", "P0707", "P0708", "P0700"],
+    "faq": [
+      { "q": "What is the difference between P0705 and P0706?", "a": "P0705 indicates a circuit fault (open/short), while P0706 indicates the sensor is providing unreliable or out-of-range data even though the circuit is intact." },
+      { "q": "Can a dirty sensor cause P0706?", "a": "Yes. Many TRS use contact-based switches that can become contaminated with transmission fluid residue or debris, causing intermittent readings." },
+      { "q": "Is P0706 urgent?", "a": "It should be addressed soon as erratic gear position sensing can cause unexpected shifting and starting issues." }
+    ]
+  },
+  {
+    "code": "P0710",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Fluid Temperature Sensor Circuit",
+    "shortDescription": "The TCM/PCM has detected a malfunction in the transmission fluid temperature (TFT) sensor circuit.",
+    "fullDescription": "Code P0710 is set when the TCM or PCM detects an abnormal reading from the transmission fluid temperature sensor. This sensor monitors the temperature of the automatic transmission fluid (ATF) and sends this data to the control module. The TCM uses this information to adjust shift timing, line pressure, and torque converter lockup strategy. A faulty sensor can cause the transmission to operate with incorrect parameters, potentially causing damage.",
+    "severity": "medium",
+    "safetyImpact": "Transmission may shift harshly or at incorrect times. If the fluid is actually overheating and the sensor is not reading correctly, transmission damage can result.",
+    "causes": [
+      { "cause": "Faulty transmission fluid temperature sensor", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the TFT sensor circuit", "likelihood": "high" },
+      { "cause": "Corroded connector at the sensor", "likelihood": "medium" },
+      { "cause": "Contaminated transmission fluid affecting sensor readings", "likelihood": "medium" },
+      { "cause": "TCM/PCM input circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Harsh or delayed shifting",
+      "Transmission may not shift into overdrive",
+      "Torque converter lockup issues",
+      "Transmission overheating (if sensor reads incorrectly cold)"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Read sensor data", "instruction": "Use a scan tool to read the TFT sensor value. It should start near ambient temperature on a cold engine and rise to 160-200F during normal operation.", "tools": ["OBD-II scanner with live data"], "difficulty": "easy" },
+      { "step": 2, "title": "Test sensor resistance", "instruction": "Disconnect the TFT sensor and measure its resistance with a multimeter. Compare the reading to the manufacturer's temperature-resistance chart.", "tools": ["Multimeter", "Infrared thermometer"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and connector", "instruction": "Check the sensor connector for corrosion and the wiring for damage. Test continuity from the sensor connector to the TCM/PCM.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace sensor", "instruction": "Replace the TFT sensor if it is out of specification. Some sensors are internal to the transmission (in the pan or valve body), while others are external.", "tools": ["Socket set", "Drain pan", "New ATF"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 20, "max": 100 }, "mechanic": { "min": 150, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0711", "P0712", "P0713", "P0700"],
+    "faq": [
+      { "q": "Where is the transmission fluid temperature sensor?", "a": "It varies by vehicle. It may be in the transmission oil pan, in the valve body, on the transmission case, or integrated into the internal wiring harness." },
+      { "q": "Can dirty transmission fluid cause P0710?", "a": "Contaminated fluid can affect sensor readings over time, but P0710 usually indicates a sensor or circuit fault rather than just dirty fluid." },
+      { "q": "What temperature should transmission fluid be?", "a": "Normal operating temperature is 160-200F (71-93C). Above 240F (115C) is considered overheating and can damage the transmission." }
+    ]
+  },
+  {
+    "code": "P0715",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Input/Turbine Speed Sensor Circuit",
+    "shortDescription": "The TCM/PCM has detected a malfunction in the transmission input speed sensor (also called the turbine speed sensor) circuit.",
+    "fullDescription": "Code P0715 is set when the TCM or PCM does not receive a valid signal from the transmission input speed sensor. This sensor measures the rotational speed of the transmission input shaft or torque converter turbine. The TCM uses this data along with the output speed sensor to calculate gear ratio, control shift timing, and monitor torque converter performance. Without a reliable input speed signal, the transmission cannot shift correctly.",
+    "severity": "high",
+    "safetyImpact": "Transmission may enter limp mode with harsh shifting. The vehicle may be stuck in one gear, making highway driving difficult or unsafe.",
+    "causes": [
+      { "cause": "Faulty input/turbine speed sensor", "likelihood": "high" },
+      { "cause": "Damaged or corroded sensor wiring", "likelihood": "high" },
+      { "cause": "Contaminated or damaged sensor reluctor wheel/tone ring", "likelihood": "medium" },
+      { "cause": "Low transmission fluid level", "likelihood": "medium" },
+      { "cause": "TCM/PCM input circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Transmission in limp mode (stuck in one gear)",
+      "Harsh or erratic shifting",
+      "Speedometer may not work (some vehicles)",
+      "Torque converter lockup problems",
+      "No overdrive"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check transmission fluid", "instruction": "Verify the transmission fluid level and condition. Low or contaminated fluid can affect sensor operation.", "tools": ["Dipstick or scan tool"], "difficulty": "easy" },
+      { "step": 2, "title": "Test the sensor", "instruction": "Locate the input speed sensor on the transmission. Measure resistance across the sensor terminals and compare to specifications.", "tools": ["Multimeter", "Service manual"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and connector", "instruction": "Check the sensor connector for corrosion and the wiring for damage. Test continuity from the sensor to the TCM/PCM.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace the input speed sensor", "instruction": "If the sensor is out of spec, replace it. The sensor is typically bolted to the outside of the transmission case. Check for metal debris on the sensor tip.", "tools": ["Socket set", "Wrench set", "New O-ring"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 20, "max": 80 }, "mechanic": { "min": 150, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes - 1.5 hours",
+    "relatedCodes": ["P0716", "P0717", "P0720", "P0700"],
+    "faq": [
+      { "q": "What does the input speed sensor do?", "a": "It measures how fast the transmission input shaft (connected to the engine via torque converter) is spinning. This helps the TCM calculate gear ratios and control shifts." },
+      { "q": "Can I drive in limp mode?", "a": "For short distances at low speed. Limp mode typically locks the transmission in 2nd or 3rd gear to prevent damage. Avoid highway driving." },
+      { "q": "Where is the input speed sensor?", "a": "Typically on the front or side of the transmission case, near where the torque converter housing meets the main case." }
+    ]
+  },
+  {
+    "code": "P0720",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Output Speed Sensor Circuit",
+    "shortDescription": "The TCM/PCM has detected a malfunction in the transmission output speed sensor circuit.",
+    "fullDescription": "Code P0720 is set when the TCM or PCM does not receive a valid signal from the transmission output speed sensor (OSS). This sensor measures the rotational speed of the transmission output shaft, which directly corresponds to vehicle speed. The TCM uses this data for shift control, torque converter lockup, and speedometer operation. Without a reliable output speed signal, the transmission cannot function properly and the speedometer may not work.",
+    "severity": "high",
+    "safetyImpact": "Speedometer may not function. Transmission shifting will be impaired. Vehicle may enter limp mode.",
+    "causes": [
+      { "cause": "Faulty output speed sensor", "likelihood": "high" },
+      { "cause": "Damaged wiring or connector in the OSS circuit", "likelihood": "high" },
+      { "cause": "Damaged reluctor ring on the output shaft", "likelihood": "medium" },
+      { "cause": "Metal debris on the sensor magnetic tip", "likelihood": "medium" },
+      { "cause": "TCM/PCM input circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Speedometer not working or reading erratically",
+      "Transmission shifting problems",
+      "Transmission limp mode",
+      "Cruise control inoperative",
+      "ABS/traction control warning lights"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check for related codes", "instruction": "Scan for all codes. ABS and speedometer-related codes may also be present, which helps confirm an OSS failure.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test the output speed sensor", "instruction": "Locate the OSS on the transmission (usually near the output shaft or tail housing). Measure resistance and compare to specifications.", "tools": ["Multimeter", "Service manual"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and connector", "instruction": "Check for corroded, damaged, or disconnected wiring. Test continuity from the sensor to the TCM/PCM.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace the output speed sensor", "instruction": "Remove and replace the sensor. Clean the sensor bore of any metal debris. Install with a new O-ring to prevent fluid leaks.", "tools": ["Socket set", "New O-ring", "Clean rags"], "difficulty": "easy" }
+    ],
+    "estimatedCost": { "diy": { "min": 15, "max": 70 }, "mechanic": { "min": 100, "max": 300 } },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes - 1 hour",
+    "relatedCodes": ["P0721", "P0722", "P0715", "P0700", "P0500"],
+    "faq": [
+      { "q": "Is the output speed sensor the same as the vehicle speed sensor?", "a": "On many vehicles, yes. The output speed sensor provides the vehicle speed signal to the TCM, PCM, and speedometer." },
+      { "q": "Can metal debris cause P0720?", "a": "Yes. Metal particles from normal transmission wear can collect on the magnetic sensor tip, interfering with its signal." },
+      { "q": "Is replacing the output speed sensor difficult?", "a": "Usually not. It is typically a bolt-on sensor on the outside of the transmission, accessible from under the vehicle." }
+    ]
+  },
+  {
+    "code": "P0725",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Engine Speed Input Circuit",
+    "shortDescription": "The TCM has detected a malfunction in the engine speed (RPM) input circuit it uses for transmission control.",
+    "fullDescription": "Code P0725 is set when the TCM does not receive a valid engine RPM signal. The TCM needs engine speed data to properly control shift timing, torque converter lockup, and line pressure. This signal may come from the crankshaft position sensor, a dedicated engine speed signal wire from the PCM, or the ignition system. Without accurate engine speed data, the TCM cannot calculate gear ratios or determine appropriate shift points.",
+    "severity": "medium",
+    "safetyImpact": "Transmission shifting will be impaired. The vehicle may enter limp mode with limited gear selection.",
+    "causes": [
+      { "cause": "Open or damaged signal wire between PCM and TCM", "likelihood": "high" },
+      { "cause": "Faulty crankshaft position sensor", "likelihood": "high" },
+      { "cause": "Corroded connector at the TCM or PCM", "likelihood": "medium" },
+      { "cause": "PCM not sending RPM signal to TCM", "likelihood": "medium" },
+      { "cause": "TCM input circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Harsh or delayed shifting",
+      "Transmission limp mode",
+      "Tachometer may not function",
+      "Torque converter lockup issues"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check for related engine codes", "instruction": "Scan for PCM codes. If crankshaft position sensor codes are present, address those first as they provide the source RPM signal.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test RPM signal at TCM", "instruction": "Using a wiring diagram, locate the RPM input pin at the TCM connector. Check for a signal with the engine running using a multimeter or oscilloscope.", "tools": ["Multimeter", "Oscilloscope", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring between PCM and TCM", "instruction": "Test the RPM signal wire for continuity between the PCM and TCM. Check for shorts, opens, and damaged connectors.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Repair wiring or replace sensor", "instruction": "Repair any damaged wiring. If the crankshaft position sensor is faulty, replace it. Clear codes and verify proper transmission operation.", "tools": ["Wire repair supplies", "Socket set"], "difficulty": "intermediate" }
+    ],
+    "estimatedCost": { "diy": { "min": 20, "max": 150 }, "mechanic": { "min": 100, "max": 400 } },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0726", "P0727", "P0335", "P0700"],
+    "faq": [
+      { "q": "How does the TCM get engine RPM data?", "a": "Depending on the vehicle, the TCM may receive engine RPM from the crankshaft position sensor directly, through a shared data bus, or via a dedicated signal wire from the PCM." },
+      { "q": "Can a crankshaft sensor cause P0725?", "a": "Yes. If the crankshaft position sensor is faulty, both the PCM and TCM may lose the engine speed signal." },
+      { "q": "Is P0725 a transmission problem?", "a": "Not exactly. It is an input signal problem for the TCM. The transmission itself may be fine, but it cannot shift properly without engine speed data." }
+    ]
+  },
+  {
+    "code": "P0730",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Incorrect Gear Ratio",
+    "shortDescription": "The TCM has detected that the actual gear ratio does not match the commanded gear ratio.",
+    "fullDescription": "Code P0730 is set when the TCM compares the input speed sensor and output speed sensor data and determines that the actual gear ratio does not match what was commanded. This means the transmission is slipping, not engaging the correct gear, or has an internal mechanical problem. P0730 is a general gear ratio code; manufacturer-specific codes (P0731-P0736) may indicate which specific gear is affected.",
+    "severity": "high",
+    "safetyImpact": "Transmission slipping can cause loss of power, especially during acceleration or uphill driving. The vehicle may stall or be unable to maintain speed.",
+    "causes": [
+      { "cause": "Low or contaminated transmission fluid", "likelihood": "high" },
+      { "cause": "Worn transmission clutch packs or bands", "likelihood": "high" },
+      { "cause": "Faulty shift solenoid(s)", "likelihood": "medium" },
+      { "cause": "Faulty input or output speed sensor giving false data", "likelihood": "medium" },
+      { "cause": "Worn torque converter", "likelihood": "medium" },
+      { "cause": "Valve body malfunction", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Transmission slipping (RPM rises without acceleration)",
+      "Harsh or delayed shifts",
+      "Transmission limp mode",
+      "Burning smell from transmission",
+      "Whining noise from transmission"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check transmission fluid", "instruction": "Check ATF level and condition. Fluid should be red/pink and not smell burnt. Top off or replace if needed.", "tools": ["Dipstick", "Clean white paper towel"], "difficulty": "easy" },
+      { "step": 2, "title": "Scan for all transmission codes", "instruction": "Read all codes from the TCM. Specific gear ratio codes (P0731-P0736) will help identify which gear is affected.", "tools": ["OBD-II scanner with transmission capability"], "difficulty": "easy" },
+      { "step": 3, "title": "Test speed sensors", "instruction": "Compare input and output speed sensor readings using a scan tool. Verify they change appropriately during driving. Replace any faulty sensor.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Transmission service or overhaul", "instruction": "If fluid is good and sensors are working, the transmission likely has internal wear. A fluid and filter change may help in mild cases. Severe cases require overhaul or replacement.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 300 }, "mechanic": { "min": 200, "max": 4000 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-12 hours (depends on cause)",
+    "relatedCodes": ["P0731", "P0732", "P0733", "P0734", "P0700", "P0715", "P0720"],
+    "faq": [
+      { "q": "Does P0730 always mean a transmission rebuild?", "a": "No. It can be caused by low fluid, bad sensors, or faulty solenoids. However, if the transmission is slipping due to worn clutches, a rebuild may be necessary." },
+      { "q": "What does 'incorrect gear ratio' mean?", "a": "It means the ratio between input speed and output speed does not match what the TCM commanded, indicating slipping or wrong gear engagement." },
+      { "q": "Can a transmission fluid change fix P0730?", "a": "Sometimes. If the fluid is low or degraded, a service can restore proper operation. If internal components are worn, a fluid change alone will not fix it." }
+    ]
+  },
+  {
+    "code": "P0731",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Gear 1 Incorrect Ratio",
+    "shortDescription": "The TCM has detected that the gear ratio in first gear does not match the expected value.",
+    "fullDescription": "Code P0731 indicates the TCM has detected a gear ratio error specifically in first gear. When the transmission is commanded into first gear, the ratio between the input speed sensor and output speed sensor should match the known first gear ratio for that transmission. A deviation indicates slipping, improper engagement, or a mechanical failure affecting first gear components.",
+    "severity": "high",
+    "safetyImpact": "First gear is critical for starting from a stop and low-speed maneuvering. Slipping in first gear can cause difficulty pulling away from stops and on hills.",
+    "causes": [
+      { "cause": "Worn first gear clutch pack or band", "likelihood": "high" },
+      { "cause": "Low or contaminated transmission fluid", "likelihood": "high" },
+      { "cause": "Faulty 1-2 shift solenoid", "likelihood": "medium" },
+      { "cause": "Valve body stuck or worn", "likelihood": "medium" },
+      { "cause": "Faulty speed sensor providing incorrect data", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Slipping when starting from a stop",
+      "Harsh engagement into first gear",
+      "RPM flare when starting from rest",
+      "Transmission limp mode"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check fluid level and condition", "instruction": "Verify ATF level is correct and fluid is clean. Low or burnt fluid is a common cause of gear ratio errors.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Verify speed sensor data", "instruction": "Use a scan tool to compare input and output speed sensor readings in first gear. Ensure sensors are reading accurately.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Perform transmission fluid service", "instruction": "Drain and refill the transmission fluid and replace the filter. In some cases, fresh fluid can restore clutch friction and proper gear engagement.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Professional diagnosis", "instruction": "If fluid service does not resolve the issue, the transmission needs internal inspection. A worn first gear clutch pack requires transmission overhaul.", "tools": ["Transmission jack", "Overhaul kit"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 4000 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-10 hours (depends on cause)",
+    "relatedCodes": ["P0730", "P0732", "P0733", "P0700"],
+    "faq": [
+      { "q": "Can I drive with P0731?", "a": "Limit driving. Slipping in first gear will worsen over time and can generate heat that damages other transmission components." },
+      { "q": "Will a fluid change fix first gear slipping?", "a": "It might help if the fluid is low or degraded. If the clutch material is severely worn, only an overhaul will fix the problem." },
+      { "q": "How much does a transmission overhaul cost?", "a": "Typically $1,500-$4,000 depending on the vehicle and transmission type." }
+    ]
+  },
+  {
+    "code": "P0732",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Gear 2 Incorrect Ratio",
+    "shortDescription": "The TCM has detected that the gear ratio in second gear does not match the expected value.",
+    "fullDescription": "Code P0732 indicates the TCM has detected a gear ratio error in second gear. When the transmission shifts into second gear, the calculated ratio between input and output shaft speeds should match the known second gear ratio. A discrepancy indicates slipping, delayed engagement, or mechanical failure of second gear components.",
+    "severity": "high",
+    "safetyImpact": "Second gear is frequently used during normal driving. Slipping can cause acceleration issues and overheating of the transmission.",
+    "causes": [
+      { "cause": "Worn second gear clutch pack or servo", "likelihood": "high" },
+      { "cause": "Low or contaminated transmission fluid", "likelihood": "high" },
+      { "cause": "Faulty shift solenoid affecting second gear", "likelihood": "medium" },
+      { "cause": "Valve body worn or stuck", "likelihood": "medium" },
+      { "cause": "Faulty speed sensor", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Slipping during 1-2 shift",
+      "RPM flare when shifting to second gear",
+      "Harsh 1-2 shift",
+      "Transmission limp mode (often defaults to 2nd gear)"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check transmission fluid", "instruction": "Verify fluid level and condition. Low, dark, or burnt-smelling fluid should be addressed first.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Monitor live data", "instruction": "Use a scan tool to watch input/output speed ratios during the 1-2 shift. Compare to expected gear ratios from service data.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Service transmission fluid and filter", "instruction": "Perform a complete fluid and filter change. Fresh fluid may restore clutch friction.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Internal transmission repair", "instruction": "If the issue persists, the second gear clutch pack or servo is likely worn. Transmission removal and overhaul is required.", "tools": ["Transmission jack", "Overhaul kit"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 4000 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-10 hours",
+    "relatedCodes": ["P0730", "P0731", "P0733", "P0700"],
+    "faq": [
+      { "q": "Why does limp mode use second gear?", "a": "Second gear provides a balance between low-speed driveability and protection. It allows the vehicle to move without requiring the most vulnerable shift points." },
+      { "q": "Can a solenoid cause P0732?", "a": "Yes. A faulty shift solenoid can prevent proper hydraulic pressure to the second gear clutch, causing slipping." },
+      { "q": "Is P0732 different from P0730?", "a": "P0730 is a general incorrect gear ratio code. P0732 specifically identifies that the problem occurs in second gear." }
+    ]
+  },
+  {
+    "code": "P0733",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Gear 3 Incorrect Ratio",
+    "shortDescription": "The TCM has detected that the gear ratio in third gear does not match the expected value.",
+    "fullDescription": "Code P0733 indicates the TCM has detected a gear ratio error in third gear. The calculated ratio between input shaft speed and output shaft speed during third gear operation does not match the expected value. This indicates slipping, delayed engagement, or mechanical failure of the third gear clutch assembly.",
+    "severity": "high",
+    "safetyImpact": "Slipping in third gear affects mid-range acceleration and can cause the transmission to overheat during sustained driving.",
+    "causes": [
+      { "cause": "Worn third gear clutch pack", "likelihood": "high" },
+      { "cause": "Low or degraded transmission fluid", "likelihood": "high" },
+      { "cause": "Faulty shift solenoid for third gear", "likelihood": "medium" },
+      { "cause": "Valve body issue affecting third gear apply", "likelihood": "medium" },
+      { "cause": "Faulty speed sensor", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Slipping during 2-3 shift",
+      "RPM flare on the 2-3 upshift",
+      "Lack of power during mid-range acceleration",
+      "Transmission shudder in third gear"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check fluid condition", "instruction": "Inspect transmission fluid level and quality. Address any fluid issues before further diagnosis.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Data log the shift", "instruction": "Use a scan tool to record input and output speed during the 2-3 shift. Compare the actual ratio to the expected third gear ratio.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Fluid and filter service", "instruction": "Change the transmission fluid and filter. This may improve clutch engagement if the fluid has degraded.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Transmission overhaul", "instruction": "If the code persists after fluid service, the third gear clutch pack needs replacement via transmission overhaul.", "tools": ["Transmission jack", "Overhaul kit"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 4000 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-10 hours",
+    "relatedCodes": ["P0730", "P0732", "P0734", "P0700"],
+    "faq": [
+      { "q": "Can a transmission additive fix P0733?", "a": "Transmission additives may temporarily improve clutch friction, but they do not fix worn clutch material. They are not a long-term solution." },
+      { "q": "Why does third gear slip?", "a": "Third gear clutch packs wear over time, especially in vehicles that are driven hard, tow heavy loads, or have not had regular fluid changes." },
+      { "q": "Should I get a rebuild or a new transmission?", "a": "A rebuild is typically more cost-effective. A remanufactured unit is another option that offers a warranty. New transmissions are rarely necessary." }
+    ]
+  },
+  {
+    "code": "P0734",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Gear 4 Incorrect Ratio",
+    "shortDescription": "The TCM has detected that the gear ratio in fourth gear does not match the expected value.",
+    "fullDescription": "Code P0734 indicates the TCM has detected a gear ratio error in fourth gear. Fourth gear is typically the direct drive or overdrive gear used during highway cruising. A gear ratio error here means the transmission is slipping or not fully engaging fourth gear, which can result in higher RPM at cruising speed, reduced fuel economy, and increased transmission heat.",
+    "severity": "high",
+    "safetyImpact": "Slipping in fourth gear during highway driving can cause overheating and loss of power. The transmission may downshift unexpectedly.",
+    "causes": [
+      { "cause": "Worn fourth gear clutch pack or overdrive components", "likelihood": "high" },
+      { "cause": "Low or contaminated ATF", "likelihood": "high" },
+      { "cause": "Faulty overdrive shift solenoid", "likelihood": "medium" },
+      { "cause": "Valve body issue affecting fourth gear", "likelihood": "medium" },
+      { "cause": "Torque converter issue", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Higher RPM than normal at highway speeds",
+      "Slipping during 3-4 shift",
+      "Reduced fuel economy",
+      "Transmission overheating on long drives",
+      "No overdrive engagement"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check ATF", "instruction": "Verify transmission fluid level and condition. Low or burnt fluid is a primary cause of high-gear slipping.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Monitor gear ratios", "instruction": "Use a scan tool to monitor input/output speed ratios in fourth gear. Compare to manufacturer specifications.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Service the transmission", "instruction": "Change the ATF and filter. In some cases this resolves mild fourth gear slipping.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Rebuild or replace transmission", "instruction": "If the issue persists, the fourth gear or overdrive clutch pack requires replacement through a transmission overhaul.", "tools": ["Transmission jack", "Overhaul kit"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 4000 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-10 hours",
+    "relatedCodes": ["P0730", "P0733", "P0735", "P0700"],
+    "faq": [
+      { "q": "Will higher RPM at highway speed damage the engine?", "a": "Not immediately, but it increases fuel consumption, engine wear, and transmission heat. The issue should be addressed." },
+      { "q": "Can I just avoid using overdrive?", "a": "While this prevents the slip, it is not a solution. The underlying problem will worsen and may affect other gears." },
+      { "q": "What is the typical fourth gear ratio?", "a": "It varies by transmission. In many 4-speed automatics, fourth gear is a 1:1 direct drive or an overdrive ratio around 0.70:1." }
+    ]
+  },
+  {
+    "code": "P0740",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Torque Converter Clutch Circuit",
+    "shortDescription": "The TCM/PCM has detected a malfunction in the torque converter clutch (TCC) solenoid circuit.",
+    "fullDescription": "Code P0740 is set when the TCM or PCM detects an electrical fault in the torque converter clutch solenoid circuit. The TCC locks the torque converter at highway speeds to eliminate slip between the engine and transmission, improving fuel economy and reducing heat. When this circuit fails, the converter cannot lock up, resulting in higher RPM at cruise speeds, reduced fuel economy, and potential overheating.",
+    "severity": "medium",
+    "safetyImpact": "Generally safe to drive, but fuel economy suffers and the transmission may overheat during extended highway driving.",
+    "causes": [
+      { "cause": "Faulty TCC solenoid", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the TCC circuit", "likelihood": "high" },
+      { "cause": "Dirty transmission fluid clogging the solenoid", "likelihood": "medium" },
+      { "cause": "Worn torque converter clutch material", "likelihood": "medium" },
+      { "cause": "TCM/PCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Higher RPM than normal at highway speeds",
+      "Reduced fuel economy",
+      "Slight shudder when converter should lock",
+      "Transmission overheating on long highway trips",
+      "No torque converter lockup feel"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check for TCC operation", "instruction": "Use a scan tool to command TCC lockup. Monitor engine RPM for a slight drop (50-100 RPM) indicating lockup. No drop means the TCC is not engaging.", "tools": ["OBD-II scanner with bidirectional control"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test the TCC solenoid circuit", "instruction": "Check the TCC solenoid resistance at the transmission connector. Compare to specifications. Test for power and ground in the circuit.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring", "instruction": "Check the wiring between the TCM/PCM and the transmission connector for damage, corrosion, or shorts.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace TCC solenoid", "instruction": "The TCC solenoid is typically located inside the transmission in the valve body. Replacing it requires dropping the transmission pan and accessing the valve body.", "tools": ["Socket set", "Drain pan", "New ATF and filter", "Torque wrench"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0741", "P0743", "P0744", "P0700"],
+    "faq": [
+      { "q": "What is torque converter lockup?", "a": "The torque converter has an internal clutch that mechanically connects the engine to the transmission at highway speeds, eliminating slip and improving fuel economy." },
+      { "q": "Can I drive without TCC lockup?", "a": "Yes, but fuel economy will decrease by 2-5 MPG and the transmission may run hotter during extended highway driving." },
+      { "q": "Where is the TCC solenoid?", "a": "It is typically inside the transmission, mounted in or on the valve body. Accessing it requires removing the transmission pan." }
+    ]
+  },
+  {
+    "code": "P0741",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Torque Converter Clutch Circuit Performance/Stuck Off",
+    "shortDescription": "The TCM has detected that the torque converter clutch is not engaging when commanded, or its performance is outside acceptable parameters.",
+    "fullDescription": "Code P0741 is set when the TCM commands the torque converter clutch to engage but the expected change in RPM slip does not occur. This means the TCC is stuck off or is not fully locking. Unlike P0740 which indicates a circuit fault, P0741 indicates a performance issue where the solenoid may be operating but the clutch is not functioning properly. This could be caused by a worn clutch, stuck solenoid, or hydraulic issues.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy decreases and the transmission may overheat during highway driving. Generally safe for normal driving.",
+    "causes": [
+      { "cause": "Worn torque converter clutch material", "likelihood": "high" },
+      { "cause": "TCC solenoid stuck in the off position", "likelihood": "high" },
+      { "cause": "Dirty ATF clogging hydraulic passages", "likelihood": "medium" },
+      { "cause": "Valve body issue preventing TCC apply pressure", "likelihood": "medium" },
+      { "cause": "Internal seal leak reducing TCC apply pressure", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Higher engine RPM at highway speeds",
+      "Reduced fuel economy (2-5 MPG loss)",
+      "Transmission runs hotter than normal",
+      "No lockup feel at steady cruise"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Change transmission fluid", "instruction": "A fluid change can sometimes resolve stuck solenoids and restore clutch friction. Use only the manufacturer-specified ATF.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test TCC operation", "instruction": "Use a scan tool to monitor TCC slip at highway speeds. Normal slip should be near zero when locked. Significant slip confirms the problem.", "tools": ["OBD-II scanner with live data"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Replace TCC solenoid", "instruction": "Access the valve body by removing the transmission pan. Replace the TCC solenoid and inspect the valve body for wear.", "tools": ["Socket set", "Drain pan", "New solenoid", "Torque wrench"], "difficulty": "advanced" },
+      { "step": 4, "title": "Replace torque converter", "instruction": "If the TCC clutch material is worn, the torque converter must be replaced. This requires removing the transmission from the vehicle.", "tools": ["Transmission jack", "Socket set", "New torque converter"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 300 }, "mechanic": { "min": 300, "max": 1500 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-8 hours",
+    "relatedCodes": ["P0740", "P0743", "P0744", "P0700"],
+    "faq": [
+      { "q": "What is the difference between P0740 and P0741?", "a": "P0740 indicates an electrical fault in the TCC circuit. P0741 indicates the solenoid may work electrically but the clutch is not physically engaging properly." },
+      { "q": "Can a fluid change fix P0741?", "a": "Sometimes. If the solenoid is sticking due to contamination, fresh fluid can help. If the clutch material is worn, a fluid change will not fix it." },
+      { "q": "What is TCC slip?", "a": "TCC slip is the RPM difference between the engine and the transmission input shaft. When the TCC is locked, slip should be near zero." }
+    ]
+  },
+  {
+    "code": "P0743",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Torque Converter Clutch Circuit Electrical",
+    "shortDescription": "The TCM/PCM has detected a specific electrical fault in the torque converter clutch solenoid circuit.",
+    "fullDescription": "Code P0743 is set when the TCM or PCM detects an electrical problem specifically in the TCC solenoid circuit, such as an open, short to ground, or short to power. This is a more specific electrical fault code than P0740 and indicates a definitive wiring or solenoid failure. The TCC solenoid cannot be controlled properly, preventing torque converter lockup.",
+    "severity": "medium",
+    "safetyImpact": "TCC lockup will not function. Fuel economy decreases and transmission may overheat during extended highway use.",
+    "causes": [
+      { "cause": "Internal short or open in the TCC solenoid", "likelihood": "high" },
+      { "cause": "Damaged wiring in the internal transmission harness", "likelihood": "high" },
+      { "cause": "Corroded transmission connector", "likelihood": "medium" },
+      { "cause": "External wiring damage between TCM and transmission", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "No torque converter lockup",
+      "Higher cruise RPM and reduced fuel economy",
+      "Possible transmission overheating",
+      "Shudder or vibration at highway speeds"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Test solenoid resistance", "instruction": "Measure the TCC solenoid resistance at the transmission connector. Typical values are 10-25 ohms. Open or shorted readings indicate solenoid failure.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Inspect transmission connector", "instruction": "Check the external transmission connector for corrosion, water intrusion, or damaged pins. This is a common failure point.", "tools": ["Contact cleaner", "Inspection mirror"], "difficulty": "easy" },
+      { "step": 3, "title": "Test wiring to TCM", "instruction": "Check continuity of the TCC solenoid wires from the transmission connector to the TCM. Look for shorts and opens.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace TCC solenoid or harness", "instruction": "Drop the transmission pan and replace the TCC solenoid. If the internal harness is damaged, it must also be replaced.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 30, "max": 200 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0740", "P0741", "P0744", "P0700"],
+    "faq": [
+      { "q": "What makes P0743 different from P0740?", "a": "P0743 specifically indicates an electrical fault in the solenoid or wiring, while P0740 is a more general TCC circuit malfunction code." },
+      { "q": "Can I test the solenoid without dropping the pan?", "a": "You can test the circuit resistance at the external transmission connector, but accessing the solenoid for replacement requires removing the pan." },
+      { "q": "What damages the internal transmission harness?", "a": "Heat, ATF degradation, and age can break down the insulation on internal harness wires, causing shorts or opens." }
+    ]
+  },
+  {
+    "code": "P0744",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Torque Converter Clutch Circuit Intermittent",
+    "shortDescription": "The TCM has detected intermittent operation of the torque converter clutch circuit.",
+    "fullDescription": "Code P0744 indicates the TCM has detected that the TCC circuit is operating intermittently. The TCC may lock and unlock erratically, or the electrical signal to the solenoid is inconsistent. This can cause a shudder or hunting sensation during highway driving as the converter repeatedly locks and unlocks. Intermittent faults are often caused by loose connections, degraded wiring, or a solenoid that is beginning to fail.",
+    "severity": "medium",
+    "safetyImpact": "The vehicle may exhibit shuddering at highway speeds. The condition is annoying but generally not immediately dangerous.",
+    "causes": [
+      { "cause": "Intermittent connection in the TCC solenoid circuit", "likelihood": "high" },
+      { "cause": "TCC solenoid beginning to fail", "likelihood": "high" },
+      { "cause": "Degraded transmission internal wiring harness", "likelihood": "medium" },
+      { "cause": "Contaminated ATF causing solenoid sticking", "likelihood": "medium" },
+      { "cause": "Loose connector at the transmission", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "TCC lockup hunting (repeatedly locking and unlocking)",
+      "Shudder at highway speeds",
+      "RPM fluctuations at steady cruise",
+      "Intermittent fuel economy changes"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check connector and wiring", "instruction": "Inspect the transmission external connector for looseness, corrosion, or water intrusion. Wiggle the connector while monitoring TCC operation.", "tools": ["OBD-II scanner", "Contact cleaner"], "difficulty": "easy" },
+      { "step": 2, "title": "Change transmission fluid", "instruction": "Contaminated fluid can cause solenoid sticking. A fluid and filter change may resolve intermittent TCC issues.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Test solenoid and circuit", "instruction": "Measure TCC solenoid resistance and check for intermittent readings by gently tapping the solenoid or wiggling wires. Any fluctuation indicates a fault.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid or harness", "instruction": "Replace the TCC solenoid. If the internal harness shows damage, replace it as well. Verify consistent TCC operation after repair.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 200 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0740", "P0741", "P0743", "P0700"],
+    "faq": [
+      { "q": "Why does the car shudder at highway speed?", "a": "The TCC is repeatedly locking and unlocking, causing the engine and transmission to alternately couple and decouple. This creates a shuddering sensation." },
+      { "q": "Are intermittent codes harder to diagnose?", "a": "Yes. Intermittent faults can be challenging because the problem may not be present during testing. Wiggle tests and monitoring over time can help." },
+      { "q": "Can I just ignore P0744?", "a": "It is not recommended. The intermittent fault will likely worsen, and the repeated locking/unlocking generates excessive heat in the converter." }
+    ]
+  },
+  {
+    "code": "P0745",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Pressure Control Solenoid 'A'",
+    "shortDescription": "The TCM has detected a malfunction in the transmission pressure control solenoid A circuit.",
+    "fullDescription": "Code P0745 is set when the TCM detects an electrical fault in the transmission line pressure control solenoid A. This solenoid regulates the hydraulic pressure within the transmission, which is critical for smooth and firm gear engagement. If the solenoid fails, the transmission may have excessively harsh or soft shifts, slipping, or complete loss of gear engagement. Line pressure control is fundamental to automatic transmission operation.",
+    "severity": "high",
+    "safetyImpact": "Transmission may shift very harshly or slip severely. The vehicle may enter limp mode or lose gear engagement entirely.",
+    "causes": [
+      { "cause": "Faulty pressure control solenoid", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid circuit", "likelihood": "high" },
+      { "cause": "Dirty ATF causing solenoid to stick", "likelihood": "medium" },
+      { "cause": "Corroded transmission connector", "likelihood": "medium" },
+      { "cause": "TCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Very harsh shifting",
+      "Transmission slipping",
+      "Transmission limp mode",
+      "Delayed gear engagement",
+      "Transmission overheating"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check ATF condition", "instruction": "Inspect transmission fluid level and quality. Contaminated fluid is a leading cause of solenoid failures.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid electrically", "instruction": "Measure the pressure control solenoid resistance at the transmission connector. Compare to manufacturer specifications.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Check wiring", "instruction": "Test the wiring between the TCM and transmission connector for continuity, shorts to ground, and shorts to power.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid", "instruction": "Remove the transmission pan and replace the pressure control solenoid. Change the fluid and filter at the same time.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF and filter", "Torque wrench"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 250 }, "mechanic": { "min": 250, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0746", "P0747", "P0748", "P0700"],
+    "faq": [
+      { "q": "What does the pressure control solenoid do?", "a": "It regulates the hydraulic line pressure in the transmission. Proper line pressure ensures clutch packs and bands engage firmly but smoothly." },
+      { "q": "Can I drive with harsh shifting?", "a": "Briefly. Excessively harsh shifting can damage internal transmission components. Have it diagnosed promptly." },
+      { "q": "How often should transmission fluid be changed?", "a": "Every 30,000-60,000 miles for most vehicles. Regular changes help prevent solenoid contamination and extend transmission life." }
+    ]
+  },
+  {
+    "code": "P0750",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'A'",
+    "shortDescription": "The TCM has detected a malfunction in transmission shift solenoid A.",
+    "fullDescription": "Code P0750 is set when the TCM detects an electrical fault in shift solenoid A. Shift solenoids control the flow of hydraulic fluid to engage different gear combinations within the automatic transmission. Solenoid A is typically involved in controlling first and second gear operation. A failure of this solenoid can prevent proper gear engagement and cause the transmission to operate in a limited number of gears.",
+    "severity": "high",
+    "safetyImpact": "The transmission may not shift properly, potentially staying in one gear. This limits speed and acceleration capability.",
+    "causes": [
+      { "cause": "Faulty shift solenoid A", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid circuit", "likelihood": "high" },
+      { "cause": "Contaminated ATF causing solenoid failure", "likelihood": "medium" },
+      { "cause": "Internal transmission harness damage", "likelihood": "medium" },
+      { "cause": "TCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Transmission stuck in one gear",
+      "No first or second gear",
+      "Transmission limp mode",
+      "Harsh or delayed shifting"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Scan for codes", "instruction": "Read all TCM codes. Multiple solenoid codes may indicate a common wiring or fluid issue rather than individual solenoid failures.", "tools": ["OBD-II scanner with transmission capability"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid resistance", "instruction": "Measure shift solenoid A resistance at the transmission connector. Typical range is 12-25 ohms depending on the application.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and connector", "instruction": "Check the transmission external connector and wiring for damage. Test the solenoid feed wire from the TCM for continuity and shorts.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace shift solenoid A", "instruction": "Drop the transmission pan, remove the old solenoid from the valve body, and install a new one. Replace the fluid and filter.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 40, "max": 200 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0751", "P0752", "P0755", "P0700"],
+    "faq": [
+      { "q": "Which gears does shift solenoid A control?", "a": "This varies by transmission model. Solenoid A typically controls first and second gear combinations, but check your specific service manual." },
+      { "q": "Can I replace just one solenoid?", "a": "Yes, but many technicians recommend replacing the entire solenoid pack since the other solenoids are likely the same age and may fail soon." },
+      { "q": "Is a solenoid pack expensive?", "a": "A complete solenoid pack ranges from $50-$300 depending on the transmission. Individual solenoids are $20-$80." }
+    ]
+  },
+  {
+    "code": "P0751",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'A' Performance/Stuck Off",
+    "shortDescription": "The TCM has detected that shift solenoid A is not performing correctly or is stuck in the off position.",
+    "fullDescription": "Code P0751 indicates the TCM has commanded shift solenoid A to engage but has not observed the expected gear change. The solenoid may be physically stuck due to contamination, worn, or mechanically jammed. Unlike P0750 which is an electrical fault, P0751 is a performance code indicating the solenoid is not achieving the desired result even though it may be receiving the correct electrical signal.",
+    "severity": "high",
+    "safetyImpact": "The transmission may not shift into certain gears, causing limp mode or limited gear operation.",
+    "causes": [
+      { "cause": "Shift solenoid A stuck due to contamination", "likelihood": "high" },
+      { "cause": "Worn shift solenoid A", "likelihood": "high" },
+      { "cause": "Dirty or degraded transmission fluid", "likelihood": "medium" },
+      { "cause": "Valve body wear preventing proper fluid routing", "likelihood": "medium" },
+      { "cause": "Internal transmission mechanical issue", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Failure to shift into certain gears",
+      "Harsh or delayed shifts",
+      "Transmission limp mode",
+      "RPM flare during shifting"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Change transmission fluid", "instruction": "Replace the ATF and filter. Contaminated fluid is the most common cause of stuck solenoids. Use only manufacturer-specified fluid.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test solenoid function", "instruction": "Use a scan tool with bidirectional control to command the solenoid on and off while monitoring for the expected gear change.", "tools": ["OBD-II scanner with bidirectional control"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Replace shift solenoid A", "instruction": "Remove the solenoid from the valve body. Inspect it for contamination and debris. Install a new solenoid.", "tools": ["Socket set", "Drain pan", "New solenoid"], "difficulty": "advanced" },
+      { "step": 4, "title": "Inspect valve body", "instruction": "If replacing the solenoid does not resolve the issue, the valve body may have worn bores or stuck valves that require reconditioning or replacement.", "tools": ["Valve body service kit", "Torque wrench"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 250 }, "mechanic": { "min": 200, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0750", "P0752", "P0755", "P0700"],
+    "faq": [
+      { "q": "What does 'stuck off' mean?", "a": "It means the solenoid is not moving to its commanded on position, so it remains in its default off state." },
+      { "q": "Can a fluid change fix a stuck solenoid?", "a": "Often yes. If the solenoid is stuck due to varnish or debris, fresh fluid can dissolve the contamination and restore operation." },
+      { "q": "What is the difference between P0750 and P0751?", "a": "P0750 is an electrical fault code (open/short). P0751 is a performance code meaning the solenoid is receiving the signal but not performing correctly." }
+    ]
+  },
+  {
+    "code": "P0755",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'B'",
+    "shortDescription": "The TCM has detected an electrical malfunction in transmission shift solenoid B.",
+    "fullDescription": "Code P0755 is set when the TCM detects an electrical fault in shift solenoid B. This solenoid, in combination with solenoid A, controls gear selection in the automatic transmission. Solenoid B is typically involved in third and fourth gear engagement. An electrical failure prevents the TCM from controlling this solenoid, resulting in limited gear availability and potentially harsh shifting.",
+    "severity": "high",
+    "safetyImpact": "Transmission may not shift into higher gears, forcing the engine to run at higher RPM and limiting vehicle speed capability.",
+    "causes": [
+      { "cause": "Faulty shift solenoid B", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid B circuit", "likelihood": "high" },
+      { "cause": "Corroded transmission connector", "likelihood": "medium" },
+      { "cause": "Internal transmission harness damage", "likelihood": "medium" },
+      { "cause": "TCM driver circuit failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "No third or fourth gear",
+      "Transmission limp mode",
+      "Higher RPM at highway speeds",
+      "Harsh shifting between available gears"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Read all codes", "instruction": "Check for multiple solenoid codes. Multiple codes may indicate a common wiring or connector issue.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid resistance", "instruction": "Measure shift solenoid B resistance at the transmission connector. An out-of-range reading confirms solenoid failure.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring", "instruction": "Check the external and internal transmission wiring for damage. Test continuity from the TCM to the solenoid.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace shift solenoid B", "instruction": "Remove the transmission pan and replace solenoid B on the valve body. Service the fluid and filter.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 40, "max": 200 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0756", "P0757", "P0750", "P0700"],
+    "faq": [
+      { "q": "Which gears does shift solenoid B affect?", "a": "Solenoid B typically controls third and fourth gear engagement, though this varies by transmission model." },
+      { "q": "Should I replace all solenoids at once?", "a": "It is recommended since the other solenoids are the same age. A solenoid pack replacement is often more economical long-term." },
+      { "q": "Can I test the solenoid without removing it?", "a": "You can test resistance at the external transmission connector. Functional testing requires a scan tool with bidirectional control." }
+    ]
+  },
+  {
+    "code": "P0756",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'B' Performance/Stuck Off",
+    "shortDescription": "The TCM has detected that shift solenoid B is not performing correctly or is stuck in the off position.",
+    "fullDescription": "Code P0756 indicates the TCM has commanded shift solenoid B to engage but the expected gear change has not occurred. The solenoid is receiving the electrical command but is not mechanically performing. This is usually caused by contamination, wear, or hydraulic issues in the valve body. The transmission may be stuck in a limited range of gears.",
+    "severity": "high",
+    "safetyImpact": "Limited gear availability affects acceleration and top speed. Highway driving may not be possible if upper gears are unavailable.",
+    "causes": [
+      { "cause": "Shift solenoid B stuck due to contamination", "likelihood": "high" },
+      { "cause": "Worn solenoid B", "likelihood": "high" },
+      { "cause": "Degraded transmission fluid", "likelihood": "medium" },
+      { "cause": "Valve body wear", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Unable to shift into higher gears",
+      "Transmission limp mode",
+      "Delayed or absent upshifts",
+      "RPM flare during attempted shifts"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Change ATF", "instruction": "Replace the fluid and filter with manufacturer-specified ATF. This alone may free a contaminated solenoid.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test solenoid response", "instruction": "Use a scan tool to command solenoid B while monitoring transmission behavior. Compare expected vs actual gear engagement.", "tools": ["OBD-II scanner with bidirectional control"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Replace solenoid B", "instruction": "Remove and replace the solenoid. Inspect the old solenoid for contamination and debris.", "tools": ["Socket set", "Drain pan", "New solenoid"], "difficulty": "advanced" },
+      { "step": 4, "title": "Service valve body if needed", "instruction": "If the new solenoid does not resolve the issue, the valve body may need reconditioning or replacement.", "tools": ["Valve body kit", "Torque wrench"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 250 }, "mechanic": { "min": 200, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0755", "P0757", "P0750", "P0700"],
+    "faq": [
+      { "q": "Is P0756 the same as P0755?", "a": "No. P0755 is an electrical fault. P0756 is a performance fault where the solenoid has power but is not mechanically working." },
+      { "q": "What contamination causes solenoids to stick?", "a": "Varnish from degraded ATF, metal particles from clutch and gear wear, and debris from seals breaking down can all clog solenoid passages." },
+      { "q": "Can I drive without higher gears?", "a": "Only at low speeds. Without upper gears, the engine will rev excessively at any significant speed, causing overheating and excess wear." }
+    ]
+  },
+  {
+    "code": "P0760",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'C'",
+    "shortDescription": "The TCM has detected an electrical malfunction in transmission shift solenoid C.",
+    "fullDescription": "Code P0760 is set when the TCM detects an electrical fault in shift solenoid C. In transmissions with more than four speeds, additional solenoids like solenoid C are used to control higher gear combinations including fifth and sixth gears or overdrive functions. An electrical failure in this solenoid limits the transmission to fewer gears and may trigger limp mode.",
+    "severity": "high",
+    "safetyImpact": "Higher gears may be unavailable, limiting highway speed capability and fuel economy.",
+    "causes": [
+      { "cause": "Faulty shift solenoid C", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid C circuit", "likelihood": "high" },
+      { "cause": "Internal transmission harness failure", "likelihood": "medium" },
+      { "cause": "Corroded transmission connector", "likelihood": "medium" },
+      { "cause": "TCM output driver failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "No overdrive or higher gear engagement",
+      "Transmission limp mode",
+      "High RPM during highway driving",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Scan and diagnose", "instruction": "Read all TCM codes. Check if multiple solenoid codes are present, indicating a possible common cause.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid electrically", "instruction": "Measure solenoid C resistance at the transmission connector. Compare to specifications.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect wiring and harness", "instruction": "Test the circuit from the TCM to the solenoid for continuity and shorts. Check internal and external harness condition.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid C", "instruction": "Access the valve body and replace solenoid C. Service the fluid and filter simultaneously.", "tools": ["Socket set", "Drain pan", "New solenoid", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 40, "max": 200 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0761", "P0762", "P0750", "P0755", "P0700"],
+    "faq": [
+      { "q": "What does solenoid C control?", "a": "In multi-speed transmissions (5-speed, 6-speed), solenoid C typically controls the higher gear combinations or overdrive function." },
+      { "q": "Is my transmission a 5-speed or 6-speed?", "a": "Check your owner's manual or vehicle specifications. The number of shift solenoids corresponds to the complexity of the transmission." },
+      { "q": "Can I drive safely without overdrive?", "a": "Yes, at lower speeds. Highway driving will result in higher RPM and increased fuel consumption." }
+    ]
+  },
+  {
+    "code": "P0761",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'C' Performance/Stuck Off",
+    "shortDescription": "The TCM has detected that shift solenoid C is not performing correctly or is stuck in the off position.",
+    "fullDescription": "Code P0761 indicates the TCM has commanded shift solenoid C to engage but the expected shift has not occurred. The solenoid may be receiving the electrical signal but is mechanically stuck or unable to move the internal valve. This prevents the transmission from accessing all available gears, typically affecting overdrive or higher gear engagement.",
+    "severity": "high",
+    "safetyImpact": "Limited gear availability. The vehicle can be driven at moderate speeds but highway driving efficiency is compromised.",
+    "causes": [
+      { "cause": "Shift solenoid C stuck due to contamination", "likelihood": "high" },
+      { "cause": "Worn or degraded solenoid C", "likelihood": "high" },
+      { "cause": "Dirty or degraded ATF", "likelihood": "medium" },
+      { "cause": "Valve body wear or stuck valve", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Cannot access overdrive or higher gears",
+      "Transmission stays in lower gears",
+      "Higher engine RPM at highway speeds",
+      "Delayed upshifts"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Service transmission fluid", "instruction": "Drain and replace the ATF and filter. Fresh fluid may free a stuck solenoid.", "tools": ["Socket set", "Drain pan", "New ATF and filter"], "difficulty": "intermediate" },
+      { "step": 2, "title": "Test solenoid performance", "instruction": "Use bidirectional scan tool controls to command solenoid C. Monitor for expected gear changes.", "tools": ["OBD-II scanner with bidirectional control"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Replace solenoid", "instruction": "Remove and replace solenoid C from the valve body. Inspect the old solenoid and surrounding area for debris.", "tools": ["Socket set", "Drain pan", "New solenoid"], "difficulty": "advanced" },
+      { "step": 4, "title": "Valve body inspection", "instruction": "If a new solenoid does not fix the issue, inspect the valve body for worn bores or stuck check balls.", "tools": ["Valve body service kit"], "difficulty": "professional" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 250 }, "mechanic": { "min": 200, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0760", "P0762", "P0755", "P0700"],
+    "faq": [
+      { "q": "How do I know which gear solenoid C controls?", "a": "The solenoid-to-gear mapping varies by transmission model. Check your specific transmission service manual for the solenoid application chart." },
+      { "q": "Should I replace all solenoids when one fails?", "a": "It is recommended. If one solenoid has failed due to age and contamination, the others are likely close to failure as well." },
+      { "q": "Can I buy a solenoid pack instead of individual solenoids?", "a": "Yes. Many suppliers sell complete solenoid packs which include all shift and pressure solenoids. This is often more economical." }
+    ]
+  },
+  {
+    "code": "P0765",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'D'",
+    "shortDescription": "The TCM has detected an electrical malfunction in transmission shift solenoid D.",
+    "fullDescription": "Code P0765 is set when the TCM detects an electrical fault in shift solenoid D. This solenoid is found in transmissions with five or more speeds and is used in combination with other shift solenoids to control the higher gear combinations. Solenoid D may control specific overdrive ratios or assist in smooth transitions between gears. An electrical failure limits gear availability.",
+    "severity": "high",
+    "safetyImpact": "Certain gears may be unavailable. The transmission may enter limp mode, limiting vehicle performance.",
+    "causes": [
+      { "cause": "Faulty shift solenoid D", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid D circuit", "likelihood": "high" },
+      { "cause": "Damaged internal transmission wiring harness", "likelihood": "medium" },
+      { "cause": "Corroded external transmission connector", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Missing certain gears during driving",
+      "Transmission limp mode",
+      "Erratic shifting pattern",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Read all transmission codes", "instruction": "Scan for all TCM codes. Determine if solenoid D is the only failure or if other solenoids are also affected.", "tools": ["OBD-II scanner"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid D resistance", "instruction": "Measure the solenoid resistance at the transmission connector. An open or shorted reading confirms a solenoid or wiring failure.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Check wiring integrity", "instruction": "Test the wiring from the TCM to the transmission connector and the internal harness to the solenoid.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid D", "instruction": "Remove the transmission pan and replace solenoid D. Consider replacing the entire solenoid pack. Service the fluid and filter.", "tools": ["Socket set", "Drain pan", "Solenoid pack", "New ATF and filter"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 250 }, "mechanic": { "min": 200, "max": 700 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0766", "P0767", "P0760", "P0700"],
+    "faq": [
+      { "q": "Do all transmissions have a solenoid D?", "a": "No. Solenoid D is typically found in transmissions with 5 or more speeds. 4-speed transmissions usually only have solenoids A and B." },
+      { "q": "What happens if solenoid D fails?", "a": "The transmission loses the ability to engage certain gear combinations, often resulting in limp mode with a limited number of available gears." },
+      { "q": "Can I test the solenoid without removing the pan?", "a": "You can test electrical resistance at the external connector, but physical inspection and replacement require pan removal." }
+    ]
+  },
+  {
+    "code": "P0770",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Shift Solenoid 'E'",
+    "shortDescription": "The TCM has detected an electrical malfunction in transmission shift solenoid E.",
+    "fullDescription": "Code P0770 is set when the TCM detects an electrical fault in shift solenoid E. Found in advanced transmissions with six or more speeds, solenoid E works with the other shift solenoids to provide the wide range of gear ratios needed for optimal performance and fuel economy. A failure of solenoid E reduces the available gear combinations and may cause the TCM to enter a fail-safe mode.",
+    "severity": "high",
+    "safetyImpact": "Reduced gear availability may limit vehicle performance. Limp mode operation restricts speed and acceleration.",
+    "causes": [
+      { "cause": "Faulty shift solenoid E", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid E circuit", "likelihood": "high" },
+      { "cause": "Internal transmission harness degradation", "likelihood": "medium" },
+      { "cause": "Corroded transmission electrical connector", "likelihood": "medium" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Missing gears in the shift pattern",
+      "Transmission limp mode",
+      "Harsh or unexpected shifts",
+      "Reduced fuel economy",
+      "Delayed gear engagement"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Comprehensive code scan", "instruction": "Read all TCM codes. In multi-speed transmissions, multiple solenoid codes often point to common causes.", "tools": ["OBD-II scanner with transmission capability"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid E electrically", "instruction": "Measure solenoid E resistance at the transmission connector. Compare to specifications.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Inspect all wiring", "instruction": "Check internal and external transmission harness wiring for damage, corrosion, or shorts.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid E or solenoid pack", "instruction": "Remove the transmission pan and valve body cover. Replace solenoid E or the entire solenoid pack. Service the fluid and filter.", "tools": ["Socket set", "Drain pan", "Solenoid pack", "New ATF and filter", "Torque wrench"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 300 }, "mechanic": { "min": 250, "max": 800 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0771", "P0772", "P0765", "P0700"],
+    "faq": [
+      { "q": "What transmission has solenoid E?", "a": "Typically 6-speed and higher automatic transmissions. Consult your service manual to determine your transmission's solenoid configuration." },
+      { "q": "Are all shift solenoids the same?", "a": "Not necessarily. Some transmissions use solenoids of different sizes, types (on/off vs. PWM), and resistance values for different functions." },
+      { "q": "How long do transmission solenoids last?", "a": "With regular fluid maintenance, solenoids can last 150,000+ miles. Neglected fluid changes significantly shorten their lifespan." }
+    ]
+  },
+  {
+    "code": "P0775",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Pressure Control Solenoid 'B'",
+    "shortDescription": "The TCM has detected an electrical malfunction in transmission pressure control solenoid B.",
+    "fullDescription": "Code P0775 is set when the TCM detects an electrical fault in pressure control solenoid B. This solenoid works in conjunction with pressure control solenoid A to regulate hydraulic pressure in the transmission. In some transmissions, solenoid B controls pressure for specific gear ranges or provides supplemental pressure control. A failure can result in harsh shifting, slipping, or the transmission entering a protective fail-safe mode with maximum line pressure.",
+    "severity": "high",
+    "safetyImpact": "The transmission may shift very harshly (if pressure defaults high) or slip (if pressure is too low). Either condition can cause secondary damage if not addressed.",
+    "causes": [
+      { "cause": "Faulty pressure control solenoid B", "likelihood": "high" },
+      { "cause": "Open or shorted wiring in the solenoid circuit", "likelihood": "high" },
+      { "cause": "Contaminated transmission fluid causing solenoid sticking", "likelihood": "medium" },
+      { "cause": "Internal transmission harness degradation", "likelihood": "medium" },
+      { "cause": "TCM output driver failure", "likelihood": "low" }
+    ],
+    "symptoms": [
+      "Check Engine Light illuminated",
+      "Very harsh shifting (banging into gear)",
+      "Transmission slipping",
+      "Transmission limp mode",
+      "Delayed gear engagement",
+      "Abnormal transmission noise"
+    ],
+    "fixSteps": [
+      { "step": 1, "title": "Check transmission fluid", "instruction": "Verify fluid level and condition. Degraded fluid is a primary contributor to pressure solenoid failures.", "tools": ["Dipstick"], "difficulty": "easy" },
+      { "step": 2, "title": "Test solenoid B", "instruction": "Measure the resistance of pressure control solenoid B at the transmission connector. Values outside the specified range indicate failure.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 3, "title": "Check circuit wiring", "instruction": "Test the wiring between the TCM and the solenoid for continuity, shorts to ground, and shorts to power.", "tools": ["Multimeter", "Wiring diagram"], "difficulty": "intermediate" },
+      { "step": 4, "title": "Replace solenoid and service transmission", "instruction": "Drop the pan, replace pressure control solenoid B (or the entire solenoid pack), replace the filter, and refill with fresh ATF.", "tools": ["Socket set", "Drain pan", "Solenoid pack", "New ATF and filter", "Torque wrench"], "difficulty": "advanced" }
+    ],
+    "estimatedCost": { "diy": { "min": 50, "max": 300 }, "mechanic": { "min": 250, "max": 900 } },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0776", "P0777", "P0745", "P0700"],
+    "faq": [
+      { "q": "What is the difference between a shift solenoid and a pressure control solenoid?", "a": "Shift solenoids direct fluid to engage specific gears. Pressure control solenoids regulate the overall hydraulic pressure used to apply clutches and bands." },
+      { "q": "Can high line pressure damage the transmission?", "a": "Yes. Sustained high pressure causes harsh shifts that can damage clutch packs, bands, and other internal components." },
+      { "q": "Should I replace both pressure solenoids at the same time?", "a": "Yes, it is recommended to replace both A and B pressure solenoids together since they experience similar wear and contamination." }
+    ]
+  }
+]
