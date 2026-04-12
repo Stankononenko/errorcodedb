@@ -67,7 +67,29 @@ export type ApplianceDeviceType =
   | "oven"
   | "freezer"
   | "air-conditioner"
-  | "range-hood";
+  | "range-hood"
+  | "cooktop"
+  | "wine-cooler"
+  | "ice-maker"
+  | "garbage-disposal"
+  | "water-purifier"
+  | "dehumidifier"
+  | "humidifier"
+  | "air-purifier"
+  | "vacuum"
+  | "robot-vacuum"
+  | "coffee-machine"
+  | "espresso-machine"
+  | "food-processor"
+  | "blender"
+  | "pressure-cooker"
+  | "slow-cooker"
+  | "bread-maker"
+  | "rice-cooker"
+  | "induction-cooktop"
+  | "washer-dryer-combo"
+  | "steam-oven"
+  | "warming-drawer";
 
 export interface ApplianceCause {
   cause: string;
