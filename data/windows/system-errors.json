@@ -992,5 +992,158 @@
       {"q": "Can I ignore this error?", "a": "In enterprise environments, no. GP failures mean security policies and configurations are not being applied correctly. In home environments, it is usually not impactful."},
       {"q": "What is gpupdate /force?", "a": "It forces an immediate refresh of all Group Policy settings instead of waiting for the next scheduled refresh (typically every 90 minutes)."}
     ]
+  },
+  {
+    "id": "system-0xc0000428",
+    "category": "system",
+    "code": "0xC0000428",
+    "displayCode": "0xC0000428",
+    "title": "Digital Signature Verification Failed for Boot File",
+    "shortDescription": "Windows cannot verify the digital signature of a file required for boot.",
+    "fullDescription": "Error 0xC0000428 (STATUS_INVALID_IMAGE_HASH) occurs when Secure Boot or Windows Boot Manager cannot verify the digital signature of a boot-critical file (commonly winload.exe or winload.efi). This typically happens after BIOS changes, driver installation, or when boot files are corrupted.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Secure Boot blocking unsigned or corrupted boot file", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Boot file corrupted after update failure", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party bootloader modifying boot process", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Secure Boot settings changed in BIOS", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Boot failure with digital signature verification error",
+      "Error names specific file like winload.exe or winload.efi",
+      "Error appeared after BIOS or firmware update",
+      "Cannot boot Windows at all"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Temporarily disable Secure Boot", "instruction": "Enter BIOS > Security > Secure Boot > Disabled. This is a temporary workaround to allow booting.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Repair boot files", "instruction": "Boot from Windows media > Command Prompt: bootrec /fixboot && sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows", "tools": ["Windows Installation Media"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Rebuild BCD", "instruction": "From recovery Command Prompt: bootrec /rebuildbcd", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Re-enable Secure Boot", "instruction": "After repair, re-enable Secure Boot in BIOS to maintain system security.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If boot file repair does not resolve the issue and the system still fails with Secure Boot enabled.",
+    "relatedCodes": ["0xC0000225", "0xC0000034", "0xC0000221"],
+    "faq": [
+      {"q": "Is it safe to disable Secure Boot?", "a": "Temporarily, yes. But keep it enabled normally as it protects against rootkits and boot-level malware. Re-enable after repair."},
+      {"q": "Can dual-boot setups cause this?", "a": "Yes. Third-party bootloaders like GRUB may not be Secure Boot compatible. Use signed bootloaders or configure Secure Boot keys."},
+      {"q": "Will this happen again after repair?", "a": "It should not recur after proper boot file repair unless the underlying cause (driver, update, etc.) happens again."}
+    ]
+  },
+  {
+    "id": "system-driver-pnp-watchdog",
+    "category": "system",
+    "code": "0x000001D4",
+    "displayCode": "DRIVER_PNP_WATCHDOG",
+    "title": "Plug and Play Driver Watchdog Timeout",
+    "shortDescription": "A Plug and Play driver operation took too long and the watchdog timer triggered a system halt.",
+    "fullDescription": "This system error occurs when a driver's Plug and Play (PnP) operation exceeds the watchdog timeout limit. PnP operations include device enumeration, driver loading, and power management. This often happens during Windows boot, shutdown, or when new hardware is detected.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Buggy device driver hanging during PnP operation", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Hardware device not responding to PnP requests", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Too many devices causing PnP enumeration timeout", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "SSD or storage controller firmware issue", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "System hangs during boot at driver loading phase",
+      "BSOD with DRIVER_PNP_WATCHDOG during shutdown",
+      "Hang when connecting new USB or PCIe device",
+      "System freeze during wake from sleep"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect non-essential hardware", "instruction": "Remove all non-essential USB devices, PCIe cards, and peripherals. Boot with minimal hardware.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Boot into Safe Mode and update drivers", "instruction": "Boot into Safe Mode. Open Device Manager and update all drivers, especially storage, USB, and chipset.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Disable fast startup", "instruction": "Control Panel > Power Options > Choose what power buttons do > Uncheck Turn on fast startup.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Run SFC and DISM", "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the issue persists after driver updates and minimal hardware boot, professional hardware diagnosis may be needed.",
+    "relatedCodes": ["DPC_WATCHDOG_VIOLATION", "DRIVER_POWER_STATE_FAILURE", "CLOCK_WATCHDOG_TIMEOUT"],
+    "faq": [
+      {"q": "What is PnP?", "a": "Plug and Play is the Windows subsystem that automatically detects, configures, and loads drivers for hardware devices."},
+      {"q": "Why does this happen during boot?", "a": "During boot, Windows enumerates all hardware and loads drivers. A stuck driver can exceed the PnP watchdog timeout."},
+      {"q": "Can Fast Startup cause this?", "a": "Yes. Fast Startup preserves driver state from the previous session, which can cause PnP issues. Disabling it forces a fresh driver initialization."}
+    ]
+  },
+  {
+    "id": "system-bitlocker-recovery",
+    "category": "system",
+    "code": "BITLOCKER_RECOVERY",
+    "displayCode": "BitLocker Recovery",
+    "title": "BitLocker Recovery Key Required",
+    "shortDescription": "BitLocker drive encryption is requesting a recovery key to unlock the system drive.",
+    "fullDescription": "BitLocker Recovery mode is triggered when the system detects a potential security threat to the encrypted drive. This can happen after BIOS updates, hardware changes, TPM firmware updates, or too many incorrect PIN attempts. The recovery key is a 48-digit numerical code that was created when BitLocker was enabled.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "BIOS or firmware update changing boot configuration", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "TPM firmware update or reset", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Hardware change (new motherboard, boot drive moved)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Too many incorrect PIN attempts", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Secure Boot configuration change", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen asking for BitLocker recovery key",
+      "Cannot boot without entering 48-digit recovery key",
+      "Triggered after BIOS update or hardware change",
+      "Occurs unexpectedly after Windows Update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Find your recovery key", "instruction": "Check these locations: Microsoft account at account.microsoft.com/devices/recoverykey, Azure AD if work device, USB drive where you saved it, or printed copy.", "tools": ["Browser", "Another device"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Enter the recovery key", "instruction": "Type the 48-digit recovery key when prompted. Windows will boot normally.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Prevent future triggers", "instruction": "After booting, open manage-bde from Command Prompt: manage-bde -protectors -get C: to verify protectors are intact.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Suspend BitLocker before BIOS updates", "instruction": "Before future BIOS updates: manage-bde -protectors -disable C: . Re-enable after: manage-bde -protectors -enable C:", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 3}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "If you cannot find your recovery key and cannot access the drive. Professional data recovery may be possible in some cases but is not guaranteed.",
+    "relatedCodes": ["0xC0000225", "0xC0000428", "0xC000000E"],
+    "faq": [
+      {"q": "What if I cannot find my recovery key?", "a": "Without the recovery key, the encrypted data cannot be accessed. This is by design for security. Check your Microsoft account, Azure AD, or any printed/saved copies."},
+      {"q": "Why did BitLocker trigger unexpectedly?", "a": "BitLocker monitors boot integrity. Any change to BIOS, boot order, hardware, or TPM can trigger recovery mode as a security precaution."},
+      {"q": "How do I prevent this in the future?", "a": "Before BIOS updates or hardware changes, suspend BitLocker first using manage-bde -protectors -disable C:. Re-enable after."}
+    ]
+  },
+  {
+    "id": "system-error-0x80004005",
+    "category": "system",
+    "code": "0x80004005",
+    "displayCode": "0x80004005",
+    "title": "Unspecified Error (E_FAIL)",
+    "shortDescription": "An unspecified error occurred during a Windows operation, commonly affecting file operations, network shares, or COM objects.",
+    "fullDescription": "Error 0x80004005 (E_FAIL) is one of the most generic Windows error codes. It appears in many contexts: accessing network shares, extracting ZIP files, Windows Update, virtual machine operations, and COM/OLE operations. The resolution depends on the specific context in which it occurs.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Network share access blocked by SMB settings", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted or password-protected archive file", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "COM/DCOM permission issues", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VirtualBox or Hyper-V configuration error", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Unspecified error when accessing network share",
+      "Error when extracting ZIP or ISO files",
+      "Virtual machine fails to start with 0x80004005",
+      "Windows Update fails with this code"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Enable SMB1 for legacy shares", "instruction": "If error is for network shares: Windows Features > enable SMB 1.0/CIFS Client. Or use elevated CMD: net use \\\\server\\share /user:username password", "tools": ["Windows Features", "Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Re-download or extract with 7-Zip", "instruction": "If error is with archives: try re-downloading the file or use 7-Zip instead of Windows built-in extractor.", "tools": ["7-Zip"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Reset network settings", "instruction": "For network errors: netsh winsock reset && netsh int ip reset && ipconfig /flushdns", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Fix virtual machine error", "instruction": "For VirtualBox: delete the offending VM's folder in C:\\Users\\username\\.VirtualBox and recreate. For Hyper-V: reset virtual switches.", "tools": ["VirtualBox/Hyper-V Manager"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "If the error occurs in a critical business application and the context-specific fix is not clear.",
+    "relatedCodes": ["0x80070005", "0x80070002", "0x80070057"],
+    "faq": [
+      {"q": "Why is this error so vague?", "a": "0x80004005 is a generic COM error code meaning unspecified failure. The actual cause depends entirely on the context in which it appears."},
+      {"q": "Can enabling SMB1 be a security risk?", "a": "Yes. SMBv1 has known vulnerabilities. Only enable it for legacy devices that require it, and prefer upgrading those devices to use SMBv2 or SMBv3."},
+      {"q": "Does this affect virtual machines specifically?", "a": "It is a common error in VirtualBox and Hyper-V, usually related to virtual network adapters or VM configuration files. Recreating the VM often fixes it."}
+    ]
   }
 ]
