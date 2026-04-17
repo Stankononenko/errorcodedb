@@ -54,7 +54,7 @@ Daikin, Mitsubishi, Fujitsu, Honeywell, Nest, Ecobee, Navien, Rinnai
    - Better card designs, spacing, typography
    - Category pages need visual identity (icons, colors per category)
    - Code detail pages need better layout (too text-heavy, needs visual breaks)
-   - Mobile experience review
+   - **MOBILE FIRST** — 80%+ трафика будет с телефонов (люди гуглят ошибки стоя у машины/стиралки)
    - Consider: hero illustrations, brand logos, severity color coding improvements
    - Look at competitors (obd-codes.com, samsung support pages) for inspiration
 2. Deploy to Vercel with custom domain errorcodedb.com
