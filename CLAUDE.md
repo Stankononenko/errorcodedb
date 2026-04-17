@@ -48,16 +48,25 @@ Daikin, Mitsubishi, Fujitsu, Honeywell, Nest, Ecobee, Navien, Rinnai
 - **Always run `python3 scripts/fix-data.py` before build**
 
 ### NEXT SESSION PRIORITIES:
-1. Deploy to Vercel with custom domain errorcodedb.com
-2. Apply for Google AdSense once 50+ pages indexed
-3. Client-side search functionality
-4. More OBD-II expansion (P3/P4 codes, more manufacturer codes)
-5. More HVAC (mini-split expansion, boiler codes)
-6. Sound bars (Sonos, Bose, JBL, Samsung, LG)
-7. Smart home devices (Alexa, Google Home, Hue, SmartThings)
-8. 3D printers (Creality, Prusa, Bambu Lab)
-9. EV chargers (Tesla Wall Connector, ChargePoint, Emporia)
-10. Internal linking optimization
+1. **DESIGN OVERHAUL** — current design feels generic/bland. Needs:
+   - Better visual hierarchy, more polished look
+   - Improved color scheme (not just default Tailwind grays/blues)
+   - Better card designs, spacing, typography
+   - Category pages need visual identity (icons, colors per category)
+   - Code detail pages need better layout (too text-heavy, needs visual breaks)
+   - Mobile experience review
+   - Consider: hero illustrations, brand logos, severity color coding improvements
+   - Look at competitors (obd-codes.com, samsung support pages) for inspiration
+2. Deploy to Vercel with custom domain errorcodedb.com
+3. Apply for Google AdSense once 50+ pages indexed
+4. Client-side search functionality
+5. More OBD-II expansion (P3/P4 codes, more manufacturer codes)
+6. More HVAC (mini-split expansion, boiler codes)
+7. Sound bars (Sonos, Bose, JBL, Samsung, LG)
+8. Smart home devices (Alexa, Google Home, Hue, SmartThings)
+9. 3D printers (Creality, Prusa, Bambu Lab)
+10. EV chargers (Tesla Wall Connector, ChargePoint, Emporia)
+11. Internal linking optimization
 
 ## Architecture Quick Reference
 - Data: `data/{obd2,appliance,hvac,printer,windows}/`
