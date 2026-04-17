@@ -1,0 +1,553 @@
+[
+  {
+    "id": "tp-link-router-orange-light",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Orange Light",
+    "displayCode": "Orange Light",
+    "alternativeCodes": ["Amber LED", "Orange internet light", "WAN light orange"],
+    "title": "No Internet Connection — Orange Internet LED",
+    "shortDescription": "The internet indicator LED is solid orange, indicating the router is connected to the modem but has no internet access.",
+    "fullDescription": "A solid orange internet LED on TP-Link routers (Archer series and Deco mesh systems) means the router has detected the modem connection on the WAN port but cannot reach the internet. The router itself is functioning, WiFi is broadcasting, and local network access works, but no external internet traffic is passing through.\n\nThis is the most common TP-Link router issue and is usually caused by an ISP outage, a modem that needs rebooting, or incorrect WAN settings. TP-Link uses a color-coded LED system where green means internet is active and orange/amber means no internet connectivity.",
+    "causes": [
+      {"cause": "Modem needs to be power cycled to refresh connection", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "ISP outage or service disruption", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WAN connection type set incorrectly", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "ISP requires PPPoE credentials not entered in router", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Ethernet cable between modem and router faulty", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Internet LED is solid orange instead of green",
+      "All devices show 'Connected, no internet'",
+      "Tether app shows WAN disconnected",
+      "WiFi works for local network but no internet",
+      "Occurred after modem restart or ISP maintenance"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle modem and router", "instruction": "Unplug the modem first, wait 30 seconds, plug it back in. Wait 2 minutes for full boot. Then unplug the TP-Link router, wait 30 seconds, plug it back in. Wait 2 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Check Ethernet cable", "instruction": "Ensure the Ethernet cable runs from the modem's LAN port to the TP-Link router's WAN port (usually blue). Try a different cable if available.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Run Quick Setup wizard", "instruction": "Open a browser and go to tplinkwifi.net or 192.168.0.1. Run the Quick Setup wizard to auto-detect your internet connection type. Enter ISP credentials if prompted.", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Clone MAC address", "instruction": "In the router admin panel, go to Advanced > Network > Internet > MAC Clone. Click 'Clone Current Computer's MAC Address' if your ISP locks service to a specific MAC.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 5, "title": "Contact ISP", "instruction": "If the orange light persists, check your ISP's outage status page or call support. They can verify your connection and push a signal refresh to the modem.", "tools": ["Phone"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Archer A7", "Deco X60", "Deco M5"],
+    "partsNeeded": [
+      {"part": "Cat6 Ethernet Cable", "partNumber": "", "estimatedCost": {"min": 5, "max": 15}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the orange light remains after verifying WAN settings and ISP confirms no outage, contact TP-Link support for further diagnosis.",
+    "relatedCodes": ["Blinking Orange Light", "No Internet LED", "DHCP Error"],
+    "videoSearchQuery": "TP-Link router orange light no internet fix",
+    "faq": [
+      {"q": "What does the orange light mean on TP-Link router?", "a": "An orange internet LED means the router is powered on and connected to the modem but cannot reach the internet."},
+      {"q": "Why does my TP-Link router keep showing orange light?", "a": "Recurring orange light issues often point to an unstable ISP connection, modem issues, or incorrect WAN settings."},
+      {"q": "Can I still access the router settings with an orange light?", "a": "Yes. The router's admin panel at tplinkwifi.net is accessible via WiFi or Ethernet even without internet."}
+    ]
+  },
+  {
+    "id": "tp-link-router-blinking-orange",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Blinking Orange Light",
+    "displayCode": "Blinking Orange Light",
+    "alternativeCodes": ["Flashing amber", "Pulsing orange LED", "Internet LED flashing orange"],
+    "title": "Router Initializing or Attempting WAN Connection",
+    "shortDescription": "The internet LED blinks orange while the router is trying to establish or negotiate the WAN connection.",
+    "fullDescription": "A blinking orange internet LED on TP-Link routers indicates the device is in the process of establishing a WAN connection with the modem or ISP. This is normal during boot-up for 1-2 minutes. If it continues blinking for more than 5 minutes, the router is failing to negotiate the internet connection.\n\nOn some newer TP-Link models and Deco mesh systems, the blinking orange light may also indicate a firmware update is in progress. Never unplug the router during a firmware update as this can corrupt the device.",
+    "causes": [
+      {"cause": "Router is still booting up (normal for 1-2 minutes)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firmware update in progress", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "WAN connection negotiation failing repeatedly", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "PPPoE authentication failing with ISP", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Internet LED blinks orange continuously",
+      "No internet access on any connected device",
+      "Blinking started after router restart or power outage",
+      "Blinking continues for more than 5 minutes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait for boot completion", "instruction": "After powering on or restarting, wait 2-3 minutes for the router to fully boot. The blinking orange should change to solid green once internet is established.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Power cycle modem first", "instruction": "Unplug the modem for 30 seconds, plug it back in, and wait 2 minutes for it to sync with the ISP. Then restart the router.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Check WAN settings", "instruction": "Access tplinkwifi.net or 192.168.0.1. Go to Internet/WAN settings. For cable internet, ensure Dynamic IP is selected. For DSL, enter your PPPoE username and password from your ISP.", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Factory reset and reconfigure", "instruction": "If blinking persists, press and hold the Reset button for 10 seconds. Reconfigure the router using the Quick Setup wizard or Tether app.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Deco X60", "Deco M5"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the blinking orange light persists after a factory reset and modem power cycle, contact your ISP to verify your account and connection.",
+    "relatedCodes": ["Orange Light", "Firmware Update Failed"],
+    "videoSearchQuery": "TP-Link router blinking orange light fix",
+    "faq": [
+      {"q": "How long should the orange blinking last?", "a": "During normal boot, 1-2 minutes. During firmware update, up to 5 minutes. If it lasts longer than 5 minutes, there is likely an issue."},
+      {"q": "Should I unplug the router if it keeps blinking?", "a": "Only if it has been blinking for more than 10 minutes and is not performing a firmware update. Never unplug during a firmware update."},
+      {"q": "Can I use the Tether app during blinking orange?", "a": "Yes, you can connect to the router's WiFi and use the Tether app to check status even when the internet light is orange."}
+    ]
+  },
+  {
+    "id": "tp-link-router-deco-red-light",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Deco Red Light",
+    "displayCode": "Deco Red Light",
+    "alternativeCodes": ["Deco solid red", "Red LED ring", "Deco error light"],
+    "title": "Deco Mesh Unit Disconnected or Hardware Error",
+    "shortDescription": "A Deco mesh unit shows a solid red LED indicating it has lost connection to the main unit or has a hardware error.",
+    "fullDescription": "A solid red light on a TP-Link Deco mesh unit indicates a critical connection failure. The unit has lost its backhaul connection to the main Deco router and cannot provide internet access. On some Deco models, a red light can also indicate a hardware malfunction or overheating.\n\nDeco units communicate using a mesh network where each unit maintains a backhaul connection to the main unit or another satellite. When this backhaul link fails, the unit turns red. Devices connected to the red unit will automatically try to roam to a functioning unit, but coverage in that area will be lost.",
+    "causes": [
+      {"cause": "Deco unit too far from main unit or other mesh nodes", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Main Deco unit lost internet connection", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WiFi interference between Deco units", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware mismatch after partial update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Hardware overheating or failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Deco unit LED is solid red",
+      "Deco app shows unit as 'Offline' or 'Disconnected'",
+      "WiFi dead zone in area covered by the affected unit",
+      "Other Deco units continue working normally",
+      "Red light appeared after power outage or firmware update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle the red Deco unit", "instruction": "Unplug the affected Deco unit for 30 seconds, then plug it back in. Wait 3-5 minutes for it to reconnect to the mesh network. The LED should turn green when connected.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Check the main Deco unit", "instruction": "Verify the main Deco unit (connected to the modem) has a green LED and internet access. If it is also showing issues, fix the main unit first.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Move the unit closer", "instruction": "Place the red Deco unit closer to the main unit or another working Deco node. Ideally within one room (no more than 30 feet) with minimal wall obstructions.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Update firmware via Deco app", "instruction": "Open the Deco app, go to the main menu > Update Deco. Install any available firmware updates. All Deco units should be on the same firmware version.", "tools": ["Phone"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 5, "title": "Remove and re-add the unit", "instruction": "In the Deco app, remove the problematic unit from the network. Factory reset it by holding the reset button for 10 seconds. Then add it back through the Deco app.", "tools": ["Phone", "Paperclip"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Deco X60", "Deco X90", "Deco M5", "Deco M9 Plus", "Deco X55", "Deco W7200", "Deco XE75"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 120}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the Deco unit consistently shows red after factory reset and re-pairing, and it is not a placement issue, the unit may have a hardware failure. Contact TP-Link support.",
+    "relatedCodes": ["Orange Light", "Deco Yellow Light"],
+    "videoSearchQuery": "TP-Link Deco red light offline fix",
+    "faq": [
+      {"q": "What do Deco LED colors mean?", "a": "Green = working normally, yellow/amber = weak connection, red = disconnected/error, blue = booting or ready to set up."},
+      {"q": "Can I use Ethernet backhaul with Deco?", "a": "Yes. Connecting Deco units via Ethernet cable provides the fastest and most reliable mesh backhaul connection."},
+      {"q": "How many Deco units do I need?", "a": "Most homes need 2-3 units. Each Deco unit covers approximately 1,500-2,500 sq ft depending on the model."}
+    ]
+  },
+  {
+    "id": "tp-link-router-firmware-update-failed",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Firmware Update Failed",
+    "displayCode": "Firmware Update Failed",
+    "alternativeCodes": ["Update error", "Firmware upgrade failed", "Update stuck"],
+    "title": "Router Firmware Upgrade Failure",
+    "shortDescription": "The firmware update process failed, leaving the router on old firmware or in a partially updated state.",
+    "fullDescription": "Firmware update failures on TP-Link routers can occur during over-the-air (OTA) updates through the Tether app, web-based manual updates, or cloud-based updates. The failure may leave the router on its previous firmware version (recoverable) or in a partially flashed state (requires recovery).\n\nTP-Link firmware files are hardware version specific. Each router model has multiple hardware versions (V1, V2, V3, etc.), and installing firmware for the wrong hardware version will fail or potentially brick the device. Always check the hardware version on the router label before downloading firmware.",
+    "causes": [
+      {"cause": "Downloaded firmware for wrong hardware version", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Internet connection dropped during OTA update", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Browser session timed out during manual upload", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Power interruption during flashing process", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Error message during firmware update",
+      "Router restarted but firmware version did not change",
+      "Router stuck on boot after update",
+      "Tether app shows 'Update Failed' notification",
+      "LEDs blinking abnormally after update attempt"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check hardware version", "instruction": "Look at the label on the bottom of your router. Find the hardware version (e.g., 'Ver: 2.0'). You must download firmware that matches this exact version.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Download correct firmware", "instruction": "Go to tp-link.com/support, enter your model number, select your hardware version, and download the latest firmware file.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Update via wired connection", "instruction": "Connect your computer to the router via Ethernet. Log into tplinkwifi.net. Go to Advanced > System Tools > Firmware Upgrade. Browse for the downloaded file and click Upgrade.", "tools": ["Computer", "Ethernet cable"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "TFTP recovery for bricked router", "instruction": "If the router is unresponsive, download the TFTP recovery tool from TP-Link. Set your computer to IP 192.168.0.66. Connect via Ethernet and run the recovery tool with the firmware file.", "tools": ["Computer", "Ethernet cable"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Archer A7", "Archer C80"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If the router is bricked and TFTP recovery fails, contact TP-Link support for warranty service or replacement.",
+    "relatedCodes": ["Blinking Orange Light", "No Power Light"],
+    "videoSearchQuery": "TP-Link router firmware update failed recovery",
+    "faq": [
+      {"q": "Why is hardware version important for firmware?", "a": "Different hardware versions of the same model use different chipsets. Installing firmware for the wrong hardware version can brick the router."},
+      {"q": "Where do I find my router's hardware version?", "a": "It is printed on the label on the bottom or back of the router, typically as 'Ver: X.X'."},
+      {"q": "Can I use third-party firmware like OpenWrt?", "a": "Some TP-Link models support OpenWrt, but this voids the warranty. Check the OpenWrt compatibility table for your specific model and hardware version."}
+    ]
+  },
+  {
+    "id": "tp-link-router-dns-error",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "DNS Error",
+    "displayCode": "DNS Error",
+    "alternativeCodes": ["DNS not resolving", "DNS_PROBE_FINISHED_NXDOMAIN", "Cannot resolve hostname"],
+    "title": "DNS Resolution Failure — Websites Not Loading",
+    "shortDescription": "Connected devices cannot resolve domain names, causing websites to fail to load despite having an active internet connection.",
+    "fullDescription": "DNS errors on TP-Link routers prevent devices from translating website addresses into IP addresses. The internet connection itself may be working (confirmed by pinging an IP address), but browsing the web fails because domain names cannot be resolved.\n\nTP-Link routers by default use the ISP-provided DNS servers. When these servers are slow, overloaded, or experiencing issues, all devices on the network are affected simultaneously. Switching to public DNS servers like Google (8.8.8.8) or Cloudflare (1.1.1.1) resolves the issue in most cases.",
+    "causes": [
+      {"cause": "ISP DNS servers are down or slow", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DNS settings on router misconfigured", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Router DNS cache corrupted", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "HomeCare or parental controls interfering with DNS", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Web pages fail to load with 'DNS' error messages",
+      "Speed test by IP works but browsing does not",
+      "All devices on the network have the same issue",
+      "Some websites load while others do not",
+      "Error message: 'DNS_PROBE_FINISHED_NXDOMAIN'"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Change DNS on the router", "instruction": "Log into tplinkwifi.net. Go to Advanced > Network > Internet. Set Primary DNS to 8.8.8.8 and Secondary DNS to 8.8.4.4 (Google) or 1.1.1.1 and 1.0.0.1 (Cloudflare). Save settings.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Restart the router", "instruction": "Unplug the router for 30 seconds to clear the DNS cache, then plug it back in. Wait 2 minutes for full boot.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Flush DNS on devices", "instruction": "On Windows: open Command Prompt and run 'ipconfig /flushdns'. On Mac: open Terminal and run 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Check HomeCare settings", "instruction": "If HomeCare or parental controls are enabled, check that no overly broad content filters are blocking DNS queries for legitimate websites.", "tools": ["Phone or Computer"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Deco X60", "Deco M5"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "If DNS errors persist after changing to public DNS servers, contact your ISP to check for network-level routing issues.",
+    "relatedCodes": ["Orange Light", "DHCP Error"],
+    "videoSearchQuery": "TP-Link router DNS error websites not loading fix",
+    "faq": [
+      {"q": "What DNS servers should I use?", "a": "Google DNS (8.8.8.8) and Cloudflare DNS (1.1.1.1) are the most popular. Cloudflare is generally faster, while Google has broader compatibility."},
+      {"q": "Does changing DNS affect all devices?", "a": "Changing DNS on the router affects all devices that get their DNS from the router via DHCP. Devices with manually set DNS are not affected."},
+      {"q": "Can DNS settings affect internet speed?", "a": "DNS affects how quickly website names resolve, which affects page load times. It does not affect download or upload bandwidth."}
+    ]
+  },
+  {
+    "id": "tp-link-router-dhcp-error",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "DHCP Error",
+    "displayCode": "DHCP Error",
+    "alternativeCodes": ["IP conflict", "Cannot obtain IP", "Self-assigned IP"],
+    "title": "DHCP Server Not Assigning IP Addresses",
+    "shortDescription": "The router's DHCP server is failing to assign IP addresses to devices, preventing network connectivity.",
+    "fullDescription": "When the TP-Link router's DHCP server malfunctions, devices connecting to the network cannot obtain an IP address and will either get a self-assigned 169.254.x.x address or fail to connect. The WiFi network appears available and devices can connect, but they have no actual network access.\n\nTP-Link routers default to a 192.168.0.x subnet with DHCP assigning addresses from 192.168.0.100 to 192.168.0.199. If the DHCP pool is exhausted, if DHCP is accidentally disabled, or if another device on the network is running a conflicting DHCP server, devices will not get proper addresses.",
+    "causes": [
+      {"cause": "DHCP server accidentally disabled in settings", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DHCP address pool exhausted", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "IP address conflict with static assignments", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Second router or device running DHCP on the same network", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Devices connect to WiFi but show 'No Internet'",
+      "Device gets 169.254.x.x IP address",
+      "Some devices work while new devices cannot connect",
+      "'Unable to obtain IP address' error on Android devices",
+      "Limited connectivity warning on Windows"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check DHCP settings", "instruction": "Log into tplinkwifi.net via Ethernet. Go to Advanced > Network > DHCP Server. Ensure DHCP Server is enabled. Set range to 192.168.0.100 - 192.168.0.199 (or wider if needed).", "tools": ["Computer", "Ethernet cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reboot the router", "instruction": "Unplug the router for 60 seconds to clear the DHCP lease table, then plug it back in. Wait 2-3 minutes and reconnect devices.", "tools": [], "difficulty": "easy", "timeMinutes": 4},
+      {"step": 3, "title": "Renew IP on affected devices", "instruction": "On the affected device, forget the WiFi network and reconnect. Alternatively, on Windows run 'ipconfig /release' then 'ipconfig /renew' in Command Prompt.", "tools": ["Affected device"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Check for DHCP conflicts", "instruction": "If you have multiple routers, ensure only one is running DHCP. Set additional routers to Access Point mode with their DHCP server disabled.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Deco X60", "Deco M5"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If DHCP issues persist in a complex network with multiple routers, switches, or VLANs, a network technician can identify and resolve conflicts.",
+    "relatedCodes": ["DNS Error", "Orange Light"],
+    "videoSearchQuery": "TP-Link router DHCP error cannot obtain IP address fix",
+    "faq": [
+      {"q": "What is the default TP-Link DHCP range?", "a": "Most TP-Link routers default to 192.168.0.100-199, giving 100 available addresses."},
+      {"q": "Can I expand the DHCP pool?", "a": "Yes. In DHCP settings, change the range to 192.168.0.2-254 for up to 253 addresses."},
+      {"q": "What if I have two routers?", "a": "Only one router should run DHCP. Set the second router to Access Point mode or disable its DHCP server to avoid conflicts."}
+    ]
+  },
+  {
+    "id": "tp-link-router-login-failed",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Login Failed",
+    "displayCode": "Login Failed",
+    "alternativeCodes": ["Cannot access tplinkwifi.net", "Admin password wrong", "Router login error"],
+    "title": "Cannot Access Router Admin Interface",
+    "shortDescription": "Unable to log into the TP-Link router admin panel at tplinkwifi.net due to incorrect password or connectivity issues.",
+    "fullDescription": "The login failure error occurs when accessing tplinkwifi.net or 192.168.0.1. TP-Link routers require a password set during initial setup — there is no default username/password on newer models. Older models used admin/admin as defaults.\n\nIf the admin password is forgotten, the only recovery option is a factory reset. Some users also have trouble reaching the login page itself, which is usually a DNS or network configuration issue rather than a password problem.",
+    "causes": [
+      {"cause": "Admin password changed during setup and now forgotten", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Using wrong URL or IP address for admin panel", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Device not connected to the router's network", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Browser cache showing old login page", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "tplinkwifi.net shows incorrect password error",
+      "192.168.0.1 login page rejects credentials",
+      "Tether app cannot authenticate with router",
+      "tplinkwifi.net does not load at all",
+      "Page redirects to a search engine instead of router"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify you are on the router's network", "instruction": "Ensure your device is connected to the TP-Link router's WiFi or via Ethernet cable, not to a different network or using cellular data.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Try different access methods", "instruction": "Try both tplinkwifi.net and 192.168.0.1 in your browser. If neither works, try 192.168.1.1. Use an incognito/private window to avoid cache issues.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Try the Tether app", "instruction": "Download the TP-Link Tether app. It may be able to access the router using Bluetooth for initial discovery, even if web access fails.", "tools": ["Phone"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Factory reset the router", "instruction": "With the router powered on, press and hold the Reset button for 10 seconds. The router will reboot to factory defaults. You will need to set up WiFi name, password, and admin password again.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Deco X60", "Deco M5"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "Login issues rarely need professional help. If you cannot access the admin panel even after factory reset, the router may have a hardware issue.",
+    "relatedCodes": ["Firmware Update Failed", "Orange Light"],
+    "videoSearchQuery": "TP-Link router cannot login admin password reset",
+    "faq": [
+      {"q": "What is the default TP-Link admin password?", "a": "Newer TP-Link routers require you to create a password during setup. Older models used admin/admin. There is no universal default."},
+      {"q": "Will factory reset erase everything?", "a": "Yes. WiFi names, passwords, port forwarding, parental controls, and all custom settings will be erased."},
+      {"q": "Can I recover my admin password without resetting?", "a": "If you use a TP-Link ID linked to the router, you may be able to reset the local password through the Tether app. Otherwise, a factory reset is required."}
+    ]
+  },
+  {
+    "id": "tp-link-router-wifi-drops",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WiFi Intermittent",
+    "displayCode": "WiFi Keeps Dropping",
+    "alternativeCodes": ["WiFi disconnects", "Unstable WiFi", "WiFi drops frequently"],
+    "title": "Frequent WiFi Disconnections",
+    "shortDescription": "WiFi connections drop intermittently, causing devices to lose connectivity and require reconnection.",
+    "fullDescription": "Intermittent WiFi disconnections on TP-Link routers affect all connected devices or specific devices. The WiFi network may disappear briefly and reappear, or devices may show 'connected' but have no actual data transfer. This is a common complaint that can stem from channel congestion, band steering issues, or firmware bugs.\n\nTP-Link's Smart Connect feature (which combines 2.4GHz and 5GHz into one SSID) can sometimes cause drops as devices transition between bands. Similarly, the OFDMA and TWT features on WiFi 6 routers can cause compatibility issues with older devices.",
+    "causes": [
+      {"cause": "WiFi channel congestion from neighboring networks", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Smart Connect causing band-steering issues", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firmware bug with known WiFi stability issues", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Router overheating in enclosed space", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "OFDMA or TWT incompatibility with older devices", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "WiFi drops randomly throughout the day",
+      "Devices disconnect and reconnect automatically",
+      "Video calls and streaming frequently buffer or cut out",
+      "5GHz network drops more than 2.4GHz",
+      "Smart home devices go offline repeatedly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update firmware", "instruction": "Log into tplinkwifi.net, go to Advanced > System Tools > Firmware Upgrade. Check for and install any available updates.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Disable Smart Connect", "instruction": "Go to Advanced > Wireless > Wireless Settings. Disable Smart Connect to create separate 2.4GHz and 5GHz networks. This prevents problematic band-steering transitions.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Set fixed WiFi channels", "instruction": "In Wireless Settings, change both bands from 'Auto' channel to fixed channels. Use channel 1, 6, or 11 for 2.4GHz. Use channel 36 or 44 for 5GHz (non-DFS).", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Disable OFDMA and TWT", "instruction": "On WiFi 6 routers, go to Advanced > Wireless > Wireless Settings. Disable OFDMA and Target Wake Time if older devices are experiencing drops.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 5, "title": "Improve router placement", "instruction": "Place the router in a central, elevated, open location. Avoid enclosed cabinets, proximity to microwaves or baby monitors, and metal surfaces.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Archer A7", "Deco X60"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If WiFi drops persist after firmware updates and channel optimization, consider a professional WiFi survey to identify interference sources.",
+    "relatedCodes": ["Orange Light", "DNS Error"],
+    "videoSearchQuery": "TP-Link router WiFi keeps dropping disconnecting fix",
+    "faq": [
+      {"q": "What is Smart Connect?", "a": "Smart Connect merges 2.4GHz and 5GHz bands into one WiFi name. The router decides which band each device uses. Disabling it gives you manual control."},
+      {"q": "Should I use DFS channels?", "a": "DFS channels (52-144 on 5GHz) offer less congestion but must vacate for radar detection, causing brief drops. Non-DFS channels (36-48) are more stable."},
+      {"q": "Does WiFi 6 work with older devices?", "a": "Yes, WiFi 6 routers are backward compatible. However, features like OFDMA and TWT may need to be disabled for stability with WiFi 4/5 devices."}
+    ]
+  },
+  {
+    "id": "tp-link-router-wps-failed",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WPS Failed",
+    "displayCode": "WPS Failed",
+    "alternativeCodes": ["WPS timeout", "WPS LED blinking", "WPS connection error"],
+    "title": "WPS Button Connection Failure",
+    "shortDescription": "The WPS button press did not successfully pair a device with the WiFi network.",
+    "fullDescription": "WPS (Wi-Fi Protected Setup) on TP-Link routers allows devices to connect by pressing the WPS button instead of entering a WiFi password. When WPS fails, the WPS LED may blink and then turn off without establishing a connection. The WPS pairing window is typically 2 minutes.\n\nMany modern devices (especially Apple products and newer Android phones) have dropped WPS support for security reasons. WPS is most commonly used with printers, range extenders, and some smart home devices. Security experts generally recommend disabling WPS due to known PIN vulnerability exploits.",
+    "causes": [
+      {"cause": "Client device does not support WPS", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WPS buttons not pressed within the timeout window", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WPS disabled in router settings", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "WPS incompatibility between router and device", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "WPS LED blinks then turns off without connecting",
+      "Device does not join WiFi after pressing WPS",
+      "WPS pairing times out after 2 minutes",
+      "Printer or extender fails to connect via WPS"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Retry with correct timing", "instruction": "Press the WPS button on the TP-Link router first, then within 2 minutes activate WPS on the client device. The WPS LED should blink during pairing.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Enable WPS in settings", "instruction": "Log into tplinkwifi.net. Go to Advanced > Wireless > WPS. Ensure WPS is enabled.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Connect manually instead", "instruction": "If WPS continues to fail, connect the device manually using the WiFi password. This is more reliable and more secure.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Disable WPS for security", "instruction": "If you do not need WPS, disable it in the router settings under Advanced > Wireless > WPS for improved network security.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 2}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Archer A7"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "WPS issues rarely require professional help. Use manual WiFi connection as an alternative.",
+    "relatedCodes": ["Login Failed", "WiFi Intermittent"],
+    "videoSearchQuery": "TP-Link router WPS button not working fix",
+    "faq": [
+      {"q": "Do all devices support WPS?", "a": "No. Apple devices do not support WPS. Many newer Android devices have also removed WPS support."},
+      {"q": "Is WPS secure?", "a": "WPS PIN mode has known vulnerabilities. If you use WPS, use only the push-button method and disable PIN mode. Better yet, disable WPS entirely."},
+      {"q": "Where is the WPS button on TP-Link routers?", "a": "On Archer models, the WPS button is usually on the back or side of the router, sometimes shared with the WiFi on/off button."}
+    ]
+  },
+  {
+    "id": "tp-link-router-qos-not-working",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "QoS Not Working",
+    "displayCode": "QoS Not Working",
+    "alternativeCodes": ["QoS error", "Bandwidth control not working", "Priority not applied"],
+    "title": "Quality of Service Not Prioritizing Traffic",
+    "shortDescription": "The QoS (Quality of Service) settings are not properly prioritizing bandwidth for selected devices or applications.",
+    "fullDescription": "TP-Link routers offer QoS (Quality of Service) to prioritize bandwidth for specific devices or applications like gaming, video calls, or streaming. When QoS is not working, all devices share bandwidth equally regardless of priority settings, leading to buffering during video calls or lag during gaming.\n\nTP-Link QoS requires the correct total bandwidth values to be entered (matching your ISP plan speeds). If these values are set too high or too low, QoS cannot effectively manage traffic. Some TP-Link models offer both traditional QoS and the newer 'QoS by Device' feature in the Tether app.",
+    "causes": [
+      {"cause": "Upload and download bandwidth values set incorrectly", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "QoS not enabled in router settings", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Device priority not configured properly", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Hardware NAT enabled which bypasses QoS", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Gaming lag despite QoS priority setting",
+      "Video calls buffer when other devices are active",
+      "Streaming quality drops during peak usage",
+      "Bandwidth is shared equally despite priority settings",
+      "QoS statistics show no traffic shaping"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Set correct bandwidth values", "instruction": "Run a speed test at speedtest.net. Log into tplinkwifi.net, go to Advanced > QoS. Enter your actual upload and download speeds (set slightly below actual for best results, e.g., 90% of your plan speed).", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Set device priorities", "instruction": "In QoS settings, add devices and set their priority to High, Medium, or Low. Set gaming consoles and work computers to High, smart home devices to Low.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Disable Hardware NAT", "instruction": "Go to Advanced > NAT Forwarding > NAT. Disable Hardware NAT. Note: this may slightly reduce maximum throughput but is required for QoS to function on some models.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 4, "title": "Test QoS effectiveness", "instruction": "Start a large download on a low-priority device and simultaneously test a high-priority device's connection. The high-priority device should maintain good performance.", "tools": ["Multiple devices"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Archer C80"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-15 minutes",
+    "whenToCallPro": "If you need advanced traffic shaping beyond basic QoS, consider a managed router or consult a network professional for enterprise-grade QoS.",
+    "relatedCodes": ["WiFi Intermittent", "DNS Error"],
+    "videoSearchQuery": "TP-Link router QoS settings not working fix",
+    "faq": [
+      {"q": "Does QoS reduce my total bandwidth?", "a": "No. QoS does not reduce total bandwidth, it manages how available bandwidth is distributed among devices."},
+      {"q": "Why do I need to disable Hardware NAT?", "a": "Hardware NAT processes traffic in hardware for maximum speed, but it bypasses the software-based QoS engine. Disabling it lets QoS manage traffic."},
+      {"q": "Should I enable QoS?", "a": "Enable QoS if multiple devices compete for bandwidth and you need to prioritize certain activities like gaming or video calls."}
+    ]
+  },
+  {
+    "id": "tp-link-router-vpn-error",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "VPN Connection Failed",
+    "displayCode": "VPN Connection Failed",
+    "alternativeCodes": ["OpenVPN error", "VPN client error", "VPN server error"],
+    "title": "VPN Server or Client Connection Failure",
+    "shortDescription": "The router's built-in VPN server or VPN client feature cannot establish a connection.",
+    "fullDescription": "TP-Link Archer routers with VPN functionality support both VPN Server (allowing remote access to your home network) and VPN Client (routing all traffic through an external VPN service). Connection failures can occur on either side.\n\nFor VPN Server mode, issues typically involve Dynamic DNS configuration, port forwarding, or ISP restrictions (CGNAT). For VPN Client mode, issues usually relate to incorrect OpenVPN configuration files, expired VPN service credentials, or protocol compatibility problems.",
+    "causes": [
+      {"cause": "OpenVPN configuration file incorrect or expired", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "VPN service credentials incorrect", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "ISP blocking VPN traffic or using CGNAT", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "DDNS not configured for VPN server mode", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VPN protocol not supported by router firmware", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "VPN client shows 'Connection Failed' or 'Timeout'",
+      "Cannot connect to home VPN server from outside",
+      "VPN connects but no traffic passes through",
+      "VPN connection drops after a few minutes",
+      "OpenVPN log shows authentication errors"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify VPN credentials", "instruction": "For VPN Client: ensure your VPN provider username and password are correct. For VPN Server: verify the client configuration file matches the server settings.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Re-download OpenVPN config", "instruction": "From your VPN provider, download a fresh .ovpn configuration file. In the router admin panel, go to Advanced > VPN Client > OpenVPN and import the new file.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Configure DDNS for VPN server", "instruction": "For VPN Server mode: go to Advanced > Network > Dynamic DNS. Set up a free DDNS service (TP-Link offers one). This gives you a hostname that tracks your changing IP.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Check ISP for CGNAT", "instruction": "If using VPN Server mode, check your WAN IP. If it starts with 100.64.x.x or 10.x.x.x, you are behind CGNAT and inbound VPN connections are blocked. Contact ISP for a public IP.", "tools": ["Computer"], "difficulty": "advanced", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer C7", "Archer A7"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If VPN setup involves complex routing requirements or your ISP blocks VPN traffic, consult a network professional.",
+    "relatedCodes": ["DNS Error", "Orange Light"],
+    "videoSearchQuery": "TP-Link router VPN not working setup fix",
+    "faq": [
+      {"q": "Which TP-Link routers support VPN?", "a": "Most Archer AX series and some AC series routers support VPN Server and/or VPN Client. Check your model's specifications on tp-link.com."},
+      {"q": "Can I use any VPN provider with TP-Link VPN Client?", "a": "You can use any VPN provider that offers OpenVPN configuration files. WireGuard is supported on newer firmware versions of some models."},
+      {"q": "Does router VPN slow down my internet?", "a": "Yes. VPN adds encryption overhead. Router CPU limitations may reduce speeds more than using a VPN app on your computer or phone."}
+    ]
+  },
+  {
+    "id": "tp-link-router-no-power",
+    "brand": "TP-Link",
+    "brandSlug": "tp-link",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "No Power Light",
+    "displayCode": "No Power Light",
+    "alternativeCodes": ["Router dead", "No LEDs", "Won't turn on"],
+    "title": "Router Not Powering On",
+    "shortDescription": "The TP-Link router shows no LED activity and appears completely unresponsive.",
+    "fullDescription": "When a TP-Link router shows absolutely no LED lights, the device is not receiving power. This is typically caused by a failed power adapter, a faulty power outlet, or a hardware failure in the router itself. TP-Link routers use model-specific power adapters with different voltage ratings.\n\nBefore assuming the router is dead, systematically test the power chain: outlet, adapter, and router power port. Many TP-Link routers also have a physical power button that may have been accidentally turned off.",
+    "causes": [
+      {"cause": "Power adapter failed", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Power outlet not working", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Physical power button is in off position", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Power surge damaged router or adapter", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Internal hardware failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "No LEDs light up at all",
+      "No WiFi networks broadcast",
+      "Router feels cold with no signs of activity",
+      "Power adapter may feel unusually hot or cold"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check the power button", "instruction": "Look for a power on/off button on the back or side of the router. Ensure it is in the ON position.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Verify the power outlet", "instruction": "Plug another device into the same outlet to confirm it works. Try a different outlet.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Check the power adapter", "instruction": "Ensure the adapter is firmly plugged into both the wall and the router. Check the cable for damage. If the adapter has an LED, check if it is lit.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Try a compatible power adapter", "instruction": "If available, try another power adapter with matching voltage and connector. Check the label on the original adapter for specs (typically 9V or 12V DC).", "tools": ["Compatible adapter"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 5, "title": "Contact TP-Link support", "instruction": "If the router does not power on with a known-good adapter and outlet, the internal hardware has failed. Contact TP-Link support for warranty replacement.", "tools": ["Phone"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Archer AX73", "Archer AX55", "Archer AX21", "Archer C7", "Deco X60", "Deco M5"],
+    "partsNeeded": [
+      {"part": "TP-Link Replacement Power Adapter (9V)", "partNumber": "", "estimatedCost": {"min": 8, "max": 20}},
+      {"part": "TP-Link Replacement Power Adapter (12V)", "partNumber": "", "estimatedCost": {"min": 10, "max": 25}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 25}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-10 minutes",
+    "whenToCallPro": "If a working power adapter does not power on the router, the hardware has failed. Contact TP-Link for warranty replacement.",
+    "relatedCodes": ["Orange Light", "Firmware Update Failed"],
+    "videoSearchQuery": "TP-Link router not turning on no power fix",
+    "faq": [
+      {"q": "How long is the TP-Link warranty?", "a": "Most TP-Link routers come with a 2-year limited warranty. Check your purchase date and TP-Link's warranty terms."},
+      {"q": "Can a power surge kill my router?", "a": "Yes. Use a surge protector to protect your router and modem from power surges caused by lightning or grid issues."},
+      {"q": "Can I use a universal power adapter?", "a": "Only if it matches the exact voltage, polarity, and connector size specified on the original adapter label."}
+    ]
+  }
+]

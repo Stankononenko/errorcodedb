@@ -1,0 +1,462 @@
+[
+  {
+    "id": "asus-router-red-light",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Red Light",
+    "displayCode": "Red Light",
+    "alternativeCodes": ["Red power LED", "Red WAN light", "Red indicator"],
+    "title": "No Internet Connection — Red WAN/Power LED",
+    "shortDescription": "The router's LED turns red indicating no internet connection from the WAN port or a critical boot failure.",
+    "fullDescription": "A red LED on ASUS routers typically indicates one of two conditions: the WAN (internet) port is not receiving a signal from the modem, or the router has encountered a critical boot error. On most ASUS models, the power LED turns red when there is no active internet connection.\n\nThis is the most common issue reported by ASUS router users and is usually resolved by power cycling the modem and router. If the red light appears after a firmware update or factory reset, the router may be in rescue mode and require firmware recovery through the ASUS Rescue utility.",
+    "causes": [
+      {"cause": "Modem not providing internet signal to WAN port", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "ISP outage or service disruption", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Ethernet cable between modem and router faulty or loose", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "WAN settings misconfigured after reset", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Firmware corruption causing boot failure", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Power or WAN LED is red instead of blue/white",
+      "All devices show 'Connected, no internet'",
+      "ASUS Router app shows WAN disconnected",
+      "WiFi is broadcasting but has no internet access",
+      "Red light appeared after power outage or update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle modem and router", "instruction": "Unplug the modem for 30 seconds, plug it back in, wait 2 minutes. Then unplug the ASUS router for 30 seconds, plug it back in, wait 2-3 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Check Ethernet cable to WAN port", "instruction": "Ensure the Ethernet cable runs from the modem to the ASUS router's blue WAN port (not one of the yellow LAN ports). Try a different cable.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Check WAN settings", "instruction": "Log into router.asus.com or 192.168.1.1. Go to WAN > Internet Connection. Verify the WAN Connection Type matches your ISP (Automatic IP for cable, PPPoE for DSL).", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Use ASUS Rescue utility", "instruction": "If the router is stuck in red LED boot loop, download ASUS Firmware Restoration utility from asus.com. Connect via Ethernet, set PC to 192.168.1.2 static IP, and flash the latest firmware.", "tools": ["Computer", "Ethernet cable"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "RT-AX68U", "RT-AC86U", "GT-AX11000", "ZenWiFi AX XT8"],
+    "partsNeeded": [
+      {"part": "Cat6 Ethernet Cable", "partNumber": "", "estimatedCost": {"min": 5, "max": 15}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the red LED persists after firmware recovery and ISP confirms no outage, the router may have a hardware failure. Contact ASUS support.",
+    "relatedCodes": ["Blinking Power Light", "No WiFi LED"],
+    "videoSearchQuery": "ASUS router red light no internet fix",
+    "faq": [
+      {"q": "What does the red light mean on ASUS router?", "a": "Red typically means no internet connection. On some models it can also indicate a firmware issue or boot failure."},
+      {"q": "Where is the WAN port on ASUS routers?", "a": "The WAN port is the blue-colored Ethernet port on the back of the router. Do not confuse it with the yellow LAN ports."},
+      {"q": "Can I still access the router settings with a red light?", "a": "Usually yes. Connect via WiFi or Ethernet and access router.asus.com or 192.168.1.1."}
+    ]
+  },
+  {
+    "id": "asus-router-blinking-power-light",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Blinking Power Light",
+    "displayCode": "Blinking Power Light",
+    "alternativeCodes": ["Flashing power LED", "Power LED pulsing", "Rescue mode blinking"],
+    "title": "Firmware Update in Progress or Rescue Mode",
+    "shortDescription": "The power LED blinks slowly indicating a firmware update is being applied or the router is in rescue mode.",
+    "fullDescription": "A slowly blinking power LED on ASUS routers indicates one of two states: a firmware update is currently being installed (normal, wait for completion), or the router has entered rescue mode after a failed firmware update or corruption.\n\nIn rescue mode, the power LED blinks slowly and the router does not broadcast any WiFi networks. It is accessible only via a wired Ethernet connection for firmware recovery. ASUS provides a free Firmware Restoration utility for Windows and a TFTP-based method for Mac and Linux users.",
+    "causes": [
+      {"cause": "Firmware update currently being applied", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Router entered rescue mode after firmware failure", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Firmware corrupted by power interruption during update", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Manual rescue mode triggered via reset button", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Power LED blinks slowly (about once per second)",
+      "No WiFi networks broadcast",
+      "Router not accessible via web browser normally",
+      "Blinking started during or after firmware update attempt",
+      "Router does not complete boot sequence"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait for update to finish", "instruction": "If you recently initiated a firmware update, wait up to 10 minutes for it to complete. Do not unplug the router. The LED should become solid when done.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Power cycle after timeout", "instruction": "If blinking continues for more than 10 minutes, unplug the router for 30 seconds, plug it back in, and wait 5 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 3, "title": "Use ASUS Firmware Restoration", "instruction": "Download the Firmware Restoration utility and latest firmware from asus.com/support. Connect PC to router via Ethernet. Set PC to static IP 192.168.1.2. Run the utility and select the firmware file. Wait for the upload and reboot.", "tools": ["Windows PC", "Ethernet cable"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 4, "title": "TFTP recovery for Mac/Linux", "instruction": "Download the firmware .trx file from asus.com. Set your computer to static IP 192.168.1.2. Run: tftp -i 192.168.1.1 PUT firmware.trx. Wait 5 minutes for the router to flash and reboot.", "tools": ["Computer", "Ethernet cable"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "RT-AC86U", "RT-AC68U", "GT-AX11000", "ZenWiFi XT8"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 120}},
+    "diyDifficulty": "advanced",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If firmware restoration fails and the router remains in rescue mode, the flash memory may be damaged. Contact ASUS support for warranty service.",
+    "relatedCodes": ["Red Light", "Firmware Update Failed"],
+    "videoSearchQuery": "ASUS router blinking power light rescue mode firmware recovery",
+    "faq": [
+      {"q": "What is ASUS rescue mode?", "a": "Rescue mode is a built-in recovery state that allows firmware to be uploaded via Ethernet even when the main firmware is corrupted."},
+      {"q": "How do I enter rescue mode manually?", "a": "Power off the router, hold the reset button, power on while still holding reset for 5-10 seconds until the power LED starts blinking slowly."},
+      {"q": "Will firmware restoration erase my settings?", "a": "Yes. Firmware restoration performs a clean flash that erases all settings. You will need to reconfigure the router."}
+    ]
+  },
+  {
+    "id": "asus-router-aimesh-node-offline",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "AiMesh Node Offline",
+    "displayCode": "AiMesh Node Offline",
+    "alternativeCodes": ["AiMesh disconnected", "Node not synced", "ZenWiFi satellite offline"],
+    "title": "AiMesh Node Lost Connection to Router",
+    "shortDescription": "An AiMesh node has gone offline and lost its backhaul connection to the main ASUS router.",
+    "fullDescription": "ASUS AiMesh allows multiple compatible ASUS routers to form a mesh network. When an AiMesh node goes offline, it loses its backhaul connection to the main router and stops providing WiFi coverage. This affects ZenWiFi systems and any ASUS router configured as an AiMesh node.\n\nAiMesh nodes can use wireless or wired Ethernet backhaul. Wireless backhaul is more convenient but susceptible to distance and interference issues. Wired backhaul is recommended for maximum reliability. The ASUS Router app shows real-time status of all AiMesh nodes.",
+    "causes": [
+      {"cause": "Node too far from main router or other nodes", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Wireless interference weakening backhaul signal", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firmware mismatch between main router and node", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "DHCP conflict or IP address issue between nodes", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Node hardware failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "ASUS Router app shows AiMesh node as offline",
+      "WiFi dead zone where node was providing coverage",
+      "Node's power LED is on but it is not part of the mesh",
+      "Devices near the node disconnect or have slow speeds",
+      "Node went offline after firmware update on main router"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle the node", "instruction": "Unplug the offline AiMesh node for 30 seconds, then plug it back in. Wait 3-5 minutes for it to rejoin the mesh network.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Move the node closer", "instruction": "Place the node within 25-30 feet of the main router or another AiMesh node. Ensure there is no more than one thick wall between them.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Update firmware on all nodes", "instruction": "In the ASUS Router app or web panel at router.asus.com, go to Administration > Firmware Upgrade. Update the main router first, then each node. All should be on the same version.", "tools": ["Phone or Computer"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Remove and re-add the node", "instruction": "In the web panel, go to AiMesh > AiMesh Node List. Remove the offline node. Factory reset the node by holding its reset button for 10 seconds. Then re-add it through the AiMesh setup.", "tools": ["Computer", "Paperclip"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 5, "title": "Switch to wired backhaul", "instruction": "For the most reliable connection, connect the AiMesh node to the main router via Ethernet cable. The system automatically detects and uses wired backhaul.", "tools": ["Ethernet cable"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "affectedModels": ["ZenWiFi AX XT8", "ZenWiFi XD6", "ZenWiFi ET8", "RT-AX86U", "RT-AX88U", "RT-AX68U"],
+    "partsNeeded": [
+      {"part": "Cat6 Ethernet Cable (for wired backhaul)", "partNumber": "", "estimatedCost": {"min": 5, "max": 25}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 25}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If a node consistently drops from the mesh after firmware updates and repositioning, it may have a hardware issue. Contact ASUS support.",
+    "relatedCodes": ["Red Light", "WiFi Intermittent"],
+    "videoSearchQuery": "ASUS AiMesh node offline fix ZenWiFi",
+    "faq": [
+      {"q": "Can different ASUS router models work together in AiMesh?", "a": "Yes, any AiMesh-compatible ASUS routers can be mixed in one mesh. However, matching models provide the best performance."},
+      {"q": "How many AiMesh nodes can I add?", "a": "AiMesh supports up to 9 nodes (1 main + 8 satellites), though 2-4 is typical for most homes."},
+      {"q": "Is wired backhaul faster than wireless?", "a": "Yes. Wired backhaul provides Gigabit speeds and frees up wireless bandwidth for client devices. It is always recommended when possible."}
+    ]
+  },
+  {
+    "id": "asus-router-firmware-update-failed",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Firmware Update Failed",
+    "displayCode": "Firmware Update Failed",
+    "alternativeCodes": ["Update error", "Firmware flash failed", "Update stuck at percentage"],
+    "title": "Firmware Upgrade Process Failed",
+    "shortDescription": "The firmware update failed during download or installation, leaving the router on old firmware or in rescue mode.",
+    "fullDescription": "ASUS router firmware updates can fail during automatic checks, manual web uploads, or ASUS Router app-initiated updates. Common reasons include an unstable internet connection during download, browser timeout during upload, or uploading firmware for the wrong model.\n\nASUS routers have a built-in rescue mode (mini-firmware) that activates when the main firmware is corrupted. This makes ASUS routers relatively resilient to bricking — even after a severe firmware failure, recovery is usually possible using the ASUS Firmware Restoration utility.",
+    "causes": [
+      {"cause": "Internet dropped during firmware download", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Uploaded firmware for wrong model", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Browser timed out during upload", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Power interruption during flash", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Error message during firmware update process",
+      "Firmware version unchanged after update",
+      "Router entered rescue mode (blinking power LED)",
+      "Update progress stuck at a percentage",
+      "Router not booting after update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Download correct firmware", "instruction": "Go to asus.com/support, search for your exact model, and download the latest firmware. Verify the model name matches exactly (e.g., RT-AX86U vs RT-AX86U Pro are different).", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Update via wired Ethernet", "instruction": "Connect your computer to the router via Ethernet. Go to router.asus.com > Administration > Firmware Upgrade. Upload the downloaded file. Use Chrome or Firefox, not Safari.", "tools": ["Computer", "Ethernet cable"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Factory reset then update", "instruction": "If the router boots but firmware is stuck, factory reset (hold reset 10 seconds). After reboot, immediately update firmware before configuring settings.", "tools": ["Paperclip"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Use Firmware Restoration utility", "instruction": "If in rescue mode, download ASUS Firmware Restoration from asus.com. Set PC to 192.168.1.2 static IP. Connect via Ethernet. Run the utility, select the firmware file, and wait for completion.", "tools": ["Windows PC", "Ethernet cable"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "RT-AC86U", "GT-AX11000", "ZenWiFi XT8", "RT-AX68U"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If the Firmware Restoration utility fails, the router's flash memory may be physically damaged. Contact ASUS RMA support.",
+    "relatedCodes": ["Blinking Power Light", "Red Light"],
+    "videoSearchQuery": "ASUS router firmware update failed rescue mode recovery",
+    "faq": [
+      {"q": "Can I use Merlin firmware on ASUS routers?", "a": "ASUS-Merlin is a popular third-party firmware that enhances ASUS router features. It is supported on many models but voids warranty and should be used by advanced users."},
+      {"q": "How often does ASUS release firmware updates?", "a": "ASUS typically releases firmware updates every 1-3 months for active models, including security patches and feature improvements."},
+      {"q": "Does ASUS firmware update reset settings?", "a": "Usually not, but ASUS recommends doing a factory reset after major firmware updates for best stability."}
+    ]
+  },
+  {
+    "id": "asus-router-dns-error",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "DNS Error",
+    "displayCode": "DNS Error",
+    "alternativeCodes": ["DNS not resolving", "Cannot find server", "DNS_PROBE_FINISHED_NXDOMAIN"],
+    "title": "DNS Resolution Failure",
+    "shortDescription": "Devices cannot resolve domain names through the router, preventing websites from loading.",
+    "fullDescription": "DNS resolution failures through ASUS routers prevent connected devices from translating website addresses into IP addresses. The internet connection itself may work (pinging IPs succeeds), but browsing fails with DNS error messages.\n\nASUS routers can use ISP-provided DNS, custom DNS servers, or the built-in DNS filtering from AiProtection (powered by Trend Micro). If AiProtection is enabled, it intercepts DNS queries for security filtering, which can sometimes cause resolution delays or failures with certain domains.",
+    "causes": [
+      {"cause": "ISP DNS servers down or slow", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "AiProtection DNS filtering causing issues", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Custom DNS settings misconfigured", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Router DNS forwarding cache corrupted", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Websites show 'DNS error' or 'Server not found'",
+      "All devices on network have DNS issues simultaneously",
+      "Some websites load but others fail",
+      "Ping by IP works but browsing by name fails"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Set custom DNS on router", "instruction": "Log into router.asus.com. Go to WAN > Internet Connection. Under WAN DNS Setting, set DNS Server 1 to 8.8.8.8 and DNS Server 2 to 8.8.4.4. Apply.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Restart the router", "instruction": "Reboot the router from the admin panel (Administration > System > Reboot) or unplug for 30 seconds. This clears the DNS cache.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Check AiProtection settings", "instruction": "Go to AiProtection > Network Protection. Try temporarily disabling DNS filtering to test if it is causing the issue.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Flush DNS on client devices", "instruction": "On Windows: 'ipconfig /flushdns'. On Mac: 'sudo dscacheutil -flushcache'. Restart browsers on all affected devices.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "RT-AC86U", "GT-AX11000", "ZenWiFi XT8", "RT-AX68U"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "If DNS problems persist after changing servers and disabling AiProtection, contact your ISP for network diagnostics.",
+    "relatedCodes": ["Red Light", "DHCP Error"],
+    "videoSearchQuery": "ASUS router DNS error fix change DNS settings",
+    "faq": [
+      {"q": "Does AiProtection affect DNS speed?", "a": "AiProtection intercepts DNS for security filtering, which can add minimal latency. In rare cases it can block legitimate domains."},
+      {"q": "Can I use DNS-over-TLS on ASUS routers?", "a": "Yes, newer ASUS firmware supports DNS-over-TLS. Go to WAN > Internet Connection > DNS Privacy Protocol and select DNS-over-TLS with Cloudflare or Google servers."},
+      {"q": "What is the fastest DNS server?", "a": "Cloudflare (1.1.1.1) is typically the fastest globally. Google (8.8.8.8) is also fast and widely supported. Performance varies by location."}
+    ]
+  },
+  {
+    "id": "asus-router-wifi-drops",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WiFi Intermittent",
+    "displayCode": "WiFi Keeps Dropping",
+    "alternativeCodes": ["WiFi disconnects", "Unstable WiFi", "WiFi drops randomly"],
+    "title": "Intermittent WiFi Connection Drops",
+    "shortDescription": "WiFi connections drop periodically, affecting streaming, gaming, and video calls.",
+    "fullDescription": "Intermittent WiFi disconnections on ASUS routers can be frustrating and difficult to diagnose. The drops may affect all devices or only specific ones, and can occur randomly or at predictable intervals. ASUS routers have several advanced wireless features that, while beneficial in most cases, can sometimes cause stability issues.\n\nSmart Connect (band steering), roaming assistant, AiMesh, and channel bandwidth settings all influence WiFi stability. DFS channels on the 5GHz band can cause drops when radar is detected. ASUS-Merlin firmware users have access to additional diagnostics and wireless tuning options.",
+    "causes": [
+      {"cause": "WiFi channel congestion in dense environments", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Smart Connect band-steering causing transitions", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DFS radar detection forcing channel changes", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Router overheating during sustained use", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware bug in wireless driver", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "WiFi disconnects every few hours or randomly",
+      "Streaming buffers or stops mid-playback",
+      "Online gaming experiences lag spikes and disconnections",
+      "Video calls freeze or drop",
+      "5GHz drops more frequently than 2.4GHz"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update firmware", "instruction": "Go to router.asus.com > Administration > Firmware Upgrade. Install the latest firmware. Consider ASUS-Merlin firmware for improved stability on supported models.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Disable Smart Connect", "instruction": "Go to Wireless > General. Disable Smart Connect to separate 2.4GHz and 5GHz into distinct SSIDs. This prevents problematic band transitions.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Use non-DFS channels", "instruction": "In Wireless > General, set the 5GHz channel to 36, 40, 44, or 48 (non-DFS). Set 2.4GHz to 1, 6, or 11 based on least congestion.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Adjust roaming assistant", "instruction": "Go to Wireless > Roaming Assistant. If set too aggressively, it may disconnect devices prematurely. Set RSSI threshold to -75 dBm or disable it if you have only one router.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 5, "title": "Improve ventilation", "instruction": "ASUS gaming routers (GT/ROG series) generate significant heat. Ensure the router has open airflow on all sides. Position it vertically if designed for that orientation.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "GT-AX11000", "GT-AX6000", "RT-AX68U", "ZenWiFi XT8"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If WiFi drops persist after all tuning, a professional WiFi site survey can identify interference sources and optimal settings.",
+    "relatedCodes": ["Red Light", "DNS Error", "AiMesh Node Offline"],
+    "videoSearchQuery": "ASUS router WiFi keeps dropping disconnecting fix",
+    "faq": [
+      {"q": "What is Smart Connect?", "a": "Smart Connect merges 2.4GHz and 5GHz bands into one SSID. The router decides which band each device uses. Disabling it gives you manual control."},
+      {"q": "Should I use ASUS-Merlin firmware?", "a": "ASUS-Merlin is a well-regarded third-party firmware that adds features and fixes bugs. It is recommended for advanced users. It voids warranty technically but is widely used."},
+      {"q": "Why do gaming routers overheat?", "a": "Gaming routers have powerful processors for features like AiProtection, QoS, and VPN. These generate more heat than basic routers."}
+    ]
+  },
+  {
+    "id": "asus-router-aiprotection-error",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "AiProtection Error",
+    "displayCode": "AiProtection Error",
+    "alternativeCodes": ["Trend Micro error", "Network protection error", "Security scan failed"],
+    "title": "AiProtection Security Feature Malfunction",
+    "shortDescription": "The AiProtection security suite is not functioning correctly, failing to block threats or reporting false errors.",
+    "fullDescription": "AiProtection is ASUS's built-in network security suite powered by Trend Micro. It provides malicious site blocking, vulnerability protection, and infected device prevention. When AiProtection errors occur, these protection features may not function, leaving the network exposed, or they may overzealously block legitimate websites and services.\n\nAiProtection requires an active internet connection and communication with Trend Micro's cloud servers to function. If the router cannot reach these servers (due to DNS issues, firewall rules, or ISP blocking), AiProtection will show errors or fail to update its threat database.",
+    "causes": [
+      {"cause": "Cannot reach Trend Micro cloud servers", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "AiProtection database out of date", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "DNS issues preventing AiProtection from resolving threats", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware needs update for AiProtection compatibility", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "AiProtection blocking legitimate sites (false positive)", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "AiProtection dashboard shows errors or warnings",
+      "Network Protection scan fails to complete",
+      "Legitimate websites being blocked by AiProtection",
+      "AiProtection shows as disabled or unavailable",
+      "Threat database last updated date is very old"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify internet connection", "instruction": "Ensure the router has active internet access. AiProtection requires cloud connectivity to function. Check that the WAN LED is not red.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Update firmware", "instruction": "Go to Administration > Firmware Upgrade and install the latest firmware. AiProtection improvements are included in firmware updates.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Toggle AiProtection off and on", "instruction": "Go to AiProtection > Network Protection. Disable all three protection features, wait 30 seconds, then re-enable them. This forces a reconnection to Trend Micro servers.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Check blocked sites list", "instruction": "If legitimate sites are blocked, go to AiProtection > Network Protection > Malicious Sites Blocking. Check the event log for false positives. You may need to add exceptions.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "GT-AX11000", "ZenWiFi XT8", "RT-AX68U", "RT-AC86U"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If AiProtection continues to malfunction after firmware updates, contact ASUS support for model-specific guidance.",
+    "relatedCodes": ["DNS Error", "Red Light"],
+    "videoSearchQuery": "ASUS router AiProtection not working fix",
+    "faq": [
+      {"q": "Is AiProtection free?", "a": "Yes. AiProtection is free and included with compatible ASUS routers. It does not require a subscription unlike some competitor security features."},
+      {"q": "Does AiProtection slow down my internet?", "a": "AiProtection adds minimal overhead. On powerful router CPUs (like the RT-AX86U), the impact is negligible."},
+      {"q": "Can I disable AiProtection?", "a": "Yes. Each protection feature can be individually disabled in the AiProtection settings if you prefer to use other security solutions."}
+    ]
+  },
+  {
+    "id": "asus-router-vpn-error",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "VPN Connection Failed",
+    "displayCode": "VPN Connection Failed",
+    "alternativeCodes": ["OpenVPN error", "VPN Fusion error", "WireGuard error", "VPN client error"],
+    "title": "VPN Server or Client Connection Failure",
+    "shortDescription": "The built-in VPN server or VPN client cannot establish or maintain a connection.",
+    "fullDescription": "ASUS routers offer robust VPN support with both VPN Server (OpenVPN, PPTP, IPSec) and VPN Client (OpenVPN, PPTP, L2TP, WireGuard on newer firmware). The VPN Fusion feature on newer models allows running VPN client and regular internet simultaneously with per-device routing rules.\n\nVPN failures commonly stem from ISP restrictions (CGNAT blocking inbound connections for VPN Server), incorrect configuration files, or protocol compatibility issues. ASUS-Merlin firmware significantly enhances VPN capabilities with policy-based routing and WireGuard support.",
+    "causes": [
+      {"cause": "VPN configuration file incorrect or expired", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "ISP using CGNAT blocking VPN server inbound connections", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DDNS not configured for VPN server", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VPN protocol blocked by ISP or network", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Router CPU overloaded by VPN encryption", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "VPN client shows connection failed or timeout",
+      "VPN server unreachable from outside the network",
+      "VPN connects but no traffic passes through",
+      "VPN Fusion rules not routing correctly",
+      "Slow speeds when VPN client is active"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify VPN configuration", "instruction": "For VPN Client: download a fresh .ovpn file from your VPN provider. Go to VPN > VPN Client and import the new file. Enter your VPN credentials.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Set up DDNS for VPN server", "instruction": "For VPN Server: go to WAN > DDNS and set up ASUS DDNS (free) or a third-party DDNS service. This provides a hostname for your changing IP.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Try WireGuard instead of OpenVPN", "instruction": "WireGuard is faster and more efficient than OpenVPN. On supported firmware, go to VPN > VPN Server/Client and select WireGuard. Generate keys and configure.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Check for CGNAT", "instruction": "For VPN Server: check your WAN IP at router.asus.com. If it starts with 100.64.x.x or differs from whatismyip.com, you are behind CGNAT. Contact ISP for a public IP.", "tools": ["Computer"], "difficulty": "advanced", "timeMinutes": 5}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "GT-AX11000", "GT-AX6000", "RT-AC86U", "ZenWiFi XT8"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If VPN requires complex routing, split-tunneling, or ISP negotiation for a public IP, consider consulting a network professional.",
+    "relatedCodes": ["DNS Error", "Red Light"],
+    "videoSearchQuery": "ASUS router VPN setup fix OpenVPN WireGuard",
+    "faq": [
+      {"q": "Which ASUS routers have the best VPN performance?", "a": "Models with AES-NI hardware acceleration (RT-AX86U, GT-AX11000) offer the best VPN speeds, reaching 200+ Mbps with OpenVPN."},
+      {"q": "What is VPN Fusion?", "a": "VPN Fusion lets you run VPN client on the router while choosing which devices use VPN and which use regular internet simultaneously."},
+      {"q": "Is WireGuard better than OpenVPN?", "a": "WireGuard is faster with lower latency and simpler configuration. OpenVPN is more mature with broader compatibility. Both are secure."}
+    ]
+  },
+  {
+    "id": "asus-router-qos-error",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "QoS Not Working",
+    "displayCode": "QoS Not Working",
+    "alternativeCodes": ["Adaptive QoS error", "Game priority not working", "Bandwidth limiter error"],
+    "title": "Quality of Service or Game Acceleration Not Functioning",
+    "shortDescription": "The Adaptive QoS, Game Boost, or bandwidth limiter features are not effectively prioritizing traffic.",
+    "fullDescription": "ASUS routers offer Adaptive QoS and Game Boost (powered by WTFast on some models) for traffic prioritization. When these features are not working, gaming traffic is not prioritized, streaming buffers during congestion, and bandwidth limits are not enforced.\n\nAdaptive QoS requires correct bandwidth values (matching your ISP plan) to function properly. Hardware acceleration (CTF/NAT acceleration) must be disabled for QoS to work on many ASUS models, as hardware-accelerated NAT bypasses the software-based QoS engine. This trade-off means enabling QoS may slightly reduce maximum throughput.",
+    "causes": [
+      {"cause": "Hardware acceleration (CTF) enabled, bypassing QoS", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Bandwidth values set incorrectly", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "QoS not enabled or wrong mode selected", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Game Boost/WTFast license expired", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Traffic classification not detecting application correctly", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Gaming still experiences lag during network congestion",
+      "Streaming buffers despite QoS priority",
+      "Bandwidth limiter not capping device speeds",
+      "QoS statistics showing no traffic shaping",
+      "Game Boost shows as unavailable"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Enable QoS properly", "instruction": "Go to Adaptive QoS > QoS. Enable Adaptive QoS. Select 'Gaming' or your preferred mode. Enter your actual upload and download speeds (run speedtest.net first). Set values at 85-90% of actual speeds.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check hardware acceleration", "instruction": "Go to LAN > Switch Control. If 'Hardware Acceleration / CTF' is enabled, QoS may be bypassed. Disable it for QoS to work, understanding that maximum throughput may decrease slightly.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Set device priorities", "instruction": "In Adaptive QoS, use the bandwidth limiter or device priority features to manually assign high priority to gaming consoles and work computers.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Verify Game Boost status", "instruction": "Go to Game Boost (if available). Ensure the feature is enabled and your gaming device is detected. Some Game Boost features require a WTFast account.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "GT-AX11000", "GT-AX6000", "RT-AC86U"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "For complex QoS setups with VLAN-based traffic separation or enterprise requirements, consult a network engineer.",
+    "relatedCodes": ["WiFi Intermittent", "VPN Connection Failed"],
+    "videoSearchQuery": "ASUS router QoS Adaptive QoS Game Boost setup fix",
+    "faq": [
+      {"q": "Does QoS reduce my internet speed?", "a": "Disabling hardware acceleration for QoS may reduce maximum throughput by 10-20% on some models. However, QoS ensures better performance under congestion."},
+      {"q": "Should I use Adaptive QoS or Traditional QoS?", "a": "Adaptive QoS with 'Gaming' mode is recommended for most users. Traditional QoS is for advanced users who want manual per-application rules."},
+      {"q": "What bandwidth values should I enter?", "a": "Run speedtest.net and enter 85-90% of your actual speeds. This gives QoS headroom to manage traffic effectively."}
+    ]
+  },
+  {
+    "id": "asus-router-login-error",
+    "brand": "ASUS",
+    "brandSlug": "asus-router",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Login Error",
+    "displayCode": "Login Error",
+    "alternativeCodes": ["Cannot access router.asus.com", "Admin password wrong", "192.168.1.1 not loading"],
+    "title": "Cannot Access Router Admin Panel",
+    "shortDescription": "Unable to log into the ASUS router's web admin interface or ASUS Router app.",
+    "fullDescription": "Login failures on ASUS routers occur when accessing router.asus.com or 192.168.1.1. ASUS routers use 'admin' as the default username and require setting a password during initial setup. If the password is forgotten, a factory reset is the only option to regain access.\n\nSome ASUS routers linked to an ASUS account can also be managed remotely through the ASUS Router app. If remote access is enabled but local login fails, there may be a browser or network configuration issue rather than a password problem.",
+    "causes": [
+      {"cause": "Admin password forgotten", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Browser cache or DNS issue preventing page load", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Device not connected to router's network", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Router IP changed from default 192.168.1.1", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "router.asus.com shows incorrect password",
+      "192.168.1.1 does not load the login page",
+      "ASUS Router app cannot connect",
+      "Login page loads but credentials are rejected"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify network connection", "instruction": "Ensure your device is connected to the ASUS router via WiFi or Ethernet. Disable cellular data on phones. Try both router.asus.com and 192.168.1.1.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Try default credentials", "instruction": "Username: admin, Password: admin (factory default). If changed during setup, try the password you created.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 3, "title": "Use incognito browser window", "instruction": "Open an incognito or private browsing window and navigate to router.asus.com to avoid cached login page issues.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Factory reset", "instruction": "Press and hold the reset button for 10 seconds while the router is powered on. Wait 3 minutes for reboot. Default credentials will be restored. You must reconfigure all settings.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["RT-AX86U", "RT-AX88U", "GT-AX11000", "RT-AC86U", "ZenWiFi XT8", "RT-AX68U"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If you cannot access the admin panel even after factory reset, the router may have a firmware or hardware issue. Contact ASUS support.",
+    "relatedCodes": ["Firmware Update Failed", "Red Light"],
+    "videoSearchQuery": "ASUS router cannot login admin password reset",
+    "faq": [
+      {"q": "What are the default ASUS router credentials?", "a": "Default username is 'admin', default password is 'admin'. During first setup, you are prompted to change the password."},
+      {"q": "Can I recover the password without resetting?", "a": "No. Unlike some brands, ASUS routers do not have a password recovery mechanism. A factory reset is the only option."},
+      {"q": "Will factory reset delete my AiMesh setup?", "a": "Yes. A factory reset on the main router removes all AiMesh node configurations. You will need to re-add nodes after reconfiguring."}
+    ]
+  }
+]

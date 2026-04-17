@@ -40,6 +40,20 @@ const CATEGORIES = [
     icon: "\uD83D\uDCBB",
     available: true,
   },
+  {
+    title: "TV Error Codes",
+    description: "Samsung, LG, Sony, Vizio, TCL, Hisense — Smart TV errors, streaming issues, HDMI problems, and firmware updates.",
+    href: "/appliance",
+    icon: "\uD83D\uDCFA",
+    available: true,
+  },
+  {
+    title: "Gaming Console Errors",
+    description: "PlayStation, Xbox, Nintendo Switch — connection errors, disc errors, update failures, and system crashes.",
+    href: "/appliance",
+    icon: "\uD83C\uDFAE",
+    available: true,
+  },
 ];
 
 export default function HomePage() {

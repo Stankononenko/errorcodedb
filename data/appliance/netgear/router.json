@@ -1,0 +1,597 @@
+[
+  {
+    "id": "netgear-router-orange-light",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Orange Light",
+    "displayCode": "Orange Light",
+    "alternativeCodes": ["Amber Light", "Orange LED", "Amber power light"],
+    "title": "No Internet Connection — Orange Power LED",
+    "shortDescription": "The router power LED turns solid orange or amber indicating it cannot establish an internet connection.",
+    "fullDescription": "A solid orange or amber power LED on Netgear routers means the device has booted successfully but cannot detect an active internet connection from the modem. This is one of the most common Netgear router issues and usually points to a problem between the router and the ISP modem rather than a hardware failure in the router itself.\n\nThe orange light typically appears after a power outage, modem replacement, or ISP service change. In most cases, a simple power cycle of both the modem and router resolves the issue within minutes. If the orange light persists, the problem may be related to incorrect WAN settings, a faulty Ethernet cable, or an ISP outage in your area.",
+    "causes": [
+      {"cause": "Modem has not fully booted or lost sync with ISP", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Ethernet cable between modem and router WAN port is loose or damaged", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "ISP outage or service interruption in your area", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "WAN/Internet settings misconfigured (wrong connection type)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Modem requires router MAC address registration", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Power LED is solid orange or amber instead of white/green",
+      "All connected devices show 'Connected, no internet'",
+      "WiFi network is visible and connectable but has no internet access",
+      "Nighthawk app shows WAN port disconnected"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle modem and router", "instruction": "Unplug the modem power cable, wait 30 seconds, then plug it back in. Wait 2 minutes for it to fully boot. Then unplug the router, wait 30 seconds, and plug it back in. Wait 2-3 minutes for the router to boot completely.", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Check the Ethernet cable", "instruction": "Ensure the Ethernet cable is firmly connected from the modem's LAN/Ethernet port to the router's yellow WAN/Internet port. Try a different Ethernet cable if available.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Check for ISP outage", "instruction": "Use your phone's cellular data to check your ISP's outage map or call their support line. If there is an outage, wait for service to be restored.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Verify WAN settings", "instruction": "Log into the router admin panel at routerlogin.net or 192.168.1.1. Go to Internet/WAN settings and ensure the connection type matches your ISP (usually Dynamic IP for cable, PPPoE for DSL). Enter ISP credentials if required.", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 5, "title": "Clone MAC address", "instruction": "In the router admin panel under Advanced > Setup > Internet Setup, look for MAC Address and try 'Use Computer MAC Address' or contact your ISP to register the router's MAC.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50", "Orbi RBK850", "R6700"],
+    "partsNeeded": [
+      {"part": "Cat6 Ethernet Cable", "partNumber": "", "estimatedCost": {"min": 5, "max": 15}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the orange light persists after all steps and your ISP confirms no outage, contact Netgear support or your ISP for further diagnosis.",
+    "relatedCodes": ["Blinking Orange Light", "No Power Light", "WiFi LED Off"],
+    "videoSearchQuery": "Netgear router orange light no internet fix",
+    "faq": [
+      {"q": "What does orange light mean on Netgear router?", "a": "An orange/amber power light means the router is powered on but has no internet connection from the modem or ISP."},
+      {"q": "How long should I wait after power cycling?", "a": "Wait at least 2 minutes for the modem and 2-3 minutes for the router to fully boot before checking the light color."},
+      {"q": "Can a bad Ethernet cable cause the orange light?", "a": "Yes. A damaged or loose Ethernet cable between the modem and router WAN port is a common cause."}
+    ]
+  },
+  {
+    "id": "netgear-router-blinking-orange",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Blinking Orange Light",
+    "displayCode": "Blinking Orange Light",
+    "alternativeCodes": ["Flashing amber", "Pulsing orange LED"],
+    "title": "Firmware Update in Progress or Boot Failure",
+    "shortDescription": "A blinking orange LED indicates the router is updating firmware or has encountered a boot error.",
+    "fullDescription": "A blinking or pulsing orange light on a Netgear router typically means a firmware update is being applied. During a firmware update, the light will blink orange for 1-5 minutes before the router restarts. Do not unplug the router during this process as it can corrupt the firmware and brick the device.\n\nIf the blinking orange light continues for more than 10 minutes, the router may be stuck in a boot loop or the firmware update may have failed. This can happen due to a power interruption during the update, a corrupted firmware file, or insufficient flash memory. Recovery usually involves using the Netgear TFTP recovery method or the reset button.",
+    "causes": [
+      {"cause": "Firmware update is currently being applied", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firmware update failed or was interrupted", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Router stuck in boot loop after failed update", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Corrupted firmware in flash memory", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Power LED blinks orange continuously",
+      "Router does not respond to web admin login",
+      "WiFi networks not visible",
+      "Blinking continues for more than 10 minutes",
+      "Router restarted during a firmware update"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wait for the update to complete", "instruction": "If you recently started a firmware update, wait up to 10 minutes for it to complete. The light should turn solid white/green when done.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Power cycle the router", "instruction": "If blinking persists after 10 minutes, unplug the router for 30 seconds, then plug it back in. Wait 3 minutes for a full boot.", "tools": [], "difficulty": "easy", "timeMinutes": 4},
+      {"step": 3, "title": "Factory reset", "instruction": "Use a paperclip to press and hold the reset button on the back of the router for 10 seconds while powered on. Release and wait 3-5 minutes for the router to reboot to factory defaults.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "TFTP firmware recovery", "instruction": "Download the latest firmware from netgear.com/support. Set your computer to static IP 192.168.1.2. Connect via Ethernet to the router. Use a TFTP client to upload the firmware file to 192.168.1.1. Wait for the router to reboot.", "tools": ["Computer", "Ethernet cable", "TFTP client"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk R7800", "Nighthawk RAX50", "Orbi RBK50", "Orbi RBK852"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If TFTP recovery fails and the router remains bricked, the device may need replacement. Contact Netgear support especially if under warranty.",
+    "relatedCodes": ["Orange Light", "No Power Light"],
+    "videoSearchQuery": "Netgear router blinking orange light firmware recovery",
+    "faq": [
+      {"q": "Can I unplug my router during a firmware update?", "a": "No. Unplugging during a firmware update can corrupt the firmware and potentially brick the router."},
+      {"q": "What is TFTP recovery?", "a": "TFTP (Trivial File Transfer Protocol) recovery is a low-level method to push firmware directly to the router when normal web-based access is unavailable."},
+      {"q": "How do I know if my router is bricked?", "a": "If the router only shows a blinking orange light, does not broadcast WiFi, and cannot be accessed via web browser after a factory reset, it is likely bricked."}
+    ]
+  },
+  {
+    "id": "netgear-router-no-wifi-led",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WiFi LED Off",
+    "displayCode": "WiFi LED Off",
+    "alternativeCodes": ["No wireless light", "WLAN LED off", "No WiFi indicator"],
+    "title": "WiFi Radio Disabled — No Wireless Signal",
+    "shortDescription": "The WiFi LED is off indicating the wireless radio has been disabled either by a button press or setting.",
+    "fullDescription": "When the WiFi LED on a Netgear router is off, it means the wireless radio has been turned off. Many Netgear routers have a physical WiFi on/off button on the side or back of the unit that can be accidentally pressed. Alternatively, wireless may have been disabled through the admin panel or Nighthawk app.\n\nWhile the WiFi LED is off, wired Ethernet connections continue to work normally. Only wireless devices are affected. This is a common issue after cleaning or moving the router, as the WiFi button can be bumped inadvertently.",
+    "causes": [
+      {"cause": "WiFi on/off button accidentally pressed on the router", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Wireless radio disabled in router admin settings", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Scheduled WiFi off period active", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware bug after update disabled wireless", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "WiFi LED on the router is completely off",
+      "No wireless networks visible from any device",
+      "Wired connections still work normally",
+      "Nighthawk app cannot find the router wirelessly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Press the WiFi button", "instruction": "Look for a WiFi on/off button on the side or back of the router. Press it once and wait 10 seconds. The WiFi LED should light up and wireless networks should reappear.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Check admin settings", "instruction": "Connect to the router via Ethernet cable. Log into routerlogin.net. Go to Wireless Settings and ensure 'Enable Wireless Radio' is checked for both 2.4GHz and 5GHz bands.", "tools": ["Computer", "Ethernet cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Check WiFi schedule", "instruction": "In the admin panel, go to Advanced > Advanced Setup > Wireless Schedule. Disable any schedules that turn WiFi off or adjust the times.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Power cycle the router", "instruction": "Unplug the router for 30 seconds and plug it back in. Wait 2-3 minutes and check if the WiFi LED turns on during boot.", "tools": [], "difficulty": "easy", "timeMinutes": 4}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk R6700", "Nighthawk RAX50", "Nighthawk RAX120", "R6400"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "1-5 minutes",
+    "whenToCallPro": "If the WiFi LED does not turn on after trying all steps, the wireless radio hardware may have failed. Contact Netgear support.",
+    "relatedCodes": ["Orange Light", "No Power Light"],
+    "videoSearchQuery": "Netgear router WiFi LED off no wireless fix",
+    "faq": [
+      {"q": "Where is the WiFi button on my Netgear router?", "a": "On most Nighthawk models, the WiFi button is on the left side or back panel. It may be labeled with a WiFi icon or 'WLAN'."},
+      {"q": "Can I use the router without WiFi?", "a": "Yes. Wired Ethernet connections continue to work even when WiFi is disabled. You can connect computers directly via Ethernet cables."},
+      {"q": "Will disabling WiFi save energy?", "a": "Marginally. Some users disable WiFi at night using the schedule feature for minor energy savings and reduced wireless exposure."}
+    ]
+  },
+  {
+    "id": "netgear-router-dns-error",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "DNS_PROBE_FINISHED_NXDOMAIN",
+    "displayCode": "DNS Error",
+    "alternativeCodes": ["DNS not resolving", "DNS lookup failed", "Server DNS address could not be found"],
+    "title": "DNS Resolution Failure Through Router",
+    "shortDescription": "Connected devices cannot resolve domain names due to DNS configuration issues on the router.",
+    "fullDescription": "DNS resolution errors through a Netgear router prevent connected devices from translating website names into IP addresses. While the internet connection may be active (you can ping IP addresses directly), websites fail to load and show DNS-related error messages in the browser.\n\nThis commonly occurs when the router is configured to use ISP DNS servers that are experiencing issues, or when custom DNS settings are misconfigured. The fix usually involves switching to reliable public DNS servers like Google DNS (8.8.8.8) or Cloudflare DNS (1.1.1.1) in the router settings.",
+    "causes": [
+      {"cause": "ISP DNS servers are slow or unresponsive", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Router DNS settings misconfigured", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "DNS cache on router is corrupted", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Router firewall or parental controls blocking DNS", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Websites fail to load with DNS error messages",
+      "Browser shows 'DNS_PROBE_FINISHED_NXDOMAIN' or 'Server not found'",
+      "Some websites load while others do not",
+      "Internet speed test works when accessed by IP address",
+      "All devices on the network have the same DNS issue"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Change DNS servers on router", "instruction": "Log into routerlogin.net. Go to Internet/WAN settings. Change the DNS servers to Google DNS: Primary 8.8.8.8, Secondary 8.8.4.4 (or Cloudflare: 1.1.1.1 and 1.0.0.1). Save and apply.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Flush DNS cache on devices", "instruction": "On Windows: open Command Prompt and run 'ipconfig /flushdns'. On Mac: open Terminal and run 'sudo dscacheutil -flushcache'. Restart your browser.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Power cycle the router", "instruction": "Unplug the router for 30 seconds to clear its internal DNS cache, then plug it back in and wait 2-3 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 4},
+      {"step": 4, "title": "Check parental controls and firewall", "instruction": "In the router admin panel, check Advanced > Security > Block Sites and Parental Controls. Ensure no overly broad rules are blocking DNS traffic.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Orbi RBK50", "Orbi RBK850", "R6700", "RAX80"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "If DNS errors persist after switching to public DNS servers and power cycling, contact your ISP to check for network-level issues.",
+    "relatedCodes": ["Orange Light", "DHCP Error"],
+    "videoSearchQuery": "Netgear router DNS error fix change DNS settings",
+    "faq": [
+      {"q": "What DNS servers should I use?", "a": "Google DNS (8.8.8.8, 8.8.4.4) and Cloudflare DNS (1.1.1.1, 1.0.0.1) are fast, free, and reliable alternatives to ISP DNS."},
+      {"q": "Will changing DNS affect my internet speed?", "a": "DNS affects how quickly website names resolve, not download speed. Faster DNS can make browsing feel snappier."},
+      {"q": "Should I change DNS on the router or individual devices?", "a": "Changing it on the router applies to all connected devices automatically. Change on individual devices only if you need different DNS for specific devices."}
+    ]
+  },
+  {
+    "id": "netgear-router-dhcp-error",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "DHCP Error",
+    "displayCode": "DHCP Error",
+    "alternativeCodes": ["IP address conflict", "Unable to obtain IP address", "169.254.x.x address"],
+    "title": "DHCP Server Failure — Devices Cannot Get IP Address",
+    "shortDescription": "The router's DHCP server is not assigning IP addresses to connected devices, preventing network access.",
+    "fullDescription": "When the Netgear router's DHCP server fails, connected devices cannot automatically obtain an IP address and will either show a 169.254.x.x self-assigned address or fail to connect entirely. This means devices can see the WiFi network but cannot access the internet or other network resources.\n\nDHCP issues can arise from an exhausted IP address pool (too many devices), conflicting DHCP servers on the network (e.g., a second router), or corrupted DHCP settings. The router's DHCP pool typically assigns addresses in the 192.168.1.2-254 range by default.",
+    "causes": [
+      {"cause": "DHCP server disabled in router settings", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DHCP address pool exhausted (too many devices)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Another device on the network acting as DHCP server", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "IP address conflict between devices", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted DHCP lease table", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Devices connect to WiFi but show 'No Internet' or 'Obtaining IP address'",
+      "Device receives 169.254.x.x address instead of 192.168.x.x",
+      "Some devices connect fine while others cannot",
+      "New devices cannot join the network",
+      "ipconfig/ifconfig shows no valid gateway address"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify DHCP is enabled", "instruction": "Log into routerlogin.net via Ethernet. Go to Advanced > Setup > LAN Setup. Ensure 'Use Router as DHCP Server' is checked. Set the IP range to 192.168.1.2 through 192.168.1.254.", "tools": ["Computer", "Ethernet cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Power cycle the router", "instruction": "Unplug the router for 60 seconds to clear the DHCP lease table, then plug it back in. Wait 3 minutes, then reconnect devices.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Renew IP on affected devices", "instruction": "On Windows: open Command Prompt and run 'ipconfig /release' then 'ipconfig /renew'. On Mac: go to System Settings > Network > WiFi > Details > TCP/IP and click 'Renew DHCP Lease'.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 4, "title": "Check for duplicate DHCP servers", "instruction": "Ensure no other router or device on the network is running a DHCP server. If you have a second router, set it to Access Point mode or disable its DHCP server.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Orbi RBK50", "Orbi RBK852", "R6700", "R8000"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If you suspect a complex network configuration with multiple routers or VLANs, a network professional can diagnose DHCP conflicts.",
+    "relatedCodes": ["DNS Error", "Orange Light"],
+    "videoSearchQuery": "Netgear router DHCP error devices cannot get IP address",
+    "faq": [
+      {"q": "What is DHCP?", "a": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices on your network so they can communicate."},
+      {"q": "What does a 169.254 address mean?", "a": "A 169.254.x.x address means the device could not reach a DHCP server and assigned itself a temporary link-local address. It has no internet access."},
+      {"q": "How many devices can DHCP support?", "a": "The default pool of 192.168.1.2-254 supports 253 devices. Most home networks use far fewer."}
+    ]
+  },
+  {
+    "id": "netgear-router-login-failed",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Login Failed",
+    "displayCode": "Login Failed",
+    "alternativeCodes": ["Admin password incorrect", "Cannot access routerlogin.net", "401 Unauthorized"],
+    "title": "Cannot Access Router Admin Panel",
+    "shortDescription": "Unable to log into the router admin page at routerlogin.net due to incorrect credentials or access issues.",
+    "fullDescription": "The 'Login Failed' error occurs when trying to access the Netgear router's admin panel at routerlogin.net or 192.168.1.1. This can happen if the admin password was changed and forgotten, the default credentials were never updated, or there is a network connectivity issue preventing access to the router's web interface.\n\nNetgear routers ship with default credentials printed on a label on the bottom of the device: username is typically 'admin' and the password is 'password' or a unique password shown on the label. If the password was changed during setup and later forgotten, a factory reset is the only way to restore access.",
+    "causes": [
+      {"cause": "Admin password was changed and forgotten", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Using wrong default credentials (not checking device label)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Browser cache serving old login page", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Connected to wrong network or router", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "routerlogin.net shows 'Login Failed' or 'Incorrect Password'",
+      "192.168.1.1 login page rejects credentials",
+      "Nighthawk app cannot authenticate with the router",
+      "Locked out after multiple failed login attempts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check the router label", "instruction": "Look at the sticker on the bottom or back of the router. It shows the default admin username and password. Newer models have a unique password instead of the old 'password' default.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Try default credentials", "instruction": "Navigate to routerlogin.net or 192.168.1.1 in your browser. Try username: admin, password: password. Or try the unique password from the router label.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Clear browser cache", "instruction": "Clear your browser cache and cookies, or try an incognito/private browsing window to access the admin page.", "tools": ["Computer or phone"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Factory reset the router", "instruction": "If the password was changed and forgotten, press and hold the reset button with a paperclip for 10 seconds. The router will reboot to factory defaults. You will need to reconfigure WiFi name, password, and all settings.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50", "Orbi RBK852", "R6700", "R8000"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If you cannot access the admin panel even after a factory reset, the router hardware may have an issue. Contact Netgear support.",
+    "relatedCodes": ["Orange Light", "Firmware Update Failed"],
+    "videoSearchQuery": "Netgear router cannot login admin password reset",
+    "faq": [
+      {"q": "What is the default Netgear router password?", "a": "Older models use admin/password. Newer models have a unique password printed on the router label."},
+      {"q": "Will factory reset delete my settings?", "a": "Yes. A factory reset erases all custom settings including WiFi name, password, port forwarding rules, and parental controls."},
+      {"q": "Can I recover my admin password without resetting?", "a": "If you set up password recovery questions during initial setup, you can use the 'Forgot Password' link. Otherwise, a factory reset is required."}
+    ]
+  },
+  {
+    "id": "netgear-router-firmware-update-failed",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Firmware Update Failed",
+    "displayCode": "Firmware Update Failed",
+    "alternativeCodes": ["Update error", "Firmware upload failed", "Could not update firmware"],
+    "title": "Router Firmware Update Failure",
+    "shortDescription": "The router firmware update process failed, leaving the device on the old firmware or in an unstable state.",
+    "fullDescription": "Firmware update failures on Netgear routers can occur during automatic or manual update attempts. The update may fail due to an unstable internet connection during download, a corrupted firmware file, insufficient memory, or a power interruption during the flashing process.\n\nIf the update failed but the router is still operational on the old firmware, you can retry the update. If the router became unresponsive during the update, you may need to use the TFTP recovery method to restore firmware manually. Always download firmware files directly from the Netgear support website for your specific model.",
+    "causes": [
+      {"cause": "Internet connection dropped during firmware download", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Uploaded wrong firmware file for the router model", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Browser timeout during firmware upload", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Power interruption during firmware flash", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Error message during firmware update process",
+      "Router reverts to old firmware version after update attempt",
+      "Router becomes unresponsive after update",
+      "Admin panel shows update failed notification"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Download correct firmware manually", "instruction": "Go to netgear.com/support, enter your exact router model number, and download the latest firmware file (.img or .chk file). Verify the model matches exactly.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Update via admin panel", "instruction": "Log into routerlogin.net. Go to Advanced > Administration > Firmware Update. Click 'Browse' or 'Choose File', select the downloaded firmware file, and click 'Upload'. Do not close the browser or unplug the router.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Use wired connection for update", "instruction": "Connect your computer directly to the router via Ethernet cable instead of WiFi for a more stable connection during firmware upload.", "tools": ["Computer", "Ethernet cable"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "TFTP recovery for bricked router", "instruction": "If the router is unresponsive, set your computer's IP to 192.168.1.2 static, connect via Ethernet, and use a TFTP client to push the firmware file to 192.168.1.1 while the router is in recovery mode (blinking orange LED).", "tools": ["Computer", "Ethernet cable", "TFTP client"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk R7800", "Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 120}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If TFTP recovery fails and the router remains unresponsive, contact Netgear support for warranty replacement or professional recovery.",
+    "relatedCodes": ["Blinking Orange Light", "No Power Light"],
+    "videoSearchQuery": "Netgear router firmware update failed recovery fix",
+    "faq": [
+      {"q": "Can I downgrade Netgear firmware?", "a": "Generally yes, you can upload an older firmware file through the admin panel, though Netgear recommends staying on the latest version for security."},
+      {"q": "How often should I update firmware?", "a": "Check for updates every 2-3 months. Firmware updates include security patches and bug fixes."},
+      {"q": "Does firmware update reset my settings?", "a": "Usually no. Most firmware updates preserve your settings. However, major version updates may occasionally reset settings."}
+    ]
+  },
+  {
+    "id": "netgear-router-wps-failed",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WPS Failed",
+    "displayCode": "WPS Failed",
+    "alternativeCodes": ["WPS connection error", "WPS LED blinking red", "WPS timeout"],
+    "title": "WPS Connection Attempt Failed",
+    "shortDescription": "The WPS (Wi-Fi Protected Setup) button press failed to connect a device to the wireless network.",
+    "fullDescription": "WPS (Wi-Fi Protected Setup) allows devices to connect to the WiFi network by pressing a button on the router instead of entering the password. When WPS fails, the WPS LED may blink amber/red or turn off without establishing a connection. The WPS process has a 2-minute timeout window.\n\nWPS failures are common with newer devices that have dropped WPS support for security reasons. Many security experts recommend disabling WPS as it has known vulnerabilities. If WPS is needed, ensure both the router and client device support it and that the connection attempt happens within the timeout window.",
+    "causes": [
+      {"cause": "WPS button not pressed within the 2-minute timeout", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Client device does not support WPS", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WPS disabled in router settings", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Too many devices attempting WPS simultaneously", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "WPS LED blinks then turns off without connecting",
+      "Device fails to join WiFi after pressing WPS button",
+      "WPS LED turns amber or red",
+      "Connection attempt times out after 2 minutes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Retry WPS with proper timing", "instruction": "Press the WPS button on the router first, then within 30 seconds press the WPS button on the client device (or select WPS in device WiFi settings). The WPS LED should blink white during pairing.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Enable WPS in router settings", "instruction": "Log into routerlogin.net. Go to Advanced > Advanced Setup > WPS Settings. Ensure WPS is enabled and the 'Router's PIN' feature is active if needed.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Use WiFi password instead", "instruction": "If WPS continues to fail, connect the device manually by selecting the WiFi network name and entering the password. This is more reliable and more secure than WPS.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Consider disabling WPS", "instruction": "For improved security, disable WPS in the router settings and connect all devices using the WiFi password. WPS has known security vulnerabilities.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 2}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Orbi RBK50", "R6700", "R6400"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 80}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "WPS failures rarely require professional help. If you cannot connect any device to WiFi by any method, contact Netgear support.",
+    "relatedCodes": ["WiFi LED Off", "Login Failed"],
+    "videoSearchQuery": "Netgear router WPS button not working fix",
+    "faq": [
+      {"q": "Is WPS safe to use?", "a": "WPS has known security vulnerabilities, especially the PIN method. Many security experts recommend disabling it and using strong WiFi passwords instead."},
+      {"q": "Which devices support WPS?", "a": "Most WiFi printers, some smart home devices, and older laptops support WPS. iPhones and many newer devices do not."},
+      {"q": "Where is the WPS button on my Netgear router?", "a": "On most Nighthawk models, the WPS button is on the front or top panel, often marked with a WPS icon (two curved arrows)."}
+    ]
+  },
+  {
+    "id": "netgear-router-orbi-satellite-offline",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Satellite Offline",
+    "displayCode": "Satellite Offline",
+    "alternativeCodes": ["Orbi satellite disconnected", "Satellite magenta light", "Satellite not synced"],
+    "title": "Orbi Mesh Satellite Lost Connection to Router",
+    "shortDescription": "An Orbi mesh satellite has lost its backhaul connection to the main router and shows a magenta or amber ring LED.",
+    "fullDescription": "When an Orbi mesh satellite goes offline, it loses its wireless or wired backhaul connection to the main Orbi router. The satellite's LED ring turns magenta (indicating no connection) or amber (indicating a weak connection). Devices near the offline satellite will lose internet access or automatically switch to the main router with reduced coverage.\n\nThis commonly happens when the satellite is placed too far from the router, there is interference from walls or appliances, or after a firmware update that requires re-syncing. Orbi satellites communicate with the main router using a dedicated backhaul channel, and disruptions to this channel cause the satellite to go offline.",
+    "causes": [
+      {"cause": "Satellite placed too far from the main Orbi router", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "WiFi interference from walls, appliances, or neighboring networks", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Firmware mismatch between router and satellite after update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Backhaul channel congestion or DFS radar event", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Satellite hardware failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Satellite LED ring is magenta or solid amber",
+      "Orbi app shows satellite as 'Offline' or 'Connection Failed'",
+      "WiFi dead zone in the area the satellite was covering",
+      "Devices near satellite disconnect or have very slow speeds",
+      "Satellite was working fine but suddenly went offline"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle the satellite", "instruction": "Unplug the Orbi satellite for 30 seconds, then plug it back in. Wait 3-5 minutes for it to sync back to the router. The LED should turn blue (good connection) or amber (fair connection).", "tools": [], "difficulty": "easy", "timeMinutes": 6},
+      {"step": 2, "title": "Move the satellite closer", "instruction": "Place the satellite no more than 30-40 feet from the main Orbi router with no more than one wall between them. The LED should turn blue when the connection is strong.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Re-sync the satellite", "instruction": "Press the Sync button on the back of the main Orbi router, then within 2 minutes press the Sync button on the satellite. Wait for the LED to turn blue.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Update firmware on all Orbi devices", "instruction": "Log into orbilogin.net. Go to Administration > Firmware Update and update the router first, then each satellite. All devices should be on the same firmware version.", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 5, "title": "Factory reset and re-add satellite", "instruction": "Press and hold the reset button on the satellite for 10 seconds. After it reboots, use the Orbi app to add the satellite as a new device.", "tools": ["Paperclip or pin"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Orbi RBK50", "Orbi RBK752", "Orbi RBK852", "Orbi RBK853", "Orbi RBS50", "Orbi RBS750"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the satellite cannot sync after a factory reset and firmware update, it may have a hardware failure. Contact Netgear support for replacement.",
+    "relatedCodes": ["Orange Light", "WiFi LED Off"],
+    "videoSearchQuery": "Netgear Orbi satellite offline magenta light fix",
+    "faq": [
+      {"q": "What do the Orbi LED colors mean?", "a": "Blue = good connection, amber = fair connection (consider moving closer), magenta = no connection to router, white = booting up."},
+      {"q": "How far can Orbi satellites be from the router?", "a": "Ideally within 30-40 feet with minimal obstructions. Thick walls, floors, and metal reduce range significantly."},
+      {"q": "Can I use Ethernet backhaul instead of wireless?", "a": "Yes. Connecting the satellite to the router via Ethernet cable provides the most reliable backhaul connection and frees up the wireless backhaul channel."}
+    ]
+  },
+  {
+    "id": "netgear-router-vpn-connection-failed",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "VPN Connection Failed",
+    "displayCode": "VPN Connection Failed",
+    "alternativeCodes": ["OpenVPN error", "VPN timeout", "VPN authentication failed"],
+    "title": "Built-in VPN Service Connection Failure",
+    "shortDescription": "The router's built-in VPN server or client cannot establish a connection.",
+    "fullDescription": "Many Netgear Nighthawk and Orbi routers include a built-in OpenVPN server that allows remote access to your home network. When the VPN connection fails, you cannot access your home network remotely. Common causes include incorrect VPN configuration, ISP blocking VPN ports, Dynamic DNS not configured, or firewall rules blocking VPN traffic.\n\nThe VPN feature requires proper setup of Dynamic DNS (DDNS) to handle changing IP addresses, correct port forwarding for OpenVPN (UDP port 1194 by default), and matching configuration files on both the router and client device.",
+    "causes": [
+      {"cause": "Dynamic DNS not configured or not updating", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "VPN configuration file not matching router settings", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "ISP blocking VPN port (UDP 1194)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Router firewall blocking VPN traffic", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "ISP using CGNAT preventing inbound connections", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "OpenVPN client shows 'Connection timed out'",
+      "VPN connects but no traffic passes through",
+      "Cannot reach home network resources via VPN",
+      "VPN worked previously but stopped after ISP or router change"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify VPN service is enabled", "instruction": "Log into routerlogin.net. Go to Advanced > Advanced Setup > VPN Service. Ensure 'Enable VPN Service' is checked. Note the port number (default 1194/UDP).", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 3},
+      {"step": 2, "title": "Set up Dynamic DNS", "instruction": "Go to Advanced > Advanced Setup > Dynamic DNS. Register a free Netgear DDNS hostname or use a third-party DDNS service. Ensure it shows the correct external IP.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Download fresh configuration", "instruction": "In VPN Service settings, click the download buttons for the OpenVPN configuration files. Import the fresh .ovpn file into your OpenVPN client app.", "tools": ["Computer or phone"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Check ISP for CGNAT", "instruction": "If VPN still fails, you may be behind Carrier-Grade NAT. Check your router's WAN IP — if it starts with 100.64.x.x or 10.x.x.x, contact your ISP and request a public IP address or opt out of CGNAT.", "tools": ["Computer"], "difficulty": "advanced", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk R7800", "Nighthawk RAX50", "Nighthawk RAX120"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If you need a reliable remote access VPN and ISP limitations prevent it from working, consider consulting a network professional for alternative solutions.",
+    "relatedCodes": ["DNS Error", "Firmware Update Failed"],
+    "videoSearchQuery": "Netgear router VPN connection failed OpenVPN setup fix",
+    "faq": [
+      {"q": "Does Netgear VPN work with all ISPs?", "a": "No. Some ISPs use CGNAT which blocks inbound VPN connections. You may need to request a public IP from your ISP."},
+      {"q": "Is Netgear's built-in VPN secure?", "a": "It uses OpenVPN which is well-regarded for security. Keep firmware updated and use strong credentials."},
+      {"q": "Can I use the VPN to access my home network from abroad?", "a": "Yes, that is the primary use case. You can access files, cameras, and devices on your home network from anywhere with internet."}
+    ]
+  },
+  {
+    "id": "netgear-router-wifi-keeps-dropping",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "WiFi Intermittent",
+    "displayCode": "WiFi Keeps Dropping",
+    "alternativeCodes": ["WiFi disconnects", "Intermittent WiFi", "WiFi unstable"],
+    "title": "Frequent WiFi Disconnections and Drops",
+    "shortDescription": "WiFi connections drop intermittently, requiring reconnection or router restart to restore connectivity.",
+    "fullDescription": "Intermittent WiFi disconnections on Netgear routers can be caused by channel congestion, interference from neighboring networks, outdated firmware, overheating, or too many connected devices. The issue manifests as periodic drops where devices lose WiFi for seconds to minutes before reconnecting.\n\nThis problem is particularly common in dense apartment buildings where many WiFi networks overlap on the same channels. Netgear routers with smart channel selection may frequently switch channels, causing brief disconnections. The issue can also stem from DFS (Dynamic Frequency Selection) channels in the 5GHz band, which must vacate the channel when radar is detected.",
+    "causes": [
+      {"cause": "WiFi channel congestion from neighboring networks", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Router overheating due to poor ventilation", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Outdated firmware with known WiFi stability bugs", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "DFS channel radar detection causing channel switches", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Too many connected devices exceeding router capacity", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "WiFi disconnects randomly throughout the day",
+      "Devices show 'Connected, no internet' briefly",
+      "Video calls or streaming buffer and drop frequently",
+      "WiFi drops at specific times of day (peak usage hours)",
+      "Some devices drop more than others"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update router firmware", "instruction": "Log into routerlogin.net. Go to Advanced > Administration > Firmware Update and check for updates. Install the latest firmware which may include WiFi stability fixes.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Change WiFi channels manually", "instruction": "Go to Advanced > Setup > Wireless Settings. Set the 2.4GHz channel to 1, 6, or 11 (whichever has least interference). Set 5GHz to a non-DFS channel (36-48). Disable 'Auto' channel selection.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Improve router ventilation", "instruction": "Ensure the router is placed in an open area with good airflow, not inside a cabinet, closet, or stacked under other electronics. The router should be vertical if designed for vertical placement.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Separate 2.4GHz and 5GHz networks", "instruction": "In Wireless Settings, give the 2.4GHz and 5GHz bands different network names (SSIDs). This prevents devices from jumping between bands and causing drops.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 5, "title": "Reduce connected device load", "instruction": "Disconnect unused IoT devices or set up a separate guest network for IoT devices to reduce load on the main WiFi network.", "tools": ["Computer"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50", "Orbi RBK852", "R6700"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If WiFi drops persist after optimizing channels and updating firmware, consider a professional WiFi site survey to identify interference sources and optimal router placement.",
+    "relatedCodes": ["Orange Light", "DNS Error", "WiFi LED Off"],
+    "videoSearchQuery": "Netgear router WiFi keeps dropping disconnecting fix",
+    "faq": [
+      {"q": "What is a DFS channel?", "a": "DFS (Dynamic Frequency Selection) channels in the 5GHz band are shared with weather radar. When radar is detected, the router must switch channels, causing a brief WiFi drop."},
+      {"q": "How many devices can my Netgear router handle?", "a": "Most Nighthawk routers support 30-50 devices. Performance degrades with more devices, especially on the 2.4GHz band."},
+      {"q": "Should I use 2.4GHz or 5GHz?", "a": "Use 5GHz for faster speeds and less interference (shorter range). Use 2.4GHz for devices far from the router or IoT devices that only support 2.4GHz."}
+    ]
+  },
+  {
+    "id": "netgear-router-no-power-light",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "No Power Light",
+    "displayCode": "No Power Light",
+    "alternativeCodes": ["Router not turning on", "No LEDs", "Power LED dead"],
+    "title": "Router Not Powering On — No LED Activity",
+    "shortDescription": "The router shows no LED lights at all and appears completely dead with no power.",
+    "fullDescription": "When a Netgear router shows no power LED or any LED activity, the device is not receiving power. This is typically a power supply issue rather than a router hardware failure. The power adapter may have failed, the power outlet may not be working, or the power connector on the router may be damaged.\n\nNetgear routers use specific voltage DC power adapters (typically 12V or 19V depending on the model). Using a wrong voltage adapter can damage the router. Before assuming the router is dead, test the power adapter and outlet systematically.",
+    "causes": [
+      {"cause": "Power adapter failed or is not plugged in securely", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Power outlet is not working (tripped breaker, switched outlet)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Power connector on router is loose or damaged", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Power surge damaged the router or adapter", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Internal router hardware failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "No LEDs light up on the router at all",
+      "Router feels cold with no signs of activity",
+      "No WiFi networks broadcast",
+      "Power adapter LED (if present) is off",
+      "Router was working but stopped after a storm or power outage"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check power connections", "instruction": "Ensure the power adapter is firmly plugged into both the wall outlet and the router's power port. Check that the power cable is not damaged or frayed.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Test the power outlet", "instruction": "Plug another device (like a phone charger or lamp) into the same outlet to verify it is working. Try a different outlet if needed. Check if the outlet is controlled by a light switch.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Try a different power adapter", "instruction": "If you have another Netgear power adapter with the same voltage and connector, try it. Check the label on the adapter to match voltage (12V or 19V) and polarity.", "tools": ["Compatible power adapter"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 4, "title": "Press and hold the power button", "instruction": "Some Netgear models have a power button on the back or side. Press and hold it for 2-3 seconds to turn the router on.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 5, "title": "Contact Netgear for replacement adapter", "instruction": "If the adapter has failed, order a replacement from Netgear or an authorized retailer. Ensure you get the correct voltage and connector type for your model.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Nighthawk R7000", "Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50", "R6700", "R8000"],
+    "partsNeeded": [
+      {"part": "Netgear Replacement Power Adapter (12V)", "partNumber": "", "estimatedCost": {"min": 10, "max": 25}},
+      {"part": "Netgear Replacement Power Adapter (19V)", "partNumber": "", "estimatedCost": {"min": 15, "max": 30}}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-10 minutes",
+    "whenToCallPro": "If a working power adapter does not turn on the router, the internal hardware has likely failed. Contact Netgear support for warranty replacement.",
+    "relatedCodes": ["Orange Light", "Blinking Orange Light"],
+    "videoSearchQuery": "Netgear router not turning on no power light fix",
+    "faq": [
+      {"q": "Can a power surge kill a router?", "a": "Yes. Power surges from lightning or grid issues can damage the router or its power adapter. Use a surge protector."},
+      {"q": "Can I use any 12V power adapter?", "a": "No. You must match the voltage, amperage (equal or higher), connector size, and polarity. Using the wrong adapter can damage the router."},
+      {"q": "How long do Netgear routers typically last?", "a": "Most Netgear routers last 3-5 years with normal use. Performance may degrade before hardware failure."}
+    ]
+  },
+  {
+    "id": "netgear-router-parental-controls-not-working",
+    "brand": "Netgear",
+    "brandSlug": "netgear",
+    "deviceType": "Router",
+    "deviceTypeSlug": "router",
+    "code": "Parental Controls Error",
+    "displayCode": "Parental Controls Error",
+    "alternativeCodes": ["Circle not working", "Content filter error", "Access control failure"],
+    "title": "Parental Controls Not Filtering or Blocking Content",
+    "shortDescription": "The router's parental controls feature is not blocking content or enforcing time limits as configured.",
+    "fullDescription": "Netgear routers offer parental controls through the built-in features or via the Disney Circle integration (on supported models). When parental controls stop working, filtered content passes through unblocked, time limits are not enforced, or device pausing does not function.\n\nThis issue often occurs when devices use DNS-over-HTTPS (DoH) which bypasses router-level DNS filtering, when devices are connected to a VPN, or when the Circle subscription has expired. Children may also connect to a neighbor's WiFi or use cellular data to bypass controls entirely.",
+    "causes": [
+      {"cause": "Device using DNS-over-HTTPS (DoH) bypassing router DNS filtering", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Circle subscription expired or service outage", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Device MAC address changed (randomized MAC)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Parental control profiles not assigned to correct devices", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware update reset parental control settings", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blocked websites are still accessible",
+      "Time limits are not pausing internet access",
+      "Pause/resume device feature not working",
+      "Circle app shows devices as offline",
+      "New devices bypass parental controls automatically"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check Circle subscription status", "instruction": "Open the Nighthawk or Orbi app. Go to Parental Controls and check if your Circle subscription is active. Renew if expired.", "tools": ["Phone"], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Reassign devices to profiles", "instruction": "In the parental controls section, verify that each device you want to filter is assigned to the correct profile. New devices may not be automatically assigned.", "tools": ["Phone or Computer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Disable DoH on child devices", "instruction": "On the child's device, go to browser settings and disable DNS-over-HTTPS (Secure DNS). In Chrome: Settings > Privacy > Use Secure DNS > turn off. In Firefox: Settings > Privacy > DNS over HTTPS > turn off.", "tools": ["Child's device"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Disable MAC randomization", "instruction": "On child devices, disable Private/Random MAC address for your home WiFi. This prevents the device from appearing as a new device and bypassing controls.", "tools": ["Child's device"], "difficulty": "intermediate", "timeMinutes": 3}
+    ],
+    "affectedModels": ["Nighthawk RAX50", "Nighthawk RAX120", "Orbi RBK50", "Orbi RBK752", "Orbi RBK852"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If you need comprehensive network-level content filtering beyond what the router provides, consider a professional network setup with dedicated DNS filtering (like Pi-hole or OpenDNS).",
+    "relatedCodes": ["DNS Error", "Login Failed"],
+    "videoSearchQuery": "Netgear router parental controls not working Circle fix",
+    "faq": [
+      {"q": "Is Circle parental control free?", "a": "Basic Circle features are included with Netgear Armor. Advanced features require a Circle Premium subscription (approximately $10/month)."},
+      {"q": "Can kids bypass parental controls?", "a": "Tech-savvy children can bypass router controls by using VPNs, changing DNS settings, using DoH, or connecting to other WiFi networks."},
+      {"q": "Do parental controls work on all devices?", "a": "They work on all devices connected to the router's network. They do not affect cellular data connections on phones."}
+    ]
+  }
+]

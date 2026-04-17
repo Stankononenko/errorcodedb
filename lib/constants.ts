@@ -145,6 +145,39 @@ export const APPLIANCE_BRANDS = [
   { name: "Roborock", slug: "roborock", country: "China" },
   { name: "Ecovacs", slug: "ecovacs", country: "China" },
   { name: "Tineco", slug: "tineco", country: "China" },
+  // ── Electronics / Entertainment ──
+  { name: "Sony", slug: "sony", country: "Japan" },
+  { name: "Vizio", slug: "vizio", country: "USA" },
+  { name: "PlayStation", slug: "playstation", country: "Japan" },
+  { name: "Xbox", slug: "xbox", country: "USA" },
+  { name: "Nintendo", slug: "nintendo", country: "Japan" },
+  // ── Networking ──
+  { name: "Netgear", slug: "netgear", country: "USA" },
+  { name: "TP-Link", slug: "tp-link", country: "China" },
+  { name: "Linksys", slug: "linksys", country: "USA" },
+  { name: "ASUS Router", slug: "asus-router", country: "Taiwan" },
+  // ── Cameras ──
+  { name: "Canon Camera", slug: "canon", country: "Japan" },
+  { name: "Nikon", slug: "nikon", country: "Japan" },
+  { name: "Ring", slug: "ring", country: "USA" },
+  { name: "Nest Cam", slug: "nest-cam", country: "USA" },
+  // ── Power Tools / Outdoor ──
+  { name: "John Deere", slug: "john-deere", country: "USA" },
+  { name: "Husqvarna", slug: "husqvarna", country: "Sweden" },
+  { name: "Toro", slug: "toro", country: "USA" },
+  { name: "Craftsman", slug: "craftsman", country: "USA" },
+  { name: "Cub Cadet", slug: "cub-cadet", country: "USA" },
+  { name: "Ariens", slug: "ariens", country: "USA" },
+  { name: "Stihl", slug: "stihl", country: "Germany" },
+  { name: "Ryobi", slug: "ryobi", country: "Japan" },
+  { name: "DeWalt", slug: "dewalt", country: "USA" },
+  { name: "Makita", slug: "makita", country: "Japan" },
+  { name: "Greenworks", slug: "greenworks", country: "USA" },
+  { name: "EGO", slug: "ego", country: "USA" },
+  { name: "Black & Decker", slug: "black-decker", country: "USA" },
+  { name: "Echo", slug: "echo-tools", country: "Japan" },
+  { name: "Troy-Bilt", slug: "troy-bilt", country: "USA" },
+  { name: "Generac", slug: "generac", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
@@ -182,6 +215,24 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "washer-dryer-combo": { label: "Washer-Dryer Combo", labelPlural: "Washer-Dryer Combos" },
   "steam-oven": { label: "Steam Oven", labelPlural: "Steam Ovens" },
   "warming-drawer": { label: "Warming Drawer", labelPlural: "Warming Drawers" },
+  tv: { label: "TV", labelPlural: "TVs" },
+  "gaming-console": { label: "Gaming Console", labelPlural: "Gaming Consoles" },
+  router: { label: "Router", labelPlural: "Routers" },
+  camera: { label: "Camera", labelPlural: "Cameras" },
+  "security-camera": { label: "Security Camera", labelPlural: "Security Cameras" },
+  "sound-bar": { label: "Sound Bar", labelPlural: "Sound Bars" },
+  "lawn-mower": { label: "Lawn Mower", labelPlural: "Lawn Mowers" },
+  "riding-mower": { label: "Riding Mower", labelPlural: "Riding Mowers" },
+  "zero-turn-mower": { label: "Zero-Turn Mower", labelPlural: "Zero-Turn Mowers" },
+  chainsaw: { label: "Chainsaw", labelPlural: "Chainsaws" },
+  "string-trimmer": { label: "String Trimmer", labelPlural: "String Trimmers" },
+  "leaf-blower": { label: "Leaf Blower", labelPlural: "Leaf Blowers" },
+  "snow-blower": { label: "Snow Blower", labelPlural: "Snow Blowers" },
+  "pressure-washer": { label: "Pressure Washer", labelPlural: "Pressure Washers" },
+  generator: { label: "Generator", labelPlural: "Generators" },
+  tiller: { label: "Tiller", labelPlural: "Tillers" },
+  "robot-mower": { label: "Robot Mower", labelPlural: "Robot Mowers" },
+  "power-tool": { label: "Power Tool", labelPlural: "Power Tools" },
 };
 
 // ── HVAC Brands ──
@@ -200,6 +251,8 @@ export const HVAC_BRANDS = [
   { name: "Honeywell", slug: "honeywell" },
   { name: "Nest", slug: "nest" },
   { name: "Ecobee", slug: "ecobee" },
+  { name: "Navien", slug: "navien" },
+  { name: "Rinnai", slug: "rinnai" },
 ] as const;
 
 export const HVAC_DEVICE_TYPES: Record<HVACDeviceType, { label: string; labelPlural: string }> = {

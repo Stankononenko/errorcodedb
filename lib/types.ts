@@ -89,7 +89,25 @@ export type ApplianceDeviceType =
   | "induction-cooktop"
   | "washer-dryer-combo"
   | "steam-oven"
-  | "warming-drawer";
+  | "warming-drawer"
+  | "tv"
+  | "sound-bar"
+  | "gaming-console"
+  | "router"
+  | "camera"
+  | "security-camera"
+  | "lawn-mower"
+  | "riding-mower"
+  | "zero-turn-mower"
+  | "chainsaw"
+  | "string-trimmer"
+  | "leaf-blower"
+  | "snow-blower"
+  | "pressure-washer"
+  | "generator"
+  | "tiller"
+  | "robot-mower"
+  | "power-tool";
 
 export interface ApplianceCause {
   cause: string;

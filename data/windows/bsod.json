@@ -1724,5 +1724,1342 @@
       {"q": "Should I disable the page file?", "a": "No. Disabling the page file can cause this BSOD. Even with ample RAM, Windows uses the page file for stability. Keep it enabled."},
       {"q": "What is a memory leak?", "a": "A memory leak occurs when software allocates memory but fails to release it when done. Over time, this consumes all available memory until the system runs out."}
     ]
+  },
+  {
+    "id": "bsod-unexpected-store-exception",
+    "category": "bsod",
+    "code": "0x00000154",
+    "displayCode": "UNEXPECTED_STORE_EXCEPTION",
+    "title": "Unexpected Store Exception in Kernel",
+    "shortDescription": "An unexpected exception occurred in the store component, typically related to storage hardware or driver issues.",
+    "fullDescription": "The UNEXPECTED_STORE_EXCEPTION blue screen indicates that the store component encountered an unexpected exception. This error is frequently associated with failing hard drives or SSDs, outdated storage drivers, or file system corruption.\n\nThis BSOD became notably more common after certain Windows 10 feature updates and is often linked to antivirus software conflicts or issues with fast startup. Users with older SSDs or mechanical hard drives approaching end of life are particularly susceptible to this error.\n\nIn many cases, the error can be resolved by updating storage drivers, disabling fast startup, or running disk health checks. If the storage device is failing, replacement may be necessary.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Failing or degraded storage device (HDD/SSD)", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Outdated or incompatible storage drivers", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Antivirus software kernel conflict", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Fast Startup feature causing corruption", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "File system corruption on boot volume", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with UNEXPECTED_STORE_EXCEPTION",
+      "System crashes during disk-intensive operations",
+      "Frequent crashes after Windows update",
+      "Slow boot times before eventual crash",
+      "SMART warnings in disk health tools"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check disk health", "instruction": "Open Command Prompt as administrator and run: wmic diskdrive get status. Also install CrystalDiskInfo to check SMART data for warnings or reallocated sectors.", "tools": ["Command Prompt", "CrystalDiskInfo"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Update storage drivers", "instruction": "Open Device Manager, expand Disk drives and Storage controllers. Right-click each device and select Update driver. Also check the manufacturer website for firmware updates.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Disable Fast Startup", "instruction": "Go to Control Panel > Power Options > Choose what the power buttons do > Change settings that are currently unavailable. Uncheck Turn on fast startup.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Run CHKDSK", "instruction": "Open elevated Command Prompt and run: chkdsk C: /f /r. Schedule the check for next restart and reboot. This will scan for and repair file system errors and bad sectors.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 5, "title": "Temporarily disable antivirus", "instruction": "If using third-party antivirus, temporarily disable it or uninstall it to test if the BSOD stops. Windows Defender will provide basic protection in the meantime.", "tools": ["Antivirus software"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 75, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If SMART data shows the drive is failing or CHKDSK finds many bad sectors, a professional can help with data recovery before replacing the drive.",
+    "relatedCodes": ["KERNEL_DATA_INPAGE_ERROR", "NTFS_FILE_SYSTEM", "CRITICAL_PROCESS_DIED"],
+    "faq": [
+      {"q": "Is UNEXPECTED_STORE_EXCEPTION always a hard drive problem?", "a": "No. While failing storage is common, this error can also be caused by antivirus conflicts, driver issues, or Windows update bugs."},
+      {"q": "Can an SSD cause this error?", "a": "Yes. SSDs can develop issues, especially older models with outdated firmware. Check SMART data and update firmware from the manufacturer."},
+      {"q": "Should I replace my hard drive?", "a": "Only if diagnostic tools show the drive is failing. Check SMART status, run CrystalDiskInfo, and look for reallocated sectors or pending sectors."}
+    ]
+  },
+  {
+    "id": "bsod-video-scheduler-internal-error",
+    "category": "bsod",
+    "code": "0x00000119",
+    "displayCode": "VIDEO_SCHEDULER_INTERNAL_ERROR",
+    "title": "Video Scheduler Internal Error",
+    "shortDescription": "The video scheduler has detected a fatal violation, indicating a critical GPU driver or hardware failure.",
+    "fullDescription": "This BSOD occurs when the video scheduler detects a fatal violation within the GPU subsystem. The video scheduler is responsible for managing GPU command buffers and ensuring the graphics card responds to commands in a timely manner.\n\nThe most common cause is a corrupted, outdated, or incompatible GPU driver. Overclocked GPUs, overheating graphics cards, and hardware defects can also trigger this error. It frequently appears during gaming, video playback, or other graphics-intensive tasks.\n\nResolving this error typically involves performing a clean GPU driver installation using DDU (Display Driver Uninstaller), then installing the latest stable driver from the GPU manufacturer.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted or outdated GPU driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "GPU overclocking instability", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "GPU overheating", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Faulty graphics card hardware", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Conflicting display drivers (integrated + discrete)", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with VIDEO_SCHEDULER_INTERNAL_ERROR",
+      "Crashes during gaming or video playback",
+      "Screen artifacts or flickering before crash",
+      "Display driver stopped responding messages before BSOD",
+      "System freezes with buzzing audio"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clean install GPU drivers with DDU", "instruction": "Download DDU (Display Driver Uninstaller) and the latest GPU driver. Boot into Safe Mode, run DDU to completely remove current drivers, then install the fresh driver.", "tools": ["DDU", "GPU manufacturer website"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Remove GPU overclock", "instruction": "If using MSI Afterburner, EVGA Precision, or similar, reset all clocks, voltages, and fan curves to default. Restart and test stability.", "tools": ["MSI Afterburner"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Check GPU temperatures", "instruction": "Install HWMonitor or GPU-Z and monitor GPU temperature under load. If temperature exceeds 90C, clean dust from the GPU cooler and case fans, or reapply thermal paste.", "tools": ["HWMonitor", "GPU-Z"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Test with integrated graphics", "instruction": "If your CPU has integrated graphics, remove the discrete GPU or disable it in BIOS and test. If crashes stop, the GPU hardware may be faulty.", "tools": ["BIOS/UEFI"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 5, "title": "Increase TDR timeout", "instruction": "Open Registry Editor and navigate to HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers. Create a DWORD value named TdrDelay and set it to 8 (seconds).", "tools": ["Registry Editor"], "difficulty": "advanced", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the error persists after a clean driver install and the GPU passes stress tests, a professional can diagnose whether the GPU hardware itself is failing or if there is a motherboard issue.",
+    "relatedCodes": ["VIDEO_TDR_FAILURE", "VIDEO_TDR_TIMEOUT_DETECTED", "THREAD_STUCK_IN_DEVICE_DRIVER"],
+    "faq": [
+      {"q": "Can this error damage my GPU?", "a": "The BSOD itself does not damage the GPU. However, the underlying cause (like overheating) could cause long-term damage if not addressed."},
+      {"q": "Should I use the latest or previous GPU driver?", "a": "Try the latest stable (non-beta) driver first. If issues persist, try the previous version. Some driver releases are known to cause issues with specific games or hardware."},
+      {"q": "What is DDU and is it safe?", "a": "DDU (Display Driver Uninstaller) is a trusted utility that completely removes GPU drivers and residual files. It is safe and widely recommended for clean driver installations."}
+    ]
+  },
+  {
+    "id": "bsod-faulty-hardware-corrupted-page",
+    "category": "bsod",
+    "code": "0x0000012B",
+    "displayCode": "FAULTY_HARDWARE_CORRUPTED_PAGE",
+    "title": "Faulty Hardware Corrupted Page",
+    "shortDescription": "A hardware component has corrupted a page of memory, indicating RAM or CPU issues.",
+    "fullDescription": "The FAULTY_HARDWARE_CORRUPTED_PAGE BSOD indicates that a hardware component — most commonly RAM — has corrupted data in a memory page. Windows detected that a page of memory expected to contain specific data was altered unexpectedly, pointing to a hardware fault.\n\nThis error can also be caused by motherboard issues, CPU cache errors, or in some cases, driver bugs that corrupt memory. It became more prevalent with certain Intel and AMD platform chipset issues.\n\nDiagnosis requires thorough hardware testing, starting with RAM and extending to the CPU and motherboard if RAM tests pass.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Faulty or failing RAM module", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "CPU cache error or overheating CPU", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Motherboard chipset or memory controller issue", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Driver bug corrupting memory pages", "likelihood": "low", "fixDifficulty": "intermediate"},
+      {"cause": "RAM overclocking or XMP profile instability", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with FAULTY_HARDWARE_CORRUPTED_PAGE",
+      "Random crashes with no specific trigger pattern",
+      "Data corruption in files",
+      "Applications crash with memory-related errors",
+      "System instability increases over time"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Run Windows Memory Diagnostic", "instruction": "Press Win+R, type mdsched.exe, restart and check for problems. After reboot, check Event Viewer > Windows Logs > System for MemoryDiagnostics results.", "tools": ["Windows Memory Diagnostic", "Event Viewer"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Run MemTest86 extended test", "instruction": "Download MemTest86, create a bootable USB, and run the full test suite for at least 4 passes. This takes several hours but is more thorough than Windows Memory Diagnostic.", "tools": ["MemTest86", "USB drive"], "difficulty": "intermediate", "timeMinutes": 240},
+      {"step": 3, "title": "Disable XMP/DOCP profile", "instruction": "Enter BIOS/UEFI and disable XMP (Intel) or DOCP (AMD) memory profiles. Run RAM at JEDEC default speeds and test for stability.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Test individual RAM sticks", "instruction": "Remove all but one RAM stick and test. Rotate through each stick individually to identify the faulty module. Also test each DIMM slot.", "tools": ["MemTest86"], "difficulty": "intermediate", "timeMinutes": 120},
+      {"step": 5, "title": "Update BIOS and chipset drivers", "instruction": "Check your motherboard manufacturer website for BIOS updates and chipset drivers. Some BIOS updates fix memory controller stability issues.", "tools": ["Motherboard manufacturer website"], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If MemTest86 passes but the error persists, a professional can perform advanced diagnostics on the CPU, motherboard, and memory controller to identify the fault.",
+    "relatedCodes": ["MEMORY_MANAGEMENT", "WHEA_UNCORRECTABLE_ERROR", "PFN_LIST_CORRUPT"],
+    "faq": [
+      {"q": "Does this always mean my RAM is bad?", "a": "Not always, but RAM is the most common cause. Run MemTest86 first. If RAM passes, check CPU temperatures and BIOS/chipset updates."},
+      {"q": "Can software cause this error?", "a": "Rarely. While a driver bug could theoretically corrupt memory, this error almost always points to hardware. Focus on hardware diagnostics first."},
+      {"q": "Should I replace all my RAM or just the bad stick?", "a": "If testing identifies one faulty stick, replace it. For best compatibility, consider replacing the entire kit with a matched set from your motherboard QVL list."}
+    ]
+  },
+  {
+    "id": "bsod-attempted-write-to-readonly-memory",
+    "category": "bsod",
+    "code": "0x000000BE",
+    "displayCode": "ATTEMPTED_WRITE_TO_READONLY_MEMORY",
+    "title": "Attempted Write to Read-Only Memory",
+    "shortDescription": "A driver attempted to write to a memory segment marked as read-only.",
+    "fullDescription": "This BSOD occurs when a driver or kernel-mode component attempts to write to a memory region that has been marked as read-only. This is a memory protection violation that indicates a buggy driver or corrupted system component.\n\nThe error most commonly occurs after installing new drivers, particularly graphics, network, or storage drivers. It can also appear after Windows updates that introduce driver compatibility issues.\n\nThe minidump file typically identifies the specific driver responsible. Clean installation of the offending driver usually resolves the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Buggy or incompatible device driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Recently updated driver with bugs", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corrupted system files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Hardware fault causing memory protection failures", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with ATTEMPTED_WRITE_TO_READONLY_MEMORY",
+      "Crash occurs shortly after driver installation",
+      "Minidump references a specific .sys driver file",
+      "System may crash during boot if the driver loads at startup",
+      "Crash during specific hardware operations"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify the faulting driver", "instruction": "Check the BSOD screen for a file name (e.g., nvlddmkm.sys). Also open Event Viewer > Windows Logs > System and look for BugCheck events that name the responsible driver.", "tools": ["Event Viewer"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Roll back or update the driver", "instruction": "In Device Manager, find the device associated with the faulting driver. Right-click > Properties > Driver tab > Roll Back Driver. If no rollback is available, update to the latest version from the manufacturer.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth, then: sfc /scannow. This repairs any corrupted system files.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Boot into Safe Mode to remove driver", "instruction": "If the system cannot boot, use Windows Recovery Environment to boot into Safe Mode. Then uninstall the problematic driver from Device Manager.", "tools": ["Windows Recovery Environment"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If you cannot identify the faulting driver or the error occurs with multiple drivers, a professional can analyze minidump files to determine the root cause.",
+    "relatedCodes": ["DRIVER_IRQL_NOT_LESS_OR_EQUAL", "SYSTEM_SERVICE_EXCEPTION", "IRQL_NOT_LESS_OR_EQUAL"],
+    "faq": [
+      {"q": "Which driver is causing this error?", "a": "The BSOD screen or minidump file usually names the .sys file responsible. Common culprits include GPU drivers (nvlddmkm.sys, atikmpag.sys), network drivers, and antivirus kernel drivers."},
+      {"q": "Can I fix this without Safe Mode?", "a": "If Windows boots normally, yes. Update or roll back the driver through Device Manager. If Windows cannot boot, you will need Safe Mode or the Recovery Environment."},
+      {"q": "Is this a sign of RAM failure?", "a": "Usually not. This error is about software-level memory protection, not physical memory failure. However, if it occurs randomly without a clear driver cause, running a memory test is worthwhile."}
+    ]
+  },
+  {
+    "id": "bsod-pool-corruption-in-file-area",
+    "category": "bsod",
+    "code": "0x000000DE",
+    "displayCode": "POOL_CORRUPTION_IN_FILE_AREA",
+    "title": "Pool Corruption in File Area",
+    "shortDescription": "A driver corrupted pool memory in the area used for file system operations.",
+    "fullDescription": "This BSOD indicates that a kernel-mode component has corrupted the memory pool in the area allocated for file system operations. Pool memory is used by drivers and the kernel for temporary allocations, and corruption in the file area specifically suggests a storage-related driver issue.\n\nThe error typically points to a buggy file system filter driver, such as those used by antivirus programs, backup software, or disk encryption tools. Storage controller drivers and RAID drivers can also be responsible.\n\nResolving this error usually requires identifying and updating or removing the offending filter driver.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Buggy file system filter driver (antivirus, backup, encryption)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted storage controller driver", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk encryption software conflict", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Defective storage hardware", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with POOL_CORRUPTION_IN_FILE_AREA",
+      "Crashes during file operations (copying, saving, deleting)",
+      "System instability after installing backup or security software",
+      "Corruption in recently saved files",
+      "Crash during antivirus scans"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify file system filter drivers", "instruction": "Open elevated Command Prompt and run: fltmc. This lists all file system filter drivers. Note any third-party filters from antivirus, backup, or encryption software.", "tools": ["Command Prompt", "fltmc"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Update or remove suspect filter drivers", "instruction": "Update antivirus, backup, and encryption software to latest versions. If the problem started after installing specific software, temporarily uninstall it to test.", "tools": ["Programs and Features"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Update storage controller drivers", "instruction": "Check Device Manager > Storage controllers and IDE ATA/ATAPI controllers. Update all drivers, particularly RAID or AHCI drivers, from the manufacturer website.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Run CHKDSK on all volumes", "instruction": "Open elevated Command Prompt and run chkdsk on each drive: chkdsk C: /f /r. This checks for file system corruption and bad sectors.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If you cannot identify the problematic filter driver or the error persists after removing third-party software, a professional can analyze kernel dumps and filter driver stacks.",
+    "relatedCodes": ["BAD_POOL_HEADER", "BAD_POOL_CALLER", "NTFS_FILE_SYSTEM"],
+    "faq": [
+      {"q": "What is a file system filter driver?", "a": "Filter drivers sit between applications and the file system, intercepting file operations. Antivirus real-time scanning, backup agents, and disk encryption all use filter drivers."},
+      {"q": "Can antivirus software cause this?", "a": "Yes. Antivirus real-time protection uses file system filter drivers. A buggy update to the antivirus can cause pool corruption. Try updating or temporarily removing the antivirus."},
+      {"q": "Is my data at risk?", "a": "Pool corruption can lead to file system corruption in severe cases. Back up important data as soon as possible and run CHKDSK to verify file system integrity."}
+    ]
+  },
+  {
+    "id": "bsod-kernel-mode-heap-corruption",
+    "category": "bsod",
+    "code": "0x0000013A",
+    "displayCode": "KERNEL_MODE_HEAP_CORRUPTION",
+    "title": "Kernel Mode Heap Corruption",
+    "shortDescription": "The kernel detected heap corruption, typically caused by a buggy driver or firmware issue.",
+    "fullDescription": "The KERNEL_MODE_HEAP_CORRUPTION BSOD indicates that the Windows kernel detected corruption in a kernel-mode heap. This is a serious error that means a driver or kernel component has written to memory it should not have, corrupting the heap data structures.\n\nThis error is often caused by drivers that perform incorrect memory operations, such as writing beyond allocated buffer boundaries (buffer overflows) or using memory after it has been freed (use-after-free). Firmware bugs, particularly in UEFI firmware, can also be responsible.\n\nThe error is typically reproducible and linked to specific hardware or driver combinations. Identifying the responsible driver through dump analysis is key to resolution.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Buggy kernel-mode driver with memory corruption bug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "UEFI firmware bug", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Incompatible driver after Windows update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Physical memory hardware issue", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with KERNEL_MODE_HEAP_CORRUPTION",
+      "Crashes may occur during specific operations or randomly",
+      "System instability increases over time",
+      "Other heap-related errors may also appear",
+      "Possible data corruption"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update all drivers", "instruction": "Open Device Manager and update all drivers, particularly GPU, network, storage, and USB drivers. Download latest versions from manufacturer websites rather than using Windows Update.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Update BIOS/UEFI firmware", "instruction": "Visit your motherboard or laptop manufacturer website. Download the latest BIOS/UEFI update and follow their instructions to flash it.", "tools": ["Manufacturer website", "BIOS update utility"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 3, "title": "Analyze minidump for faulting driver", "instruction": "Install WinDbg from the Microsoft Store. Open the latest dump file from C:\\Windows\\Minidump and run: !analyze -v to identify the responsible driver.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 4, "title": "Run memory diagnostics", "instruction": "Run Windows Memory Diagnostic (mdsched.exe) and MemTest86 to rule out hardware memory issues.", "tools": ["Windows Memory Diagnostic", "MemTest86"], "difficulty": "easy", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If dump analysis does not clearly identify the faulting driver, or if BIOS updates and driver updates do not resolve the issue, a professional kernel debugger can perform live analysis.",
+    "relatedCodes": ["BAD_POOL_HEADER", "SPECIAL_POOL_DETECTED_MEMORY_CORRUPTION", "DRIVER_OVERRAN_STACK_BUFFER"],
+    "faq": [
+      {"q": "What is heap corruption?", "a": "Heap corruption occurs when code writes to memory outside the boundaries of its allocation, damaging the heap data structures. This can cause crashes, data corruption, or security vulnerabilities."},
+      {"q": "Can this be caused by malware?", "a": "While possible, this error is much more commonly caused by legitimate driver bugs. However, run a full malware scan to rule it out."},
+      {"q": "Is this related to RAM failure?", "a": "Usually not. This is a software-level corruption issue. However, flaky RAM can produce similar symptoms, so run MemTest86 to rule it out."}
+    ]
+  },
+  {
+    "id": "bsod-secure-boot-violation",
+    "category": "bsod",
+    "code": "0x00000145",
+    "displayCode": "SECURE_BOOT_VIOLATION",
+    "title": "Secure Boot Violation Detected",
+    "shortDescription": "The Secure Boot policy was violated by an unsigned or improperly signed boot component.",
+    "fullDescription": "This BSOD occurs when Windows detects that a component loaded during the boot process violates the Secure Boot policy. Secure Boot ensures that only trusted, digitally signed software can run during the boot process, protecting against rootkits and boot-level malware.\n\nThe error can be triggered by unsigned or improperly signed boot loaders, drivers, or firmware components. Dual-boot configurations with Linux, custom boot managers, or modified boot components are common causes.\n\nResolving this typically involves ensuring all boot components are properly signed, or adjusting Secure Boot settings in UEFI firmware.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Unsigned boot loader from dual-boot setup", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted boot component signature", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Modified boot configuration by malware", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "BIOS/UEFI firmware issue with Secure Boot keys", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Blue screen with SECURE_BOOT_VIOLATION",
+      "System fails to boot after changing boot configuration",
+      "Error appears after adding dual-boot OS",
+      "Boot failure after BIOS update",
+      "Security software warnings about boot integrity"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check Secure Boot status", "instruction": "Press Win+R, type msinfo32, look for Secure Boot State. Also enter UEFI settings and check Secure Boot configuration.", "tools": ["System Information", "UEFI firmware"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Repair boot components", "instruction": "Boot from Windows installation media, open Command Prompt from Recovery, and run: bootrec /fixmbr, bootrec /fixboot, bootrec /rebuildbcd.", "tools": ["Windows Installation Media", "Command Prompt"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Reset Secure Boot keys", "instruction": "Enter UEFI firmware settings and find Secure Boot options. Select Reset to Default or Install Default Keys to restore the default Microsoft Secure Boot keys.", "tools": ["UEFI firmware"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 4, "title": "Run malware scan from recovery", "instruction": "Boot from Windows installation media or a bootable antivirus USB. Run an offline scan to check for rootkits or boot-level malware.", "tools": ["Windows Defender Offline", "Bootable antivirus"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If you suspect boot-level malware or cannot restore proper Secure Boot configuration, a professional can perform thorough boot integrity analysis.",
+    "relatedCodes": ["INACCESSIBLE_BOOT_DEVICE", "UNMOUNTABLE_BOOT_VOLUME", "HYPERVISOR_ERROR"],
+    "faq": [
+      {"q": "Can I disable Secure Boot?", "a": "Yes, you can disable Secure Boot in UEFI settings. However, Windows 11 requires Secure Boot, and disabling it reduces protection against boot-level malware."},
+      {"q": "Does dual-booting Linux cause this?", "a": "It can if the Linux boot loader is not signed with a trusted key. Most modern Linux distributions support Secure Boot via the shim bootloader."},
+      {"q": "Is this a sign of malware?", "a": "It can be, but it is more often caused by misconfigured boot components. Run an offline malware scan to be safe."}
+    ]
+  },
+  {
+    "id": "bsod-nmi-hardware-failure",
+    "category": "bsod",
+    "code": "0x00000080",
+    "displayCode": "NMI_HARDWARE_FAILURE",
+    "title": "Non-Maskable Interrupt Hardware Failure",
+    "shortDescription": "A non-maskable interrupt (NMI) was triggered by a hardware failure.",
+    "fullDescription": "The NMI_HARDWARE_FAILURE BSOD is triggered when hardware generates a Non-Maskable Interrupt, which is a high-priority interrupt that cannot be ignored by the processor. This typically indicates a serious hardware problem.\n\nCommon causes include failing RAM, motherboard issues, overheating components, or power supply problems. The NMI can also be triggered by parity errors in memory, PCI bus errors, or I/O channel checks.\n\nThis error usually requires hardware diagnostics to identify the failing component. The issue is rarely software-related.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Failing RAM with parity errors", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Motherboard hardware failure", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Overheating CPU or chipset", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failing power supply unit", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Faulty expansion card (GPU, NIC, etc.)", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with NMI_HARDWARE_FAILURE",
+      "System crashes under heavy load",
+      "Random crashes with no software pattern",
+      "Beep codes from BIOS during POST",
+      "System fails to boot intermittently"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check system temperatures", "instruction": "Enter BIOS/UEFI and check CPU temperature, or install HWMonitor in Windows. High idle temperatures (above 70C for CPU) indicate cooling issues.", "tools": ["BIOS/UEFI", "HWMonitor"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Run memory diagnostics", "instruction": "Run MemTest86 from a bootable USB for at least 4 passes. This tests for the parity errors that commonly trigger NMI.", "tools": ["MemTest86"], "difficulty": "intermediate", "timeMinutes": 240},
+      {"step": 3, "title": "Reseat hardware components", "instruction": "Power off, unplug, and open the case. Reseat RAM, GPU, and all expansion cards. Check all power connectors are firmly seated.", "tools": ["Screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Test with minimal configuration", "instruction": "Remove all non-essential hardware (extra RAM sticks, GPU, expansion cards, USB devices). Boot with only one RAM stick and integrated graphics to isolate the fault.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 5, "title": "Test power supply", "instruction": "If available, test with a known-good power supply or use a PSU tester. Unstable voltage from a failing PSU can trigger NMI errors.", "tools": ["PSU tester"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 75, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If basic diagnostics (RAM test, temperature check, reseating) do not identify the issue, a professional can perform board-level diagnostics to find the failing component.",
+    "relatedCodes": ["WHEA_UNCORRECTABLE_ERROR", "MACHINE_CHECK_EXCEPTION", "DATA_BUS_ERROR"],
+    "faq": [
+      {"q": "What is a Non-Maskable Interrupt?", "a": "An NMI is a hardware interrupt that the CPU cannot ignore. It is reserved for critical hardware errors like memory parity failures and I/O channel checks."},
+      {"q": "Is this always a hardware problem?", "a": "Almost always. NMI errors are triggered by hardware, though rarely a BIOS bug or misconfiguration can cause them."},
+      {"q": "Can this be fixed without replacing hardware?", "a": "Sometimes. Reseating components, cleaning dust, or updating BIOS can fix the issue. But if a component is truly failing, replacement is necessary."}
+    ]
+  },
+  {
+    "id": "bsod-registry-error",
+    "category": "bsod",
+    "code": "0x00000051",
+    "displayCode": "REGISTRY_ERROR",
+    "title": "Critical Registry Error",
+    "shortDescription": "A severe registry error occurred, indicating registry hive corruption or I/O failure.",
+    "fullDescription": "The REGISTRY_ERROR BSOD indicates that the Windows registry encountered a critical error, typically due to registry hive corruption or a failure reading/writing registry data to disk. The registry is a critical database that stores system and application configuration.\n\nThis error can be caused by disk failures that prevent registry hive files from being read, abrupt power loss that corrupts in-memory registry data, or malware that damages registry structures.\n\nRecovery typically involves restoring registry hives from backup or using System Restore to return to a working state.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Registry hive file corruption on disk", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Disk I/O error preventing registry access", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Abrupt power loss during registry write", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware damage to registry structures", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed Windows update modifying registry", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with REGISTRY_ERROR",
+      "System fails to boot or boot loops",
+      "Error occurs during startup or shutdown",
+      "Event log shows registry-related errors",
+      "Programs fail to open or settings reset"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Use System Restore", "instruction": "Boot from Windows Recovery Environment. Go to Troubleshoot > Advanced Options > System Restore. Select a restore point from before the error began.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Restore registry from backup", "instruction": "Boot to Recovery Environment, open Command Prompt. Copy backup registry hives: copy C:\\Windows\\System32\\config\\RegBack\\* C:\\Windows\\System32\\config\\. If RegBack is empty (common in Windows 10), use System Restore instead.", "tools": ["Command Prompt", "Windows Recovery Environment"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "From Recovery Environment Command Prompt, run: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth, then: sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Check disk health", "instruction": "Run chkdsk C: /f /r from the Recovery Environment to check for disk errors that may be preventing registry file access.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If System Restore fails and registry backup restoration does not work, a professional can attempt manual registry repair or data recovery.",
+    "relatedCodes": ["CRITICAL_PROCESS_DIED", "INACCESSIBLE_BOOT_DEVICE", "UNMOUNTABLE_BOOT_VOLUME"],
+    "faq": [
+      {"q": "Can I fix a corrupted registry manually?", "a": "Manual registry editing is risky and can make things worse. Use System Restore or registry backup restoration first. Manual editing should only be done as a last resort."},
+      {"q": "Will reinstalling Windows fix this?", "a": "Yes, a clean install will create a fresh registry. However, try System Restore and registry backup restoration first to avoid data loss."},
+      {"q": "Should I use registry cleaners?", "a": "No. Registry cleaners can cause more harm than good. Microsoft does not recommend using third-party registry cleaners."}
+    ]
+  },
+  {
+    "id": "bsod-kernel-auto-boost-lock-acquisition-with-raised-irql",
+    "category": "bsod",
+    "code": "0x00000192",
+    "displayCode": "KERNEL_AUTO_BOOST_LOCK_ACQUISITION_WITH_RAISED_IRQL",
+    "title": "Kernel Auto Boost Lock at Raised IRQL",
+    "shortDescription": "A lock was acquired at a raised IRQL with auto-boost enabled, causing a kernel deadlock condition.",
+    "fullDescription": "This BSOD occurs when the kernel detects that a lock acquisition with auto-boost was performed at a raised IRQL, which can lead to deadlock. This is a programming error in a kernel-mode driver.\n\nThe error was introduced in newer Windows versions as part of enhanced lock validation. It typically points to a driver that has incorrect synchronization logic.\n\nThe faulting driver must be identified through dump analysis and updated or replaced.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Buggy kernel driver with incorrect lock handling", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Outdated driver incompatible with current Windows version", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party security software kernel driver", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with KERNEL_AUTO_BOOST_LOCK_ACQUISITION_WITH_RAISED_IRQL",
+      "System freezes then crashes",
+      "Crash occurs during specific hardware operations",
+      "May be more frequent under high system load"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Analyze minidump for faulting driver", "instruction": "Install WinDbg from the Microsoft Store. Open the minidump file from C:\\Windows\\Minidump and run !analyze -v to identify the driver.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Update the identified driver", "instruction": "Once the faulting driver is identified, download the latest version from the hardware manufacturer website and install it.", "tools": ["Device Manager", "Manufacturer website"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Update Windows", "instruction": "Install all pending Windows Updates, including optional driver updates. Microsoft sometimes ships driver fixes through Windows Update.", "tools": ["Windows Update"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 4, "title": "Remove third-party security software", "instruction": "If the faulting driver belongs to security software, uninstall it using the vendor's dedicated removal tool and test stability.", "tools": ["Vendor removal tool"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If you cannot identify the faulting driver from the minidump or the latest driver version still causes the error, a professional can perform detailed kernel debugging.",
+    "relatedCodes": ["IRQL_NOT_LESS_OR_EQUAL", "DRIVER_IRQL_NOT_LESS_OR_EQUAL", "SYSTEM_SERVICE_EXCEPTION"],
+    "faq": [
+      {"q": "What is IRQL?", "a": "IRQL (Interrupt Request Level) is a priority mechanism in Windows. Higher IRQL code has restrictions on what operations it can perform. Violating these rules causes BSODs."},
+      {"q": "Can I fix this myself?", "a": "If you can identify the driver from the minidump and update it, yes. Otherwise, dump analysis requires technical knowledge."},
+      {"q": "Is this dangerous for my computer?", "a": "The BSOD itself prevents damage by stopping the system. However, the underlying driver bug could potentially cause data corruption in rare cases."}
+    ]
+  },
+  {
+    "id": "bsod-acpi-bios-error",
+    "category": "bsod",
+    "code": "0x000000A5",
+    "displayCode": "ACPI_BIOS_ERROR",
+    "title": "ACPI BIOS Error",
+    "shortDescription": "The ACPI BIOS of the computer is not fully compliant with the ACPI specification.",
+    "fullDescription": "The ACPI_BIOS_ERROR BSOD indicates that the computer's ACPI (Advanced Configuration and Power Interface) BIOS is not fully compliant with the ACPI specification. ACPI is the standard for power management and hardware configuration.\n\nThis error is most common on older hardware, systems with outdated BIOS firmware, or after a BIOS update that introduced ACPI table errors. Laptops are more frequently affected due to their complex power management requirements.\n\nUpdating the BIOS firmware is the primary fix. If no BIOS update is available, ACPI-related boot parameters may work around the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Outdated BIOS firmware with ACPI bugs", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "BIOS update introduced ACPI table errors", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Incompatible hardware with current Windows version", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Corrupted ACPI tables", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with ACPI_BIOS_ERROR during Windows installation or boot",
+      "System fails to sleep or hibernate properly",
+      "Power management features not working",
+      "Error appears after BIOS update",
+      "Laptop fans running at full speed constantly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update BIOS firmware", "instruction": "Visit your PC or motherboard manufacturer website. Download the latest BIOS update and follow the manufacturer's flashing instructions carefully.", "tools": ["Manufacturer website", "BIOS update utility"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 2, "title": "Reset BIOS to defaults", "instruction": "Enter BIOS/UEFI setup, find the option to Load Optimized Defaults or Reset to Default Settings. Save and exit.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Disable ACPI in BIOS if possible", "instruction": "Some BIOS versions allow disabling ACPI or switching to a legacy mode. This is a workaround, not a fix, and may disable power management features.", "tools": ["BIOS/UEFI"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Use boot parameter workaround", "instruction": "Boot from Windows installation media, open Command Prompt, and try: bcdedit /set {current} acpimode legacy. This forces legacy ACPI mode.", "tools": ["Command Prompt", "Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If BIOS updates do not resolve the issue and the hardware is needed for a specific purpose, a professional may be able to patch ACPI tables or identify compatibility workarounds.",
+    "relatedCodes": ["HAL_INITIALIZATION_FAILED", "DRIVER_POWER_STATE_FAILURE", "CRITICAL_PROCESS_DIED"],
+    "faq": [
+      {"q": "What is ACPI?", "a": "ACPI (Advanced Configuration and Power Interface) is a standard that allows the operating system to manage power consumption and hardware configuration."},
+      {"q": "Is updating BIOS risky?", "a": "There is a small risk — if the update is interrupted, the system may not boot. Use a UPS, follow manufacturer instructions exactly, and do not interrupt the process."},
+      {"q": "Can old hardware run Windows 11 with this error?", "a": "If the BIOS cannot be updated to support Windows 11 ACPI requirements, the hardware may not be compatible. Consider staying on Windows 10 or upgrading hardware."}
+    ]
+  },
+  {
+    "id": "bsod-session-has-valid-views-on-exit",
+    "category": "bsod",
+    "code": "0x000000AB",
+    "displayCode": "SESSION_HAS_VALID_VIEWS_ON_EXIT",
+    "title": "Session Has Valid Views on Exit",
+    "shortDescription": "A session was terminated while it still had valid views (mapped memory sections).",
+    "fullDescription": "The SESSION_HAS_VALID_VIEWS_ON_EXIT BSOD indicates that a session driver did not properly clean up mapped views before the session ended. This is a session management error typically caused by a third-party driver.\n\nThis error is most commonly seen with Remote Desktop, virtual machine, or multi-session configurations. Terminal Services and Citrix environments are particularly affected.\n\nIdentifying and updating the responsible session driver usually resolves the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows Server 2022", "Windows Server 2019"],
+    "causes": [
+      {"cause": "Third-party session driver not cleaning up views", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Remote Desktop or Citrix driver bug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Virtual machine display driver issue", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Printer driver loaded in session space", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with SESSION_HAS_VALID_VIEWS_ON_EXIT",
+      "Crash when remote desktop sessions disconnect",
+      "BSOD on terminal server or Citrix server",
+      "Error during user logoff",
+      "Crash when virtual machine display changes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update Remote Desktop and virtualization components", "instruction": "If running RDP, update Remote Desktop client and server components. For Citrix, update VDA (Virtual Delivery Agent) to the latest version.", "tools": ["Windows Update", "Citrix download page"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Update printer drivers", "instruction": "Update or remove third-party printer drivers, especially those used in redirected printer sessions. Use Windows built-in drivers as a test.", "tools": ["Device Manager", "Print Management"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Update display and video drivers", "instruction": "Update all display drivers, particularly virtual display adapters used by VMs or remote sessions.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Analyze crash dump", "instruction": "Use WinDbg to open the minidump and identify the specific driver that did not clean up its views.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If this occurs on a production server or Citrix environment, a professional system administrator should analyze the dumps and coordinate with the software vendor for a fix.",
+    "relatedCodes": ["CRITICAL_PROCESS_DIED", "SYSTEM_SERVICE_EXCEPTION", "VIDEO_TDR_FAILURE"],
+    "faq": [
+      {"q": "Is this common on regular PCs?", "a": "No, this error is rare on standard desktops. It primarily affects servers and multi-user environments running Remote Desktop or Citrix."},
+      {"q": "Can printer drivers cause this?", "a": "Yes, particularly printer drivers that are loaded in session space for redirected printing in Remote Desktop or Citrix sessions."},
+      {"q": "Does this affect only the user who triggered it?", "a": "No. Since this is a kernel BSOD, the entire system crashes, affecting all users on the server."}
+    ]
+  },
+  {
+    "id": "bsod-cache-manager",
+    "category": "bsod",
+    "code": "0x00000034",
+    "displayCode": "CACHE_MANAGER",
+    "title": "Cache Manager Error",
+    "shortDescription": "The file system cache manager encountered a critical error.",
+    "fullDescription": "The CACHE_MANAGER BSOD indicates that the Windows file system cache manager detected an inconsistency or error in cached file data. The cache manager is responsible for caching file reads and writes to improve disk performance.\n\nThis error is typically caused by exhaustion of non-paged pool memory, file system driver bugs, or storage hardware issues that corrupt cached data. Antivirus filter drivers that interfere with cache operations can also trigger this.\n\nResolving this error usually involves updating storage and filter drivers, checking disk health, and ensuring adequate system memory.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Non-paged pool memory exhaustion", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "File system driver or filter driver bug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Storage hardware producing corrupted data", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Insufficient system RAM", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with CACHE_MANAGER",
+      "System crashes during heavy file I/O operations",
+      "Performance degradation before crash",
+      "File copy operations fail or corrupt data",
+      "High non-paged pool usage in Task Manager"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check non-paged pool usage", "instruction": "Open Task Manager > Performance > Memory. Check Non-paged pool size. If it is unusually high (over 1GB), a driver is likely leaking non-paged pool memory.", "tools": ["Task Manager"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Update storage and filter drivers", "instruction": "Update all storage controller drivers, file system filter drivers (antivirus, backup), and chipset drivers to the latest versions.", "tools": ["Device Manager", "Manufacturer websites"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Run disk health checks", "instruction": "Run chkdsk C: /f /r on all drives. Also check SMART data with CrystalDiskInfo for early warning signs of disk failure.", "tools": ["CHKDSK", "CrystalDiskInfo"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Identify pool leak source", "instruction": "If non-paged pool is high, use poolmon.exe (from Windows SDK) or RAMMap to identify which driver tag is consuming the most pool memory.", "tools": ["Poolmon", "RAMMap"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If pool memory leaks are identified but the responsible driver cannot be determined, or if disk health checks reveal hardware issues, professional diagnosis may be needed.",
+    "relatedCodes": ["NTFS_FILE_SYSTEM", "FAT_FILE_SYSTEM", "POOL_CORRUPTION_IN_FILE_AREA"],
+    "faq": [
+      {"q": "What is the cache manager?", "a": "The cache manager is a Windows component that caches recently accessed file data in RAM for faster access. It improves performance by reducing disk reads."},
+      {"q": "Can low RAM cause this error?", "a": "Yes, if the system has insufficient RAM, the cache manager may not have enough memory to operate correctly. 8GB is minimum for modern Windows."},
+      {"q": "Is my data at risk?", "a": "There is some risk of file corruption if cached writes were not flushed to disk. Run CHKDSK and verify important files after resolving the error."}
+    ]
+  },
+  {
+    "id": "bsod-no-more-system-ptes",
+    "category": "bsod",
+    "code": "0x0000003F",
+    "displayCode": "NO_MORE_SYSTEM_PTES",
+    "title": "No More System Page Table Entries",
+    "shortDescription": "The system ran out of page table entries, exhausting virtual address space.",
+    "fullDescription": "The NO_MORE_SYSTEM_PTES BSOD occurs when Windows exhausts its supply of system page table entries (PTEs). PTEs are used to map virtual memory to physical memory. When they run out, the system can no longer allocate memory for kernel operations.\n\nThis error is most common on 32-bit systems where virtual address space is limited. On 64-bit systems, it can still occur if a driver leaks PTEs by mapping memory but never unmapping it.\n\nThe primary fix involves identifying and updating the driver that is leaking system PTEs.",
+    "affectedVersions": ["Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Driver leaking system PTEs (not unmapping memory)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "32-bit Windows running out of virtual address space", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Too many mapped sections consuming PTEs", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Antivirus or backup driver leaking mapped memory", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with NO_MORE_SYSTEM_PTES",
+      "System slows down before crash",
+      "Applications fail to allocate memory",
+      "Error becomes more frequent the longer the system runs",
+      "Restarting temporarily resolves the issue"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update all drivers", "instruction": "Update all drivers to the latest versions, particularly storage, network, and security drivers which commonly map kernel memory.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Upgrade to 64-bit Windows", "instruction": "If running 32-bit Windows, back up data and perform a clean install of 64-bit Windows 10 or 11 to gain a much larger virtual address space.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 120},
+      {"step": 3, "title": "Increase system PTEs via registry", "instruction": "Open Registry Editor, navigate to HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management. Set SystemPages DWORD to 0 (auto-calculate maximum).", "tools": ["Registry Editor"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 4, "title": "Remove suspect drivers", "instruction": "If the error started after installing specific software, uninstall it and its drivers. Antivirus and VPN software are common culprits.", "tools": ["Programs and Features"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If the error persists after driver updates and you cannot identify the leaking driver, a professional can use kernel debugging tools to trace PTE allocations.",
+    "relatedCodes": ["MEMORY_MANAGEMENT", "STATUS_NO_MEMORY", "BAD_POOL_HEADER"],
+    "faq": [
+      {"q": "What are page table entries?", "a": "PTEs are data structures used by the CPU to translate virtual memory addresses to physical memory addresses. Each mapped page of memory requires a PTE."},
+      {"q": "Is this more common on 32-bit systems?", "a": "Yes. 32-bit Windows has a very limited system PTE space. Upgrading to 64-bit Windows dramatically increases the available PTEs."},
+      {"q": "Why does restarting fix it temporarily?", "a": "Restarting clears the PTE leak. The leaking driver starts fresh with no leaked PTEs. Over time, the leak grows until PTEs are exhausted again."}
+    ]
+  },
+  {
+    "id": "bsod-mismatched-hal",
+    "category": "bsod",
+    "code": "0x00000079",
+    "displayCode": "MISMATCHED_HAL",
+    "title": "Mismatched HAL Detected",
+    "shortDescription": "The Hardware Abstraction Layer (HAL) does not match the kernel or system configuration.",
+    "fullDescription": "The MISMATCHED_HAL BSOD indicates that the Hardware Abstraction Layer (HAL) does not match the kernel or the machine type. The HAL is the layer between Windows and the hardware, and a mismatch means the wrong HAL is loaded for the system.\n\nThis error commonly occurs after cloning a disk from one computer to another with different hardware, modifying boot configuration data incorrectly, or mixing system files from different Windows installations.\n\nRepairing the boot configuration or reinstalling Windows on the target hardware typically resolves this.",
+    "affectedVersions": ["Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Disk cloned to hardware with different HAL requirements", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Boot configuration referencing wrong HAL", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "System files replaced from incompatible Windows installation", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "ACPI vs non-ACPI kernel/HAL mismatch", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Blue screen with MISMATCHED_HAL during boot",
+      "System fails to boot after disk migration",
+      "Error after replacing motherboard",
+      "Boot failure after editing BCD store",
+      "Crash during Windows setup on new hardware"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Repair boot configuration", "instruction": "Boot from Windows installation media, open Command Prompt, run: bootrec /rebuildbcd. Also try: bcdboot C:\\Windows to recreate the boot files.", "tools": ["Windows Installation Media", "Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Run Startup Repair", "instruction": "Boot from Windows installation media. Select Repair your computer > Troubleshoot > Advanced Options > Startup Repair.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "From Recovery Environment, run: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth and sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows to replace any mismatched system files.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Reinstall Windows", "instruction": "If repairs fail, perform a clean Windows installation on the target hardware. Back up data first using a Linux live USB or Windows Recovery file copy.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If you need to migrate a Windows installation to different hardware without reinstalling, a professional can use sysprep and proper migration tools.",
+    "relatedCodes": ["HAL_INITIALIZATION_FAILED", "INACCESSIBLE_BOOT_DEVICE", "ACPI_BIOS_ERROR"],
+    "faq": [
+      {"q": "What is the HAL?", "a": "The Hardware Abstraction Layer is a Windows component that provides a consistent interface between the OS and different hardware platforms. It handles differences in CPU, interrupt controllers, and timers."},
+      {"q": "Can I move a hard drive to a new computer?", "a": "Modern Windows 10/11 handles hardware changes well, but older versions may get this error. Use sysprep before moving the drive to generalize the installation."},
+      {"q": "Does this error mean my hardware is broken?", "a": "No. This is a software mismatch, not a hardware failure. The wrong version of HAL is loaded for the hardware."}
+    ]
+  },
+  {
+    "id": "bsod-config-list-failed",
+    "category": "bsod",
+    "code": "0x00000073",
+    "displayCode": "CONFIG_LIST_FAILED",
+    "title": "Configuration List Failed",
+    "shortDescription": "Windows could not load the registry hive file, often due to disk corruption or missing files.",
+    "fullDescription": "The CONFIG_LIST_FAILED BSOD occurs when Windows cannot load one of the critical registry hive files during startup. The registry hives (SYSTEM, SOFTWARE, SAM, SECURITY, DEFAULT) are essential files that must be loaded for Windows to function.\n\nThis error is typically caused by disk corruption affecting the registry files, sudden power loss during a registry write operation, or accidental deletion of registry hive files.\n\nRecovery usually requires restoring registry hives from a backup or using System Restore from the Recovery Environment.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted registry hive file on disk", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Sudden power loss during registry write", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk sector failure in registry file location", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Accidental deletion or modification of registry files", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Blue screen with CONFIG_LIST_FAILED during boot",
+      "Windows fails to start completely",
+      "Error appears after power outage",
+      "System boot loops",
+      "Unable to enter Safe Mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Use System Restore from Recovery", "instruction": "Boot from Windows installation media or Recovery Environment. Go to Troubleshoot > Advanced Options > System Restore and select a restore point.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Restore registry hives from backup", "instruction": "In Recovery Command Prompt, copy backup hives: copy C:\\Windows\\System32\\config\\RegBack\\SYSTEM C:\\Windows\\System32\\config\\SYSTEM. Repeat for SOFTWARE, SAM, SECURITY, DEFAULT.", "tools": ["Command Prompt"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 3, "title": "Run CHKDSK on the boot drive", "instruction": "From Recovery Command Prompt, run: chkdsk C: /f /r. This fixes disk errors that may have corrupted the registry files.", "tools": ["CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Perform in-place repair install", "instruction": "If registry restoration fails, boot from Windows installation media and select Upgrade to repair the Windows installation while keeping files and applications.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If registry backups are not available and System Restore has no valid restore points, a professional can attempt manual registry recovery or in-place repair.",
+    "relatedCodes": ["REGISTRY_ERROR", "INACCESSIBLE_BOOT_DEVICE", "CRITICAL_PROCESS_DIED"],
+    "faq": [
+      {"q": "Can I prevent this error?", "a": "Enable System Restore and ensure it has sufficient disk space for restore points. Also use a UPS to prevent sudden power loss during writes."},
+      {"q": "Are my files lost?", "a": "Your personal files are likely intact. The error affects registry hives, not user data files. You can boot from a Linux live USB to copy files off the drive."},
+      {"q": "What if RegBack is empty?", "a": "Windows 10 version 1803+ may not automatically back up registry hives to RegBack. Use System Restore instead, or enable the RegIdleBackup task manually."}
+    ]
+  },
+  {
+    "id": "bsod-assign-drive-letters-failed",
+    "category": "bsod",
+    "code": "0x00000072",
+    "displayCode": "ASSIGN_DRIVE_LETTERS_FAILED",
+    "title": "Assign Drive Letters Failed",
+    "shortDescription": "Windows could not assign drive letters to disk partitions during boot.",
+    "fullDescription": "The ASSIGN_DRIVE_LETTERS_FAILED BSOD occurs when Windows is unable to assign drive letters to disk partitions during the boot process. This is a critical failure because Windows needs drive letter assignments to access the boot and system volumes.\n\nThe error is commonly caused by disk configuration changes, such as adding or removing drives, changing partition layouts, or issues with the disk subsystem. SAN or RAID configuration changes can also trigger this.\n\nRepairing the boot configuration and disk assignments usually resolves the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows Server 2022", "Windows Server 2019"],
+    "causes": [
+      {"cause": "Disk configuration changed (drives added/removed)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "RAID or SAN configuration change", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Corrupted disk partition table", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Storage controller driver failure", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with ASSIGN_DRIVE_LETTERS_FAILED during boot",
+      "Error appears after connecting or disconnecting drives",
+      "Boot failure after RAID configuration change",
+      "System cannot find boot volume",
+      "Disk Management shows incorrect partition layout"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Restore original disk configuration", "instruction": "If drives were recently added or removed, restore the original configuration. Reconnect missing drives or disconnect newly added ones.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Repair boot configuration", "instruction": "Boot from Windows installation media, open Command Prompt, run: bootrec /fixmbr, bootrec /fixboot, bootrec /rebuildbcd.", "tools": ["Windows Installation Media", "Command Prompt"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Use diskpart to verify partitions", "instruction": "From Recovery Command Prompt, run diskpart, then: list disk, select disk 0, list partition, list volume. Verify partitions and volumes are visible.", "tools": ["diskpart"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Manually assign drive letters", "instruction": "In diskpart: select volume X, assign letter=C. Ensure the Windows volume has the correct drive letter assignment.", "tools": ["diskpart"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the partition table is corrupted or a RAID configuration needs to be rebuilt, a professional can use advanced disk recovery tools.",
+    "relatedCodes": ["INACCESSIBLE_BOOT_DEVICE", "UNMOUNTABLE_BOOT_VOLUME", "CONFIG_LIST_FAILED"],
+    "faq": [
+      {"q": "Can adding a new drive cause this?", "a": "Yes, adding or removing drives can change the disk enumeration order, potentially conflicting with boot drive letter assignments."},
+      {"q": "Is my data safe?", "a": "Usually yes. The partitions and data are likely intact; only the drive letter assignments are confused. Recovery is usually possible without data loss."},
+      {"q": "Should I use MBR or GPT?", "a": "For UEFI systems (most modern PCs), use GPT. For legacy BIOS systems, use MBR. Mixing the wrong type can cause boot issues."}
+    ]
+  },
+  {
+    "id": "bsod-kernel-thread-priority-floor-violation",
+    "category": "bsod",
+    "code": "0x00000196",
+    "displayCode": "KERNEL_THREAD_PRIORITY_FLOOR_VIOLATION",
+    "title": "Kernel Thread Priority Floor Violation",
+    "shortDescription": "A kernel thread had its priority improperly lowered below the expected floor level.",
+    "fullDescription": "This BSOD indicates that a kernel thread's priority was set below the established priority floor. This is a kernel-mode programming error where a driver or system component violates thread scheduling rules.\n\nThe error is relatively uncommon and was added in newer Windows versions as part of enhanced kernel validation. It typically points to a specific driver with a threading bug.\n\nUpdating or replacing the faulting driver resolves the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Driver with incorrect thread priority handling", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Outdated driver incompatible with Windows scheduler changes", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Third-party system utility modifying thread priorities", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with KERNEL_THREAD_PRIORITY_FLOOR_VIOLATION",
+      "Crashes during specific driver operations",
+      "May occur more often under high CPU load",
+      "System instability after installing specific software"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify faulting driver from dump", "instruction": "Open the minidump file with WinDbg and run !analyze -v to identify which driver caused the priority violation.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Update all drivers", "instruction": "Update all system drivers from manufacturer websites, focusing on recently installed or updated drivers.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Remove system optimization utilities", "instruction": "Uninstall any third-party system optimization, game boost, or process priority tools that may interfere with thread scheduling.", "tools": ["Programs and Features"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 4, "title": "Install latest Windows updates", "instruction": "Run Windows Update to install all pending updates including cumulative and driver updates.", "tools": ["Windows Update"], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If you cannot identify the faulting driver or updates do not resolve the issue, a professional can perform kernel-level debugging.",
+    "relatedCodes": ["SYSTEM_SERVICE_EXCEPTION", "KERNEL_AUTO_BOOST_LOCK_ACQUISITION_WITH_RAISED_IRQL", "IRQL_NOT_LESS_OR_EQUAL"],
+    "faq": [
+      {"q": "What is thread priority in Windows?", "a": "Thread priority determines the order in which the CPU scheduler allocates time to running threads. Higher priority threads get more CPU time."},
+      {"q": "Can game boosters cause this?", "a": "Yes. Game boosters and process priority tools may improperly modify kernel thread priorities, triggering this violation."},
+      {"q": "Is this error dangerous?", "a": "The BSOD prevents further damage by stopping the system. The underlying driver bug could theoretically cause issues, but the check catches it early."}
+    ]
+  },
+  {
+    "id": "bsod-invalid-work-queue-item",
+    "category": "bsod",
+    "code": "0x00000096",
+    "displayCode": "INVALID_WORK_QUEUE_ITEM",
+    "title": "Invalid Work Queue Item",
+    "shortDescription": "An invalid item was found in a system work queue, indicating memory corruption.",
+    "fullDescription": "The INVALID_WORK_QUEUE_ITEM BSOD occurs when Windows finds an invalid entry in a kernel work queue. Work queues are used to schedule deferred work in the kernel, and an invalid item means the queue data structure has been corrupted.\n\nThis is typically caused by a driver that corrupts memory adjacent to work queue structures. Buffer overflows, use-after-free bugs, or race conditions in drivers can lead to this corruption.\n\nThe error requires identifying and fixing the driver responsible for the memory corruption.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Driver corrupting work queue memory", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Memory corruption from buffer overflow", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Race condition in kernel driver", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Hardware memory issue corrupting kernel data", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with INVALID_WORK_QUEUE_ITEM",
+      "Random crashes with no clear pattern",
+      "System instability that worsens over time",
+      "Other memory corruption BSODs may also appear",
+      "Crash may occur during system idle or shutdown"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update all drivers", "instruction": "Update all drivers from manufacturer websites. Focus on network, storage, and USB drivers which commonly use work queues.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Enable Driver Verifier", "instruction": "Open elevated Command Prompt, run: verifier /standard /all. Reboot and wait for a crash that identifies the specific faulting driver. Disable verifier after: verifier /reset.", "tools": ["Command Prompt", "Driver Verifier"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 3, "title": "Run memory diagnostics", "instruction": "Run MemTest86 for multiple passes to rule out hardware memory corruption causing the queue corruption.", "tools": ["MemTest86"], "difficulty": "intermediate", "timeMinutes": 240},
+      {"step": 4, "title": "Run SFC and DISM", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow to repair system files.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If Driver Verifier does not catch the faulting driver and memory tests pass, a professional can perform advanced kernel debugging to trace the corruption source.",
+    "relatedCodes": ["BAD_POOL_HEADER", "SPECIAL_POOL_DETECTED_MEMORY_CORRUPTION", "KERNEL_MODE_HEAP_CORRUPTION"],
+    "faq": [
+      {"q": "What is a work queue?", "a": "A work queue is a kernel mechanism for deferring work to a worker thread. Drivers queue work items that are processed later at a lower IRQL."},
+      {"q": "What is Driver Verifier?", "a": "Driver Verifier is a Windows tool that applies extra checking to drivers to catch bugs like buffer overflows and pool corruption. It may cause additional BSODs that identify the buggy driver."},
+      {"q": "Can this cause data loss?", "a": "Memory corruption errors can potentially cause data loss if corrupted data is written to disk. Back up important data and resolve the issue quickly."}
+    ]
+  },
+  {
+    "id": "bsod-bugcode-usb-driver",
+    "category": "bsod",
+    "code": "0x000000FE",
+    "displayCode": "BUGCODE_USB_DRIVER",
+    "title": "USB Driver Bug Code",
+    "shortDescription": "A critical error was detected in a USB driver.",
+    "fullDescription": "The BUGCODE_USB_DRIVER BSOD indicates that a critical error occurred in a USB driver. This can be a Microsoft USB stack driver or a third-party USB device driver. The error typically involves invalid operations on USB requests or data structures.\n\nCommon causes include faulty USB devices, outdated USB host controller drivers, power management issues with USB ports, and damaged USB cables. This error is also common when USB selective suspend causes issues.\n\nResolving this usually involves updating USB drivers, disabling USB selective suspend, or identifying and removing the problematic USB device.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Faulty USB device causing driver errors", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Outdated USB host controller driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "USB selective suspend power management issue", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Damaged or low-quality USB cable", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Third-party USB driver bug", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with BUGCODE_USB_DRIVER",
+      "Crash when connecting or disconnecting USB devices",
+      "BSOD during sleep/resume with USB devices connected",
+      "System crashes when using specific USB device",
+      "USB device stops working before crash"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect USB devices and test", "instruction": "Disconnect all USB devices except keyboard and mouse. Use the system normally. If crashes stop, reconnect devices one at a time to identify the culprit.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Disable USB selective suspend", "instruction": "Go to Control Panel > Power Options > Change plan settings > Change advanced > USB settings > USB selective suspend setting. Set to Disabled for both On battery and Plugged in.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Update USB drivers", "instruction": "Open Device Manager, expand Universal Serial Bus controllers. Right-click each USB host controller and Root Hub, select Update Driver. Also check manufacturer website for chipset USB drivers.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Reinstall USB controllers", "instruction": "In Device Manager, right-click each USB controller and select Uninstall device. Restart the computer to let Windows reinstall them.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 5, "title": "Try different USB port or cable", "instruction": "If a specific device triggers the crash, try a different USB port (USB 2.0 vs 3.0) or replace the cable.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the error persists after testing all USB devices and updating drivers, the USB host controller hardware on the motherboard may be faulty.",
+    "relatedCodes": ["DRIVER_IRQL_NOT_LESS_OR_EQUAL", "SYSTEM_SERVICE_EXCEPTION", "DRIVER_POWER_STATE_FAILURE"],
+    "faq": [
+      {"q": "Can a USB drive cause a BSOD?", "a": "Yes. Faulty USB flash drives, external hard drives, and other USB devices can trigger this BSOD if they cause driver errors."},
+      {"q": "What is USB selective suspend?", "a": "It is a power management feature that allows Windows to suspend individual USB ports to save power. It can cause issues with some USB devices."},
+      {"q": "Should I use USB 2.0 or 3.0 ports?", "a": "If a device causes crashes on USB 3.0, try USB 2.0 as a troubleshooting step. Some devices have compatibility issues with USB 3.0 controllers."}
+    ]
+  },
+  {
+    "id": "bsod-driver-unloaded-without-cancelling-pending-operations",
+    "category": "bsod",
+    "code": "0x000000CE",
+    "displayCode": "DRIVER_UNLOADED_WITHOUT_CANCELLING_PENDING_OPERATIONS",
+    "title": "Driver Unloaded Without Cancelling Pending Operations",
+    "shortDescription": "A driver was unloaded while it still had pending operations, causing system instability.",
+    "fullDescription": "This BSOD occurs when a driver is unloaded from memory while it still has pending I/O operations, timers, DPCs (Deferred Procedure Calls), or other callbacks. When these callbacks execute, they reference code that no longer exists in memory, causing a crash.\n\nThis is a driver programming error. The driver's unload routine failed to cancel all pending operations before the driver was removed. It commonly occurs when uninstalling or updating drivers.\n\nThe fix involves identifying the driver and updating it, or ensuring proper cleanup during driver removal.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Buggy driver unload routine", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Driver update process not cleaning up old driver", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Conflict between multiple drivers", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Improper driver removal by uninstaller", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with DRIVER_UNLOADED_WITHOUT_CANCELLING_PENDING_OPERATIONS",
+      "Crash occurs after uninstalling hardware or software",
+      "BSOD during driver update process",
+      "System crashes when disconnecting hardware",
+      "Minidump references a driver .sys file"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Identify the faulting driver", "instruction": "The BSOD screen typically shows the driver name. Check Event Viewer > Windows Logs > System for BugCheck events or use WinDbg to analyze the minidump.", "tools": ["Event Viewer", "WinDbg"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Clean install the driver", "instruction": "Completely uninstall the identified driver using Device Manager or the vendor's uninstaller, reboot, then install the latest version.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Remove leftover driver files", "instruction": "After uninstalling, check C:\\Windows\\System32\\drivers for leftover .sys files from the old driver. Also use pnputil /enum-drivers to list third-party drivers.", "tools": ["Command Prompt", "File Explorer"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Use safe removal for hardware", "instruction": "Always use Safely Remove Hardware before disconnecting USB devices. For internal hardware, power off before removing components.", "tools": ["Safely Remove Hardware"], "difficulty": "easy", "timeMinutes": 2}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If the error persists after clean driver installation, a professional can analyze the exact pending operations and determine if the driver vendor needs to issue a fix.",
+    "relatedCodes": ["DRIVER_IRQL_NOT_LESS_OR_EQUAL", "SYSTEM_SERVICE_EXCEPTION", "MULTIPLE_IRP_COMPLETE_REQUESTS"],
+    "faq": [
+      {"q": "Why does this happen during driver updates?", "a": "Driver updates involve unloading the old driver and loading the new one. If the old driver does not properly cancel its pending operations during unload, this BSOD occurs."},
+      {"q": "Can I prevent this?", "a": "Ensure you use proper uninstallation procedures. Use vendor-provided uninstallers and restart when prompted. Avoid forcefully removing hardware during operation."},
+      {"q": "Is the driver permanently broken?", "a": "No. The error occurs during the unload transition. A clean install of the latest driver version should work properly during normal operation."}
+    ]
+  },
+  {
+    "id": "bsod-ftdisk-internal-error",
+    "category": "bsod",
+    "code": "0x00000058",
+    "displayCode": "FTDISK_INTERNAL_ERROR",
+    "title": "FTDisk Internal Error",
+    "shortDescription": "An internal error occurred in the FTDisk (Fault Tolerant Disk) system, typically related to RAID or dynamic disk issues.",
+    "fullDescription": "The FTDISK_INTERNAL_ERROR BSOD indicates a failure in the Windows Fault Tolerant Disk subsystem. This subsystem handles dynamic disks, software RAID configurations (mirrored, striped, and RAID-5 volumes), and partition management.\n\nThe error typically occurs when a dynamic disk configuration becomes corrupted, a member of a RAID set fails, or the FTDisk driver encounters an inconsistency in the disk metadata.\n\nResolving this may require repairing the dynamic disk configuration, replacing failed disks, or converting back to basic disks.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows Server 2022"],
+    "causes": [
+      {"cause": "Corrupted dynamic disk database", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed member of software RAID set", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Disk configuration metadata inconsistency", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Storage controller issue", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with FTDISK_INTERNAL_ERROR",
+      "BSOD during boot with dynamic disk configuration",
+      "Dynamic disks showing Foreign or Failed status",
+      "Software RAID volumes not mounting",
+      "Disk Management shows errors for dynamic volumes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Boot from Recovery Environment", "instruction": "Boot from Windows installation media and open Command Prompt from Troubleshoot > Advanced Options.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check disk status with diskpart", "instruction": "Run diskpart, then: list disk and list volume. Check for missing, offline, or failed disks and volumes. Try: select disk X, online disk to bring disks online.", "tools": ["diskpart"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Import foreign disks", "instruction": "If disks show as Foreign in diskpart, select the disk and run: import. This re-registers the dynamic disk configuration.", "tools": ["diskpart"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Convert to basic disks", "instruction": "If dynamic disk configuration is unrecoverable, back up data, then convert to basic disks: select disk X, convert basic. Warning: this destroys all data on dynamic volumes.", "tools": ["diskpart"], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If data on dynamic volumes is important and the configuration is corrupted, a professional can use specialized tools to recover data before rebuilding the disk configuration.",
+    "relatedCodes": ["INACCESSIBLE_BOOT_DEVICE", "NTFS_FILE_SYSTEM", "UNMOUNTABLE_BOOT_VOLUME"],
+    "faq": [
+      {"q": "What are dynamic disks?", "a": "Dynamic disks are a Windows disk management feature that supports spanned, striped, mirrored, and RAID-5 volumes. They use a special database to track volume configuration."},
+      {"q": "Should I use dynamic disks?", "a": "For most users, basic disks with GPT partitions are recommended. Dynamic disks add complexity. Use Storage Spaces or hardware RAID for redundancy instead."},
+      {"q": "Can I recover data from a failed dynamic disk?", "a": "Often yes. Professional data recovery services can usually recover data from failed dynamic disk configurations, even when Windows cannot mount the volumes."}
+    ]
+  },
+  {
+    "id": "bsod-wdt-timeout",
+    "category": "bsod",
+    "code": "0x00000162",
+    "displayCode": "KERNEL_WMI_INTERNAL",
+    "title": "Kernel WMI Internal Error",
+    "shortDescription": "An internal error occurred in the Windows Management Instrumentation (WMI) kernel component.",
+    "fullDescription": "This BSOD occurs when the kernel-mode WMI (Windows Management Instrumentation) subsystem encounters an internal consistency error. WMI is used extensively by Windows and applications for system management, monitoring, and event notification.\n\nThe error can be triggered by corrupted WMI repository, buggy WMI providers (often from third-party management software), or driver issues that corrupt WMI data structures.\n\nResolution typically involves rebuilding the WMI repository or updating the WMI provider driver.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows Server 2022", "Windows Server 2019"],
+    "causes": [
+      {"cause": "Corrupted WMI repository", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Buggy third-party WMI provider", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Management software conflicting with WMI", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted system files affecting WMI", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with KERNEL_WMI_INTERNAL",
+      "WMI queries fail before crash",
+      "System management tools stop working",
+      "Event log shows WMI errors",
+      "Performance monitoring tools crash"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Rebuild WMI repository", "instruction": "Open elevated Command Prompt. Stop WMI: net stop winmgmt. Rebuild: winmgmt /resetrepository. Restart: net start winmgmt.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Check WMI consistency", "instruction": "Run: winmgmt /verifyrepository. If it reports inconsistency, run: winmgmt /salvagerepository to attempt repair.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Remove third-party management software", "instruction": "Temporarily uninstall system management, monitoring, or inventory software that registers WMI providers. Test if stability improves.", "tools": ["Programs and Features"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Run SFC and DISM", "instruction": "Run DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow to repair any corrupted system files affecting WMI.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If WMI repository rebuilds do not resolve the issue and the error occurs on a production server, a professional sysadmin should investigate WMI provider conflicts.",
+    "relatedCodes": ["SYSTEM_SERVICE_EXCEPTION", "CRITICAL_PROCESS_DIED", "REGISTRY_ERROR"],
+    "faq": [
+      {"q": "What is WMI?", "a": "WMI (Windows Management Instrumentation) is a Windows infrastructure for managing data and operations. It is used by many system tools, scripts, and monitoring software."},
+      {"q": "Will rebuilding WMI lose settings?", "a": "Resetting the repository rebuilds it to default. Third-party software may need to re-register their WMI providers. System WMI providers rebuild automatically."},
+      {"q": "Is this common on servers?", "a": "It is more common on servers running management agents, SCCM clients, or monitoring software that heavily use WMI."}
+    ]
+  },
+  {
+    "id": "bsod-win32k-critical-failure",
+    "category": "bsod",
+    "code": "0x00000164",
+    "displayCode": "WIN32K_CRITICAL_FAILURE",
+    "title": "Win32k Critical Failure",
+    "shortDescription": "The Win32k display subsystem encountered a critical failure.",
+    "fullDescription": "The WIN32K_CRITICAL_FAILURE BSOD indicates that the Win32k kernel subsystem, which handles the Windows graphical user interface and display management, encountered an unrecoverable error. Win32k.sys manages windows, display output, input devices, and the graphical environment.\n\nThis error is commonly caused by display driver issues, corrupted Windows graphical components, or conflicts between multiple display drivers. It can also occur during Remote Desktop sessions.\n\nResolving this typically requires clean display driver installation and repairing Windows system files.",
+    "affectedVersions": ["Windows 11", "Windows 10"],
+    "causes": [
+      {"cause": "Corrupted or incompatible display driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupted Win32k system component", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Remote Desktop display driver conflict", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Multiple display drivers conflicting", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with WIN32K_CRITICAL_FAILURE",
+      "Screen goes black or garbled before crash",
+      "Crash during graphical operations (video, games, desktop composition)",
+      "Error after display driver update",
+      "Crash during Remote Desktop session"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Boot into Safe Mode", "instruction": "Restart and boot into Safe Mode (minimal display driver). If system is stable in Safe Mode, the display driver is likely the cause.", "tools": ["Windows Recovery"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clean install display drivers", "instruction": "In Safe Mode, run DDU to completely remove display drivers. Reboot and install the latest stable driver from the GPU manufacturer.", "tools": ["DDU", "GPU manufacturer website"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Run SFC and DISM", "instruction": "Open elevated Command Prompt: DISM /Online /Cleanup-Image /RestoreHealth then sfc /scannow to repair Win32k and related system files.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Disable hardware acceleration", "instruction": "In Windows Settings > Display > Graphics, set hardware-accelerated GPU scheduling to Off. Also disable hardware acceleration in applications that trigger the crash.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If clean driver installation and system file repair do not resolve the issue, the GPU hardware may be failing and professional diagnosis is needed.",
+    "relatedCodes": ["VIDEO_TDR_FAILURE", "VIDEO_SCHEDULER_INTERNAL_ERROR", "SYSTEM_SERVICE_EXCEPTION"],
+    "faq": [
+      {"q": "What is Win32k?", "a": "Win32k.sys is the Windows kernel component that implements the graphical subsystem, window management, input handling, and screen rendering."},
+      {"q": "Can Remote Desktop cause this?", "a": "Yes. RDP uses its own display driver that can conflict with the local display driver. Updating both the RDP client and server components can help."},
+      {"q": "Is this a GPU hardware problem?", "a": "Usually not. This is typically a software/driver issue. Try a clean driver installation first before suspecting hardware."}
+    ]
+  },
+  {
+    "id": "bsod-manually-initiated-crash",
+    "category": "bsod",
+    "code": "0x000000E2",
+    "displayCode": "MANUALLY_INITIATED_CRASH",
+    "title": "Manually Initiated Crash",
+    "shortDescription": "The system crash was manually triggered by an administrator for debugging purposes.",
+    "fullDescription": "The MANUALLY_INITIATED_CRASH BSOD is intentionally triggered by a user or administrator, not caused by an actual system error. This is done to generate a memory dump file for debugging a system that is hung or unresponsive.\n\nThe crash can be triggered via the keyboard (by pressing the right Ctrl key and pressing Scroll Lock twice), through the NMI button on server hardware, or via a debugger command. This feature must be enabled in the registry before it can be used.\n\nNo fix is needed for the crash itself, as it was intentional. The resulting dump file should be analyzed to diagnose whatever issue prompted the manual crash.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows Server 2022", "Windows Server 2019", "Windows Server 2016"],
+    "causes": [
+      {"cause": "Administrator triggered crash for debugging", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Keyboard shortcut (Ctrl+ScrollLock) accidentally pressed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "NMI button pressed on server hardware", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Debugging tool sent crash command", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with MANUALLY_INITIATED_CRASH",
+      "System crash after keyboard combination",
+      "Crash dump file generated in C:\\Windows",
+      "System was hung before crash was triggered",
+      "Event log shows manual crash initiation"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Analyze the crash dump", "instruction": "If the crash was triggered to debug a hung system, open the dump file with WinDbg and run !analyze -v to understand what the system was stuck on.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 2, "title": "Disable CrashOnCtrlScroll if unintended", "instruction": "If triggered accidentally, open Registry Editor. Navigate to HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\kbdhid\\Parameters. Delete the CrashOnCtrlScroll value.", "tools": ["Registry Editor"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Investigate the underlying hang", "instruction": "Review Event Viewer logs from before the crash. Check for application hangs, driver timeouts, or resource exhaustion that caused the system to become unresponsive.", "tools": ["Event Viewer"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "Check system health", "instruction": "After restart, verify system health: check disk usage, memory usage, and CPU usage in Task Manager. Look for any process consuming excessive resources.", "tools": ["Task Manager"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If the system was hung before the manual crash and you cannot determine the cause from logs, a professional can analyze the crash dump to identify the root cause.",
+    "relatedCodes": ["CRITICAL_PROCESS_DIED", "SYSTEM_SERVICE_EXCEPTION", "DPC_WATCHDOG_VIOLATION"],
+    "faq": [
+      {"q": "Is this crash harmful?", "a": "No more than any other BSOD. It generates a crash dump file for debugging but does not cause additional damage beyond what an unexpected reboot does."},
+      {"q": "How do I enable the keyboard crash feature?", "a": "Add a DWORD value CrashOnCtrlScroll set to 1 under HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\kbdhid\\Parameters. Reboot to activate."},
+      {"q": "Why would someone intentionally crash Windows?", "a": "To generate a memory dump file when the system is hung. The dump contains the state of all threads and memory, which helps diagnose what caused the hang."}
+    ]
+  },
+  {
+    "id": "bsod-bugcode-ndis-driver",
+    "category": "bsod",
+    "code": "0x0000007C",
+    "displayCode": "BUGCODE_NDIS_DRIVER",
+    "title": "Network Driver Bug Code",
+    "shortDescription": "A critical error was detected in a network (NDIS) driver.",
+    "fullDescription": "The BUGCODE_NDIS_DRIVER BSOD indicates that a critical error occurred in a network driver that uses the NDIS (Network Driver Interface Specification) framework. This includes Ethernet, Wi-Fi, VPN, and virtual network adapter drivers.\n\nThe error is typically caused by a buggy network driver that violates NDIS programming rules, such as incorrect packet handling, buffer management errors, or improper miniport driver behavior.\n\nUpdating or replacing the network driver is the primary fix. VPN and virtual network adapter drivers are frequent culprits.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Buggy network adapter driver", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "VPN software network driver conflict", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Virtual network adapter driver bug", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Network adapter hardware failure", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with BUGCODE_NDIS_DRIVER",
+      "Crash during network-heavy operations",
+      "BSOD after installing VPN or virtual network software",
+      "Network disconnects before crash",
+      "Wi-Fi or Ethernet adapter stops functioning before BSOD"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Update network adapter driver", "instruction": "Open Device Manager, expand Network adapters. Right-click your network adapter and select Update driver. Download the latest driver from the adapter manufacturer.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Remove VPN and virtual network software", "instruction": "Temporarily uninstall VPN clients, virtual machine software (VMware, VirtualBox), and any software that installs virtual network adapters.", "tools": ["Programs and Features"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Reset network configuration", "instruction": "Open elevated Command Prompt. Run: netsh winsock reset, netsh int ip reset, ipconfig /flushdns. Restart the computer.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Reinstall network adapter", "instruction": "In Device Manager, right-click the network adapter and Uninstall device (check delete driver software). Restart to let Windows reinstall the adapter.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If the error persists after driver updates and VPN removal, the network adapter hardware may be faulty or a specialized network configuration may need professional attention.",
+    "relatedCodes": ["DRIVER_IRQL_NOT_LESS_OR_EQUAL", "SYSTEM_SERVICE_EXCEPTION", "IRQL_NOT_LESS_OR_EQUAL"],
+    "faq": [
+      {"q": "Can VPN software cause this?", "a": "Yes, VPN clients install virtual network drivers (TAP adapters, WFP callout drivers) that can have bugs. This is one of the most common causes."},
+      {"q": "What is NDIS?", "a": "NDIS (Network Driver Interface Specification) is the framework Windows uses for network driver communication. All network adapter drivers use NDIS."},
+      {"q": "Should I replace my network adapter?", "a": "Only if driver updates and software removal do not fix the issue. Try a USB network adapter as a temporary alternative to test if the built-in adapter is faulty."}
+    ]
+  },
+  {
+    "id": "bsod-timer-or-dpc-invalid",
+    "category": "bsod",
+    "code": "0x000000C7",
+    "displayCode": "TIMER_OR_DPC_INVALID",
+    "title": "Timer or DPC Invalid",
+    "shortDescription": "A kernel timer or DPC (Deferred Procedure Call) was found in memory that should not contain it.",
+    "fullDescription": "The TIMER_OR_DPC_INVALID BSOD occurs when the kernel detects a timer or DPC object in a memory location where it should not exist. This typically means a driver freed memory that still contained an active timer or DPC, or that memory corruption overwrote the timer/DPC tracking structures.\n\nThis is a serious memory corruption error that is detected by kernel integrity checks. It points to a driver with a memory management bug.\n\nDriver Verifier can often help identify the specific faulting driver.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Driver freed memory containing active timer/DPC", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Memory corruption from buggy driver", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Use-after-free bug in kernel driver", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Hardware memory fault", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with TIMER_OR_DPC_INVALID",
+      "Random crashes often under specific workloads",
+      "System instability progressively worsening",
+      "Other corruption-related BSODs may also occur",
+      "Crash timing may be random"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Enable Driver Verifier for suspect drivers", "instruction": "Run verifier from elevated Command Prompt. Select Create custom settings > Select individual settings > Special pool, Pool tracking, Force IRQL checking. Select drivers to verify.", "tools": ["Driver Verifier"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Update all drivers", "instruction": "Update all drivers to latest versions from manufacturer websites. Focus on recently installed or updated drivers.", "tools": ["Device Manager"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Run memory diagnostics", "instruction": "Run MemTest86 to rule out hardware memory faults that could cause this error.", "tools": ["MemTest86"], "difficulty": "intermediate", "timeMinutes": 240},
+      {"step": 4, "title": "Analyze crash dump", "instruction": "Use WinDbg to open the minidump: !analyze -v. Check the stack trace and faulting module to identify the responsible driver.", "tools": ["WinDbg"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If Driver Verifier catches the fault but you cannot find an updated driver that fixes it, a professional can work with the driver vendor to address the bug.",
+    "relatedCodes": ["SPECIAL_POOL_DETECTED_MEMORY_CORRUPTION", "KERNEL_MODE_HEAP_CORRUPTION", "BAD_POOL_HEADER"],
+    "faq": [
+      {"q": "What is a DPC?", "a": "A DPC (Deferred Procedure Call) is a mechanism in Windows for deferring lower-priority work from interrupt handlers. DPCs run at an elevated priority and must be properly managed."},
+      {"q": "What does Driver Verifier do?", "a": "Driver Verifier applies extra stress and checking to drivers to expose bugs. It allocates pool memory from special pages, checks for leaks, and validates IRQL usage."},
+      {"q": "Can this cause data loss?", "a": "Memory corruption can potentially lead to data loss if corrupted data is written to disk. Resolve the issue quickly and maintain current backups."}
+    ]
+  },
+  {
+    "id": "bsod-critical-service-failed",
+    "category": "bsod",
+    "code": "0x0000005E",
+    "displayCode": "CRITICAL_SERVICE_FAILED",
+    "title": "Critical Service Failed to Start",
+    "shortDescription": "A critical Windows service failed to start during boot.",
+    "fullDescription": "The CRITICAL_SERVICE_FAILED BSOD occurs when a Windows service that is required for the operating system to function fails to start. These services include essential components like the Security Accounts Manager, Workstation service, or others marked as critical.\n\nThe failure can be caused by corrupted service binaries, missing DLL files, incorrect service configuration in the registry, or disk errors preventing service files from being read.\n\nRecovery typically involves repairing system files or restoring the system to a previous working state.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted service executable or DLL", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Registry corruption affecting service configuration", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed Windows update corrupting service files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Malware modifying critical service files", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk error preventing service file access", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with CRITICAL_SERVICE_FAILED during boot",
+      "System boot loops",
+      "Error appears after Windows update",
+      "Cannot enter Safe Mode",
+      "Previous successful boots now fail"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Use System Restore", "instruction": "Boot from Recovery Environment. Navigate to Troubleshoot > Advanced Options > System Restore. Pick a restore point from before the issue.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Run SFC and DISM from Recovery", "instruction": "In Recovery Command Prompt: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth and sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Uninstall recent Windows update", "instruction": "From Recovery Environment: Troubleshoot > Advanced Options > Uninstall Updates. Select the most recent quality or feature update.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Perform in-place repair install", "instruction": "If other methods fail, boot from Windows installation media. Choose Upgrade to repair Windows while keeping files and applications.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If system restore, SFC, and update removal all fail, a professional can perform manual service repair or a targeted repair installation.",
+    "relatedCodes": ["CRITICAL_PROCESS_DIED", "REGISTRY_ERROR", "INACCESSIBLE_BOOT_DEVICE"],
+    "faq": [
+      {"q": "Which service failed?", "a": "The BSOD may not identify the specific service. Check Event Viewer from Recovery Environment (if accessible) or analyze the crash dump."},
+      {"q": "Can I fix this without reinstalling?", "a": "Usually yes. System Restore, SFC/DISM, and update removal resolve most cases. A repair install is a last resort that preserves your files."},
+      {"q": "Will my files be safe?", "a": "Your files are not affected by this service failure. They remain on disk. Even a repair install preserves personal files."}
+    ]
+  },
+  {
+    "id": "bsod-exfat-file-system",
+    "category": "bsod",
+    "code": "0x0000012C",
+    "displayCode": "EXFAT_FILE_SYSTEM",
+    "title": "exFAT File System Error",
+    "shortDescription": "A critical error occurred in the exFAT file system driver.",
+    "fullDescription": "The EXFAT_FILE_SYSTEM BSOD indicates that the exFAT file system driver encountered an unrecoverable error. exFAT is commonly used on USB flash drives, SD cards, and external drives for cross-platform compatibility.\n\nThe error typically occurs when accessing a corrupted exFAT volume, when the exFAT driver encounters an unexpected file system structure, or when the storage media has physical errors.\n\nFormatting the affected drive or repairing file system errors usually resolves the issue.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "causes": [
+      {"cause": "Corrupted exFAT file system on removable media", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Unsafe removal of USB drive during write", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Physical errors on flash drive or SD card", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "exFAT driver bug in Windows", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with EXFAT_FILE_SYSTEM",
+      "Crash when inserting USB drive or SD card",
+      "BSOD when browsing files on exFAT volume",
+      "Drive shows raw or unformatted in Disk Management",
+      "File system errors on the removable drive"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Safely remove the device", "instruction": "If the system boots after the crash, do not immediately reinsert the drive. If it is inserted, use Safely Remove Hardware before removing it.", "tools": ["Safely Remove Hardware"], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Check the drive on another computer", "instruction": "Insert the drive in another computer (or try a Linux live USB) to see if the file system is accessible. Back up any important files.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Run CHKDSK on the exFAT volume", "instruction": "Open elevated Command Prompt. Run: chkdsk E: /f (replace E: with the drive letter). This repairs file system errors on the exFAT volume.", "tools": ["Command Prompt", "CHKDSK"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 4, "title": "Format the drive", "instruction": "If CHKDSK cannot repair the drive, back up any recoverable data, then format the drive: right-click in File Explorer > Format > exFAT > Quick Format.", "tools": ["File Explorer"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 5, "title": "Update Windows", "instruction": "Install all pending Windows Updates to ensure you have the latest exFAT driver, which may contain bug fixes.", "tools": ["Windows Update"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If important data on the drive cannot be accessed and CHKDSK fails, a data recovery professional may be able to retrieve files.",
+    "relatedCodes": ["FAT_FILE_SYSTEM", "NTFS_FILE_SYSTEM", "KERNEL_DATA_INPAGE_ERROR"],
+    "faq": [
+      {"q": "What is exFAT?", "a": "exFAT is a file system designed for flash drives and SD cards. It supports files larger than 4GB (unlike FAT32) and works on both Windows and macOS."},
+      {"q": "Why did my USB drive cause a BSOD?", "a": "A corrupted file system on the USB drive can crash the exFAT driver when Windows tries to read it. Always use Safely Remove Hardware before unplugging drives."},
+      {"q": "Should I use NTFS instead of exFAT?", "a": "If the drive is only used with Windows, NTFS is more reliable. Use exFAT only when cross-platform compatibility (Windows + macOS) is needed."}
+    ]
+  },
+  {
+    "id": "bsod-io1-initialization-failed",
+    "category": "bsod",
+    "code": "0x00000069",
+    "displayCode": "IO1_INITIALIZATION_FAILED",
+    "title": "I/O Subsystem Initialization Failed",
+    "shortDescription": "The I/O subsystem failed to initialize during Windows boot.",
+    "fullDescription": "The IO1_INITIALIZATION_FAILED BSOD occurs when the Windows I/O subsystem fails during the early boot initialization phase. The I/O subsystem is fundamental to Windows — it handles all input/output operations including disk access, network communication, and device management.\n\nThis error typically indicates severe system file corruption, missing critical drivers, or hardware issues preventing the I/O subsystem from starting. It can also occur after an interrupted Windows update.\n\nRecovery requires booting from external media and repairing the Windows installation.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted Windows system files", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed or interrupted Windows update", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Missing critical boot driver", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Storage controller hardware issue", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Blue screen with IO1_INITIALIZATION_FAILED during boot",
+      "System cannot boot at all",
+      "Error appears after interrupted update or power loss during boot",
+      "Boot loops with this error",
+      "Cannot enter Safe Mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Boot to Recovery Environment", "instruction": "Boot from Windows installation media or recovery drive. Select Repair your computer > Troubleshoot > Advanced Options.", "tools": ["Windows Installation Media"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Run Startup Repair", "instruction": "From Advanced Options, select Startup Repair. Let it attempt automatic repair of boot components.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 3, "title": "Run SFC and DISM offline", "instruction": "From Recovery Command Prompt: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth and sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows.", "tools": ["Command Prompt", "SFC", "DISM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Perform repair install", "instruction": "If SFC/DISM cannot fix the issue, use the Windows installation media to perform a repair install (upgrade) that replaces system files while keeping data.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If Startup Repair and SFC fail, and a repair install is not successful, a professional can determine if the issue is hardware-related.",
+    "relatedCodes": ["INACCESSIBLE_BOOT_DEVICE", "CRITICAL_PROCESS_DIED", "HAL_INITIALIZATION_FAILED"],
+    "faq": [
+      {"q": "What caused the I/O initialization to fail?", "a": "Usually corrupted system files from a failed update, power loss during boot, or disk errors. The I/O subsystem needs intact system files to start."},
+      {"q": "Can I recover my files?", "a": "Yes. Your personal files are likely intact on the disk. Boot from a Linux live USB or connect the drive to another computer to access files."},
+      {"q": "Will a repair install lose my programs?", "a": "A repair install (in-place upgrade) preserves your files, settings, and installed applications. It only replaces Windows system files."}
+    ]
+  },
+  {
+    "id": "bsod-phase0-exception",
+    "category": "bsod",
+    "code": "0x0000004D",
+    "displayCode": "NO_PAGES_AVAILABLE",
+    "title": "No Pages Available",
+    "shortDescription": "The system ran out of memory pages, unable to allocate any more physical memory.",
+    "fullDescription": "The NO_PAGES_AVAILABLE BSOD occurs when Windows completely exhausts all available memory pages. This means there is no physical memory or page file space left for the system to allocate.\n\nThis error is different from the STATUS_NO_MEMORY error — it occurs at a lower level when the memory manager cannot find any free pages at all. It is typically caused by massive memory leaks in drivers, insufficient RAM combined with heavy workloads, or a disabled/full page file.\n\nIncreasing available memory and fixing memory leaks are the primary solutions.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Kernel-mode driver memory leak", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Insufficient RAM for workload", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Page file disabled or on a full disk", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Runaway process consuming all memory", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with NO_PAGES_AVAILABLE",
+      "System becomes extremely slow before crash",
+      "Applications stop responding and show not responding",
+      "Disk usage at 100% from heavy paging",
+      "Task Manager shows near 100% memory usage"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check and configure page file", "instruction": "Go to System Properties > Advanced > Performance Settings > Advanced > Virtual Memory. Ensure page file is enabled and set to at least 1.5x RAM on a drive with free space.", "tools": ["System Properties"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Identify memory-consuming processes", "instruction": "Open Task Manager, sort by Memory. Look for processes using excessive memory. Also check non-paged and paged pool sizes in the Performance > Memory section.", "tools": ["Task Manager"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Update drivers to fix memory leaks", "instruction": "Update all drivers, especially network, storage, and GPU drivers. Use RAMMap or poolmon to identify which pool tag is consuming the most memory.", "tools": ["Device Manager", "RAMMap"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Add more RAM", "instruction": "If your system regularly uses over 80% of RAM, consider upgrading. Check your motherboard specs for maximum supported RAM and compatible module types.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 50, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If you cannot identify the source of memory consumption or if a kernel memory leak requires dump analysis to trace.",
+    "relatedCodes": ["STATUS_NO_MEMORY", "MEMORY_MANAGEMENT", "PFN_LIST_CORRUPT"],
+    "faq": [
+      {"q": "How is this different from STATUS_NO_MEMORY?", "a": "NO_PAGES_AVAILABLE is a lower-level error from the memory manager itself, while STATUS_NO_MEMORY is returned to callers that request memory. Both indicate memory exhaustion."},
+      {"q": "Will adding RAM fix this permanently?", "a": "If the cause is a memory leak, adding RAM only delays the crash. The leak must be fixed by updating the responsible driver or software."},
+      {"q": "Can I tell which driver is leaking memory?", "a": "Use RAMMap or poolmon.exe to see pool memory usage by tag. Each pool tag identifies which driver made the allocation."}
+    ]
+  },
+  {
+    "id": "bsod-unexpected-initialization-call",
+    "category": "bsod",
+    "code": "0x00000060",
+    "displayCode": "PROCESS_INITIALIZATION_FAILED",
+    "title": "Process Initialization Failed",
+    "shortDescription": "A critical process failed during its initialization phase.",
+    "fullDescription": "The PROCESS_INITIALIZATION_FAILED BSOD occurs when a system-critical process cannot complete its initialization. This is similar to CRITICAL_PROCESS_DIED but occurs specifically during the initialization phase rather than during runtime.\n\nThe error indicates that Windows system files required for process initialization are missing, corrupted, or inaccessible. This can happen after a bad update, disk corruption, or system file modification.\n\nSystem file repair or Windows reinstallation is typically required.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Corrupted Windows system DLLs", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Missing system files", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed Windows update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Disk corruption affecting system files", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with PROCESS_INITIALIZATION_FAILED",
+      "System cannot boot normally",
+      "Error appears after update or system change",
+      "Boot loops",
+      "Safe Mode may also fail"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Try System Restore", "instruction": "Boot from Recovery Environment. Use System Restore to return to a point before the error appeared.", "tools": ["Windows Recovery Environment"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Run SFC and DISM offline", "instruction": "From Recovery Command Prompt: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth then sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Check disk integrity", "instruction": "Run chkdsk C: /f /r from Recovery Command Prompt to repair disk errors that may have corrupted system files.", "tools": ["CHKDSK"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 4, "title": "Repair install Windows", "instruction": "Boot from Windows installation media and select Upgrade to perform an in-place repair that replaces system files.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If System Restore, SFC, and repair install all fail, professional data recovery and OS reinstallation may be needed.",
+    "relatedCodes": ["CRITICAL_PROCESS_DIED", "CRITICAL_SERVICE_FAILED", "IO1_INITIALIZATION_FAILED"],
+    "faq": [
+      {"q": "Can I fix this without losing data?", "a": "Yes. System Restore, SFC, and repair install all preserve your personal files. Only a clean install would remove them (and you can still back up first)."},
+      {"q": "Why did this happen after an update?", "a": "Windows updates replace system files. If the update was interrupted or a file was corrupted during the process, initialization can fail."},
+      {"q": "Is this a virus?", "a": "While malware can cause this by modifying system files, it is more commonly caused by update failures or disk errors. Scan with Windows Defender Offline from the Recovery Environment."}
+    ]
+  },
+  {
+    "id": "bsod-phase1-initialization-failed",
+    "category": "bsod",
+    "code": "0x00000032",
+    "displayCode": "PHASE1_INITIALIZATION_FAILED",
+    "title": "Phase 1 Initialization Failed",
+    "shortDescription": "Windows kernel failed during phase 1 of system initialization.",
+    "fullDescription": "The PHASE1_INITIALIZATION_FAILED BSOD occurs during the first phase of Windows kernel initialization. This is very early in the boot process, where the kernel sets up fundamental data structures, initializes the memory manager, and prepares the system for driver loading.\n\nThis error indicates a severe problem with the Windows installation, boot configuration, or hardware compatibility. It is often caused by corrupt system files, incompatible hardware after a motherboard swap, or BIOS/UEFI issues.\n\nRecovery may require a repair installation or clean Windows install.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Severely corrupted Windows system files", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Incompatible hardware after motherboard change", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "BIOS/UEFI configuration issue", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Boot configuration corruption", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Blue screen with PHASE1_INITIALIZATION_FAILED very early in boot",
+      "System never reaches the Windows logo screen",
+      "Error immediately after POST",
+      "Cannot access Safe Mode or Recovery",
+      "Boot loops rapidly"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Reset BIOS to defaults", "instruction": "Enter BIOS/UEFI and load default settings. Ensure the correct boot device is selected and Secure Boot/CSM settings are appropriate.", "tools": ["BIOS/UEFI"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Boot from recovery media", "instruction": "Create Windows installation USB on another computer. Boot from it and try Startup Repair from Troubleshoot > Advanced Options.", "tools": ["Windows Installation Media"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Run offline SFC and DISM", "instruction": "From Recovery Command Prompt: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth and sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows.", "tools": ["Command Prompt"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 4, "title": "Perform clean or repair install", "instruction": "If the above fails, attempt a repair install first (preserves data). If that fails, perform a clean install after backing up data via Linux live USB.", "tools": ["Windows Installation Media"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If you need to recover data from the drive before reinstalling, or if the error occurs on new hardware and you suspect compatibility issues.",
+    "relatedCodes": ["HAL_INITIALIZATION_FAILED", "IO1_INITIALIZATION_FAILED", "CRITICAL_PROCESS_DIED"],
+    "faq": [
+      {"q": "Why does this happen so early in boot?", "a": "Phase 1 initialization is one of the earliest boot stages. Problems here usually mean fundamental system files are missing or the hardware configuration has changed dramatically."},
+      {"q": "Can I recover data?", "a": "Yes. Boot from a Linux live USB or connect the drive to another computer to copy your files before reinstalling Windows."},
+      {"q": "Did my hardware fail?", "a": "Not necessarily. This is more often a software/configuration issue. Test with a fresh Windows install to rule out hardware problems."}
+    ]
+  },
+  {
+    "id": "bsod-internal-power-error",
+    "category": "bsod",
+    "code": "0x000000A0",
+    "displayCode": "INTERNAL_POWER_ERROR",
+    "title": "Internal Power Error",
+    "shortDescription": "The power management subsystem encountered a fatal error.",
+    "fullDescription": "The INTERNAL_POWER_ERROR BSOD indicates a fatal error in the Windows power management subsystem. This subsystem handles sleep, hibernate, power state transitions, and battery management.\n\nThe error commonly occurs during sleep or hibernate transitions, when waking from sleep, or during shutdown. Incompatible drivers, particularly GPU and storage drivers, that do not properly handle power state changes are the most frequent cause.\n\nThis error is especially common on laptops where power management is more complex than on desktops.",
+    "affectedVersions": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "causes": [
+      {"cause": "Driver not handling power state transition correctly", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Outdated GPU driver with sleep/wake bugs", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Hibernate file (hiberfil.sys) corruption", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "BIOS power management incompatibility", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Insufficient disk space for hibernate file", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Blue screen with INTERNAL_POWER_ERROR",
+      "Crash when putting system to sleep or hibernating",
+      "BSOD when waking from sleep",
+      "Crash during shutdown",
+      "Laptop crashes when closing lid"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Disable hibernate and re-enable", "instruction": "Open elevated Command Prompt. Run: powercfg /hibernate off then powercfg /hibernate on. This recreates the hibernate file.", "tools": ["Command Prompt"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Update GPU and chipset drivers", "instruction": "Download and install the latest GPU driver from NVIDIA/AMD/Intel. Also update the chipset driver from the motherboard/laptop manufacturer.", "tools": ["GPU manufacturer website"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Run power troubleshooter", "instruction": "Go to Settings > System > Troubleshoot > Other troubleshooters > Power. Run the troubleshooter and apply suggested fixes.", "tools": ["Windows Settings"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Update BIOS", "instruction": "Check your laptop/motherboard manufacturer for BIOS updates that address power management issues.", "tools": ["Manufacturer website"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 5, "title": "Disable hybrid sleep", "instruction": "Go to Control Panel > Power Options > Change plan settings > Change advanced. Under Sleep > Allow hybrid sleep, set to Off.", "tools": ["Control Panel"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the error persists after driver updates and BIOS update, or if the laptop has complex docking station or multi-monitor power management issues.",
+    "relatedCodes": ["DRIVER_POWER_STATE_FAILURE", "CRITICAL_PROCESS_DIED", "ACPI_BIOS_ERROR"],
+    "faq": [
+      {"q": "Should I disable sleep mode?", "a": "As a workaround, you can disable sleep and use shutdown instead. But the real fix is updating drivers and BIOS to properly handle power states."},
+      {"q": "Why does this happen on laptops more than desktops?", "a": "Laptops have more complex power management including battery, lid close actions, multiple power plans, and connected standby. More complexity means more potential for driver issues."},
+      {"q": "Is hibernate safe to use?", "a": "Yes, hibernate is safe when drivers properly support it. If you experience crashes during hibernate, disable it as a workaround while updating drivers."}
+    ]
   }
 ]
