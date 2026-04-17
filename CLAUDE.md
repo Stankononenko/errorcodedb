@@ -12,56 +12,52 @@ Comprehensive error code database — ALL devices worldwide. Target: 50,000+ pag
 - `npm run build` — generates sitemap + builds static export
 - `npm run dev` — dev server
 
-## Current Status (End of Session 3 — April 12, 2026)
+## Current Status (End of Session 4 — April 17, 2026)
 
-### GRAND TOTAL: 2,882 error codes, 3,115 static pages
+### GRAND TOTAL: 3,911 error codes, 4,252 static pages
 
 | Category | Codes | Details |
 |----------|-------|---------|
-| OBD-II | 290 | 200 P0, 30 B, 30 C, 30 U |
-| Appliances | 1,999 | 60 brands |
-| HVAC | 246 | 13 brands |
-| Printers | 206 | 6 brands |
-| Windows | 141 | BSOD 45, Update 36, System 30, Browser 30 |
+| OBD-II | 345 | 200 P0, 50 P2, 55 P1-manufacturer, 30 B, 30 C, 30 U |
+| Appliances | 2,720+ | 90+ brands (TVs, consoles, routers, cameras, power tools added) |
+| HVAC | 301 | 15 brands (added Navien 20, Rinnai 20, Rheem water heater 15) |
+| Printers | 256 | 6 brands (HP 80, Canon 65, Epson 46) |
+| Windows | 226 | BSOD 79, Update 62, System 55, Browser 30 |
 
-### Appliance brands with data (60):
-Samsung 182, Whirlpool 89, LG 88, Frigidaire 83, Miele 81, Bosch 77,
-Maytag 70, GE 61, Panasonic 52, Haier 51, Beko 50, Siemens 40,
-Amana 35, iRobot 33, KitchenAid 30, Roborock 28, De'Longhi 25,
-Speed Queen 25, Fisher & Paykel 34, AEG 33, Neff 30, Ariston 34,
-Hotpoint 31, Indesit 31, Candy 28, Hoover 18, Zanussi 28,
-Kenmore 20, Ninja 16, Nespresso 15, Ecovacs 15, Asko 22, Smeg 20,
-Gorenje 15, Grundig 12, Electrolux 52, Keurig 12, Breville 10,
-Instant Pot 12, Philips 20, Dyson 20, Xiaomi 8+, TCL 8+,
-Midea, Hisense, Hitachi, Toshiba, Sharp, Sub-Zero 15, Wolf 12,
-Viking 22, Jenn-Air 22, Thermador 24, Dacor 10, Gaggenau 12,
-Liebherr 10, Godrej 18, IFB 15, Cuckoo, Blomberg
+### New in Session 4:
+- **TVs**: Samsung 26, LG 27, Sony 21, Vizio 15, TCL 14, Hisense 15, Panasonic, Philips, Sharp, Toshiba
+- **Gaming Consoles**: PlayStation 20, Xbox 17, Nintendo Switch 15
+- **Routers**: Netgear 13, TP-Link 12, Linksys 10, ASUS 10
+- **Cameras**: Canon 15, Nikon 15
+- **Security Cameras**: Ring 10, Nest Cam 10
+- **Power Tools**: John Deere 15, Husqvarna 12, DeWalt 10, Makita, Roomba 26, Craftsman, Cub Cadet, EGO, Greenworks, Generac, Troy-Bilt, Ryobi, Stihl, Toro
+- **OBD-II**: +55 P1 manufacturer-specific (Toyota, Honda, Ford, BMW, GM)
+- **HVAC**: +55 water heater codes (Navien, Rinnai, Rheem)
+- **Windows**: +85 codes (BSOD +34, Update +26, System +25)
+- **Printers**: +50 codes (HP +20, Canon +15, Epson +15)
 
-### HVAC brands (13):
+### HVAC brands (15):
 Carrier, Lennox, Trane, Goodman, Rheem, Bryant, York,
-Daikin, Mitsubishi, Fujitsu, Honeywell, Nest, Ecobee
-
-### Brands still without data (~15):
-Blomberg (partial?), Blue Star, Cuisinart, Galanz, Gree,
-KitchenAid Mixer, Navien, Rinnai, Roomba, Tineco, Vitamix, Voltas
-(Agents were running when session ended — some may have partial data)
+Daikin, Mitsubishi, Fujitsu, Honeywell, Nest, Ecobee, Navien, Rinnai
 
 ### Known data issues & fixes:
-- Some agents use "moderate" instead of "intermediate" → fix with global script
-- Printer files sometimes come as {codes:[...]} → extract array
-- OBD-II codes need "mechanic" field (not "professional") in estimatedCost
-- HVAC thermostat data sometimes missing brandSlug → auto-fix
-- Run global fix script before each build (see session history)
+- Some agents use "moderate" instead of "intermediate" → `python3 scripts/fix-data.py`
+- Printer files sometimes come as {codes:[...]} → fix-data.py handles it
+- OBD-II codes need "mechanic" field (not "professional") → fix-data.py
+- partsNeeded sometimes string[] instead of object[] → fix-data.py
+- **Always run `python3 scripts/fix-data.py` before build**
 
 ### NEXT SESSION PRIORITIES:
-1. Check if remaining 15 brands got data from running agents
-2. Add P2 OBD-II codes (50 new codes were being generated)
-3. Expand browser errors (30 codes were being generated)
-4. Fill in missing brands: Navien, Rinnai water heaters, Gree AC, etc.
-5. Phase 6: TVs (Samsung, LG, Sony, Vizio, TCL, Hisense)
-6. Phase 7: Garden/Power Tools (John Deere, Husqvarna)
-7. Deploy to Vercel with custom domain
-8. Apply for Google AdSense once 50+ pages indexed
+1. Deploy to Vercel with custom domain errorcodedb.com
+2. Apply for Google AdSense once 50+ pages indexed
+3. Client-side search functionality
+4. More OBD-II expansion (P3/P4 codes, more manufacturer codes)
+5. More HVAC (mini-split expansion, boiler codes)
+6. Sound bars (Sonos, Bose, JBL, Samsung, LG)
+7. Smart home devices (Alexa, Google Home, Hue, SmartThings)
+8. 3D printers (Creality, Prusa, Bambu Lab)
+9. EV chargers (Tesla Wall Connector, ChargePoint, Emporia)
+10. Internal linking optimization
 
 ## Architecture Quick Reference
 - Data: `data/{obd2,appliance,hvac,printer,windows}/`
