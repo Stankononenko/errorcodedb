@@ -5376,5 +5376,1136 @@
       {"q": "Can this damage my engine?", "a": "If the boost control data is invalid in a way that allows excessive boost, yes. However, the ECM typically has backup boost limits. Reduced power mode is the ECM protecting the engine."},
       {"q": "Why did I lose power?", "a": "The ECM enters a protective reduced power mode when boost data is invalid. This limits boost pressure to prevent potential engine damage from uncontrolled boost."}
     ]
+  },
+  {
+    "code": "U0500",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Communication Module",
+    "shortDescription": "The receiving module has detected invalid data from the communication/telematics module.",
+    "fullDescription": "U0500 indicates that data received from the communication control module (OnStar, SYNC, telematics, or similar) is out of expected range or missing required signals. The module is present on the bus but the data payload is malformed.\n\nThis typically points to an internal fault in the telematics module or a software mismatch after a module replacement.",
+    "severity": "medium",
+    "safetyImpact": "Emergency call (eCall) features, stolen vehicle tracking, and remote services may be disabled.",
+    "causes": [
+      {"cause": "Faulty telematics/communication module", "likelihood": "high"},
+      {"cause": "Software version mismatch after module replacement", "likelihood": "medium"},
+      {"cause": "Corrupted module programming", "likelihood": "medium"},
+      {"cause": "Loss of cellular/GPS antenna connection", "likelihood": "low"}
+    ],
+    "symptoms": ["Telematics features disabled", "No emergency call capability", "GPS features unavailable", "Related U-codes stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Retrieve all module codes", "instruction": "Scan all modules to identify which module reports U0500 and which communication module is the source.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Update software", "instruction": "Check for manufacturer software updates for the telematics module and perform reflash if available.", "tools": ["J2534 programmer"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace telematics module", "instruction": "If software is current and wiring is good, replace the telematics module and program it to the vehicle.", "tools": ["dealer scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U0501", "U0510"],
+    "faq": [{"q": "Will this affect driving?", "a": "Usually no — this is a comfort/safety feature module. The engine and brakes continue to function normally."}]
+  },
+  {
+    "code": "U0501",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Communication Module B",
+    "shortDescription": "Secondary communication module is providing invalid data on the network.",
+    "fullDescription": "U0501 is similar to U0500 but points to a secondary communication module (e.g., satellite radio module, Wi-Fi hotspot module). Data is being transmitted but is out of range or corrupt.\n\nOften appears alongside U0500 when the primary telematics unit has internal faults affecting multiple functional areas.",
+    "severity": "low",
+    "safetyImpact": "Infotainment features may be limited; no direct safety impact.",
+    "causes": [
+      {"cause": "Faulty secondary communication module", "likelihood": "high"},
+      {"cause": "Module programming error", "likelihood": "medium"},
+      {"cause": "Wiring fault to module", "likelihood": "low"}
+    ],
+    "symptoms": ["Satellite radio not working", "Wi-Fi hotspot unavailable", "Feature-limited dashboard warnings"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify module", "instruction": "Use a factory scan tool to determine which specific sub-module is flagged.", "tools": ["factory scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Power cycle", "instruction": "Disconnect battery for 10 minutes and reconnect to reset the module.", "tools": ["wrench"], "difficulty": "easy"},
+      {"step": 3, "title": "Reprogram or replace", "instruction": "If code returns, reprogram the module; replace if unresponsive.", "tools": ["J2534 programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 150, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U0500"],
+    "faq": [{"q": "Can I ignore this code?", "a": "Yes, it only affects infotainment features. The vehicle is safe to drive."}]
+  },
+  {
+    "code": "U0510",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Vehicle Immobilizer Control Module",
+    "shortDescription": "The immobilizer module is transmitting invalid data, preventing normal engine start.",
+    "fullDescription": "U0510 indicates the receiving module (usually ECM or BCM) is getting bad data from the immobilizer/anti-theft module. The module is communicating but the key authentication data is invalid.\n\nThis often causes a no-start condition because the ECM requires a valid immobilizer signal to enable fuel and ignition.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start. No direct driving safety impact, but stranding is possible.",
+    "causes": [
+      {"cause": "Failed immobilizer module", "likelihood": "high"},
+      {"cause": "Key not programmed correctly", "likelihood": "medium"},
+      {"cause": "Damaged antenna ring around ignition", "likelihood": "medium"}
+    ],
+    "symptoms": ["No-start condition", "Security light flashing", "Key not recognized"],
+    "fixSteps": [
+      {"step": 1, "title": "Test with spare key", "instruction": "Try starting the vehicle with a different programmed key to rule out key fault.", "tools": ["spare key"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect antenna ring", "instruction": "Check the transponder antenna around the ignition lock for damage or loose connector.", "tools": ["trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Reprogram immobilizer", "instruction": "Perform immobilizer relearn procedure with a capable scan tool.", "tools": ["immobilizer-capable scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 200, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["U0511", "P1631"],
+    "faq": [{"q": "Can I bypass the immobilizer?", "a": "No — the immobilizer is integral to theft prevention and is required for engine start by design."}]
+  },
+  {
+    "code": "U0515",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Headlamp Leveling Module",
+    "shortDescription": "The headlamp leveling module is sending invalid data on the network.",
+    "fullDescription": "U0515 is set when the BCM or lighting module detects invalid data from the auto-leveling headlamp control module. Self-leveling headlamps adjust aim based on vehicle load and ride height.\n\nThe module may be present but its height sensor data or actuator feedback is out of range.",
+    "severity": "low",
+    "safetyImpact": "Headlamp aim may be incorrect, potentially dazzling oncoming drivers or poor road illumination.",
+    "causes": [
+      {"cause": "Faulty ride height sensor", "likelihood": "high"},
+      {"cause": "Damaged leveling module", "likelihood": "medium"},
+      {"cause": "Failed headlamp actuator", "likelihood": "medium"}
+    ],
+    "symptoms": ["Headlamps stuck at one aim", "Headlamp warning light", "Uneven beam pattern"],
+    "fixSteps": [
+      {"step": 1, "title": "Check height sensors", "instruction": "Inspect front and rear ride height sensors for physical damage or broken linkages.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Scan live data", "instruction": "Monitor sensor inputs while rocking the vehicle to confirm sensor response.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace faulty part", "instruction": "Replace the sensor or module as indicated by diagnosis.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U0514"],
+    "faq": [{"q": "Will my headlights still work?", "a": "Yes, but they may be stuck in a single position. Manual aim adjustment may be needed temporarily."}]
+  },
+  {
+    "code": "U0521",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Power Steering Control Module",
+    "shortDescription": "The power steering control module is transmitting invalid data on the network.",
+    "fullDescription": "U0521 is set when another module (typically BCM or ECM) detects invalid data from the electric power steering (EPS) module. The EPS module may be transmitting but data such as steering torque or assist level is out of range.\n\nEPS may drop to manual (no-assist) mode as a safety precaution.",
+    "severity": "high",
+    "safetyImpact": "Loss of power steering assist increases steering effort significantly, especially at low speeds.",
+    "causes": [
+      {"cause": "Failed EPS control module", "likelihood": "high"},
+      {"cause": "Faulty steering torque sensor", "likelihood": "medium"},
+      {"cause": "Low battery voltage affecting EPS", "likelihood": "medium"}
+    ],
+    "symptoms": ["Heavy steering", "EPS warning light", "Intermittent assist"],
+    "fixSteps": [
+      {"step": 1, "title": "Check battery health", "instruction": "EPS systems are voltage-sensitive. Load test the battery and verify charging system output.", "tools": ["battery tester", "multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect EPS connector", "instruction": "Locate the EPS module (often on the steering column or rack) and inspect its connector for corrosion.", "tools": ["flashlight", "electrical contact cleaner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace EPS module", "instruction": "If diagnostics confirm module failure, replace and perform steering angle relearn.", "tools": ["scan tool", "socket set"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 800}, "mechanic": {"min": 500, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U0131", "C1511"],
+    "faq": [{"q": "Is it safe to drive without power steering?", "a": "The vehicle is drivable but steering effort is much higher, especially parking. Fix promptly."}]
+  },
+  {
+    "code": "U0530",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Suspension Control Module",
+    "shortDescription": "The suspension control module is transmitting invalid data.",
+    "fullDescription": "U0530 is set when data from the suspension control module (air suspension, magnetic ride, adaptive dampers) is invalid. The module is online but reporting out-of-range values.\n\nSuspension usually enters a default/fail-safe mode with fixed damping.",
+    "severity": "medium",
+    "safetyImpact": "Ride quality and handling may be degraded; vehicle height may be incorrect.",
+    "causes": [
+      {"cause": "Failed suspension control module", "likelihood": "high"},
+      {"cause": "Faulty ride height or damper sensor", "likelihood": "medium"},
+      {"cause": "Air suspension compressor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Suspension warning light", "Uneven ride height", "Harsh or bouncy ride"],
+    "fixSteps": [
+      {"step": 1, "title": "Retrieve suspension codes", "instruction": "Read codes directly from the suspension module for more specific sub-codes.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect sensors", "instruction": "Check all four ride height sensors and damper wiring for damage.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace module or sensor", "instruction": "Replace the faulty component based on diagnosis.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["C1100", "C1547"],
+    "faq": [{"q": "Is the vehicle safe to drive?", "a": "Yes for short distances at moderate speed, but handling may be compromised. Address soon."}]
+  },
+  {
+    "code": "U0600",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Adaptive Front Lighting Module",
+    "shortDescription": "Adaptive front lighting (AFS) module is providing invalid data.",
+    "fullDescription": "U0600 is set when the receiving module detects invalid data from the AFS module, which swivels headlamps in response to steering input. The module may be communicating with incorrect steering angle or speed data.",
+    "severity": "low",
+    "safetyImpact": "Adaptive lighting disabled; standard headlight function typically retained.",
+    "causes": [
+      {"cause": "Faulty AFS module", "likelihood": "high"},
+      {"cause": "Stale steering angle calibration", "likelihood": "medium"},
+      {"cause": "Damaged swivel motor feedback", "likelihood": "medium"}
+    ],
+    "symptoms": ["AFS warning light", "Headlamps don't swivel", "Fixed beam pattern"],
+    "fixSteps": [
+      {"step": 1, "title": "Steering angle relearn", "instruction": "Perform steering angle sensor calibration with scan tool.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect swivel motors", "instruction": "Check headlamp swivel motors for mechanical binding.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace AFS module", "instruction": "Replace module and reprogram if other steps fail.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U0515"],
+    "faq": [{"q": "Can I drive with AFS disabled?", "a": "Yes, standard low/high beams continue to function normally."}]
+  },
+  {
+    "code": "U0615",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Immobilizer",
+    "shortDescription": "Immobilizer module is providing invalid authentication data.",
+    "fullDescription": "U0615 is a variant of the immobilizer communication fault where the authentication handshake between the ECM and the immobilizer produces invalid data. Engine may run briefly then stall, or fail to start.",
+    "severity": "high",
+    "safetyImpact": "No-start or stall condition possible.",
+    "causes": [
+      {"cause": "Failed immobilizer module", "likelihood": "high"},
+      {"cause": "Key transponder failure", "likelihood": "medium"},
+      {"cause": "ECM / immobilizer mismatch after replacement", "likelihood": "medium"}
+    ],
+    "symptoms": ["No-start", "Start and stall", "Security light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Try spare key", "instruction": "Test with a second programmed key.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Relearn keys", "instruction": "Perform full key relearn procedure per service information.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace module", "instruction": "Replace immobilizer module and program.", "tools": ["J2534"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 250, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U0510", "P1631"],
+    "faq": [{"q": "Why does my car start then stall?", "a": "The immobilizer allows a brief start then cuts fuel when authentication fails."}]
+  },
+  {
+    "code": "U0625",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Radio",
+    "shortDescription": "The radio/infotainment head unit is sending invalid data on the network.",
+    "fullDescription": "U0625 is set when modules detect invalid data from the radio/head unit. The head unit transmits audio settings, climate info and VIN to other modules; invalid data can affect various features.",
+    "severity": "low",
+    "safetyImpact": "Infotainment features affected; no drivability impact.",
+    "causes": [
+      {"cause": "Failed head unit", "likelihood": "high"},
+      {"cause": "Software fault", "likelihood": "medium"},
+      {"cause": "Aftermarket radio installed incorrectly", "likelihood": "medium"}
+    ],
+    "symptoms": ["Radio reboots", "Steering wheel controls inoperative", "Backup camera fault"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Disconnect battery 10 minutes to reset head unit.", "tools": ["wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Check aftermarket install", "instruction": "If aftermarket radio is installed, verify CAN interface wiring.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace or reprogram head unit", "instruction": "Reflash software or replace head unit if faulty.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 400}, "mechanic": {"min": 150, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U0164"],
+    "faq": [{"q": "Can this be from my aftermarket stereo?", "a": "Yes — missing CAN bus signals from a non-OEM radio commonly cause this code."}]
+  },
+  {
+    "code": "U0640",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received - Data Bus",
+    "shortDescription": "General invalid data fault on the vehicle data bus.",
+    "fullDescription": "U0640 is a broad invalid-data fault indicating the receiving module cannot validate data from one or more modules on the bus. Often stored alongside more specific U-codes.",
+    "severity": "medium",
+    "safetyImpact": "Variable depending on which data is invalid.",
+    "causes": [
+      {"cause": "Multiple module fault", "likelihood": "medium"},
+      {"cause": "Bus wiring issue", "likelihood": "high"},
+      {"cause": "Low battery voltage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Multiple DTCs", "Intermittent electrical issues"],
+    "fixSteps": [
+      {"step": 1, "title": "Check battery", "instruction": "Low battery voltage can cause bus corruption; load test first.", "tools": ["battery tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect bus wiring", "instruction": "Check CAN-H/CAN-L wiring for damage.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Isolate faulty module", "instruction": "Use module-by-module disconnect to isolate the offender.", "tools": ["oscilloscope"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U0001"],
+    "faq": [{"q": "Is this one code or many?", "a": "It's often a symptom of broader bus faults — check all modules."}]
+  },
+  {
+    "code": "U0650",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Communication",
+    "title": "Invalid Data Received From Convertible Roof Module",
+    "shortDescription": "The convertible/retractable roof module is reporting invalid data.",
+    "fullDescription": "U0650 indicates the BCM or roof controller detects invalid data about the convertible top position or actuator feedback. The roof may refuse to operate until resolved.",
+    "severity": "low",
+    "safetyImpact": "Top may not operate — vehicle can still be driven.",
+    "causes": [
+      {"cause": "Failed roof position sensor", "likelihood": "high"},
+      {"cause": "Faulty roof module", "likelihood": "medium"},
+      {"cause": "Hydraulic pressure sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Top will not operate", "Top warning light"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for sub-codes", "instruction": "Read roof module for specific sensor faults.", "tools": ["factory scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect position switches", "instruction": "Check all latch and position switches for alignment.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace faulty sensor", "instruction": "Replace sensor or module as indicated.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 400}, "mechanic": {"min": 200, "max": 1200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is this a safety issue?", "a": "No — the roof simply won't operate until repaired."}]
+  },
+  {
+    "code": "U0700",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Transmission Module CAN",
+    "title": "Transmission Control Module Bus A Off",
+    "shortDescription": "The TCM has gone off the CAN bus.",
+    "fullDescription": "U0700 indicates the TCM has detected enough bus errors that it has entered bus-off state and stopped transmitting. This isolates the TCM from the network, usually resulting in limp mode.",
+    "severity": "high",
+    "safetyImpact": "Transmission typically enters limp mode — single gear only.",
+    "causes": [
+      {"cause": "TCM internal fault", "likelihood": "high"},
+      {"cause": "CAN wiring short at TCM", "likelihood": "high"},
+      {"cause": "Low battery voltage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Transmission limp mode", "Check engine light", "Multiple U-codes"],
+    "fixSteps": [
+      {"step": 1, "title": "Check battery", "instruction": "Ensure battery voltage is above 12.4V — low voltage causes bus errors.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect TCM connector", "instruction": "Check TCM main connector for water intrusion and bent pins.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace TCM", "instruction": "If wiring is good, replace and program TCM.", "tools": ["J2534"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1200}, "mechanic": {"min": 600, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["U0100", "U0101"],
+    "faq": [{"q": "Will this damage the transmission?", "a": "Limp mode is protective — short-term driving is generally safe but get it fixed."}]
+  },
+  {
+    "code": "U0701",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Transmission Module CAN",
+    "title": "Control Module Communication Bus A Off - TCM",
+    "shortDescription": "Control module detected TCM has exited the bus.",
+    "fullDescription": "U0701 is the counterpart to U0700 — stored by another module (ECM, BCM) when the TCM stops responding due to bus-off state. Closely related diagnosis to U0700.",
+    "severity": "high",
+    "safetyImpact": "Transmission in limp mode, potentially unsafe for highway driving.",
+    "causes": [
+      {"cause": "TCM bus-off state", "likelihood": "high"},
+      {"cause": "CAN bus wiring fault near TCM", "likelihood": "high"}
+    ],
+    "symptoms": ["Limp mode", "Shifting issues", "U0700 companion code"],
+    "fixSteps": [
+      {"step": 1, "title": "Address U0700", "instruction": "Diagnose and fix U0700 first — U0701 will usually clear automatically.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Clear and retest", "instruction": "Clear codes and drive cycle to confirm.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["U0700"],
+    "faq": [{"q": "Do I need to fix U0701 separately?", "a": "Usually no — fix U0700 and U0701 clears on its own."}]
+  },
+  {
+    "code": "U0728",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Transmission Module CAN",
+    "title": "Invalid Data Received From Transmission Range Sensor",
+    "shortDescription": "The TCM receives invalid gear position data.",
+    "fullDescription": "U0728 is set when the TCM receives range sensor data (PRNDL) that does not correspond to a valid gear position. This can cause the transmission to default to a safe gear and disable shifting.",
+    "severity": "high",
+    "safetyImpact": "Transmission may not shift into drive or reverse.",
+    "causes": [
+      {"cause": "Faulty transmission range sensor", "likelihood": "high"},
+      {"cause": "Misadjusted shift linkage", "likelihood": "medium"},
+      {"cause": "TCM fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Won't shift into gear", "Wrong gear indicated on dash", "Starts in any gear"],
+    "fixSteps": [
+      {"step": 1, "title": "Check shift linkage", "instruction": "Verify linkage is adjusted so the range sensor index matches gear selector.", "tools": ["basic hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test range sensor", "instruction": "Monitor PRNDL live data while moving shifter through gears.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace range sensor", "instruction": "Replace the transmission range sensor if data is erratic.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0705", "P0706"],
+    "faq": [{"q": "Can I drive with this code?", "a": "No — you may not be able to shift out of park or into reverse safely."}]
+  },
+  {
+    "code": "U1039",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford SCP Bus Fault - ABS",
+    "shortDescription": "Ford SCP/UART data bus fault between PCM and ABS module.",
+    "fullDescription": "U1039 on Ford applications indicates a loss of communication on the legacy SCP bus between the PCM and the ABS module. Common on older Ford trucks and SUVs before CAN adoption.\n\nResults in speedometer and ABS issues.",
+    "severity": "high",
+    "safetyImpact": "ABS disabled, speedometer may not work.",
+    "causes": [
+      {"cause": "Failed ABS module", "likelihood": "high"},
+      {"cause": "SCP wiring fault", "likelihood": "medium"},
+      {"cause": "Wheel speed signal distribution fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["ABS light on", "Speedometer inoperative", "No cruise control"],
+    "fixSteps": [
+      {"step": 1, "title": "Check SCP bus voltage", "instruction": "Measure SCP bus voltage and waveform at the DLC.", "tools": ["scope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect ABS connectors", "instruction": "Check ABS module connectors for corrosion.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace ABS module", "instruction": "Replace if internal failure confirmed.", "tools": ["socket set"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1073"],
+    "faq": [{"q": "Is this only on older Fords?", "a": "Yes, SCP was replaced by CAN by around 2008."}]
+  },
+  {
+    "code": "U1073",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford SCP - Lost Communication with Engine Coolant Blower Control Module",
+    "shortDescription": "Ford PCM has lost communication with the cooling fan control module.",
+    "fullDescription": "U1073 on Ford applications indicates the PCM cannot communicate with the engine cooling fan controller. The fan may stay off or run continuously.\n\nCommon on Taurus, Contour, Mustang with electric cooling fans.",
+    "severity": "high",
+    "safetyImpact": "Engine overheating possible.",
+    "causes": [
+      {"cause": "Failed fan control module", "likelihood": "high"},
+      {"cause": "Wiring fault to fan controller", "likelihood": "medium"},
+      {"cause": "Blown fan fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["Overheating in traffic", "Fan running constantly", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuses", "instruction": "Check cooling fan fuses and relays.", "tools": ["test light"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Check fan controller connector on radiator shroud.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace fan module", "instruction": "Replace fan controller if faulty.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0480"],
+    "faq": [{"q": "Can I drive with this?", "a": "Short distances only — watch the temperature gauge closely."}]
+  },
+  {
+    "code": "U1147",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford SCP - Invalid Data for Body Systems",
+    "shortDescription": "Ford BCM is receiving invalid data on the SCP network.",
+    "fullDescription": "U1147 on Ford is a body/comfort data validity fault. Affected features include interior lighting, locks, and wipers.",
+    "severity": "low",
+    "safetyImpact": "Minor comfort feature impact.",
+    "causes": [
+      {"cause": "GEM/BCM fault", "likelihood": "high"},
+      {"cause": "SCP wiring corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Erratic interior lighting", "Door lock issues", "Wiper issues"],
+    "fixSteps": [
+      {"step": 1, "title": "Check GEM", "instruction": "Inspect the Generic Electronic Module for water damage.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace GEM", "instruction": "If water-damaged, replace and program.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is this common?", "a": "Yes on older Fords where the GEM sits low and gets wet."}]
+  },
+  {
+    "code": "U1261",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford SCP - Invalid Data from A/C Control Module",
+    "shortDescription": "Ford PCM is receiving invalid A/C data on the SCP network.",
+    "fullDescription": "U1261 on Ford indicates the A/C control module is transmitting but the data is invalid. A/C may not cycle correctly, affecting cooling.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {"cause": "Failed EATC module", "likelihood": "high"},
+      {"cause": "A/C pressure sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["A/C not cold", "Climate control erratic"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan EATC", "instruction": "Read codes from the Electronic Automatic Temperature Control module.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check A/C sensors", "instruction": "Verify A/C pressure and evap temp sensor readings.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace module", "instruction": "Replace EATC if module fault confirmed.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Why won't my A/C get cold?", "a": "Without valid pressure data the PCM won't cycle the compressor normally."}]
+  },
+  {
+    "code": "U1262-FORD",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford SCP Communication Bus Fault",
+    "shortDescription": "Ford-specific SCP communication bus hardware fault.",
+    "fullDescription": "U1262 on Ford is set when the PCM or another module detects a fault on the SCP data bus itself — a short, open, or persistent noise. On modern CAN-based Fords, an equivalent U1262 may be stored during intermittent bus glitches.\n\nThis is the Ford-specific variant of U1262 (generic version covers different content).",
+    "severity": "high",
+    "safetyImpact": "Multiple modules may lose communication.",
+    "causes": [
+      {"cause": "Shorted SCP wiring", "likelihood": "high"},
+      {"cause": "Failed module dragging bus down", "likelihood": "medium"}
+    ],
+    "symptoms": ["Multiple U-codes", "Intermittent features inoperative"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure SCP", "instruction": "Check SCP pin at DLC for correct idle voltage.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Isolate modules", "instruction": "Disconnect modules one at a time to find the offender.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1262"],
+    "faq": [{"q": "How is this different from generic U1262?", "a": "Ford's definition pre-dates standardization — the number is identical but the meaning is Ford-specific."}]
+  },
+  {
+    "code": "U1451",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Ford Network",
+    "title": "Ford - Loss of PATS Communication with BCM",
+    "shortDescription": "Ford PATS anti-theft system lost communication with BCM.",
+    "fullDescription": "U1451 is a common Ford code indicating the Passive Anti-Theft System (PATS) has lost communication with the BCM. Engine will start then stall after 2 seconds.\n\nClassic fault on Focus, Explorer, F-150 with PATS — often caused by transceiver ring failure.",
+    "severity": "high",
+    "safetyImpact": "Engine stalls shortly after start — no-drive condition.",
+    "causes": [
+      {"cause": "Failed PATS transceiver ring", "likelihood": "high"},
+      {"cause": "Damaged key transponder", "likelihood": "medium"},
+      {"cause": "BCM/PCM communication fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Engine starts then stalls 2 seconds later", "Theft light flashing rapidly"],
+    "fixSteps": [
+      {"step": 1, "title": "Test with spare", "instruction": "Try a different programmed key.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect transceiver", "instruction": "Check the PATS antenna ring around the ignition switch for damage.", "tools": ["trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace transceiver", "instruction": "Replace the PATS antenna ring and reprogram keys.", "tools": ["scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P1260"],
+    "faq": [{"q": "Why does my Ford start then stall?", "a": "Classic PATS fault — engine runs for 2 seconds before anti-theft cuts fuel."}]
+  },
+  {
+    "code": "U1000-GM",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM Class 2 Communication Malfunction",
+    "shortDescription": "GM Class 2 serial data bus communication fault.",
+    "fullDescription": "U1000 on GM vehicles indicates a fault on the Class 2 serial data bus (pre-GMLAN). The bus carries module communication at 10.4 kbps single-wire.\n\nExtremely common GM code on 1996-2007 vehicles — often stored alongside many other U-codes.",
+    "severity": "high",
+    "safetyImpact": "Variable — multiple systems may be affected.",
+    "causes": [
+      {"cause": "Class 2 wiring fault (often at BCM)", "likelihood": "high"},
+      {"cause": "Failed module shorting bus", "likelihood": "high"},
+      {"cause": "Water damage to body harness", "likelihood": "medium"}
+    ],
+    "symptoms": ["Multiple warning lights", "No communication with scan tool on some modules"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Identify which modules can't communicate.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Check Class 2 voltage", "instruction": "Pin 2 of DLC should idle around 0V and pulse to 7V during traffic.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Isolate modules", "instruction": "Disconnect modules individually to find the offender.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["U1064", "U1088"],
+    "faq": [{"q": "Why do I have 20 U-codes?", "a": "Class 2 bus failures cause every module to lose communication simultaneously — fix the root cause and most clear."}]
+  },
+  {
+    "code": "U1064",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Lost Communication with BCM",
+    "shortDescription": "GM module has lost communication with the Body Control Module.",
+    "fullDescription": "U1064 on GM vehicles indicates another module can no longer communicate with the BCM over the Class 2 or GMLAN bus. BCM failures are common, especially in water-intrusion-prone locations.",
+    "severity": "high",
+    "safetyImpact": "Many body features affected — lights, locks, wipers.",
+    "causes": [
+      {"cause": "Failed BCM", "likelihood": "high"},
+      {"cause": "BCM connector water damage", "likelihood": "high"},
+      {"cause": "Open bus wire to BCM", "likelihood": "medium"}
+    ],
+    "symptoms": ["Interior lights erratic", "Gauges inoperative", "Multiple U-codes"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect BCM", "instruction": "Locate and inspect BCM for water damage or corrosion.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check power and ground", "instruction": "Verify BCM has clean 12V and ground.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace BCM", "instruction": "Replace and reprogram BCM.", "tools": ["scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1000-GM"],
+    "faq": [{"q": "Does BCM need programming?", "a": "Yes — modern GM BCMs must be programmed to the VIN."}]
+  },
+  {
+    "code": "U1088",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Lost Communication with Sensing and Diagnostic Module",
+    "shortDescription": "Lost communication with the SDM (airbag controller).",
+    "fullDescription": "U1088 on GM vehicles indicates loss of communication with the Sensing and Diagnostic Module (airbag/SRS controller). Airbag warning light illuminates and SRS may be disabled.",
+    "severity": "high",
+    "safetyImpact": "Airbags may not deploy in a crash.",
+    "causes": [
+      {"cause": "Failed SDM module", "likelihood": "high"},
+      {"cause": "SDM connector issue", "likelihood": "medium"},
+      {"cause": "SDM not programmed", "likelihood": "medium"}
+    ],
+    "symptoms": ["Airbag warning light", "SRS warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect SDM", "instruction": "Locate SDM under center console and check connector.", "tools": ["trim tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check power and ground", "instruction": "Verify SDM power/ground circuits with ignition on.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace SDM", "instruction": "Replace and program SDM — must be VIN-coded.", "tools": ["scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U1000-GM"],
+    "faq": [{"q": "Can I buy a used SDM?", "a": "No — used SDMs may have crash data locked in and must be replaced new."}]
+  },
+  {
+    "code": "U1096",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Lost Communication with IPC",
+    "shortDescription": "Lost communication with the Instrument Panel Cluster.",
+    "fullDescription": "U1096 on GM vehicles indicates loss of communication with the Instrument Panel Cluster. Dashboard gauges may not work.",
+    "severity": "medium",
+    "safetyImpact": "No speedometer, fuel gauge, or warning displays.",
+    "causes": [
+      {"cause": "Failed cluster", "likelihood": "high"},
+      {"cause": "Bus wiring fault", "likelihood": "medium"},
+      {"cause": "Blown IPC fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["Gauges at zero", "No backlighting", "No warning lights"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuses", "instruction": "Inspect IPC power fuses.", "tools": ["test light"], "difficulty": "easy"},
+      {"step": 2, "title": "Test cluster", "instruction": "Check cluster connector pinouts.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace cluster", "instruction": "Replace and program cluster with odometer transfer.", "tools": ["scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 400}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U1000-GM"],
+    "faq": [{"q": "Is odometer transfer legal?", "a": "Yes when done properly through GM's SPS programming system."}]
+  },
+  {
+    "code": "U1255",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Class 2 Communication Failure",
+    "shortDescription": "GM Class 2 bus general communication failure.",
+    "fullDescription": "U1255 is stored when a GM module detects that the Class 2 bus is non-functional for an extended period. Similar to U1000 but more severe — typically indicates hardware failure of the bus.",
+    "severity": "high",
+    "safetyImpact": "Most bus-dependent features fail.",
+    "causes": [
+      {"cause": "Class 2 bus shorted", "likelihood": "high"},
+      {"cause": "Multiple module failures", "likelihood": "medium"}
+    ],
+    "symptoms": ["No module communication", "Warning lights on"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure bus", "instruction": "Measure Class 2 pin 2 voltage.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Isolate fault", "instruction": "Disconnect modules to find the short.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["U1000-GM"],
+    "faq": [{"q": "Is this the same as U1000?", "a": "Related but U1255 suggests a prolonged bus failure, not intermittent."}]
+  },
+  {
+    "code": "U1300",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Class 2 Short to Ground",
+    "shortDescription": "Class 2 data line shorted to ground.",
+    "fullDescription": "U1300 on GM indicates the Class 2 communication wire is shorted to ground, pulling the bus low. No modules can communicate.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start or run poorly.",
+    "causes": [
+      {"cause": "Chafed bus wire to ground", "likelihood": "high"},
+      {"cause": "Failed module internally shorting bus", "likelihood": "medium"}
+    ],
+    "symptoms": ["No communication", "All U-codes stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure bus resistance", "instruction": "Check resistance from pin 2 to ground with key off; should be high.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Trace wiring", "instruction": "Follow Class 2 wiring for damage.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1301"],
+    "faq": [{"q": "Can a module cause a short?", "a": "Yes — a failed module can short the bus internally."}]
+  },
+  {
+    "code": "U1301",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "GM Network",
+    "title": "GM - Class 2 Short to Battery Voltage",
+    "shortDescription": "Class 2 data line shorted to battery voltage.",
+    "fullDescription": "U1301 on GM indicates the Class 2 wire is shorted to 12V. Modules cannot pull the line low to transmit, so communication fails.",
+    "severity": "high",
+    "safetyImpact": "Wide-ranging module communication failure.",
+    "causes": [
+      {"cause": "Damaged harness touching 12V wire", "likelihood": "high"},
+      {"cause": "Failed module", "likelihood": "medium"}
+    ],
+    "symptoms": ["No communication", "Warning lights"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure voltage", "instruction": "With ignition on, Class 2 should idle near 0V. If at 12V it's shorted to power.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Isolate fault", "instruction": "Find the damaged wire or offending module.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1300"],
+    "faq": [{"q": "Can this happen from a rodent chew?", "a": "Yes — rodent damage commonly shorts bus wires to adjacent power wires."}]
+  },
+  {
+    "code": "U1403",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Chrysler Network",
+    "title": "Chrysler - Implausible Fuel Level Signal Received",
+    "shortDescription": "Chrysler PCM received an impossible fuel level reading.",
+    "fullDescription": "U1403 on Chrysler indicates the PCM received fuel level data from the BCM that is implausible (e.g., jumping more than possible in a short time). May affect evap monitor readiness.",
+    "severity": "low",
+    "safetyImpact": "No direct safety impact.",
+    "causes": [
+      {"cause": "Failed fuel level sending unit", "likelihood": "high"},
+      {"cause": "Failed BCM", "likelihood": "medium"}
+    ],
+    "symptoms": ["Erratic fuel gauge", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Monitor fuel level data", "instruction": "Watch live data from PCM and BCM for jumps.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sending unit", "instruction": "Replace the fuel level sending unit in the tank.", "tools": ["socket set"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 300, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is fuel gauge affected?", "a": "Yes — same sensor feeds both PCM and dashboard."}]
+  },
+  {
+    "code": "U1411",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Chrysler Network",
+    "title": "Chrysler - Implausible Evap Emission System Leak Detection Signal",
+    "shortDescription": "Evap leak detection data is implausible.",
+    "fullDescription": "U1411 on Chrysler means the PCM received evap leak detection pump or pressure data that makes no physical sense. Sets as part of evap diagnostic routine.",
+    "severity": "low",
+    "safetyImpact": "Emissions impact only.",
+    "causes": [
+      {"cause": "Failed leak detection pump", "likelihood": "high"},
+      {"cause": "NVLD module fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Failed emissions test"],
+    "fixSteps": [
+      {"step": 1, "title": "Test NVLD", "instruction": "Test Natural Vacuum Leak Detection module operation.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace NVLD", "instruction": "Replace NVLD module if faulty.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 200}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0442"],
+    "faq": [{"q": "What is NVLD?", "a": "Chrysler's Natural Vacuum Leak Detection module replaces traditional evap purge/vent valves."}]
+  },
+  {
+    "code": "U1412",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Chrysler Network",
+    "title": "Chrysler - Implausible Vehicle Speed Signal Received",
+    "shortDescription": "Vehicle speed signal is implausible.",
+    "fullDescription": "U1412 is Chrysler-specific code where PCM receives VSS data that jumps impossibly. Often caused by ABS module or wheel speed sensor faults, since VSS data is bus-shared.",
+    "severity": "high",
+    "safetyImpact": "Cruise control may disable; transmission shift quality affected.",
+    "causes": [
+      {"cause": "Failed wheel speed sensor", "likelihood": "high"},
+      {"cause": "ABS module fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Speedometer jumps", "Transmission harsh shifts", "ABS light"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan ABS", "instruction": "Read ABS codes for wheel speed sensor faults.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect sensors", "instruction": "Check wheel speed sensors for damage.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace faulty sensor", "instruction": "Replace as needed.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C1145"],
+    "faq": [{"q": "Why does my speedo jump?", "a": "A bad wheel sensor gives random pulses that the ABS shares with the PCM."}]
+  },
+  {
+    "code": "U1417",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Chrysler Network",
+    "title": "Chrysler - Implausible Left/Right Wheel Distance Signal",
+    "shortDescription": "Left/right wheel distance ratio is implausible.",
+    "fullDescription": "U1417 on Chrysler is set when wheel speed sensors report distances that don't match up as expected for straight-line driving. Indicates a failing wheel sensor or tone ring.",
+    "severity": "medium",
+    "safetyImpact": "ABS and traction control may be affected.",
+    "causes": [
+      {"cause": "Damaged ABS tone ring", "likelihood": "high"},
+      {"cause": "Wheel speed sensor air gap", "likelihood": "medium"}
+    ],
+    "symptoms": ["ABS light", "Traction control disabled"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect tone rings", "instruction": "Check tone rings at each wheel for missing teeth or debris.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Measure air gap", "instruction": "Verify WSS air gap is within spec.", "tools": ["feeler gauge"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U1412"],
+    "faq": [{"q": "Can I drive with this code?", "a": "Yes, but with ABS degraded — avoid hard braking."}]
+  },
+  {
+    "code": "U1900-MAZDA",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Mazda Network",
+    "title": "Mazda - CAN Communication Bus Fault",
+    "shortDescription": "Mazda-specific CAN bus generic fault.",
+    "fullDescription": "U1900 on Mazda vehicles indicates a CAN communication fault — the Mazda-specific equivalent to generic U0001. Commonly stored with many companion U-codes.\n\nFixing the underlying wiring or module issue clears the code across modules.",
+    "severity": "high",
+    "safetyImpact": "Wide-ranging — multiple systems.",
+    "causes": [
+      {"cause": "CAN wiring fault", "likelihood": "high"},
+      {"cause": "Failed module", "likelihood": "medium"},
+      {"cause": "Low battery voltage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Multiple DTCs", "Warning lights"],
+    "fixSteps": [
+      {"step": 1, "title": "Check battery", "instruction": "Load test battery — Mazda CAN is voltage-sensitive.", "tools": ["battery tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure CAN", "instruction": "Verify CAN-H/CAN-L termination resistance of 60 ohms.", "tools": ["multimeter"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U0001"],
+    "faq": [{"q": "Why is this code different on Mazda?", "a": "Mazda uses U1900 as a manufacturer-specific CAN fault alongside generic codes."}]
+  },
+  {
+    "code": "U2023",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Mazda Network",
+    "title": "Mazda - Fault Received From External Node",
+    "shortDescription": "Mazda module received fault notification from another node.",
+    "fullDescription": "U2023 on Mazda is stored when a receiving module is informed by another node that it has an active DTC — essentially a propagation marker. Address the root fault in the sending module.",
+    "severity": "low",
+    "safetyImpact": "Depends on source fault.",
+    "causes": [
+      {"cause": "Active DTC in another module", "likelihood": "high"}
+    ],
+    "symptoms": ["Check engine light", "Companion codes"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Identify the source of the actual fault across the network.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Fix root cause", "instruction": "Repair the triggering module's DTC.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "varies",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I clear this alone?", "a": "No — fix the originating DTC first."}]
+  },
+  {
+    "code": "U2100",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Mazda Network",
+    "title": "Mazda - Initial Configuration Not Complete",
+    "shortDescription": "Mazda module initial configuration is incomplete.",
+    "fullDescription": "U2100 is stored when a Mazda module (often a replacement) has not been fully configured or programmed for the vehicle. Typically appears after a module swap.",
+    "severity": "medium",
+    "safetyImpact": "Features dependent on the module will be inoperative.",
+    "causes": [
+      {"cause": "Replacement module not configured", "likelihood": "high"},
+      {"cause": "Interrupted programming session", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Module features inoperative"],
+    "fixSteps": [
+      {"step": 1, "title": "Perform module configuration", "instruction": "Use Mazda IDS or equivalent to complete module programming.", "tools": ["Mazda IDS"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I do this at home?", "a": "Only with an IDS or J2534 pass-thru subscription to Mazda."}]
+  },
+  {
+    "code": "U1000-NISSAN",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Nissan Network",
+    "title": "Nissan - CAN Communication Circuit",
+    "shortDescription": "Nissan-specific CAN communication fault.",
+    "fullDescription": "U1000 on Nissan is a CAN communication line fault — equivalent to generic U0001 but set by Nissan ECMs and TCMs when they detect CAN errors. Very common on Altima, Maxima, Sentra.\n\nOften triggered by a failing body module or corroded chassis grounds.",
+    "severity": "high",
+    "safetyImpact": "Transmission may enter fail-safe mode.",
+    "causes": [
+      {"cause": "Poor chassis ground", "likelihood": "high"},
+      {"cause": "Failed body module", "likelihood": "medium"},
+      {"cause": "CAN wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Transmission fail-safe", "No shift", "Multiple warning lights"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean grounds", "instruction": "Clean main chassis and engine grounds — Nissan U1000 often clears after ground refresh.", "tools": ["wire brush"], "difficulty": "easy"},
+      {"step": 2, "title": "Check CAN", "instruction": "Verify 60 ohm resistance between CAN-H and CAN-L with key off.", "tools": ["multimeter"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U1000"],
+    "faq": [{"q": "Why is my Nissan in fail-safe?", "a": "Nissan TCMs go to fail-safe on CAN errors; fix U1000 root cause to restore shifting."}]
+  },
+  {
+    "code": "U1001-NISSAN",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Nissan Network",
+    "title": "Nissan - CAN Communication Line Circuit Malfunction",
+    "shortDescription": "Nissan CAN communication line hardware malfunction.",
+    "fullDescription": "U1001 on Nissan is a harder-failure variant of U1000 — specifically flagging that the CAN line itself has a persistent hardware malfunction, not just intermittent errors.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may be undriveable.",
+    "causes": [
+      {"cause": "Open or shorted CAN wiring", "likelihood": "high"},
+      {"cause": "Failed terminating resistor", "likelihood": "medium"}
+    ],
+    "symptoms": ["No communication with scan tool", "Multiple warning lights"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure termination", "instruction": "Should read ~60 ohms across CAN-H and CAN-L with key off.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Repair wiring", "instruction": "Locate and repair the open or short.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U1000-NISSAN"],
+    "faq": [{"q": "Is this the same as U1000?", "a": "No — U1001 indicates a confirmed hardware issue, not just bus errors."}]
+  },
+  {
+    "code": "U2008",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Memory Corrupted",
+    "shortDescription": "Control module configuration data is corrupted.",
+    "fullDescription": "U2008 indicates the module has detected corruption in its VIN or option configuration memory. Features may default to base configuration.",
+    "severity": "medium",
+    "safetyImpact": "Features may be disabled or incorrect.",
+    "causes": [
+      {"cause": "Flash memory corruption", "likelihood": "high"},
+      {"cause": "Interrupted programming", "likelihood": "medium"}
+    ],
+    "symptoms": ["Features inoperative", "Wrong features active"],
+    "fixSteps": [
+      {"step": 1, "title": "Reprogram module", "instruction": "Perform a full module reflash with factory software.", "tools": ["J2534"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Do I need to replace the module?", "a": "Usually a reflash fixes it — replacement only if flash cannot be written."}]
+  },
+  {
+    "code": "U2104",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "CAN Initialization Failure - ECM",
+    "shortDescription": "ECM CAN controller failed to initialize at startup.",
+    "fullDescription": "U2104 is set when the ECM's CAN controller cannot initialize communication at power-up. Usually indicates an internal ECM fault or major wiring issue at the ECM connector.",
+    "severity": "high",
+    "safetyImpact": "Engine may not start.",
+    "causes": [
+      {"cause": "ECM internal fault", "likelihood": "high"},
+      {"cause": "CAN wiring fault at ECM", "likelihood": "medium"}
+    ],
+    "symptoms": ["No-start", "No ECM communication"],
+    "fixSteps": [
+      {"step": 1, "title": "Check ECM connector", "instruction": "Inspect ECM main connectors for corrosion or bent pins.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace ECM", "instruction": "Replace ECM if internal fault confirmed.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["U0100"],
+    "faq": [{"q": "Can a bad battery cause this?", "a": "A very low battery can prevent ECM boot; check battery first."}]
+  },
+  {
+    "code": "U2105",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "CAN Initialization Failure - TCM",
+    "shortDescription": "TCM CAN controller failed to initialize.",
+    "fullDescription": "U2105 indicates the TCM couldn't initialize its CAN hardware. TCM will go offline — transmission will enter limp mode.",
+    "severity": "high",
+    "safetyImpact": "Transmission limp mode.",
+    "causes": [
+      {"cause": "TCM internal fault", "likelihood": "high"},
+      {"cause": "TCM connector damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Limp mode", "No TCM communication"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect TCM", "instruction": "Check TCM connector for damage.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace TCM", "instruction": "Replace and program TCM.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "mechanic": {"min": 500, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["U0101"],
+    "faq": [{"q": "What's limp mode like?", "a": "Usually stuck in second or third gear, no upshifts."}]
+  },
+  {
+    "code": "U2107",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "CAN Initialization Failure - BCM",
+    "shortDescription": "BCM CAN controller failed to initialize.",
+    "fullDescription": "U2107 indicates the BCM cannot initialize CAN communications at startup. Body features and inter-module communication fail.",
+    "severity": "medium",
+    "safetyImpact": "Body features inoperative.",
+    "causes": [
+      {"cause": "BCM internal fault", "likelihood": "high"},
+      {"cause": "BCM connector water damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Body features inoperative", "No lights/locks"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect BCM", "instruction": "Check BCM for water damage.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace BCM", "instruction": "Replace and program.", "tools": ["programmer"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 400}, "mechanic": {"min": 300, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-3 hours",
+    "relatedCodes": ["U0140"],
+    "faq": [{"q": "Is BCM replacement expensive?", "a": "Moderately — programming is often the bulk of the cost."}]
+  },
+  {
+    "code": "U2138",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "VIN Does Not Match Between Control Modules",
+    "shortDescription": "One or more modules have mismatched VIN programming.",
+    "fullDescription": "U2138 is set when the receiving module sees a VIN value from another module that does not match its own. Commonly occurs after a module replacement where VIN programming was skipped.",
+    "severity": "medium",
+    "safetyImpact": "Features may be disabled.",
+    "causes": [
+      {"cause": "Replacement module not programmed to VIN", "likelihood": "high"},
+      {"cause": "Aftermarket module", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Feature mismatch"],
+    "fixSteps": [
+      {"step": 1, "title": "Program VIN", "instruction": "Write the correct VIN to the offending module.", "tools": ["factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 100, "max": 300}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Why does the VIN matter?", "a": "Modules validate VIN for anti-theft and feature enablement."}]
+  },
+  {
+    "code": "U2200",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Data Not Programmed",
+    "shortDescription": "Module configuration data has not been programmed.",
+    "fullDescription": "U2200 is set when a module is installed but its configuration data (vehicle options, coding) has not been written. Typically after new module installation.",
+    "severity": "medium",
+    "safetyImpact": "Features default to base or disabled.",
+    "causes": [
+      {"cause": "New module not configured", "likelihood": "high"}
+    ],
+    "symptoms": ["Features not working", "Module-specific DTCs"],
+    "fixSteps": [
+      {"step": 1, "title": "Configure module", "instruction": "Use factory scan tool to write configuration data.", "tools": ["factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 100, "max": 300}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["U2008"],
+    "faq": [{"q": "Who can configure modules?", "a": "Dealer or independent shops with factory-level scan tools."}]
   }
 ]

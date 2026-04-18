@@ -1229,5 +1229,789 @@
     "faq": [
       {"q": "Is this a serious code?", "a": "Depends on the companion codes. P3499 alone without other codes is unusual - always check for additional faults."}
     ]
+  },
+  {
+    "code": "P3001",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Battery ECU Internal Fault",
+    "shortDescription": "The hybrid Battery ECU has detected an internal fault.",
+    "fullDescription": "P3001 indicates the battery ECU has detected an internal processor or memory fault. The battery ECU manages cell balancing, temperature, and state-of-charge; when it faults, the hybrid system enters fail-safe.\n\nCommon on Toyota Prius, Camry Hybrid, Highlander Hybrid.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may enter fail-safe and become undriveable.",
+    "causes": [
+      {"cause": "Battery ECU failure", "likelihood": "high"},
+      {"cause": "Battery ECU wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle warning", "Hybrid system warning", "Vehicle won't move"],
+    "fixSteps": [
+      {"step": 1, "title": "Diagnose with Techstream", "instruction": "Connect Techstream and read battery ECU sub-codes.", "tools": ["Techstream"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace Battery ECU", "instruction": "Replace battery ECU located in the rear battery pack.", "tools": ["HV PPE", "insulated tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 800}, "mechanic": {"min": 600, "max": 1800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3000"],
+    "faq": [{"q": "Can the battery ECU be repaired?", "a": "Some specialists rebuild them, but replacement is more common."}]
+  },
+  {
+    "code": "P3005",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Inverter",
+    "title": "High Voltage Fuse Open",
+    "shortDescription": "The main high-voltage battery fuse has blown.",
+    "fullDescription": "P3005 indicates the main HV fuse in the battery pack has opened. This could be due to an actual short/overcurrent event or a degraded fuse. Without this fuse the inverter cannot draw power.",
+    "severity": "high",
+    "safetyImpact": "Vehicle is undriveable; HV system disabled.",
+    "causes": [
+      {"cause": "HV short in inverter or motor", "likelihood": "high"},
+      {"cause": "Degraded HV fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["Won't move", "Red hybrid warning"],
+    "fixSteps": [
+      {"step": 1, "title": "HV safety lockout", "instruction": "Follow proper high-voltage service procedure before touching anything.", "tools": ["HV gloves"], "difficulty": "advanced"},
+      {"step": 2, "title": "Find short", "instruction": "Check inverter and motor for short before replacing fuse.", "tools": ["megohmmeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace fuse", "instruction": "Install new HV service fuse.", "tools": ["insulated tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3006"],
+    "faq": [{"q": "Can I just replace the fuse?", "a": "No — you must find what caused the fuse to blow or it will happen again."}]
+  },
+  {
+    "code": "P3006",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Hybrid Battery Pack Voltage Imbalance",
+    "shortDescription": "Voltage difference between battery blocks exceeds limit.",
+    "fullDescription": "P3006 is set when the battery ECU detects a voltage imbalance between hybrid battery blocks. One or more cells is weaker than the others.\n\nA direct precursor to P3000 — addressing imbalance early can save the battery.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may derate power; will fail fully if ignored.",
+    "causes": [
+      {"cause": "Weak battery cell", "likelihood": "high"},
+      {"cause": "Poor battery cooling", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced hybrid performance", "MIL", "Occasional red triangle"],
+    "fixSteps": [
+      {"step": 1, "title": "Read block voltages", "instruction": "Use Dr. Prius app or Techstream to view individual block voltages.", "tools": ["Dr. Prius app"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Balance or replace", "instruction": "Balance pack or replace weak modules.", "tools": ["HV gloves"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 1500}, "mechanic": {"min": 800, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3000"],
+    "faq": [{"q": "Will balancing fix it?", "a": "Temporarily — eventually the weak cells need replacement."}]
+  },
+  {
+    "code": "P3011",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Battery Block 1 Becomes Weak",
+    "shortDescription": "Hybrid battery block 1 is deteriorated.",
+    "fullDescription": "P3011 identifies block 1 of the hybrid battery as the specific weak block. Toyota's battery is divided into 14 blocks; P3011-P3024 each call out a specific block number.",
+    "severity": "high",
+    "safetyImpact": "Will progress to total hybrid failure.",
+    "causes": [
+      {"cause": "Block 1 cell failure", "likelihood": "high"},
+      {"cause": "Cooling issue concentrated at block 1", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "Reduced acceleration"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify block", "instruction": "Read individual block voltages to confirm block 1 is low.", "tools": ["Dr. Prius app"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace block", "instruction": "Replace block 1 with a matched tested module.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": ["P3000", "P3012"],
+    "faq": [{"q": "Should I replace only block 1?", "a": "If others are still good, yes; but many techs recommend full pack replacement if mileage is high."}]
+  },
+  {
+    "code": "P3013",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Battery Block 3 Becomes Weak",
+    "shortDescription": "Hybrid battery block 3 is deteriorated.",
+    "fullDescription": "P3013 flags block 3 as the weak block in a Toyota hybrid battery. Often stored alongside P3000.",
+    "severity": "high",
+    "safetyImpact": "Red triangle, reduced power.",
+    "causes": [{"cause": "Block 3 cell failure", "likelihood": "high"}],
+    "symptoms": ["Red triangle warning", "Reduced hybrid power"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify block 3", "instruction": "Confirm block voltage with hybrid scan tool.", "tools": ["Techstream"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace block", "instruction": "Replace block 3 with matched module.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": ["P3000"],
+    "faq": [{"q": "Why does only block 3 fail?", "a": "Airflow variation in the battery case means certain blocks run hotter and age faster."}]
+  },
+  {
+    "code": "P3015",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Battery Block 5 Becomes Weak",
+    "shortDescription": "Hybrid battery block 5 is deteriorated.",
+    "fullDescription": "P3015 flags block 5 as the weak block. Battery cooling fan condition is key to preventing recurrence.",
+    "severity": "high",
+    "safetyImpact": "Red triangle.",
+    "causes": [{"cause": "Block 5 cell failure", "likelihood": "high"}],
+    "symptoms": ["Red triangle", "Limited hybrid function"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean cooling fan", "instruction": "Before replacing, clean battery cooling fan to stop repeat failures.", "tools": ["vacuum"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace block 5", "instruction": "Replace weak block.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": ["P3000"],
+    "faq": [{"q": "Is replacement complex?", "a": "Requires HV training and PPE — not beginner work."}]
+  },
+  {
+    "code": "P3020",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Inverter",
+    "title": "HV Inverter Cooling System Malfunction",
+    "shortDescription": "Inverter cooling loop is not circulating properly.",
+    "fullDescription": "P3020 indicates the inverter cooling pump or radiator is not operating. Inverter temperatures rise and the hybrid system derates.",
+    "severity": "high",
+    "safetyImpact": "Inverter damage possible; vehicle derated.",
+    "causes": [
+      {"cause": "Failed inverter coolant pump", "likelihood": "high"},
+      {"cause": "Low coolant level", "likelihood": "medium"},
+      {"cause": "Blocked inverter radiator", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "Master warning light", "High inverter temp"],
+    "fixSteps": [
+      {"step": 1, "title": "Check coolant", "instruction": "Verify inverter coolant reservoir level.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Test pump", "instruction": "Use scan tool active test to command the inverter pump.", "tools": ["Techstream"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace pump", "instruction": "Replace inverter coolant pump if inoperative.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 350}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Same as engine cooling?", "a": "No — hybrids have a separate inverter cooling loop."}]
+  },
+  {
+    "code": "P3022",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "HV DC/DC",
+    "title": "HV DC/DC Converter Malfunction",
+    "shortDescription": "DC/DC converter (HV to 12V) is malfunctioning.",
+    "fullDescription": "P3022 indicates the DC/DC converter that steps HV battery voltage down to charge the 12V battery has failed. The 12V battery drains without hybrid readiness.",
+    "severity": "high",
+    "safetyImpact": "12V battery drains — vehicle won't start.",
+    "causes": [
+      {"cause": "Failed DC/DC converter", "likelihood": "high"},
+      {"cause": "Converter wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Dead 12V battery", "Hybrid won't ready-up"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure 12V output", "instruction": "With hybrid in ready, 12V bus should read ~14V. If it reads battery voltage (~12V), DC/DC isn't charging.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace inverter assembly", "instruction": "DC/DC is usually part of the inverter assembly — replace assembly.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 500, "max": 2500}, "mechanic": {"min": 1500, "max": 4500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P0AA6"],
+    "faq": [{"q": "Can DC/DC be replaced separately?", "a": "Typically no — it's integrated into the inverter."}]
+  },
+  {
+    "code": "P3045",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Battery Cooling Fan Circuit Malfunction",
+    "shortDescription": "Hybrid battery cooling fan circuit fault.",
+    "fullDescription": "P3045 is set when the battery ECU commands the battery cooling fan but doesn't see proper current draw or feedback. Fan not spinning leads to battery overheating.",
+    "severity": "medium",
+    "safetyImpact": "Battery longevity reduced.",
+    "causes": [
+      {"cause": "Failed cooling fan motor", "likelihood": "high"},
+      {"cause": "Blocked air intake", "likelihood": "high"},
+      {"cause": "Fan wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced hybrid performance", "Warm battery compartment"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean intake", "instruction": "Clean battery fan intake behind rear seat.", "tools": ["vacuum"], "difficulty": "easy"},
+      {"step": 2, "title": "Test fan", "instruction": "Command fan on with scan tool.", "tools": ["Techstream"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace fan", "instruction": "Replace battery cooling fan assembly.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P3000"],
+    "faq": [{"q": "How often should I clean the fan?", "a": "Every 30,000 miles or if you have pets shedding in the vehicle."}]
+  },
+  {
+    "code": "P3050",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Battery",
+    "title": "Main Battery Relay Welded Closed",
+    "shortDescription": "Hybrid battery main contactor relay has welded in closed position.",
+    "fullDescription": "P3050 indicates the main HV battery contactor has welded closed — it will not open to isolate the battery when commanded. This is a safety-critical fault.",
+    "severity": "high",
+    "safetyImpact": "HV battery cannot be isolated for safety — service hazard.",
+    "causes": [
+      {"cause": "Contactor welded from arcing", "likelihood": "high"},
+      {"cause": "Overcurrent event", "likelihood": "medium"}
+    ],
+    "symptoms": ["HV stays live after shutdown", "Red triangle"],
+    "fixSteps": [
+      {"step": 1, "title": "HV precautions", "instruction": "Assume HV is live — follow full HV service lockout.", "tools": ["HV gloves"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace contactor", "instruction": "Replace main battery contactor assembly.", "tools": ["insulated tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 700}, "mechanic": {"min": 700, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Why is this dangerous?", "a": "The battery cannot be electrically isolated — service work becomes hazardous."}]
+  },
+  {
+    "code": "P3070",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging System",
+    "title": "HV Charging Relay Malfunction",
+    "shortDescription": "Plug-in hybrid charging relay malfunction.",
+    "fullDescription": "P3070 applies to plug-in hybrids and EVs — the AC charging relay that connects the onboard charger to the HV battery is not operating correctly. Charging fails.",
+    "severity": "high",
+    "safetyImpact": "Vehicle can't charge.",
+    "causes": [
+      {"cause": "Failed charging relay", "likelihood": "high"},
+      {"cause": "Onboard charger fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging error on dashboard", "No AC charge"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different EVSE", "instruction": "Rule out home charger by trying a different station.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace relay", "instruction": "Replace the AC charging contactor.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 400, "max": 1800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Will it still drive?", "a": "On a hybrid yes — only plug-in charging fails. On pure EV, no."}]
+  },
+  {
+    "code": "P3085",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "VSC",
+    "title": "VSC / Hybrid System Integration Fault",
+    "shortDescription": "Vehicle Stability Control cannot integrate with hybrid powertrain.",
+    "fullDescription": "P3085 is set when the VSC/traction control system cannot properly communicate with the hybrid powertrain for torque vectoring. VSC and hybrid warnings illuminate.",
+    "severity": "medium",
+    "safetyImpact": "Stability control degraded.",
+    "causes": [
+      {"cause": "CAN communication fault", "likelihood": "high"},
+      {"cause": "VSC module fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["VSC light", "Hybrid warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan network", "instruction": "Look for U-codes indicating communication loss.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Fix source", "instruction": "Resolve the underlying communication issue.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["U0100", "U0121"],
+    "faq": [{"q": "Should I drive with VSC off?", "a": "Yes, but avoid aggressive driving until fixed."}]
+  },
+  {
+    "code": "P3091",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Electric Motor",
+    "title": "Electric Motor Stator Temperature Too High",
+    "shortDescription": "Traction motor stator temperature has exceeded threshold.",
+    "fullDescription": "P3091 indicates the traction motor stator winding temperature is above safe operating limits. The hybrid/EV system reduces motor torque to protect the motor.",
+    "severity": "high",
+    "safetyImpact": "Power reduction; possible vehicle stop.",
+    "causes": [
+      {"cause": "Motor cooling failure", "likelihood": "high"},
+      {"cause": "Stator temp sensor fault", "likelihood": "medium"},
+      {"cause": "Sustained high-load driving", "likelihood": "low"}
+    ],
+    "symptoms": ["Power derate", "Motor overheat warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Check coolant", "instruction": "Verify motor coolant level and flow.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Test sensor", "instruction": "Compare motor temp sensor vs. ambient at cold start.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor or motor", "instruction": "Replace sensor or motor depending on diagnosis.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 2000}, "mechanic": {"min": 300, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-8 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Will the motor be damaged?", "a": "The thermal cutback prevents damage but repeated events shorten life."}]
+  },
+  {
+    "code": "P3092",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Electric Motor",
+    "title": "Electric Motor Rotor Position Sensor Fault",
+    "shortDescription": "Rotor position sensor (resolver) fault on traction motor.",
+    "fullDescription": "P3092 indicates a fault in the resolver that tracks motor rotor position. Without accurate position data, the inverter cannot commutate the motor and torque is lost.",
+    "severity": "high",
+    "safetyImpact": "Loss of traction motor power.",
+    "causes": [
+      {"cause": "Failed resolver", "likelihood": "high"},
+      {"cause": "Damaged resolver wiring", "likelihood": "medium"},
+      {"cause": "Resolver not zero-calibrated", "likelihood": "medium"}
+    ],
+    "symptoms": ["No motor drive", "Red warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Check connector", "instruction": "Inspect resolver wiring at motor.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Resolver calibration", "instruction": "Perform resolver zero calibration with scan tool.", "tools": ["factory scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace motor assembly", "instruction": "Resolver is usually internal — replace transaxle.", "tools": ["HV PPE"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 3000}, "mechanic": {"min": 500, "max": 6000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-10 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "What's a resolver?", "a": "A rotary transformer that precisely tracks shaft angle — essential for permanent-magnet motor control."}]
+  },
+  {
+    "code": "P3095",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Regen Braking",
+    "title": "Regenerative Braking System Malfunction",
+    "shortDescription": "Regenerative braking is not operating correctly.",
+    "fullDescription": "P3095 indicates regen braking is degraded or inoperative. Friction brakes compensate fully, so stopping ability is retained but fuel economy drops.",
+    "severity": "medium",
+    "safetyImpact": "Braking retained, but regen-hydraulic blending may feel different.",
+    "causes": [
+      {"cause": "Brake control module fault", "likelihood": "high"},
+      {"cause": "Hybrid power limit from another fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Reduced fuel economy", "Different brake feel"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all codes", "instruction": "Check for hybrid battery or motor codes that limit regen.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Test brake module", "instruction": "Verify brake control module operation.", "tools": ["scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "mechanic": {"min": 200, "max": 2000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P3000", "C1391"],
+    "faq": [{"q": "Is it safe to brake?", "a": "Yes — friction brakes fully compensate."}]
+  },
+  {
+    "code": "P3165",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Control",
+    "title": "Control Module Long Term Memory Reset",
+    "shortDescription": "ECM long-term memory has been reset.",
+    "fullDescription": "P3165 indicates the ECM's long-term fuel trim, adaptation, and learning values were reset. Often set after battery disconnect or ECM clearing.\n\nNot a fault per se — an informational code that the ECM is relearning.",
+    "severity": "info",
+    "safetyImpact": "None directly; drivability may be rough during relearn.",
+    "causes": [
+      {"cause": "Battery disconnect", "likelihood": "high"},
+      {"cause": "ECM reset/reprogramming", "likelihood": "high"}
+    ],
+    "symptoms": ["Rough idle initially", "Code stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Drive normally", "instruction": "Drive 50-100 miles for full adaptation relearn.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Clear code", "instruction": "Clear code after relearn drive cycle.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "drive cycle",
+    "relatedCodes": [],
+    "faq": [{"q": "Is this serious?", "a": "No — just informational."}]
+  },
+  {
+    "code": "P3170",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Control",
+    "title": "Cylinder Deactivation System Bank 1",
+    "shortDescription": "Bank 1 cylinder deactivation system fault.",
+    "fullDescription": "P3170 is set when the ECM detects a cylinder deactivation (AFM/DoD/MDS) malfunction on bank 1. Cylinder deactivation may be disabled.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy; engine runs on all cylinders.",
+    "causes": [
+      {"cause": "Failed AFM lifter", "likelihood": "high"},
+      {"cause": "AFM solenoid fault", "likelihood": "medium"},
+      {"cause": "Low oil pressure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Ticking noise", "Poor economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Check oil pressure", "instruction": "AFM requires good oil pressure — verify.", "tools": ["oil pressure gauge"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test solenoids", "instruction": "Check AFM solenoid operation.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace lifters", "instruction": "Replace failed AFM lifters.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 700}, "mechanic": {"min": 800, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "5-10 hours",
+    "relatedCodes": ["P3400", "P3425"],
+    "faq": [{"q": "Can I disable AFM?", "a": "Aftermarket disablers exist but may violate emissions rules."}]
+  },
+  {
+    "code": "P3180",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Control",
+    "title": "Engine Stop/Start System Malfunction",
+    "shortDescription": "Auto start/stop system malfunction.",
+    "fullDescription": "P3180 indicates the engine auto stop/start system cannot operate. Cause is often battery health or starter issue — start/stop is disabled until resolved.",
+    "severity": "low",
+    "safetyImpact": "None — vehicle operates with start/stop off.",
+    "causes": [
+      {"cause": "AGM battery weak", "likelihood": "high"},
+      {"cause": "Starter wear", "likelihood": "medium"},
+      {"cause": "Secondary battery fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Auto start/stop disabled warning", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Test battery", "instruction": "Load test the AGM battery — a critical requirement.", "tools": ["battery tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Register new battery", "instruction": "If replaced, register new battery with scan tool.", "tools": ["scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 400}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [{"q": "Do I need AGM battery?", "a": "Yes — start/stop systems require AGM batteries rated for high cycle count."}]
+  },
+  {
+    "code": "P3190",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Control",
+    "title": "Poor Engine Power",
+    "shortDescription": "ECM detects engine is producing insufficient power.",
+    "fullDescription": "P3190 is a generic code set when the ECM calculates that engine torque output is below expected for the commanded throttle. Root cause is upstream — often fuel delivery, airflow, or compression.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power under load.",
+    "causes": [
+      {"cause": "Restricted fuel filter", "likelihood": "high"},
+      {"cause": "Clogged intake/MAF", "likelihood": "medium"},
+      {"cause": "Low compression", "likelihood": "medium"}
+    ],
+    "symptoms": ["Lack of power", "Poor acceleration", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for companion codes", "instruction": "Look for fuel trim or misfire codes.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Check fuel pressure", "instruction": "Test fuel pressure and MAF readings.", "tools": ["fuel pressure gauge"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Compression test", "instruction": "If no other cause, check compression.", "tools": ["compression tester"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 200, "max": 2000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Why is power down?", "a": "Could be fuel, air, ignition, or mechanical — diagnose systematically."}]
+  },
+  {
+    "code": "P3402",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 2 Deactivation Control Performance",
+    "shortDescription": "Cylinder 2 deactivation system performance fault.",
+    "fullDescription": "P3402 indicates the ECM commanded cylinder 2 deactivation but did not get expected mechanical response. On Hemi MDS engines this typically means a stuck solenoid or lifter.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Stuck MDS solenoid", "likelihood": "high"},
+      {"cause": "Failed MDS lifter", "likelihood": "high"},
+      {"cause": "Low oil pressure", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Lifter tick", "No MDS operation"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify oil", "instruction": "Use correct oil grade — MDS is oil-sensitive.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace solenoid", "instruction": "Replace cylinder 2 MDS solenoid.", "tools": ["sockets"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace lifter", "instruction": "If code persists, replace the MDS lifter.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 400, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Can I disable MDS?", "a": "Tuners exist, but this may affect warranty and emissions."}]
+  },
+  {
+    "code": "P3403",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 3 Deactivation Control Performance",
+    "shortDescription": "Cylinder 3 deactivation performance fault.",
+    "fullDescription": "P3403 is set when cylinder 3 deactivation is commanded but mechanical response is incorrect. Common on Hemi MDS and GM AFM engines.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Stuck deactivation solenoid", "likelihood": "high"},
+      {"cause": "Failed collapsing lifter", "likelihood": "high"}
+    ],
+    "symptoms": ["CEL", "Lifter noise", "MDS not engaging"],
+    "fixSteps": [
+      {"step": 1, "title": "Oil level/condition", "instruction": "Change oil with correct spec.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace components", "instruction": "Replace solenoid and lifter for cylinder 3.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 400, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Why does MDS fail?", "a": "Lifter design is sensitive to oil cleanliness and pressure."}]
+  },
+  {
+    "code": "P3404",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 4 Deactivation Control Circuit",
+    "shortDescription": "Cylinder 4 deactivation circuit fault.",
+    "fullDescription": "P3404 is set when the cylinder 4 deactivation solenoid circuit is open or shorted. Electrical-style fault as opposed to mechanical performance.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Open solenoid circuit", "likelihood": "high"},
+      {"cause": "Failed solenoid", "likelihood": "high"}
+    ],
+    "symptoms": ["CEL"],
+    "fixSteps": [
+      {"step": 1, "title": "Check circuit", "instruction": "Measure solenoid resistance and wiring.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace solenoid", "instruction": "Replace deactivation solenoid for cylinder 4.", "tools": ["sockets"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Solenoid location?", "a": "In the valley between cylinder heads, under the intake."}]
+  },
+  {
+    "code": "P3410",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 5 Deactivation / Intake Valve Control Circuit",
+    "shortDescription": "Cylinder 5 deactivation circuit fault.",
+    "fullDescription": "P3410 indicates an electrical fault in the cylinder 5 deactivation solenoid. Common on 5.3L and 6.2L GM AFM engines.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Failed AFM solenoid", "likelihood": "high"},
+      {"cause": "Oil manifold fault (lifter oil manifold assembly)", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Lifter tick"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace solenoid", "instruction": "Replace cylinder 5 AFM solenoid.", "tools": ["sockets"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace LOMA", "instruction": "If multi-cylinder codes present, replace lifter oil manifold assembly.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 400}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "GM AFM reliability?", "a": "AFM is notorious for lifter failures — many owners disable via tune."}]
+  },
+  {
+    "code": "P3420",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 7 Deactivation Control Circuit",
+    "shortDescription": "Cylinder 7 deactivation circuit fault.",
+    "fullDescription": "P3420 is set when cylinder 7 AFM solenoid circuit is open or shorted. Common failure on 5.3L AFM V8s around 100k miles.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact; potential oil consumption.",
+    "causes": [
+      {"cause": "Failed AFM solenoid", "likelihood": "high"},
+      {"cause": "AFM lifter collapse", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Oil consumption", "Misfire on cyl 7"],
+    "fixSteps": [
+      {"step": 1, "title": "Diagnose", "instruction": "Test solenoid resistance.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace solenoid/lifter", "instruction": "Replace as needed.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 500}, "mechanic": {"min": 300, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Will AFM delete prevent this?", "a": "Yes — an AFM delete kit with non-AFM lifters eliminates the failure mode."}]
+  },
+  {
+    "code": "P3430",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 8 Deactivation Control Circuit",
+    "shortDescription": "Cylinder 8 deactivation circuit fault.",
+    "fullDescription": "P3430 is set when the cylinder 8 AFM/MDS solenoid circuit has an electrical fault. Last cylinder in the deactivation sequence, often paired with other cylinder codes.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Failed AFM solenoid", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL"],
+    "fixSteps": [
+      {"step": 1, "title": "Test and replace solenoid", "instruction": "Standard AFM solenoid replacement procedure.", "tools": ["sockets"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 250, "max": 1000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Are AFM solenoids reusable?", "a": "No — always replace when accessing the valley."}]
+  },
+  {
+    "code": "P3445",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder Deactivation / Intake Valve Control Circuit Range/Performance",
+    "shortDescription": "Cylinder deactivation intake valve performance issue.",
+    "fullDescription": "P3445 indicates commanded intake valve deactivation did not produce the expected compression/vacuum response. Often a lifter that won't fully collapse.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Stuck AFM lifter", "likelihood": "high"},
+      {"cause": "Low oil pressure", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Noise"],
+    "fixSteps": [
+      {"step": 1, "title": "Oil pressure check", "instruction": "Verify oil pressure at idle and at operating temp.", "tools": ["pressure gauge"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace lifters", "instruction": "Replace failed MDS/AFM lifters.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 800, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "6-10 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Any warning signs?", "a": "Lifter tick is often the first sign — address promptly."}]
+  },
+  {
+    "code": "P3450",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 2 Exhaust Valve Control Circuit",
+    "shortDescription": "Cylinder 2 exhaust valve deactivation circuit fault.",
+    "fullDescription": "P3450 is set when the cylinder 2 exhaust valve deactivation solenoid circuit has a fault. Some engines deactivate both intake and exhaust valves separately.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Failed exhaust side solenoid", "likelihood": "high"}
+    ],
+    "symptoms": ["CEL"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace solenoid", "instruction": "Replace cylinder 2 exhaust deactivation solenoid.", "tools": ["sockets"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3400", "P3402"],
+    "faq": [{"q": "Intake vs exhaust solenoid?", "a": "Some engines use separate solenoids for each valve set — others combine them."}]
+  },
+  {
+    "code": "P3465",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 4 Exhaust Valve Control Performance",
+    "shortDescription": "Cylinder 4 exhaust valve deactivation performance fault.",
+    "fullDescription": "P3465 indicates cylinder 4 exhaust-side deactivation was commanded but mechanical response didn't match. Similar pattern to other cylinder deactivation codes.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Stuck exhaust lifter", "likelihood": "high"}
+    ],
+    "symptoms": ["CEL", "Noise"],
+    "fixSteps": [
+      {"step": 1, "title": "Oil analysis", "instruction": "Check oil condition and pressure.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace lifter", "instruction": "Replace exhaust side MDS lifter cyl 4.", "tools": ["engine tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 800, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "6-10 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Prevent future failure?", "a": "Use correct oil, change at proper intervals, install AFM delete if persistent."}]
+  },
+  {
+    "code": "P3475",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 6 Exhaust Valve Control Circuit",
+    "shortDescription": "Cylinder 6 exhaust valve deactivation circuit fault.",
+    "fullDescription": "P3475 is the cylinder 6 exhaust side deactivation electrical fault. Completes the set of per-cylinder deactivation codes on V8 AFM engines.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy impact.",
+    "causes": [
+      {"cause": "Failed solenoid", "likelihood": "high"}
+    ],
+    "symptoms": ["CEL"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace solenoid", "instruction": "Replace cyl 6 exhaust deactivation solenoid.", "tools": ["sockets"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3400"],
+    "faq": [{"q": "Cost to fix?", "a": "If just the solenoid, under $500. If lifter damage, much more."}]
+  },
+  {
+    "code": "P3490",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder Deactivation System Bank 2",
+    "shortDescription": "Bank 2 cylinder deactivation system general fault.",
+    "fullDescription": "P3490 indicates a general cylinder deactivation fault on bank 2. ECM may disable AFM/MDS until resolved.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Multiple solenoid faults", "likelihood": "high"},
+      {"cause": "Low oil pressure bank 2", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "MDS disabled"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for specific codes", "instruction": "Individual cylinder codes pinpoint which cylinder.", "tools": ["scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Fix per-cylinder", "instruction": "Repair as indicated by specific cylinder codes.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 1000}, "mechanic": {"min": 400, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "varies",
+    "relatedCodes": ["P3400", "P3402", "P3420"],
+    "faq": [{"q": "Is bank 2 the passenger side?", "a": "Depends on engine — bank 2 is the bank not containing cylinder 1."}]
   }
 ]
