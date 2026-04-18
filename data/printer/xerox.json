@@ -332,7 +332,7 @@
     "brandSlug": "xerox",
     "code": "024-747",
     "displayCode": "Error 024-747",
-    "errorType": "network",
+    "errorType": "connectivity",
     "title": "Network Connection Error",
     "shortDescription": "The printer cannot establish or maintain a network connection.",
     "fullDescription": "Error 024-747 indicates a network connectivity issue preventing communication between the printer and network resources.",
@@ -547,7 +547,7 @@
     "brandSlug": "xerox",
     "code": "092-651",
     "displayCode": "Error 092-651",
-    "errorType": "consumable",
+    "errorType": "hardware",
     "title": "Waste Toner Container Full",
     "shortDescription": "The waste toner container is full and must be replaced.",
     "fullDescription": "Error 092-651 means the waste toner collection container has reached capacity and all printing will stop until it is replaced.",
@@ -656,10 +656,10 @@
     "brandSlug": "xerox",
     "code": "116-324",
     "displayCode": "Error 116-324",
-    "errorType": "consumable",
+    "errorType": "ink",
     "title": "Toner Cartridge Not Recognized",
     "shortDescription": "A toner cartridge is not being detected or recognized.",
-    "fullDescription": "Error 116-324 means the printer cannot identify an installed toner cartridge, possibly due to an incompatible or improperly installed cartridge.",
+    "fullDescription": "Error 116-324 indicates the printer cannot identify an installed toner cartridge. This may be caused by an incompatible cartridge, dirty contacts on the cartridge chip, or a cartridge that is not fully seated in its slot.\n\nWhen a toner cartridge is not recognized, the printer will refuse to print using that color channel. In color printers, you may still be able to print in black and white if only a color cartridge is affected.\n\nTry removing the cartridge, cleaning the electrical contacts with a dry lint-free cloth, and reinstalling it firmly until it clicks into place.",
     "causes": [
       {
         "cause": "Cartridge not fully seated",
@@ -691,35 +691,35 @@
     "fixSteps": [
       {
         "step": 1,
-        "title": "Power Cycle",
-        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on.",
+        "title": "Remove and Reseat Cartridge",
+        "instruction": "Open the front cover, pull out the affected toner cartridge, and firmly reinstall it until it clicks into place.",
         "tools": [],
         "difficulty": "easy",
         "timeMinutes": 5
       },
       {
         "step": 2,
-        "title": "Check for Jams",
-        "instruction": "Open all doors and trays. Remove any jammed or misaligned paper.",
-        "tools": [],
+        "title": "Clean Chip Contacts",
+        "instruction": "Remove the cartridge and gently wipe the electrical contacts on both the cartridge chip and the printer slot with a dry lint-free cloth.",
+        "tools": ["lint-free cloth"],
         "difficulty": "easy",
-        "timeMinutes": 10
+        "timeMinutes": 5
       },
       {
         "step": 3,
-        "title": "Reseat Consumables",
-        "instruction": "Remove and firmly reinstall toner cartridges, drum cartridges, and waste containers.",
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on to reset the cartridge detection.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 10
+        "timeMinutes": 5
       },
       {
         "step": 4,
-        "title": "Check Firmware",
-        "instruction": "Navigate to the service menu and check for available firmware updates.",
-        "tools": [],
+        "title": "Try a Different Cartridge",
+        "instruction": "If the error persists, try installing a known genuine Xerox cartridge to rule out a defective or incompatible cartridge.",
+        "tools": ["replacement toner cartridge"],
         "difficulty": "easy",
-        "timeMinutes": 15
+        "timeMinutes": 5
       }
     ],
     "affectedSeries": [
@@ -730,16 +730,16 @@
     "estimatedCost": {
       "diy": {
         "min": 0,
-        "max": 50
+        "max": 80
       },
       "professional": {
         "min": 75,
-        "max": 300
+        "max": 200
       }
     },
     "diyDifficulty": "easy",
-    "repairTime": "10 to 30 minutes",
-    "whenToCallPro": "If the error persists after power cycling and basic troubleshooting.",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If multiple genuine cartridges are not recognized, the cartridge slot contacts or controller board may be faulty.",
     "relatedCodes": [
       "xerox-092-651",
       "xerox-116-325"
@@ -747,15 +747,15 @@
     "faq": [
       {
         "q": "What does Xerox error 116-324 mean?",
-        "a": "A toner cartridge is not being detected or recognized."
+        "a": "A toner cartridge is not being detected or recognized by the printer."
       },
       {
-        "q": "How do I clear this error?",
-        "a": "Start with a power cycle. If that fails, follow the specific fix steps for this error code."
+        "q": "Can I use third-party toner cartridges?",
+        "a": "Some third-party cartridges may trigger this error. Using genuine Xerox cartridges is recommended for compatibility."
       },
       {
         "q": "Do I need a service call?",
-        "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+        "a": "Usually not. Reseating the cartridge or cleaning contacts resolves this in most cases."
       }
     ]
   },
@@ -765,7 +765,7 @@
     "brandSlug": "xerox",
     "code": "116-325",
     "displayCode": "Error 116-325",
-    "errorType": "consumable",
+    "errorType": "ink",
     "title": "Toner Low",
     "shortDescription": "The toner cartridge is running low on toner.",
     "fullDescription": "Warning 116-325 alerts that a toner cartridge is nearing depletion. Printing can continue but replacement should be planned.",
@@ -872,7 +872,7 @@
     "brandSlug": "xerox",
     "code": "005-210",
     "displayCode": "Error 005-210",
-    "errorType": "hardware",
+    "errorType": "paper",
     "title": "Paper Tray 1 Empty",
     "shortDescription": "Paper tray 1 is empty and the printer cannot feed paper.",
     "fullDescription": "Error 005-210 indicates the main paper tray is out of paper. Printing will pause until paper is loaded.",
@@ -979,105 +979,107 @@
     "brandSlug": "xerox",
     "code": "024-746",
     "displayCode": "Error 024-746",
-    "errorType": "network",
-    "title": "WiFi Connection Failed",
-    "shortDescription": "The wireless network connection could not be established.",
-    "fullDescription": "Error 024-746 indicates the printer's WiFi module failed to connect to the configured wireless network.",
+    "errorType": "connectivity",
+    "title": "DHCP Address Assignment Failure",
+    "shortDescription": "The printer failed to obtain an IP address via DHCP.",
+    "fullDescription": "Error 024-746 indicates the printer's network interface was unable to receive an IP address from the DHCP server. Without a valid IP address, the printer cannot communicate on the network, and all network printing, scanning, and email features will be unavailable.\n\nThis commonly occurs when the DHCP server is down, the network cable is disconnected, or the DHCP scope is exhausted with no available addresses. Wireless models may also encounter this error if the Wi-Fi signal is too weak or the wireless credentials are incorrect.\n\nCheck the network cable connection, verify the DHCP server is operational, and consider assigning a static IP address as a workaround.",
     "causes": [
       {
-        "cause": "Incorrect WiFi credentials",
+        "cause": "DHCP server unreachable or down",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network cable disconnected or faulty",
         "likelihood": "high",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "WiFi signal too weak",
+        "cause": "DHCP address pool exhausted",
         "likelihood": "medium",
-        "fixDifficulty": "easy"
+        "fixDifficulty": "intermediate"
       },
       {
-        "cause": "Router compatibility issue",
+        "cause": "Wi-Fi signal too weak or wrong credentials",
         "likelihood": "medium",
         "fixDifficulty": "easy"
-      },
-      {
-        "cause": "WiFi module failure",
-        "likelihood": "low",
-        "fixDifficulty": "professional"
       }
     ],
     "symptoms": [
-      "WiFi connection error",
-      "Cannot print wirelessly",
-      "Network setup fails",
-      "Printer offline"
+      "No IP address assigned",
+      "Printer shows 0.0.0.0 or link-local address",
+      "Cannot print over network",
+      "Network configuration page shows DHCP failure"
     ],
     "fixSteps": [
       {
         "step": 1,
-        "title": "Power Cycle",
-        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on.",
-        "tools": [],
+        "title": "Check Network Cable",
+        "instruction": "Verify the Ethernet cable is securely connected to both the printer and the network switch or router. Try a different cable if available.",
+        "tools": ["Ethernet cable"],
         "difficulty": "easy",
         "timeMinutes": 5
       },
       {
         "step": 2,
-        "title": "Check for Jams",
-        "instruction": "Open all doors and trays. Remove any jammed or misaligned paper.",
+        "title": "Restart Printer and Router",
+        "instruction": "Power off the printer, then restart the router or network switch. Wait 2 minutes, then power the printer back on.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 10
+        "timeMinutes": 5
       },
       {
         "step": 3,
-        "title": "Reseat Consumables",
-        "instruction": "Remove and firmly reinstall toner cartridges, drum cartridges, and waste containers.",
+        "title": "Verify DHCP Server",
+        "instruction": "Confirm the DHCP server is running and has available IP addresses in its scope. Check other devices on the network to verify DHCP is functioning.",
         "tools": [],
-        "difficulty": "easy",
+        "difficulty": "intermediate",
         "timeMinutes": 10
       },
       {
         "step": 4,
-        "title": "Check Firmware",
-        "instruction": "Navigate to the service menu and check for available firmware updates.",
+        "title": "Assign Static IP",
+        "instruction": "As a workaround, navigate to the printer's control panel network settings and manually assign a static IP address, subnet mask, and gateway.",
         "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 15
+        "difficulty": "intermediate",
+        "timeMinutes": 10
       }
     ],
     "affectedSeries": [
       "Xerox VersaLink C405",
-      "Xerox B210",
-      "Xerox B215"
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "Xerox B210"
     ],
     "estimatedCost": {
       "diy": {
         "min": 0,
-        "max": 50
+        "max": 20
       },
       "professional": {
-        "min": 75,
-        "max": 300
+        "min": 50,
+        "max": 150
       }
     },
-    "diyDifficulty": "easy",
-    "repairTime": "10 to 30 minutes",
-    "whenToCallPro": "If the error persists after power cycling and basic troubleshooting.",
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If the network infrastructure is managed by IT and you cannot access DHCP server settings.",
     "relatedCodes": [
-      "xerox-024-747"
+      "xerox-024-747",
+      "xerox-024-969"
     ],
     "faq": [
       {
         "q": "What does Xerox error 024-746 mean?",
-        "a": "The wireless network connection could not be established."
+        "a": "The printer failed to obtain an IP address from the DHCP server and cannot connect to the network."
       },
       {
-        "q": "How do I clear this error?",
-        "a": "Start with a power cycle. If that fails, follow the specific fix steps for this error code."
+        "q": "Can I use the printer without DHCP?",
+        "a": "Yes, you can assign a static IP address through the printer control panel as a workaround."
       },
       {
         "q": "Do I need a service call?",
-        "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+        "a": "Usually not. This is a network configuration issue, not a printer hardware problem."
       }
     ]
   },
@@ -1087,7 +1089,7 @@
     "brandSlug": "xerox",
     "code": "041-340",
     "displayCode": "Error 041-340",
-    "errorType": "hardware",
+    "errorType": "paper",
     "title": "Paper Jam Front",
     "shortDescription": "Paper is jammed in the front paper path.",
     "fullDescription": "Error 041-340 indicates paper is stuck in the front area of the printer, typically between the tray and the fuser.",
@@ -1194,7 +1196,7 @@
     "brandSlug": "xerox",
     "code": "041-341",
     "displayCode": "Error 041-341",
-    "errorType": "hardware",
+    "errorType": "paper",
     "title": "Paper Jam Rear",
     "shortDescription": "Paper is jammed in the rear or fuser area.",
     "fullDescription": "Error 041-341 indicates paper is stuck in the rear paper path, typically in or near the fuser assembly.",
@@ -1301,7 +1303,7 @@
     "brandSlug": "xerox",
     "code": "041-342",
     "displayCode": "Error 041-342",
-    "errorType": "hardware",
+    "errorType": "paper",
     "title": "Paper Jam Duplex",
     "shortDescription": "Paper is jammed in the automatic duplex unit.",
     "fullDescription": "Error 041-342 indicates paper has jammed during automatic two-sided printing in the duplexer pathway.",
@@ -1410,7 +1412,7 @@
     "brandSlug": "xerox",
     "code": "026-700",
     "displayCode": "Error 026-700",
-    "errorType": "hardware",
+    "errorType": "paper",
     "title": "ADF Document Jam",
     "shortDescription": "A document is jammed in the automatic document feeder.",
     "fullDescription": "Error 026-700 indicates a page has become stuck in the ADF used for multi-page scanning and copying.",
@@ -1519,106 +1521,107 @@
     "brandSlug": "xerox",
     "code": "016-404",
     "displayCode": "Error 016-404",
-    "errorType": "software",
-    "title": "Authentication Error",
-    "shortDescription": "User authentication for secure print or scan failed.",
-    "fullDescription": "Error 016-404 indicates the user's authentication credentials were rejected when trying to access secure print, scan, or email features.",
+    "errorType": "paper",
+    "title": "Paper Jam in Feed Area",
+    "shortDescription": "Paper is jammed in the paper feed area of the printer.",
+    "fullDescription": "Error 016-404 indicates a paper jam has occurred in the feed area of the printer. The paper may be stuck between the tray and the imaging area, preventing the print job from completing.\n\nThis error typically occurs when paper is not loaded correctly, when the paper is wrinkled or damp, or when the feed rollers are dirty or worn. Multiple sheets being fed at once can also cause this jam.\n\nOpen the front and side covers, carefully remove any jammed paper by pulling in the direction of paper travel, and check for torn fragments before closing covers and resuming.",
     "causes": [
       {
-        "cause": "Incorrect username or password",
+        "cause": "Paper loaded incorrectly or fanned improperly",
         "likelihood": "high",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "LDAP/AD server unreachable",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
-      },
-      {
-        "cause": "Account locked out",
-        "likelihood": "medium",
+        "cause": "Damp, wrinkled, or curled paper",
+        "likelihood": "high",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "Authentication certificate expired",
+        "cause": "Dirty or worn feed rollers",
         "likelihood": "medium",
         "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Paper tray overfilled beyond max line",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
       }
     ],
     "symptoms": [
-      "Authentication failed",
-      "Cannot access secure features",
-      "Login rejected",
-      "Scan to email fails"
+      "Paper jam error on display",
+      "Printer stops mid-job",
+      "Paper visible in feed area",
+      "Grinding or crunching sounds during feed"
     ],
     "fixSteps": [
       {
         "step": 1,
-        "title": "Power Cycle",
-        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on.",
+        "title": "Open Covers and Remove Paper",
+        "instruction": "Open the front cover and any side panels. Gently pull jammed paper in the direction of paper travel. Check for torn fragments.",
         "tools": [],
         "difficulty": "easy",
         "timeMinutes": 5
       },
       {
         "step": 2,
-        "title": "Check for Jams",
-        "instruction": "Open all doors and trays. Remove any jammed or misaligned paper.",
+        "title": "Inspect Paper Tray",
+        "instruction": "Remove the paper tray, fan the paper stack, and reload it neatly. Ensure the stack does not exceed the maximum fill line. Adjust the paper guides to match the paper size.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 10
+        "timeMinutes": 5
       },
       {
         "step": 3,
-        "title": "Reseat Consumables",
-        "instruction": "Remove and firmly reinstall toner cartridges, drum cartridges, and waste containers.",
-        "tools": [],
-        "difficulty": "easy",
+        "title": "Clean Feed Rollers",
+        "instruction": "Dampen a lint-free cloth with water and gently wipe the rubber feed rollers to remove paper dust and debris.",
+        "tools": ["lint-free cloth"],
+        "difficulty": "intermediate",
         "timeMinutes": 10
       },
       {
         "step": 4,
-        "title": "Check Firmware",
-        "instruction": "Navigate to the service menu and check for available firmware updates.",
+        "title": "Power Cycle",
+        "instruction": "Close all covers, turn the printer off, wait 30 seconds, then turn it back on.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 15
+        "timeMinutes": 5
       }
     ],
     "affectedSeries": [
       "Xerox VersaLink C405",
-      "Xerox VersaLink B405",
-      "All enterprise Xerox models"
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
     ],
     "estimatedCost": {
       "diy": {
         "min": 0,
-        "max": 50
+        "max": 10
       },
       "professional": {
-        "min": 75,
-        "max": 300
+        "min": 50,
+        "max": 150
       }
     },
     "diyDifficulty": "easy",
-    "repairTime": "10 to 30 minutes",
-    "whenToCallPro": "If the error persists after power cycling and basic troubleshooting.",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If paper jams recur frequently despite using correct paper and clean rollers, the feed mechanism may need professional service.",
     "relatedCodes": [
-      "xerox-016-799",
-      "xerox-016-757"
+      "xerox-016-450",
+      "xerox-016-454"
     ],
     "faq": [
       {
         "q": "What does Xerox error 016-404 mean?",
-        "a": "User authentication for secure print or scan failed."
+        "a": "Paper is jammed in the feed area of the printer and must be cleared before printing can resume."
       },
       {
-        "q": "How do I clear this error?",
-        "a": "Start with a power cycle. If that fails, follow the specific fix steps for this error code."
+        "q": "Why do I keep getting paper jams?",
+        "a": "Frequent jams are usually caused by incorrect paper loading, damp paper, or worn feed rollers. Try fresh paper and clean the rollers."
       },
       {
         "q": "Do I need a service call?",
-        "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+        "a": "Not usually. Paper jams are typically user-clearable. Call a technician only if jams happen very frequently."
       }
     ]
   },
@@ -1628,106 +1631,107 @@
     "brandSlug": "xerox",
     "code": "016-757",
     "displayCode": "Error 016-757",
-    "errorType": "software",
-    "title": "Email/SMTP Error",
-    "shortDescription": "The printer cannot send emails via the configured SMTP server.",
-    "fullDescription": "Error 016-757 indicates the scan-to-email or fax-to-email function failed because the SMTP server connection could not be established or the email was rejected.",
+    "errorType": "hardware",
+    "title": "Image Quality Defect Detected",
+    "shortDescription": "The printer has detected an image quality issue affecting print output.",
+    "fullDescription": "Error 016-757 indicates the printer's image quality monitoring system has detected a problem with the print output. This could manifest as streaks, bands, spots, or color shifts on printed pages.\n\nImage quality issues can stem from depleted or damaged toner cartridges, a dirty or worn drum unit, contamination on the transfer belt, or incorrect color calibration settings. Environmental factors such as high humidity can also contribute.\n\nRun the built-in image quality troubleshooting from the printer's control panel, which will perform automatic calibration and print test pages to diagnose the issue.",
     "causes": [
       {
-        "cause": "SMTP server settings incorrect",
+        "cause": "Toner cartridge low or defective",
         "likelihood": "high",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "SMTP authentication failed",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "Email server down",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
-      },
-      {
-        "cause": "SSL/TLS certificate issue",
+        "cause": "Drum unit worn or scratched",
         "likelihood": "medium",
         "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Transfer belt contaminated",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Color calibration drift",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
       }
     ],
     "symptoms": [
-      "Email sending fails",
-      "Scan to email error",
-      "SMTP error in log",
-      "Address book emails fail"
+      "Streaks or bands on printed pages",
+      "Color shifts or incorrect colors",
+      "Spots or marks repeating on prints",
+      "Faded or uneven print density"
     ],
     "fixSteps": [
       {
         "step": 1,
-        "title": "Power Cycle",
-        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on.",
+        "title": "Run Color Calibration",
+        "instruction": "On the control panel, navigate to Device > Support > Image Quality and run the automatic color calibration routine.",
         "tools": [],
         "difficulty": "easy",
         "timeMinutes": 5
       },
       {
         "step": 2,
-        "title": "Check for Jams",
-        "instruction": "Open all doors and trays. Remove any jammed or misaligned paper.",
-        "tools": [],
+        "title": "Check Toner Levels",
+        "instruction": "Check the toner levels on the supply status screen. Replace any cartridges that are low or empty.",
+        "tools": ["replacement toner cartridge"],
         "difficulty": "easy",
         "timeMinutes": 10
       },
       {
         "step": 3,
-        "title": "Reseat Consumables",
-        "instruction": "Remove and firmly reinstall toner cartridges, drum cartridges, and waste containers.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 10
+        "title": "Clean or Replace Drum",
+        "instruction": "Remove the drum cartridge and inspect for scratches or contamination. Clean gently with a dry lint-free cloth or replace if worn.",
+        "tools": ["lint-free cloth"],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
       },
       {
         "step": 4,
-        "title": "Check Firmware",
-        "instruction": "Navigate to the service menu and check for available firmware updates.",
+        "title": "Print Test Page",
+        "instruction": "Print a test page from the control panel to verify that the image quality issue is resolved.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 15
+        "timeMinutes": 5
       }
     ],
     "affectedSeries": [
       "Xerox VersaLink C405",
-      "Xerox VersaLink B405",
-      "Xerox WorkCentre 6515"
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
     ],
     "estimatedCost": {
       "diy": {
         "min": 0,
-        "max": 50
+        "max": 80
       },
       "professional": {
         "min": 75,
-        "max": 300
+        "max": 250
       }
     },
-    "diyDifficulty": "easy",
-    "repairTime": "10 to 30 minutes",
-    "whenToCallPro": "If the error persists after power cycling and basic troubleshooting.",
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If image quality issues persist after replacing consumables and running calibration, the imaging system may need professional diagnosis.",
     "relatedCodes": [
       "xerox-016-799",
-      "xerox-016-404"
+      "xerox-077-316"
     ],
     "faq": [
       {
         "q": "What does Xerox error 016-757 mean?",
-        "a": "The printer cannot send emails via the configured SMTP server."
+        "a": "The printer has detected an image quality problem such as streaks, banding, or color issues on printed output."
       },
       {
-        "q": "How do I clear this error?",
-        "a": "Start with a power cycle. If that fails, follow the specific fix steps for this error code."
+        "q": "Will running calibration fix the problem?",
+        "a": "Often yes. Color calibration corrects drift in color accuracy. If the issue is hardware-related, consumable replacement may also be needed."
       },
       {
         "q": "Do I need a service call?",
-        "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+        "a": "Try calibration and consumable replacement first. Call a technician if the issue persists."
       }
     ]
   },
@@ -1738,103 +1742,105 @@
     "code": "042-326",
     "displayCode": "Error 042-326",
     "errorType": "hardware",
-    "title": "Paper Feed Failure",
-    "shortDescription": "The printer cannot pick up paper from the tray.",
-    "fullDescription": "Error 042-326 indicates the paper feed mechanism is unable to pick up paper from the selected tray despite paper being loaded.",
+    "title": "Waste Toner Bottle Issue",
+    "shortDescription": "The waste toner collection bottle is not detected or is full.",
+    "fullDescription": "Error 042-326 indicates a problem with the waste toner collection bottle. The bottle may not be installed correctly, may be full, or the sensor detecting it may be malfunctioning.\n\nThe waste toner bottle collects excess toner from the printing process. When it is full or not properly seated, the printer will halt all operations to prevent toner contamination inside the machine.\n\nRemove the waste toner bottle, check its fill level, and reinstall it securely. Replace the bottle if it is full.",
     "causes": [
       {
-        "cause": "Feed roller contamination",
+        "cause": "Waste toner bottle full",
         "likelihood": "high",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "Feed roller wear",
-        "likelihood": "medium",
-        "fixDifficulty": "intermediate"
+        "cause": "Bottle not seated properly",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
       },
       {
-        "cause": "Paper loaded incorrectly",
+        "cause": "Bottle detection sensor dirty",
         "likelihood": "medium",
         "fixDifficulty": "easy"
       },
       {
-        "cause": "Paper tray overfilled",
-        "likelihood": "medium",
-        "fixDifficulty": "easy"
+        "cause": "Sensor malfunction",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
       }
     ],
     "symptoms": [
-      "Paper not feeding",
-      "Multiple sheets feed",
-      "Misfeed error",
-      "Blank pages output"
+      "Waste toner error on display",
+      "Printing halted completely",
+      "Replace waste toner message",
+      "Toner dust visible inside printer"
     ],
     "fixSteps": [
       {
         "step": 1,
-        "title": "Power Cycle",
-        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on.",
+        "title": "Remove Waste Toner Bottle",
+        "instruction": "Open the front cover and carefully remove the waste toner bottle. Keep it upright to avoid spilling used toner.",
         "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Check Fill Level",
+        "instruction": "Inspect the waste toner bottle. If it is full or nearly full, replace it with a new bottle. If not full, clean the sensor area and reseat.",
+        "tools": ["replacement waste toner bottle"],
         "difficulty": "easy",
         "timeMinutes": 5
       },
       {
-        "step": 2,
-        "title": "Check for Jams",
-        "instruction": "Open all doors and trays. Remove any jammed or misaligned paper.",
-        "tools": [],
-        "difficulty": "easy",
-        "timeMinutes": 10
-      },
-      {
         "step": 3,
-        "title": "Reseat Consumables",
-        "instruction": "Remove and firmly reinstall toner cartridges, drum cartridges, and waste containers.",
-        "tools": [],
+        "title": "Clean Sensor Area",
+        "instruction": "Wipe the waste toner bottle sensor inside the printer with a dry lint-free cloth to remove any toner dust.",
+        "tools": ["lint-free cloth"],
         "difficulty": "easy",
-        "timeMinutes": 10
+        "timeMinutes": 5
       },
       {
         "step": 4,
-        "title": "Check Firmware",
-        "instruction": "Navigate to the service menu and check for available firmware updates.",
+        "title": "Reinstall and Test",
+        "instruction": "Insert the new or cleaned bottle firmly until it clicks into place. Close the cover and power cycle the printer.",
         "tools": [],
         "difficulty": "easy",
-        "timeMinutes": 15
+        "timeMinutes": 5
       }
     ],
     "affectedSeries": [
-      "All Xerox laser models"
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515"
     ],
     "estimatedCost": {
       "diy": {
-        "min": 0,
-        "max": 50
+        "min": 5,
+        "max": 30
       },
       "professional": {
-        "min": 75,
-        "max": 300
+        "min": 50,
+        "max": 150
       }
     },
     "diyDifficulty": "easy",
-    "repairTime": "10 to 30 minutes",
-    "whenToCallPro": "If the error persists after power cycling and basic troubleshooting.",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the error persists after replacing the waste toner bottle, the sensor or controller may need repair.",
     "relatedCodes": [
-      "xerox-010-351",
-      "xerox-010-397"
+      "xerox-042-359",
+      "xerox-092-651"
     ],
     "faq": [
       {
         "q": "What does Xerox error 042-326 mean?",
-        "a": "The printer cannot pick up paper from the tray."
+        "a": "The waste toner collection bottle is either full, missing, or not properly installed."
       },
       {
-        "q": "How do I clear this error?",
-        "a": "Start with a power cycle. If that fails, follow the specific fix steps for this error code."
+        "q": "How often should I replace the waste toner bottle?",
+        "a": "Typically every 30,000 to 50,000 pages depending on coverage and model. The printer will alert you when replacement is needed."
       },
       {
         "q": "Do I need a service call?",
-        "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+        "a": "No, waste toner bottle replacement is a simple user-replaceable task."
       }
     ]
   },
@@ -2160,6 +2166,2721 @@
       {
         "q": "Do I need a service call?",
         "a": "Many Xerox errors can be resolved by the user. Service is needed for hardware failures."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-210",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-210",
+    "displayCode": "016-210",
+    "errorType": "ink",
+    "title": "Toner Low Warning",
+    "shortDescription": "One or more toner cartridges are running low and will need replacement soon.",
+    "fullDescription": "Error 016-210 is a warning that one or more toner cartridges in the printer are nearing depletion. The printer will continue to operate normally for a period, but print quality may begin to degrade as the toner level drops further.\n\nThis is a proactive alert designed to give you time to order replacement cartridges before they run out completely. The number of remaining pages depends on your print coverage and the amount of toner remaining.\n\nYou can temporarily extend the cartridge life by removing the cartridge and gently rocking it side to side to redistribute the remaining toner evenly.",
+    "causes": [
+      {
+        "cause": "Normal toner consumption through regular printing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High coverage print jobs consuming toner faster",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Toner sensor detecting low level",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Toner low warning on display",
+      "Gradually fading prints",
+      "Light streaks on printed pages",
+      "Order toner notification"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Toner Levels",
+        "instruction": "On the control panel, navigate to Device > Supplies to see which cartridge is low and the estimated remaining percentage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Redistribute Toner",
+        "instruction": "Remove the low toner cartridge, hold it level, and gently rock it side to side 5-6 times to redistribute remaining toner. Reinstall the cartridge.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Order Replacement",
+        "instruction": "Note the cartridge part number from the supplies page and order a genuine Xerox replacement cartridge.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Replace Cartridge When Ready",
+        "instruction": "When the new cartridge arrives, open the front cover, remove the old cartridge, unbox the new one, remove the protective seal, and install it firmly until it clicks.",
+        "tools": ["replacement toner cartridge"],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "This is a consumable replacement that does not require professional service.",
+    "relatedCodes": [
+      "xerox-printer-016-211",
+      "xerox-116-324"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 016-210 mean?",
+        "a": "One or more toner cartridges are running low and should be replaced soon."
+      },
+      {
+        "q": "Can I still print with a toner low warning?",
+        "a": "Yes, you can continue printing. The warning gives you time to order a replacement before the cartridge is completely empty."
+      },
+      {
+        "q": "How many pages can I print after this warning?",
+        "a": "It varies based on your print coverage, but typically 100-500 pages remain after the initial low toner warning."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-211",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-211",
+    "displayCode": "016-211",
+    "errorType": "ink",
+    "title": "Toner Cartridge Empty",
+    "shortDescription": "A toner cartridge is empty and must be replaced to continue printing.",
+    "fullDescription": "Error 016-211 indicates that a toner cartridge has been fully depleted. The printer will stop printing with the affected color until the cartridge is replaced. On color models, if only one color is empty, you may still be able to print in black and white.\n\nContinuing to print with an empty cartridge can damage the drum unit, so the printer enforces this stop to protect internal components. The empty cartridge should be replaced as soon as possible.\n\nRemove the empty cartridge, unbox the replacement, remove the protective seal tape, and install the new cartridge firmly until it clicks into the correct position.",
+    "causes": [
+      {
+        "cause": "Toner completely consumed through normal use",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High coverage printing depleted toner prematurely",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cartridge reached rated page yield",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Replace toner message on display",
+      "Printing halted for affected color",
+      "Blank or extremely faded output",
+      "Cartridge empty indicator on supply status"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify Empty Cartridge",
+        "instruction": "Check the display or navigate to Device > Supplies to identify which toner cartridge is empty.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Remove Empty Cartridge",
+        "instruction": "Open the front cover, grasp the empty cartridge handle, and pull it straight out toward you.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Prepare New Cartridge",
+        "instruction": "Unbox the new cartridge, remove the protective orange tape and sealing strip. Gently rock the cartridge side to side to distribute toner evenly.",
+        "tools": ["replacement toner cartridge"],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Install New Cartridge",
+        "instruction": "Slide the new cartridge into the correct slot matching the color label. Push firmly until it clicks into place. Close the front cover.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 150
+      },
+      "professional": {
+        "min": 80,
+        "max": 220
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Toner replacement does not require professional service. Call a pro only if the error persists after installing a new genuine cartridge.",
+    "relatedCodes": [
+      "xerox-printer-016-210",
+      "xerox-116-324"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 016-211 mean?",
+        "a": "A toner cartridge is completely empty and must be replaced before printing can resume."
+      },
+      {
+        "q": "Can I print in black and white if a color cartridge is empty?",
+        "a": "On some models yes. Check your printer settings for a black-and-white only mode when a color cartridge is depleted."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "No, toner replacement is a standard user task. No tools or technician required."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-450",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-450",
+    "displayCode": "016-450",
+    "errorType": "paper",
+    "title": "Paper Jam at Exit",
+    "shortDescription": "Paper is jammed at the output or exit area of the printer.",
+    "fullDescription": "Error 016-450 indicates paper has become jammed at the exit point of the printer, where pages are delivered to the output tray. The paper may be partially visible protruding from the exit slot.\n\nThis jam typically occurs when paper curls excessively during the fusing process, when the exit rollers are dirty or worn, or when previously printed pages in the output tray are blocking the exit path.\n\nCarefully pull the jammed paper in the direction of travel (toward the output tray) to avoid tearing. Check for any torn fragments inside the fuser exit area before resuming printing.",
+    "causes": [
+      {
+        "cause": "Paper curling after fusing due to humidity or paper type",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Exit rollers dirty or worn",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Output tray full blocking exit path",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Paper weight outside recommended range",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Paper jam error indicating exit area",
+      "Paper partially visible at output slot",
+      "Print job stops near completion",
+      "Crumpled pages in output tray"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Remove Jammed Paper from Exit",
+        "instruction": "Gently pull the jammed paper from the exit area in the direction of paper travel. Pull steadily to avoid tearing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Clear Output Tray",
+        "instruction": "Remove all printed pages from the output tray to ensure the exit path is not blocked.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Check for Paper Fragments",
+        "instruction": "Open the rear cover and inspect the fuser exit area for any torn paper fragments. Remove any pieces found.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle and Test",
+        "instruction": "Close all covers, power cycle the printer, and print a test page to verify the jam is cleared.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If exit jams recur frequently, the exit rollers or fuser exit guides may need professional inspection.",
+    "relatedCodes": [
+      "xerox-016-404",
+      "xerox-016-454"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 016-450 mean?",
+        "a": "Paper is jammed at the exit or output area of the printer."
+      },
+      {
+        "q": "Why does paper keep jamming at the exit?",
+        "a": "Common causes include humid paper that curls during fusing, a full output tray, or dirty exit rollers."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Usually not. Clear the jam and check paper quality. Frequent exit jams may indicate worn rollers needing service."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-454",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-454",
+    "displayCode": "016-454",
+    "errorType": "paper",
+    "title": "Paper Jam in Duplex Unit",
+    "shortDescription": "Paper is jammed in the automatic duplexing unit during two-sided printing.",
+    "fullDescription": "Error 016-454 indicates a paper jam has occurred within the automatic duplexing unit while performing two-sided printing. The paper gets stuck when it is being flipped over for printing on the second side.\n\nDuplex jams are often caused by paper that is too thin, too thick, or too damp for reliable duplexing. The paper guides in the duplex path may also be dirty or the duplex rollers may be worn.\n\nOpen the rear or bottom duplex access panel, carefully remove the jammed paper, and check for any torn fragments in the duplex pathway before closing the panel and resuming.",
+    "causes": [
+      {
+        "cause": "Paper too thin or lightweight for duplexing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Paper curled from humidity or fusing heat",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Duplex rollers dirty or worn",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Duplex unit not seated properly",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Duplex jam error message",
+      "Two-sided print job stops mid-process",
+      "Paper stuck in rear/bottom duplex area",
+      "Only one side of page printed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Access Duplex Unit",
+        "instruction": "Open the rear cover or remove the duplex unit from the bottom of the printer to access the jammed paper.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Remove Jammed Paper",
+        "instruction": "Carefully pull the jammed paper out in the direction of paper travel. Check for any torn fragments and remove them.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Paper Type",
+        "instruction": "Verify you are using paper between 60-105 gsm for duplexing. Replace with appropriate weight paper if needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Reseat Duplex Unit",
+        "instruction": "If the duplex unit is removable, take it out and firmly reinstall it. Close all covers and power cycle the printer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink B405",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If duplex jams occur frequently despite using correct paper weight, the duplex mechanism may need professional repair.",
+    "relatedCodes": [
+      "xerox-016-404",
+      "xerox-016-450"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 016-454 mean?",
+        "a": "Paper is jammed inside the automatic duplexing unit during two-sided printing."
+      },
+      {
+        "q": "What paper weight works for duplexing?",
+        "a": "Most Xerox printers support duplexing with paper between 60 and 105 gsm. Check your model's specifications."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Not usually. Clear the jam and use appropriate paper. Frequent jams may indicate a worn duplex mechanism."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-024-969",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "024-969",
+    "displayCode": "024-969",
+    "errorType": "connectivity",
+    "title": "Authentication Server Error",
+    "shortDescription": "The printer cannot communicate with the authentication server.",
+    "fullDescription": "Error 024-969 indicates the printer failed to connect to the configured authentication server (such as LDAP, Active Directory, or Kerberos) when a user attempted to log in or access a secure feature.\n\nThis error prevents users from accessing secure print, scan-to-email, or other authenticated functions. The authentication server may be down, the network connection between the printer and server may be broken, or the server credentials configured on the printer may be incorrect.\n\nVerify the authentication server is running, check network connectivity between the printer and the server, and review the authentication settings in the printer's Embedded Web Server (EWS).",
+    "causes": [
+      {
+        "cause": "Authentication server offline or unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Incorrect server address or port configured",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network connectivity issue between printer and server",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Authentication credentials expired or changed",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Login fails at printer panel",
+      "Authentication error message displayed",
+      "Secure print features unavailable",
+      "Scan-to-email returns authentication failure"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Server Status",
+        "instruction": "Confirm the authentication server (LDAP/Active Directory) is running and accessible from other devices on the network.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Network Connectivity",
+        "instruction": "From the printer's control panel, run a network connectivity test or ping the server address to verify the printer can reach it.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Review Authentication Settings",
+        "instruction": "Access the printer's Embedded Web Server via a browser, navigate to Properties > Connectivity > Authentication, and verify the server address, port, and bind credentials are correct.",
+        "tools": ["computer with web browser"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle Printer",
+        "instruction": "Turn off the printer, wait 30 seconds, and turn it back on. Attempt authentication again.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "Xerox AltaLink C8055"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If you do not have access to the authentication server configuration or the printer's admin settings, contact your IT department.",
+    "relatedCodes": [
+      "xerox-printer-024-924",
+      "xerox-024-747"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 024-969 mean?",
+        "a": "The printer cannot connect to the authentication server needed for secure login and features."
+      },
+      {
+        "q": "Can I still print without authentication?",
+        "a": "If your environment requires authentication, you cannot access secure features. Basic printing via USB may still work if enabled."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "This is typically a network/server configuration issue. Contact your IT administrator rather than a printer technician."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-010-317",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "010-317",
+    "displayCode": "010-317",
+    "errorType": "hardware",
+    "title": "Transfer Belt Error",
+    "shortDescription": "The transfer belt assembly has malfunctioned or failed.",
+    "fullDescription": "Error 010-317 indicates a failure in the transfer belt assembly, which is responsible for transferring toner images from the drum cartridges onto the paper. When the transfer belt fails, print quality is severely affected or printing stops entirely.\n\nThe transfer belt may have reached its rated lifespan, may be mechanically jammed, or its drive motor may have failed. In color printers, a failed transfer belt causes complete color misregistration or blank output.\n\nPower cycle the printer first. If the error persists, the transfer belt unit will need to be replaced. This is a user-replaceable component on most VersaLink and Phaser models.",
+    "causes": [
+      {
+        "cause": "Transfer belt reached end of life",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Transfer belt drive motor failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Transfer belt misaligned or stuck",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Foreign object on transfer belt surface",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Transfer belt error on display",
+      "Complete color misregistration",
+      "Blank or very faded output",
+      "Printer stops mid-print"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, wait 60 seconds, and turn it back on. Some transfer belt errors are caused by temporary sensor issues.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect Transfer Belt",
+        "instruction": "Open the front cover and visually inspect the transfer belt for damage, debris, or misalignment. Remove any visible foreign objects.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reseat Transfer Belt",
+        "instruction": "Remove the transfer belt unit by lifting the release levers and pulling it out. Inspect the surface and reinstall it firmly.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Replace Transfer Belt",
+        "instruction": "If the belt is worn or damaged, install a new transfer belt unit. Follow the instructions included with the replacement part.",
+        "tools": ["replacement transfer belt unit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 200
+      },
+      "professional": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If the error persists after replacing the transfer belt, the drive motor or controller board may need professional diagnosis.",
+    "relatedCodes": [
+      "xerox-printer-092-310",
+      "xerox-093-310"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 010-317 mean?",
+        "a": "The transfer belt assembly has failed and likely needs replacement."
+      },
+      {
+        "q": "How long does a transfer belt last?",
+        "a": "Typically 100,000 to 200,000 pages depending on the model and usage patterns."
+      },
+      {
+        "q": "Can I replace the transfer belt myself?",
+        "a": "Yes, on most Xerox models the transfer belt is a user-replaceable component that slides in and out of the front."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-077-316",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "077-316",
+    "displayCode": "077-316",
+    "errorType": "hardware",
+    "title": "Imaging Unit Error",
+    "shortDescription": "The imaging unit (drum) has malfunctioned or is not detected.",
+    "fullDescription": "Error 077-316 indicates a problem with one of the imaging units (drum cartridges) in the printer. The imaging unit may not be detected, may be improperly installed, or may have a communication error with the printer's controller.\n\nImaging units are photosensitive drums that create the electrostatic image transferred to paper. When an imaging unit fails, the affected color channel produces no output or severely degraded output.\n\nRemove and reinstall the affected imaging unit, ensuring the contacts are clean and the unit is fully seated. If the error persists, the imaging unit may need replacement.",
+    "causes": [
+      {
+        "cause": "Imaging unit not fully seated",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty electrical contacts on imaging unit",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Imaging unit reached end of life",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Imaging unit chip communication failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Imaging unit error on display",
+      "One color missing from output",
+      "Vertical lines or streaks on prints",
+      "Drum cartridge not recognized message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat Imaging Unit",
+        "instruction": "Open the front cover, remove the affected imaging unit by its handle, and firmly reinstall it until it clicks into place.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean Contacts",
+        "instruction": "Remove the imaging unit and gently wipe the electrical contacts on the unit and inside the printer slot with a dry lint-free cloth.",
+        "tools": ["lint-free cloth"],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, wait 30 seconds, and power it back on. The printer will re-detect the imaging unit during startup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Replace Imaging Unit",
+        "instruction": "If the error persists, replace the imaging unit with a new genuine Xerox part. Avoid exposing the drum surface to direct light during installation.",
+        "tools": ["replacement imaging unit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 150
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If multiple imaging units are failing simultaneously or the error persists after replacement, the printer's imaging controller may need diagnosis.",
+    "relatedCodes": [
+      "xerox-077-900",
+      "xerox-116-324"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 077-316 mean?",
+        "a": "An imaging unit (drum cartridge) is not working properly or is not being detected by the printer."
+      },
+      {
+        "q": "Is the imaging unit the same as the toner cartridge?",
+        "a": "No. The imaging unit (drum) is a separate component from the toner cartridge. Both need periodic replacement but at different intervals."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Try reseating and cleaning contacts first. Imaging unit replacement is a user-serviceable task on most models."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-010-320",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "010-320",
+    "displayCode": "010-320",
+    "errorType": "hardware",
+    "title": "Fuser Exit Sensor Error",
+    "shortDescription": "The fuser exit sensor has detected a malfunction or paper stoppage.",
+    "fullDescription": "Error 010-320 indicates the sensor at the fuser exit has detected an abnormality. This sensor monitors paper as it exits the fuser assembly after toner has been bonded to the page. If paper fails to exit the fuser within the expected time, or the sensor itself malfunctions, this error is triggered.\n\nThe issue may be a paper jam at the fuser exit, a dirty or failing sensor, or a mechanical problem with the fuser exit rollers. In some cases, the error is caused by label stock or thick media that moves more slowly through the fuser.\n\nCheck for any paper stuck at the fuser exit area, clean the sensor if accessible, and verify you are using supported media types.",
+    "causes": [
+      {
+        "cause": "Paper jammed at fuser exit point",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fuser exit sensor dirty or obstructed",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Fuser exit roller worn or damaged",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Thick or specialty media causing slow exit",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Fuser exit error on display",
+      "Paper stopped at fuser area",
+      "Prints wrinkled or stuck at exit",
+      "Error occurs with thick media"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear Fuser Exit Area",
+        "instruction": "Open the rear cover and carefully remove any paper stuck at the fuser exit. Use caution as the fuser area may be hot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect for Debris",
+        "instruction": "Look for torn paper fragments, label adhesive residue, or other debris near the fuser exit sensor and rollers. Remove any found.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Media Type",
+        "instruction": "Verify the paper or media loaded is within the printer's supported weight and type specifications. Avoid unsupported label stock.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle",
+        "instruction": "Close all covers, turn the printer off for 60 seconds, then turn it back on. Print a test page to verify the error is cleared.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If the error recurs after clearing jams and the fuser exit sensor or rollers appear damaged, professional service is recommended.",
+    "relatedCodes": [
+      "xerox-010-351",
+      "xerox-printer-010-318"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 010-320 mean?",
+        "a": "The fuser exit sensor detected a problem, usually a paper stoppage or sensor malfunction at the fuser exit."
+      },
+      {
+        "q": "Is it safe to touch the fuser area?",
+        "a": "Use caution. The fuser operates at high temperatures. Let the printer cool for a few minutes before reaching into the fuser exit area."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Clear jams first. If the error recurs without jammed paper, a sensor or roller replacement may be needed."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-010-318",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "010-318",
+    "displayCode": "010-318",
+    "errorType": "hardware",
+    "title": "Fuser Heat Error",
+    "shortDescription": "The fuser unit is not reaching or maintaining the required temperature.",
+    "fullDescription": "Error 010-318 indicates the fuser unit cannot reach its target operating temperature or is unable to maintain it during printing. The fuser must reach a specific temperature to properly bond toner to paper, and when it cannot, print quality suffers or the printer halts.\n\nThis error can be caused by a failing fuser heating element, a defective thermistor (temperature sensor), a faulty power supply, or simply an inadequate electrical supply to the printer. In cold environments, it may take longer for the fuser to warm up.\n\nAllow the printer to warm up fully, ensure it is connected to a dedicated electrical outlet (not a power strip), and power cycle it. If the error persists, the fuser unit likely needs replacement.",
+    "causes": [
+      {
+        "cause": "Fuser heating element failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Thermistor (temperature sensor) malfunction",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Insufficient power supply to printer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cold environment slowing fuser warm-up",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Fuser temperature error on display",
+      "Toner smears or rubs off printed pages",
+      "Printer takes very long to warm up",
+      "Print jobs fail with fuser error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Power Connection",
+        "instruction": "Ensure the printer is plugged directly into a wall outlet, not through a power strip or extension cord. Verify the outlet provides stable power.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Allow Full Warm-Up",
+        "instruction": "Turn the printer off, wait 5 minutes, then turn it back on. Allow at least 3-5 minutes for the fuser to reach operating temperature.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reseat Fuser Unit",
+        "instruction": "If accessible, open the rear cover, release the fuser retention levers, remove the fuser, and reinstall it firmly. Caution: the fuser may be hot.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Replace Fuser Unit",
+        "instruction": "If the error persists, the fuser heating element has likely failed. Replace the fuser unit with a genuine Xerox replacement.",
+        "tools": ["replacement fuser unit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 250
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If the fuser heat error persists after reseating and the fuser element has failed, professional replacement is recommended unless you are comfortable replacing the fuser yourself.",
+    "relatedCodes": [
+      "xerox-010-351",
+      "xerox-printer-010-320"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 010-318 mean?",
+        "a": "The fuser unit is unable to reach or maintain the temperature needed to bond toner to paper."
+      },
+      {
+        "q": "Can a power strip cause this error?",
+        "a": "Yes. Power strips can limit voltage to the printer. Always connect directly to a wall outlet."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "If reseating the fuser and checking power does not help, the fuser likely needs replacement which can be done by the user or a technician."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-092-310",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "092-310",
+    "displayCode": "092-310",
+    "errorType": "hardware",
+    "title": "IBT Belt Life Warning",
+    "shortDescription": "The intermediate transfer belt (IBT) is nearing end of life.",
+    "fullDescription": "Error 092-310 is a maintenance warning indicating the Intermediate Belt Transfer (IBT) unit is approaching or has reached its rated page life. The IBT belt transfers toner from the photoconductor drums to the paper in color laser printers.\n\nAs the IBT belt wears, you may notice gradual color quality degradation including banding, ghosting, or color registration shifts. The printer will continue to operate for a period after this warning, but the belt should be replaced soon to maintain output quality.\n\nOrder a replacement IBT belt unit and plan for installation. The belt is a user-replaceable component on most Xerox color models.",
+    "causes": [
+      {
+        "cause": "IBT belt reached rated page life",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "High print volume accelerated belt wear",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Belt surface degradation from normal use",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Replace IBT belt message",
+      "Color banding in prints",
+      "Color registration shifting",
+      "Ghosting or shadow images on output"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Belt Status",
+        "instruction": "Navigate to Device > Supplies on the control panel to check the remaining life percentage of the IBT belt.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Order Replacement",
+        "instruction": "Note the IBT belt part number for your model and order a genuine Xerox replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Remove Old Belt",
+        "instruction": "Open the front cover, remove the toner cartridges, release the IBT belt retention levers, and carefully slide out the old belt unit.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Install New Belt",
+        "instruction": "Slide the new IBT belt unit into position, secure the retention levers, reinstall all toner cartridges, and close the front cover. The printer will automatically reset the belt counter.",
+        "tools": ["replacement IBT belt unit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 250
+      },
+      "professional": {
+        "min": 200,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-25 minutes",
+    "whenToCallPro": "IBT belt replacement is user-serviceable, but call a technician if you are uncomfortable removing internal components or if the new belt does not resolve quality issues.",
+    "relatedCodes": [
+      "xerox-printer-010-317",
+      "xerox-093-310"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 092-310 mean?",
+        "a": "The intermediate transfer belt (IBT) is nearing end of life and should be replaced to maintain print quality."
+      },
+      {
+        "q": "Can I keep printing after this warning?",
+        "a": "Yes, for a limited number of pages. However, print quality will degrade. Plan to replace the belt soon."
+      },
+      {
+        "q": "How long does the IBT belt last?",
+        "a": "Typically 100,000 to 200,000 pages depending on the model and print volume."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-042-359",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "042-359",
+    "displayCode": "042-359",
+    "errorType": "hardware",
+    "title": "Waste Toner Container Full",
+    "shortDescription": "The waste toner container has reached capacity and must be replaced.",
+    "fullDescription": "Error 042-359 indicates the waste toner collection container is completely full. The printer will stop all print operations until the container is replaced to prevent toner from spilling inside the machine and causing damage.\n\nThe waste toner container collects excess and unused toner from the printing process. It fills gradually over the life of the printer and is a normal maintenance item. Replacing the waste toner container is simple and does not require any tools.\n\nPurchase a replacement waste toner container for your model, remove the full container carefully (keeping it upright to avoid spilling), and install the new container.",
+    "causes": [
+      {
+        "cause": "Waste toner container reached maximum capacity",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High print volume filled container faster",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High coverage prints generating more waste toner",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Waste toner full message on display",
+      "All printing stopped",
+      "Replace waste container notification",
+      "Printer refuses to start print jobs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Open Access Panel",
+        "instruction": "Open the front or side cover to access the waste toner container. The location varies by model.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Remove Full Container",
+        "instruction": "Carefully remove the full waste toner container, keeping it upright. Place it in the bag provided with the replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Install New Container",
+        "instruction": "Unbox the new waste toner container and slide it into position until it locks into place.",
+        "tools": ["replacement waste toner container"],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Close and Test",
+        "instruction": "Close the access panel. The printer will automatically detect the new container and reset the counter. Print a test page.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 35
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Waste toner container replacement is a simple user task. No professional service is needed.",
+    "relatedCodes": [
+      "xerox-042-326",
+      "xerox-092-651"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 042-359 mean?",
+        "a": "The waste toner container is completely full and must be replaced before printing can continue."
+      },
+      {
+        "q": "Can I empty the waste toner container and reuse it?",
+        "a": "This is not recommended. The container includes a counter chip that may not reset, and handling waste toner can be messy and unhealthy."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "No. This is one of the simplest maintenance tasks and requires no tools."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-005-310",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "005-310",
+    "displayCode": "005-310",
+    "errorType": "hardware",
+    "title": "Finisher Error",
+    "shortDescription": "The finisher accessory has encountered a mechanical error.",
+    "fullDescription": "Error 005-310 indicates a malfunction in the attached finisher unit, which handles stapling, hole punching, collating, or booklet-making functions. The finisher may have a paper jam, a staple jam, or a mechanical failure in one of its components.\n\nFinisher errors prevent the printer from completing jobs that require finishing operations. Standard print jobs without finishing may still work if you change the output destination to the main output tray.\n\nCheck the finisher for paper jams and staple jams. Ensure the staple cartridge is properly installed and not empty. Power cycle the printer with the finisher attached to reset the finisher controller.",
+    "causes": [
+      {
+        "cause": "Paper jam inside finisher unit",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Staple jam or empty staple cartridge",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Finisher mechanical component failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Finisher not properly connected to printer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Finisher error message on display",
+      "Stapling not working",
+      "Paper jammed in finisher area",
+      "Finishing options grayed out in driver"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check for Paper Jams",
+        "instruction": "Open all finisher access doors and remove any jammed paper. Check all paper paths within the finisher.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Staple Cartridge",
+        "instruction": "Remove the staple cartridge, check for jammed staples, and clear any visible staple jams. Reinstall or replace the cartridge if empty.",
+        "tools": ["replacement staple cartridge"],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reseat Finisher Connection",
+        "instruction": "If the finisher is detachable, disconnect it from the printer and reconnect it, ensuring all cables and connectors are firmly seated.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer and finisher, wait 60 seconds, then turn both back on. The finisher should reinitialize.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox AltaLink C8055",
+      "Xerox WorkCentre 7845"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 75,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If the finisher error persists after clearing jams and staple issues, a mechanical component inside the finisher may need professional repair.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "What does Xerox error 005-310 mean?",
+        "a": "The finisher accessory has a mechanical error, usually a paper or staple jam."
+      },
+      {
+        "q": "Can I print without the finisher working?",
+        "a": "Yes, change the output destination to the main output tray and disable stapling in the print driver."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Clear jams and check staples first. If the error persists, a technician may need to inspect the finisher mechanism."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-024-924",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "024-924",
+    "displayCode": "024-924",
+    "errorType": "connectivity",
+    "title": "LDAP Server Connection Error",
+    "shortDescription": "The printer cannot connect to the configured LDAP directory server.",
+    "fullDescription": "Error 024-924 indicates the printer is unable to establish a connection to the LDAP (Lightweight Directory Access Protocol) server used for address book lookups, user authentication, or email address verification.\n\nThis error typically appears when using scan-to-email and the printer needs to look up email addresses, or during user login if LDAP authentication is enabled. The LDAP server may be down, the connection settings may be incorrect, or a firewall may be blocking the LDAP port.\n\nVerify the LDAP server settings in the printer's Embedded Web Server, test the connection from another device, and check that port 389 (LDAP) or 636 (LDAPS) is not blocked.",
+    "causes": [
+      {
+        "cause": "LDAP server offline or unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Incorrect LDAP server address or port",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "LDAP bind credentials incorrect or expired",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firewall blocking LDAP ports 389/636",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "LDAP error when searching address book",
+      "Cannot look up email addresses on printer",
+      "Scan-to-email address search fails",
+      "User authentication via LDAP fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify LDAP Server Status",
+        "instruction": "Confirm the LDAP/Active Directory server is running and accessible from other devices on the network.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check LDAP Configuration",
+        "instruction": "Access the printer's Embedded Web Server, navigate to Properties > Connectivity > Protocols > LDAP, and verify the server address, port, search base, and bind credentials.",
+        "tools": ["computer with web browser"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test LDAP Connection",
+        "instruction": "Use the LDAP connection test feature in the EWS if available, or try an LDAP search from the printer's control panel to test the connection.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Check Firewall Rules",
+        "instruction": "Verify that firewall rules are not blocking traffic on LDAP port 389 or LDAPS port 636 between the printer's IP and the LDAP server.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "Xerox AltaLink C8055"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Contact your IT administrator if you do not have access to the LDAP server or printer admin settings.",
+    "relatedCodes": [
+      "xerox-printer-024-969",
+      "xerox-024-747"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 024-924 mean?",
+        "a": "The printer cannot connect to the LDAP directory server used for address book lookups and authentication."
+      },
+      {
+        "q": "Can I still use scan-to-email without LDAP?",
+        "a": "Yes, you can manually type email addresses instead of searching the LDAP directory."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "This is a network/server configuration issue. Contact your IT department rather than a printer technician."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-783",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-783",
+    "displayCode": "016-783",
+    "errorType": "software",
+    "title": "Memory Full - Print Job Cancelled",
+    "shortDescription": "The printer has run out of memory and cancelled the current print job.",
+    "fullDescription": "Error 016-783 indicates the printer's available memory has been exhausted while processing a print job, forcing the job to be cancelled. This typically occurs when printing very large or complex documents, high-resolution images, or multiple large jobs simultaneously.\n\nThe printer allocates memory for processing each print job, including rasterizing pages, holding job data, and managing print queues. When a job requires more memory than is available, the printer cannot complete the rendering and must cancel the job.\n\nReduce the complexity of the print job by lowering the resolution, splitting the document into smaller parts, or clearing the print queue of pending jobs to free memory.",
+    "causes": [
+      {
+        "cause": "Print job too large or complex for available memory",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Multiple large jobs in print queue consuming memory",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High-resolution images in document exceeding memory",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient printer RAM for workload",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Memory full error on display",
+      "Print job cancelled automatically",
+      "Complex documents fail to print",
+      "Only partial pages printed before error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear Print Queue",
+        "instruction": "On the control panel, navigate to Jobs and delete all pending print jobs to free memory.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Reduce Print Resolution",
+        "instruction": "In the print driver settings, reduce the print resolution from 1200 dpi to 600 dpi or lower to reduce memory requirements.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Split Document",
+        "instruction": "Divide the document into smaller sections and print each section separately. For example, print pages 1-10, then 11-20.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, wait 30 seconds, then turn it back on to clear all memory and reset the print system.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If memory errors occur frequently with normal-sized documents, the printer may need a RAM upgrade (if supported) or professional diagnosis.",
+    "relatedCodes": [
+      "xerox-printer-016-799",
+      "xerox-016-799"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 016-783 mean?",
+        "a": "The printer ran out of memory while processing a print job and had to cancel it."
+      },
+      {
+        "q": "How can I prevent memory full errors?",
+        "a": "Print at lower resolution, split large documents, and avoid queuing multiple complex jobs simultaneously."
+      },
+      {
+        "q": "Can I add more memory to my printer?",
+        "a": "Some models support memory upgrades. Check your model's specifications or contact Xerox support."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-091-402",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "091-402",
+    "displayCode": "091-402",
+    "errorType": "software",
+    "title": "NVRAM Read/Write Error",
+    "shortDescription": "The printer's NVRAM (non-volatile memory) has a read or write failure.",
+    "fullDescription": "Error 091-402 indicates a failure in the printer's NVRAM (Non-Volatile Random Access Memory), which stores critical configuration data, supply counters, network settings, and calibration values. When NVRAM fails, the printer may lose its settings, display incorrect supply levels, or be unable to start properly.\n\nNVRAM errors can be caused by power surges, firmware corruption, or hardware degradation of the memory chip. In some cases, a factory reset can resolve software-level NVRAM corruption, but hardware-level failures require board replacement.\n\nTry a power cycle first, then attempt an NVRAM initialization (factory reset) from the service menu. Back up your settings via the EWS before resetting if possible.",
+    "causes": [
+      {
+        "cause": "NVRAM data corruption from power surge",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firmware update failure corrupting NVRAM",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "NVRAM chip hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Repeated improper shutdowns",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "NVRAM error on display",
+      "Printer settings reset unexpectedly",
+      "Supply counters show incorrect values",
+      "Printer fails to start or boot loops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Turn the printer off using the power button, unplug it from the wall, wait 60 seconds, plug it back in, and turn it on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Backup Settings",
+        "instruction": "If the printer is accessible, log into the Embedded Web Server and export the configuration backup from Properties > General Setup > Cloning.",
+        "tools": ["computer with web browser"],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "NVRAM Initialization",
+        "instruction": "Access the service menu (hold specific key combination during boot as documented for your model) and select NVRAM initialization to reset the memory to factory defaults.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Restore Settings",
+        "instruction": "After NVRAM reset, reconfigure the printer settings manually or restore from the configuration backup created earlier.",
+        "tools": ["computer with web browser"],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If NVRAM initialization does not resolve the error, the controller board NVRAM chip may have failed and requires professional board-level repair or replacement.",
+    "relatedCodes": [
+      "xerox-016-799"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 091-402 mean?",
+        "a": "The printer's non-volatile memory (NVRAM) has a read or write error, which may affect settings and operation."
+      },
+      {
+        "q": "Will I lose my settings if I reset NVRAM?",
+        "a": "Yes, an NVRAM reset restores factory defaults. Back up your configuration through the EWS before resetting."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Try a power cycle and NVRAM reset first. If the error persists, the controller board may need professional replacement."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-010-370",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "010-370",
+    "displayCode": "010-370",
+    "errorType": "hardware",
+    "title": "Fuser Standby Temperature Error",
+    "shortDescription": "The fuser cannot maintain its standby temperature.",
+    "fullDescription": "Error 010-370 indicates the fuser unit is unable to maintain its low-power standby temperature. In standby mode, the fuser stays at a reduced temperature so it can quickly warm up when a print job arrives. If the standby temperature cannot be maintained, the printer may not be ready to print when needed.\n\nThis error can be caused by a degrading fuser heating element, a failing standby temperature sensor, or fluctuating power supply. In some cases, energy-saving settings may conflict with the fuser's ability to maintain standby temperature.\n\nCheck the power connection, disable extreme energy-saving modes, and power cycle the printer. If the error recurs, the fuser may need replacement.",
+    "causes": [
+      {
+        "cause": "Fuser heating element degradation",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Standby temperature sensor malfunction",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Power supply voltage fluctuation",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Aggressive energy saving settings",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Fuser standby error on display",
+      "Printer slow to start printing",
+      "Extended warm-up times",
+      "Intermittent fuser errors during idle periods"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Power Supply",
+        "instruction": "Ensure the printer is connected directly to a wall outlet, not through a power strip. Verify the outlet provides stable voltage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Adjust Energy Saving",
+        "instruction": "On the control panel, navigate to Device > General > Energy Saver and set the timeout to a longer interval or disable deep sleep mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, unplug it for 2 minutes, then plug it back in and turn it on. Allow a full warm-up cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Replace Fuser if Needed",
+        "instruction": "If the error persists, the fuser unit may need replacement. Order a genuine Xerox fuser and install following the model-specific instructions.",
+        "tools": ["replacement fuser unit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 250
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-25 minutes",
+    "whenToCallPro": "If the error persists after checking power and adjusting settings, the fuser or its temperature sensor may need professional replacement.",
+    "relatedCodes": [
+      "xerox-010-351",
+      "xerox-printer-010-318"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 010-370 mean?",
+        "a": "The fuser unit cannot maintain its standby temperature, which may delay printing readiness."
+      },
+      {
+        "q": "Can energy saving modes cause this error?",
+        "a": "In some cases, very aggressive deep sleep settings can interfere with fuser standby temperature maintenance."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Try power and energy settings adjustments first. Persistent errors likely indicate a fuser nearing end of life."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-016-799-overrun",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "016-799",
+    "displayCode": "016-799",
+    "errorType": "software",
+    "title": "Print Overrun Error",
+    "shortDescription": "The printer cannot process the page data fast enough, causing a print overrun.",
+    "fullDescription": "Error 016-799 in the context of a print overrun means the printer's processor cannot render the page data fast enough to keep up with the print engine speed. This results in missing data on the printed page, typically blank bands or missing sections at the bottom of complex pages.\n\nPrint overruns are most common with very complex documents containing high-resolution images, intricate vector graphics, transparency effects, or embedded fonts. The printer's RIP (Raster Image Processor) runs out of time before the page data is fully rendered.\n\nReduce the print resolution, simplify the document, or enable the printer's page buffering mode (if available) to allow more time for processing complex pages.",
+    "causes": [
+      {
+        "cause": "Document too complex for printer's processor",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High-resolution images exceeding processing capacity",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Multiple transparency layers in document",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Printer firmware needs updating for optimization",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Blank bands on printed pages",
+      "Missing content at bottom of complex pages",
+      "Print overrun or data overrun message",
+      "Only simple pages print correctly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reduce Print Resolution",
+        "instruction": "In the print driver, change the resolution from 1200 dpi to 600 dpi to reduce processing requirements.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Simplify Document",
+        "instruction": "Flatten transparency layers, reduce image resolution in the source document, and convert complex vector graphics to raster images before printing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Print as Image",
+        "instruction": "In the print dialog, enable 'Print as Image' option (in Adobe Reader: Advanced > Print as Image). This pre-renders the page and reduces RIP complexity.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Update Firmware",
+        "instruction": "Check for and install the latest firmware from the Xerox support website. Firmware updates often include RIP performance improvements.",
+        "tools": ["computer with internet access"],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400",
+      "Xerox WorkCentre 6515"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "This is typically not a hardware issue. If overruns occur on simple documents, the printer may need professional diagnosis of its processor or memory.",
+    "relatedCodes": [
+      "xerox-printer-016-783",
+      "xerox-016-799"
+    ],
+    "faq": [
+      {
+        "q": "What is a print overrun error?",
+        "a": "It means the printer's processor cannot render page content fast enough, resulting in missing or blank areas on the print."
+      },
+      {
+        "q": "Why do only complex pages have this problem?",
+        "a": "Complex documents with high-resolution images, transparency, and vector graphics require more processing power to rasterize."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Usually not. Reducing resolution or simplifying the document resolves the issue without any hardware service."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-024-747-dns",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "024-747",
+    "displayCode": "024-747",
+    "errorType": "connectivity",
+    "title": "DNS Resolution Failure",
+    "shortDescription": "The printer cannot resolve hostnames through the configured DNS server.",
+    "fullDescription": "Error 024-747 can also indicate a DNS resolution failure where the printer is connected to the network with a valid IP address but cannot resolve hostnames. This affects features that rely on server names rather than IP addresses, such as scan-to-email (SMTP server by hostname), LDAP lookups, and firmware update checks.\n\nWhen DNS fails, the printer can still print from the local network using IP addresses, but any feature requiring hostname resolution will fail. The DNS server may be unreachable, incorrectly configured, or not responding to the printer's queries.\n\nVerify the DNS server settings on the printer, test DNS from other network devices, and consider adding a secondary DNS server as a fallback.",
+    "causes": [
+      {
+        "cause": "DNS server address incorrect or not configured",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DNS server offline or not responding",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network routing preventing DNS access",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DNS server rejecting queries from printer IP",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Scan-to-email fails with server error",
+      "Firmware update check fails",
+      "LDAP address book lookup fails",
+      "Network features work with IP but not hostname"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check DNS Configuration",
+        "instruction": "On the control panel, navigate to Device > Connectivity > Ethernet > TCP/IP and verify the primary and secondary DNS server addresses are correct.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Test DNS from Other Devices",
+        "instruction": "Verify that other devices on the same network can resolve hostnames using the same DNS server to rule out a server-side issue.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Add Secondary DNS",
+        "instruction": "Configure a secondary DNS server (such as 8.8.8.8 for Google Public DNS) as a fallback in the printer's network settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Use IP Addresses Instead",
+        "instruction": "As a workaround, replace any hostnames in the printer configuration (SMTP server, LDAP server) with their direct IP addresses.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "All Xerox networked models"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If DNS issues affect the entire network, contact your IT department or network administrator.",
+    "relatedCodes": [
+      "xerox-024-746",
+      "xerox-printer-024-969"
+    ],
+    "faq": [
+      {
+        "q": "What is DNS resolution failure?",
+        "a": "DNS translates server names (like mail.company.com) into IP addresses. When it fails, the printer cannot find servers by name."
+      },
+      {
+        "q": "Can I still print if DNS fails?",
+        "a": "Yes, basic printing over the network still works. Only features that need hostname resolution are affected."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "No, this is a network configuration issue. Adjust DNS settings on the printer or contact your IT team."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-010-351-overheat",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "010-351",
+    "displayCode": "010-351",
+    "errorType": "hardware",
+    "title": "Fuser Overheat Protection",
+    "shortDescription": "The fuser has triggered its overheat protection and shut down.",
+    "fullDescription": "Error 010-351 can indicate the fuser has exceeded its maximum safe operating temperature, triggering the thermal protection circuit. This is a safety mechanism that shuts down the fuser to prevent fire risk or damage to the printer.\n\nFuser overheating can occur when the temperature control circuit malfunctions, the thermistor provides incorrect readings, or the fuser heating element fails to cycle off properly. Environmental factors like high ambient temperature or blocked ventilation can contribute.\n\nImmediately power off the printer, let it cool for at least 30 minutes, ensure adequate ventilation around the printer, and verify the air vents are not blocked. Do not attempt to print while the fuser is overheated.",
+    "causes": [
+      {
+        "cause": "Temperature control circuit malfunction",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Thermistor providing incorrect temperature readings",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Blocked ventilation around printer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High ambient room temperature",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Fuser overheat error on display",
+      "Printer shuts down automatically",
+      "Burning smell from printer",
+      "Very hot to touch near fuser area"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Off Immediately",
+        "instruction": "Turn off the printer immediately using the power switch. If the smell of burning is strong, unplug the printer from the wall.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Allow Cooling Period",
+        "instruction": "Let the printer cool for at least 30 minutes. Do not open covers while the fuser is extremely hot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Check Ventilation",
+        "instruction": "Ensure the printer has at least 4 inches of clearance on all sides. Remove any items blocking the ventilation openings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power On and Test",
+        "instruction": "After cooling, turn the printer back on and print a test page. If the error returns, the fuser temperature control has failed and needs replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox WorkCentre 6515",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink B400"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 250
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the fuser overheats repeatedly, the temperature control circuit has failed. Call a technician to replace the fuser and inspect for damage.",
+    "relatedCodes": [
+      "xerox-printer-010-318",
+      "xerox-010-397"
+    ],
+    "faq": [
+      {
+        "q": "Is a fuser overheat dangerous?",
+        "a": "The thermal protection circuit prevents fire risk by shutting down the fuser. Always turn off the printer immediately and let it cool."
+      },
+      {
+        "q": "Can I keep using the printer after it cools?",
+        "a": "If the error clears after cooling and was caused by poor ventilation, yes. If it recurs, stop using the printer until the fuser is replaced."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "If the overheat occurs more than once, yes. A failing temperature control circuit is a safety concern that requires professional repair."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-116-324-drum",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "116-324",
+    "displayCode": "116-324",
+    "errorType": "hardware",
+    "title": "Drum Cartridge Not Recognized",
+    "shortDescription": "A drum (imaging) cartridge is not being detected by the printer.",
+    "fullDescription": "Error 116-324 for drum cartridges indicates the printer cannot identify an installed imaging drum unit. This may be because the drum is not fully seated, the chip contacts are dirty, or the drum cartridge is incompatible with the printer model.\n\nDrum cartridges have electronic chips that communicate capacity and compatibility information to the printer. When this communication fails, the printer cannot verify the drum and will not print using the affected color channel.\n\nRemove the drum cartridge, inspect and clean the chip contacts, and reinstall it firmly. Avoid touching the drum surface as oils from skin can damage the photosensitive coating.",
+    "causes": [
+      {
+        "cause": "Drum cartridge not fully seated in slot",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty or damaged chip contacts",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incompatible drum cartridge for this model",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Printer controller communication error",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Drum not recognized error",
+      "Affected color channel not printing",
+      "Error appears after drum installation",
+      "Supply status shows drum as missing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat Drum Cartridge",
+        "instruction": "Open the front cover, remove the affected drum cartridge by its handle, and reinstall it firmly until you feel it click into place.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean Chip Contacts",
+        "instruction": "Remove the drum and gently wipe the electronic chip contacts with a dry lint-free cloth. Also clean the matching contacts inside the printer.",
+        "tools": ["lint-free cloth"],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Verify Compatibility",
+        "instruction": "Check the drum cartridge part number against your printer model's specifications to ensure compatibility.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle",
+        "instruction": "After reseating the drum, close all covers and power cycle the printer. The drum detection runs during startup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox VersaLink C7000",
+      "Xerox WorkCentre 6515"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If multiple genuine drum cartridges are not recognized, the printer's drum slot or controller may need professional diagnosis.",
+    "relatedCodes": [
+      "xerox-077-900",
+      "xerox-printer-077-316"
+    ],
+    "faq": [
+      {
+        "q": "What does error 116-324 mean for drum cartridges?",
+        "a": "The printer cannot detect or communicate with an installed drum (imaging) cartridge."
+      },
+      {
+        "q": "Can I use third-party drum cartridges?",
+        "a": "Third-party drums may not have compatible chips. Genuine Xerox drums are recommended for reliable detection."
+      },
+      {
+        "q": "Should I touch the drum surface?",
+        "a": "Never touch the green or blue drum surface. Oils from your fingers can permanently damage the photosensitive coating."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-027-452-carriage",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "027-452",
+    "displayCode": "027-452",
+    "errorType": "hardware",
+    "title": "Scanner Carriage Error",
+    "shortDescription": "The scanner carriage is stuck or cannot move to its home position.",
+    "fullDescription": "Error 027-452 can also indicate the scanner carriage mechanism is jammed or cannot return to its home position. The scanner carriage holds the light source and sensor array and must move freely across the flatbed glass to scan documents.\n\nThis can be caused by a foreign object on the scanner glass blocking the carriage, a loose scanner lock (shipping lock left engaged), or a worn carriage drive belt. If the ADF is used, paper fragments from the document feeder can also obstruct the carriage.\n\nOpen the scanner lid, check for any objects on the glass, verify the scanner lock is disengaged, and gently try to move the carriage by hand to check for obstructions.",
+    "causes": [
+      {
+        "cause": "Foreign object on scanner glass blocking carriage",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Scanner transport lock still engaged",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Scanner carriage drive belt worn or broken",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Scanner carriage motor failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Scanner error message",
+      "Grinding noise from scanner",
+      "Scanner carriage does not move",
+      "Copy and scan functions fail"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Scanner Glass",
+        "instruction": "Open the scanner lid and remove any objects, paper clips, or debris from the scanner glass surface.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Check Scanner Lock",
+        "instruction": "Look for a scanner transport lock (often a slider on the side or bottom of the scanner). Ensure it is in the unlocked position.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Clean Scanner Glass",
+        "instruction": "Clean the scanner glass and the narrow strip of glass for the ADF with glass cleaner and a lint-free cloth.",
+        "tools": ["glass cleaner", "lint-free cloth"],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power Cycle",
+        "instruction": "Close the scanner lid, turn off the printer, wait 30 seconds, and turn it back on. The scanner carriage will attempt to re-home during startup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the scanner carriage still cannot move after clearing obstructions, the drive belt or motor may need professional replacement.",
+    "relatedCodes": [
+      "xerox-026-700"
+    ],
+    "faq": [
+      {
+        "q": "What causes the scanner carriage to get stuck?",
+        "a": "Usually a foreign object on the glass, the shipping lock being engaged, or debris from the document feeder."
+      },
+      {
+        "q": "Can I still print if the scanner is stuck?",
+        "a": "Yes, printing functions are independent of the scanner. Only copy and scan features are affected."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "Check for obstructions and the transport lock first. If the carriage mechanism is physically broken, a technician is needed."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-093-310-cleaner",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "093-310",
+    "displayCode": "093-310",
+    "errorType": "hardware",
+    "title": "Transfer Belt Cleaner Worn",
+    "shortDescription": "The transfer belt cleaning blade has worn out and needs replacement.",
+    "fullDescription": "Error 093-310 can also indicate the transfer belt cleaner blade assembly has reached its end of life. The cleaner blade removes residual toner from the transfer belt surface after each print cycle to prevent ghost images and contamination on subsequent prints.\n\nWhen the cleaner blade wears out, you may notice ghost images, toner smears, or a gradual decrease in print quality. The blade is typically replaced as part of the transfer belt maintenance kit.\n\nOn most Xerox models, the cleaner blade is integrated into the transfer belt unit and is replaced along with the belt. Check if your model has a separate cleaner component.",
+    "causes": [
+      {
+        "cause": "Cleaner blade worn from normal use",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Blade edge damaged by foreign material",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Toner buildup bypassing worn blade",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Ghost images on prints",
+      "Toner smears on back of pages",
+      "Repeating marks at belt circumference interval",
+      "Replace transfer belt cleaner message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Error Source",
+        "instruction": "Check the supplies status on the control panel to confirm whether the transfer belt cleaner or the entire belt unit needs replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Order Replacement Part",
+        "instruction": "Order the transfer belt maintenance kit or cleaner unit for your specific printer model from Xerox or an authorized dealer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Remove Old Unit",
+        "instruction": "Open the front cover, remove the toner cartridges to access the transfer belt area, release the retention levers, and carefully remove the old belt/cleaner assembly.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Install New Unit",
+        "instruction": "Install the new transfer belt/cleaner assembly, secure the retention levers, reinstall toner cartridges, and close the cover. The counter resets automatically.",
+        "tools": ["replacement transfer belt/cleaner kit"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 200
+      },
+      "professional": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-25 minutes",
+    "whenToCallPro": "Transfer belt replacement is user-serviceable, but call a pro if print quality issues persist after replacement.",
+    "relatedCodes": [
+      "xerox-093-310",
+      "xerox-printer-010-317"
+    ],
+    "faq": [
+      {
+        "q": "What is the transfer belt cleaner?",
+        "a": "It is a blade that removes residual toner from the transfer belt surface to prevent contamination on future prints."
+      },
+      {
+        "q": "Is it replaced separately from the transfer belt?",
+        "a": "On most Xerox models, the cleaner is integrated into the belt unit and replaced together. Check your model's specifications."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "The transfer belt/cleaner kit is user-replaceable on most models. Professional service is only needed if quality issues persist."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-024-950",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "024-950",
+    "displayCode": "024-950",
+    "errorType": "connectivity",
+    "title": "SMB Scan Destination Error",
+    "shortDescription": "The printer cannot connect to the configured SMB network folder for scan-to-folder.",
+    "fullDescription": "Error 024-950 indicates the printer failed to connect to a shared network folder when attempting to save a scanned document using the SMB (Server Message Block) protocol. The scan-to-folder function requires a valid network path, correct credentials, and proper share permissions.\n\nThis error commonly occurs when the target computer is turned off, the shared folder has been renamed or deleted, the user credentials have expired, or SMBv1 has been disabled on the server while the printer only supports SMBv1.\n\nVerify the SMB share path, test the credentials from another device, and ensure the target computer allows SMB connections from the printer's IP address.",
+    "causes": [
+      {
+        "cause": "Target computer or NAS offline",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incorrect SMB share path or credentials",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "SMBv1 disabled on target server",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firewall blocking SMB port 445",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Scan-to-folder fails with connection error",
+      "SMB connection timeout",
+      "Scanned documents not saved to network",
+      "Error appears after scan completes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Target Computer",
+        "instruction": "Confirm the target computer or NAS is powered on, connected to the network, and the shared folder still exists.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check SMB Configuration",
+        "instruction": "Access the printer's EWS, navigate to the scan-to-folder settings, and verify the server address, share name, path, username, and password.",
+        "tools": ["computer with web browser"],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test SMB Access",
+        "instruction": "From another computer on the network, try accessing the shared folder using the same credentials to verify they work.",
+        "tools": ["computer on same network"],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Check SMB Version",
+        "instruction": "If the target runs Windows 10/11 or Server 2019+, ensure SMBv2/v3 is enabled. Some older Xerox printers may need SMBv1 enabled or a firmware update for SMBv2 support.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox VersaLink B405",
+      "Xerox WorkCentre 6515",
+      "Xerox AltaLink C8055"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If you do not have access to the server or printer admin settings, contact your IT department.",
+    "relatedCodes": [
+      "xerox-024-747",
+      "xerox-printer-024-969"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 024-950 mean?",
+        "a": "The printer cannot connect to the network shared folder configured for scan-to-folder."
+      },
+      {
+        "q": "Why did scan-to-folder stop working after a Windows update?",
+        "a": "Microsoft updates sometimes disable SMBv1. Check if your printer needs a firmware update for SMBv2 support."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "No, this is a network configuration issue. Contact your IT team if you cannot resolve the SMB connection settings."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-005-275",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "005-275",
+    "displayCode": "005-275",
+    "errorType": "paper",
+    "title": "Paper Size Mismatch",
+    "shortDescription": "The paper loaded in the tray does not match the size configured in the print job.",
+    "fullDescription": "Error 005-275 indicates a mismatch between the paper size specified in the print job and the paper actually loaded in the selected tray. The printer detects paper size through the tray guides and sensors, and will pause the job when a discrepancy is found.\n\nThis commonly occurs when paper guides in the tray are not adjusted to match the loaded paper, when the print job specifies a size like Legal but the tray contains Letter, or when the tray paper size setting in the printer's configuration does not match the physical paper.\n\nAdjust the paper guides in the tray to match the loaded paper, or change the paper size setting in the print driver to match what is actually in the tray.",
+    "causes": [
+      {
+        "cause": "Paper guides not adjusted to match paper size",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Print job specifies different paper size than loaded",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Tray paper size setting incorrect in printer config",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Paper size sensor malfunction",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Paper size mismatch error on display",
+      "Print job paused waiting for correct paper",
+      "Prompt to load different paper size",
+      "Job prints on wrong size paper if overridden"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Paper and Guides",
+        "instruction": "Open the paper tray, verify the paper size loaded, and adjust the length and width guides to fit snugly against the paper stack.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Confirm Tray Settings",
+        "instruction": "On the control panel, navigate to Device > Paper Trays and verify the paper size and type settings match the physical paper in each tray.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Check Print Driver Settings",
+        "instruction": "On your computer, open the print dialog and verify the paper size setting matches the paper loaded in the target tray.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Override or Cancel",
+        "instruction": "At the printer panel, you can override the mismatch and print on the loaded paper, or cancel the job and resubmit with correct settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedSeries": [
+      "All Xerox models with paper trays"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "Only if the paper size sensor is malfunctioning and reports incorrect sizes even when guides are properly set.",
+    "relatedCodes": [
+      "xerox-005-210"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 005-275 mean?",
+        "a": "The paper in the tray does not match the paper size your print job is expecting."
+      },
+      {
+        "q": "Can I just press a button to continue printing?",
+        "a": "Yes, most Xerox models allow you to override the mismatch and print on whatever paper is loaded, but the output may be clipped or misaligned."
+      },
+      {
+        "q": "Do I need a service call?",
+        "a": "No, this is a user configuration issue. Adjust the paper guides or print settings."
+      }
+    ]
+  },
+  {
+    "id": "xerox-printer-062-790",
+    "brand": "Xerox",
+    "brandSlug": "xerox",
+    "code": "062-790",
+    "displayCode": "062-790",
+    "errorType": "hardware",
+    "title": "Laser Scanner Unit Error",
+    "shortDescription": "The laser scanner (LSU) unit has malfunctioned.",
+    "fullDescription": "Error 062-790 indicates a failure in the laser scanner unit (LSU), which is the component that uses a laser beam and rotating polygon mirror to write the image onto the photoconductor drum. When the LSU fails, the printer cannot create any printed output.\n\nThe laser scanner unit is a precision optical component that spins at very high speeds. Failures can occur due to motor bearing wear, a dirty or damaged polygon mirror, or a laser diode failure. Dust accumulation inside the LSU housing can also cause intermittent failures.\n\nThis is typically a component that requires professional replacement, as it involves precision alignment and is located deep inside the printer. Power cycling may temporarily resolve intermittent LSU errors caused by motor startup failures.",
+    "causes": [
+      {
+        "cause": "LSU polygon mirror motor failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Laser diode failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dust accumulation on LSU optics",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "LSU controller board failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Laser scanner error on display",
+      "Completely blank output",
+      "High-pitched whining noise from printer",
+      "Printer fails during warm-up sequence"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Turn off the printer, unplug it for 60 seconds, plug it back in, and turn it on. Some LSU errors are caused by motor startup failures that clear on retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Listen During Startup",
+        "instruction": "During startup, listen for abnormal sounds such as grinding, clicking, or high-pitched whining from inside the printer. These indicate mechanical LSU failure.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check for Overheating",
+        "instruction": "Ensure the printer has adequate ventilation. An overheating environment can cause the LSU motor to fail intermittently.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Contact Service",
+        "instruction": "If the error persists after power cycling, the LSU unit needs professional replacement. Contact Xerox support or an authorized service provider.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedSeries": [
+      "Xerox VersaLink C405",
+      "Xerox Phaser 6510",
+      "Xerox WorkCentre 6515",
+      "Xerox VersaLink C7000"
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Immediately if the error persists after a power cycle. The LSU is a precision component that requires professional replacement.",
+    "relatedCodes": [
+      "xerox-printer-077-316",
+      "xerox-010-351"
+    ],
+    "faq": [
+      {
+        "q": "What does Xerox error 062-790 mean?",
+        "a": "The laser scanner unit that writes images onto the drum has failed and likely needs professional replacement."
+      },
+      {
+        "q": "Can I replace the laser scanner unit myself?",
+        "a": "This is not recommended. The LSU requires precise alignment and is deeply embedded inside the printer. Professional service is needed."
+      },
+      {
+        "q": "Is it worth repairing or should I replace the printer?",
+        "a": "LSU replacement costs $200-500. Compare this to the cost of a new printer of the same model to decide."
       }
     ]
   }
