@@ -3366,5 +3366,1266 @@
       {"q": "What does the leak detection pump do?", "a": "The LDP creates a slight pressure or vacuum in the fuel tank and vapor recovery system. The PCM then monitors whether the pressure holds to detect even tiny leaks that would allow fuel vapors to escape into the atmosphere."},
       {"q": "Is this related to the gas cap?", "a": "While both relate to the EVAP system, P2401 is specifically about the electrical circuit to the leak detection pump, not a physical leak. A loose gas cap would trigger P0442 or P0456 instead."}
     ]
+  },
+  {
+    "code": "P2402",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission System Leak Detection Pump Control Circuit High",
+    "shortDescription": "The PCM detected that voltage on the leak detection pump control circuit is higher than expected.",
+    "fullDescription": "P2402 is set when the Powertrain Control Module detects that the voltage on the EVAP leak detection pump (LDP) control circuit remains high when it should be pulled low. This usually indicates an open circuit, a failed pump, or a PCM driver problem.\n\nThe LDP is used on many Chrysler, VW, and Audi vehicles to pressure-test the EVAP system. When the PCM cannot command the pump properly, it cannot complete its leak check, and other EVAP monitors may also fail to run.",
+    "severity": "low",
+    "safetyImpact": "No immediate safety impact. The vehicle will run normally, but it will fail emissions testing and may release fuel vapor to the atmosphere.",
+    "causes": [
+      {"cause": "Open circuit in LDP control wiring", "likelihood": "high"},
+      {"cause": "Failed leak detection pump", "likelihood": "medium"},
+      {"cause": "Corroded LDP connector", "likelihood": "medium"},
+      {"cause": "Faulty PCM driver", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Failed emissions test", "EVAP monitor not ready"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan and Record", "instruction": "Connect a scan tool and record all freeze-frame data and any other stored codes before clearing.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect LDP Connector", "instruction": "Locate the leak detection pump (usually near the fuel tank or charcoal canister) and inspect the connector for corrosion, bent pins, or water intrusion.", "tools": ["flashlight", "jack stands"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test Control Circuit", "instruction": "Back-probe the LDP control wire and measure voltage with key on. Compare to the service manual spec. An always-high reading with no PCM command indicates an open or shorted wire.", "tools": ["multimeter", "wiring diagram"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Pump or Repair Wiring", "instruction": "If the control wire is good, replace the LDP. Otherwise repair the wiring and clear codes.", "tools": ["socket set", "wire repair kit"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2401", "P2400", "P0442"],
+    "faq": [
+      {"q": "Will this affect drivability?", "a": "No, you should not notice any change in how the car drives. The main consequence is an illuminated Check Engine Light and failed emissions testing."}
+    ]
+  },
+  {
+    "code": "P2404",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "EVAP Leak Detection Pump Sense Circuit Range/Performance",
+    "shortDescription": "The EVAP leak detection pump sense circuit is reporting values outside expected range.",
+    "fullDescription": "P2404 indicates the PCM has detected that the sense (feedback) circuit of the EVAP leak detection pump is not reporting values consistent with pump operation. The pump may be running, but the feedback signal is not tracking correctly.\n\nThis code commonly appears on Chrysler and VW products that use a reed-switch type LDP. It can also be caused by small mechanical issues inside the pump such as a stuck diaphragm or worn reed switch.",
+    "severity": "low",
+    "safetyImpact": "No drivability impact. Emissions compliance is affected.",
+    "causes": [
+      {"cause": "Worn LDP reed switch", "likelihood": "high"},
+      {"cause": "Partially blocked EVAP hoses", "likelihood": "medium"},
+      {"cause": "Wiring high resistance", "likelihood": "medium"},
+      {"cause": "Faulty PCM", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "EVAP monitor incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify Fault", "instruction": "Drive the vehicle through a complete drive cycle to verify P2404 is an active, not pending, fault.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect EVAP Lines", "instruction": "Inspect all EVAP hoses between the tank, canister, and LDP for kinks or crush damage.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Test Sense Circuit", "instruction": "Using a scope or bidirectional scan tool, command the LDP on and watch the sense signal. It should pulse as the pump cycles.", "tools": ["bidirectional scan tool"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace LDP", "instruction": "If the pump cycles but the sense signal is dead or stuck, replace the LDP assembly.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 150, "max": 550}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2401", "P2402", "P2405"],
+    "faq": [
+      {"q": "Can I just replace the reed switch?", "a": "On most LDPs the reed switch is integrated into the pump housing and not serviced separately. You typically replace the entire pump."}
+    ]
+  },
+  {
+    "code": "P2413",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGR System",
+    "title": "Exhaust Gas Recirculation System Performance",
+    "shortDescription": "The EGR system is not achieving the commanded flow rate.",
+    "fullDescription": "P2413 is set when the PCM commands the EGR valve to a certain position and monitors the resulting change in manifold pressure or intake air temperature, but the change does not match expectations. This indicates restricted flow, a stuck valve, or sensor feedback error.\n\nCarbon buildup is the most common cause, especially on vehicles with over 100,000 miles. The code can also trigger if the EGR cooler is clogged or if downstream passages are restricted.",
+    "severity": "medium",
+    "safetyImpact": "May cause hesitation under load and increased NOx emissions. Severe carbon buildup can lead to engine damage over time.",
+    "causes": [
+      {"cause": "Carbon buildup in EGR passages", "likelihood": "high"},
+      {"cause": "Stuck EGR valve", "likelihood": "high"},
+      {"cause": "Clogged EGR cooler", "likelihood": "medium"},
+      {"cause": "Faulty EGR position sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Rough idle", "Hesitation on acceleration", "Pinging or knocking", "Reduced fuel economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Read Live EGR Data", "instruction": "Use a scan tool to view commanded vs actual EGR position and MAP change during a light-load drive.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Remove and Inspect EGR Valve", "instruction": "Remove the EGR valve and inspect the pintle, seat, and passages for carbon buildup.", "tools": ["socket set", "gaskets"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Clean Passages", "instruction": "Clean the valve and intake passages with carburetor cleaner and a soft brush. Do not use sharp tools that could damage sealing surfaces.", "tools": ["carb cleaner", "brush"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Reinstall and Verify", "instruction": "Install a new gasket, reinstall the valve, clear codes, and confirm the EGR monitor runs successfully.", "tools": ["torque wrench", "OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 250, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0401", "P0402", "P0404"],
+    "faq": [
+      {"q": "Can I drive with P2413?", "a": "Short distances are fine, but prolonged driving with EGR problems can increase combustion temperatures and accelerate carbon buildup on other components."}
+    ]
+  },
+  {
+    "code": "P2418",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "EVAP Switching Valve Control Circuit Open",
+    "shortDescription": "The PCM detected an open circuit in the EVAP switching valve control wiring.",
+    "fullDescription": "P2418 is set when the PCM cannot detect continuity through the EVAP switching valve control circuit. The switching valve directs purge flow between different parts of the EVAP system and is critical for proper leak testing.\n\nCommon on European vehicles. Often caused by connector corrosion or a broken wire near the valve.",
+    "severity": "low",
+    "safetyImpact": "No drivability impact, but EVAP system cannot complete self-tests.",
+    "causes": [
+      {"cause": "Open circuit in control wire", "likelihood": "high"},
+      {"cause": "Failed switching valve solenoid", "likelihood": "medium"},
+      {"cause": "Corroded connector", "likelihood": "medium"},
+      {"cause": "PCM driver fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "EVAP monitor not ready"],
+    "fixSteps": [
+      {"step": 1, "title": "Locate Valve", "instruction": "Consult the service manual to locate the EVAP switching valve - often near the charcoal canister or fuel tank.", "tools": ["service manual"], "difficulty": "easy"},
+      {"step": 2, "title": "Check Connector", "instruction": "Disconnect and inspect the connector for corrosion or bent pins. Clean with electrical contact cleaner if needed.", "tools": ["contact cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Measure Solenoid", "instruction": "Measure resistance across the solenoid terminals. Compare to service manual spec (typically 20-40 ohms).", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Repair or Replace", "instruction": "Replace the valve if the solenoid is open, or repair wiring if continuity to PCM is lost.", "tools": ["wire repair kit"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2419", "P2420", "P0443"],
+    "faq": [
+      {"q": "Will my car fail emissions?", "a": "Yes, until the EVAP monitor runs and passes, most states will fail the vehicle."}
+    ]
+  },
+  {
+    "code": "P2431",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Secondary Air Injection",
+    "title": "Secondary Air Injection System Air Flow/Pressure Sensor Circuit Range/Performance",
+    "shortDescription": "The secondary air injection pressure/flow sensor is out of expected range.",
+    "fullDescription": "P2431 is set when the sensor that monitors secondary air pump output reports pressure or flow values outside the expected window. The secondary air system pumps fresh air into the exhaust manifold on cold starts to help the catalytic converter reach operating temperature faster.\n\nMost common on BMW, Mercedes, and Audi vehicles. Often caused by rust or carbon blocking the combination valve downstream of the pump.",
+    "severity": "low",
+    "safetyImpact": "No drivability impact under normal driving. Cold-start emissions may be slightly elevated.",
+    "causes": [
+      {"cause": "Clogged combination valve", "likelihood": "high"},
+      {"cause": "Weak secondary air pump", "likelihood": "medium"},
+      {"cause": "Faulty pressure sensor", "likelihood": "medium"},
+      {"cause": "Exhaust leak before sensor", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Pump runs longer than normal at cold start"],
+    "fixSteps": [
+      {"step": 1, "title": "Observe Cold Start", "instruction": "Listen for the secondary air pump at cold start - it should run for about 60 seconds.", "tools": ["stethoscope"], "difficulty": "easy"},
+      {"step": 2, "title": "Check Sensor Data", "instruction": "Use a scan tool to read the secondary air pressure PID while the pump runs.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect Combination Valve", "instruction": "Remove the combination valve and check for rust, carbon, or stuck diaphragm.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Faulty Part", "instruction": "Replace the combination valve, pump, or sensor depending on diagnosis.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 1200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0410", "P0411", "P2432"],
+    "faq": [
+      {"q": "Can I bypass the secondary air system?", "a": "No - it is part of the emissions system and bypassing it is illegal in most jurisdictions and will fail inspection."}
+    ]
+  },
+  {
+    "code": "P2440",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Secondary Air Injection",
+    "title": "Secondary Air Injection System Switching Valve Stuck Open Bank 1",
+    "shortDescription": "The secondary air injection switching valve on bank 1 is stuck in the open position.",
+    "fullDescription": "P2440 indicates the PCM has detected that the bank 1 secondary air injection switching valve is not closing properly after the cold-start period. This allows exhaust gases to flow backward into the secondary air pump, damaging it.\n\nVery common on late-model BMW, Audi, and Porsche vehicles. Rust from exhaust condensation is typically the cause.",
+    "severity": "medium",
+    "safetyImpact": "No immediate drivability issue, but can destroy the expensive secondary air pump if not addressed.",
+    "causes": [
+      {"cause": "Rusted/stuck switching valve", "likelihood": "high"},
+      {"cause": "Broken vacuum line to valve", "likelihood": "medium"},
+      {"cause": "Failed vacuum solenoid", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Rough cold start", "Ticking sound from exhaust"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect Vacuum Lines", "instruction": "Check vacuum hoses from the intake to the switching valve for cracks or disconnection.", "tools": ["vacuum gauge"], "difficulty": "easy"},
+      {"step": 2, "title": "Test Valve Operation", "instruction": "Apply vacuum to the valve manually and confirm it opens and closes freely.", "tools": ["vacuum pump"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Switching Valve", "instruction": "Remove and replace the switching valve. Use anti-seize on the exhaust fasteners.", "tools": ["socket set", "anti-seize"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clear and Verify", "instruction": "Clear codes and perform a cold start test.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 350, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-3 hours",
+    "relatedCodes": ["P2441", "P2442", "P0410"],
+    "faq": [
+      {"q": "Does this hurt the engine?", "a": "The engine itself is usually fine, but the secondary air pump can be ruined by hot exhaust gas flowing backward through the stuck valve."}
+    ]
+  },
+  {
+    "code": "P2463",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Particulate Filter",
+    "title": "Diesel Particulate Filter - Soot Accumulation",
+    "shortDescription": "The DPF has accumulated more soot than normal regeneration can handle.",
+    "fullDescription": "P2463 is a diesel-specific code that sets when the DPF differential pressure sensor indicates soot loading has exceeded the threshold where active regeneration is effective. Continued driving without regeneration can cause permanent filter damage.\n\nMost common on vehicles used for short trips that never reach full operating temperature. A forced regeneration or filter cleaning may be required.",
+    "severity": "high",
+    "safetyImpact": "Reduced power (limp mode) likely. Continuing to drive can cause a plugged DPF requiring costly replacement.",
+    "causes": [
+      {"cause": "Short-trip driving preventing regen", "likelihood": "high"},
+      {"cause": "Failed DPF differential pressure sensor", "likelihood": "medium"},
+      {"cause": "Faulty EGR increasing soot output", "likelihood": "medium"},
+      {"cause": "Worn turbocharger", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Reduced power", "Limp mode", "Frequent regeneration attempts", "High exhaust temperatures"],
+    "fixSteps": [
+      {"step": 1, "title": "Attempt Active Regen Drive", "instruction": "Drive at highway speed for 30-45 minutes to allow the system to complete a regeneration cycle.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Force Regeneration", "instruction": "If active regen fails, use a professional scan tool to command a forced regeneration. Do this outdoors, away from flammables.", "tools": ["bidirectional scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Check Pressure Sensor", "instruction": "Verify the DPF differential pressure sensor hoses are clear and the sensor reads correctly.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clean or Replace DPF", "instruction": "If regen cannot clear the filter, remove it for professional cleaning or replace it.", "tools": ["socket set"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 300, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "relatedCodes": ["P2452", "P2453", "P2459"],
+    "faq": [
+      {"q": "Why does my truck keep doing this?", "a": "DPFs need periods of sustained high load to burn off accumulated soot. Trucks used only for short city trips often cannot complete regeneration and will keep triggering soot accumulation codes."}
+    ]
+  },
+  {
+    "code": "P2509",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging System",
+    "title": "ECM/PCM Power Input Signal Intermittent",
+    "shortDescription": "The PCM sees intermittent power on its main voltage supply.",
+    "fullDescription": "P2509 sets when the PCM's main power supply voltage briefly drops or drops out, suggesting loose connections, a failing battery, a loose ground, or charging-system instability.\n\nOften accompanied by other random codes clearing and resetting. Check basic electrical system integrity first before replacing components.",
+    "severity": "medium",
+    "safetyImpact": "The vehicle may stall or experience random module resets, which can be unsafe in traffic.",
+    "causes": [
+      {"cause": "Loose battery cable or terminal", "likelihood": "high"},
+      {"cause": "Weak/failing battery", "likelihood": "high"},
+      {"cause": "Corroded engine ground strap", "likelihood": "medium"},
+      {"cause": "Failing alternator", "likelihood": "medium"},
+      {"cause": "Loose PCM power connector", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Intermittent stalling", "Multiple unrelated DTCs", "Dashboard flicker"],
+    "fixSteps": [
+      {"step": 1, "title": "Load Test Battery", "instruction": "Perform a load test on the battery to confirm it meets CCA rating.", "tools": ["battery load tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Clean Terminals and Grounds", "instruction": "Remove and clean battery terminals and the engine-to-chassis ground strap.", "tools": ["wire brush", "wrench"], "difficulty": "easy"},
+      {"step": 3, "title": "Test Alternator", "instruction": "Measure charging voltage at the battery - should be 13.8-14.7V with engine running.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 4, "title": "Inspect PCM Connector", "instruction": "If the basic checks are good, inspect the PCM main power connector for corrosion or back-out pins.", "tools": ["contact cleaner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 300}, "mechanic": {"min": 100, "max": 700}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0562", "P0563", "P0620"],
+    "faq": [
+      {"q": "Do I need a new PCM?", "a": "Almost never. P2509 is almost always caused by basic electrical connections or a weak battery, not a failed PCM."}
+    ]
+  },
+  {
+    "code": "P2535",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition Switch",
+    "title": "Ignition Switch Run/Start Position Circuit",
+    "shortDescription": "The PCM has detected an abnormal signal from the ignition switch run/start circuit.",
+    "fullDescription": "P2535 sets when the voltage the PCM sees on the ignition switch run/start input doesn't match the expected pattern for the key position. This can happen with worn ignition switches, especially on vehicles with heavy key chains.\n\nOn GM vehicles this was one of the symptoms related to the 2014 ignition switch recall.",
+    "severity": "medium",
+    "safetyImpact": "The engine may stall unexpectedly if the ignition switch loses contact. Airbags may also be disabled when this occurs.",
+    "causes": [
+      {"cause": "Worn ignition switch", "likelihood": "high"},
+      {"cause": "Heavy key chain wearing the switch", "likelihood": "medium"},
+      {"cause": "Wiring fault at steering column", "likelihood": "medium"},
+      {"cause": "Blown fuse", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Intermittent stalling", "Key falls to accessory position", "Warning lights flicker"],
+    "fixSteps": [
+      {"step": 1, "title": "Remove Extra Keys", "instruction": "Reduce weight on the ignition key to just the key itself and try to reproduce the fault.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Scope Ignition Signal", "instruction": "Use a scope or DMM to watch the run/start input while wiggling the key and column.", "tools": ["multimeter", "oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace Ignition Switch", "instruction": "Replace the ignition switch (electrical part, not the lock cylinder in most cases).", "tools": ["steering column tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Verify Recall", "instruction": "For applicable GM vehicles, check the VIN against any open ignition switch recalls.", "tools": [], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P2534", "P0513", "B1000"],
+    "faq": [
+      {"q": "Can I still drive the car?", "a": "Drive it carefully to a shop. Unexpected stalling can be extremely dangerous in traffic or at highway speeds."}
+    ]
+  },
+  {
+    "code": "P2544",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Torque Management",
+    "title": "Torque Management Request Input Signal A",
+    "shortDescription": "The PCM received an invalid torque management request from another module.",
+    "fullDescription": "P2544 indicates that an external request for torque reduction (typically from the TCM, ABS, or traction control module) is outside the expected range. Modern powertrains use torque management during shifts, traction events, and stability control.\n\nThe root cause is often another module rather than the engine itself. Always scan all modules to find the full picture.",
+    "severity": "medium",
+    "safetyImpact": "Traction control and stability systems may be disabled. Transmission shifts may feel harsh.",
+    "causes": [
+      {"cause": "Faulty TCM or ABS module", "likelihood": "medium"},
+      {"cause": "CAN bus communication fault", "likelihood": "medium"},
+      {"cause": "Wheel speed sensor fault", "likelihood": "medium"},
+      {"cause": "Software/calibration mismatch", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Traction control light", "Harsh shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan All Modules", "instruction": "Perform an all-module scan with a capable scan tool - look for codes in TCM, ABS, and body modules.", "tools": ["full-system scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Address Other Codes First", "instruction": "Repair any ABS, TCM, or communication codes before focusing on P2544 itself.", "tools": [], "difficulty": "intermediate"},
+      {"step": 3, "title": "Check CAN Bus", "instruction": "If no other codes are present, check the CAN bus for resistance (should be about 60 ohms across CAN-H/L).", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 4, "title": "Reflash Modules", "instruction": "If calibration is out of date, reflash affected modules with the latest manufacturer software.", "tools": ["J2534 tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P2545", "U0100", "U0101"],
+    "faq": [
+      {"q": "Why did multiple warning lights come on?", "a": "Torque management ties into many systems - when the signal is bad, ABS, traction, and stability modules may also log codes and disable themselves."}
+    ]
+  },
+  {
+    "code": "P2562",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Boost Control Position Sensor Circuit",
+    "shortDescription": "The turbocharger boost control position sensor is reporting a fault.",
+    "fullDescription": "P2562 is set when the sensor that monitors the position of the boost control actuator (often a VGT vane actuator or wastegate) fails to report a valid signal. Without this feedback, the PCM cannot regulate boost pressure and may command reduced power.\n\nCommon on diesel trucks with variable-geometry turbos. Can also affect gasoline turbos with electric wastegate actuators.",
+    "severity": "high",
+    "safetyImpact": "Reduced power and limp mode. Unable to accelerate normally; may be unsafe for highway merging.",
+    "causes": [
+      {"cause": "Faulty VGT actuator", "likelihood": "high"},
+      {"cause": "Sticky/sooty turbo vanes", "likelihood": "high"},
+      {"cause": "Wiring damage near turbo", "likelihood": "medium"},
+      {"cause": "Position sensor failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Reduced power", "Limp mode", "Black smoke", "Turbo whistle abnormal"],
+    "fixSteps": [
+      {"step": 1, "title": "Read Live Actuator Data", "instruction": "Use a scan tool to read commanded vs actual VGT position and look for non-tracking behavior.", "tools": ["bidirectional scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect Wiring", "instruction": "Inspect the wiring harness at the turbo for heat damage and broken conductors.", "tools": ["flashlight", "multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Exercise VGT Vanes", "instruction": "Use a scan tool to cycle the VGT actuator. Stuck vanes may free up, or the actuator may need replacement.", "tools": ["bidirectional scan tool"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace Actuator or Turbo", "instruction": "Replace the electronic actuator if vanes move freely, or the full turbo if vanes are seized.", "tools": ["metric sockets", "torque wrench"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 600, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P2563", "P0045", "P0046"],
+    "faq": [
+      {"q": "Is it safe to drive in limp mode?", "a": "Only to get home or to a shop. Limp mode limits power dramatically which can be dangerous on highways or uphills."}
+    ]
+  },
+  {
+    "code": "P2580",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug Control Module - Power Supply",
+    "shortDescription": "The glow plug control module has a power supply fault.",
+    "fullDescription": "P2580 sets when the glow plug control module (GPCM) does not see its expected supply voltage. Without this, the glow plugs cannot be activated, and cold-start performance on diesel engines will suffer.\n\nOften caused by blown high-current fuses at the underhood fuse box or corroded battery connections.",
+    "severity": "medium",
+    "safetyImpact": "No warm-weather impact. In cold weather the engine may be very hard or impossible to start.",
+    "causes": [
+      {"cause": "Blown GPCM power fuse", "likelihood": "high"},
+      {"cause": "Corroded power/ground connection", "likelihood": "high"},
+      {"cause": "Failed GPCM", "likelihood": "medium"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Hard cold start", "Glow plug light behavior abnormal"],
+    "fixSteps": [
+      {"step": 1, "title": "Check Fuses", "instruction": "Check all GPCM-related fuses in the underhood fuse box and any inline fuses.", "tools": ["fuse puller", "test light"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure Power and Ground", "instruction": "Measure voltage at GPCM power pins and resistance to ground on ground pins.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect Harness", "instruction": "Inspect the wiring harness for damage and repair as needed.", "tools": ["wire repair kit"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace GPCM", "instruction": "If power/ground and wiring are good, replace the GPCM.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 400}, "mechanic": {"min": 100, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P2581", "P0380", "P0381"],
+    "faq": [
+      {"q": "Can I start without glow plugs?", "a": "In warm weather, yes. Below about 40F diesel engines rely on glow plugs for starting and may not start without them."}
+    ]
+  },
+  {
+    "code": "P2610",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM/PCM",
+    "title": "ECM/PCM Internal Engine Off Timer Performance",
+    "shortDescription": "The PCM internal timer that tracks engine-off soak time is not performing correctly.",
+    "fullDescription": "P2610 indicates a fault in the PCM's internal clock/timer used to determine how long the engine has been off. This timer is used to decide if the engine is cold (for adaptive learning and certain monitors).\n\nThe code usually indicates an internal PCM problem. Before replacing the PCM, check for software updates and for battery power interruptions that could reset the timer.",
+    "severity": "medium",
+    "safetyImpact": "No direct drivability issue. Readiness monitors may not set.",
+    "causes": [
+      {"cause": "PCM internal fault", "likelihood": "high"},
+      {"cause": "Out-of-date PCM software", "likelihood": "medium"},
+      {"cause": "Intermittent battery voltage drop", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Readiness monitors incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Check TSBs", "instruction": "Look for any manufacturer TSBs or recalibrations for P2610 on your specific vehicle.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Verify Battery System", "instruction": "Load-test the battery and ensure no parasitic drain or voltage drop during key-off.", "tools": ["battery tester"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Reflash PCM", "instruction": "Reflash the PCM to the latest calibration.", "tools": ["J2534 tool"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace PCM", "instruction": "If the fault persists after reflash, the PCM itself needs replacement and programming.", "tools": ["programming tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 150, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0601", "P0606", "P0607"],
+    "faq": [
+      {"q": "Do I really need a new PCM?", "a": "Not always. Try a reflash first - many P2610 codes are fixed by updated software."}
+    ]
+  },
+  {
+    "code": "P2626",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Oxygen Sensor",
+    "title": "O2 Sensor Pumping Current Trim Circuit/Open Bank 1 Sensor 1",
+    "shortDescription": "The wideband O2 sensor pumping current trim circuit is open or out of range.",
+    "fullDescription": "P2626 sets on vehicles with a wideband (air/fuel ratio) oxygen sensor when the pumping current trim circuit is open. This circuit provides a reference current that the PCM uses to interpret the sensor's signal accurately.\n\nAlmost always resolved by replacing the O2 sensor itself, though connector and wiring issues should always be ruled out first.",
+    "severity": "medium",
+    "safetyImpact": "Fuel economy and emissions affected. Slight drivability symptoms possible.",
+    "causes": [
+      {"cause": "Failed wideband O2 sensor", "likelihood": "high"},
+      {"cause": "Damaged sensor harness", "likelihood": "medium"},
+      {"cause": "Corroded connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Poor fuel economy", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for Related Codes", "instruction": "Check for other O2 sensor codes that point to wiring vs sensor.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect Connector", "instruction": "Disconnect and inspect the O2 sensor connector for corrosion.", "tools": ["contact cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Check Harness Continuity", "instruction": "Check continuity of each wire between the sensor connector and the PCM.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Sensor", "instruction": "If wiring is good, replace the O2 sensor with an OE or equivalent part.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0030", "P0130", "P2627"],
+    "faq": [
+      {"q": "Can I use a generic O2 sensor?", "a": "For wideband sensors, OE or OE-equivalent (Denso, Bosch) is strongly recommended. Generic sensors often do not match the pumping current characteristics."}
+    ]
+  },
+  {
+    "code": "P2635",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Pump",
+    "title": "Fuel Pump 'A' Low Flow / Performance",
+    "shortDescription": "The fuel pump is not delivering the expected flow or pressure.",
+    "fullDescription": "P2635 is set when the PCM, through fuel pressure or fuel rail sensor feedback, determines that the fuel pump is not producing the expected output. On returnless systems the PCM varies pump duty cycle to control pressure, so this code can indicate a weak pump or a high-pressure leak.\n\nCommon on direct-injection vehicles as both the low-pressure and high-pressure fuel pumps age.",
+    "severity": "high",
+    "safetyImpact": "Stalling, loss of power, or no-start. Could leave you stranded.",
+    "causes": [
+      {"cause": "Weak in-tank fuel pump", "likelihood": "high"},
+      {"cause": "Clogged fuel filter", "likelihood": "medium"},
+      {"cause": "Leaking injector or HPFP", "likelihood": "medium"},
+      {"cause": "Faulty fuel pressure sensor", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Loss of power", "Stalling", "Long crank", "Fuel pump noise"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure Fuel Pressure", "instruction": "Use a scan tool or gauge to measure actual fuel pressure vs spec at idle and under load.", "tools": ["fuel pressure gauge"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check Voltage at Pump", "instruction": "Verify the pump is receiving proper voltage - low voltage at pump causes low flow.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Filter First", "instruction": "If the filter is serviceable, replace it before the pump.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Fuel Pump", "instruction": "If pressure remains low with a new filter and good voltage, replace the pump assembly.", "tools": ["fuel tank tools", "safety gear"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0087", "P0230", "P2636"],
+    "faq": [
+      {"q": "Can I drive with a weak fuel pump?", "a": "It will fail completely sooner or later, often at the worst time. Plan to address it quickly."}
+    ]
+  },
+  {
+    "code": "P2647",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "VTEC/VVT",
+    "title": "VTC 'A' Rocker Arm Actuator System Stuck On Bank 1",
+    "shortDescription": "The variable valve timing rocker arm actuator on bank 1 is stuck in the activated state.",
+    "fullDescription": "P2647 is commonly seen on Honda VTEC engines. It indicates the oil pressure switch that feeds back rocker actuator position is reporting activated even when the PCM has not commanded the high-cam profile.\n\nUsually caused by low oil level, the wrong oil viscosity, a failed oil pressure switch, or a stuck VTEC solenoid.",
+    "severity": "medium",
+    "safetyImpact": "No immediate safety issue. Can cause rough idle or power loss.",
+    "causes": [
+      {"cause": "Low engine oil level", "likelihood": "high"},
+      {"cause": "Wrong oil viscosity", "likelihood": "high"},
+      {"cause": "Clogged VTEC solenoid screen", "likelihood": "medium"},
+      {"cause": "Faulty oil pressure switch", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Rough idle", "Loss of top-end power"],
+    "fixSteps": [
+      {"step": 1, "title": "Check Oil Level and Quality", "instruction": "Verify oil level and that oil is the correct viscosity (usually 0W-20 or 5W-20 for modern Hondas).", "tools": ["dipstick"], "difficulty": "easy"},
+      {"step": 2, "title": "Change Oil and Filter", "instruction": "If oil is old or wrong, perform an oil and filter change with the correct spec.", "tools": ["oil drain pan", "filter wrench"], "difficulty": "easy"},
+      {"step": 3, "title": "Clean VTEC Solenoid", "instruction": "Remove the VTEC solenoid assembly and clean the oil screen.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Oil Pressure Switch", "instruction": "If solenoid is clean, replace the VTEC oil pressure switch.", "tools": ["deep socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2646", "P2648", "P2649"],
+    "faq": [
+      {"q": "Will skipping maintenance cause this?", "a": "Yes. Honda VTEC relies on clean, correct-viscosity oil. Neglected oil changes are the #1 cause."}
+    ]
+  },
+  {
+    "code": "P2670",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Coolant Pump",
+    "title": "Actuator Supply Voltage 'B' Circuit Low",
+    "shortDescription": "Voltage on actuator supply circuit B (often auxiliary coolant pump) is below expected threshold.",
+    "fullDescription": "P2670 indicates the PCM has detected a low-voltage condition on the auxiliary actuator supply circuit B. This circuit often feeds electric coolant pumps, variable intake actuators, or similar devices.\n\nMay be triggered by short circuits drawing too much current, blown fuses, or bad wiring. Check the specific application for which actuator uses this supply.",
+    "severity": "medium",
+    "safetyImpact": "If an electric coolant pump is starved for voltage, the engine can overheat.",
+    "causes": [
+      {"cause": "Short circuit in actuator", "likelihood": "high"},
+      {"cause": "Blown fuse", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"},
+      {"cause": "Failed PCM supply driver", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Overheating", "Actuator inoperative"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify Actuator", "instruction": "Consult the service manual to determine which actuator is on supply B for your specific vehicle.", "tools": ["service manual"], "difficulty": "easy"},
+      {"step": 2, "title": "Check Fuses", "instruction": "Check all fuses feeding the identified actuator.", "tools": ["test light"], "difficulty": "easy"},
+      {"step": 3, "title": "Measure Voltage", "instruction": "Measure voltage at the actuator connector with key on. Compare to spec.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Disconnect and Retest", "instruction": "Disconnect actuator and retest. If voltage returns to normal, the actuator is shorted. If still low, the wiring is at fault.", "tools": ["multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 300}, "mechanic": {"min": 100, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2669", "P2671", "P2502"],
+    "faq": [
+      {"q": "What is 'supply B'?", "a": "PCMs use multiple switched power supplies to feed different actuator groups. 'B' is the second group; its members vary by vehicle."}
+    ]
+  },
+  {
+    "code": "P2700",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Friction Element A Apply Time Range/Performance",
+    "shortDescription": "Transmission clutch/band A is taking too long or too short to apply.",
+    "fullDescription": "P2700 is set when the TCM measures the time required for friction element A (a specific clutch pack or band) to apply during a shift and it falls outside acceptable limits. This often indicates worn clutches, low line pressure, or a solenoid problem.\n\nAutomatic transmission diagnostics are complex - the code identifies a symptom but not always the exact cause. Check fluid condition first.",
+    "severity": "high",
+    "safetyImpact": "Delayed or flared shifts can cause unexpected behavior. Left unaddressed, the transmission will fail.",
+    "causes": [
+      {"cause": "Low or degraded ATF", "likelihood": "high"},
+      {"cause": "Worn clutch pack", "likelihood": "high"},
+      {"cause": "Sticking shift solenoid", "likelihood": "medium"},
+      {"cause": "Worn pump / low line pressure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Slipping", "Delayed engagement", "Flaring shifts", "Burnt fluid smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Check ATF", "instruction": "Check fluid level and condition. Burnt or dark fluid is a sign of clutch wear.", "tools": ["dipstick"], "difficulty": "easy"},
+      {"step": 2, "title": "Scan Transmission Data", "instruction": "Use a scan tool to read line pressure, commanded vs actual shift time, and solenoid status.", "tools": ["bidirectional scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Pressure Test", "instruction": "Connect a pressure gauge to the transmission test port and verify pressure is in spec.", "tools": ["ATF pressure gauge"], "difficulty": "advanced"},
+      {"step": 4, "title": "Service or Rebuild", "instruction": "A valve body service or full rebuild is typically required.", "tools": ["transmission service tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 800}, "mechanic": {"min": 600, "max": 4000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-10 hours",
+    "relatedCodes": ["P2701", "P2702", "P2703"],
+    "faq": [
+      {"q": "Is this a transmission rebuild?", "a": "Often yes, but not always. Check fluid condition and solenoids first - sometimes a valve body replacement can resolve it."}
+    ]
+  },
+  {
+    "code": "P2714",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Pressure Control Solenoid 'D' Performance",
+    "shortDescription": "Pressure control solenoid D is not achieving the commanded pressure.",
+    "fullDescription": "P2714 is set when the TCM commands a specific pressure from solenoid D but the measured pressure does not match. Pressure control solenoids regulate line pressure or individual clutch pressures and are critical for shift quality.\n\nDirty fluid and solenoid wear are the most common causes. On some units, a solenoid pack or valve body replacement is the fix.",
+    "severity": "high",
+    "safetyImpact": "Poor shift quality, slipping, or failure. Continuing to drive can destroy the transmission.",
+    "causes": [
+      {"cause": "Dirty ATF", "likelihood": "high"},
+      {"cause": "Worn solenoid", "likelihood": "high"},
+      {"cause": "Valve body wear", "likelihood": "medium"},
+      {"cause": "Electrical fault in solenoid circuit", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Harsh or slipping shifts", "Transmission limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Service Transmission Fluid", "instruction": "Perform a fluid and filter change with the correct OE-spec ATF.", "tools": ["ATF pump", "pan gasket"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect Pan Debris", "instruction": "Inspect the pan for metallic or friction material debris indicating internal wear.", "tools": ["magnet"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace Solenoid Pack", "instruction": "Replace the internal solenoid pack if accessible for this transmission.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Rebuild if Needed", "instruction": "If damage is evident, a full rebuild is required.", "tools": ["transmission service tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 800}, "mechanic": {"min": 500, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P2715", "P2716", "P2717"],
+    "faq": [
+      {"q": "Can I just add fluid additive?", "a": "No - additives do not fix worn solenoids. Proper fluid service and solenoid replacement is the correct repair."}
+    ]
+  },
+  {
+    "code": "P2723",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Pressure Control Solenoid 'E' Stuck Off",
+    "shortDescription": "Pressure control solenoid E is stuck in the off (not actuating) position.",
+    "fullDescription": "P2723 indicates solenoid E is being commanded on but is not responding mechanically. This can cause missed shifts or the transmission to default to a fail-safe gear.\n\nCheck the electrical supply and the solenoid's internal condition. On units where the TCM is inside the transmission, fluid contamination can quickly kill solenoids.",
+    "severity": "high",
+    "safetyImpact": "Transmission may stick in one gear, limiting drive capability.",
+    "causes": [
+      {"cause": "Stuck solenoid valve", "likelihood": "high"},
+      {"cause": "Contaminated fluid", "likelihood": "high"},
+      {"cause": "Open control circuit", "likelihood": "medium"},
+      {"cause": "TCM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Stuck in gear", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Check Circuit", "instruction": "Measure solenoid coil resistance and continuity of the control wire to the TCM.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Service Fluid", "instruction": "Change fluid and filter, inspect pan for debris.", "tools": ["ATF pump"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Solenoid", "instruction": "Replace solenoid E or the solenoid pack depending on transmission design.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Verify Operation", "instruction": "Road test to verify all shift points and clear codes.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 700}, "mechanic": {"min": 400, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P2724", "P2725", "P2720"],
+    "faq": [
+      {"q": "Can I drive to a shop?", "a": "If the transmission is still moving and not overheating, short distances at low speed are usually okay. Do not drive far."}
+    ]
+  },
+  {
+    "code": "P2740",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Fluid Temperature Sensor 'B' Circuit",
+    "shortDescription": "The secondary transmission fluid temperature sensor has a circuit fault.",
+    "fullDescription": "P2740 indicates the TCM has detected an open, shorted, or out-of-range condition on transmission fluid temperature sensor B. Many modern transmissions have multiple ATF temp sensors to monitor torque converter, cooler, and sump temperatures.\n\nTypically a sensor or wiring issue - rarely a TCM fault.",
+    "severity": "low",
+    "safetyImpact": "Minimal - adaptive shift strategies may be affected. In rare cases the transmission may revert to default shift schedules.",
+    "causes": [
+      {"cause": "Failed ATF temp sensor B", "likelihood": "high"},
+      {"cause": "Damaged internal harness", "likelihood": "medium"},
+      {"cause": "Connector corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Abnormal shift behavior in some conditions"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for TCM Data", "instruction": "Read all temp sensor values from the TCM and compare - one being wildly different identifies the fault.", "tools": ["bidirectional scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect External Connector", "instruction": "Inspect the transmission external connector for moisture intrusion or pin damage.", "tools": ["contact cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Drop Pan / Replace Sensor", "instruction": "Many B sensors are internal. Drop the pan and replace the sensor if accessible.", "tools": ["ATF pump", "pan gasket"], "difficulty": "advanced"},
+      {"step": 4, "title": "Refill and Verify", "instruction": "Refill with correct ATF to proper level and verify reading returns to normal.", "tools": ["ATF"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0711", "P0712", "P0713"],
+    "faq": [
+      {"q": "Is this urgent?", "a": "Not immediately, but don't let it go - the TCM relies on accurate temps to protect the transmission."}
+    ]
+  },
+  {
+    "code": "P2757",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Torque Converter Clutch Pressure Control Solenoid Performance",
+    "shortDescription": "The torque converter clutch pressure control solenoid is not performing correctly.",
+    "fullDescription": "P2757 is set when the TCM observes that TCC pressure is not tracking commanded values. A properly controlled TCC is essential for fuel economy and smooth cruising.\n\nCommon on GM 4L60/65/70 transmissions with high mileage and on Ford 5R55 units. Often part of a larger transmission wear pattern.",
+    "severity": "medium",
+    "safetyImpact": "TCC shudder, slip, or harsh lockup. Long term, overheats ATF and accelerates wear.",
+    "causes": [
+      {"cause": "Worn TCC solenoid", "likelihood": "high"},
+      {"cause": "Worn torque converter", "likelihood": "medium"},
+      {"cause": "Valve body wear", "likelihood": "medium"},
+      {"cause": "Contaminated fluid", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "TCC shudder", "Harsh lockup", "Poor fuel economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid and Filter Service", "instruction": "Service the transmission with correct fluid; this resolves many early TCC complaints.", "tools": ["ATF pump"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Scan TCC Data", "instruction": "Monitor TCC duty cycle and slip RPM during highway cruise.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace TCC Solenoid", "instruction": "Replace the TCC solenoid within the valve body.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Consider Converter", "instruction": "If shudder persists, the torque converter itself may need replacement.", "tools": ["transmission lift"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 400, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0741", "P0742", "P2758"],
+    "faq": [
+      {"q": "Can the additive stop the shudder?", "a": "In the short term, yes, some additives help TCC shudder. Long term the solenoid or converter still needs repair."}
+    ]
+  },
+  {
+    "code": "P2771",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Four Wheel Drive Low Switch Circuit",
+    "shortDescription": "The 4WD Low switch input is reporting an invalid signal.",
+    "fullDescription": "P2771 indicates the TCM received an unexpected or implausible signal from the 4WD Low position switch. This is common on trucks and SUVs with electronic transfer cases.\n\nOften caused by a worn or stuck transfer case switch or a wiring fault in the harness that runs along the frame.",
+    "severity": "low",
+    "safetyImpact": "May prevent shifting into or out of 4WD Low, limiting off-road capability.",
+    "causes": [
+      {"cause": "Failed 4WD Low switch", "likelihood": "high"},
+      {"cause": "Wiring harness damage", "likelihood": "medium"},
+      {"cause": "Corroded connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "4WD Low will not engage", "4WD indicator flashing"],
+    "fixSteps": [
+      {"step": 1, "title": "Locate Switch", "instruction": "Locate the 4WD Low switch on the transfer case - usually near the shift motor.", "tools": ["service manual"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect Connector", "instruction": "Check for water intrusion and clean connector.", "tools": ["contact cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Bench Test Switch", "instruction": "Remove switch and test continuity with a multimeter as plunger is actuated.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Switch", "instruction": "Replace the switch and reseal.", "tools": ["wrench", "thread sealant"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 120}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P2772", "P2773", "P2770"],
+    "faq": [
+      {"q": "Will my 4WD still work?", "a": "High range usually still works; 4WD Low typically will not engage while this code is set."}
+    ]
+  },
+  {
+    "code": "P2784",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Input/Turbine Speed Sensor A / B Correlation",
+    "shortDescription": "The two input/turbine speed sensors are not reporting matching values.",
+    "fullDescription": "P2784 is set when the TCM compares signals from the primary and secondary input/turbine speed sensors and finds they don't agree. Since both sensors monitor the same shaft, they should read the same - any disagreement points to a sensor or reluctor issue.\n\nOften caused by damaged teeth on the reluctor ring inside the transmission, or by a failed sensor.",
+    "severity": "high",
+    "safetyImpact": "May cause limp mode, harsh shifts, or no-shift conditions.",
+    "causes": [
+      {"cause": "Damaged reluctor ring", "likelihood": "medium"},
+      {"cause": "Failed speed sensor", "likelihood": "high"},
+      {"cause": "Wiring harness damage", "likelihood": "medium"},
+      {"cause": "Internal transmission debris near sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Harsh shifts", "Limp mode", "Erratic tachometer"],
+    "fixSteps": [
+      {"step": 1, "title": "Read Sensor Data", "instruction": "With a scan tool compare both sensor readings - one will be erratic or fixed.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect Harness", "instruction": "Inspect the external transmission harness and connector for damage.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace Sensor", "instruction": "Replace the sensor that is clearly out of sync with the other.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Inspect Reluctor", "instruction": "If new sensor fails immediately, the reluctor inside the transmission is likely damaged - requires tear-down.", "tools": ["transmission tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "relatedCodes": ["P0716", "P0717", "P2783"],
+    "faq": [
+      {"q": "Which sensor should I replace first?", "a": "The one showing erratic data. Always replace one at a time and verify before doing the other."}
+    ]
+  },
+  {
+    "code": "P2800",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Transmission Range Sensor 'A' Circuit Range/Performance",
+    "shortDescription": "The transmission range sensor (gear position) is reporting inconsistent values.",
+    "fullDescription": "P2800 indicates the TCM has detected a range/performance issue with the primary transmission range sensor. This sensor tells the TCM what gear lever position the driver has selected. When the signal is unreliable, the TCM can't trust the driver's input.\n\nOften caused by a worn or dirty range sensor (sometimes called the neutral safety switch) or a misadjusted shift linkage.",
+    "severity": "high",
+    "safetyImpact": "Can cause no-start conditions, incorrect gear indicator, or prevent the transmission from shifting.",
+    "causes": [
+      {"cause": "Failed transmission range sensor", "likelihood": "high"},
+      {"cause": "Misadjusted shift linkage", "likelihood": "medium"},
+      {"cause": "Wiring/connector fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Wrong gear on dash", "No-start in Park/Neutral", "Transmission shifts harshly"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify Linkage", "instruction": "Make sure the shift linkage is properly adjusted - lever position should match the sensor.", "tools": ["wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Scan Sensor Data", "instruction": "With scan tool, move through gears and watch reported position - any jumping or wrong values identify the fault.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Range Sensor", "instruction": "Replace the TR sensor and verify adjustment per the service manual.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clear and Test", "instruction": "Clear codes and perform multiple gear selections to confirm fix.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0705", "P0706", "P2801"],
+    "faq": [
+      {"q": "Why won't my car start?", "a": "The starter relay depends on the range sensor confirming Park or Neutral. If the sensor is faulty, the car may refuse to start for safety."}
+    ]
+  },
+  {
+    "code": "P2812",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Gear 7 Incorrect Ratio",
+    "shortDescription": "The measured ratio in gear 7 does not match the expected ratio.",
+    "fullDescription": "P2812 applies to transmissions with 7 or more forward gears when the input-to-output speed ratio in 7th gear falls outside the expected window. It typically indicates slipping clutches or solenoid issues affecting that gear.\n\nMore common as 8-speed and 9-speed transmissions age and their complex valve bodies wear.",
+    "severity": "high",
+    "safetyImpact": "Slipping in a specific gear causes overheating and progressive damage.",
+    "causes": [
+      {"cause": "Worn clutch pack", "likelihood": "high"},
+      {"cause": "Faulty solenoid", "likelihood": "high"},
+      {"cause": "Low line pressure", "likelihood": "medium"},
+      {"cause": "Contaminated ATF", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Slipping in 7th gear", "Harsh 6-7 shift"],
+    "fixSteps": [
+      {"step": 1, "title": "Service ATF", "instruction": "Perform a fluid and filter service using the correct OE-spec ATF.", "tools": ["ATF pump"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Scan for Related Codes", "instruction": "Check for shift solenoid or pressure control codes that may share a root cause.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Valve Body Service", "instruction": "Replace or service the valve body - often resolves shift-specific ratio codes.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Rebuild if Needed", "instruction": "If slipping continues, a full rebuild is required.", "tools": ["shop equipment"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 1000}, "mechanic": {"min": 600, "max": 4500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-10 hours",
+    "relatedCodes": ["P0734", "P0735", "P2813"],
+    "faq": [
+      {"q": "Can I drive if it only slips in 7th?", "a": "Avoid high-speed highway driving as 7th is typically the overdrive - slipping generates heat that damages the whole transmission."}
+    ]
+  },
+  {
+    "code": "P2820",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Pressure Control Solenoid 'H' Control Circuit",
+    "shortDescription": "The control circuit for pressure control solenoid H has an electrical fault.",
+    "fullDescription": "P2820 is set when the TCM detects an open, shorted, or high-resistance condition in the control circuit for pressure control solenoid H. This solenoid may control a specific clutch pressure or torque converter pressure depending on the transmission design.\n\nElectrical issues on internal solenoids often require dropping the pan to access the harness connector.",
+    "severity": "high",
+    "safetyImpact": "Loss of shift control and potential limp mode.",
+    "causes": [
+      {"cause": "Internal harness damage", "likelihood": "high"},
+      {"cause": "Failed solenoid coil", "likelihood": "medium"},
+      {"cause": "Loose internal connector", "likelihood": "medium"},
+      {"cause": "TCM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Limp mode", "Harsh or missed shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Test Solenoid Coil", "instruction": "Back-probe solenoid circuit and measure resistance - compare to spec.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect Internal Harness", "instruction": "Drop pan and inspect internal harness for chafing or failed terminals.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace Solenoid/Harness", "instruction": "Replace solenoid H and/or the internal harness as needed.", "tools": ["specialty tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Road Test", "instruction": "Road test and verify all shifts are smooth.", "tools": [], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 400, "max": 1800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P2819", "P2821", "P2714"],
+    "faq": [
+      {"q": "Can a quick flash fix this?", "a": "No - this is an electrical circuit fault. Reflashing will not restore a broken connection."}
+    ]
+  },
+  {
+    "code": "P2830",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Clutch",
+    "title": "Clutch B Pressure Control Solenoid Control Circuit Low",
+    "shortDescription": "The control circuit for clutch B pressure control solenoid is reporting low voltage.",
+    "fullDescription": "P2830 indicates a short to ground or low-side driver fault for the clutch B pressure control solenoid. The TCM sees less voltage than expected on the control side of the solenoid.\n\nCheck wiring to the TCM and the solenoid itself. On some transmissions, clutch B is a specific clutch pack like reverse or 2nd gear.",
+    "severity": "high",
+    "safetyImpact": "Specific gears may slip or not engage.",
+    "causes": [
+      {"cause": "Short to ground in control wire", "likelihood": "high"},
+      {"cause": "Shorted solenoid coil", "likelihood": "medium"},
+      {"cause": "TCM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Missing gear", "Slipping"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure Circuit", "instruction": "Disconnect the solenoid connector and measure circuit to ground - there should not be a direct short.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Measure Coil", "instruction": "Measure resistance across the solenoid coil and compare to spec.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Repair Wiring or Replace Solenoid", "instruction": "Repair any shorts or replace the solenoid as indicated.", "tools": ["wire repair kit"], "difficulty": "advanced"},
+      {"step": 4, "title": "Confirm Fix", "instruction": "Clear codes and road test.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P2829", "P2831", "P2832"],
+    "faq": [
+      {"q": "Is the TCM dead?", "a": "Rarely. Almost always the solenoid or its wiring fails first; TCM driver failures are uncommon."}
+    ]
+  },
+  {
+    "code": "P2842",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Clutch",
+    "title": "Clutch C Pressure Control Solenoid Stuck On",
+    "shortDescription": "The clutch C pressure control solenoid is stuck in the energized state.",
+    "fullDescription": "P2842 means the TCM has determined clutch C solenoid is stuck applying pressure even when it should be released. This can cause clutch C to remain engaged across multiple gears, producing binding, harsh shifts, or stalling when stopping.\n\nUsually requires internal transmission work.",
+    "severity": "high",
+    "safetyImpact": "Possible stall on stop or binding during gear changes.",
+    "causes": [
+      {"cause": "Stuck solenoid valve", "likelihood": "high"},
+      {"cause": "Debris in valve body", "likelihood": "high"},
+      {"cause": "Damaged valve body bore", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Engine stall when stopping", "Harsh shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Service Fluid", "instruction": "Start with a fluid and filter service in case debris is the issue.", "tools": ["ATF pump"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect Pan", "instruction": "Look for metallic debris or burned friction material.", "tools": ["magnet"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace Valve Body", "instruction": "Replace or rebuild the valve body to restore solenoid C function.", "tools": ["valve body tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Test", "instruction": "Road test and monitor shift quality.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 800}, "mechanic": {"min": 600, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P2843", "P2844", "P2845"],
+    "faq": [
+      {"q": "Why does it stall at stoplights?", "a": "If clutch C stays applied when the transmission tries to shift to first/neutral at stop, the engine is effectively still in gear and stalls."}
+    ]
+  },
+  {
+    "code": "P2857",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Clutch",
+    "title": "Clutch E Pressure Control Solenoid Control Circuit High",
+    "shortDescription": "The clutch E pressure control solenoid control circuit is reading abnormally high voltage.",
+    "fullDescription": "P2857 indicates the TCM sees higher than expected voltage on the clutch E solenoid control line. This usually corresponds to an open circuit (the TCM cannot pull the line low) or a feed-side short.\n\nAgain, typical causes are internal harness damage or a failed solenoid.",
+    "severity": "high",
+    "safetyImpact": "Depends on which gears use clutch E; may cause limp mode or specific-gear failure.",
+    "causes": [
+      {"cause": "Open control circuit", "likelihood": "high"},
+      {"cause": "Open solenoid coil", "likelihood": "medium"},
+      {"cause": "Connector issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Limp mode", "Missing gears"],
+    "fixSteps": [
+      {"step": 1, "title": "Check Continuity", "instruction": "Verify continuity on the control wire from TCM to solenoid.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 2, "title": "Test Coil", "instruction": "Verify solenoid coil resistance.", "tools": ["multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace Components", "instruction": "Replace solenoid or repair internal harness.", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Clear and Verify", "instruction": "Clear codes and verify operation.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 400, "max": 1800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P2856", "P2858", "P2859"],
+    "faq": [
+      {"q": "Can I bypass this solenoid?", "a": "No. Each clutch solenoid controls a specific clutch pack - bypassing will destroy the transmission."}
+    ]
+  },
+  {
+    "code": "P2872",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Clutch",
+    "title": "Clutch G Pressure Control Solenoid Performance",
+    "shortDescription": "Clutch G pressure control solenoid performance is out of range.",
+    "fullDescription": "P2872 is set on 8-speed and higher transmissions when clutch G solenoid commanded vs actual pressure does not match. Clutch G is one of many clutches that engage in specific gear combinations in modern ZF and Aisin units.\n\nThe complexity of these transmissions means valve body wear anywhere can show up as specific clutch codes.",
+    "severity": "high",
+    "safetyImpact": "Slipping in specific gears, possible limp mode.",
+    "causes": [
+      {"cause": "Worn clutch G pack", "likelihood": "high"},
+      {"cause": "Solenoid wear", "likelihood": "high"},
+      {"cause": "Valve body wear", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Slipping", "Harsh shifts", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Full Service", "instruction": "Perform correct OEM fluid service.", "tools": ["ATF pump"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Scan Solenoid Data", "instruction": "Use bidirectional scan tool to watch commanded vs actual pressure while driving.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Valve Body Replacement", "instruction": "Replace valve body (often sold as a mechatronic unit).", "tools": ["transmission tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Rebuild if Needed", "instruction": "Full rebuild if hard parts damaged.", "tools": ["transmission rebuild kit"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 800, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P2871", "P2873", "P2812"],
+    "faq": [
+      {"q": "What is a mechatronic unit?", "a": "On modern ZF 8HP and similar units, the TCM, solenoids, and valve body are combined into one replaceable module called the mechatronic."}
+    ]
+  },
+  {
+    "code": "P2885",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission Sensors",
+    "title": "Input Shaft Speed Sensor B Circuit High",
+    "shortDescription": "Input shaft speed sensor B circuit voltage is higher than expected.",
+    "fullDescription": "P2885 indicates a high-side circuit problem (open or short to voltage) in the secondary input shaft speed sensor. The TCM uses two input sensors for redundancy and correlation checks.\n\nTypically caused by a damaged external harness, though internal reluctor damage can also trigger this code.",
+    "severity": "high",
+    "safetyImpact": "Limp mode and lost shift quality.",
+    "causes": [
+      {"cause": "Open sensor circuit", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"},
+      {"cause": "Connector corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Limp mode", "Harsh shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect Connector", "instruction": "Inspect external connector for moisture or pin damage.", "tools": ["contact cleaner"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure Sensor", "instruction": "Measure resistance across sensor terminals and compare to spec.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Sensor", "instruction": "Replace the input shaft speed sensor B.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clear Codes", "instruction": "Clear and road test.", "tools": ["scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P2884", "P2886", "P2784"],
+    "faq": [
+      {"q": "Is this related to the speedometer?", "a": "No - the speedometer uses the vehicle speed sensor (output shaft), not input shaft sensors."}
+    ]
+  },
+  {
+    "code": "P2900",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Manufacturer Specific",
+    "title": "Manufacturer Specific Powertrain Fault",
+    "shortDescription": "Manufacturer-defined fault; the specific meaning depends on the vehicle make.",
+    "fullDescription": "P2900 and higher codes are reserved for manufacturer-specific definitions. The same code may mean very different things on different makes. Always check the service information specific to your vehicle for the actual definition.\n\nGeneric scan tools usually report this as a manufacturer-specific code without a definition; a make-specific scan tool or service information is required for accurate diagnosis.",
+    "severity": "medium",
+    "safetyImpact": "Varies by manufacturer definition.",
+    "causes": [
+      {"cause": "Varies by manufacturer", "likelihood": "high"}
+    ],
+    "symptoms": ["Check Engine Light"],
+    "fixSteps": [
+      {"step": 1, "title": "Get Make-Specific Data", "instruction": "Use a scan tool capable of reading manufacturer-specific enhanced data for your vehicle.", "tools": ["make-specific scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Look Up Definition", "instruction": "Consult OEM service information for the specific P2900 definition on your make/model/year.", "tools": ["service info subscription"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Follow OEM Diagnostic Tree", "instruction": "Follow the manufacturer's diagnostic procedure for the code.", "tools": ["OEM procedures"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair and Verify", "instruction": "Repair as indicated and clear codes.", "tools": ["varies"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "mechanic": {"min": 150, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "varies",
+    "relatedCodes": ["P2901", "P2902", "P2903"],
+    "faq": [
+      {"q": "Why doesn't my scanner tell me what this is?", "a": "Generic scanners only know generic (P00xx-P08xx) and some P2 codes. P29xx codes require enhanced manufacturer data."}
+    ]
+  },
+  {
+    "code": "P2911",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Manufacturer Specific",
+    "title": "Input Clutch Pressure Control Solenoid Control Circuit High",
+    "shortDescription": "Input clutch pressure control solenoid circuit is high (manufacturer defined).",
+    "fullDescription": "P2911 is a manufacturer-defined powertrain code; many makes use it for input clutch pressure control circuit high faults on dual-clutch transmissions. Always confirm definition in OEM materials.\n\nIf this code appears on a DCT vehicle, the repair usually involves the mechatronic/valve body assembly.",
+    "severity": "high",
+    "safetyImpact": "DCTs may become undriveable when clutch pressure control fails.",
+    "causes": [
+      {"cause": "Failed mechatronic unit", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"},
+      {"cause": "Worn clutch packs", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Shuddering", "Limp mode", "Transmission warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for Related DTCs", "instruction": "Check all modules for related codes; DCT issues often span multiple modules.", "tools": ["full-system scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check TSBs", "instruction": "Look for manufacturer bulletins and software updates for your transmission.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "Replace Mechatronic", "instruction": "Replace the mechatronic unit as a service item.", "tools": ["specialty tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Program and Adapt", "instruction": "Program and perform adaptation procedures.", "tools": ["dealer-level scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 500, "max": 2000}, "mechanic": {"min": 1500, "max": 5500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P2910", "P2912", "P2820"],
+    "faq": [
+      {"q": "Is the DCT reliable?", "a": "Some DCTs have better track records than others. Proper fluid service at recommended intervals helps reliability significantly."}
+    ]
+  },
+  {
+    "code": "P2950",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Manufacturer Specific",
+    "title": "Launch Control Engagement Fault",
+    "shortDescription": "Manufacturer-specific launch control engagement fault.",
+    "fullDescription": "P2950 is used by some manufacturers (notably performance cars from BMW, Porsche, and Nissan) to indicate a fault during launch control engagement. The engine management and transmission need to agree on conditions like temperature, traction, and gear selection.\n\nOften caused by out-of-range conditions like low fluid temperature rather than hardware failure.",
+    "severity": "low",
+    "safetyImpact": "Launch control disabled; normal driving unaffected.",
+    "causes": [
+      {"cause": "Conditions not met (cold fluid etc)", "likelihood": "high"},
+      {"cause": "Clutch temperature too high", "likelihood": "medium"},
+      {"cause": "Traction control fault", "likelihood": "medium"},
+      {"cause": "Software issue", "likelihood": "low"}
+    ],
+    "symptoms": ["Check Engine Light", "Launch control unavailable"],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm Conditions", "instruction": "Ensure engine and transmission are at proper operating temperature before attempting launch control.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Check Related Codes", "instruction": "Scan for traction control or transmission codes that would block launch control.", "tools": ["scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Software Update", "instruction": "Check for manufacturer software updates related to launch control.", "tools": ["J2534 tool"], "difficulty": "advanced"},
+      {"step": 4, "title": "Dealer Diagnosis", "instruction": "If persistent, have the dealer perform enhanced diagnostics.", "tools": ["OEM scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P2951", "P2952", "P2949"],
+    "faq": [
+      {"q": "Does using launch control damage the car?", "a": "Repeated use accelerates wear on the clutch and driveline. The manufacturer designs it to tolerate a limited number of uses per service interval."}
+    ]
+  },
+  {
+    "code": "P2975",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Manufacturer Specific",
+    "title": "Charge Air Cooler Bypass Valve Control Circuit",
+    "shortDescription": "Manufacturer-specific: charge air cooler bypass valve control circuit fault.",
+    "fullDescription": "P2975 on some manufacturers indicates a circuit fault with the charge-air-cooler bypass valve used on engines with electrically controlled intercooler bypass (common on some turbocharged diesel and hybrid systems).\n\nThe bypass valve helps the intercooler warm up faster for emissions, and a fault may impact cold-start emissions but not drivability.",
+    "severity": "low",
+    "safetyImpact": "Minimal drivability impact.",
+    "causes": [
+      {"cause": "Faulty bypass valve actuator", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"},
+      {"cause": "Connector corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Slight cold-start emission issues"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify Wiring", "instruction": "Inspect wiring to the bypass actuator for damage.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test Actuator", "instruction": "Command actuator via scan tool to confirm motion.", "tools": ["bidirectional scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace Actuator", "instruction": "Replace the actuator as needed.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clear and Verify", "instruction": "Clear code and complete a drive cycle.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 300}, "mechanic": {"min": 150, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2976", "P2977", "P2978"],
+    "faq": [
+      {"q": "Is my turbo affected?", "a": "The turbo itself should work normally - the bypass only affects the intercooler path for emissions purposes."}
+    ]
+  },
+  {
+    "code": "P2999",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Manufacturer Specific",
+    "title": "Reserved Powertrain Code",
+    "shortDescription": "P2999 is typically reserved and indicates a manufacturer-defined end-of-range code.",
+    "fullDescription": "P2999 is at the upper end of the P2 range and is usually unused or reserved by most manufacturers. If you see it, the scan tool may be misreporting a different code, or a manufacturer has used it for an internal purpose.\n\nUse enhanced manufacturer scan tools to verify. Often associated with aftermarket tuning or calibration issues.",
+    "severity": "medium",
+    "safetyImpact": "Unknown - verify with OEM tooling.",
+    "causes": [
+      {"cause": "Aftermarket tuner data", "likelihood": "medium"},
+      {"cause": "Reporting artifact", "likelihood": "medium"},
+      {"cause": "Unknown manufacturer-specific fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light"],
+    "fixSteps": [
+      {"step": 1, "title": "Re-read with OEM Tool", "instruction": "Re-scan with a manufacturer-level scan tool for accurate definition.", "tools": ["OEM scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check for Tuning", "instruction": "If the vehicle has been tuned, revert to stock calibration.", "tools": ["tuner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Seek Dealer Help", "instruction": "If code persists with OEM tooling, seek dealer diagnosis.", "tools": [], "difficulty": "easy"},
+      {"step": 4, "title": "Address Underlying Fault", "instruction": "Repair as indicated by OEM procedures.", "tools": ["varies"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 100, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "varies",
+    "relatedCodes": ["P2900", "P2998"],
+    "faq": [
+      {"q": "Can I just clear this?", "a": "You can, but if there is a real issue it will return. Always investigate before clearing."}
+    ]
+  },
+  {
+    "code": "P2452",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Particulate Filter",
+    "title": "Diesel Particulate Filter Pressure Sensor 'A' Circuit",
+    "shortDescription": "The DPF differential pressure sensor has an electrical circuit fault.",
+    "fullDescription": "P2452 indicates an out-of-range signal on the DPF differential pressure sensor circuit. This sensor measures pressure drop across the filter and is key to regeneration strategy.\n\nHoses to the sensor often get clogged with soot or broken. Replace the sensor and hoses together for a lasting fix.",
+    "severity": "medium",
+    "safetyImpact": "Regeneration may not occur, eventually leading to DPF plugging.",
+    "causes": [
+      {"cause": "Clogged sensor hoses", "likelihood": "high"},
+      {"cause": "Failed pressure sensor", "likelihood": "medium"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Incomplete regeneration"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect Hoses", "instruction": "Remove hoses between sensor and DPF and verify they are clear.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Measure Sensor", "instruction": "Check sensor reference voltage and signal.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace Sensor", "instruction": "Replace sensor if out of spec.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Force Regen", "instruction": "Perform a forced regeneration to clear accumulated soot.", "tools": ["bidirectional scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P2453", "P2463", "P2459"],
+    "faq": [
+      {"q": "Is the sensor expensive?", "a": "Aftermarket DPF pressure sensors are typically $50-$150. OE parts can be more."}
+    ]
+  },
+  {
+    "code": "P2503",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging System",
+    "title": "Charging System Voltage Low",
+    "shortDescription": "The PCM detected that system voltage is below the expected charging range.",
+    "fullDescription": "P2503 is set when the PCM sees battery/system voltage below the target charging voltage for an extended period. This is often a symptom of a failing alternator, worn belt, or wiring issue.\n\nSystems with smart-charge strategies may set this code even if the alternator is technically functional but not producing enough current on demand.",
+    "severity": "medium",
+    "safetyImpact": "Eventually the battery will die, leaving you stranded. Electrical accessories may misbehave.",
+    "causes": [
+      {"cause": "Failing alternator", "likelihood": "high"},
+      {"cause": "Loose/worn drive belt", "likelihood": "medium"},
+      {"cause": "Corroded battery terminals", "likelihood": "medium"},
+      {"cause": "Failed voltage regulator", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Battery light on", "Dim headlights", "Slow crank"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure Battery Voltage", "instruction": "With engine running, measure across the battery - should be 13.8-14.7V.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect Belt", "instruction": "Check the drive belt for glazing, cracks, or looseness.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Load Test Alternator", "instruction": "Have the alternator load-tested at a parts store or use a charging system analyzer.", "tools": ["charging analyzer"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace Alternator", "instruction": "Replace the alternator if it fails the load test.", "tools": ["socket set", "belt tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0562", "P2504", "P0620"],
+    "faq": [
+      {"q": "Can I just keep charging the battery?", "a": "No - continuing to drive with a failing charging system will leave you stranded and can damage the battery."}
+    ]
+  },
+  {
+    "code": "P2610",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM/PCM",
+    "title": "ECM/PCM Internal Engine Off Timer Performance (Alt)",
+    "shortDescription": "Alternate definition: ECM engine-off timer performance fault.",
+    "fullDescription": "Some manufacturers use P2610 for related PCM timer faults. See P2610 notes above; diagnostic approach is identical. This entry captures variant manufacturer definitions that may appear with different supporting freeze-frame data.\n\nReflash first, replace PCM only if necessary.",
+    "severity": "medium",
+    "safetyImpact": "Minimal drivability impact.",
+    "causes": [
+      {"cause": "PCM firmware bug", "likelihood": "high"},
+      {"cause": "Battery voltage interruption", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check Engine Light", "Monitors incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Check TSBs", "instruction": "Search for any open TSBs.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Reflash PCM", "instruction": "Apply latest calibration.", "tools": ["J2534 tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Verify Battery", "instruction": "Confirm battery/alternator health.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 4, "title": "Replace PCM", "instruction": "Only if reflash fails.", "tools": ["programming tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 150, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0601", "P0606"],
+    "faq": [
+      {"q": "Is this the same as the main P2610?", "a": "Yes - treat as the same code; any manufacturer-specific variance is covered by OEM service info."}
+    ]
   }
 ]
