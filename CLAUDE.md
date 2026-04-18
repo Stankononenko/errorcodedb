@@ -12,17 +12,31 @@ Comprehensive error code database — ALL devices worldwide. Target: 50,000+ pag
 - `npm run build` — generates sitemap + builds static export
 - `npm run dev` — dev server
 
-## Current Status (End of Session 4 — April 17, 2026)
+## Current Status (End of Session 5 — April 17, 2026, continuation)
 
-### GRAND TOTAL: 3,911 error codes, 4,252 static pages
+### GRAND TOTAL: 4,738 error codes, 5,073+ static pages
 
 | Category | Codes | Details |
 |----------|-------|---------|
-| OBD-II | 345 | 200 P0, 50 P2, 55 P1-manufacturer, 30 B, 30 C, 30 U |
-| Appliances | 2,720+ | 90+ brands (TVs, consoles, routers, cameras, power tools added) |
-| HVAC | 301 | 15 brands (added Navien 20, Rinnai 20, Rheem water heater 15) |
-| Printers | 256 | 6 brands (HP 80, Canon 65, Epson 46) |
-| Windows | 226 | BSOD 79, Update 62, System 55, Browser 30 |
+| OBD-II | **1,106** | P0: 7 batches (~400), P1: 215 (all major + niche makes), P2: 90, P3: 70, B: 106, C: 105, U: 124 |
+| Appliances | 2,760+ | 100 brands (TVs, consoles, routers, cameras, power tools) |
+| HVAC | 301 | 15 brands |
+| Printers | 361 | 6 brands (HP 80, Canon 65, Epson 46, Brother 60, Xerox 45) |
+| Windows | 260 | BSOD 79, Update 62, System 55, Browser 64 |
+
+### Session 5 progress:
+- **OBD-II: 395 → 1,106 codes** (+711, almost 3×)
+  - B-codes: 30 → 106, C-codes: 30 → 105, U-codes: 30 → 124
+  - P0: 200 → ~400 (batches 5, 6, 7 added)
+  - P1: 55 → 215 (Toyota, Honda, Ford, BMW, GM, Nissan, Hyundai/Kia, VW/Audi, Subaru, Mazda, Chrysler, Mercedes, Volvo, Jaguar, Porsche, Mitsubishi, Tesla, Land Rover, Mini, Fiat/Alfa, Saab, Cadillac)
+  - P2: 50 → 90, P3: new file 70 (hybrid/EV, cylinder deactivation)
+- **Windows Browser**: 30 → 64, **Printers**: Brother +30, Xerox +25
+
+### Known OBD-II nuances:
+- Duplicate code numbers across manufacturers (e.g., P1128 for Honda + VW) → suffix with make slug: `P1128-HONDA`, `P1128-VW`, `P1128-SUBARU`
+- Tesla uses alphanumeric: `P1A00`, `P1B00` etc.
+- Always run `python3 scripts/fix-data.py` before build
+- Dedupe script is inline in batch-completion flow (see git history for pattern)
 
 ### New in Session 4:
 - **TVs**: Samsung 26, LG 27, Sony 21, Vizio 15, TCL 14, Hisense 15, Panasonic, Philips, Sharp, Toshiba
@@ -47,26 +61,49 @@ Daikin, Mitsubishi, Fujitsu, Honeywell, Nest, Ecobee, Navien, Rinnai
 - partsNeeded sometimes string[] instead of object[] → fix-data.py
 - **Always run `python3 scripts/fix-data.py` before build**
 
-### NEXT SESSION PRIORITIES:
-1. **DESIGN OVERHAUL** — current design feels generic/bland. Needs:
-   - Better visual hierarchy, more polished look
-   - Improved color scheme (not just default Tailwind grays/blues)
-   - Better card designs, spacing, typography
-   - Category pages need visual identity (icons, colors per category)
-   - Code detail pages need better layout (too text-heavy, needs visual breaks)
-   - **MOBILE FIRST** — 80%+ трафика будет с телефонов (люди гуглят ошибки стоя у машины/стиралки)
-   - Consider: hero illustrations, brand logos, severity color coding improvements
-   - Look at competitors (obd-codes.com, samsung support pages) for inspiration
-2. Deploy to Vercel with custom domain errorcodedb.com
-3. Apply for Google AdSense once 50+ pages indexed
-4. Client-side search functionality
-5. More OBD-II expansion (P3/P4 codes, more manufacturer codes)
-6. More HVAC (mini-split expansion, boiler codes)
-7. Sound bars (Sonos, Bose, JBL, Samsung, LG)
-8. Smart home devices (Alexa, Google Home, Hue, SmartThings)
-9. 3D printers (Creality, Prusa, Bambu Lab)
-10. EV chargers (Tesla Wall Connector, ChargePoint, Emporia)
-11. Internal linking optimization
+### NEXT SESSION PRIORITIES (resume here):
+
+**CONTINUE OBD-II EXPANSION FIRST** (still gaps):
+- [ ] P0 batch 8: P0800+ (transfer case, transmission internal), P0900+, P1000+ gaps
+- [ ] P1 remaining: Lincoln, GMC, Isuzu, Scion/Lexus extra, Acura extra (last agent took 50/82 from list)
+- [ ] B-codes: TPMS Bxxxx, adaptive cruise, parking sensors
+- [ ] C-codes: advanced driver assist (lane keep, collision avoidance)
+- [ ] U-codes: U1500+, more manufacturer network codes
+- [ ] P3 more EV codes (Rivian, Lucid, Ford F-150 Lightning, Chevy Bolt specifics)
+
+**HOW TO RESUME (pattern works):**
+1. Launch 3 parallel agents (P0 batch, P1 makes, B/C/U or P3)
+2. Wait ~7-10 min per batch
+3. Run `python3 scripts/fix-data.py`
+4. Dedupe OBD codes with manufacturer suffix (script was inline — see commit d0ef4ce for pattern)
+5. Fix severity/difficulty: sometimes agents use invalid values, need to clean before build
+6. `npm run build` — should pass
+7. Commit + push
+
+**AFTER OBD IS COMPLETE (~1500-2000 codes):**
+1. Windows expansion: BSOD to 150, Update to 120, System to 100, Browser to 100
+2. Printers: Lexmark (almost empty), HP to 120, Epson to 80
+3. Samsung/LG/Whirlpool missing device types (freezer, cooktop, microwave for whirlpool/ge)
+
+**NEW CATEGORIES:**
+- Sound bars (Sonos, Bose, JBL, Yamaha)
+- Smart home (Alexa, Google Home, Philips Hue)
+- 3D printers (Creality, Prusa, Bambu Lab)
+- EV chargers (Tesla Wall Connector, ChargePoint)
+- Drones (DJI, Autel)
+- Pool/spa equipment
+- Solar inverters
+
+**DESIGN OVERHAUL** (after data):
+- MOBILE FIRST — 80%+ traffic from phones
+- Better visual hierarchy, color scheme per category
+- Card designs, typography, hero illustrations
+- Look at competitors (obd-codes.com) for inspiration
+
+**DEPLOYMENT:**
+- Vercel + domain errorcodedb.com
+- Google AdSense application
+- Client-side search
 
 ## Architecture Quick Reference
 - Data: `data/{obd2,appliance,hvac,printer,windows}/`
