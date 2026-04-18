@@ -1,0 +1,1800 @@
+[
+  {
+    "code": "P0106",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "MAP Sensor",
+    "title": "MAP/Barometric Pressure Sensor Range/Performance",
+    "shortDescription": "The MAP sensor signal is out of the expected range compared to other engine data.",
+    "fullDescription": "P0106 indicates the Manifold Absolute Pressure (MAP) sensor is reporting a value inconsistent with engine operating conditions such as throttle position, RPM, and MAF readings. The ECM uses MAP data for fuel trim and timing calculations.\n\nCommon triggers include a vacuum leak, clogged MAP sensor port, or a sensor that has drifted out of calibration. Driveability symptoms are often subtle but can include poor fuel economy and hesitation.",
+    "severity": "medium",
+    "safetyImpact": "Generally low — driveability issues may cause hesitation at inopportune moments.",
+    "causes": [
+      {"cause": "Vacuum leak in intake manifold or hose", "likelihood": "high"},
+      {"cause": "Faulty MAP sensor", "likelihood": "high"},
+      {"cause": "Clogged or disconnected MAP vacuum port", "likelihood": "medium"},
+      {"cause": "Damaged wiring or poor connector contact", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Rough idle", "Hesitation on acceleration", "Poor fuel economy", "Black exhaust smoke"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan and freeze-frame", "instruction": "Pull freeze frame data to see conditions when fault set.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect vacuum hoses", "instruction": "Check for cracked, loose or disconnected vacuum lines.", "tools": ["flashlight", "basic hand tools"], "difficulty": "easy"},
+      {"step": 3, "title": "Test MAP sensor", "instruction": "Measure signal voltage at idle and WOT against spec.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace MAP sensor", "instruction": "Install a new OE-spec MAP sensor if readings are out of range.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0107", "P0108", "P0105"],
+    "faq": [
+      {"q": "Can I drive with P0106?", "a": "Short distances yes, but fuel trim errors can damage the catalyst over time."},
+      {"q": "Is cleaning the MAP sensor worth trying?", "a": "Yes — a quick spray with MAF/electronics cleaner can restore accuracy."}
+    ]
+  },
+  {
+    "code": "P0107",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "MAP Sensor",
+    "title": "MAP/Barometric Pressure Circuit Low Input",
+    "shortDescription": "The MAP sensor circuit voltage is below the expected minimum.",
+    "fullDescription": "P0107 is set when the ECM detects the MAP sensor signal voltage at or near 0 V for longer than the diagnostic threshold. This usually points to an open circuit, short to ground, or a failed sensor.\n\nBecause MAP is a primary fueling input on speed-density systems, this code typically causes noticeable driveability problems and may trigger limp mode.",
+    "severity": "medium",
+    "safetyImpact": "Limp mode may reduce power; engine may stall at idle.",
+    "causes": [
+      {"cause": "Faulty MAP sensor", "likelihood": "high"},
+      {"cause": "Signal wire shorted to ground", "likelihood": "high"},
+      {"cause": "Open 5 V reference supply to sensor", "likelihood": "medium"},
+      {"cause": "Corroded sensor connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Hard start", "Stalling at idle", "Reduced power / limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Check connector", "instruction": "Inspect MAP connector for bent, pushed out or corroded terminals.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify 5 V reference", "instruction": "Back-probe reference wire — must read close to 5 V key on.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Check signal wire", "instruction": "Test for short to ground between sensor and ECM.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace sensor", "instruction": "If wiring is good, replace the MAP sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0106", "P0108"],
+    "faq": [
+      {"q": "Does a disconnected MAP set P0107?", "a": "Yes — an unplugged sensor reads 0 V and will set this code immediately."}
+    ]
+  },
+  {
+    "code": "P0108",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "MAP Sensor",
+    "title": "MAP/Barometric Pressure Circuit High Input",
+    "shortDescription": "The MAP sensor signal voltage is above the expected maximum.",
+    "fullDescription": "P0108 is set when the MAP signal stays near 5 V, which corresponds to impossibly high manifold pressure. Typical causes are a short to voltage, failed sensor, or open ground.\n\nThe engine will usually run rich because the ECM assumes heavy load. Expect rough running and fouled spark plugs if left unrepaired.",
+    "severity": "medium",
+    "safetyImpact": "Rich mixture can foul plugs and damage the catalyst.",
+    "causes": [
+      {"cause": "Failed MAP sensor", "likelihood": "high"},
+      {"cause": "Signal wire shorted to 5 V or 12 V", "likelihood": "medium"},
+      {"cause": "Open ground to sensor", "likelihood": "medium"},
+      {"cause": "Water intrusion in connector", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Rich running / black smoke", "Poor fuel economy", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Check for water, corrosion, or damaged terminals.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify ground", "instruction": "Back-probe ground wire — must show <0.1 V drop.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test signal", "instruction": "Unplug sensor; signal wire at harness should drop to 0 V.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Replace sensor", "instruction": "Install new MAP sensor and clear code.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0106", "P0107"],
+    "faq": [
+      {"q": "Can oil in the MAP sensor cause P0108?", "a": "Yes — contaminated sensors often drift high. Replace rather than clean."}
+    ]
+  },
+  {
+    "code": "P0111",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "IAT Sensor",
+    "title": "Intake Air Temperature Circuit Range/Performance",
+    "shortDescription": "The IAT sensor reading is implausible for the engine operating conditions.",
+    "fullDescription": "P0111 is set when the Intake Air Temperature sensor value does not correlate with coolant temperature at cold start, or does not change appropriately as the engine runs.\n\nThe ECM uses IAT to calculate air density for fueling; a drifted sensor can cause lean or rich mixtures. Often caused by a sensor that has aged or been contaminated with oil.",
+    "severity": "low",
+    "safetyImpact": "Low — mild fuel trim drift.",
+    "causes": [
+      {"cause": "Aged / drifted IAT sensor", "likelihood": "high"},
+      {"cause": "Oil contamination on sensor element", "likelihood": "medium"},
+      {"cause": "Poor wiring connection", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Slight hesitation", "Minor fuel economy drop"],
+    "fixSteps": [
+      {"step": 1, "title": "Compare IAT vs ECT at cold start", "instruction": "Both should be within a few degrees after overnight soak.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Clean sensor", "instruction": "Remove and clean with MAF cleaner if oil contaminated.", "tools": ["basic hand tools", "MAF cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace IAT", "instruction": "Install a new IAT sensor if cleaning doesn't resolve.", "tools": ["socket set"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "mechanic": {"min": 80, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": ["P0112", "P0113", "P0110"],
+    "faq": [
+      {"q": "Is the IAT built into the MAF?", "a": "On many vehicles yes — replacing the MAF assembly may be required."}
+    ]
+  },
+  {
+    "code": "P0112",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "IAT Sensor",
+    "title": "Intake Air Temperature Circuit Low Input",
+    "shortDescription": "The IAT sensor circuit voltage is below the normal operating range.",
+    "fullDescription": "P0112 indicates the IAT signal is at or near 0 V, corresponding to an impossibly hot intake charge. The ECM substitutes a default value, but fueling accuracy suffers.\n\nMost commonly caused by a signal wire shorted to ground, a failed sensor, or connector corrosion.",
+    "severity": "low",
+    "safetyImpact": "Low — minor driveability impact.",
+    "causes": [
+      {"cause": "Short to ground in IAT signal wire", "likelihood": "high"},
+      {"cause": "Failed IAT sensor", "likelihood": "high"},
+      {"cause": "Corroded connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Slight hesitation or rough running when cold"],
+    "fixSteps": [
+      {"step": 1, "title": "Unplug sensor and read voltage", "instruction": "With sensor disconnected, signal wire should read ~5 V.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check for short to ground", "instruction": "Measure resistance between signal wire and ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace IAT", "instruction": "Install new sensor if wiring tests good.", "tools": ["socket set"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "mechanic": {"min": 80, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": ["P0111", "P0113"],
+    "faq": [
+      {"q": "Will P0112 prevent starting?", "a": "Rarely — the ECM uses a default value and the engine usually runs."}
+    ]
+  },
+  {
+    "code": "P0142",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Malfunction (Bank 1 Sensor 3)",
+    "shortDescription": "Post-catalyst or third O2 sensor on Bank 1 shows a circuit fault.",
+    "fullDescription": "P0142 applies to vehicles with three oxygen sensors per bank. It indicates an electrical fault or implausible signal on Bank 1 Sensor 3 — typically located after a second catalyst or in a tailpipe position.\n\nCauses are similar to other O2 codes: failed sensor element, damaged wiring, or contaminated sensor from coolant or oil consumption.",
+    "severity": "medium",
+    "safetyImpact": "Low — emissions-related; vehicle remains driveable.",
+    "causes": [
+      {"cause": "Failed O2 sensor", "likelihood": "high"},
+      {"cause": "Damaged harness near exhaust heat", "likelihood": "medium"},
+      {"cause": "Exhaust leak near sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Emissions test failure"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all O2 data", "instruction": "Compare Bank 1 Sensor 3 output vs Sensors 1 and 2.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Check for melted insulation where harness routes near exhaust.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor using anti-seize on threads.", "tools": ["O2 sensor socket", "torque wrench"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0141", "P0143", "P0144", "P0145"],
+    "faq": [
+      {"q": "Do I need OE sensors?", "a": "Denso/NTK/Bosch OE-equivalent sensors are usually fine; avoid unbranded units."}
+    ]
+  },
+  {
+    "code": "P0143",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Low Voltage (Bank 1 Sensor 3)",
+    "shortDescription": "The third O2 sensor on Bank 1 reports persistent low voltage.",
+    "fullDescription": "P0143 is set when the Bank 1 Sensor 3 signal stays at or below ~0.1 V for longer than the diagnostic window. This may indicate a lean exhaust condition, a shorted sensor, or an open signal circuit.\n\nInspect for exhaust leaks upstream before replacing the sensor — leaks draw in atmospheric air and cause false lean readings.",
+    "severity": "medium",
+    "safetyImpact": "Low — emissions and efficiency impact.",
+    "causes": [
+      {"cause": "Exhaust leak upstream of sensor", "likelihood": "high"},
+      {"cause": "Failed O2 sensor", "likelihood": "high"},
+      {"cause": "Signal wire shorted to ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Possible fuel economy drop"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect exhaust", "instruction": "Look for leaks at flanges and gaskets upstream of sensor.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Check signal wire", "instruction": "Back-probe signal; should follow commanded A/F.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor if wiring and exhaust check out.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0142", "P0144"],
+    "faq": [
+      {"q": "Does fuel additive help?", "a": "No — P0143 is almost always an electrical or exhaust-leak issue."}
+    ]
+  },
+  {
+    "code": "P0144",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit High Voltage (Bank 1 Sensor 3)",
+    "shortDescription": "The Bank 1 Sensor 3 O2 signal is stuck at high voltage (rich).",
+    "fullDescription": "P0144 indicates the third O2 sensor on Bank 1 reports voltages above roughly 0.9 V for longer than allowed. This typically points to a rich exhaust, contaminated sensor, or signal wire shorted to a 12 V source.\n\nCommon root causes include leaking injectors, high fuel pressure, and engine oil consumption coating the sensor.",
+    "severity": "medium",
+    "safetyImpact": "Low — emissions and catalyst longevity.",
+    "causes": [
+      {"cause": "Rich running condition", "likelihood": "high"},
+      {"cause": "Contaminated O2 sensor", "likelihood": "medium"},
+      {"cause": "Signal wire shorted to voltage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Fuel smell from exhaust", "Poor fuel economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuel trims", "instruction": "Long term fuel trim well negative confirms rich condition.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect for oil burning", "instruction": "Blue smoke and oil consumption points to sensor contamination.", "tools": ["visual inspection"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace O2 sensor", "instruction": "If root cause is addressed, replace the contaminated sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0142", "P0143"],
+    "faq": [
+      {"q": "Why does my car burn more fuel?", "a": "A stuck-rich reading causes the ECM to over-fuel, hurting economy."}
+    ]
+  },
+  {
+    "code": "P0145",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Slow Response (Bank 1 Sensor 3)",
+    "shortDescription": "The Bank 1 Sensor 3 O2 sensor reacts too slowly to mixture changes.",
+    "fullDescription": "P0145 is set when the ECM commands a rich/lean transition but the O2 sensor takes too long to respond. An aged sensor element, silicone or lead contamination, and wiring resistance all contribute.\n\nThis is typically an age-related failure; sensors normally last 100k–150k miles.",
+    "severity": "low",
+    "safetyImpact": "Low — primarily an emissions concern.",
+    "causes": [
+      {"cause": "Aged O2 sensor", "likelihood": "high"},
+      {"cause": "Sensor contamination (silicone, lead, coolant)", "likelihood": "medium"},
+      {"cause": "High resistance in harness connector", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Slight fuel economy reduction"],
+    "fixSteps": [
+      {"step": 1, "title": "Graph sensor output", "instruction": "Use scan tool to plot voltage during throttle snap.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Clean corrosion and check pin tension.", "tools": ["electrical contact cleaner"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace O2 sensor", "instruction": "Install new sensor with anti-seize on threads.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0133", "P0153"],
+    "faq": [
+      {"q": "How long do O2 sensors last?", "a": "Modern planar sensors typically 100k–150k miles, less if contaminated."}
+    ]
+  },
+  {
+    "code": "P0146",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit No Activity (Bank 1 Sensor 3)",
+    "shortDescription": "No detectable switching activity from the Bank 1 Sensor 3 O2 sensor.",
+    "fullDescription": "P0146 indicates the third oxygen sensor on Bank 1 is reporting a flat signal near 0.45 V bias voltage, suggesting the sensor is not producing a response. Common causes include a failed sensor heater, disconnected harness, or a dead sensor.\n\nCheck heater circuit fuses and operation before condemning the sensor.",
+    "severity": "medium",
+    "safetyImpact": "Low — affects emissions monitoring.",
+    "causes": [
+      {"cause": "Failed O2 sensor element", "likelihood": "high"},
+      {"cause": "Failed heater circuit", "likelihood": "medium"},
+      {"cause": "Open signal or ground wire", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Emissions readiness monitor incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Check heater fuse", "instruction": "Verify the O2 heater fuse is intact.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure signal at ECM", "instruction": "Back-probe ECM connector and verify wiring continuity.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor if wiring is intact.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0134", "P0154"],
+    "faq": [
+      {"q": "Will this pass emissions?", "a": "No — readiness monitors will not complete with this code active."}
+    ]
+  },
+  {
+    "code": "P0147",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Heater Circuit (Bank 1 Sensor 3)",
+    "shortDescription": "Fault in the heater circuit for Bank 1 Sensor 3 O2 sensor.",
+    "fullDescription": "P0147 indicates the ECM has detected an electrical problem in the heater element circuit of the third oxygen sensor on Bank 1. Heaters bring the sensor to operating temperature quickly, allowing closed-loop fueling sooner after a cold start.\n\nCauses include a blown heater fuse, open heater element, or harness damage.",
+    "severity": "low",
+    "safetyImpact": "Low — affects emissions only.",
+    "causes": [
+      {"cause": "Open O2 heater element", "likelihood": "high"},
+      {"cause": "Blown heater circuit fuse", "likelihood": "medium"},
+      {"cause": "Corroded connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse", "instruction": "Confirm heater fuse is good.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure heater resistance", "instruction": "Typical value 4–15 ohms; open reads infinite.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor if heater is open.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0135", "P0141", "P0155"],
+    "faq": [
+      {"q": "Can I drive with P0147?", "a": "Yes, but expect an emissions failure and slightly higher fuel use."}
+    ]
+  },
+  {
+    "code": "P0156",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Malfunction (Bank 2 Sensor 2)",
+    "shortDescription": "Electrical or signal fault on the downstream O2 sensor, Bank 2.",
+    "fullDescription": "P0156 is set when the ECM detects an out-of-range or invalid signal from the post-catalyst oxygen sensor on Bank 2. Since this sensor's main role is catalyst monitoring, the code is emissions-related rather than driveability-related.\n\nTypical causes include a failed sensor, damaged wiring near exhaust heat, or an exhaust leak near the sensor.",
+    "severity": "medium",
+    "safetyImpact": "Low — emissions concern only.",
+    "causes": [
+      {"cause": "Failed O2 sensor", "likelihood": "high"},
+      {"cause": "Damaged wiring", "likelihood": "medium"},
+      {"cause": "Exhaust leak upstream", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Emissions failure"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect sensor and harness", "instruction": "Look for melted or abraded wiring.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Check signal voltage", "instruction": "Compare downstream voltage to upstream during cruise.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install OE-quality replacement.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0136", "P0157", "P0158"],
+    "faq": [
+      {"q": "Is P0156 the same sensor as P0136?", "a": "No — P0156 is on Bank 2, P0136 is on Bank 1."}
+    ]
+  },
+  {
+    "code": "P0157",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Low Voltage (Bank 2 Sensor 2)",
+    "shortDescription": "Downstream O2 sensor on Bank 2 reports low voltage.",
+    "fullDescription": "P0157 indicates the Bank 2 downstream oxygen sensor voltage is stuck low, corresponding to a lean or no-signal condition. Exhaust leaks upstream of the sensor, a shorted signal wire, or a failed sensor are typical causes.\n\nInspect the exhaust for leaks before replacing the sensor, particularly at catalyst flanges and slip joints.",
+    "severity": "medium",
+    "safetyImpact": "Low — emissions concern.",
+    "causes": [
+      {"cause": "Exhaust leak upstream of sensor", "likelihood": "high"},
+      {"cause": "Failed O2 sensor", "likelihood": "medium"},
+      {"cause": "Signal wire shorted to ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Potential lean running"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect exhaust", "instruction": "Check flanges and catalyst for leaks.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Check wiring", "instruction": "Measure signal wire for short to ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0137", "P0156"],
+    "faq": [
+      {"q": "Can a bad upstream O2 set P0157?", "a": "Indirectly — lean running caused by upstream issues can trigger downstream codes."}
+    ]
+  },
+  {
+    "code": "P0158",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit High Voltage (Bank 2 Sensor 2)",
+    "shortDescription": "Downstream O2 sensor on Bank 2 reports persistently high voltage.",
+    "fullDescription": "P0158 is set when the Bank 2 post-catalyst O2 sensor voltage stays above ~0.9 V. Causes range from a contaminated sensor to a signal shorted to a voltage source or genuine rich running.\n\nFuel leaks, stuck injectors, and high fuel pressure can all cause this code, so verify fuel trims before replacing the sensor.",
+    "severity": "medium",
+    "safetyImpact": "Low — rich running may eventually damage the catalyst.",
+    "causes": [
+      {"cause": "Rich running condition", "likelihood": "high"},
+      {"cause": "Contaminated O2 sensor", "likelihood": "medium"},
+      {"cause": "Signal shorted to voltage", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Fuel smell from exhaust", "Possible black smoke"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify fuel trims", "instruction": "Scan tool — negative long-term trims confirm rich.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check for rich root cause", "instruction": "Inspect injectors, fuel pressure regulator.", "tools": ["fuel pressure gauge"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "After correcting root cause, replace contaminated sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0138", "P0156"],
+    "faq": [
+      {"q": "Should I replace the catalyst too?", "a": "Only if a P0430 is also present or the catalyst is physically damaged."}
+    ]
+  },
+  {
+    "code": "P0159",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Slow Response (Bank 2 Sensor 2)",
+    "shortDescription": "Bank 2 downstream O2 sensor is reacting too slowly.",
+    "fullDescription": "P0159 indicates the downstream O2 sensor on Bank 2 transitions too slowly when fuel trim changes. Since downstream sensors are also used to assess catalyst efficiency, slow response can trigger P0430 if left unaddressed.\n\nIt is almost always an aged or contaminated sensor.",
+    "severity": "low",
+    "safetyImpact": "Low — emissions concern.",
+    "causes": [
+      {"cause": "Aged O2 sensor", "likelihood": "high"},
+      {"cause": "Contamination from oil or coolant", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Graph O2 response", "instruction": "Perform throttle snap and observe sensor reaction time.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install a new OE-quality O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0139", "P0158"],
+    "faq": [
+      {"q": "Do I need to replace both sensors?", "a": "Not necessarily, but if one is aged the other likely is too."}
+    ]
+  },
+  {
+    "code": "P0162",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Malfunction (Bank 2 Sensor 3)",
+    "shortDescription": "Bank 2 Sensor 3 O2 signal is out of range or invalid.",
+    "fullDescription": "P0162 is set when the third O2 sensor on Bank 2, typically near the tailpipe, reports an invalid signal. It is seen on vehicles with secondary catalysts and three sensors per bank.\n\nThe fix is usually sensor replacement after confirming harness integrity.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Failed O2 sensor", "likelihood": "high"},
+      {"cause": "Harness damage near exhaust", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan live data", "instruction": "Inspect sensor output compared to others.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install a new OE-quality O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0142", "P0161"],
+    "faq": [
+      {"q": "Where is Bank 2 Sensor 3?", "a": "Farthest downstream on the bank opposite cylinder #1."}
+    ]
+  },
+  {
+    "code": "P0163",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Low Voltage (Bank 2 Sensor 3)",
+    "shortDescription": "Bank 2 Sensor 3 signal voltage stays low.",
+    "fullDescription": "P0163 sets when the third O2 sensor on Bank 2 is below ~0.1 V longer than allowed. Check upstream exhaust leaks and harness integrity; if both are good, replace the sensor.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Exhaust leak", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"},
+      {"cause": "Short to ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Exhaust inspection", "instruction": "Check flanges, slip joints, and catalyst shells.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Wiring check", "instruction": "Measure signal for short to ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0143", "P0162"],
+    "faq": [
+      {"q": "Will it fail emissions?", "a": "Yes — any active O2 code will cause a state inspection failure."}
+    ]
+  },
+  {
+    "code": "P0164",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit High Voltage (Bank 2 Sensor 3)",
+    "shortDescription": "Bank 2 Sensor 3 voltage stuck high.",
+    "fullDescription": "P0164 is set when Bank 2 Sensor 3 voltage remains above ~0.9 V for longer than allowed. Rich running, contamination, or signal wire shorted to voltage are typical causes.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Rich running condition", "likelihood": "high"},
+      {"cause": "Contaminated sensor", "likelihood": "medium"},
+      {"cause": "Short to voltage", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Fuel smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuel trims", "instruction": "Identify if engine is running rich.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Correct rich cause", "instruction": "Fix leaking injector / FPR issues.", "tools": ["fuel pressure gauge"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0144", "P0162"],
+    "faq": [
+      {"q": "Can oil consumption cause this?", "a": "Yes — oil coats the sensor and biases it rich."}
+    ]
+  },
+  {
+    "code": "P0165",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit Slow Response (Bank 2 Sensor 3)",
+    "shortDescription": "Bank 2 Sensor 3 responds to mixture changes too slowly.",
+    "fullDescription": "P0165 indicates an aging or contaminated Bank 2 Sensor 3 O2 sensor. Response time exceeds the calibration threshold during fuel trim transitions.",
+    "severity": "low",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Aged sensor", "likelihood": "high"},
+      {"cause": "Silicone/lead contamination", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Graph response", "instruction": "Use scan tool to observe transition time.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install a new O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0145", "P0164"],
+    "faq": [
+      {"q": "Is this urgent?", "a": "Not urgent but will prevent emissions readiness from completing."}
+    ]
+  },
+  {
+    "code": "P0166",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor",
+    "title": "O2 Sensor Circuit No Activity (Bank 2 Sensor 3)",
+    "shortDescription": "Bank 2 Sensor 3 shows no voltage activity.",
+    "fullDescription": "P0166 indicates the ECM cannot detect activity from Bank 2 Sensor 3. The signal stays near bias voltage, typical of a dead sensor element or heater failure.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Dead sensor element", "likelihood": "high"},
+      {"cause": "Heater circuit failed", "likelihood": "medium"},
+      {"cause": "Open signal or ground wire", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Check heater fuse", "instruction": "Verify heater fuse intact.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Wiring check", "instruction": "Verify continuity of signal and ground wires.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0146", "P0154"],
+    "faq": [
+      {"q": "Will readiness ever set?", "a": "No — the O2 and catalyst monitors need an active sensor."}
+    ]
+  },
+  {
+    "code": "P0173",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Trim",
+    "title": "Fuel Trim Malfunction (Bank 2)",
+    "shortDescription": "Bank 2 fuel trim is out of normal range.",
+    "fullDescription": "P0173 indicates the ECM cannot keep Bank 2 fuel trims within the programmed window. Either long-term trim is pegged positive (lean) or negative (rich).\n\nCauses mirror P0170: vacuum leaks, fuel delivery, sensor drift. Always diagnose with live short-term and long-term trim values.",
+    "severity": "medium",
+    "safetyImpact": "Low to medium — driveability and possible catalyst damage.",
+    "causes": [
+      {"cause": "Vacuum leak on Bank 2", "likelihood": "high"},
+      {"cause": "Dirty MAF sensor", "likelihood": "high"},
+      {"cause": "Fuel delivery problem", "likelihood": "medium"},
+      {"cause": "Exhaust leak upstream of O2", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Rough idle", "Poor fuel economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Read fuel trims", "instruction": "Compare STFT and LTFT at idle and cruise.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Smoke test intake", "instruction": "Find vacuum leaks with smoke machine.", "tools": ["smoke machine"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test fuel pressure", "instruction": "Verify pressure at idle and snap throttle.", "tools": ["fuel pressure gauge"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Clean MAF", "instruction": "Spray with MAF cleaner only.", "tools": ["MAF cleaner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0170", "P0174", "P0175"],
+    "faq": [
+      {"q": "Is P0173 the same as P0170?", "a": "Same problem but different bank — P0173 is Bank 2."}
+    ]
+  },
+  {
+    "code": "P0177",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Composition",
+    "title": "Fuel Composition Sensor Circuit Range/Performance",
+    "shortDescription": "Flex-fuel composition sensor reporting implausible values.",
+    "fullDescription": "P0177 is set on flex-fuel (FFV) vehicles when the fuel composition (alcohol/ethanol content) sensor signal is out of range or does not correlate with fuel trim learned values. Common on older GM and Ford FFV platforms.\n\nCauses include a failed sensor, wiring fault, or contaminated fuel.",
+    "severity": "medium",
+    "safetyImpact": "Low — driveability may degrade on E85.",
+    "causes": [
+      {"cause": "Failed fuel composition sensor", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"},
+      {"cause": "Contaminated fuel (water)", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Hesitation on E85 blends"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan sensor data", "instruction": "Check reported ethanol percentage.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Locate sensor (usually on fuel line near tank) and inspect wires.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new fuel composition sensor.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0178", "P0179"],
+    "faq": [
+      {"q": "Do I have to use E85?", "a": "No — the vehicle runs fine on regular gasoline."}
+    ]
+  },
+  {
+    "code": "P0181",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Temp",
+    "title": "Fuel Temperature Sensor A Circuit Range/Performance",
+    "shortDescription": "Fuel temperature sensor output does not correlate with engine conditions.",
+    "fullDescription": "P0181 is set when the fuel temperature sensor signal is out of expected range. This is more common on flex-fuel and diesel applications, where fuel temperature is used for density compensation.\n\nTypical causes are sensor drift, wiring issues, or a fuel heater problem.",
+    "severity": "low",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Failed fuel temp sensor", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Possible hot restart issues"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan live data", "instruction": "Check reported fuel temp vs ambient.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new fuel temperature sensor.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0182", "P0183"],
+    "faq": [
+      {"q": "Will it affect fuel economy?", "a": "Slightly — incorrect temp compensation skews fueling."}
+    ]
+  },
+  {
+    "code": "P0182",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Temp",
+    "title": "Fuel Temperature Sensor A Circuit Low Input",
+    "shortDescription": "Fuel temperature sensor signal voltage below minimum.",
+    "fullDescription": "P0182 is set when the ECM reads the fuel temp sensor at or near 0 V. This usually means a short to ground in the signal wire, failed sensor, or connector corrosion.",
+    "severity": "low",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"},
+      {"cause": "Damaged connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect sensor", "instruction": "With sensor unplugged, signal wire should read ~5 V.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check wiring", "instruction": "Measure signal wire for short to ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new fuel temp sensor if wiring is good.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0181", "P0183"],
+    "faq": [
+      {"q": "Is this dangerous?", "a": "No, but it should be diagnosed promptly."}
+    ]
+  },
+  {
+    "code": "P0191",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Rail Pressure",
+    "title": "Fuel Rail Pressure Sensor Circuit Range/Performance",
+    "shortDescription": "Fuel rail pressure sensor signal does not match expected values.",
+    "fullDescription": "P0191 is set when the fuel rail pressure sensor signal does not correlate with commanded pressure. The code is most common on direct injection gas (GDI) and diesel common-rail engines.\n\nCauses include a failing sensor, restricted fuel supply, leaking injectors, or worn high-pressure pump.",
+    "severity": "high",
+    "safetyImpact": "Medium — can cause stalling, no-start, or limp mode.",
+    "causes": [
+      {"cause": "Failed rail pressure sensor", "likelihood": "high"},
+      {"cause": "Weak high-pressure fuel pump", "likelihood": "medium"},
+      {"cause": "Clogged fuel filter", "likelihood": "medium"},
+      {"cause": "Leaking injector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Loss of power / limp mode", "Hard starting", "Stalling"],
+    "fixSteps": [
+      {"step": 1, "title": "Compare commanded vs actual pressure", "instruction": "Scan tool live data during cranking and idle.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace fuel filter", "instruction": "Replace if due.", "tools": ["basic hand tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test HP fuel pump", "instruction": "Measure supply pressure to rail.", "tools": ["fuel pressure gauge (high pressure)"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace sensor", "instruction": "Install new rail pressure sensor if testing isolates it.", "tools": ["torque wrench"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0192", "P0193", "P0087", "P0088"],
+    "faq": [
+      {"q": "Is it safe to drive?", "a": "No — drive to a shop; internal damage is possible if you ignore this."}
+    ]
+  },
+  {
+    "code": "P0192",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Rail Pressure",
+    "title": "Fuel Rail Pressure Sensor Circuit Low Input",
+    "shortDescription": "Fuel rail pressure sensor signal stays at low voltage.",
+    "fullDescription": "P0192 is set when the fuel rail pressure sensor voltage is below the expected range. Root causes include a failed sensor, open reference voltage, or a signal wire shorted to ground.\n\nOn GDI engines this often triggers limp mode because fuel pressure control is critical.",
+    "severity": "high",
+    "safetyImpact": "Medium — limp mode common.",
+    "causes": [
+      {"cause": "Failed sensor", "likelihood": "high"},
+      {"cause": "Open 5 V reference", "likelihood": "medium"},
+      {"cause": "Signal short to ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Limp mode", "Hard start"],
+    "fixSteps": [
+      {"step": 1, "title": "Check connector", "instruction": "Inspect for bent pins and water intrusion.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify 5 V reference", "instruction": "Should be close to 5 V key on.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install a new rail pressure sensor to spec torque.", "tools": ["torque wrench"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0191", "P0193"],
+    "faq": [
+      {"q": "Can I reset the code and drive?", "a": "It will return immediately. Proper repair is required."}
+    ]
+  },
+  {
+    "code": "P0193",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Rail Pressure",
+    "title": "Fuel Rail Pressure Sensor Circuit High Input",
+    "shortDescription": "Fuel rail pressure sensor voltage is above the allowed maximum.",
+    "fullDescription": "P0193 is set when the fuel rail pressure sensor signal exceeds the upper voltage threshold. This can indicate a genuinely over-pressurized rail, a shorted signal wire, or an open ground to the sensor.\n\nDriveability is often severely affected; limp mode is common on GDI and diesel engines.",
+    "severity": "high",
+    "safetyImpact": "Medium — limp mode or stalling possible.",
+    "causes": [
+      {"cause": "Failed sensor", "likelihood": "high"},
+      {"cause": "Open sensor ground", "likelihood": "medium"},
+      {"cause": "Short to voltage", "likelihood": "low"},
+      {"cause": "Failed fuel pressure regulator", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Limp mode", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify ground", "instruction": "Back-probe sensor ground wire.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check pressure control", "instruction": "Read actual rail pressure vs commanded.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If wiring is good and pressure reads normal mechanically, replace.", "tools": ["torque wrench"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0191", "P0192"],
+    "faq": [
+      {"q": "Can a stuck regulator set P0193?", "a": "Yes — true over-pressure conditions will."}
+    ]
+  },
+  {
+    "code": "P0194",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Rail Pressure",
+    "title": "Fuel Rail Pressure Sensor Circuit Intermittent",
+    "shortDescription": "Fuel rail pressure sensor signal is intermittent or noisy.",
+    "fullDescription": "P0194 indicates the ECM sees intermittent drops or spikes in the rail pressure sensor signal. Almost always caused by a loose connector, chafed harness, or failing sensor element.\n\nThese can be hard to reproduce; wiggle-testing the harness during live data capture often finds the fault.",
+    "severity": "medium",
+    "safetyImpact": "Low to medium — stalling possible.",
+    "causes": [
+      {"cause": "Loose sensor connector", "likelihood": "high"},
+      {"cause": "Chafed / pinched harness", "likelihood": "high"},
+      {"cause": "Intermittent sensor element failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Occasional rough running or stall"],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test harness", "instruction": "Capture live data while moving harness.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair wiring", "instruction": "Repair chafes or replace connector pins.", "tools": ["soldering iron", "heat shrink"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If wiring good, replace the sensor.", "tools": ["torque wrench"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 250, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0191", "P0192", "P0193"],
+    "faq": [
+      {"q": "Can I ignore it if it's intermittent?", "a": "No — intermittent fuel pressure faults can strand you unexpectedly."}
+    ]
+  },
+  {
+    "code": "P0209",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Injector Circuit Malfunction - Cylinder 9",
+    "shortDescription": "Electrical fault on cylinder 9 fuel injector circuit.",
+    "fullDescription": "P0209 is set on V10 engines when the ECM detects an electrical problem on the cylinder 9 injector circuit. It is essentially a duplicate of P0201-P0208 but targeted at the 9th cylinder.\n\nCauses include an open or shorted injector, damaged wiring, or a failed ECM driver.",
+    "severity": "medium",
+    "safetyImpact": "Medium — misfire on cylinder 9 likely.",
+    "causes": [
+      {"cause": "Failed injector", "likelihood": "high"},
+      {"cause": "Open or shorted wiring", "likelihood": "medium"},
+      {"cause": "ECM injector driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure injector resistance", "instruction": "Compare to other injectors (should match within 1 ohm).", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check harness", "instruction": "Inspect injector wiring and connector.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Swap injector", "instruction": "Swap with a known-good cylinder to confirm.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0201", "P0208"],
+    "faq": [
+      {"q": "What engines have 10 cylinders?", "a": "Dodge Viper, Ford V10 trucks, and some Audi/Lamborghini V10s."}
+    ]
+  },
+  {
+    "code": "P0210",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Injector Circuit Malfunction - Cylinder 10",
+    "shortDescription": "Electrical fault on cylinder 10 fuel injector circuit.",
+    "fullDescription": "P0210 covers cylinder 10 injector circuit faults on V10 engines. Diagnosis is identical to other injector circuit codes: check resistance, wiring, and ECM driver.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed injector", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"},
+      {"cause": "ECM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Test resistance", "instruction": "Compare injector ohms to other cylinders.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check harness and connector.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new injector if testing confirms.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0209", "P0211"],
+    "faq": [
+      {"q": "Can I drive with this code?", "a": "Not recommended — misfire can damage the catalyst."}
+    ]
+  },
+  {
+    "code": "P0211",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Injector Circuit Malfunction - Cylinder 11",
+    "shortDescription": "Electrical fault on cylinder 11 fuel injector circuit.",
+    "fullDescription": "P0211 applies to V12 engines. The ECM detects an injector circuit fault on cylinder 11. Typical diagnosis workflow mirrors other injector codes.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed injector", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Resistance test", "instruction": "Check injector coil resistance.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Harness test", "instruction": "Confirm continuity from ECM to injector.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new OE injector.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0210", "P0212"],
+    "faq": [
+      {"q": "V12 injectors are expensive?", "a": "Yes — OE parts are specialty and often costly."}
+    ]
+  },
+  {
+    "code": "P0212",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Injector Circuit Malfunction - Cylinder 12",
+    "shortDescription": "Electrical fault on cylinder 12 fuel injector circuit.",
+    "fullDescription": "P0212 is the V12-specific code for cylinder 12 injector circuit problems. Similar diagnosis to other injector codes.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed injector", "likelihood": "high"},
+      {"cause": "Harness problem", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Resistance check", "instruction": "Compare to other injectors.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Wiring inspection", "instruction": "Inspect for chafed wires.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new OE injector.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0211"],
+    "faq": [
+      {"q": "Is V12 harder to work on?", "a": "Yes — access on 12-cylinder engines is limited; shop service often preferred."}
+    ]
+  },
+  {
+    "code": "P0213",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cold Start Injector",
+    "title": "Cold Start Injector 1 Malfunction",
+    "shortDescription": "Electrical or performance fault on the first cold start injector.",
+    "fullDescription": "P0213 is set on older vehicles (primarily 1990s Toyota/Lexus and some European models) equipped with a supplemental cold-start injector. The ECM detects a fault in circuit 1.\n\nRepair involves checking the dedicated wiring, thermo-time switch (where fitted), and the injector itself.",
+    "severity": "low",
+    "safetyImpact": "Low — cold-start quality only.",
+    "causes": [
+      {"cause": "Failed cold start injector", "likelihood": "high"},
+      {"cause": "Thermo-time switch failure", "likelihood": "medium"},
+      {"cause": "Wiring problem", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Hard cold starting"],
+    "fixSteps": [
+      {"step": 1, "title": "Check injector", "instruction": "Measure resistance and check for spray.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test thermo switch", "instruction": "Verify switch closes below spec temperature.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace component", "instruction": "Install new cold start injector or thermo switch.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0214"],
+    "faq": [
+      {"q": "Does my modern car have this?", "a": "No — cold-start injectors are obsolete; modern engines use GDI or pulse widening."}
+    ]
+  },
+  {
+    "code": "P0214",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cold Start Injector",
+    "title": "Cold Start Injector 2 Malfunction",
+    "shortDescription": "Electrical or performance fault on the second cold start injector.",
+    "fullDescription": "P0214 is similar to P0213 but pertains to the second cold start injector, found on some larger-displacement engines.",
+    "severity": "low",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Failed cold start injector 2", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Hard cold starting"],
+    "fixSteps": [
+      {"step": 1, "title": "Check injector", "instruction": "Measure resistance and inspect spray.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace injector", "instruction": "Install new injector.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0213"],
+    "faq": [
+      {"q": "Two cold start injectors?", "a": "Some large V8/V12 imports had two; not common today."}
+    ]
+  },
+  {
+    "code": "P0215",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Shutoff Solenoid",
+    "title": "Engine Shutoff Solenoid Malfunction",
+    "shortDescription": "Electrical fault in the engine fuel shutoff solenoid circuit.",
+    "fullDescription": "P0215 indicates a malfunction in the fuel shutoff solenoid, which in older diesels is responsible for cutting fuel to the injection pump when the ignition is off. A failure can prevent starting or cause run-on at shutdown.\n\nCommon on 1990s–2000s diesels with mechanical rotary pumps.",
+    "severity": "high",
+    "safetyImpact": "Medium — engine may fail to start or refuse to stop.",
+    "causes": [
+      {"cause": "Failed shutoff solenoid", "likelihood": "high"},
+      {"cause": "Wiring fault / blown fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "No-start condition", "Engine run-on at shutdown"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse and power", "instruction": "Verify power to solenoid with key on.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test solenoid", "instruction": "Listen for click when 12 V applied.", "tools": ["test leads"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace solenoid", "instruction": "Install new shutoff solenoid.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0216"],
+    "faq": [
+      {"q": "Is this gasoline or diesel?", "a": "Primarily diesel engines with mechanical injection pumps."}
+    ]
+  },
+  {
+    "code": "P0228",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "TPS / APP",
+    "title": "Throttle/Pedal Position Sensor C Circuit High",
+    "shortDescription": "Third TPS/APP channel voltage above allowed maximum.",
+    "fullDescription": "P0228 is set on drive-by-wire systems that use three redundant sensors on the throttle pedal. The 'C' channel signal is reading higher than expected, which the ECM interprets as a mismatched or failed sensor.\n\nRepair usually involves replacing the accelerator pedal position sensor assembly.",
+    "severity": "high",
+    "safetyImpact": "High — may trigger limp mode or reduced power.",
+    "causes": [
+      {"cause": "Failed APP sensor", "likelihood": "high"},
+      {"cause": "Signal wire shorted to voltage", "likelihood": "medium"},
+      {"cause": "Open sensor ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Reduced power", "Throttle hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan APP values", "instruction": "Compare APP1/2/3 percentages through full pedal travel.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check wiring", "instruction": "Inspect for chafed wires at pedal assembly.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace pedal assembly", "instruction": "Install new APP sensor / pedal assembly.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["P0222", "P0223", "P0227"],
+    "faq": [
+      {"q": "Will limp mode clear?", "a": "Yes — once the code is fixed and cleared."}
+    ]
+  },
+  {
+    "code": "P0229",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "TPS / APP",
+    "title": "Throttle/Pedal Position Sensor C Circuit Intermittent",
+    "shortDescription": "Intermittent signal from the third TPS/APP channel.",
+    "fullDescription": "P0229 indicates an intermittent fault on the APP/TPS channel C. Common on cars with loose pedal assembly bolts or chafed harnesses where the pedal pivots.",
+    "severity": "high",
+    "safetyImpact": "High — can trigger sudden reduced power.",
+    "causes": [
+      {"cause": "Chafed harness at pedal", "likelihood": "high"},
+      {"cause": "Loose pedal connector", "likelihood": "medium"},
+      {"cause": "Intermittent sensor failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Intermittent reduced power", "Throttle lag"],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test connector", "instruction": "Live data while moving pedal harness.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair wiring", "instruction": "Repair chafes or reseat connector.", "tools": ["soldering iron"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace pedal assembly", "instruction": "If intermittent persists, install new APP.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0228", "P0220"],
+    "faq": [
+      {"q": "Is it safe to drive?", "a": "Not recommended — sudden power loss is unpredictable."}
+    ]
+  },
+  {
+    "code": "P0233",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Pump",
+    "title": "Fuel Pump Secondary Circuit Intermittent",
+    "shortDescription": "Intermittent electrical fault on the secondary fuel pump circuit.",
+    "fullDescription": "P0233 is set when the ECM or fuel pump driver module detects an intermittent open or short in the pump circuit. Typical on vehicles with returnless fuel systems and pump driver modules.\n\nCommon causes include corroded pump connectors and failing driver modules.",
+    "severity": "high",
+    "safetyImpact": "High — may cause stalling and no-start.",
+    "causes": [
+      {"cause": "Corroded pump connector", "likelihood": "high"},
+      {"cause": "Failing fuel pump driver module", "likelihood": "medium"},
+      {"cause": "Harness chafe", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Intermittent stalling", "Hard starting"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect pump connector", "instruction": "Remove rear seat access and inspect above tank.", "tools": ["flashlight"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test driver module", "instruction": "Scan tool may show PWM duty cycle anomalies.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace module/pump", "instruction": "Replace whichever tests bad.", "tools": ["socket set"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 400, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0230", "P0231", "P0232"],
+    "faq": [
+      {"q": "Can I patch the connector?", "a": "A proper weather-pack repair kit works; avoid electrical tape fixes."}
+    ]
+  },
+  {
+    "code": "P0234",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbo/Supercharger",
+    "title": "Turbo/Super Charger Overboost Condition",
+    "shortDescription": "Turbocharger or supercharger boost pressure exceeds maximum.",
+    "fullDescription": "P0234 is set when the intake boost pressure exceeds the ECM's upper threshold. Causes include a stuck wastegate, failed boost control solenoid, or aftermarket tuning.\n\nOverboost can damage pistons, head gaskets, and the turbo itself — address promptly.",
+    "severity": "high",
+    "safetyImpact": "High — severe overboost can destroy the engine.",
+    "causes": [
+      {"cause": "Stuck or seized wastegate", "likelihood": "high"},
+      {"cause": "Failed boost control solenoid", "likelihood": "high"},
+      {"cause": "Disconnected wastegate actuator", "likelihood": "medium"},
+      {"cause": "Aftermarket tune", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Limp mode", "Excessive power surge", "Loud turbo whistle"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan live boost data", "instruction": "Note actual vs commanded boost.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect wastegate", "instruction": "Verify actuator moves freely.", "tools": ["vacuum pump / pressure tester"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test boost solenoid", "instruction": "Verify proper PWM operation.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 4, "title": "Repair/replace", "instruction": "Replace solenoid or repair wastegate linkage.", "tools": ["basic hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0299", "P0245", "P0246"],
+    "faq": [
+      {"q": "Can I keep driving?", "a": "No — overboost is an engine-killing condition. Limp home and repair."}
+    ]
+  },
+  {
+    "code": "P0273",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Cylinder 5 Injector Circuit Low",
+    "shortDescription": "Low signal on cylinder 5 injector circuit.",
+    "fullDescription": "P0273 indicates the ECM detected low voltage on cylinder 5's injector circuit. Usually points to an open injector coil, open wiring, or failed driver.",
+    "severity": "medium",
+    "safetyImpact": "Medium — misfire possible.",
+    "causes": [
+      {"cause": "Open injector coil", "likelihood": "high"},
+      {"cause": "Open wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire on cylinder 5"],
+    "fixSteps": [
+      {"step": 1, "title": "Test injector", "instruction": "Measure coil resistance.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check harness", "instruction": "Verify continuity from ECM to injector.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new injector if coil is open.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0205", "P0274"],
+    "faq": [
+      {"q": "Can low fuel pressure set this?", "a": "No — P0273 is an electrical circuit code."}
+    ]
+  },
+  {
+    "code": "P0274",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Cylinder 5 Injector Circuit High",
+    "shortDescription": "High signal on cylinder 5 injector circuit.",
+    "fullDescription": "P0274 indicates the injector driver sees a high voltage condition on cylinder 5's circuit. Typical causes are a short to voltage or a shorted injector coil.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Shorted injector coil", "likelihood": "high"},
+      {"cause": "Wiring short to power", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure resistance", "instruction": "Compare to other injectors.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Look for pinched or melted wires.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new injector.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0273", "P0205"],
+    "faq": [
+      {"q": "Could the ECM be damaged?", "a": "Yes — repeated shorts can damage injector drivers."}
+    ]
+  },
+  {
+    "code": "P0280",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Cylinder 6 Injector Circuit Low",
+    "shortDescription": "Low signal on cylinder 6 injector circuit.",
+    "fullDescription": "P0280 is set when the ECM reads low voltage on the cylinder 6 injector driver output. Usually caused by an open injector, broken wire, or failed driver.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Open injector coil", "likelihood": "high"},
+      {"cause": "Harness open circuit", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Test injector", "instruction": "Measure coil resistance.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check wiring", "instruction": "Continuity test harness.", "tools": ["digital multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new injector if coil open.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0206", "P0281"],
+    "faq": [
+      {"q": "Do I replace all six injectors?", "a": "Only the failed one, unless others test marginal."}
+    ]
+  },
+  {
+    "code": "P0281",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injector",
+    "title": "Cylinder 6 Injector Circuit High",
+    "shortDescription": "High signal on cylinder 6 injector circuit.",
+    "fullDescription": "P0281 indicates the injector driver sees elevated voltage on cylinder 6's circuit, typical of a shorted coil or wiring short to power.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Shorted injector coil", "likelihood": "high"},
+      {"cause": "Short to voltage in harness", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Resistance test", "instruction": "Compare to other injectors.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Wiring check", "instruction": "Inspect for chafes and shorts.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace injector", "instruction": "Install new injector.", "tools": ["fuel rail tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 300}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0280", "P0206"],
+    "faq": [
+      {"q": "Will cleaning injectors help?", "a": "No — this is an electrical fault, not a flow issue."}
+    ]
+  },
+  {
+    "code": "P0299",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbo/Supercharger",
+    "title": "Turbo/Super Charger Underboost Condition",
+    "shortDescription": "Turbocharger or supercharger is producing less boost than commanded.",
+    "fullDescription": "P0299 is one of the most common turbo-related codes. It is set when measured boost falls significantly below commanded boost during acceleration. Causes include boost leaks, failed wastegate actuator, worn turbo, or a dirty MAF.\n\nA smoke test of the intake tract is the fastest way to find boost leaks.",
+    "severity": "medium",
+    "safetyImpact": "Low — reduced performance but drivable.",
+    "causes": [
+      {"cause": "Boost leak (cracked hose or intercooler)", "likelihood": "high"},
+      {"cause": "Wastegate stuck open", "likelihood": "high"},
+      {"cause": "Failed boost control solenoid", "likelihood": "medium"},
+      {"cause": "Worn turbocharger", "likelihood": "medium"},
+      {"cause": "Restricted exhaust (clogged DPF/cat)", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Reduced power", "Hesitation under acceleration", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan live boost", "instruction": "Compare commanded vs actual boost.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Smoke test intake", "instruction": "Pressurize intake to find leaks.", "tools": ["smoke machine"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Check wastegate", "instruction": "Verify actuator movement at full boost.", "tools": ["vacuum pump"], "difficulty": "intermediate"},
+      {"step": 4, "title": "Repair leaks / replace parts", "instruction": "Replace cracked hoses, failed solenoid, or turbo.", "tools": ["basic hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 800}, "mechanic": {"min": 200, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0234", "P0245", "P0246"],
+    "faq": [
+      {"q": "Can a dirty air filter cause P0299?", "a": "Severely clogged filters can — check filter first, it's free."},
+      {"q": "Is the turbo always the problem?", "a": "No — boost leaks are the most common cause by far."}
+    ]
+  },
+  {
+    "code": "P0309",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 9 Misfire Detected",
+    "shortDescription": "Misfire detected on cylinder 9.",
+    "fullDescription": "P0309 indicates the ECM has detected a misfire on cylinder 9 (V10 engines). Causes include a bad ignition coil, spark plug, injector, or compression problem.\n\nStart with inexpensive items — swap coil and plug from a working cylinder to see if the misfire follows.",
+    "severity": "high",
+    "safetyImpact": "Medium — misfires damage catalysts.",
+    "causes": [
+      {"cause": "Faulty ignition coil", "likelihood": "high"},
+      {"cause": "Worn spark plug", "likelihood": "high"},
+      {"cause": "Injector issue", "likelihood": "medium"},
+      {"cause": "Low compression", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light flashing", "Rough idle", "Loss of power"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap coil and plug", "instruction": "Move parts from cylinder 9 to another; see if misfire follows.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Compression test", "instruction": "If misfire stays, compression test cylinder 9.", "tools": ["compression tester"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace failed component", "instruction": "Install new coil/plug/injector as needed.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0300", "P0308", "P0310"],
+    "faq": [
+      {"q": "Should I drive with flashing MIL?", "a": "No — a flashing MIL indicates active misfire that damages the catalytic converter."}
+    ]
+  },
+  {
+    "code": "P0310",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 10 Misfire Detected",
+    "shortDescription": "Misfire detected on cylinder 10.",
+    "fullDescription": "P0310 indicates a misfire on cylinder 10 of a V10 engine. Diagnosis mirrors other cylinder-specific misfire codes.",
+    "severity": "high",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Faulty coil or plug", "likelihood": "high"},
+      {"cause": "Injector problem", "likelihood": "medium"},
+      {"cause": "Low compression", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light flashing", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap ignition parts", "instruction": "Move coil/plug to another cylinder.", "tools": ["socket set"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Compression test", "instruction": "Check if mechanical.", "tools": ["compression tester"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace part", "instruction": "Install new failing component.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0309", "P0300"],
+    "faq": [
+      {"q": "Is P0310 common?", "a": "Only on V10 vehicles — relatively rare."}
+    ]
+  },
+  {
+    "code": "P0315",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crank Sensor",
+    "title": "Crankshaft Position System Variation Not Learned",
+    "shortDescription": "The ECM has not completed the crankshaft variation learn procedure.",
+    "fullDescription": "P0315 is set when the ECM has not stored the crankshaft reluctor wheel variation values. This learn procedure compensates for manufacturing tolerances in the crank reluctor and is required for accurate misfire detection.\n\nCommonly appears after crank sensor or ECM replacement. Fix is performing the CKP variation relearn with a capable scan tool.",
+    "severity": "low",
+    "safetyImpact": "Low — no driveability issues.",
+    "causes": [
+      {"cause": "Learn procedure never performed", "likelihood": "high"},
+      {"cause": "ECM or crank sensor recently replaced", "likelihood": "high"}
+    ],
+    "symptoms": ["Check engine light on", "Misfire detection may be unreliable"],
+    "fixSteps": [
+      {"step": 1, "title": "Perform CKP relearn", "instruction": "Follow OEM procedure with capable scan tool.", "tools": ["bidirectional scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Clear codes", "instruction": "Clear and verify no return.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 80, "max": 200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": ["P0335"],
+    "faq": [
+      {"q": "Do I need a dealer for the relearn?", "a": "No — many aftermarket bidirectional scan tools support CKP variation relearn."}
+    ]
+  },
+  {
+    "code": "P0316",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Engine Misfire Detected on Startup (First 1000 Revs)",
+    "shortDescription": "Misfire detected within the first 1000 engine revolutions after startup.",
+    "fullDescription": "P0316 is set when the ECM detects misfires during the initial crank/startup period. Ford uses this code commonly on diesel PowerStroke engines and some gas engines, to catch cold-start specific misfires.\n\nCauses include fuel injector problems, low compression, or glow plug issues (diesel).",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Injector balance issue", "likelihood": "high"},
+      {"cause": "Glow plug failure (diesel)", "likelihood": "high"},
+      {"cause": "Low compression", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Rough cold start", "Puff of white smoke at startup"],
+    "fixSteps": [
+      {"step": 1, "title": "Pull misfire counters", "instruction": "Identify which cylinders misfire at startup.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Test glow plugs / injectors", "instruction": "Check relevant component per fuel type.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace component", "instruction": "Install new injectors or glow plugs.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 500}, "mechanic": {"min": 250, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-6 hours",
+    "relatedCodes": ["P0300", "P0301", "P0308"],
+    "faq": [
+      {"q": "Only happens when cold?", "a": "Yes — P0316 specifically catches cold-start misfires."}
+    ]
+  },
+  {
+    "code": "P0320",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition",
+    "title": "Ignition/Distributor Engine Speed Input Circuit",
+    "shortDescription": "Fault in the engine speed input signal to the ECM.",
+    "fullDescription": "P0320 is set when the ECM detects a fault in the engine speed (RPM) signal from the distributor, crank, or cam sensor. The engine may stall or refuse to start.\n\nCauses include a failed sensor, wiring damage, or loose reluctor wheel.",
+    "severity": "high",
+    "safetyImpact": "High — may cause stalling.",
+    "causes": [
+      {"cause": "Failed crank/cam/distributor sensor", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"},
+      {"cause": "Damaged reluctor", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Stalling", "No-start"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan data", "instruction": "Watch RPM signal while cranking.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test sensor", "instruction": "Check resistance and signal output.", "tools": ["oscilloscope / multimeter"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0335", "P0340"],
+    "faq": [
+      {"q": "Can I drive with P0320?", "a": "Not recommended — stalling risk is high."}
+    ]
+  },
+  {
+    "code": "P0321",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition",
+    "title": "Ignition/Distributor Engine Speed Input Circuit Range/Performance",
+    "shortDescription": "Engine speed signal present but out of range.",
+    "fullDescription": "P0321 sets when the engine speed signal exists but jumps around or does not correlate with engine load. Often caused by a loose reluctor wheel, damaged tone ring, or failing sensor.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Damaged tone ring", "likelihood": "high"},
+      {"cause": "Failing sensor", "likelihood": "high"},
+      {"cause": "Wiring interference", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Stumble / misfire-like driveability", "Intermittent stalling"],
+    "fixSteps": [
+      {"step": 1, "title": "Scope the signal", "instruction": "Use scope to view sensor waveform for dropouts.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect tone ring", "instruction": "Check for damaged teeth or debris.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If waveform is good, replace sensor.", "tools": ["basic hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0320", "P0335"],
+    "faq": [
+      {"q": "Can a starter cause P0321?", "a": "A weak starter with slow cranking can trigger it briefly."}
+    ]
+  },
+  {
+    "code": "P0326",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Knock",
+    "title": "Knock Sensor 1 Circuit Range/Performance (Bank 1)",
+    "shortDescription": "Knock sensor 1 signal is out of expected range.",
+    "fullDescription": "P0326 indicates the Bank 1 knock sensor signal amplitude is abnormally high or low during expected operating conditions. The ECM cannot use it to adapt ignition timing effectively, so timing is retarded for safety.\n\nCauses include a failing sensor, loose mounting bolt, or a drifted sensor element.",
+    "severity": "medium",
+    "safetyImpact": "Low — the engine runs on a conservative timing map.",
+    "causes": [
+      {"cause": "Failed knock sensor", "likelihood": "high"},
+      {"cause": "Loose mounting bolt", "likelihood": "medium"},
+      {"cause": "Wiring shielding damaged", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Slight power reduction", "Slight fuel economy drop"],
+    "fixSteps": [
+      {"step": 1, "title": "Tighten sensor bolt", "instruction": "Torque knock sensor to specification.", "tools": ["torque wrench"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check shielded cable for damage.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["torque wrench"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0325", "P0330", "P0331"],
+    "faq": [
+      {"q": "Is knock sensor replacement hard?", "a": "On some engines it's under the intake manifold — quite labor intensive."}
+    ]
+  },
+  {
+    "code": "P0331",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Knock",
+    "title": "Knock Sensor 2 Circuit Range/Performance (Bank 2)",
+    "shortDescription": "Knock sensor 2 (Bank 2) signal is out of expected range.",
+    "fullDescription": "P0331 is the Bank 2 equivalent of P0326. Diagnosis is the same: check mounting, wiring, and replace the sensor if output is abnormal.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Failed knock sensor", "likelihood": "high"},
+      {"cause": "Loose mount", "likelihood": "medium"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Slight loss of power"],
+    "fixSteps": [
+      {"step": 1, "title": "Retorque sensor", "instruction": "Torque to spec.", "tools": ["torque wrench"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Check for damage.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new knock sensor.", "tools": ["torque wrench"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0330", "P0326"],
+    "faq": [
+      {"q": "Could premium fuel help?", "a": "No — this is an electrical fault, not a fuel octane issue."}
+    ]
+  },
+  {
+    "code": "P0337",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crank Sensor",
+    "title": "Crankshaft Position Sensor A Circuit Low Input",
+    "shortDescription": "Crankshaft position sensor voltage is below the expected minimum.",
+    "fullDescription": "P0337 is set when the CKP sensor signal stays low. Typical causes are a failed sensor, shorted signal wire, or a damaged reluctor ring.\n\nCranks-no-starts are possible when the signal fails entirely.",
+    "severity": "high",
+    "safetyImpact": "High.",
+    "causes": [
+      {"cause": "Failed CKP sensor", "likelihood": "high"},
+      {"cause": "Signal wire short to ground", "likelihood": "medium"},
+      {"cause": "Reluctor damage", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Hard start", "No-start"],
+    "fixSteps": [
+      {"step": 1, "title": "Scope signal", "instruction": "View waveform during cranking.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check for shorts.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace CKP", "instruction": "Install new sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0335", "P0338"],
+    "faq": [
+      {"q": "Can heat cause P0337?", "a": "Yes — many CKP sensors fail when hot and recover when cool."}
+    ]
+  },
+  {
+    "code": "P0338",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crank Sensor",
+    "title": "Crankshaft Position Sensor A Circuit High Input",
+    "shortDescription": "Crankshaft position sensor voltage exceeds the maximum.",
+    "fullDescription": "P0338 is set when the CKP signal stays near its upper voltage limit. Causes include a failed sensor, open sensor ground, or signal shorted to voltage.\n\nDiagnose with an oscilloscope for best accuracy.",
+    "severity": "high",
+    "safetyImpact": "High.",
+    "causes": [
+      {"cause": "Failed CKP sensor", "likelihood": "high"},
+      {"cause": "Open ground wire", "likelihood": "medium"},
+      {"cause": "Short to voltage", "likelihood": "low"}
+    ],
+    "symptoms": ["Check engine light on", "Stalling", "No-start"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify ground", "instruction": "Back-probe CKP ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Scope signal", "instruction": "Check waveform.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new CKP.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0335", "P0337"],
+    "faq": [
+      {"q": "How long does CKP replacement take?", "a": "Typically 1-2 hours depending on engine access."}
+    ]
+  },
+  {
+    "code": "P0342",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam Sensor",
+    "title": "Camshaft Position Sensor A Circuit Low Input (Bank 1)",
+    "shortDescription": "Cam position sensor signal stays low.",
+    "fullDescription": "P0342 is set when the Bank 1 camshaft position sensor voltage reads below the minimum threshold. Likely causes include a failed sensor, shorted signal wire, or a damaged cam reluctor.\n\nExpect extended cranking or no-start in severe cases.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed cam sensor", "likelihood": "high"},
+      {"cause": "Signal short to ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Hard start", "Stalling"],
+    "fixSteps": [
+      {"step": 1, "title": "Scope signal", "instruction": "Observe cam sensor waveform.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check for shorts.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new cam sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0340", "P0343"],
+    "faq": [
+      {"q": "Will it start?", "a": "Usually yes — modern engines can start on CKP alone."}
+    ]
+  },
+  {
+    "code": "P0343",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam Sensor",
+    "title": "Camshaft Position Sensor A Circuit High Input (Bank 1)",
+    "shortDescription": "Cam position sensor voltage stays high.",
+    "fullDescription": "P0343 is set when the Bank 1 CMP sensor signal exceeds the maximum voltage. Causes mirror P0342 but on the high side — failed sensor, open ground, or short to voltage.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed cam sensor", "likelihood": "high"},
+      {"cause": "Open sensor ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Hard start"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify ground", "instruction": "Back-probe the CMP ground.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Scope signal", "instruction": "Check waveform.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0340", "P0342"],
+    "faq": [
+      {"q": "Does this affect VVT?", "a": "Yes — variable valve timing requires a good CMP signal."}
+    ]
+  },
+  {
+    "code": "P0344",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam Sensor",
+    "title": "Camshaft Position Sensor A Circuit Intermittent (Bank 1)",
+    "shortDescription": "Intermittent Bank 1 cam sensor signal.",
+    "fullDescription": "P0344 indicates intermittent loss of the Bank 1 cam sensor signal. Commonly caused by a loose connector, chafed harness, or a sensor that fails when hot.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high"},
+      {"cause": "Heat-sensitive sensor failure", "likelihood": "high"},
+      {"cause": "Chafed wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Intermittent stall", "Extended cranking"],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Scan data while moving harness and connector.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Reseat connector", "instruction": "Ensure connector fully engages.", "tools": ["basic hand tools"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If intermittent persists, replace sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0340", "P0342", "P0343"],
+    "faq": [
+      {"q": "Can I drive?", "a": "Yes short term, but intermittent stalls can strand you."}
+    ]
+  },
+  {
+    "code": "P0346",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam Sensor",
+    "title": "Camshaft Position Sensor A Circuit Range/Performance (Bank 2)",
+    "shortDescription": "Bank 2 cam sensor signal is out of expected range.",
+    "fullDescription": "P0346 is set when the Bank 2 camshaft position sensor signal is implausible in timing or pattern relative to CKP. Causes are similar to P0341: reluctor damage, stretched timing chain, or sensor drift.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Stretched timing chain", "likelihood": "high"},
+      {"cause": "Worn cam phaser", "likelihood": "medium"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Rough idle", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Read VVT data", "instruction": "Check commanded vs actual cam advance.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Oil level check", "instruction": "Low oil can affect phaser operation.", "tools": ["dipstick"], "difficulty": "easy"},
+      {"step": 3, "title": "Inspect timing chain", "instruction": "Check for chain stretch; inspect tensioner.", "tools": ["timing tools"], "difficulty": "advanced"},
+      {"step": 4, "title": "Replace component", "instruction": "Replace sensor, phaser, or chain as needed.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 1000}, "mechanic": {"min": 300, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-8 hours",
+    "relatedCodes": ["P0345", "P0341", "P0016"],
+    "faq": [
+      {"q": "Could it just be oil change overdue?", "a": "Yes — low or dirty oil affects cam phasers; change oil first."}
+    ]
+  },
+  {
+    "code": "P0385",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crank Sensor",
+    "title": "Crankshaft Position Sensor B Circuit",
+    "shortDescription": "Electrical fault in the secondary crankshaft position sensor circuit.",
+    "fullDescription": "P0385 applies to vehicles with a secondary CKP sensor (often on the flywheel/flex-plate). It is set when the ECM detects a fault in that circuit.\n\nCauses include sensor failure, harness damage, or tone ring damage.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed CKP B sensor", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "Possible no-start or stall"],
+    "fixSteps": [
+      {"step": 1, "title": "Scope signal", "instruction": "Check CKP B waveform while cranking.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check harness integrity.", "tools": ["digital multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new secondary CKP.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0335", "P0336"],
+    "faq": [
+      {"q": "What uses a secondary CKP?", "a": "Some diesels and high-end performance engines for redundancy."}
+    ]
+  },
+  {
+    "code": "P0390",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam Sensor",
+    "title": "Camshaft Position Sensor B Circuit (Bank 2)",
+    "shortDescription": "Electrical fault in Bank 2 Cam Sensor B circuit.",
+    "fullDescription": "P0390 applies to engines with dual overhead cams on Bank 2, where the exhaust camshaft has its own sensor. The ECM has detected an electrical fault in that sensor's circuit.\n\nCauses are typical for sensor codes: failed sensor, wiring damage, or connector corrosion.",
+    "severity": "medium",
+    "safetyImpact": "Medium.",
+    "causes": [
+      {"cause": "Failed cam sensor", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"},
+      {"cause": "Connector corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light on", "VVT underperformance", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Check for bent pins or corrosion.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 2, "title": "Scope signal", "instruction": "Verify waveform.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new cam sensor.", "tools": ["socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["P0365", "P0345", "P0340"],
+    "faq": [
+      {"q": "Does P0390 affect fuel economy?", "a": "Mildly — VVT optimization is compromised."}
+    ]
+  }
+]
