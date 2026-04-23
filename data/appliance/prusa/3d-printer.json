@@ -1,0 +1,1251 @@
+[
+  {
+    "id": "prusa-3d-printer-error-10",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "ERROR 10",
+    "displayCode": "Error 10",
+    "alternativeCodes": [
+      "MINTEMP hotend"
+    ],
+    "title": "Hotend heater sensor disconnected",
+    "shortDescription": "Prusa firmware detected the hotend temperature is below the minimum — sensor likely disconnected.",
+    "fullDescription": "Error 10 on MK3/MK4 indicates the hotend thermistor reads below the minimum threshold. The firmware assumes the wire is broken or the connector on the Einsy/xBuddy board has come loose. The heater is immediately disabled.\n\nOn the MK3 this often correlates with a worn Einsy connector or damaged hotend wiring near the flexible cable bundle at the hotend.\n\nOn the MK4 it usually points to the nextruder PCB connector.",
+    "causes": [
+      {
+        "cause": "Thermistor wire broken near hotend flex bundle",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose Einsy/xBuddy connector",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error 10 on LCD",
+      "Hotend temp shows 0°C",
+      "Heater will not start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat hotend connector",
+        "instruction": "Open the electronics cover and reseat the thermistor connector on Einsy (MK3) or xBuddy (MK4).",
+        "tools": [
+          "Torx T10"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Inspect flex bundle",
+        "instruction": "Flex the hotend harness while monitoring temperature — erratic readings mean broken conductor.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace thermistor",
+        "instruction": "Install a new Prusa PT1000 (MK4) or 100k NTC (MK3) thermistor.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Prusa i3 MK3",
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "PT1000 thermistor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Hotend cable bundle",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 60
+      },
+      "professional": {
+        "min": 80,
+        "max": 180
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the Einsy/xBuddy connector pad is damaged.",
+    "relatedCodes": [
+      "Error 11",
+      "Error 12"
+    ],
+    "videoSearchQuery": "Prusa MK3 error 10 fix",
+    "faq": [
+      {
+        "q": "Is my thermistor NTC or PT1000?",
+        "a": "MK3/MK3S use 100k NTC. MK4 uses PT1000."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-error-11",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "ERROR 11",
+    "displayCode": "Error 11",
+    "alternativeCodes": [
+      "MAXTEMP hotend"
+    ],
+    "title": "Hotend maximum temperature exceeded",
+    "shortDescription": "Hotend temperature exceeded the safe maximum — thermistor shorted or heater stuck on.",
+    "fullDescription": "Error 11 indicates the hotend temperature is above the firmware limit. Usually the thermistor wires have shorted together, giving a false high reading. Rarely, the MOSFET has failed closed and the heater is actually running.\n\nCheck for shorts before heating again — if the heater is actually stuck on, the hotend can reach dangerous temperatures.",
+    "causes": [
+      {
+        "cause": "Thermistor wire shorted near heater block",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed heater MOSFET on mainboard",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error 11 on LCD",
+      "Temp jumped to high value",
+      "Smoke or burning smell possible"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power off immediately",
+        "instruction": "Unplug the printer to ensure the heater is not stuck on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Inspect thermistor wire",
+        "instruction": "Check for melted insulation between thermistor leads near the heater block.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace thermistor",
+        "instruction": "Install a new thermistor with PTFE sleeving on the leads.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "MK3",
+      "MK3S",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Thermistor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "PTFE sleeve",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 80,
+        "max": 180
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If MOSFET on xBuddy has failed.",
+    "relatedCodes": [
+      "Error 10",
+      "Error 13"
+    ],
+    "videoSearchQuery": "Prusa error 11 MAXTEMP fix",
+    "faq": [
+      {
+        "q": "Is the printer still safe?",
+        "a": "Yes, because firmware cut power. But investigate before re-enabling the heater."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-error-13",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "ERROR 13",
+    "displayCode": "Error 13",
+    "alternativeCodes": [
+      "Thermal anomaly",
+      "Preheat error"
+    ],
+    "title": "Heating failed — thermal anomaly",
+    "shortDescription": "Hotend or bed did not reach target temperature within expected time.",
+    "fullDescription": "Error 13 triggers when the printer fails to heat as expected — the measured slope is too low. Common reasons: print fan blowing on the heater block, a loose heater cartridge, or cold ambient air without a silicone sock.\n\nPrusa's firmware is stricter than stock Marlin and catches marginal heater cartridges early.",
+    "causes": [
+      {
+        "cause": "Part cooling fan running during heat-up",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose heater cartridge",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Missing silicone sock",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error 13",
+      "Slow heating",
+      "Aborts during preheat"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install silicone sock",
+        "instruction": "Fit a genuine Prusa silicone sock over the heater block.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Tighten heater cartridge",
+        "instruction": "Let hotend cool. Tighten the M3 heater setscrew in the block.",
+        "tools": [
+          "Hex key 1.5mm"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Re-run PID tune",
+        "instruction": "In menu: Calibration → PID Calibration → Hotend.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Silicone sock",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "40W heater cartridge",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 30
+      },
+      "professional": {
+        "min": 70,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-40 minutes",
+    "whenToCallPro": "If heater cartridge keeps failing after replacement.",
+    "relatedCodes": [
+      "Error 10",
+      "Error 11"
+    ],
+    "videoSearchQuery": "Prusa error 13 thermal anomaly fix",
+    "faq": [
+      {
+        "q": "Why does it fail in cold rooms?",
+        "a": "Cold ambient draws heat faster than the cartridge can supply."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-filament-sensor-error",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "FILAMENT SENSOR ERROR",
+    "displayCode": "Filament sensor error",
+    "alternativeCodes": [
+      "IR sensor error",
+      "Runout sensor error"
+    ],
+    "title": "Filament sensor not responding",
+    "shortDescription": "The IR or optical filament sensor is not returning valid data.",
+    "fullDescription": "MK3S uses an IR sensor in the extruder that detects filament presence. Misalignment, dust on the sensor, or a loose ribbon cable prevents detection.\n\nMK4 uses a loadcell-based system; errors there typically point to the nextruder cable or PCB.\n\nRecalibrate the sensor from the menu after cleaning.",
+    "causes": [
+      {
+        "cause": "Dust on IR sensor lens",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose ribbon cable to extruder PCB",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed sensor module",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Prints not starting",
+      "Sensor value stuck",
+      "Error on SuperPINDA/IR"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean sensor",
+        "instruction": "Blow out the sensor cavity with compressed air and wipe with IPA on a cotton bud.",
+        "tools": [
+          "Compressed air",
+          "IPA"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Recalibrate",
+        "instruction": "Menu → Calibration → Filament Sensor Calibration. Follow prompts.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check ribbon cable",
+        "instruction": "Remove extruder cover and reseat the FFC ribbon cable.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "IR filament sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 60,
+        "max": 120
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If the extruder PCB is damaged.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa MK3S filament sensor calibration",
+    "faq": [
+      {
+        "q": "Can I disable the filament sensor?",
+        "a": "Yes, in Settings → Filament Sensor → Off."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-mmu-error",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "MMU ERROR",
+    "displayCode": "MMU error",
+    "alternativeCodes": [
+      "MMU3 error",
+      "MMU2S error"
+    ],
+    "title": "Multi-material unit fault",
+    "shortDescription": "MMU unit failed to load, unload, or select a filament.",
+    "fullDescription": "The Prusa MMU3 / MMU2S handles up to 5 filaments. Errors happen when filament tips are badly shaped, Bowden tubes are misaligned, or the selector cannot find the pulley position.\n\nMost fixes involve cleaning the FINDA sensor, trimming filament tips, or adjusting the Bowden length.",
+    "causes": [
+      {
+        "cause": "Stringy filament tip blocks FINDA",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty FINDA sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bowden tube misaligned",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "MMU LED blinking red",
+      "Filament not loading",
+      "Paused with MMU prompt"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cut clean filament tip",
+        "instruction": "Trim the filament to a sharp point, remove any blobs.",
+        "tools": [
+          "Flush cutter"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clean FINDA",
+        "instruction": "Remove FINDA, blow out, ensure the ball moves freely.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check Bowden length",
+        "instruction": "Verify all 5 Bowden tubes are equal length and fully seated.",
+        "tools": [
+          "Ruler"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "MK3S + MMU2S",
+      "MK4 + MMU3"
+    ],
+    "partsNeeded": [
+      {
+        "part": "FINDA sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Bowden tube",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 80,
+        "max": 160
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the MMU PCB is not detected at all.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa MMU3 error troubleshooting",
+    "faq": [
+      {
+        "q": "Why does FINDA fail more on PLA?",
+        "a": "PLA tends to form long strings during retract — trimming helps."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-mesh-bed-leveling-failed",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "MESH BED LEVELING FAILED",
+    "displayCode": "Mesh bed leveling failed",
+    "alternativeCodes": [
+      "XYZ calibration failed",
+      "PINDA probe failed"
+    ],
+    "title": "Mesh bed leveling did not complete",
+    "shortDescription": "The PINDA/SuperPINDA probe could not level all mesh points.",
+    "fullDescription": "Prusa printers probe a 7x7 mesh using the SuperPINDA inductive sensor. If the probe cannot trigger on one of the steel sheet calibration points, mesh leveling fails.\n\nUsually a dirty print sheet, incorrect PINDA height, or thick paint/dirt on the Y-axis dots is the cause.",
+    "causes": [
+      {
+        "cause": "Dirty calibration dots on heatbed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SuperPINDA mounted too high",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Faulty SuperPINDA",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Fails during G80",
+      "Error on LCD mid-calibration"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean calibration points",
+        "instruction": "Remove the steel sheet and clean the 9 calibration points with IPA.",
+        "tools": [
+          "IPA"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Adjust PINDA height",
+        "instruction": "PINDA bottom should be ~1mm above the nozzle tip.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run XYZ calibration",
+        "instruction": "Menu → Calibration → XYZ calibration.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "SuperPINDA sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 40
+      },
+      "professional": {
+        "min": 70,
+        "max": 130
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-40 minutes",
+    "whenToCallPro": "If SuperPINDA fails after replacement.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa mesh bed leveling failed fix",
+    "faq": [
+      {
+        "q": "Does steel sheet affect calibration?",
+        "a": "Yes — textured and smooth sheets have different Z offsets."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-powerloss-recovery-error",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "POWERLOSS RECOVERY ERROR",
+    "displayCode": "Power panic / recovery error",
+    "alternativeCodes": [
+      "Power panic",
+      "Crash detected"
+    ],
+    "title": "Power panic triggered or recovery failed",
+    "shortDescription": "Printer detected a power loss or failed to resume after one.",
+    "fullDescription": "Prusa's Power Panic feature saves state when input voltage drops. When power returns, it tries to re-home and continue. If the saved state is corrupt or the bed has shifted, recovery may fail and require manual restart.\n\nFrequent power panics without actual outages indicate a failing PSU or loose 24V connector.",
+    "causes": [
+      {
+        "cause": "Loose PSU 24V wire to Einsy",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PSU undersized / failing",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Brownouts from shared circuit",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Power panic beep",
+      "Recovery fails on boot",
+      "Random resets"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check 24V wiring",
+        "instruction": "Power off. Tighten PSU terminal block and Einsy input screws.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Move to dedicated circuit",
+        "instruction": "Plug the printer directly into a wall outlet, not a shared strip with large appliances.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Test PSU voltage",
+        "instruction": "Measure 24V output under load — should stay within 23.5-24.5V.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Prusa 24V PSU",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If PSU replacement is needed and you are not comfortable with mains wiring.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa power panic recovery fix",
+    "faq": [
+      {
+        "q": "Can I disable power panic?",
+        "a": "No — it's integral to Prusa firmware."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-homing-xyz-failed",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "HOMING XYZ FAILED",
+    "displayCode": "Homing XYZ failed",
+    "alternativeCodes": [
+      "Axis homing failed"
+    ],
+    "title": "XYZ homing failed",
+    "shortDescription": "Printer failed to home all three axes during start.",
+    "fullDescription": "MK3S and MK4 use sensorless homing (stallguard) on X and Y. If belts are too loose or too tight, stallguard never triggers or triggers too early, causing homing to fail.\n\nOn MK4 an additional XY calibration step uses the loadcell — if the nextruder loadcell is not calibrated, homing can fail.",
+    "causes": [
+      {
+        "cause": "X/Y belt too loose for stallguard",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Belt too tight — false trigger",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loadcell miscalibrated (MK4)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Homing stops early",
+      "Axes grind",
+      "Error on LCD"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check belt tension",
+        "instruction": "Use Belt Tuning menu → target 260-290 Hz on MK3S.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Recalibrate loadcell (MK4)",
+        "instruction": "Menu → Calibration → Loadcell Calibration.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Re-run XYZ calibration",
+        "instruction": "Run full XYZ calibration from menu.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 60,
+        "max": 120
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "E-axis skipped steps"
+    ],
+    "videoSearchQuery": "Prusa MK3S homing failed fix",
+    "faq": [
+      {
+        "q": "What is sensorless homing?",
+        "a": "The driver detects a motor stall instead of using a physical switch."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-first-layer-calibration",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "FIRST LAYER CALIBRATION",
+    "displayCode": "First layer calibration needed",
+    "alternativeCodes": [
+      "Live Z",
+      "First layer failed"
+    ],
+    "title": "First layer calibration needed or failed",
+    "shortDescription": "Live-Z offset is wrong and needs recalibration.",
+    "fullDescription": "Prusa uses Live-Z to adjust the nozzle-to-bed distance. If the first layer is too far or too close, the print lifts or smears. Recalibrate whenever the sheet, hotend, or SuperPINDA changes.\n\nTypical Live-Z ranges from -0.600 to -1.300. Values outside this range suggest the SuperPINDA mount is wrong.",
+    "causes": [
+      {
+        "cause": "Sheet swapped without Live-Z profile",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Nozzle changed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SuperPINDA shifted",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "First layer poor",
+      "Blobs or gaps",
+      "Prompt to calibrate"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run First Layer Cal",
+        "instruction": "Menu → Calibration → First Layer Cal. Adjust Z in real-time until lines are uniform.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Use per-sheet profiles",
+        "instruction": "Save a separate Live-Z for each sheet (smooth/textured/satin).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-20 minutes",
+    "whenToCallPro": "Not needed — this is routine calibration.",
+    "relatedCodes": [
+      "Mesh bed leveling failed"
+    ],
+    "videoSearchQuery": "Prusa first layer calibration",
+    "faq": [
+      {
+        "q": "What's a good Live-Z?",
+        "a": "Typical range -0.600 to -1.300 mm."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-selftest-failed",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "SELFTEST FAILED",
+    "displayCode": "Selftest failed",
+    "alternativeCodes": [],
+    "title": "Built-in self test failed",
+    "shortDescription": "Selftest found a fault in fans, heaters, motors, or sensors.",
+    "fullDescription": "Prusa MK4 selftest checks fans, heaters, endstops, and motors during first-boot and after firmware updates. It reports which component failed so you can target the fix.\n\nFan failures are the most common — bearings wear out after ~2000 hours.",
+    "causes": [
+      {
+        "cause": "Hotend fan bearing worn",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Print fan cable loose",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Heater cartridge failing",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Selftest fails at specific step",
+      "Detailed error on LCD"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read detail",
+        "instruction": "Note which step failed (hotend fan, print fan, loadcell, etc.).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Replace failing fan",
+        "instruction": "Order genuine Prusa replacement and swap per official guide.",
+        "tools": [
+          "Hex keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Re-run selftest",
+        "instruction": "Menu → Selftest → Run.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "MK4",
+      "MK3.9"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Hotend fan",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Print fan",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 60,
+        "max": 140
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If loadcell selftest continues to fail after recalibration.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa MK4 selftest failed fix",
+    "faq": [
+      {
+        "q": "Does selftest print anything?",
+        "a": "No — it only exercises hardware."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-e-axis-skipped-steps",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "E-AXIS SKIPPED STEPS",
+    "displayCode": "Extruder skipped steps",
+    "alternativeCodes": [
+      "Extruder clicking"
+    ],
+    "title": "Extruder skipping steps",
+    "shortDescription": "Extruder motor cannot push enough filament — causing under-extrusion.",
+    "fullDescription": "The Prusa direct-drive extruder skips steps when back-pressure is too high. Causes include a partial nozzle clog, too-high print speed, too-low temperature, or a worn Bondtech drive gear.\n\nUpdate temperature and speed before replacing hardware.",
+    "causes": [
+      {
+        "cause": "Partial nozzle clog",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Print temp too low for filament",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Worn Bondtech gear",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Clicking from extruder",
+      "Under-extruded walls"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Raise print temp",
+        "instruction": "Increase hotend temp by 5-10°C; ensure flow matches filament.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Cold pull",
+        "instruction": "Perform a nylon cold pull to remove debris from nozzle.",
+        "tools": [
+          "Nylon filament"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace nozzle",
+        "instruction": "Install a new 0.4mm nozzle.",
+        "tools": [
+          "Wrench"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Nozzle 0.4mm",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Bondtech gear",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 50
+      },
+      "professional": {
+        "min": 60,
+        "max": 130
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If Bondtech gears keep wearing.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Prusa extruder skipping steps fix",
+    "faq": [
+      {
+        "q": "Is clicking always skipping?",
+        "a": "Yes — the click is the gear slipping on the filament."
+      }
+    ]
+  },
+  {
+    "id": "prusa-3d-printer-stallguard-error",
+    "brand": "Prusa",
+    "brandSlug": "prusa",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "STALLGUARD ERROR",
+    "displayCode": "Stallguard triggered",
+    "alternativeCodes": [
+      "Crash detected"
+    ],
+    "title": "Stallguard detected an unexpected stall",
+    "shortDescription": "A TMC driver detected a motor stall mid-move.",
+    "fullDescription": "Prusa firmware uses stallguard both for homing and for crash detection. Unexpected stalls mid-print pause or abort the job and display a crash message.\n\nCauses include a blob on the print hitting the nozzle, a rod that needs lubrication, or a belt too tight.",
+    "causes": [
+      {
+        "cause": "Nozzle hit a blob",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Smooth rod needs lube",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Belt over-tensioned",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Crash detected message",
+      "Print paused",
+      "Layer shift before pause"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Resume or restart",
+        "instruction": "Inspect print for damage, resume if safe.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Lubricate rods",
+        "instruction": "Apply a light PTFE or lithium oil to all smooth rods.",
+        "tools": [
+          "Oil"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Retune belts",
+        "instruction": "Run belt tuning in menu — target 260-290 Hz.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "MK3S",
+      "MK3S+",
+      "MK4"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Machine oil",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 60,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "Homing XYZ failed"
+    ],
+    "videoSearchQuery": "Prusa stallguard crash detected",
+    "faq": [
+      {
+        "q": "Can stallguard save my print?",
+        "a": "Yes — it's designed to pause and offer resume."
+      }
+    ]
+  }
+]

@@ -178,6 +178,41 @@ export const APPLIANCE_BRANDS = [
   { name: "Echo", slug: "echo-tools", country: "Japan" },
   { name: "Troy-Bilt", slug: "troy-bilt", country: "USA" },
   { name: "Generac", slug: "generac", country: "USA" },
+  // ── Audio / Smart Home ──
+  { name: "Sonos", slug: "sonos", country: "USA" },
+  { name: "Bose", slug: "bose", country: "USA" },
+  { name: "JBL", slug: "jbl", country: "USA" },
+  { name: "Yamaha", slug: "yamaha", country: "Japan" },
+  { name: "Amazon Alexa", slug: "alexa", country: "USA" },
+  { name: "Google Home", slug: "google-home", country: "USA" },
+  { name: "Philips Hue", slug: "philips-hue", country: "Netherlands" },
+  // ── 3D Printers ──
+  { name: "Creality", slug: "creality", country: "China" },
+  { name: "Prusa Research", slug: "prusa", country: "Czech Republic" },
+  { name: "Bambu Lab", slug: "bambu-lab", country: "China" },
+  { name: "Anycubic", slug: "anycubic", country: "China" },
+  // ── EV Chargers ──
+  { name: "Tesla Wall Connector", slug: "tesla-wall", country: "USA" },
+  { name: "ChargePoint", slug: "chargepoint", country: "USA" },
+  { name: "JuiceBox / Enel X", slug: "juicebox", country: "USA" },
+  // ── Drones ──
+  { name: "DJI", slug: "dji", country: "China" },
+  { name: "Autel Robotics", slug: "autel", country: "USA" },
+  // ── NAS / UPS ──
+  { name: "Synology", slug: "synology", country: "Taiwan" },
+  { name: "QNAP", slug: "qnap", country: "Taiwan" },
+  { name: "APC", slug: "apc", country: "USA" },
+  { name: "CyberPower", slug: "cyberpower", country: "USA" },
+  // ── Projectors ──
+  { name: "Epson Projectors", slug: "epson-projector", country: "Japan" },
+  { name: "BenQ", slug: "benq", country: "Taiwan" },
+  { name: "Optoma", slug: "optoma", country: "Taiwan" },
+  // ── Sewing Machines ──
+  { name: "Singer", slug: "singer", country: "USA" },
+  { name: "Janome", slug: "janome", country: "Japan" },
+  // ── Pool Equipment ──
+  { name: "Pentair", slug: "pentair", country: "USA" },
+  { name: "Hayward", slug: "hayward", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
@@ -235,6 +270,14 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "power-tool": { label: "Power Tool", labelPlural: "Power Tools" },
   "smart-speaker": { label: "Smart Speaker", labelPlural: "Smart Speakers" },
   "smart-bulb": { label: "Smart Bulb", labelPlural: "Smart Bulbs" },
+  "3d-printer": { label: "3D Printer", labelPlural: "3D Printers" },
+  "ev-charger": { label: "EV Charger", labelPlural: "EV Chargers" },
+  drone: { label: "Drone", labelPlural: "Drones" },
+  nas: { label: "NAS", labelPlural: "NAS Devices" },
+  ups: { label: "UPS", labelPlural: "UPS Units" },
+  projector: { label: "Projector", labelPlural: "Projectors" },
+  "sewing-machine": { label: "Sewing Machine", labelPlural: "Sewing Machines" },
+  "pool-equipment": { label: "Pool Equipment", labelPlural: "Pool Equipment" },
 };
 
 // ── HVAC Brands ──

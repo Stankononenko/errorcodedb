@@ -109,7 +109,15 @@ export type ApplianceDeviceType =
   | "robot-mower"
   | "power-tool"
   | "smart-speaker"
-  | "smart-bulb";
+  | "smart-bulb"
+  | "3d-printer"
+  | "ev-charger"
+  | "drone"
+  | "nas"
+  | "ups"
+  | "projector"
+  | "sewing-machine"
+  | "pool-equipment";
 
 export interface ApplianceCause {
   cause: string;

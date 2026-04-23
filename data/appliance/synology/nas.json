@@ -1,0 +1,1548 @@
+[
+  {
+    "id": "synology-nas-system-degraded",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "SYSTEM DEGRADED",
+    "displayCode": "System Degraded",
+    "alternativeCodes": [
+      "Storage Pool Degraded"
+    ],
+    "title": "System degraded",
+    "shortDescription": "One or more drives in the storage pool have failed, leaving redundancy compromised.",
+    "fullDescription": "Synology DSM reports Degraded when a RAID set loses a disk but data is still accessible via remaining parity. The array continues to function but a second failure could cause data loss.\n\nReplace failed drive ASAP. DSM will start rebuild automatically once new disk is inserted.\n\nMonitor SMART status and backup critical data before rebuild completes.",
+    "causes": [
+      {
+        "cause": "Single drive failure",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Drive SMART errors",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SATA cable fault",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Controller issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Degraded warning in DSM",
+      "Amber status LED",
+      "Email alert",
+      "Slower performance"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify failed drive",
+        "instruction": "Storage Manager > HDD/SSD will show failed drive slot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Backup data",
+        "instruction": "Run Hyper Backup to ensure offsite copy before rebuild.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "Power off (or hot-swap if supported), remove failed drive, insert new compatible drive.",
+        "tools": [
+          "Compatible HDD"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Start rebuild",
+        "instruction": "Storage Manager will prompt to Repair pool; confirm and allow rebuild.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 720
+      }
+    ],
+    "affectedModels": [
+      "DS220+",
+      "DS224+",
+      "DS423+",
+      "DS920+",
+      "DS1522+",
+      "RS1221+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement HDD (CMR, NAS-grade)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-24 hours",
+    "whenToCallPro": "If multiple drives fail or rebuild fails, contact Synology support to avoid data loss.",
+    "relatedCodes": [
+      "DRIVE REMOVED",
+      "RAID REBUILD FAILED",
+      "SMART WARNING"
+    ],
+    "videoSearchQuery": "Synology NAS system degraded replace drive rebuild",
+    "faq": [
+      {
+        "q": "Can I still use NAS?",
+        "a": "Yes but avoid heavy use until rebuild completes."
+      },
+      {
+        "q": "How long does rebuild take?",
+        "a": "Roughly 8-24 hours per TB depending on model."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-volume-crashed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "VOLUME CRASHED",
+    "displayCode": "Volume Crashed",
+    "alternativeCodes": [
+      "Volume Failed"
+    ],
+    "title": "Volume crashed",
+    "shortDescription": "A storage volume has failed and is no longer accessible.",
+    "fullDescription": "A crashed volume means too many drives failed, or the filesystem is corrupt beyond auto-recovery.\n\nDo not write more data. Attempt filesystem check via DSM. If unsuccessful, data recovery may be needed.\n\nRestore from backup is the safest path.",
+    "causes": [
+      {
+        "cause": "Multiple drive failures exceeding RAID tolerance",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Filesystem corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Sudden power loss",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Crashed label in Storage Manager",
+      "Shares inaccessible",
+      "Red status LEDs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Do not reboot",
+        "instruction": "Avoid further writes or power cycling.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Check SMART on all disks",
+        "instruction": "Storage Manager to identify failed disks.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Filesystem check",
+        "instruction": "Storage Manager > Volume > Data Scrubbing / File System Check.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 240
+      },
+      {
+        "step": 4,
+        "title": "Restore from backup",
+        "instruction": "If volume unrecoverable, create new and restore Hyper Backup.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 1440
+      }
+    ],
+    "affectedModels": [
+      "DS220+",
+      "DS423+",
+      "DS920+",
+      "RS1221+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement HDDs",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 1200
+      },
+      "professional": {
+        "min": 500,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "4-48 hours",
+    "whenToCallPro": "Contact Synology or data recovery service for critical data without backup.",
+    "relatedCodes": [
+      "SYSTEM DEGRADED",
+      "RAID REBUILD FAILED"
+    ],
+    "videoSearchQuery": "Synology volume crashed recovery",
+    "faq": [
+      {
+        "q": "Is data gone?",
+        "a": "Often recoverable via filesystem check or professional service."
+      },
+      {
+        "q": "Can I add fresh drives?",
+        "a": "Yes to create new volume, but old data needs recovery first."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-smart-warning",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "SMART WARNING",
+    "displayCode": "SMART Warning",
+    "alternativeCodes": [
+      "Disk Critical"
+    ],
+    "title": "SMART warning",
+    "shortDescription": "Drive SMART attributes indicate impending failure.",
+    "fullDescription": "DSM monitors SMART attributes like reallocated sectors, pending sectors, and uncorrectable errors. Warnings indicate disk is wearing and should be replaced.\n\nDo not ignore — drive will likely fail soon. Back up and swap.",
+    "causes": [
+      {
+        "cause": "Reallocated sector count increasing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Pending sectors",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "End of life wear",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "SMART critical warning",
+      "Disk marked bad",
+      "Performance drops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check SMART details",
+        "instruction": "Storage Manager > HDD/SSD > Health Info.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Backup",
+        "instruction": "Run full backup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "Swap with NAS-grade drive and let RAID rebuild.",
+        "tools": [
+          "Replacement HDD"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All Synology DS/RS"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement HDD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-24 hours",
+    "whenToCallPro": "Not usually needed — user-swappable.",
+    "relatedCodes": [
+      "SYSTEM DEGRADED"
+    ],
+    "videoSearchQuery": "Synology SMART warning drive replace",
+    "faq": [
+      {
+        "q": "Can SMART warning be false?",
+        "a": "Rarely; trust it and replace."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-fan-failed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "FAN FAILED",
+    "displayCode": "Fan Failed",
+    "alternativeCodes": [
+      "Fan Not Spinning",
+      "Fan Malfunction"
+    ],
+    "title": "Fan failed",
+    "shortDescription": "System cooling fan has stopped or is running incorrectly.",
+    "fullDescription": "Dust accumulation, bearing wear, or cable disconnection stops fan. Temperature will rise, risking drive and board damage.\n\nReplace with matching Synology or compatible fan. DSM will alarm continuously until cleared.",
+    "causes": [
+      {
+        "cause": "Dust clogging fan",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bearing failure",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cable disconnected",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Fan error beep",
+      "Continuous alarm",
+      "High temperature warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power off",
+        "instruction": "Shut down NAS and unplug.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Open case",
+        "instruction": "Remove screws per model guide.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Clean or replace fan",
+        "instruction": "Compressed air cleaning; if bearings worn, replace with compatible 92mm or 120mm fan.",
+        "tools": [
+          "Compressed air",
+          "Replacement fan"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "DS224+",
+      "DS423+",
+      "DS920+",
+      "DS1522+",
+      "RS1221+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Case fan (92mm/120mm)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If warranty active, don't open; contact Synology.",
+    "relatedCodes": [
+      "TEMPERATURE HIGH"
+    ],
+    "videoSearchQuery": "Synology NAS fan replacement fix",
+    "faq": [
+      {
+        "q": "Can I use any fan?",
+        "a": "Match size and connector; 4-pin PWM preferred."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-power-supply-failure",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "PSU FAILURE",
+    "displayCode": "Power Supply Failure",
+    "alternativeCodes": [
+      "PSU Error"
+    ],
+    "title": "Power supply failure",
+    "shortDescription": "Internal or redundant PSU has failed.",
+    "fullDescription": "Rackmount RS models have dual PSUs with redundancy; DS models have single internal. A PSU failure causes shutdown or alarm.\n\nReplace with identical part number; RS models support hot-swap.",
+    "causes": [
+      {
+        "cause": "PSU end of life",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Power surge",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Fan in PSU died",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "PSU alarm",
+      "NAS won't turn on",
+      "Red PSU LED (rackmount)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify failed PSU",
+        "instruction": "DSM > Info Center > Hardware shows PSU status.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Order replacement",
+        "instruction": "Match part number from Synology.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Swap PSU",
+        "instruction": "For rackmount hot-swap; for desktop open case and replace.",
+        "tools": [
+          "Screwdriver",
+          "Replacement PSU"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "RS1221RP+",
+      "RS2421RP+",
+      "DS1823xs+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Synology PSU unit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Desktop models with internal PSU — send to Synology under warranty.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology NAS power supply replacement",
+    "faq": [
+      {
+        "q": "Is redundant PSU worth it?",
+        "a": "Yes for 24/7 business use."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-temperature-too-high",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "TEMPERATURE HIGH",
+    "displayCode": "Temperature Too High",
+    "alternativeCodes": [
+      "Overheating",
+      "Thermal Warning"
+    ],
+    "title": "Temperature too high",
+    "shortDescription": "System or drive temperature exceeds safe threshold.",
+    "fullDescription": "DSM logs show drive or CPU temperatures over limits (55-60C drives, 70C CPU). Caused by dust, fan failure, ambient heat, or enclosed space.\n\nClean vents, improve airflow, and replace fans as needed.",
+    "causes": [
+      {
+        "cause": "Dust blocking vents",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fan failure",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Enclosed placement",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High ambient temperature",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "High temp warning",
+      "Fan at max speed",
+      "Automatic shutdown",
+      "Drives slowing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check placement",
+        "instruction": "Ensure 10cm clearance all sides; not in cabinet.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean vents and fans",
+        "instruction": "Power off, use compressed air to clean.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Check fan operation",
+        "instruction": "Verify fan spins and replace if dead.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Adjust fan mode",
+        "instruction": "DSM > Hardware & Power > Fan Speed Mode > Full Speed if needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement fan",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If shutdown persists despite clean NAS, hardware service needed.",
+    "relatedCodes": [
+      "FAN FAILED"
+    ],
+    "videoSearchQuery": "Synology NAS overheating fix",
+    "faq": [
+      {
+        "q": "Safe drive temperature?",
+        "a": "Under 45C ideal, under 55C acceptable."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-network-connection-lost",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "NETWORK LOST",
+    "displayCode": "Network Connection Lost",
+    "alternativeCodes": [
+      "LAN Down",
+      "No Link"
+    ],
+    "title": "Network connection lost",
+    "shortDescription": "Ethernet link dropped or not established.",
+    "fullDescription": "Cable, switch, or NIC issues break network. DSM shows port down. Link link aggregation or failover can mask single port issues.\n\nCheck cable, switch port, and NIC settings.",
+    "causes": [
+      {
+        "cause": "Ethernet cable fault",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Switch port issue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DSM network misconfig",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "NIC hardware failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Cannot reach NAS",
+      "Port down in DSM",
+      "No link LED"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat cable",
+        "instruction": "Unplug and replug both ends.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Test cable",
+        "instruction": "Try known-good cable and different switch port.",
+        "tools": [
+          "Ethernet cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset DSM network",
+        "instruction": "Control Panel > Network > Network Interface > reset to DHCP.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Ethernet cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If NIC chip fried, hardware service needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology NAS network connection lost fix",
+    "faq": [
+      {
+        "q": "Can I reset DSM network via console?",
+        "a": "Yes by pressing reset button briefly for network reset."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-backup-failed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "BACKUP FAILED",
+    "displayCode": "Backup Failed",
+    "alternativeCodes": [
+      "Hyper Backup Error"
+    ],
+    "title": "Backup job failed",
+    "shortDescription": "Scheduled Hyper Backup or similar job could not complete.",
+    "fullDescription": "Common failure causes: destination full, network drop, permission error, or source file issue. DSM log details specific error.\n\nReview Hyper Backup log, fix cause, re-run.",
+    "causes": [
+      {
+        "cause": "Destination full",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network/remote unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Credentials expired",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "File permission issue",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Backup failed notification",
+      "Red status in Hyper Backup",
+      "No recent snapshots"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review log",
+        "instruction": "Open Hyper Backup > Log Center for error details.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Free up destination",
+        "instruction": "Delete old backups or rotate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Verify credentials",
+        "instruction": "Re-enter cloud provider credentials if expired.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Re-run backup",
+        "instruction": "Manually trigger backup and monitor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-120 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology Hyper Backup failed fix",
+    "faq": [
+      {
+        "q": "Do I lose past backups?",
+        "a": "No; only the new snapshot failed."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-dsm-update-error",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "DSM UPDATE ERROR",
+    "displayCode": "DSM Update Error",
+    "alternativeCodes": [
+      "DSM Install Failed"
+    ],
+    "title": "DSM update error",
+    "shortDescription": "DSM system update failed or did not reboot cleanly.",
+    "fullDescription": "DSM upgrades occasionally fail due to package conflicts, insufficient space, or corrupted download.\n\nRetry from Control Panel; manual PAT file install possible. Recovery mode may be needed.",
+    "causes": [
+      {
+        "cause": "Download corruption",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient space",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Package incompatibility",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Update failed",
+      "Blue LED blinking",
+      "DSM inaccessible"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear old update",
+        "instruction": "Control Panel > Update & Restore > cancel.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Download PAT manually",
+        "instruction": "Get PAT file from Synology Download Center.",
+        "tools": [
+          "Computer"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Manual install",
+        "instruction": "Control Panel > Manual DSM Update > upload PAT.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Recovery mode",
+        "instruction": "If bricked, use Synology Assistant to recover.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-120 minutes",
+    "whenToCallPro": "If data loss risk, Synology support.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology DSM update failed recovery",
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "Normally no; DSM and data are separate."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-raid-rebuild-failed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "RAID REBUILD FAILED",
+    "displayCode": "RAID Rebuild Failed",
+    "alternativeCodes": [
+      "Parity Consistency Error"
+    ],
+    "title": "RAID rebuild failed",
+    "shortDescription": "Array failed to complete rebuild after drive replacement.",
+    "fullDescription": "Rebuild can fail if another drive has bad sectors or replacement drive is faulty. May leave volume crashed.\n\nCheck SMART on all drives, scrub if possible, consider professional data recovery.",
+    "causes": [
+      {
+        "cause": "Second drive fault during rebuild",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Replacement drive incompatible",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Read errors during rebuild",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Rebuild stopped",
+      "Volume crashed",
+      "Multiple drive errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Stop using NAS",
+        "instruction": "Prevent further writes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Check SMART all drives",
+        "instruction": "Identify additional failures.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace additional bad drives",
+        "instruction": "Use compatible NAS drives.",
+        "tools": [
+          "Replacement HDDs"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Contact Synology support",
+        "instruction": "For assisted rebuild or recovery.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 0
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Multiple replacement HDDs",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 1000
+      },
+      "professional": {
+        "min": 500,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "4 hours - 3 days",
+    "whenToCallPro": "Critical data at risk — Synology or recovery specialist.",
+    "relatedCodes": [
+      "VOLUME CRASHED",
+      "SYSTEM DEGRADED"
+    ],
+    "videoSearchQuery": "Synology RAID rebuild failed recovery",
+    "faq": [
+      {
+        "q": "Why use NAS-grade drives?",
+        "a": "Built for 24/7 vibration tolerance and TLER."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-drive-removed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "DRIVE REMOVED",
+    "displayCode": "Drive Removed",
+    "alternativeCodes": [
+      "Disk Disconnected"
+    ],
+    "title": "Drive removed unexpectedly",
+    "shortDescription": "A drive has been ejected or lost connection.",
+    "fullDescription": "Could be unintentional (loose tray) or hardware failure. Check tray seating and cable; SMART the drive after reseat.",
+    "causes": [
+      {
+        "cause": "Loose drive tray",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Backplane connector dirty",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Drive failure",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Drive removed alert",
+      "Degraded state",
+      "Amber LED on bay"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat tray",
+        "instruction": "Pull and reinsert tray firmly.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Check SMART",
+        "instruction": "If drive returns, check health.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace if failed",
+        "instruction": "Swap drive and rebuild.",
+        "tools": [
+          "Replacement HDD"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "professional": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Backplane damage needs service.",
+    "relatedCodes": [
+      "SYSTEM DEGRADED"
+    ],
+    "videoSearchQuery": "Synology drive removed unexpectedly fix",
+    "faq": [
+      {
+        "q": "Can I reinsert same drive?",
+        "a": "Yes; DSM will re-add if healthy."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-memory-error",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "MEMORY ERROR",
+    "displayCode": "Memory Error",
+    "alternativeCodes": [
+      "RAM Error",
+      "ECC Error"
+    ],
+    "title": "Memory error",
+    "shortDescription": "RAM test or ECC reports errors.",
+    "fullDescription": "Bad RAM causes crashes, data corruption, and package errors. DSM provides Memory Test under Control Panel > Info Center.\n\nReplace with Synology-validated RAM.",
+    "causes": [
+      {
+        "cause": "Faulty RAM module",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incompatible third-party RAM",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose seating",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Memory error warnings",
+      "Random reboots",
+      "Kernel panic logs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Memory Test",
+        "instruction": "Info Center > General > Memory Test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reseat RAM",
+        "instruction": "Power off, open RAM door, reinsert modules.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace RAM",
+        "instruction": "Use Synology-validated module.",
+        "tools": [
+          "Compatible RAM"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "DS423+",
+      "DS920+",
+      "DS1522+",
+      "RS1221+"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Synology DDR4 RAM",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology NAS memory error fix",
+    "faq": [
+      {
+        "q": "Third party RAM OK?",
+        "a": "Validated brands work but Synology branded avoids support issues."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-shr-conversion-failed",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "SHR CONVERSION FAILED",
+    "displayCode": "SHR Conversion Failed",
+    "alternativeCodes": [
+      "Storage Expand Failed"
+    ],
+    "title": "SHR conversion failed",
+    "shortDescription": "Storage pool expansion or SHR conversion did not complete.",
+    "fullDescription": "SHR (Synology Hybrid RAID) expansion can fail if drive sizes are wrong, one drive has errors, or operation interrupted.\n\nCheck logs and drive health before retry.",
+    "causes": [
+      {
+        "cause": "Drive error mid-conversion",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Power interruption",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Incompatible drive sizes",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Expansion stuck",
+      "Degraded pool",
+      "Error log entry"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review logs",
+        "instruction": "Log Center for error details.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check SMART",
+        "instruction": "All drives healthy before retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Retry conversion",
+        "instruction": "Storage Manager > Action > Repair or Expand.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 720
+      },
+      {
+        "step": 4,
+        "title": "Synology support",
+        "instruction": "For complex recovery.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 0
+      }
+    ],
+    "affectedModels": [
+      "DS220+",
+      "DS423+",
+      "DS920+"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2 hours - 24 hours",
+    "whenToCallPro": "Critical data at risk.",
+    "relatedCodes": [
+      "RAID REBUILD FAILED"
+    ],
+    "videoSearchQuery": "Synology SHR conversion failed fix",
+    "faq": [
+      {
+        "q": "Can I mix drive sizes in SHR?",
+        "a": "Yes; SHR optimizes mixed sizes."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-package-corrupted",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "PACKAGE CORRUPTED",
+    "displayCode": "Package Corrupted",
+    "alternativeCodes": [
+      "Package Damaged"
+    ],
+    "title": "Package corrupted",
+    "shortDescription": "A DSM package cannot start due to corruption.",
+    "fullDescription": "Package Center reports a package as damaged. Usually reinstall fixes. Sometimes clean removal and reinstall needed.",
+    "causes": [
+      {
+        "cause": "Failed update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Storage issue during install",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Version incompatibility",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Package won't start",
+      "Damaged label",
+      "Service unavailable"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Repair package",
+        "instruction": "Package Center > Action > Repair.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Uninstall and reinstall",
+        "instruction": "Preserve settings if prompted.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology package corrupted fix",
+    "faq": [
+      {
+        "q": "Will settings be lost?",
+        "a": "Package Center preserves config when available."
+      }
+    ]
+  },
+  {
+    "id": "synology-nas-license-expired",
+    "brand": "Synology",
+    "brandSlug": "synology",
+    "deviceType": "NAS",
+    "deviceTypeSlug": "nas",
+    "code": "LICENSE EXPIRED",
+    "displayCode": "License Expired",
+    "alternativeCodes": [
+      "License Invalid"
+    ],
+    "title": "License expired",
+    "shortDescription": "Surveillance Station or other paid license expired or invalid.",
+    "fullDescription": "Synology offers free bundled licenses plus paid add-ons (Surveillance Station cameras, Active Backup). Expired or invalid licenses disable features.\n\nReactivate or purchase new license via Synology account.",
+    "causes": [
+      {
+        "cause": "Trial expired",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "License not transferred on NAS migration",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account authentication issue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "License expired warning",
+      "Feature disabled",
+      "Camera offline (Surveillance)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Log in to Synology account",
+        "instruction": "Verify license state.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reactivate or purchase",
+        "instruction": "Apply license key in Package Center.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Transfer from old NAS",
+        "instruction": "License Manager > Transfer.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Synology"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 200
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Not applicable.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Synology license expired fix",
+    "faq": [
+      {
+        "q": "Free camera licenses?",
+        "a": "Two free with Surveillance Station; more purchased."
+      }
+    ]
+  }
+]

@@ -1,0 +1,1642 @@
+[
+  {
+    "id": "creality-3d-printer-thermal-runaway",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "THERMAL RUNAWAY",
+    "displayCode": "Thermal Runaway",
+    "alternativeCodes": [
+      "Err: Thermal Runaway E1",
+      "Heating Failed"
+    ],
+    "title": "Thermal runaway protection triggered",
+    "shortDescription": "Printer detected abnormal hotend or bed temperature change and halted to prevent fire.",
+    "fullDescription": "Thermal runaway is a critical safety feature in Marlin firmware. When the measured temperature deviates from the target by more than a set tolerance for too long, the printer immediately shuts off all heaters and stops the print. This prevents dangerous overheating that could damage the printer or cause a fire.\n\nCommon causes include a loose or damaged thermistor, a failing heater cartridge, a loose silicone sock causing airflow issues, or a PID that needs to be tuned. The error usually happens early in the heat-up phase or mid-print when heating is briefly requested.\n\nAlways investigate before resetting and reprinting — dismissing thermal runaway without diagnosis is unsafe.",
+    "causes": [
+      {
+        "cause": "Loose or damaged thermistor wire on hotend",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Heater cartridge failing or undersized for ambient temp",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PID values not tuned for current hardware",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Missing silicone sock — too much heat loss",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Print stops mid-heating",
+      "Hotend shuts off",
+      "LCD shows THERMAL RUNAWAY E1",
+      "Beeper sounds continuously"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power off and inspect thermistor",
+        "instruction": "Unplug the printer. Remove the silicone sock and visually inspect the thermistor wires for breaks or loose crimps at the hotend.",
+        "tools": [
+          "Allen keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reseat or replace thermistor",
+        "instruction": "Push the thermistor fully into the heater block and secure with the set screw. Replace if damaged (~$5).",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Install silicone sock",
+        "instruction": "Fit a new silicone sock over the heater block to reduce heat loss and stabilize readings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Run PID autotune",
+        "instruction": "Connect via Pronterface/OctoPrint and send M303 E0 S210 C8, then save with M500.",
+        "tools": [
+          "USB cable"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Ender 3",
+      "Ender 3 V2",
+      "Ender 3 S1",
+      "Ender 5",
+      "CR-10",
+      "CR-10S"
+    ],
+    "partsNeeded": [
+      {
+        "part": "100k NTC thermistor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Silicone sock",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "40W heater cartridge",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 30
+      },
+      "professional": {
+        "min": 60,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If you are uncomfortable opening the hotend or the heater cartridge terminal looks damaged, contact a repair shop.",
+    "relatedCodes": [
+      "MINTEMP",
+      "MAXTEMP",
+      "Heating Failed"
+    ],
+    "videoSearchQuery": "Creality Ender 3 thermal runaway fix",
+    "faq": [
+      {
+        "q": "Is it safe to disable thermal runaway?",
+        "a": "No. Never disable thermal runaway — it is the only firmware protection against fire."
+      },
+      {
+        "q": "Why does it happen only at print start?",
+        "a": "Initial heat-up has the steepest temperature ramp, which exposes loose thermistors first."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-mintemp",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "MINTEMP",
+    "displayCode": "MINTEMP",
+    "alternativeCodes": [
+      "Err: MINTEMP",
+      "Heating failed min temp"
+    ],
+    "title": "Minimum temperature error",
+    "shortDescription": "Thermistor reads below the minimum allowed temperature, indicating a broken or disconnected sensor.",
+    "fullDescription": "MINTEMP appears when the hotend or bed thermistor reports a value lower than the firmware-configured minimum (usually 5°C). This almost always means the thermistor wire is broken, unplugged, or the connector on the mainboard has come loose.\n\nThe firmware intentionally refuses to heat when it cannot trust the temperature reading, because running a heater without feedback would damage the printer.\n\nCheck continuity of the thermistor and the mainboard connection before replacing parts.",
+    "causes": [
+      {
+        "cause": "Thermistor wire broken near hotend",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Connector unplugged from mainboard",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cold ambient temperature (below 5°C)",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "LCD shows MINTEMP",
+      "Cannot start heating",
+      "Temperature reads 0 or negative"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check thermistor connector",
+        "instruction": "Open the control box and reseat the TH0 (hotend) and TB (bed) connectors on the mainboard.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Test thermistor resistance",
+        "instruction": "At room temperature a working 100k thermistor reads ~100kΩ. Use a multimeter on the two thermistor pins.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace thermistor",
+        "instruction": "Install a new 100k NTC cartridge thermistor, route the wire carefully and secure with cable ties.",
+        "tools": [
+          "Allen keys",
+          "Wire crimper"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 series",
+      "Ender 5",
+      "CR-10 series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "100k NTC thermistor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 15
+      },
+      "professional": {
+        "min": 50,
+        "max": 120
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-40 minutes",
+    "whenToCallPro": "If the thermistor connector on the mainboard is burnt or damaged.",
+    "relatedCodes": [
+      "MAXTEMP",
+      "Thermal Runaway"
+    ],
+    "videoSearchQuery": "Creality Ender MINTEMP error fix",
+    "faq": [
+      {
+        "q": "Can cold weather trigger MINTEMP?",
+        "a": "Yes, garages below 5°C can cause false MINTEMP at power-on. Warm the printer first."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-maxtemp",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "MAXTEMP",
+    "displayCode": "MAXTEMP",
+    "alternativeCodes": [
+      "Err: MAXTEMP"
+    ],
+    "title": "Maximum temperature exceeded",
+    "shortDescription": "Thermistor reports a temperature higher than the firmware limit, usually from a shorted thermistor.",
+    "fullDescription": "MAXTEMP indicates the temperature sensor is reading above the firmware's safety ceiling (typically 275°C hotend, 125°C bed). It normally means the thermistor has shorted to ground or the wire insulation has melted and wires have fused.\n\nThis is the opposite failure of MINTEMP — firmware cuts power to prevent actual overheating from the stuck-on heater.\n\nInspect for burnt insulation near the heater block before testing.",
+    "causes": [
+      {
+        "cause": "Shorted thermistor wire near heater block",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged thermistor cartridge",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Mainboard input damage",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "LCD shows MAXTEMP",
+      "Temperature briefly shows very high value",
+      "Heater disabled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect wire insulation",
+        "instruction": "Look for melted insulation at the point where the thermistor wire enters the heater block.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Replace thermistor",
+        "instruction": "Install a new thermistor and route the new wire away from the heater block using PTFE sleeving.",
+        "tools": [
+          "Allen keys"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 series",
+      "Ender 5",
+      "CR-10 series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "100k NTC thermistor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "PTFE wire sleeve",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 20
+      },
+      "professional": {
+        "min": 60,
+        "max": 140
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If the mainboard fuse blew or TH0 pin is damaged.",
+    "relatedCodes": [
+      "MINTEMP",
+      "Thermal Runaway"
+    ],
+    "videoSearchQuery": "Creality MAXTEMP error fix",
+    "faq": [
+      {
+        "q": "Is MAXTEMP dangerous?",
+        "a": "Potentially. The heater may have reached unsafe temperatures — inspect the heater block for discoloration."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-sd-init-error",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "SD INIT FAIL",
+    "displayCode": "SD init fail",
+    "alternativeCodes": [
+      "No SD card",
+      "echo:SD init fail"
+    ],
+    "title": "SD card initialization failed",
+    "shortDescription": "Printer cannot read the inserted SD card.",
+    "fullDescription": "The LCD firmware expects a FAT32-formatted SD card of 32GB or less with short (8.3) filenames. Larger cards, exFAT format, or corrupted partitions cause initialization to fail silently or with an explicit error.\n\nA worn SD card slot with bent contacts is also common — Creality's stock slots are fragile.\n\nReformatting the card usually fixes the issue; replacing the card reader is the next step.",
+    "causes": [
+      {
+        "cause": "Card formatted exFAT instead of FAT32",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Card size over 32GB",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bent pins in SD slot",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted gcode files",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "LCD does not list files",
+      "Print from SD greyed out",
+      "Card shows as empty"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reformat card as FAT32",
+        "instruction": "Use a computer to format the SD card FAT32 with 4096-byte allocation. Reload gcode files.",
+        "tools": [
+          "Computer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try smaller card",
+        "instruction": "Use an 8GB or 16GB Class 10 card known to work with Creality.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Inspect SD slot",
+        "instruction": "Look at the card reader contacts with a flashlight. Straighten bent pins with a needle.",
+        "tools": [
+          "Needle",
+          "Flashlight"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ender 3",
+      "Ender 3 V2",
+      "CR-10"
+    ],
+    "partsNeeded": [
+      {
+        "part": "8-32GB FAT32 SD card",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the LCD itself is broken or the ribbon cable is damaged.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Creality Ender 3 SD card not working fix",
+    "faq": [
+      {
+        "q": "Why does my 64GB card not work?",
+        "a": "Marlin SD library only supports up to 32GB FAT32. Use a smaller card."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-filament-runout",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "FILAMENT RUNOUT",
+    "displayCode": "Filament runout",
+    "alternativeCodes": [
+      "Filament out",
+      "Out of filament"
+    ],
+    "title": "Filament runout sensor triggered",
+    "shortDescription": "Printer paused because the filament runout sensor reports no filament.",
+    "fullDescription": "Creality printers with an optical or mechanical runout sensor pause the print when filament is no longer detected. Sometimes the sensor triggers falsely due to a stuck lever, broken microswitch, or the filament slipping past the sensor without pushing the lever.\n\nCheck the sensor cable continuity and verify that the lever moves freely when filament passes through.",
+    "causes": [
+      {
+        "cause": "Filament actually ran out",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Runout sensor lever stuck",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Broken sensor cable",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Microswitch failed",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Print paused",
+      "LCD prompts to change filament",
+      "Sensor LED off"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Load new filament",
+        "instruction": "Feed fresh filament through the sensor until it clicks, then resume the print.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect sensor lever",
+        "instruction": "Open the sensor housing and check that the lever springs back freely.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test sensor cable",
+        "instruction": "Use a multimeter in continuity mode to test the sensor cable at both ends.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 V2",
+      "Ender 3 S1",
+      "CR-10 V3"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Filament runout sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "JST-XH cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Rarely needed — this is a user-serviceable sensor.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Creality filament runout sensor fix",
+    "faq": [
+      {
+        "q": "Can I disable the sensor?",
+        "a": "Yes, via M412 S0 in Marlin, but you lose runout protection."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-bed-leveling-failed",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "BED LEVELING FAILED",
+    "displayCode": "Bed leveling failed",
+    "alternativeCodes": [
+      "G29 failed",
+      "ABL failed"
+    ],
+    "title": "Automatic bed leveling probe failed",
+    "shortDescription": "Printer could not complete the mesh bed leveling sequence.",
+    "fullDescription": "Automatic Bed Leveling (ABL) with CR Touch or BLTouch probes the bed at multiple points. If any probe fails — because the probe didn't deploy, the bed is too far, or the Z-offset is wrong — leveling aborts and the error is shown.\n\nCommon causes include a BLTouch pin that won't extend, a bed that is too low at the corners to reach the probe, or mounting the probe too high above the nozzle tip.",
+    "causes": [
+      {
+        "cause": "BLTouch pin stuck or alarm state",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bed too far from nozzle for probe to reach",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Probe mounted too high",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "G29 aborts",
+      "LCD shows probe failure",
+      "Flashing BLTouch light"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear BLTouch alarm",
+        "instruction": "Send M280 P0 S160 via terminal to reset the probe.",
+        "tools": [
+          "USB cable"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Manually raise bed",
+        "instruction": "Level all four corners with paper so the bed is close enough for the probe to trigger.",
+        "tools": [
+          "Paper"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Re-check probe mount",
+        "instruction": "Probe pin tip should be 1-3mm below the nozzle when deployed.",
+        "tools": [
+          "Ruler"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 V2",
+      "Ender 3 S1",
+      "CR-10 Smart"
+    ],
+    "partsNeeded": [
+      {
+        "part": "BLTouch or CR Touch probe",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If the probe hardware needs replacement and you are not comfortable with firmware configuration.",
+    "relatedCodes": [
+      "BLTouch error",
+      "Homing failed"
+    ],
+    "videoSearchQuery": "Creality BLTouch bed leveling failed fix",
+    "faq": [
+      {
+        "q": "Why does BLTouch flash red?",
+        "a": "Flashing red indicates alarm state — send M280 P0 S160 to reset."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-bltouch-error",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "BLTOUCH ERROR",
+    "displayCode": "BLTouch error",
+    "alternativeCodes": [
+      "Probe error",
+      "CR Touch error"
+    ],
+    "title": "BLTouch probe error",
+    "shortDescription": "BLTouch probe hardware or wiring fault detected.",
+    "fullDescription": "The BLTouch uses a push-pin and Hall sensor to detect the bed. Wiring faults, bent pins, or firmware mismatches cause it to enter a permanent alarm state. A healthy BLTouch blinks red once on power-up, then stays solid.\n\nCheck that the 5-pin connector is oriented correctly — swapped servo and probe wires cause instant alarm.",
+    "causes": [
+      {
+        "cause": "Wiring reversed on 5-pin header",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bent probe pin",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed Hall sensor in probe",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Red LED stays on",
+      "Pin does not deploy",
+      "Probe deploy test fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check wiring polarity",
+        "instruction": "Confirm black/red on servo header and white/black/brown on probe header match pinout diagram.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Straighten bent pin",
+        "instruction": "If the pin does not retract smoothly, gently straighten with tweezers.",
+        "tools": [
+          "Tweezers"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace probe",
+        "instruction": "If all checks pass, install a new BLTouch/CR Touch (~$40).",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 V2",
+      "Ender 3 S1",
+      "CR-10"
+    ],
+    "partsNeeded": [
+      {
+        "part": "BLTouch v3.1 or CR Touch",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 35,
+        "max": 60
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If firmware flashing is required and you have not done it before.",
+    "relatedCodes": [
+      "Bed leveling failed"
+    ],
+    "videoSearchQuery": "Creality BLTouch error fix",
+    "faq": [
+      {
+        "q": "Can I test BLTouch without a printer?",
+        "a": "Yes — power it with 5V and send servo commands through a microcontroller."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-stepper-overcurrent",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "STEPPER OVERCURRENT",
+    "displayCode": "Stepper overcurrent",
+    "alternativeCodes": [
+      "TMC driver error",
+      "Driver shutdown"
+    ],
+    "title": "Stepper driver overcurrent / overheat",
+    "shortDescription": "TMC stepper driver shut down due to overcurrent or overtemperature.",
+    "fullDescription": "Silent stepper drivers (TMC2208/2209) on newer Creality boards report overcurrent or overtemperature faults and disable the motor until the fault clears. This usually means the Vref is set too high, the heatsink fell off, or the driver fan died.\n\nMotors suddenly lose torque mid-print and the axis stalls — a classic symptom of driver thermal shutdown.",
+    "causes": [
+      {
+        "cause": "Vref set too high for driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Mainboard cooling fan not running",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Heatsink detached from driver chip",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Motor stops mid-print",
+      "Layer shift or stall",
+      "Driver chip burning smell"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify mainboard fan",
+        "instruction": "Open the control box and confirm the mainboard cooling fan spins at power-on.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Vref",
+        "instruction": "For TMC2209 on X/Y/E set Vref to approximately 0.8V with a multimeter on the driver testpoint.",
+        "tools": [
+          "Multimeter",
+          "Small screwdriver"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace heatsink",
+        "instruction": "Use thermal tape to stick a new aluminum heatsink onto the driver chip.",
+        "tools": [
+          "Thermal pad"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 V2 (4.2.7 board)",
+      "Ender 3 S1",
+      "CR-10 Smart"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Driver heatsink",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Mainboard fan 4010",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 25
+      },
+      "professional": {
+        "min": 60,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the driver chip is already burnt — mainboard swap is likely.",
+    "relatedCodes": [
+      "Layer shift"
+    ],
+    "videoSearchQuery": "Creality TMC2209 Vref adjustment",
+    "faq": [
+      {
+        "q": "Can a stalled motor damage the driver?",
+        "a": "TMC drivers have overcurrent protection, but repeated stalls shorten lifespan."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-layer-shift",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "LAYER SHIFT",
+    "displayCode": "Layer shift",
+    "alternativeCodes": [],
+    "title": "Layer shifting during print",
+    "shortDescription": "Print layers offset from each other during printing.",
+    "fullDescription": "Layer shift is a visible print defect, not a true error code, but it is the most common user-reported failure. It happens when the X or Y axis loses steps — the nozzle collides, the belt slips, or the driver overheats and skips — causing every subsequent layer to be offset.\n\nMechanical causes (loose belts, pulleys) are more common than electrical (driver currents).",
+    "causes": [
+      {
+        "cause": "Loose X or Y belt",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose pulley grub screw",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Nozzle catching on previous layer warp",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stepper driver overheating",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Misaligned layers",
+      "Print offset part-way up",
+      "Grinding noise during print"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Tighten belts",
+        "instruction": "Belts should feel firm when plucked — not slack. Adjust the belt tensioner on X and Y.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check pulley grub screws",
+        "instruction": "Ensure the stepper pulley grub screw is tight on the flat of the motor shaft.",
+        "tools": [
+          "Allen key 1.5mm"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reduce print speed",
+        "instruction": "Drop travel speed to 100 mm/s and acceleration to 500 mm/s² to rule out missed steps.",
+        "tools": [
+          "Slicer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "All Ender and CR-10 models"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Rarely needed — this is almost always user-fixable.",
+    "relatedCodes": [
+      "Stepper overcurrent"
+    ],
+    "videoSearchQuery": "Ender 3 layer shift fix",
+    "faq": [
+      {
+        "q": "Can layer shift resolve by itself?",
+        "a": "No. Once shifted, the offset is permanent for the rest of the print."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-under-extrusion",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "UNDER-EXTRUSION",
+    "displayCode": "Under-extrusion",
+    "alternativeCodes": [],
+    "title": "Extruder delivering too little plastic",
+    "shortDescription": "Prints have gaps, thin walls, or missing layers due to insufficient extrusion.",
+    "fullDescription": "Under-extrusion produces visible gaps, stringy tops, and weak walls. Causes include a partial nozzle clog, a slipping extruder gear, worn Bowden PTFE tube, or E-steps that need calibration.\n\nStart with a cold pull to clear the nozzle, then check extruder tension before adjusting slicer flow rate.",
+    "causes": [
+      {
+        "cause": "Partial nozzle clog",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Extruder gear slipping on filament",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PTFE tube worn at hotend end",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "E-steps not calibrated",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Gaps in top layers",
+      "Missing infill",
+      "Thin walls",
+      "Clicking extruder"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cold pull",
+        "instruction": "Heat to 220°C, push filament, cool to 90°C, pull out — repeat until the tip comes out clean.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Check extruder tension",
+        "instruction": "Adjust the extruder spring tension so the gear grips but doesn't flatten the filament.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace PTFE tube",
+        "instruction": "Cut a fresh square end on Capricorn tubing and re-seat fully into the hotend.",
+        "tools": [
+          "Cutter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Calibrate E-steps",
+        "instruction": "Mark 120mm of filament, extrude 100mm, measure remaining, adjust E-steps with M92.",
+        "tools": [
+          "Ruler",
+          "USB cable"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Ender 3",
+      "Ender 3 V2",
+      "CR-10"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Brass nozzle 0.4mm",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Capricorn PTFE tube",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 30
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ender 3 under extrusion fix",
+    "faq": [
+      {
+        "q": "Why does the extruder click?",
+        "a": "Clicking means the extruder gear is skipping because the nozzle is partly blocked."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-z-axis-binding",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "Z-AXIS BINDING",
+    "displayCode": "Z-axis binding",
+    "alternativeCodes": [],
+    "title": "Z-axis binding or uneven motion",
+    "shortDescription": "Z-axis moves unevenly, causing banding or stalls.",
+    "fullDescription": "Single Z-axis Creality printers are prone to binding when the lead screw is misaligned or the Z-coupler is not straight. Symptoms include grinding at layer change, Z banding on prints, or a Z motor that stalls during homing.\n\nA flexible coupler and properly aligned lead screw resolve most cases.",
+    "causes": [
+      {
+        "cause": "Lead screw misaligned at top bracket",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Rigid coupler — needs replacing with flex coupler",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dry lead screw",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Z motor grinding",
+      "Uneven layers",
+      "Z banding"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Loosen top Z bracket",
+        "instruction": "Loosen the top bracket and let the lead screw self-align while running the Z axis up and down.",
+        "tools": [
+          "Allen keys"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Lubricate lead screw",
+        "instruction": "Apply PTFE grease along the full length of the lead screw.",
+        "tools": [
+          "PTFE grease"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Install flex coupler",
+        "instruction": "Replace rigid coupler with a spider-style flexible coupler to absorb lead screw wobble.",
+        "tools": [
+          "Allen keys"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Ender 3",
+      "Ender 3 Pro",
+      "Ender 3 V2"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Flexible shaft coupler 5mm-8mm",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "PTFE grease",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 20
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20-30 minutes",
+    "whenToCallPro": "Not usually needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ender 3 Z axis binding fix",
+    "faq": [
+      {
+        "q": "Do I need a dual-Z upgrade?",
+        "a": "Not for basic binding — a flex coupler and alignment solve most cases."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-x-axis-crash",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "X CRASH",
+    "displayCode": "X-axis crash",
+    "alternativeCodes": [
+      "X homing failed"
+    ],
+    "title": "X-axis crashed into endstop",
+    "shortDescription": "X carriage ran into the frame because endstop did not trigger.",
+    "fullDescription": "During homing, the printer moves X toward the endstop. If the endstop does not trigger — broken switch, wire, or misaligned tab — the carriage crashes into the frame and the driver stalls.\n\nPower off immediately when you hear grinding to avoid damaging the belt or motor.",
+    "causes": [
+      {
+        "cause": "X endstop switch broken",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Endstop cable disconnected",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Triggering tab bent or missing",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Grinding at home X",
+      "Carriage hits frame",
+      "Homing does not complete"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test endstop manually",
+        "instruction": "Send M119 via terminal; press the switch by hand and watch the status change.",
+        "tools": [
+          "USB cable"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-seat endstop cable",
+        "instruction": "Unplug and reseat the endstop connector on the mainboard.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace endstop switch",
+        "instruction": "Install a new microswitch endstop module.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 series",
+      "CR-10 series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Endstop microswitch module",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 15
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If the belt or motor shaft was damaged during the crash.",
+    "relatedCodes": [
+      "Endstop triggered"
+    ],
+    "videoSearchQuery": "Ender 3 X endstop fix",
+    "faq": [
+      {
+        "q": "Can I run M119 without printing?",
+        "a": "Yes — it just reports endstop status."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-endstop-triggered",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "ENDSTOP TRIGGERED",
+    "displayCode": "Endstop triggered",
+    "alternativeCodes": [
+      "Homing failed",
+      "Printer halted"
+    ],
+    "title": "Endstop triggered unexpectedly",
+    "shortDescription": "An axis endstop shows triggered when it should not be.",
+    "fullDescription": "If an endstop reports triggered at power-on, Marlin refuses to move the axis. This happens from a stuck switch, a short in the endstop cable, or noise pickup on long ribbon cables.\n\nRun M119 to identify which endstop is stuck. Physical inspection of the switch and cable usually resolves it.",
+    "causes": [
+      {
+        "cause": "Switch physically pressed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Short in endstop cable",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed switch reading LOW",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Homing refuses to start",
+      "M119 shows TRIGGERED"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run M119",
+        "instruction": "Send M119 via USB terminal and identify the triggered endstop.",
+        "tools": [
+          "USB cable"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect switch and cable",
+        "instruction": "Look for a pressed switch, pinched cable, or loose connector.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 series",
+      "CR-10 series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Endstop switch",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "X crash"
+    ],
+    "videoSearchQuery": "Creality endstop triggered fix",
+    "faq": [
+      {
+        "q": "What does open/triggered mean?",
+        "a": "OPEN = switch not pressed; TRIGGERED = switch pressed."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-firmware-update-failed",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "FIRMWARE UPDATE FAILED",
+    "displayCode": "Firmware update failed",
+    "alternativeCodes": [],
+    "title": "Firmware flash failed",
+    "shortDescription": "Printer failed to flash new firmware from SD card or USB.",
+    "fullDescription": "Creality firmware is flashed by placing a renamed .bin file on the SD card and power-cycling, or through a bootloader over USB. Common failures include wrong .bin for the hardware revision, filename identical to a previously flashed file, or a corrupted download.\n\nAlways rename the .bin to something unique (e.g., include a timestamp) so the bootloader treats it as new.",
+    "causes": [
+      {
+        "cause": "Same filename as last flash — bootloader ignores",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong firmware for mainboard revision",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted .bin file",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Blank screen after flash",
+      "Printer boots old firmware",
+      "Boot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify mainboard revision",
+        "instruction": "Open the control box lid and read the silkscreen (4.2.2 vs 4.2.7 vs CR Touch).",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Rename .bin file",
+        "instruction": "Rename the firmware file with a unique suffix (e.g., firmware-v1.bin → firmware-v1-today.bin).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Flash",
+        "instruction": "Place renamed .bin alone on a FAT32 SD card, power on the printer, wait 30 seconds.",
+        "tools": [
+          "SD card"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Ender 3 V2",
+      "Ender 3 S1",
+      "CR-10"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 5
+      },
+      "professional": {
+        "min": 40,
+        "max": 80
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If bootloader is bricked and ST-Link recovery is needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Creality firmware update not working",
+    "faq": [
+      {
+        "q": "Does the LCD need its own firmware?",
+        "a": "Yes — DWIN LCDs use a separate .TFT file. Keep both flashes consistent."
+      }
+    ]
+  },
+  {
+    "id": "creality-3d-printer-sonic-pad-wifi-lost",
+    "brand": "Creality",
+    "brandSlug": "creality",
+    "deviceType": "3D Printer",
+    "deviceTypeSlug": "3d-printer",
+    "code": "WIFI LOST",
+    "displayCode": "Wi-Fi connection lost",
+    "alternativeCodes": [
+      "Print lost connection",
+      "Sonic Pad offline"
+    ],
+    "title": "Wi-Fi / Sonic Pad connection lost mid-print",
+    "shortDescription": "Sonic Pad or Wi-Fi link to printer dropped during a print.",
+    "fullDescription": "The Creality Sonic Pad runs Klipper over a USB link to the printer, and uses Wi-Fi for remote control. If the Pad loses Wi-Fi, remote monitoring stops but the print keeps running. If the USB link drops, the print actually aborts.\n\nCheck USB cable quality (many shipped cables are marginal), router 2.4GHz vs 5GHz channel, and Sonic Pad temperature.",
+    "causes": [
+      {
+        "cause": "Poor USB cable to printer",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wi-Fi router on 5GHz only — Sonic Pad needs 2.4GHz",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Sonic Pad overheating",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Pad shows offline",
+      "Print aborts",
+      "Cannot reach pad from phone app"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap USB cable",
+        "instruction": "Use a short, shielded, high-quality USB cable between Sonic Pad and printer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Enable 2.4GHz network",
+        "instruction": "Configure your router with a separate 2.4GHz SSID and connect the pad there.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Cool Sonic Pad",
+        "instruction": "Move the pad out of enclosures, add a small fan if ambient exceeds 30°C.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Creality Sonic Pad paired with Ender 3 S1, Ender 5 S1"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Short USB cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 20
+      },
+      "professional": {
+        "min": 60,
+        "max": 120
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the Sonic Pad Wi-Fi module has hardware damage.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Creality Sonic Pad WiFi disconnect fix",
+    "faq": [
+      {
+        "q": "Does the print stop if Wi-Fi drops but USB stays?",
+        "a": "No. The print continues — only remote viewing stops."
+      }
+    ]
+  }
+]
