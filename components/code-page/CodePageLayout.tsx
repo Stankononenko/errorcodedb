@@ -20,6 +20,8 @@ import FAQSection from "./FAQSection";
 import RelatedCodes from "./RelatedCodes";
 import PartsNeeded from "./PartsNeeded";
 import AffectedModels from "./AffectedModels";
+import HelpfulFeedback from "./HelpfulFeedback";
+import ShareButton from "./ShareButton";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -40,6 +42,8 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
       ? buildHowToJsonLd(`How to Fix ${code.displayCode}`, code.fixSteps)
       : null;
 
+  const feedbackId = `${code.category}:${code.code}`;
+
   return (
     <>
       <JsonLd data={breadcrumbJsonLd} />
@@ -48,7 +52,10 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
       {howToJsonLd && <JsonLd data={howToJsonLd} />}
 
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
-        <Breadcrumbs items={breadcrumbs} />
+        <div className="flex items-center justify-between gap-3">
+          <Breadcrumbs items={breadcrumbs} />
+          <ShareButton code={code.displayCode} title={code.title} />
+        </div>
 
         <div className="mt-4 space-y-8">
           <CodeHero code={code} />
@@ -62,6 +69,8 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
           <AdUnit position="in-content-1" className="my-6" />
 
           <FixStepsSection steps={code.fixSteps} codeDisplay={code.displayCode} />
+
+          <HelpfulFeedback codeId={feedbackId} />
 
           <CostEstimate diy={code.estimatedCost.diy} professional={code.estimatedCost.professional} />
 
