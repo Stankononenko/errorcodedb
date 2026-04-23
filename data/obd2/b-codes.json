@@ -12854,5 +12854,789 @@
         "a": "No — it's a regulated safety function and will set a fault if disconnected."
       }
     ]
+  },
+  {
+    "code": "B0010-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Left Front Side Airbag Deployment Control Circuit",
+    "shortDescription": "SRS module detected a fault in the left front side (thorax) airbag firing circuit.",
+    "fullDescription": "Code B0010 indicates the Supplemental Restraint System (SRS) module has measured an out-of-range resistance in the left front side airbag squib circuit. The module performs a low-current integrity test at key-on and at regular intervals — if the loop resistance falls outside the factory window (typically 1.5-5 ohms), the code latches and the airbag warning lamp stays on.\n\nThe side airbag lives inside the driver's seat or door trim; its connector is a yellow shorting-type connector under the seat. Bad pins, moisture, or a pinched harness from a seat rail are the usual failure points.\n\nDo NOT probe the squib with a regular multimeter — use only an SRS-rated load tool or you risk deployment.",
+    "severity": "high",
+    "safetyImpact": "Left side airbag will not deploy in a side-impact collision.",
+    "causes": [
+      {"cause": "Damaged squib connector under seat", "likelihood": "high"},
+      {"cause": "Pinched/chafed airbag harness from seat rail", "likelihood": "medium"},
+      {"cause": "Failed side airbag inflator module", "likelihood": "low"}
+    ],
+    "symptoms": ["SRS/airbag warning light on", "Scan tool reports B0010"],
+    "fixSteps": [
+      {"step": 1, "title": "Disable SRS", "instruction": "Disconnect battery and wait 10 minutes before touching any SRS component.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect seat harness", "instruction": "Slide seat fully forward and back, inspect the yellow connector and loom for chafing.", "tools": ["Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Reseat connector or replace jumper", "instruction": "Clean pins, reseat. If harness is damaged, replace the under-seat SRS jumper.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["B0012", "B0013"],
+    "faq": [{"q": "Is it safe to drive?", "a": "The other airbags still work, but the side airbag will not deploy — repair promptly."}]
+  },
+  {
+    "code": "B0012",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Right Front Side Airbag Deployment Circuit",
+    "shortDescription": "SRS detected fault in right front side airbag firing loop.",
+    "fullDescription": "Code B0012 is the passenger-side counterpart to B0010. The SRS module has lost the expected resistance signature on the right front thorax airbag squib. Because the passenger seat moves often and the harness runs through the seat frame, this is one of the most common SRS codes on aging vehicles.\n\nCorrosion at the yellow under-seat connector is the #1 cause, followed by a broken wire from seat fore/aft travel. In rare cases the airbag module itself has failed internally.\n\nAfter repair, codes must be cleared with a scan tool that supports SRS — a simple code reader will not reset the airbag lamp.",
+    "severity": "high",
+    "safetyImpact": "Passenger side airbag disabled in a side-impact crash.",
+    "causes": [
+      {"cause": "Corroded under-seat yellow connector", "likelihood": "high"},
+      {"cause": "Broken wire in seat harness", "likelihood": "medium"},
+      {"cause": "Internal airbag module failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Airbag lamp on", "B0012 stored", "Possible passenger-present fault"],
+    "fixSteps": [
+      {"step": 1, "title": "Power down SRS", "instruction": "Disconnect battery, wait 10 minutes.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Pop yellow connector under passenger seat — look for green corrosion or bent pins.", "tools": ["Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair and clear", "instruction": "Repair connector or jumper, then clear codes with SRS-capable scanner.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["B0010", "B0013"],
+    "faq": [{"q": "Can I clear this with a cheap scanner?", "a": "No — SRS modules require a capable bidirectional scan tool to clear."}]
+  },
+  {
+    "code": "B0013",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Left Curtain Airbag Deployment Control",
+    "shortDescription": "Fault detected in left side curtain (roof-rail) airbag circuit.",
+    "fullDescription": "Code B0013 indicates the SRS module cannot verify the firing loop for the left side curtain airbag, which is mounted along the headliner from A-pillar to C-pillar. This airbag deploys downward to protect occupants' heads in side impacts and rollovers.\n\nBecause the curtain airbag harness is hidden behind the headliner and pillar trim, faults usually come from connector damage during other repairs (windshield replacement, sunroof service) or from moisture intrusion at the A-pillar.\n\nRepair requires removing pillar trim carefully — clips break easily and pillar trim contains its own tear seams for deployment.",
+    "severity": "high",
+    "safetyImpact": "Curtain airbag disabled — major risk in rollover or side impact.",
+    "causes": [
+      {"cause": "Damaged connector at A-pillar from prior trim work", "likelihood": "high"},
+      {"cause": "Moisture at A-pillar harness", "likelihood": "medium"},
+      {"cause": "Failed curtain airbag module", "likelihood": "low"}
+    ],
+    "symptoms": ["SRS light on", "B0013 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Disable SRS", "instruction": "Disconnect battery and wait 10 minutes.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Remove A-pillar trim", "instruction": "Carefully pop A-pillar trim — note tear seams for deployment.", "tools": ["Trim tools"], "difficulty": "advanced"},
+      {"step": 3, "title": "Inspect & repair harness", "instruction": "Check connector and wiring for corrosion/damage; repair or replace.", "tools": ["Multimeter"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0014"],
+    "faq": [{"q": "Why after windshield replacement?", "a": "Glass techs often pull A-pillar trim and can damage the SRS connector."}]
+  },
+  {
+    "code": "B0014",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Right Curtain Airbag Deployment Control",
+    "shortDescription": "Fault detected in right side curtain airbag firing circuit.",
+    "fullDescription": "Code B0014 is the passenger-side curtain airbag fault, mirroring B0013. The SRS module has detected an open, short, or out-of-range resistance at the right roof-rail curtain airbag squib.\n\nCommon sources: trim clips that pinch the harness after A-pillar removal, water leaks from a plugged sunroof drain running down the A-pillar, or damage during seatbelt pretensioner service.\n\nBecause curtain airbags protect the head area — the most injury-prone region in side crashes — any fault here is high-priority.",
+    "severity": "high",
+    "safetyImpact": "Right curtain airbag will not deploy — increased head injury risk.",
+    "causes": [
+      {"cause": "Pinched harness behind trim", "likelihood": "high"},
+      {"cause": "Water from sunroof drain corroding connector", "likelihood": "medium"},
+      {"cause": "Squib internal fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Airbag warning lamp", "B0014 present"],
+    "fixSteps": [
+      {"step": 1, "title": "Depower SRS", "instruction": "Disconnect battery, 10-minute wait.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Check sunroof drains", "instruction": "Verify A-pillar sunroof drain is clear — flush with distilled water.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect/repair harness", "instruction": "Remove A-pillar trim and inspect curtain airbag connector.", "tools": ["Trim tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0013"],
+    "faq": [{"q": "Water caused this?", "a": "Yes — clogged sunroof drains are a top cause of A-pillar SRS faults."}]
+  },
+  {
+    "code": "B0015-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Driver Seatbelt Pretensioner Circuit",
+    "shortDescription": "SRS detected fault in driver seatbelt pretensioner squib circuit.",
+    "fullDescription": "Code B0015 indicates the driver's seatbelt pretensioner — the pyrotechnic device that yanks belt slack out in a crash — has an invalid resistance on its firing loop. Pretensioners share the SRS bus with airbags and are tested the same way.\n\nThis fault typically arises after seat or B-pillar work — the pretensioner connector at the belt retractor base gets disturbed. Some pretensioners also include a load-limiter sensor that can fail independently.\n\nA pretensioner cannot be repaired — if the squib itself is bad, the whole belt retractor assembly is replaced.",
+    "severity": "high",
+    "safetyImpact": "Belt will not tighten in a crash — reduced occupant protection.",
+    "causes": [
+      {"cause": "Loose/damaged connector at B-pillar", "likelihood": "high"},
+      {"cause": "Damaged harness at seat belt base", "likelihood": "medium"},
+      {"cause": "Failed pretensioner squib", "likelihood": "low"}
+    ],
+    "symptoms": ["SRS lamp on", "B0015 in memory"],
+    "fixSteps": [
+      {"step": 1, "title": "Power down", "instruction": "Disconnect battery, 10 min wait.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Check connector", "instruction": "Remove B-pillar trim, locate pretensioner yellow connector, verify seating.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace if needed", "instruction": "If squib resistance is out of spec, replace belt assembly.", "tools": ["Basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0018"],
+    "faq": [{"q": "Can I buy a used belt?", "a": "Not recommended — a used pretensioner may have partially fired in a crash."}]
+  },
+  {
+    "code": "B0018",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Passenger Seatbelt Pretensioner Circuit",
+    "shortDescription": "Fault in passenger seatbelt pretensioner firing loop.",
+    "fullDescription": "Code B0018 indicates the SRS module cannot verify the passenger pretensioner squib circuit. Like the driver side, failure commonly traces to the yellow connector at the B-pillar or a harness pinched by the seat belt retractor bolt.\n\nOn vehicles with buckle pretensioners (inside the buckle end rather than the retractor), a separate code B0020 may set instead, but the two often appear together.\n\nDo not use standard meters to probe the squib — only use SRS loaders from the factory test equipment.",
+    "severity": "high",
+    "safetyImpact": "Passenger belt will not pre-tension in a crash.",
+    "causes": [
+      {"cause": "B-pillar connector fault", "likelihood": "high"},
+      {"cause": "Pinched harness at retractor bolt", "likelihood": "medium"},
+      {"cause": "Internal squib failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Airbag lamp", "B0018 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Disable SRS", "instruction": "Battery off, wait 10 min.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Remove B-pillar trim", "instruction": "Access pretensioner connector and inspect.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace belt if needed", "instruction": "Swap retractor assembly if internal squib bad.", "tools": ["Basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 200, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0015", "B0020"],
+    "faq": [{"q": "Is this a recall item?", "a": "Some vehicles have pretensioner recalls — check your VIN on the NHTSA site."}]
+  },
+  {
+    "code": "B0020-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Driver Buckle Pretensioner Circuit",
+    "shortDescription": "Buckle-end pretensioner on driver belt shows circuit fault.",
+    "fullDescription": "Code B0020 is set when a buckle pretensioner — the kind that pulls the buckle-end down into the seat rather than yanking the retractor — has an out-of-range squib reading. Buckle pretensioners are common on newer vehicles with integrated belts on bolster seats.\n\nThe pretensioner lives under the seat cushion on an articulated arm and connects through a small yellow SRS connector. Seat cushion removal, aftermarket seat covers, or child seat installation can disturb the connector.\n\nAfter repair, use a bidirectional scan tool to clear the SRS memory.",
+    "severity": "high",
+    "safetyImpact": "Buckle will not pull down in crash — reduced belt effectiveness.",
+    "causes": [
+      {"cause": "Connector disturbed under seat", "likelihood": "high"},
+      {"cause": "Aftermarket cover pinched harness", "likelihood": "medium"},
+      {"cause": "Squib fault", "likelihood": "low"}
+    ],
+    "symptoms": ["SRS warning", "B0020 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Depower SRS", "instruction": "Disconnect battery, wait 10 min.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect under seat", "instruction": "Lift seat cushion, check buckle pretensioner connector.", "tools": ["Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair or replace", "instruction": "Reseat connector, replace buckle assembly if squib bad.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 120}, "mechanic": {"min": 180, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["B0018"],
+    "faq": [{"q": "Seat covers caused this?", "a": "Sometimes — if they pinch the yellow harness routing under the cushion."}]
+  },
+  {
+    "code": "B0024-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Passenger Buckle Pretensioner Circuit",
+    "shortDescription": "Passenger-side buckle pretensioner circuit out of range.",
+    "fullDescription": "Code B0024 indicates the passenger buckle pretensioner squib has an invalid resistance. It is the right-side counterpart of B0020.\n\nTroubleshooting is identical: inspect the under-seat SRS connector, verify harness routing, and replace the buckle assembly if the squib itself has failed. Many vehicles use a slightly different connector color-code on the passenger side to avoid cross-wiring.\n\nAlso check for the occupant classification system — disturbing the seat wiring can set multiple codes at once.",
+    "severity": "high",
+    "safetyImpact": "Passenger buckle will not tighten in a crash.",
+    "causes": [
+      {"cause": "Connector damaged under seat", "likelihood": "high"},
+      {"cause": "Harness pinched by seat rails", "likelihood": "medium"},
+      {"cause": "Failed pretensioner", "likelihood": "low"}
+    ],
+    "symptoms": ["Airbag light", "B0024 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Battery off", "instruction": "Disconnect battery, wait 10 minutes.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Under-seat inspection", "instruction": "Access passenger buckle harness under seat cushion.", "tools": ["Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair", "instruction": "Fix connector or replace buckle assembly.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 120}, "mechanic": {"min": 180, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["B0020"],
+    "faq": [{"q": "Why did it appear after a child seat install?", "a": "Shoving the LATCH anchor or seat itself can disturb harness routing."}]
+  },
+  {
+    "code": "B0028-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Airbag/SRS",
+    "title": "Knee Airbag Deployment Circuit",
+    "shortDescription": "SRS detected fault in driver knee airbag squib circuit.",
+    "fullDescription": "Code B0028 indicates the driver knee airbag — mounted under the steering column in the lower dash — has an invalid firing loop. Knee airbags prevent submarining (sliding under the belt) and reduce lower-leg injuries.\n\nFailures often trace to lower dash work: replacing the OBD-II connector, removing the brake pedal, or knee bolster reinstallation. The squib connector is yellow and mounts to a bracket behind the knee bolster panel.\n\nIf the squib resistance is bad, replace the entire knee airbag unit.",
+    "severity": "high",
+    "safetyImpact": "Driver knee airbag disabled — increased lower-body injury risk.",
+    "causes": [
+      {"cause": "Connector disturbed during lower dash work", "likelihood": "high"},
+      {"cause": "Knee bolster pinched harness", "likelihood": "medium"},
+      {"cause": "Squib failure", "likelihood": "low"}
+    ],
+    "symptoms": ["SRS warning lamp", "B0028 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Disable SRS", "instruction": "Disconnect battery, 10 minutes.", "tools": ["Wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Remove knee bolster", "instruction": "Pop off lower dash panel, access knee airbag harness.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair/replace", "instruction": "Reseat connector or replace airbag module.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "mechanic": {"min": 250, "max": 1100}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0010"],
+    "faq": [{"q": "Do all cars have knee airbags?", "a": "No — they are more common on mid/premium trims and specific markets."}]
+  },
+  {
+    "code": "B0090-OCC",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Occupant Detection",
+    "title": "Occupant Classification System Malfunction",
+    "shortDescription": "Passenger seat occupant classification system reports invalid weight data.",
+    "fullDescription": "Code B0090 indicates the passenger Occupant Classification System (OCS) — a bladder or strain-gauge array under the seat — is reporting implausible data. OCS decides whether to enable the passenger airbag and at what power level (full, partial, suppressed) based on occupant weight.\n\nCommon causes are a cracked sensor mat, aftermarket seat covers altering weight distribution, or loose seat mounting bolts. The passenger airbag status lamp will show OFF or blink as a diagnostic indicator.\n\nOCS usually requires a re-zero calibration after any seat service — the module learns the unoccupied weight as baseline.",
+    "severity": "high",
+    "safetyImpact": "Passenger airbag may deploy for a child or not deploy for an adult.",
+    "causes": [
+      {"cause": "Cracked OCS bladder/mat", "likelihood": "high"},
+      {"cause": "Aftermarket seat cover pressure", "likelihood": "medium"},
+      {"cause": "Loose seat mounting bolts", "likelihood": "medium"}
+    ],
+    "symptoms": ["Passenger airbag OFF lamp flickers", "B0090 present", "Airbag warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify bolts", "instruction": "Torque all four seat mounting bolts to spec.", "tools": ["Torque wrench"], "difficulty": "easy"},
+      {"step": 2, "title": "Remove seat covers", "instruction": "Temporarily remove aftermarket cover and clear codes.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 3, "title": "Re-zero OCS", "instruction": "Perform OCS zero/rezero routine via factory scan tool.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 150, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["B0091", "B0092-OCC"],
+    "faq": [{"q": "Do seat covers really cause this?", "a": "Yes — some heavy covers shift the load path on the sensor mat."}]
+  },
+  {
+    "code": "B0091",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Occupant Detection",
+    "title": "Passenger Seat Pressure Sensor Circuit",
+    "shortDescription": "Pressure sensor in passenger seat reports out-of-range signal.",
+    "fullDescription": "Code B0091 indicates the bladder-style pressure sensor in the passenger seat is giving a signal outside the expected range. Some OCS designs use a fluid-filled bladder with a pressure transducer; a pinhole leak will drop the reading, and the code latches.\n\nThis is distinct from B0090 (overall OCS fault) — B0091 points specifically to the sensor itself, often requiring a seat cushion replacement kit that includes the bladder and transducer as a matched set.\n\nRecalibration is mandatory after parts replacement.",
+    "severity": "high",
+    "safetyImpact": "Airbag deploy decision compromised for the passenger.",
+    "causes": [
+      {"cause": "Bladder pinhole leak", "likelihood": "high"},
+      {"cause": "Failed pressure transducer", "likelihood": "medium"},
+      {"cause": "Wiring short to seat frame", "likelihood": "low"}
+    ],
+    "symptoms": ["Airbag lamp", "Passenger airbag status lamp wrong"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for codes", "instruction": "Confirm B0091 specifically vs B0090.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect bladder", "instruction": "Remove passenger seat cushion, inspect bladder for fluid leaks.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace cushion kit", "instruction": "Install new bladder/transducer assembly as a matched set.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 400}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["B0090-OCC"],
+    "faq": [{"q": "Can the bladder be patched?", "a": "No — it must be replaced as a calibrated assembly."}]
+  },
+  {
+    "code": "B0092-OCC",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Occupant Detection",
+    "title": "Passenger Classification Module Calibration Lost",
+    "shortDescription": "OCS module has lost zero-point calibration.",
+    "fullDescription": "Code B0092 is set when the passenger classification module has lost its baseline (unoccupied) calibration. This can happen after battery disconnect, module replacement, or a sharp impact to the seat. Until re-calibrated, the module defaults to passenger airbag OFF for safety.\n\nRe-zero requires the seat fully empty, no objects in the footwell under the seat, and use of a factory-level scan tool's special function. Some scanners from aftermarket brands also support it (Autel, Launch X431).\n\nAfter a successful re-zero, the airbag lamp should clear within one drive cycle.",
+    "severity": "medium",
+    "safetyImpact": "Passenger airbag forced OFF until calibration completes.",
+    "causes": [
+      {"cause": "Recent battery disconnect", "likelihood": "high"},
+      {"cause": "Module replaced without calibration", "likelihood": "high"},
+      {"cause": "Severe impact to seat", "likelihood": "low"}
+    ],
+    "symptoms": ["Passenger airbag OFF lamp", "Airbag warning", "B0092 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Empty seat", "instruction": "Remove all items from passenger seat and floor.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Run rezero", "instruction": "Use scan tool Special Function → OCS Zero Calibration.", "tools": ["Factory scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Verify", "instruction": "Sit in seat, confirm ON/OFF lamp changes correctly.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 80, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "15-45 minutes",
+    "relatedCodes": ["B0090-OCC"],
+    "faq": [{"q": "Will the code clear itself?", "a": "No — zeroing must be done with a scan tool."}]
+  },
+  {
+    "code": "B0156",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Memory Seat",
+    "title": "Driver Seat Position Sensor Fault",
+    "shortDescription": "Memory seat position sensor returning invalid data.",
+    "fullDescription": "Code B0156 indicates the seat module cannot read a valid signal from one of the Hall-effect or potentiometer sensors tracking seat fore/aft, recline, or height. Without valid position, the memory seat feature cannot recall presets.\n\nOn most vehicles, sensors live inside the seat motors themselves. A worn pigtail at the seat rail, a stripped gear, or water damage from spilled drinks are common causes.\n\nSome makes (GM, Ford) will disable the entire memory system until the fault clears.",
+    "severity": "low",
+    "safetyImpact": "Memory presets unavailable; seat still moves manually.",
+    "causes": [
+      {"cause": "Worn seat motor harness", "likelihood": "high"},
+      {"cause": "Spilled liquid into seat base", "likelihood": "medium"},
+      {"cause": "Failed position sensor in motor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Memory seat buttons inoperative", "B0156 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan and locate", "instruction": "Use scan data to identify which axis (fore/aft vs recline) is faulting.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Remove seat, trace axis harness, look for chafing or corrosion.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace motor", "instruction": "Swap seat motor assembly if sensor is internal failure.", "tools": ["Basic tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0157"],
+    "faq": [{"q": "Can I replace just the sensor?", "a": "Rarely — sensor is typically integral to the seat motor assembly."}]
+  },
+  {
+    "code": "B0157",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Memory Seat",
+    "title": "Driver Seat Memory Module Circuit",
+    "shortDescription": "Memory seat module communication or power fault.",
+    "fullDescription": "Code B0157 flags an internal or communication fault in the dedicated memory seat module (often mounted under the driver seat). It may fail to answer on the body LIN bus, or report an internal EEPROM error when trying to save a preset.\n\nPower and ground to the module should be checked first — blown fuse, corroded ground strap on the seat frame, or water damage are common. If power is good but the module is unresponsive, it must be replaced and reprogrammed.\n\nAfter replacement, memory positions must be re-taught.",
+    "severity": "low",
+    "safetyImpact": "None — memory seat unavailable, manual operation preserved.",
+    "causes": [
+      {"cause": "Blown seat module fuse", "likelihood": "medium"},
+      {"cause": "Corroded ground at seat frame", "likelihood": "medium"},
+      {"cause": "Failed memory module", "likelihood": "medium"}
+    ],
+    "symptoms": ["Memory buttons don't save", "B0157 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse and power", "instruction": "Verify seat module power and ground pins.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "LIN scan", "instruction": "Use scan tool to ping module; check for no-response.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace module", "instruction": "Install new module, program VIN, re-teach positions.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 250, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B0156"],
+    "faq": [{"q": "Does a new module need programming?", "a": "Yes — it must be coded to the vehicle VIN."}]
+  },
+  {
+    "code": "B1600-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Instrument Cluster",
+    "title": "Odometer EEPROM Write Error",
+    "shortDescription": "Instrument cluster cannot update odometer memory.",
+    "fullDescription": "Code B1600 (revised variant) indicates the instrument cluster module failed to write the latest odometer value to its EEPROM. On most modern clusters, the odometer is stored in non-volatile memory and updated every few seconds of driving.\n\nCauses include a worn EEPROM chip (common on older clusters with high write-cycle counts), low supply voltage during a crank event, or a bad ground that causes voltage spikes during writes.\n\nThis code is legally sensitive — odometer tampering investigations may reference it. Never attempt to rewrite EEPROM manually.",
+    "severity": "medium",
+    "safetyImpact": "None directly — but odometer inaccuracy can affect service intervals and legal matters.",
+    "causes": [
+      {"cause": "Cluster EEPROM wear", "likelihood": "high"},
+      {"cause": "Low voltage during write (weak battery)", "likelihood": "medium"},
+      {"cause": "Bad cluster ground", "likelihood": "medium"}
+    ],
+    "symptoms": ["Odometer reads 000000 or freezes", "B1600 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Test battery/charging", "instruction": "Verify healthy battery and alternator output.", "tools": ["Multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Check ground", "instruction": "Locate cluster ground point on dash frame; clean.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace cluster", "instruction": "If EEPROM is failed, replace cluster and have mileage transferred at a licensed shop.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 100}, "mechanic": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["B1601"],
+    "faq": [{"q": "Is DIY cluster swap legal?", "a": "Mileage programming must be done per jurisdiction law — use a licensed shop."}]
+  },
+  {
+    "code": "B1601",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Instrument Cluster",
+    "title": "Trip Meter Circuit Fault",
+    "shortDescription": "Cluster cannot store or reset trip meter values.",
+    "fullDescription": "Code B1601 indicates the instrument cluster's trip meter memory (usually part of the same EEPROM as the odometer) is failing or the reset button circuit is stuck. The trip odometer may not advance, may reset randomly, or not respond to the reset press.\n\nOn some vehicles, a stuck reset stalk causes a continuous-input signal that sets this code. Check the stalk first — it's cheaper than a cluster.\n\nIf the stalk is fine, suspect the cluster board.",
+    "severity": "low",
+    "safetyImpact": "None — cosmetic/convenience fault only.",
+    "causes": [
+      {"cause": "Stuck reset stalk/button", "likelihood": "high"},
+      {"cause": "Cluster EEPROM wear", "likelihood": "medium"},
+      {"cause": "Cluster board failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Trip won't reset", "Trip counts erratically", "B1601 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Test stalk", "instruction": "Actuate reset button — listen/feel for proper click; check continuity.", "tools": ["Multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace stalk", "instruction": "If stuck, replace turn-signal/stalk assembly.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Cluster check", "instruction": "If still faulting, send cluster for rebuild.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 120}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["B1600-NEW"],
+    "faq": [{"q": "Why does my trip randomly reset?", "a": "Usually a stuck reset stalk triggering continuously."}]
+  },
+  {
+    "code": "B1602",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Instrument Cluster",
+    "title": "VIN Mismatch Between Cluster and PCM",
+    "shortDescription": "Cluster VIN does not match PCM VIN.",
+    "fullDescription": "Code B1602 is set when the instrument cluster and powertrain control module disagree on the vehicle's VIN. This occurs after a module swap (used cluster or used PCM from a donor vehicle) or an incomplete reprogramming session.\n\nAnti-theft systems can latch hard when this code sets — the engine may go into immobilizer mode and refuse to start.\n\nResolution requires a factory scan tool or a skilled locksmith to rewrite the VIN in the appropriate module.",
+    "severity": "medium",
+    "safetyImpact": "May cause no-start due to immobilizer lockout.",
+    "causes": [
+      {"cause": "Used cluster from another vehicle", "likelihood": "high"},
+      {"cause": "Used PCM from donor", "likelihood": "medium"},
+      {"cause": "Incomplete reprogramming", "likelihood": "medium"}
+    ],
+    "symptoms": ["Theft/immobilizer light", "No-start", "B1602 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify VINs", "instruction": "Read VIN from both cluster and PCM with scan tool; compare to dash VIN.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Program VIN", "instruction": "Use factory scan tool or locksmith service to rewrite matching VIN.", "tools": ["Factory scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Verify no-start clears", "instruction": "Cycle ignition, confirm engine starts and codes clear.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I fix this myself?", "a": "Only with a factory-capable tool — most DIYers need a dealer or locksmith."}]
+  },
+  {
+    "code": "B1790",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Radio/Infotainment",
+    "title": "Front Left Speaker Circuit Open",
+    "shortDescription": "Amplifier detected an open circuit on front-left speaker output.",
+    "fullDescription": "Code B1790 indicates the audio amplifier has detected no load (open circuit) on the front-left speaker output. Factory amps run a low-current pulse through each speaker when the head unit boots to detect presence.\n\nCommon causes are a blown speaker voice coil, a pinched wire in the door jamb (from opening/closing), or a disconnected head unit harness after aftermarket work.\n\nOpen-circuit codes sometimes trigger amp shutdown to protect the output stage.",
+    "severity": "low",
+    "safetyImpact": "None — audio only.",
+    "causes": [
+      {"cause": "Blown speaker voice coil", "likelihood": "high"},
+      {"cause": "Broken wire in door jamb boot", "likelihood": "high"},
+      {"cause": "Disconnected harness from aftermarket work", "likelihood": "medium"}
+    ],
+    "symptoms": ["No sound from front-left speaker", "Audio distortion", "B1790 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap-test speaker", "instruction": "Swap with a known-good speaker to confirm.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect door boot", "instruction": "Flex door boot, check for broken speaker wires.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair", "instruction": "Solder/heat-shrink broken wires or replace speaker.", "tools": ["Soldering iron"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 100}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["B1797"],
+    "faq": [{"q": "Aftermarket speakers cause this?", "a": "Yes if impedance is too high — factory amps expect 4Ω typically."}]
+  },
+  {
+    "code": "B1797",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Radio/Infotainment",
+    "title": "Front Right Speaker Circuit Short",
+    "shortDescription": "Amplifier detected a short on front-right speaker output.",
+    "fullDescription": "Code B1797 indicates a short circuit across the front-right speaker output, either speaker-to-ground or across the + and - terminals. The amplifier will shut down that channel to protect itself.\n\nCauses include a pinched wire in the door jamb shorted to the door frame, a shorted voice coil, or moisture on the speaker terminals from window leaks.\n\nAfter repair, cycle key to reset amplifier protection.",
+    "severity": "low",
+    "safetyImpact": "None — audio only.",
+    "causes": [
+      {"cause": "Pinched wire shorting to door frame", "likelihood": "high"},
+      {"cause": "Shorted voice coil", "likelihood": "medium"},
+      {"cause": "Moisture on speaker terminals", "likelihood": "medium"}
+    ],
+    "symptoms": ["Front-right speaker silent", "Amp channel protection", "B1797 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Unplug speaker", "instruction": "Disconnect speaker and recheck code to isolate wiring vs speaker.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Measure", "instruction": "With speaker unplugged, ohm check both wires to chassis.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair short", "instruction": "Relocate pinched wire or replace speaker.", "tools": ["Soldering iron"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 100}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["B1790"],
+    "faq": [{"q": "Amp damaged by short?", "a": "Usually not — modern amps have protection, but repeated shorts shorten life."}]
+  },
+  {
+    "code": "B1842",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Radio/Infotainment",
+    "title": "External Amplifier Communication Lost",
+    "shortDescription": "Head unit lost communication with external amplifier.",
+    "fullDescription": "Code B1842 is set when the head unit (or infotainment master) stops receiving messages from the external (trunk or kick-panel) amplifier over the MOST or audio CAN bus. Without the amp, system goes silent or reverts to stub speakers.\n\nCauses include a blown amp fuse, water ingress in the trunk (very common on sedans with leaky trunk seals), or a corroded fiber connector on MOST systems.\n\nOn MOST-bus systems, every node must pass the optical signal — a single bad node can blind the whole ring.",
+    "severity": "low",
+    "safetyImpact": "None — audio only.",
+    "causes": [
+      {"cause": "Blown amp fuse", "likelihood": "high"},
+      {"cause": "Water-damaged amp (trunk leak)", "likelihood": "high"},
+      {"cause": "MOST fiber connector dirty", "likelihood": "medium"}
+    ],
+    "symptoms": ["No audio", "Infotainment boot hangs", "B1842 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Check amp fuse", "instruction": "Locate amp in trunk/kick panel; test fuse.", "tools": ["Multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect for water", "instruction": "Check amp mounting area for wetness and corrosion.", "tools": ["Flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Clean MOST fiber", "instruction": "On MOST systems, unplug, clean fiber tip with lens wipe, reseat.", "tools": ["Lens cleaning tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 100}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["B1858"],
+    "faq": [{"q": "Trunk leak cause?", "a": "Yes — rain water running into trunk submerges many factory amps."}]
+  },
+  {
+    "code": "B1858",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Radio/Infotainment",
+    "title": "Amplifier Over-Temperature Shutdown",
+    "shortDescription": "Amp thermal protection activated.",
+    "fullDescription": "Code B1858 records that the external amplifier entered thermal protection. Modern amps track internal temperature and shut down outputs above roughly 85°C (185°F) to prevent damage.\n\nCauses include blocked amp ventilation (stuff piled on trunk amps), failed cooling fan (on amps so-equipped), or a shorted speaker output forcing high current.\n\nAfter cooling, the amp resumes normal operation, but repeated thermal events indicate an underlying problem.",
+    "severity": "low",
+    "safetyImpact": "None — amp self-protects.",
+    "causes": [
+      {"cause": "Blocked ventilation around amp", "likelihood": "high"},
+      {"cause": "Failed amp cooling fan", "likelihood": "medium"},
+      {"cause": "Shorted speaker wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["Audio cuts out when loud or hot", "B1858 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Clear amp area", "instruction": "Remove items blocking trunk amp ventilation.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test fan", "instruction": "If amp has a fan, verify it spins with audio at high volume.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Check speakers", "instruction": "Diagnose any shorted speaker that might force high current.", "tools": ["Multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["B1842"],
+    "faq": [{"q": "Is the amp damaged?", "a": "Usually not — protection is designed to prevent damage."}]
+  },
+  {
+    "code": "B1810",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Power Window",
+    "title": "Driver Window Motor Circuit",
+    "shortDescription": "BCM detected fault in driver power window motor circuit.",
+    "fullDescription": "Code B1810 indicates the body control module has detected an out-of-range current or no response from the driver-side power window motor. The motor combines a Hall-effect pulse counter (for one-touch and anti-pinch) with a reversible DC motor.\n\nCommon causes are worn motor brushes (window moves slowly or stops), a failed Hall sensor (one-touch and anti-pinch stop working), or a frozen/damaged regulator forcing high current.\n\nAfter motor replacement, anti-pinch calibration must be performed — usually by holding Up until stall, then Down until stall.",
+    "severity": "low",
+    "safetyImpact": "Anti-pinch may be disabled; pinch risk during close.",
+    "causes": [
+      {"cause": "Worn motor brushes", "likelihood": "high"},
+      {"cause": "Failed Hall sensor in motor", "likelihood": "medium"},
+      {"cause": "Binding window regulator", "likelihood": "medium"}
+    ],
+    "symptoms": ["Window slow or intermittent", "One-touch stops working", "B1810 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan data", "instruction": "Observe motor current during operation with scan tool.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test regulator", "instruction": "Remove door card, free regulator from motor, verify track is clean.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace motor", "instruction": "Install new regulator/motor assembly; relearn anti-pinch.", "tools": ["Basic tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 60, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["B1815", "B1820"],
+    "faq": [{"q": "Why relearn after swap?", "a": "Module needs new pulse count reference to detect obstructions."}]
+  },
+  {
+    "code": "B1815",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Power Window",
+    "title": "Passenger Window Switch Input Stuck",
+    "shortDescription": "BCM detected passenger window switch input stuck active.",
+    "fullDescription": "Code B1815 is set when the passenger door window switch is reported active for longer than a sensible operation period — implying a stuck button or shorted wire. BCM will ignore the switch until the input normalizes, to prevent continuous motor operation.\n\nMost common cause is spilled drinks under the switch cluster. Silicone spray cleaning sometimes works; otherwise replace the switch assembly.\n\nDoor card water intrusion from a failed moisture barrier also shorts switch wiring.",
+    "severity": "low",
+    "safetyImpact": "Passenger window unusable from that switch.",
+    "causes": [
+      {"cause": "Sticky residue in switch (spilled drink)", "likelihood": "high"},
+      {"cause": "Water intrusion through door", "likelihood": "medium"},
+      {"cause": "Worn switch contacts", "likelihood": "medium"}
+    ],
+    "symptoms": ["Passenger switch inoperative", "Window moves only from master switch", "B1815"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean switch", "instruction": "Remove switch, spray contact cleaner, cycle.", "tools": ["Contact cleaner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect moisture barrier", "instruction": "Pop door card, verify plastic barrier is sealed.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace switch", "instruction": "Install new switch and test.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "mechanic": {"min": 80, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "relatedCodes": ["B1810"],
+    "faq": [{"q": "Coca-Cola killed it?", "a": "Sugar drinks are a frequent culprit — dries sticky."}]
+  },
+  {
+    "code": "B1820",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Power Window",
+    "title": "Rear Window Lockout Switch Fault",
+    "shortDescription": "Rear window lockout/child-lock switch signal inconsistent.",
+    "fullDescription": "Code B1820 indicates the master rear-window lockout switch — the child-safety button on the driver door that disables rear window controls — is giving an inconsistent signal. BCM sees it going on/off rapidly or stuck in one position.\n\nCauses include a physically broken switch or a shorted wire in the master switch assembly. In rare cases the BCM itself has a failed input.\n\nUntil fixed, rear windows may default to disabled (safer) or enabled depending on the OEM strategy.",
+    "severity": "low",
+    "safetyImpact": "Rear window control logic uncertain.",
+    "causes": [
+      {"cause": "Broken lockout button", "likelihood": "high"},
+      {"cause": "Shorted wiring in master switch", "likelihood": "medium"},
+      {"cause": "BCM input damaged", "likelihood": "low"}
+    ],
+    "symptoms": ["Rear windows won't operate", "Erratic lockout state", "B1820"],
+    "fixSteps": [
+      {"step": 1, "title": "Cycle button", "instruction": "Press lockout multiple times, observe scan data.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect switch", "instruction": "Remove master switch, check lockout contacts.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace assembly", "instruction": "Swap master switch panel.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["B1810", "B1815"],
+    "faq": [{"q": "Is there a bypass?", "a": "Not recommended — child safety is real."}]
+  },
+  {
+    "code": "B1830",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Sunroof/Moonroof",
+    "title": "Sunroof Motor Circuit Fault",
+    "shortDescription": "Sunroof motor current out of range or no response.",
+    "fullDescription": "Code B1830 indicates the sunroof module has detected an out-of-range current on the sunroof motor, or lost its Hall pulse feedback. Sunroof motors include anti-pinch sensing to stop if blocked.\n\nCauses include worn motor brushes, debris/leaves in the sunroof track (making the motor work harder), a slipping drive cable, or damaged Hall sensor inside the motor.\n\nAfter motor or module repair, a full initialization (close-close-hold) is required to relearn endpoints.",
+    "severity": "low",
+    "safetyImpact": "Anti-pinch may fail; pinch hazard.",
+    "causes": [
+      {"cause": "Debris in sunroof track", "likelihood": "high"},
+      {"cause": "Worn motor brushes", "likelihood": "medium"},
+      {"cause": "Slipping drive cable", "likelihood": "medium"}
+    ],
+    "symptoms": ["Sunroof slow or stops mid-travel", "One-touch disabled", "B1830"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean tracks", "instruction": "Open sunroof fully, vacuum debris, wipe tracks.", "tools": ["Vacuum"], "difficulty": "easy"},
+      {"step": 2, "title": "Lubricate", "instruction": "Apply white lithium grease to tracks and cable.", "tools": ["Grease"], "difficulty": "easy"},
+      {"step": 3, "title": "Initialize", "instruction": "Close switch held ~10s past close to reinitialize.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["B1835"],
+    "faq": [{"q": "How often clean tracks?", "a": "Every 6-12 months if you park under trees."}]
+  },
+  {
+    "code": "B1835",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Sunroof/Moonroof",
+    "title": "Sunroof Position Not Learned",
+    "shortDescription": "Sunroof module has no valid endpoint calibration.",
+    "fullDescription": "Code B1835 indicates the sunroof module has lost or never stored its open/closed endpoint reference. This commonly happens after a dead battery, module replacement, or motor swap.\n\nUntil initialized, the sunroof may only operate in short increments or not at all. Initialization procedure varies by make: typical is 'hold close switch for 10+ seconds past fully closed'.\n\nIf initialization fails repeatedly, the motor pulse sensor is suspect.",
+    "severity": "low",
+    "safetyImpact": "Anti-pinch inactive until calibrated.",
+    "causes": [
+      {"cause": "Battery recently replaced/dead", "likelihood": "high"},
+      {"cause": "Motor swapped without relearn", "likelihood": "high"},
+      {"cause": "Pulse sensor intermittent", "likelihood": "medium"}
+    ],
+    "symptoms": ["Sunroof moves only while holding button", "B1835 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Initialization", "instruction": "Hold close button past full close for 10-15s.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify", "instruction": "Test one-touch operation.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 3, "title": "Diagnose motor", "instruction": "If learn fails, test motor Hall sensor output.", "tools": ["Multimeter"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "mechanic": {"min": 50, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "relatedCodes": ["B1830"],
+    "faq": [{"q": "Why after battery change?", "a": "Power loss clears RAM endpoints on some modules."}]
+  },
+  {
+    "code": "B1900",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Fuel System Body",
+    "title": "Fuel Door Release Solenoid Circuit",
+    "shortDescription": "Fuel filler door release solenoid circuit fault.",
+    "fullDescription": "Code B1900 indicates the BCM has detected an open or short in the fuel door release solenoid — the small electric latch that pops the filler door when the driver presses the release button.\n\nCommon causes include a corroded connector at the solenoid (rear quarter panel), a broken wire near the hinge, or a failed solenoid. Some vehicles default to a manual release cable inside the trunk when the solenoid fails.\n\nRepair is typically trim removal and solenoid replacement.",
+    "severity": "low",
+    "safetyImpact": "None — convenience only.",
+    "causes": [
+      {"cause": "Failed solenoid", "likelihood": "high"},
+      {"cause": "Corroded connector at rear panel", "likelihood": "medium"},
+      {"cause": "Broken wire at hinge area", "likelihood": "medium"}
+    ],
+    "symptoms": ["Fuel door won't open from button", "B1900 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Test button input", "instruction": "With scan tool, actuate solenoid while listening for click.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Access solenoid via trunk trim; check connector and wiring.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace solenoid", "instruction": "Install new solenoid and test.", "tools": ["Basic tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 80}, "mechanic": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["B1901"],
+    "faq": [{"q": "Emergency fuel access?", "a": "Most cars have a manual release cable in the trunk — check owner manual."}]
+  },
+  {
+    "code": "B1901",
+    "codeType": "manufacturer-specific",
+    "letter": "B",
+    "system": "body",
+    "subcategory": "Fuel System Body",
+    "title": "Fuel Filler Door Ajar Sensor",
+    "shortDescription": "Sensor detects fuel filler door ajar or signal implausible.",
+    "fullDescription": "Code B1901 indicates the fuel filler door ajar sensor (where equipped) is reporting an open or implausible signal. On capless-fill systems, this sensor interlocks with the EVAP system and may block refueling until the door is properly latched.\n\nCauses include debris preventing full closure, a bent hinge, or a failed Hall/reed sensor. Some vehicles set this after a fuel cap/door collision repair.\n\nUntil resolved, some models refuse to unlock the capless flap.",
+    "severity": "low",
+    "safetyImpact": "May block refueling until resolved.",
+    "causes": [
+      {"cause": "Debris preventing closure", "likelihood": "high"},
+      {"cause": "Bent fuel door hinge", "likelihood": "medium"},
+      {"cause": "Failed ajar sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Fuel door ajar warning", "Capless flap won't unlock", "B1901"],
+    "fixSteps": [
+      {"step": 1, "title": "Clear debris", "instruction": "Check door perimeter for leaves/ice.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Check hinge", "instruction": "Verify door closes flush; adjust hinge or striker.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If sensor failed, swap sensor or entire fuel door assembly.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "mechanic": {"min": 80, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "relatedCodes": ["B1900"],
+    "faq": [{"q": "Can I still refuel?", "a": "On some cars yes after the warning, others no until fixed."}]
   }
 ]

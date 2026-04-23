@@ -12664,5 +12664,677 @@
         "a": "Heavier tires demand more assist current and can trigger protection at the limit."
       }
     ]
+  },
+  {
+    "code": "C0161-NEW",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Rollover/Yaw Rate Sensor",
+    "title": "Yaw Rate Sensor Internal Fault",
+    "shortDescription": "Combined yaw/lateral-G sensor reports internal failure.",
+    "fullDescription": "Code C0161 indicates the yaw rate / lateral-acceleration sensor cluster — the brain of stability control — has reported an internal self-test failure. Modern sensors are MEMS-based six-axis IMUs that continuously self-check; any implausibility sets this code.\n\nFailures often follow battery disconnect (loss of learned bias), impact to the center console where the sensor lives, or corrosion on the connector. Until the sensor is healthy, ESC/StabiliTrak disables itself and warning lamps illuminate.\n\nSome sensors require a 'zero-point calibration' with the vehicle on a level surface after replacement.",
+    "severity": "medium",
+    "safetyImpact": "Stability control and rollover mitigation disabled.",
+    "causes": [
+      {"cause": "Failed sensor IC (MEMS)", "likelihood": "high"},
+      {"cause": "Connector corroded", "likelihood": "medium"},
+      {"cause": "Missed zero-point calibration", "likelihood": "medium"}
+    ],
+    "symptoms": ["ESC/TC warning", "Slip/rollover indicator", "C0161 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Read live data", "instruction": "Check yaw/lateral values at rest — should be near zero.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Remove console trim, inspect sensor connector.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace/calibrate", "instruction": "Swap sensor if bad; perform zero-point calibration on level ground.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 250, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0162", "C0163"],
+    "faq": [{"q": "Will a scanner clear without calibration?", "a": "No — sensor must be zero-point-learned before ESC returns."}]
+  },
+  {
+    "code": "C0162",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Rollover/Yaw Rate Sensor",
+    "title": "Lateral Acceleration Sensor Out of Range",
+    "shortDescription": "Lateral-G sensor reading inconsistent with other sensors.",
+    "fullDescription": "Code C0162 is set when the lateral acceleration (side-G) axis of the IMU reports values inconsistent with steering angle, wheel speeds, and yaw rate during plausibility cross-checks. This often appears after suspension damage that tilts the sensor, or after software updates that change the cross-check thresholds.\n\nDon't chase the sensor immediately — check steering angle sensor centering first, as a misaligned SAS often sets C0162 indirectly.",
+    "severity": "medium",
+    "safetyImpact": "ESC may intervene incorrectly or not at all.",
+    "causes": [
+      {"cause": "Steering angle sensor not centered", "likelihood": "high"},
+      {"cause": "Yaw/IMU sensor shifted in mount", "likelihood": "medium"},
+      {"cause": "Bent subframe from curb strike", "likelihood": "low"}
+    ],
+    "symptoms": ["ESC warning after alignment", "Erratic stability interventions"],
+    "fixSteps": [
+      {"step": 1, "title": "Center SAS", "instruction": "Drive straight, then perform steering angle calibration.", "tools": ["Factory scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Check mounting", "instruction": "Verify sensor is firmly mounted and level.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Recalibrate IMU", "instruction": "Perform zero-point learn on level surface.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["C0161-NEW", "C0163"],
+    "faq": [{"q": "After alignment — why now?", "a": "Alignment changes steering reference — SAS must be recalibrated."}]
+  },
+  {
+    "code": "C0163",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Rollover/Yaw Rate Sensor",
+    "title": "Rollover Sensor Plausibility Fault",
+    "shortDescription": "Roll-rate sensor output does not agree with other IMU axes.",
+    "fullDescription": "Code C0163 indicates the rollover (roll-rate) axis of the IMU sensor reports values that don't align with lateral-G and yaw rate during dynamic checks. On SUVs and trucks this axis is critical for rollover mitigation — active suspension and stability will intervene based on it.\n\nCauses: failed roll-rate MEMS, sensor moved from its factory-level position, or severely out-of-spec tires causing continuous side loads. A rooftop cargo load on test drives can also temporarily trigger this.",
+    "severity": "medium",
+    "safetyImpact": "Rollover-mitigation features disabled.",
+    "causes": [
+      {"cause": "Failed roll-rate axis", "likelihood": "medium"},
+      {"cause": "Sensor mounting disturbed", "likelihood": "medium"},
+      {"cause": "Severe tire pressure mismatch", "likelihood": "low"}
+    ],
+    "symptoms": ["ESC off", "Rollover warning", "C0163"],
+    "fixSteps": [
+      {"step": 1, "title": "Tire pressures", "instruction": "Verify all four tires to placard pressure.", "tools": ["Tire gauge"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect mounting", "instruction": "Check IMU is level in chassis.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace/calibrate", "instruction": "Replace sensor if needed and recalibrate.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0161-NEW", "C0162"],
+    "faq": [{"q": "Lifted truck causes this?", "a": "Yes — non-level IMU mounts can fault after lift kits."}]
+  },
+  {
+    "code": "C0751",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "TPMS",
+    "title": "TPMS Sensor Battery Low (Left Front)",
+    "shortDescription": "Left-front TPMS sensor battery nearing end of life.",
+    "fullDescription": "Code C0751 indicates the TPMS receiver has observed that the left-front tire pressure sensor's battery voltage (reported in its RF telegram) has fallen below the low-battery threshold. TPMS sensors are sealed units; when the battery dies, the sensor is replaced as a whole.\n\nTypical service life is 7-10 years. Batteries fail faster in vehicles parked outside in extreme climates.\n\nPlan to replace the sensor at next tire rotation or tire change — replacing only one at a time is fine but consider all four if similar age.",
+    "severity": "low",
+    "safetyImpact": "Sensor will stop reporting soon; TPMS warning will appear.",
+    "causes": [
+      {"cause": "End-of-life sensor battery", "likelihood": "high"},
+      {"cause": "Cold weather temporarily depressing voltage", "likelihood": "medium"},
+      {"cause": "Defective sensor", "likelihood": "low"}
+    ],
+    "symptoms": ["TPMS warning intermittent", "C0751 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan", "instruction": "Confirm low-battery status on LF sensor specifically.", "tools": ["TPMS scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Demount LF tire, replace sensor, reseal.", "tools": ["Tire tools"], "difficulty": "advanced"},
+      {"step": 3, "title": "Relearn", "instruction": "Perform TPMS relearn per vehicle procedure.", "tools": ["TPMS scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "mechanic": {"min": 80, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["C0755", "C0760"],
+    "faq": [{"q": "Replace all four?", "a": "Usually wise if similar age to avoid repeat visits."}]
+  },
+  {
+    "code": "C0755",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "TPMS",
+    "title": "TPMS Sensor Battery Low (Right Front)",
+    "shortDescription": "Right-front TPMS sensor battery nearing end of life.",
+    "fullDescription": "Code C0755 mirrors C0751 for the right-front wheel. Same cause (end-of-life battery) and same fix (replace sensor and relearn). Since sensors typically age together, treat a low-battery code on one position as a signal to plan replacement of all four.\n\nWhen ordering, verify the sensor frequency (315 MHz vs 433 MHz) and OEM/aftermarket compatibility — some vehicles reject certain clones.",
+    "severity": "low",
+    "safetyImpact": "Pressure monitoring will soon fail at this wheel.",
+    "causes": [
+      {"cause": "Battery end of life", "likelihood": "high"},
+      {"cause": "Cold weather dip", "likelihood": "medium"},
+      {"cause": "Defective sensor", "likelihood": "low"}
+    ],
+    "symptoms": ["Intermittent TPMS lamp", "C0755"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify position", "instruction": "Confirm RF sensor is the weak one.", "tools": ["TPMS scan tool"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Demount RF tire and install new sensor.", "tools": ["Tire tools"], "difficulty": "advanced"},
+      {"step": 3, "title": "Relearn", "instruction": "Perform TPMS learn procedure.", "tools": ["TPMS scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "mechanic": {"min": 80, "max": 250}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["C0751"],
+    "faq": [{"q": "Will my scanner match the sensor?", "a": "Most aftermarket TPMS tools support all major sensor brands."}]
+  },
+  {
+    "code": "C0760",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "TPMS",
+    "title": "TPMS Sensor Not Transmitting (Left Rear)",
+    "shortDescription": "No RF packets received from left-rear TPMS sensor for extended period.",
+    "fullDescription": "Code C0760 sets when the TPMS receiver has not heard from the left-rear sensor for longer than the stale-data window (typically 20-30 minutes of driving). Causes include dead battery, aftermarket wheel adapter that shifts sensor antenna position, metallic window tint causing signal attenuation, or a simply dead sensor.\n\nFirst step is to cycle the tire — drive 20+ minutes — and see if it reports. If still silent, replace the sensor.",
+    "severity": "low",
+    "safetyImpact": "No pressure monitoring on LR tire.",
+    "causes": [
+      {"cause": "Dead sensor battery", "likelihood": "high"},
+      {"cause": "Aftermarket wheel interference", "likelihood": "medium"},
+      {"cause": "Sensor failed", "likelihood": "medium"}
+    ],
+    "symptoms": ["Only three tires show pressure", "C0760"],
+    "fixSteps": [
+      {"step": 1, "title": "Drive cycle", "instruction": "Drive 20+ minutes above 20 mph.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Trigger manually", "instruction": "Use TPMS tool to trigger the LR sensor by RF.", "tools": ["TPMS scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor", "instruction": "If no response, swap sensor and relearn.", "tools": ["Tire tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 80, "max": 280}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["C0765"],
+    "faq": [{"q": "Aftermarket wheels break TPMS?", "a": "Occasionally — certain inner wheel geometry blocks RF."}]
+  },
+  {
+    "code": "C0765",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "TPMS",
+    "title": "TPMS Sensor Not Transmitting (Right Rear)",
+    "shortDescription": "No data received from right-rear TPMS sensor.",
+    "fullDescription": "Code C0765 is the right-rear version of C0760. The receiver has not heard from the RR sensor for an extended period. Causes and remedies are identical.\n\nBefore replacing a sensor, verify the vehicle isn't in the sensor-sleep state (some sensors sleep below 15 mph and only wake on motion). A short drive usually clears transient stale-data faults.",
+    "severity": "low",
+    "safetyImpact": "No pressure monitoring at RR wheel.",
+    "causes": [
+      {"cause": "Dead sensor battery", "likelihood": "high"},
+      {"cause": "Wheel interference", "likelihood": "medium"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Dashboard shows --- for RR", "C0765 stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Drive to wake", "instruction": "Drive ~20 min.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Trigger", "instruction": "Use TPMS tool on RR tire.", "tools": ["TPMS scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace", "instruction": "Swap sensor if silent.", "tools": ["Tire tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 80, "max": 280}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": ["C0760"],
+    "faq": [{"q": "Can I just turn off TPMS?", "a": "Not legally in the US on vehicles 2008+."}]
+  },
+  {
+    "code": "C0770",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "TPMS",
+    "title": "TPMS Sensor ID Not Learned",
+    "shortDescription": "One or more TPMS sensor IDs missing from module memory.",
+    "fullDescription": "Code C0770 indicates the TPMS module does not have a valid sensor ID in one or more positions. This occurs after tire rotation without a rotation relearn, after new sensors are installed, or when the module has been replaced.\n\nFix is to perform the learn procedure — ranges from automatic (driving triggers it) on GM, to tire-deflation sequence on Toyota, to TPMS-tool triggering on most others.\n\nIf the relearn keeps failing, verify the sensors are the correct OEM-compatible part and the TPMS receiver antenna is mounted and connected.",
+    "severity": "low",
+    "safetyImpact": "TPMS disabled until learn completes.",
+    "causes": [
+      {"cause": "Rotation done without relearn", "likelihood": "high"},
+      {"cause": "New/aftermarket sensors installed", "likelihood": "high"},
+      {"cause": "TPMS module replaced", "likelihood": "medium"}
+    ],
+    "symptoms": ["TPMS warning steady", "Pressures show --- ", "C0770"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify procedure", "instruction": "Check OEM relearn procedure for your make.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Execute relearn", "instruction": "Follow procedure — may be auto-drive, deflation, or tool-trigger.", "tools": ["TPMS scan tool"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Verify", "instruction": "Confirm all four tires display pressure.", "tools": ["TPMS scan tool"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 40, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "relatedCodes": ["C0751"],
+    "faq": [{"q": "GM truck — do I need a tool?", "a": "No — GM uses auto-learn by driving after magnet/horn procedure."}]
+  },
+  {
+    "code": "C0580",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Hill Start Assist",
+    "title": "Hill Start Assist Unavailable",
+    "shortDescription": "HSA module has disabled itself due to internal or input fault.",
+    "fullDescription": "Code C0580 indicates the Hill Start Assist (HSA) feature — which holds brake pressure briefly after the driver releases the brake on an incline — has disabled itself. Usually this is not an HSA-specific hardware fault but rather a missing input: incline/G sensor data, wheel-speed, or brake pressure sensor.\n\nMany HSA faults clear after related ABS or stability control faults are fixed first. Resolve any other C-codes before diving into HSA specifically.",
+    "severity": "low",
+    "safetyImpact": "Vehicle may roll back on hills before accelerator engages.",
+    "causes": [
+      {"cause": "Related ABS/ESC fault blocking HSA", "likelihood": "high"},
+      {"cause": "Incline sensor fault", "likelihood": "medium"},
+      {"cause": "Brake pressure sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Hill Start Assist not available message", "Rollback on hill", "C0580"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Read ABS/ESC for prerequisite faults first.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Fix root cause", "instruction": "Address upstream faults before HSA.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Re-verify", "instruction": "Test HSA on a hill after repairs.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["C0581"],
+    "faq": [{"q": "Is it dangerous?", "a": "Just an assist — driver can still use parking brake on hills."}]
+  },
+  {
+    "code": "C0581",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Hill Start Assist",
+    "title": "Hill Descent Control Fault",
+    "shortDescription": "HDC system has detected internal or input fault.",
+    "fullDescription": "Code C0581 indicates Hill Descent Control (HDC) — the feature that limits speed on steep descents by modulating brakes — cannot operate. Typical causes are ABS-related precondition faults, faulty switch on the console, or speed sensor input issues.\n\nOn off-road capable SUVs, HDC is a key safety feature; address this promptly if you do trail driving.",
+    "severity": "low",
+    "safetyImpact": "No automatic downhill brake modulation.",
+    "causes": [
+      {"cause": "ABS wheel-speed fault", "likelihood": "high"},
+      {"cause": "HDC switch failure", "likelihood": "medium"},
+      {"cause": "Module software issue", "likelihood": "low"}
+    ],
+    "symptoms": ["HDC warning", "HDC button doesn't engage", "C0581"],
+    "fixSteps": [
+      {"step": 1, "title": "Check ABS codes", "instruction": "Fix any ABS faults first.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Test switch", "instruction": "Verify HDC button input in scan data.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Update module", "instruction": "Check TSBs for HDC software.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["C0580"],
+    "faq": [{"q": "Do I need HDC?", "a": "Only useful off-road or on very steep descents."}]
+  },
+  {
+    "code": "C0785",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Trailer Brake Controller",
+    "title": "Integrated Trailer Brake Controller Fault",
+    "shortDescription": "Integrated trailer brake controller reports internal fault.",
+    "fullDescription": "Code C0785 indicates the factory integrated trailer brake controller (ITBC) has detected an internal fault — output stage, current sensing, or module processor. This disables trailer brake output until cleared.\n\nUsually trips after electrical short in trailer wiring (e.g., blue brake wire grounded) or after a jump-start surge. The module often has internal fuses that blow to protect the board; some Ford F-series modules can be repaired, others need replacement.\n\nTest the trailer harness with a proper load tester before replacing the module.",
+    "severity": "medium",
+    "safetyImpact": "Trailer brakes inoperative — serious when towing.",
+    "causes": [
+      {"cause": "Short in trailer brake wire", "likelihood": "high"},
+      {"cause": "Blown module internal fuse", "likelihood": "high"},
+      {"cause": "ITBC module failed", "likelihood": "medium"}
+    ],
+    "symptoms": ["Trailer brake warning", "No trailer brake on brake pedal", "C0785"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect trailer plug", "instruction": "Check 7-pin trailer connector for bent/shorted pins.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test harness", "instruction": "With trailer unplugged, clear code and retest.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace if needed", "instruction": "Replace ITBC module if still faulting.", "tools": ["Basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0786", "C0787"],
+    "faq": [{"q": "Clear and retest first?", "a": "Yes — often a trailer short, not the module."}]
+  },
+  {
+    "code": "C0786",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Trailer Brake Controller",
+    "title": "Trailer Brake Output Short to Ground",
+    "shortDescription": "Trailer brake wire shorted to ground.",
+    "fullDescription": "Code C0786 specifically indicates a short-to-ground on the trailer brake output wire (blue wire in standard 7-pin). This is common when trailer wiring chafes against the tongue or frame.\n\nAt the truck end, pin 2 (blue) of the trailer plug should measure high resistance to ground when nothing is plugged in. Any continuity indicates a short in the vehicle's harness itself.\n\nRepair the short, clear the code, and test.",
+    "severity": "medium",
+    "safetyImpact": "No trailer braking.",
+    "causes": [
+      {"cause": "Chafed blue wire in trailer", "likelihood": "high"},
+      {"cause": "Shorted trailer plug", "likelihood": "medium"},
+      {"cause": "Short in truck harness", "likelihood": "low"}
+    ],
+    "symptoms": ["Trailer brake fault", "No brake power", "C0786"],
+    "fixSteps": [
+      {"step": 1, "title": "Unplug trailer", "instruction": "Disconnect trailer, clear code, test.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Find short", "instruction": "If clears without trailer, wiggle test trailer wiring along frame.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair", "instruction": "Replace chafed section with proper-gauge wire and heat-shrink.", "tools": ["Soldering iron"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 60}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["C0785"],
+    "faq": [{"q": "Can I use a fuse tap?", "a": "Don't — use the dedicated trailer relay circuit."}]
+  },
+  {
+    "code": "C0787",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Trailer Brake Controller",
+    "title": "Trailer Brake Output Open Circuit",
+    "shortDescription": "Trailer brake circuit shows open with trailer attached.",
+    "fullDescription": "Code C0787 indicates that with a trailer plugged in, the brake output circuit reads open (no load). Either the trailer brakes' magnets are bad, the ground wire is broken, or the blue wire is cut somewhere.\n\nWith the trailer plugged in, a functioning system should show about 1-2 ohms from blue to white (ground). Reading open means one of the magnet circuits is broken, or the ground path is faulty.\n\nCheck trailer ground at the coupler hitch first — frame rust is the #1 cause.",
+    "severity": "medium",
+    "safetyImpact": "No braking assistance on trailer wheels.",
+    "causes": [
+      {"cause": "Corroded trailer ground at coupler", "likelihood": "high"},
+      {"cause": "Broken trailer magnet wire", "likelihood": "medium"},
+      {"cause": "Failed brake magnet", "likelihood": "medium"}
+    ],
+    "symptoms": ["Trailer brake fault with trailer plugged", "Dash shows no trailer", "C0787"],
+    "fixSteps": [
+      {"step": 1, "title": "Check ground", "instruction": "Wire-brush trailer hitch and plug ground pin.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Ohm brake magnets", "instruction": "With trailer plug off, measure blue-to-white on trailer side.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair magnet/wire", "instruction": "Replace bad magnet or splice broken wire.", "tools": ["Soldering iron"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 150}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["C0785", "C0786"],
+    "faq": [{"q": "New trailer — still issue?", "a": "Even new trailers get shipped with bad grounds."}]
+  },
+  {
+    "code": "C0630",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Transfer Case Shift Motor Circuit",
+    "shortDescription": "Electric transfer case shift motor circuit fault.",
+    "fullDescription": "Code C0630 indicates the transfer case control module has detected an out-of-range current on the electric shift motor. On GM, Ford, and many import 4WD systems, a motor bolted to the transfer case physically rotates the range selector between 2H/4H/4L/N.\n\nShift motors are notorious for internal corrosion — the encoder magnet loses its reference. Replace as a complete assembly (motor + encoder).\n\nAfter replacement, some systems require an adaptation drive or a factory scan tool 'learn' procedure.",
+    "severity": "medium",
+    "safetyImpact": "Cannot engage/disengage 4WD reliably.",
+    "causes": [
+      {"cause": "Corrosion inside shift motor", "likelihood": "high"},
+      {"cause": "Failed encoder", "likelihood": "high"},
+      {"cause": "Connector corroded", "likelihood": "medium"}
+    ],
+    "symptoms": ["4WD light flashing", "Transfer case stuck in one range", "C0630"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan data", "instruction": "Read motor current and encoder counts.", "tools": ["Factory scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Bench test", "instruction": "Remove shift motor, manually actuate, check for binding.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace", "instruction": "Swap motor/encoder; perform learn.", "tools": ["Factory scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 500}, "mechanic": {"min": 400, "max": 1000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0631", "C0640"],
+    "faq": [{"q": "Shift manually in emergency?", "a": "Some systems allow manual shift with an access bolt — check manual."}]
+  },
+  {
+    "code": "C0631",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Transfer Case Encoder Position Implausible",
+    "shortDescription": "Encoder position inconsistent with commanded range.",
+    "fullDescription": "Code C0631 is set when the transfer case encoder reports a position that doesn't correspond to any valid range. This typically means the encoder's brushes have worn, water has entered the encoder, or the gear inside has jumped a tooth.\n\nReplacement is together with the shift motor (they're sold as a unit on most OEMs). After replacement, a learn/adapt must be performed or the position tables remain invalid.",
+    "severity": "medium",
+    "safetyImpact": "4WD shifts unreliable or disabled.",
+    "causes": [
+      {"cause": "Worn encoder brushes", "likelihood": "high"},
+      {"cause": "Water-damaged encoder", "likelihood": "medium"},
+      {"cause": "Skipped gear tooth", "likelihood": "low"}
+    ],
+    "symptoms": ["4WD position uncertain", "Dash shows wrong range", "C0631"],
+    "fixSteps": [
+      {"step": 1, "title": "Remove encoder", "instruction": "Unbolt from transfer case.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect", "instruction": "Check for water, debris, wear.", "tools": ["Flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace and learn", "instruction": "Install new assembly and run adaptation.", "tools": ["Factory scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 500}, "mechanic": {"min": 400, "max": 1000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0630"],
+    "faq": [{"q": "Water gets in?", "a": "Yes — crossing deep water can flood the encoder housing."}]
+  },
+  {
+    "code": "C0640",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Transfer Case Clutch Solenoid Circuit",
+    "shortDescription": "Electronic transfer case clutch solenoid fault.",
+    "fullDescription": "Code C0640 indicates a fault in the electromagnetic clutch solenoid inside the transfer case — the component that meters torque to the front driveline in AWD-on-demand systems (BorgWarner, Magna, JTEKT).\n\nFault is typically an open or shorted solenoid coil. The solenoid isn't individually serviced on most OEMs — the transfer case must be disassembled or exchanged.\n\nDiagnosis requires ohm-checking the coil at the transfer case connector.",
+    "severity": "medium",
+    "safetyImpact": "No AWD torque delivery — possible wheel slip on demand.",
+    "causes": [
+      {"cause": "Shorted clutch coil", "likelihood": "medium"},
+      {"cause": "Open coil", "likelihood": "medium"},
+      {"cause": "Worn clutch pack overheating coil", "likelihood": "medium"}
+    ],
+    "symptoms": ["AWD warning", "Front wheels don't engage", "C0640"],
+    "fixSteps": [
+      {"step": 1, "title": "Ohm coil", "instruction": "Measure solenoid resistance at connector (typical 2-5 Ω).", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check fluid", "instruction": "Drain transfer case fluid; look for metal/burnt smell.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Service/replace", "instruction": "Rebuild or replace transfer case.", "tools": ["Transmission jack"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 800}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["C0650"],
+    "faq": [{"q": "Fluid service first?", "a": "Yes — fresh fluid sometimes revives borderline clutches."}]
+  },
+  {
+    "code": "C0650",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Transfer Case Module Internal Fault",
+    "shortDescription": "Transfer case control module reports internal error.",
+    "fullDescription": "Code C0650 indicates the transfer case control module (TCCM or similar) has detected an internal processor, memory, or self-test fault. The module will disable 4WD operation as a safety measure.\n\nCauses include water damage to the module (often mounted in the driver footwell where boots track in snow/rain), low battery during an update, or module aging.\n\nReplacement modules usually need VIN programming and calibration.",
+    "severity": "medium",
+    "safetyImpact": "4WD disabled.",
+    "causes": [
+      {"cause": "Water damage to module", "likelihood": "high"},
+      {"cause": "Low voltage during update", "likelihood": "medium"},
+      {"cause": "End-of-life hardware", "likelihood": "medium"}
+    ],
+    "symptoms": ["4WD inoperative", "Dash shows service 4WD", "C0650"],
+    "fixSteps": [
+      {"step": 1, "title": "Locate module", "instruction": "Typically under driver footwell kick panel.", "tools": ["Trim tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect for moisture", "instruction": "Check for corrosion or wet carpet.", "tools": ["Flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace and program", "instruction": "Install new module, program VIN, calibrate.", "tools": ["Factory scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 500}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["C0630"],
+    "faq": [{"q": "Can I use a used module?", "a": "Only if reprogrammed to the correct VIN."}]
+  },
+  {
+    "code": "C0661",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Front Axle Disconnect Actuator Fault",
+    "shortDescription": "Front axle disconnect actuator not responding.",
+    "fullDescription": "Code C0661 indicates the front-axle disconnect actuator (a small electric motor that engages/disengages the front drive axle on GM IFS trucks and many AWD SUVs) has failed to reach commanded position.\n\nCauses include a seized actuator, a stripped internal gear, or broken wiring at the axle harness. Disconnect actuators are exposed to road spray and corrode badly in rust-belt climates.",
+    "severity": "medium",
+    "safetyImpact": "Cannot fully engage/disengage 4WD at front axle.",
+    "causes": [
+      {"cause": "Corroded actuator", "likelihood": "high"},
+      {"cause": "Broken axle-area harness", "likelihood": "medium"},
+      {"cause": "Internal gear failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["4WD engages but won't disengage", "Clunking when turning", "C0661"],
+    "fixSteps": [
+      {"step": 1, "title": "Locate actuator", "instruction": "Typically bolted to front differential housing.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test activation", "instruction": "Command actuator with scan tool and listen/feel.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace", "instruction": "Swap actuator; typical 30-minute job with simple tools.", "tools": ["Wrenches"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 250, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": ["C0670"],
+    "faq": [{"q": "Why clunking?", "a": "Partially engaged front axle binds in turns."}]
+  },
+  {
+    "code": "C0670",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "4WD/AWD Transfer",
+    "title": "Transfer Case Motor Position Lost",
+    "shortDescription": "Transfer case shift motor home position lost.",
+    "fullDescription": "Code C0670 is set when the transfer case shift motor can no longer reference its home (index) position. This typically happens after a battery disconnect or a motor replacement without relearn.\n\nOn GM NP246/263 systems, the procedure is: ignition on, shift to 2HI, wait for shift complete, repeat for 4HI and 4LO. The module will relearn endpoints during full-range motion.",
+    "severity": "medium",
+    "safetyImpact": "4WD shift timing unreliable.",
+    "causes": [
+      {"cause": "Battery disconnect without relearn", "likelihood": "high"},
+      {"cause": "Motor replaced", "likelihood": "high"},
+      {"cause": "Module memory cleared", "likelihood": "medium"}
+    ],
+    "symptoms": ["Transfer case shift slow or fails", "C0670"],
+    "fixSteps": [
+      {"step": 1, "title": "Relearn procedure", "instruction": "Cycle through all ranges per OEM procedure.", "tools": ["Basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify learn", "instruction": "Check live data for position within window.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test drive", "instruction": "Verify 4WD engages at all speeds.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 80, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-40 minutes",
+    "relatedCodes": ["C0630", "C0661"],
+    "faq": [{"q": "After battery change?", "a": "Yes — always relearn 4WD after battery work."}]
+  },
+  {
+    "code": "C0680",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Electronic LSD",
+    "title": "Electronic Limited-Slip Differential Solenoid",
+    "shortDescription": "eLSD clutch solenoid circuit fault.",
+    "fullDescription": "Code C0680 indicates the electronic limited-slip differential (eLSD) solenoid — usually found on performance cars and off-road trucks — has an out-of-range circuit. The solenoid controls hydraulic or electromagnetic pressure to a clutch pack that locks the differential on demand.\n\nFaults include a shorted solenoid coil, a shorted harness to the rear axle, or a failed LSD controller. Because the solenoid is submerged in gear oil, a failed coil contaminates the oil with metal.",
+    "severity": "medium",
+    "safetyImpact": "eLSD disabled — loss of traction control at differential level.",
+    "causes": [
+      {"cause": "Shorted solenoid coil", "likelihood": "medium"},
+      {"cause": "Harness short at axle", "likelihood": "medium"},
+      {"cause": "Worn clutch pack", "likelihood": "medium"}
+    ],
+    "symptoms": ["LSD warning", "Slip during cornering", "C0680"],
+    "fixSteps": [
+      {"step": 1, "title": "Ohm coil", "instruction": "Measure solenoid resistance at axle connector.", "tools": ["Multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check fluid", "instruction": "Drain rear axle fluid, inspect for metal.", "tools": ["Basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Service differential", "instruction": "Replace solenoid and friction plates if needed.", "tools": ["Axle tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 800}, "mechanic": {"min": 500, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["C0681"],
+    "faq": [{"q": "Fluid service helps?", "a": "Sometimes — LSD-specific fluid change can restore function."}]
+  },
+  {
+    "code": "C0681",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Electronic LSD",
+    "title": "eLSD Module Communication Lost",
+    "shortDescription": "eLSD controller offline on vehicle network.",
+    "fullDescription": "Code C0681 indicates the ESC or gateway has lost CAN communication with the eLSD control module. The module may have lost power, ground, or its CAN terminating circuit.\n\nCauses include a blown fuse feeding the rear differential controller, water ingress into the module (mounted low under the vehicle on some performance cars), or CAN line damage from road debris.",
+    "severity": "medium",
+    "safetyImpact": "eLSD disabled via loss of communication.",
+    "causes": [
+      {"cause": "Blown fuse", "likelihood": "high"},
+      {"cause": "Water-damaged module", "likelihood": "medium"},
+      {"cause": "Damaged CAN wiring under car", "likelihood": "medium"}
+    ],
+    "symptoms": ["eLSD off", "U-codes in other modules", "C0681"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse", "instruction": "Test eLSD fuse in body fusebox.", "tools": ["Multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Locate module", "instruction": "Inspect module under vehicle for damage.", "tools": ["Flashlight"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair CAN or replace", "instruction": "Repair CAN wiring or replace module.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 400}, "mechanic": {"min": 150, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-120 minutes",
+    "relatedCodes": ["C0680"],
+    "faq": [{"q": "Is it the fuse or module?", "a": "Check fuse first — always."}]
+  },
+  {
+    "code": "C0850",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Auto-Parking",
+    "title": "Parking Assist System Disabled",
+    "shortDescription": "Auto-park feature disabled due to input fault.",
+    "fullDescription": "Code C0850 indicates the automatic parking assist system has disabled itself due to a missing or invalid input — usually from the ultrasonic sensors, steering angle sensor, or wheel speed sensors. The feature requires all three streams to plan a safe trajectory.\n\nFirst diagnose any parking sensor, SAS, or ABS-related codes and resolve them — the auto-park fault often clears on its own after upstream repairs.",
+    "severity": "low",
+    "safetyImpact": "Auto-park unavailable; driver parks manually.",
+    "causes": [
+      {"cause": "Failed parking sensor", "likelihood": "high"},
+      {"cause": "Steering angle sensor miscalibrated", "likelihood": "medium"},
+      {"cause": "ABS wheel-speed fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Parking assist unavailable", "C0850"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Check parking, SAS, ABS for upstream codes.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Fix upstream", "instruction": "Address root-cause faults first.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Test function", "instruction": "Try auto-park in an empty lot.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["C0860", "C0870"],
+    "faq": [{"q": "Safe to drive?", "a": "Yes — only auto-park feature is affected."}]
+  },
+  {
+    "code": "C0860",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "360 Camera",
+    "title": "Surround View Camera Module Fault",
+    "shortDescription": "360-degree camera system module reports fault.",
+    "fullDescription": "Code C0860 indicates the surround-view camera module has detected an internal fault or has lost input from one or more of the four cameras (front grille, rear hatch, both mirror housings). The 360 display stitches these feeds; losing any one kills the bird's-eye view.\n\nMost common failure is a camera connector — especially the mirror cameras — becoming corroded or the camera lens fogging internally. Replacing a single camera is possible; the module auto-calibrates new cameras during stitching.",
+    "severity": "low",
+    "safetyImpact": "360-view unavailable; driver uses mirrors.",
+    "causes": [
+      {"cause": "Corroded camera connector", "likelihood": "high"},
+      {"cause": "Fogged camera lens", "likelihood": "medium"},
+      {"cause": "Failed camera module", "likelihood": "medium"}
+    ],
+    "symptoms": ["Black wedge in 360 view", "Surround view unavailable", "C0860"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify which camera", "instruction": "From scan data, find which camera is offline.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Access camera behind trim; check connector.", "tools": ["Trim tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace camera", "instruction": "Swap camera and allow auto-calibration.", "tools": ["Trim tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["C0870"],
+    "faq": [{"q": "Washer-fluid helps fog?", "a": "No — fog is inside the sealed lens; replace camera."}]
+  },
+  {
+    "code": "C0870",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "360 Camera",
+    "title": "Surround View Camera Calibration Lost",
+    "shortDescription": "360 camera stitching calibration invalid.",
+    "fullDescription": "Code C0870 indicates the surround-view module has lost its extrinsic calibration — the spatial mapping that tells the stitcher how each of the four cameras is oriented relative to the vehicle. This typically happens after camera replacement, windshield replacement (on front-facing cameras), or body repair.\n\nRecalibration requires either a shop with calibration targets and a level floor or, on some OEMs, a self-learn drive cycle with lane-marking detection active.",
+    "severity": "low",
+    "safetyImpact": "Stitched view distorted; safety features referencing camera may warn.",
+    "causes": [
+      {"cause": "Camera replaced without calibration", "likelihood": "high"},
+      {"cause": "Body panel repaired (bumper/mirror)", "likelihood": "medium"},
+      {"cause": "Module replaced", "likelihood": "medium"}
+    ],
+    "symptoms": ["Misaligned 360 view", "Warping at camera seams", "C0870"],
+    "fixSteps": [
+      {"step": 1, "title": "Determine method", "instruction": "Check OEM — static (targets) or dynamic (drive).", "tools": ["Factory scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Static calibration", "instruction": "If required, take to ADAS-capable shop.", "tools": ["Factory scan tool"], "difficulty": "professional"},
+      {"step": 3, "title": "Verify", "instruction": "Check stitching alignment on display.", "tools": ["Basic tools"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 250, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["C0860"],
+    "faq": [{"q": "After bumper paint?", "a": "Yes — if bumper camera was removed, calibration is needed."}]
   }
 ]
