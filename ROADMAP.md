@@ -14,25 +14,25 @@
 всё плохо (bounce rate, AdSense выручка).
 
 **Что именно:**
-- [ ] "Quick Answer" блок в самом верху: 3 строки (что это / почему / сложность)
-- [ ] Визуальная иерархия: огромный код, severity badge, one-liner описания
-- [ ] Прогресс-бар fix steps ("Step 2 of 6") — чтобы юзер видел где он
-- [ ] Кнопка "Copy code" рядом с кодом (мобильный тап)
-- [ ] "Was this helpful? 👍/👎" виджет после fix steps (localStorage)
-- [ ] Sticky "Jump to fix" кнопка на мобиле
+- [x] "Quick Answer" блок в самом верху: 3 строки (что это / почему / сложность)
+- [x] Визуальная иерархия: огромный код, severity badge, one-liner описания
+- [x] Прогресс-бар fix steps ("Step 2 of 6") — чтобы юзер видел где он
+- [x] Кнопка "Copy code" рядом с кодом (мобильный тап)
+- [x] "Was this helpful? 👍/👎" виджет после fix steps (localStorage)
+- [x] Sticky "Jump to fix" кнопка на мобиле
 - [ ] Collapsible секции на мобиле (Causes, Parts, FAQ свернуты по умолчанию)
-- [ ] Floating share button (SMS/WhatsApp/copy link)
+- [x] Floating share button (SMS/WhatsApp/copy link)
 - [ ] Видео YouTube embed от videoSearchQuery (вместо ссылки) — через iframe search
 
 ### 1.2 Редизайн Homepage
 Сейчас hero есть, но дальше скучно.
 
 **Что именно:**
-- [ ] Trust stats под hero: "7,042 codes · 100+ brands · 100% free"
-- [ ] "Trending this week" секция (топ-10 кодов — можно статикой из
+- [x] Trust stats под hero: "7,042 codes · 100+ brands · 100% free"
+- [x] "Trending this week" секция (топ-10 кодов — можно статикой из
       популярных OBD P0300, P0420, BSOD 0x7B итд)
 - [ ] "Recently added" — что нового (даты из git последних коммитов)
-- [ ] "Browse by symptom" — "My car won't start" → список кодов
+- [x] "Browse by symptom" — "My car won't start" → список кодов
 - [ ] Live-counter "X codes added this week"
 - [ ] Testimonials (даже просто 2-3 примера фейковых отзывов, этически OK
       если "submitted by users", но лучше не. Без отзывов пока.)
@@ -41,25 +41,25 @@
 Сейчас всё дефолт-Tailwind — безликое.
 
 **Что именно:**
-- [ ] Определить бренд-палитру:
+- [x] Определить бренд-палитру:
       - Primary: deep blue #1e40af (серьёзность, авторитет)
       - Severity: red/amber/green/gray
       - Category accents: auto=blue, appliance=green, hvac=cyan,
         printer=purple, windows=orange
-- [ ] Единый скругление (rounded-lg, не mixed)
+- [x] Единый скругление (rounded-lg, не mixed)
 - [ ] Typography scale с явными h1/h2/h3 размерами
 - [ ] Иконки везде одного стиля (Heroicons outline)
-- [ ] Настоящий логотип (SVG, не ⚡ emoji)
+- [x] Настоящий логотип (SVG, не ⚡ emoji)
 - [ ] Favicon set (16/32/180/512, maskable для PWA)
 
 ### 1.4 Mobile-first polish
 80%+ трафика — с телефонов. Сейчас работает но можно лучше.
 
 **Что именно:**
-- [ ] Bottom navigation bar (Home / Search / Categories / Saved) — feel
+- [x] Bottom navigation bar (Home / Search / Categories / Saved) — feel
       как нативное приложение
-- [ ] Тачабельные цели не меньше 44x44 px везде
-- [ ] `viewport-fit=cover` для iPhone safe areas
+- [x] Тачабельные цели не меньше 44x44 px везде
+- [x] `viewport-fit=cover` для iPhone safe areas
 - [ ] Сделать tab-bar sticky bottom на мобайле, скрывать при скролле вниз
 - [ ] Swipe gestures между related codes (prev/next)
 - [ ] `inputmode=search` и `enterkeyhint=search` (уже частично)
@@ -72,19 +72,19 @@
 Для AdSense и вообще доверия сайту.
 
 ### 2.1 Метаданные доверия
-- [ ] "Last updated" на каждом коде (брать из git `git log -1` в build)
-- [ ] "Reviewed by ErrorCodeDB Team" badge на каждой странице
-- [ ] Author attribution: "ErrorCodeDB Editorial Team"
-- [ ] Sources block внизу: "Based on manufacturer service documentation,
+- [x] "Last updated" на каждом коде (брать из git `git log -1` в build)
+- [x] "Reviewed by ErrorCodeDB Team" badge на каждой странице
+- [x] Author attribution: "ErrorCodeDB Editorial Team"
+- [x] Sources block внизу: "Based on manufacturer service documentation,
       OBD-II standard, and field reports"
 - [ ] Disclaimer перед invasive fix steps (electrical, gas, HV battery)
 
 ### 2.2 About page — переписать
 Сейчас скорее всего пустая / generic.
-- [ ] Миссия: "Make every error code fixable"
-- [ ] Методология: как собираем / проверяем данные
-- [ ] Команда (даже "Stanislav Kononenko, Founder")
-- [ ] Contact для corrections
+- [x] Миссия: "Make every error code fixable"
+- [x] Методология: как собираем / проверяем данные
+- [x] Команда (даже "Stanislav Kononenko, Founder")
+- [x] Contact для corrections
 
 ### 2.3 Safety warnings
 - [ ] Красный баннер на HV EV codes ("HIGH VOLTAGE — fatal shock risk")
@@ -102,7 +102,7 @@
 ## TIER 3 — Engagement & Retention
 
 ### 3.1 Persistence
-- [ ] **Saved codes** (localStorage) — "⭐ Save" на каждой странице,
+- [x] **Saved codes** (localStorage) — "⭐ Save" на каждой странице,
       страница /saved со всеми сохранёнными
 - [ ] **Recently viewed** (localStorage) — 10 последних кодов
 - [ ] **Search history** dropdown
@@ -129,7 +129,7 @@
 ## TIER 4 — SEO & Traffic
 
 ### 4.1 Internal linking
-- [ ] Каждый код ссылается на: brand page, device-type page,
+- [x] Каждый код ссылается на (partial — related codes enriched): brand page, device-type page,
       3-5 related codes (уже есть), general category
 - [ ] Breadcrumbs с правильным schema (уже есть, проверить)
 - [ ] Hub-страницы: /obd2/p04xx (все P04XX коды с описанием подкласса)
@@ -186,7 +186,7 @@
 - [ ] Lexmark принтеров больше (45 → 100)
 - [ ] OBD-II: P3 EV expansion (Ford/GM/Tesla больше)
 - [ ] HVAC: boiler codes (отдельное устройство)
-- [ ] Уже закомиченные 29 файлов (3D printers, EV chargers, drones,
+- [x] Уже закомиченные 29 файлов (done session 9) (3D printers, EV chargers, drones,
       projectors, pool — надо запушить)
 
 ### 6.2 New categories (потенциальный трафик)
