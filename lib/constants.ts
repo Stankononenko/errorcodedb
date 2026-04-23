@@ -233,6 +233,8 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   tiller: { label: "Tiller", labelPlural: "Tillers" },
   "robot-mower": { label: "Robot Mower", labelPlural: "Robot Mowers" },
   "power-tool": { label: "Power Tool", labelPlural: "Power Tools" },
+  "smart-speaker": { label: "Smart Speaker", labelPlural: "Smart Speakers" },
+  "smart-bulb": { label: "Smart Bulb", labelPlural: "Smart Bulbs" },
 };
 
 // ── HVAC Brands ──

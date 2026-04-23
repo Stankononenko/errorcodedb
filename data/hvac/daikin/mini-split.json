@@ -1,463 +1,2955 @@
 [
   {
-    "id": "daikin-mini-split-a0",
+    "id": "daikin-mini-split-a1",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "A0",
-    "displayCode": "A0",
+    "code": "A1",
+    "displayCode": "A1",
     "isBlinkCode": false,
-    "title": "Indoor Unit External Protection Device Activated",
-    "shortDescription": "An external safety device connected to the indoor unit has tripped.",
-    "fullDescription": "The A0 error indicates that an external protection device wired to the indoor unit has activated, interrupting normal operation. This is commonly a drain pan float switch, external thermostat, or auxiliary safety device.\n\nThe indoor PCB senses the open circuit on the external input terminals and shuts the unit down to prevent damage such as water overflow or overheating. The error remains until the tripped device resets and the circuit is restored.\n\nTechnicians must identify which external device triggered, correct the underlying condition (e.g., clear the drain pan), and verify wiring integrity before restarting the system.",
-    "safetyWarning": "Turn off power at the breaker before inspecting wiring or the drain system.",
+    "title": "Indoor PCB Defect",
+    "shortDescription": "The indoor unit printed circuit board has a malfunction.",
+    "fullDescription": "Daikin error code A1 indicates an internal fault on the indoor unit's main control board. The PCB may have failed due to a power surge, component failure, or age.",
+    "safetyWarning": "Turn off the unit at the breaker before inspecting. Mini-split units contain high voltage circuits.",
     "causes": [
-      {"cause": "Drain pan float switch tripped due to clogged condensate line", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "External thermostat or interlock circuit open", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Loose or damaged wiring on external protection terminals", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Faulty indoor PCB input circuit", "likelihood": "low", "fixDifficulty": "professional"}
+      {
+        "cause": "Failed indoor PCB component",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Power surge damage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose connector on the PCB",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Moisture damage to the board",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["Unit stops running", "A0 displayed on remote or wired controller", "Indoor unit timer LED flashing"],
+    "symptoms": [
+      "A1 error on remote or display",
+      "Unit does not respond to commands",
+      "LED flashing on indoor unit",
+      "Unit shuts down unexpectedly"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Power off at breaker", "instruction": "Disconnect power to both indoor and outdoor units for safety.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
-      {"step": 2, "title": "Inspect condensate drain", "instruction": "Check for clogged drain line or full drain pan. Clear any blockage with wet/dry vac.", "tools": ["wet/dry vacuum", "flashlight"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 3, "title": "Verify float switch", "instruction": "Test float switch continuity; replace if stuck or faulty.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 4, "title": "Inspect external wiring", "instruction": "Check terminal block for loose or corroded connections on T1/T2 external input.", "tools": ["screwdriver", "multimeter"], "difficulty": "advanced", "timeMinutes": 15}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Turn off the unit at the breaker for 5 minutes, then restore power.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Connections",
+        "instruction": "Open the indoor unit panel and check that all connectors on the PCB are firmly seated.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Look for Damage",
+        "instruction": "Inspect the PCB for burn marks, swollen capacitors, or corrosion.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "PCB replacement requires a Daikin-certified technician.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 5
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 150, "max": 400}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 3 hours (professional)",
+    "whenToCallPro": "For any PCB-related error that does not clear with a power cycle.",
+    "relatedCodes": [
+      "daikin-mini-split-a3",
+      "daikin-mini-split-a5"
+    ],
+    "faq": [
+      {
+        "q": "Is PCB replacement expensive?",
+        "a": "$300-$800 including parts and labor."
+      },
+      {
+        "q": "Can a power surge cause this?",
+        "a": "Yes, surge protectors are recommended for mini-splits."
+      },
+      {
+        "q": "How long does PCB replacement take?",
+        "a": "1-3 hours for a qualified technician."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-a3",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "A3",
+    "displayCode": "A3",
+    "isBlinkCode": false,
+    "title": "Drain Level System Malfunction",
+    "shortDescription": "The condensate drain is blocked or the float switch is activated.",
+    "fullDescription": "A3 indicates the indoor unit's condensate drain system has a problem. The drain pan is full or the drain pump has failed, triggering the float switch to shut down the unit before water overflows.",
+    "safetyWarning": "Water overflow can damage ceilings, walls, and electronics. Address promptly.",
+    "causes": [
+      {
+        "cause": "Clogged condensate drain line",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed drain pump",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Float switch stuck or faulty",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Drain pan cracked or misaligned",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "A3 error displayed",
+      "Water dripping from indoor unit",
+      "Unit stops cooling",
+      "Gurgling sounds from indoor unit"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear the Drain",
+        "instruction": "Locate the condensate drain line and clear any blockage using a wet/dry vacuum or compressed air.",
+        "tools": [
+          "Wet/dry vacuum or compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Clean the Drain Pan",
+        "instruction": "Remove the indoor unit cover and clean the drain pan of any algae or debris.",
+        "tools": [
+          "Screwdriver",
+          "Brush"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Check Float Switch",
+        "instruction": "Verify the float switch moves freely and is not stuck in the up position.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Reset the Unit",
+        "instruction": "After clearing the drain, power cycle the unit to reset the error.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 100,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes to 1 hour",
+    "whenToCallPro": "If the drain pump has failed or the drain pan is cracked.",
+    "relatedCodes": [
+      "daikin-mini-split-a1"
+    ],
+    "faq": [
+      {
+        "q": "How do I prevent drain clogs?",
+        "a": "Pour a cup of vinegar down the drain line every few months to prevent algae growth."
+      },
+      {
+        "q": "Why does my unit leak water?",
+        "a": "The most common cause is a clogged drain line, especially in humid environments."
+      },
+      {
+        "q": "Can I clean the drain myself?",
+        "a": "Yes, clearing the drain line is a common DIY maintenance task."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-a5",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "A5",
+    "displayCode": "A5",
+    "isBlinkCode": false,
+    "title": "Freeze Protection Activated",
+    "shortDescription": "The indoor heat exchanger is freezing up.",
+    "fullDescription": "A5 indicates the indoor coil temperature dropped to near-freezing levels, and the unit shut down the compressor to prevent ice damage.",
+    "safetyWarning": "Let ice melt completely before restarting. Do not run a frozen unit.",
+    "causes": [
+      {
+        "cause": "Dirty air filter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Low refrigerant charge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Blocked indoor airflow",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Indoor fan motor issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "A5 error",
+      "Ice on indoor coil",
+      "Poor airflow",
+      "Water dripping when ice melts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean Filter",
+        "instruction": "Remove and wash the indoor air filters. Let them dry before reinstalling.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Thaw",
+        "instruction": "Run fan-only mode to melt any ice buildup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 3,
+        "title": "Check Airflow",
+        "instruction": "Ensure nothing is blocking the indoor unit intake or discharge.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call if Recurs",
+        "instruction": "If the error returns after cleaning filters, low refrigerant is likely.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 150,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2 to 3 hours (mostly thaw)",
+    "whenToCallPro": "If problem recurs after cleaning filters.",
+    "relatedCodes": [
+      "daikin-mini-split-a3"
+    ],
+    "faq": [
+      {
+        "q": "How often to clean filters?",
+        "a": "Every 2-4 weeks during heavy use."
+      },
+      {
+        "q": "Is freezing bad?",
+        "a": "Yes, it can damage the compressor."
+      },
+      {
+        "q": "Can low refrigerant cause this?",
+        "a": "Yes, it is a common cause after filter issues are ruled out."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-a6",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "A6",
+    "displayCode": "A6",
+    "isBlinkCode": false,
+    "title": "Indoor Fan Motor Error",
+    "shortDescription": "The indoor fan motor has failed or is running abnormally.",
+    "fullDescription": "A6 indicates a malfunction in the indoor fan motor \u2014 it may be seized, running at incorrect speed, or not responding to the control board.",
+    "safetyWarning": "Turn off the unit before inspecting the fan. A stalled motor can overheat.",
+    "causes": [
+      {
+        "cause": "Fan motor bearing failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Fan motor capacitor failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Fan blade obstructed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB motor control circuit fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "A6 error",
+      "No airflow from indoor unit",
+      "Unusual noise from indoor unit",
+      "Motor hums but fan does not spin"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check for Obstructions",
+        "instruction": "Open the indoor unit and check if the fan wheel is blocked by debris.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Spin Fan Manually",
+        "instruction": "With power off, try to spin the fan by hand. Resistance or grinding indicates bad bearings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart the unit to see if the fan starts.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Fan motor replacement needs a trained technician.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 2 hours (professional)",
+    "whenToCallPro": "If the fan does not spin freely or the motor is making noise.",
+    "relatedCodes": [
+      "daikin-mini-split-a1"
+    ],
+    "faq": [
+      {
+        "q": "Fan motor cost?",
+        "a": "$150-$400 for the part."
+      },
+      {
+        "q": "Can I run without the fan?",
+        "a": "No, the coil will freeze and the compressor can be damaged."
+      },
+      {
+        "q": "What causes motor failure?",
+        "a": "Age, dust buildup, and restricted airflow."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-a7",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "A7",
+    "displayCode": "A7",
+    "isBlinkCode": false,
+    "title": "Swing Flap Motor Error",
+    "shortDescription": "The louver/swing motor is not operating correctly.",
+    "fullDescription": "A7 indicates the indoor unit's air direction swing flap motor has malfunctioned. The louvers may be stuck or the motor has failed.",
+    "safetyWarning": "Turn off the unit before manually adjusting louvers.",
+    "causes": [
+      {
+        "cause": "Swing motor failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Louver physically obstructed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Motor wiring disconnected",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB signal fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "A7 error",
+      "Louvers stuck in one position",
+      "Grinding noise from louver area",
+      "Air not directed properly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check for Obstruction",
+        "instruction": "Look for anything blocking the louver movement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Gently Move Louvers",
+        "instruction": "With power off, try gently moving the louvers by hand to check for mechanical binding.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart the unit. The louvers should move to their default position.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Replace Motor",
+        "instruction": "If the louver motor has failed, a technician can replace it.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
     "diyDifficulty": "intermediate",
-    "repairTime": "30-90 minutes",
-    "whenToCallPro": "Call a pro if the drain system is clear but the error persists, or if wiring inspection is needed.",
-    "relatedCodes": ["A1", "A3"],
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If the louver motor needs replacement.",
+    "relatedCodes": [
+      "daikin-mini-split-a6"
+    ],
     "faq": [
-      {"q": "What is the most common cause of A0?", "a": "A clogged condensate drain line triggering the float switch."},
-      {"q": "Can I bypass the float switch?", "a": "No. Bypassing it risks water damage to ceilings and electronics."}
+      {
+        "q": "Can I run the AC with louvers stuck?",
+        "a": "Usually yes, but air distribution will be affected."
+      },
+      {
+        "q": "Swing motor cost?",
+        "a": "$50-$150 for the part."
+      },
+      {
+        "q": "Is this urgent?",
+        "a": "Not urgent \u2014 the unit can still cool, just with fixed air direction."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-a2",
+    "id": "daikin-mini-split-c2",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "A2",
-    "displayCode": "A2",
+    "code": "C2",
+    "displayCode": "C2",
     "isBlinkCode": false,
-    "title": "Indoor Fan Motor Lock",
-    "shortDescription": "The indoor fan motor has seized or lost position feedback.",
-    "fullDescription": "A2 indicates the indoor fan motor is locked or that position feedback from the Hall sensor has been lost. This is distinct from A6 - A2 is specifically a lock detection at startup.\n\nDebris in the blower wheel, seized bearings, or a failed Hall sensor are common causes. The unit halts to prevent motor winding damage.\n\nClean the blower cage and verify free rotation before testing electrical components.",
-    "safetyWarning": "Disconnect power and verify blades have stopped before handling.",
+    "title": "Leak Sensor Activated",
+    "shortDescription": "The water leak sensor has detected water where it should not be.",
+    "fullDescription": "C2 indicates the leak detection sensor has been triggered, usually due to condensate overflow or a drain problem.",
+    "safetyWarning": "Water can damage property and create electrical hazards. Address immediately.",
     "causes": [
-      {"cause": "Debris jamming blower wheel", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Seized bearing", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Hall sensor failure", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Clogged drain line",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed drain pump",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Cracked drain pan",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Faulty leak sensor",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
     ],
-    "symptoms": ["Fan does not spin", "A2 displayed", "Brief motor hum at startup"],
+    "symptoms": [
+      "C2 error",
+      "Water visible near indoor unit",
+      "Unit shuts down",
+      "Musty smell"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect blower wheel", "instruction": "Remove obstructions and verify free spin by hand.", "tools": ["screwdriver"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 2, "title": "Test Hall sensor", "instruction": "Check feedback cable continuity.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Replace motor", "instruction": "Install OEM motor if bearing is seized.", "tools": ["screwdriver"], "difficulty": "advanced", "timeMinutes": 90}
+      {
+        "step": 1,
+        "title": "Clear Drain",
+        "instruction": "Clear the condensate drain line with vacuum or compressed air.",
+        "tools": [
+          "Wet/dry vacuum"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Clean Drain Pan",
+        "instruction": "Remove and clean the drain pan.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Check Leak Sensor",
+        "instruction": "Dry the leak sensor and verify it resets.",
+        "tools": [
+          "Towels"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Reset Unit",
+        "instruction": "Power cycle after fixing the drain issue.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 250}, "professional": {"min": 300, "max": 700}},
-    "diyDifficulty": "advanced",
-    "repairTime": "45-120 minutes",
-    "whenToCallPro": "Call a pro if motor replacement is required.",
-    "relatedCodes": ["A6"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes to 1 hour",
+    "whenToCallPro": "If the drain pump failed or pan is cracked.",
+    "relatedCodes": [
+      "daikin-mini-split-a3"
+    ],
     "faq": [
-      {"q": "Can I lubricate bearings?", "a": "Most modern fan motors are sealed and non-serviceable."}
+      {
+        "q": "How to prevent this?",
+        "a": "Regular drain line maintenance \u2014 flush with vinegar monthly."
+      },
+      {
+        "q": "Can it cause water damage?",
+        "a": "The sensor prevents this by shutting down early."
+      },
+      {
+        "q": "Is this common?",
+        "a": "Yes, especially in humid climates."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-a4",
+    "id": "daikin-mini-split-c4",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "A4",
-    "displayCode": "A4",
+    "code": "C4",
+    "displayCode": "C4",
     "isBlinkCode": false,
-    "title": "Indoor Heat Exchanger Temperature Abnormal",
-    "shortDescription": "Indoor coil temperature is outside the expected operating window.",
-    "fullDescription": "Error A4 indicates the indoor heat exchanger temperature is reading outside normal bounds, typically due to low refrigerant charge, a stuck EXV, or a thermistor calibration issue.\n\nThe system disables compressor operation to prevent damage. Diagnosis requires pressure/temperature analysis by a certified tech.",
-    "safetyWarning": "EPA 608 required for refrigerant work.",
+    "title": "Heat Exchanger Temperature Sensor Fault (Indoor)",
+    "shortDescription": "The indoor heat exchanger thermistor has failed.",
+    "fullDescription": "C4 indicates the indoor coil temperature sensor is reading out of range or has an open/short circuit.",
+    "safetyWarning": "Turn off unit before handling sensors.",
     "causes": [
-      {"cause": "Low refrigerant charge", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Stuck electronic expansion valve", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Thermistor drift", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Disconnected sensor wire",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrosion at connector",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB sensor input failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["A4 displayed", "Weak or no cooling"],
+    "symptoms": [
+      "C4 error",
+      "Unit runs abnormally",
+      "Freeze protection may not work",
+      "Temperature control inaccurate"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Verify airflow", "instruction": "Clean filters and coil.", "tools": [], "difficulty": "easy", "timeMinutes": 20},
-      {"step": 2, "title": "Pro refrigerant check", "instruction": "Measure subcool/superheat.", "tools": ["manifold gauges"], "difficulty": "professional", "timeMinutes": 60},
-      {"step": 3, "title": "Test EXV", "instruction": "Pro to cycle EXV and verify response.", "tools": [], "difficulty": "professional", "timeMinutes": 45}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart the unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Connection",
+        "instruction": "Verify sensor wire is plugged in at PCB.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test Sensor",
+        "instruction": "Measure thermistor resistance with multimeter.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Install OEM replacement sensor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 300, "max": 1000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
     "diyDifficulty": "intermediate",
-    "repairTime": "60-180 minutes",
-    "whenToCallPro": "Always professional for refrigerant/EXV work.",
-    "relatedCodes": ["A5", "U0"],
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If replacement does not clear the error.",
+    "relatedCodes": [
+      "daikin-mini-split-c7"
+    ],
     "faq": [
-      {"q": "Can I just add refrigerant?", "a": "No. Find and repair the leak first, per EPA rules."}
+      {
+        "q": "Sensor cost?",
+        "a": "$10-$40."
+      },
+      {
+        "q": "Can I run without it?",
+        "a": "Not safely \u2014 freeze protection will not work."
+      },
+      {
+        "q": "Common failure?",
+        "a": "Yes, thermistors degrade over time."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-a8",
+    "id": "daikin-mini-split-c7",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "A8",
-    "displayCode": "A8",
+    "code": "C7",
+    "displayCode": "C7",
     "isBlinkCode": false,
-    "title": "Indoor Unit AC Input Overcurrent",
-    "shortDescription": "The indoor unit drew excessive current on its AC input.",
-    "fullDescription": "Error A8 indicates indoor unit current exceeded a safe threshold. This could be caused by a shorted fan motor, failing transformer, or a damaged PCB component drawing excess current.\n\nInspect for burnt or blackened components and verify motor resistance before restoring power.",
-    "safetyWarning": "Potential fire hazard. Do not reset repeatedly.",
+    "title": "Swing Flap Position Sensor Error",
+    "shortDescription": "The louver position sensor cannot detect the flap position.",
+    "fullDescription": "C7 indicates the system cannot determine the position of the air direction louver flaps due to a sensor fault.",
+    "safetyWarning": "Turn off unit before inspecting louver mechanism.",
     "causes": [
-      {"cause": "Shorted indoor fan motor", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "PCB component failure", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Transformer short", "likelihood": "low", "fixDifficulty": "professional"}
+      {
+        "cause": "Position sensor failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Mechanical binding of louver",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Sensor wire disconnected",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["A8 displayed", "Breaker may trip", "Burning smell"],
+    "symptoms": [
+      "C7 error",
+      "Louvers move erratically",
+      "Louvers stuck",
+      "Air direction control does not work"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Visual inspection", "instruction": "Look for burnt components or damaged insulation.", "tools": ["flashlight"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 2, "title": "Test motor isolation", "instruction": "Verify no short to ground.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Pro diagnosis", "instruction": "Replace failed component.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Check Louvers",
+        "instruction": "Ensure louvers move freely without obstruction.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Power Cycle",
+        "instruction": "Restart the unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Sensor Wire",
+        "instruction": "Inspect the position sensor wiring.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace Sensor",
+        "instruction": "A technician can replace the position sensor.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 45
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 400, "max": 1000}},
-    "diyDifficulty": "professional",
-    "repairTime": "90-180 minutes",
-    "whenToCallPro": "Always professional - fire hazard risk.",
-    "relatedCodes": ["A6"],
-    "faq": [
-      {"q": "Safe to keep trying?", "a": "No - repeated overcurrent events can cause fire."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-aa",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "AA",
-    "displayCode": "AA",
-    "isBlinkCode": false,
-    "title": "Indoor Unit Heater Overload",
-    "shortDescription": "Auxiliary electric heater strip has triggered overload protection.",
-    "fullDescription": "Error AA occurs on models equipped with an auxiliary electric strip heater when the heater overload thermal switch trips. Causes include low airflow, blocked filters, or a failed heater contactor stuck closed.\n\nClear airflow obstructions first; most AA events resolve with filter cleaning.",
-    "safetyWarning": "Heater elements retain heat. Let cool before servicing.",
-    "causes": [
-      {"cause": "Blocked airflow / dirty filter", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Failed heater thermal limit", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Stuck heater contactor", "likelihood": "low", "fixDifficulty": "advanced"}
-    ],
-    "symptoms": ["AA displayed", "Auxiliary heat disabled"],
-    "fixSteps": [
-      {"step": 1, "title": "Clean filters", "instruction": "Remove and wash.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
-      {"step": 2, "title": "Verify blower", "instruction": "Ensure fan runs on all speeds.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
-      {"step": 3, "title": "Test thermal limit", "instruction": "Check continuity of thermal limit switch.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20}
-    ],
-    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 200, "max": 500}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
     "diyDifficulty": "intermediate",
-    "repairTime": "30-90 minutes",
-    "whenToCallPro": "Call pro if thermal limit or contactor replacement needed.",
-    "relatedCodes": ["A5"],
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "If louvers are mechanically free but the error persists.",
+    "relatedCodes": [
+      "daikin-mini-split-a7"
+    ],
     "faq": [
-      {"q": "Does my unit have strip heat?", "a": "Check nameplate - only ducted/cassette models in cold climates."}
+      {
+        "q": "Can I still use the AC?",
+        "a": "Often yes, with manual air direction."
+      },
+      {
+        "q": "Is this urgent?",
+        "a": "No, cooling still works."
+      },
+      {
+        "q": "Sensor cost?",
+        "a": "$30-$80."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-c0",
+    "id": "daikin-mini-split-c9",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "C0",
-    "displayCode": "C0",
+    "code": "C9",
+    "displayCode": "C9",
     "isBlinkCode": false,
-    "title": "Sensor System Error",
-    "shortDescription": "A sensor circuit on the indoor PCB reports invalid reference voltage.",
-    "fullDescription": "Error C0 indicates an internal sensor reference voltage fault. The indoor PCB cannot reliably read thermistor inputs because its analog front-end has failed.\n\nThis typically requires PCB replacement. Verify all thermistor plugs are seated before replacing.",
-    "safetyWarning": "Disconnect power before PCB service.",
+    "title": "Room Temperature Sensor Fault",
+    "shortDescription": "The indoor room temperature sensor (thermistor) has failed.",
+    "fullDescription": "C9 indicates the room temperature sensor in the indoor unit is reading out of range or has failed. The system cannot accurately measure room temperature.",
+    "safetyWarning": "Turn off unit before inspecting sensors.",
     "causes": [
-      {"cause": "PCB analog circuit failure", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Shorted thermistor loading reference", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Disconnected wire",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Sensor in direct sunlight or heat source",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["C0 displayed", "Unit unresponsive"],
+    "symptoms": [
+      "C9 error",
+      "Unit does not maintain set temperature",
+      "Runs continuously or not at all",
+      "Temperature display inaccurate"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect thermistors", "instruction": "Unplug one at a time to find shorted sensor.", "tools": ["screwdriver"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 2, "title": "Replace PCB", "instruction": "Install OEM board.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart the unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Sensor Location",
+        "instruction": "Ensure nothing is near the sensor giving it a false reading (sunlight, lamp, etc).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Test Sensor",
+        "instruction": "Measure resistance and compare to spec.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Swap thermistor with OEM part.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
     ],
-    "estimatedCost": {"diy": {"min": 20, "max": 450}, "professional": {"min": 400, "max": 900}},
-    "diyDifficulty": "professional",
-    "repairTime": "60-120 minutes",
-    "whenToCallPro": "Professional PCB diagnosis.",
-    "relatedCodes": ["C4", "C5"],
-    "faq": [
-      {"q": "Is C0 common?", "a": "Relatively rare; indicates PCB failure."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-cc",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "CC",
-    "displayCode": "CC",
-    "isBlinkCode": false,
-    "title": "Humidity Sensor Fault",
-    "shortDescription": "The indoor humidity sensor is out of range.",
-    "fullDescription": "Error CC indicates the indoor unit humidity sensor is reporting invalid values. This sensor is used on models with dehumidification control for precise humidity regulation.\n\nIf the unit does not have advanced dehum features, the error may have minimal operational impact but still blocks certain modes.",
-    "safetyWarning": "Disconnect power before opening indoor unit.",
-    "causes": [
-      {"cause": "Humidity sensor failure", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Disconnected sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
-    ],
-    "symptoms": ["CC displayed", "Dehumidify mode disabled"],
-    "fixSteps": [
-      {"step": 1, "title": "Reseat connector", "instruction": "Check sensor plug on PCB.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
-      {"step": 2, "title": "Replace sensor", "instruction": "Install OEM part.", "tools": ["screwdriver"], "difficulty": "advanced", "timeMinutes": 45}
-    ],
-    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 200, "max": 450}},
-    "diyDifficulty": "advanced",
-    "repairTime": "30-60 minutes",
-    "whenToCallPro": "Call pro if sensor location is difficult.",
-    "relatedCodes": ["C9"],
-    "faq": [
-      {"q": "Can I ignore CC?", "a": "Unit may still cool, but dehum precision is lost."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-e6",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "E6",
-    "displayCode": "E6",
-    "isBlinkCode": false,
-    "title": "Compressor Startup Failure",
-    "shortDescription": "The compressor failed to start or lost synchronization.",
-    "fullDescription": "Error E6 indicates the inverter PCB could not successfully start the compressor or lost position feedback during operation. This may stem from a locked rotor, weak capacitor, failed IPM (intelligent power module), or faulty compressor windings.\n\nDiagnosing E6 requires measuring winding resistance, inspecting power components, and sometimes a megger test on compressor to ground.",
-    "safetyWarning": "Lethal voltages present in IPM and capacitor circuits.",
-    "causes": [
-      {"cause": "Failed IPM on outdoor PCB", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Compressor winding failure", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Low line voltage", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Locked compressor rotor", "likelihood": "low", "fixDifficulty": "professional"}
-    ],
-    "symptoms": ["Compressor hums but does not start", "E6 displayed", "Outdoor fan may run"],
-    "fixSteps": [
-      {"step": 1, "title": "Check line voltage", "instruction": "Verify supply voltage within 10% of nameplate.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 15},
-      {"step": 2, "title": "Measure compressor windings", "instruction": "Resistance between phases should be balanced; no short to ground.", "tools": ["multimeter"], "difficulty": "professional", "timeMinutes": 30},
-      {"step": 3, "title": "Inspect IPM module", "instruction": "Pro to test for shorted transistors.", "tools": ["multimeter"], "difficulty": "professional", "timeMinutes": 45},
-      {"step": 4, "title": "Replace faulty component", "instruction": "PCB or compressor replacement as required.", "tools": [], "difficulty": "professional", "timeMinutes": 180}
-    ],
-    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 600, "max": 2500}},
-    "diyDifficulty": "professional",
-    "repairTime": "120-300 minutes",
-    "whenToCallPro": "E6 diagnosis and repair require a licensed HVAC professional.",
-    "relatedCodes": ["E5", "E7"],
-    "faq": [
-      {"q": "Is compressor replacement worth it?", "a": "Depends on age; over 10 years, replacement of unit is often wiser."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-h3",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "H3",
-    "displayCode": "H3",
-    "isBlinkCode": false,
-    "title": "High Pressure Switch Fault",
-    "shortDescription": "The high pressure switch circuit is abnormal.",
-    "fullDescription": "Error H3 indicates an abnormality in the high-pressure switch circuit. Either the switch has tripped (excessive high-side pressure) or the circuit is open due to a disconnected plug.\n\nCauses of true high pressure include dirty outdoor coil, refrigerant overcharge, or failed outdoor fan.",
-    "safetyWarning": "High-pressure refrigerant. EPA 608 required.",
-    "causes": [
-      {"cause": "Dirty outdoor coil", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Outdoor fan failure", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Switch plug disconnected", "likelihood": "medium", "fixDifficulty": "intermediate"},
-      {"cause": "Refrigerant overcharge", "likelihood": "low", "fixDifficulty": "professional"}
-    ],
-    "symptoms": ["H3 displayed", "Compressor shuts down"],
-    "fixSteps": [
-      {"step": 1, "title": "Clean outdoor coil", "instruction": "Rinse fins thoroughly.", "tools": ["garden hose"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 2, "title": "Verify fan", "instruction": "Outdoor fan runs with compressor.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
-      {"step": 3, "title": "Check switch plug", "instruction": "Reseat at outdoor PCB.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
-      {"step": 4, "title": "Pro refrigerant check", "instruction": "Verify charge if H3 persists.", "tools": ["manifold gauges"], "difficulty": "professional", "timeMinutes": 60}
-    ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 250, "max": 900}},
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
     "diyDifficulty": "intermediate",
-    "repairTime": "45-120 minutes",
-    "whenToCallPro": "Call pro for refrigerant diagnosis.",
-    "relatedCodes": ["H9"],
+    "repairTime": "15 minutes to 45 minutes",
+    "whenToCallPro": "If replacement does not resolve the issue.",
+    "relatedCodes": [
+      "daikin-mini-split-c4"
+    ],
     "faq": [
-      {"q": "What pressure is high?", "a": "For R-410A typically above ~580 PSI triggers."}
+      {
+        "q": "What causes sensor failure?",
+        "a": "Age and environmental factors."
+      },
+      {
+        "q": "Can heat from a lamp affect it?",
+        "a": "Yes, external heat sources near the sensor cause false readings."
+      },
+      {
+        "q": "Sensor cost?",
+        "a": "$10-$30."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-h7",
+    "id": "daikin-mini-split-e0",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "H7",
-    "displayCode": "H7",
+    "code": "E0",
+    "displayCode": "E0",
     "isBlinkCode": false,
-    "title": "Outdoor Fan Motor Signal Error",
-    "shortDescription": "Feedback signal from outdoor fan motor is abnormal.",
-    "fullDescription": "Error H7 indicates the outdoor fan motor position or speed feedback signal is out of expected range. Causes include a failed Hall sensor wire, seized bearing, or a damaged fan driver IC on the PCB.\n\nVisually inspect and spin the fan by hand first.",
-    "safetyWarning": "Disconnect power before touching fan.",
+    "title": "Safety Device Activated (Outdoor)",
+    "shortDescription": "A safety protection device on the outdoor unit has activated.",
+    "fullDescription": "E0 indicates a general safety device activation on the outdoor unit. This is a broad code that may indicate overheating, overcurrent, or other safety conditions.",
+    "safetyWarning": "Turn off the system. Multiple safety conditions may require professional diagnosis.",
     "causes": [
-      {"cause": "Hall sensor wire damaged", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Seized bearing", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "PCB fan driver fault", "likelihood": "low", "fixDifficulty": "professional"}
+      {
+        "cause": "High discharge temperature",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Overcurrent condition",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty outdoor coil",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Refrigerant issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["H7 displayed", "Outdoor fan slow or stopped"],
+    "symptoms": [
+      "E0 error",
+      "Outdoor unit stops",
+      "Poor or no cooling",
+      "Outdoor unit hot"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Spin fan by hand", "instruction": "Verify free rotation.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
-      {"step": 2, "title": "Inspect feedback cable", "instruction": "Check Hall sensor wiring.", "tools": [], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Replace motor or PCB", "instruction": "As diagnosed.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Clean Outdoor Coil",
+        "instruction": "Hose down the outdoor coil from inside out.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Check Airflow",
+        "instruction": "Ensure 2+ feet clearance around the outdoor unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart after cleaning.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "If error returns, professional diagnosis is needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 300}, "professional": {"min": 350, "max": 900}},
-    "diyDifficulty": "advanced",
-    "repairTime": "60-180 minutes",
-    "whenToCallPro": "Call pro for motor/PCB replacement.",
-    "relatedCodes": ["E7"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If cleaning does not resolve the issue.",
+    "relatedCodes": [
+      "daikin-mini-split-e1",
+      "daikin-mini-split-e3"
+    ],
     "faq": [
-      {"q": "Is H7 same as E7?", "a": "Similar symptoms; H7 is signal-side, E7 is broader motor fault."}
+      {
+        "q": "Is E0 serious?",
+        "a": "It can be \u2014 it indicates a safety device activated."
+      },
+      {
+        "q": "What safety devices?",
+        "a": "Includes high pressure switch, overcurrent protection, and thermal overload."
+      },
+      {
+        "q": "After cleaning, still E0?",
+        "a": "Call a professional \u2014 may be a refrigerant issue."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-h8",
+    "id": "daikin-mini-split-e1",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "H8",
-    "displayCode": "H8",
+    "code": "E1",
+    "displayCode": "E1",
     "isBlinkCode": false,
-    "title": "Compressor DC Input Current Sensor Fault",
-    "shortDescription": "The DC bus current sensor is out of range.",
-    "fullDescription": "Error H8 indicates the DC current sensor in the outdoor inverter circuit is reporting an abnormal value. This sensor is essential for closed-loop control of the compressor and for overload protection.\n\nPCB replacement is usually required.",
-    "safetyWarning": "Lethal DC bus voltages present. Wait 10 minutes after power off.",
+    "title": "Outdoor PCB Error",
+    "shortDescription": "The outdoor unit control board has malfunctioned.",
+    "fullDescription": "E1 indicates an internal fault on the outdoor unit's PCB, similar to A1 but for the outdoor unit.",
+    "safetyWarning": "Turn off at the breaker. High voltage present in outdoor unit.",
     "causes": [
-      {"cause": "DC current sensor failure on PCB", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Shunt resistor damage", "likelihood": "medium", "fixDifficulty": "professional"}
+      {
+        "cause": "Failed outdoor PCB",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Power surge damage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose board connector",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Moisture/corrosion",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["Compressor will not run", "H8 displayed"],
+    "symptoms": [
+      "E1 error",
+      "Outdoor unit non-functional",
+      "Indoor unit may run fan only",
+      "No cooling or heating"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect PCB for damage", "instruction": "Look for burnt shunt or sensor IC.", "tools": [], "difficulty": "professional", "timeMinutes": 20},
-      {"step": 2, "title": "Replace PCB", "instruction": "OEM inverter board replacement.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Turn off at breaker for 5 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Visual Inspect",
+        "instruction": "Look for visible damage on outdoor PCB.",
+        "tools": [
+          "Screwdriver",
+          "Flashlight"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Check Connections",
+        "instruction": "Ensure all connectors are seated.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "PCB replacement required.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 5
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 700, "max": 1400}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 900
+      }
+    },
     "diyDifficulty": "professional",
-    "repairTime": "90-180 minutes",
-    "whenToCallPro": "Professional service required.",
-    "relatedCodes": ["H0", "E1"],
+    "repairTime": "1 to 3 hours (professional)",
+    "whenToCallPro": "If power cycling does not clear.",
+    "relatedCodes": [
+      "daikin-mini-split-e0",
+      "daikin-mini-split-a1"
+    ],
     "faq": [
-      {"q": "Can I repair the PCB?", "a": "Not economical; board-level replacement is standard."}
+      {
+        "q": "PCB cost?",
+        "a": "$200-$600 for the part."
+      },
+      {
+        "q": "Power surge?",
+        "a": "Yes, use a surge protector."
+      },
+      {
+        "q": "Under warranty?",
+        "a": "Check your Daikin warranty \u2014 PCBs may be covered for up to 5 years."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-l2",
+    "id": "daikin-mini-split-e3",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "L2",
-    "displayCode": "L2",
+    "code": "E3",
+    "displayCode": "E3",
     "isBlinkCode": false,
-    "title": "Compressor Overcurrent (Instantaneous)",
-    "shortDescription": "The compressor drew an instantaneous overcurrent.",
-    "fullDescription": "Error L2 indicates an instantaneous overcurrent event on the compressor phase. Different from L5 which is the inverter bus, L2 is measured on the AC side.\n\nCauses include short cycling, refrigerant issues, or a failing compressor.",
-    "safetyWarning": "Lethal voltages. Let capacitors discharge.",
+    "title": "High Pressure Switch Activated",
+    "shortDescription": "The outdoor high pressure safety switch has tripped.",
+    "fullDescription": "E3 indicates excessive refrigerant pressure on the high side, triggering the safety switch.",
+    "safetyWarning": "Do not attempt to adjust refrigerant. High pressure systems are dangerous.",
     "causes": [
-      {"cause": "Short cycling due to thermostat issue", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Refrigerant problem", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Failing compressor", "likelihood": "medium", "fixDifficulty": "professional"}
+      {
+        "cause": "Dirty outdoor coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overcharged refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Outdoor fan failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Non-condensable gases in system",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["L2 displayed", "Compressor trips quickly"],
+    "symptoms": [
+      "E3 error",
+      "Outdoor unit shuts down",
+      "Poor cooling before error",
+      "Outdoor unit very hot"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Wait between cycles", "instruction": "Allow 5-minute minimum between start attempts.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
-      {"step": 2, "title": "Professional diagnostics", "instruction": "Pressure and compressor tests.", "tools": ["manifold gauges", "multimeter"], "difficulty": "professional", "timeMinutes": 90}
+      {
+        "step": 1,
+        "title": "Clean Outdoor Coil",
+        "instruction": "Hose the coils clean.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Check Fan",
+        "instruction": "Verify outdoor fan runs.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Clear Obstruction",
+        "instruction": "Remove anything blocking the outdoor unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "If cleaning does not help.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 400, "max": 1800}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes to 1 hour",
+    "whenToCallPro": "If cleaning does not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-e0"
+    ],
+    "faq": [
+      {
+        "q": "Will it reset?",
+        "a": "Usually auto-resets after pressure drops."
+      },
+      {
+        "q": "Is this common in summer?",
+        "a": "Yes, hot days stress the condenser."
+      },
+      {
+        "q": "Can vegetation cause this?",
+        "a": "Yes, plants blocking the outdoor unit restrict airflow."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-e5",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E5",
+    "displayCode": "E5",
+    "isBlinkCode": false,
+    "title": "Compressor Overcurrent",
+    "shortDescription": "The compressor is drawing excessive current.",
+    "fullDescription": "E5 indicates the compressor motor is exceeding its rated current draw.",
+    "safetyWarning": "Overcurrent can cause fire. Turn off the system at the breaker immediately.",
+    "causes": [
+      {
+        "cause": "Failing compressor",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low voltage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty outdoor coil overloading compressor",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Refrigerant overcharge",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "E5 error",
+      "Breaker may trip",
+      "Compressor loud/hot",
+      "No cooling"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Shut off at breaker immediately.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clean Coils",
+        "instruction": "Clean outdoor coils.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "One Retry",
+        "instruction": "Wait 30 min, restart once.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Compressor diagnosis needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 200,
+        "max": 3500
+      }
+    },
     "diyDifficulty": "professional",
-    "repairTime": "90-180 minutes",
-    "whenToCallPro": "Professional required.",
-    "relatedCodes": ["L5", "E5"],
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "After one failed restart.",
+    "relatedCodes": [
+      "daikin-mini-split-e0",
+      "daikin-mini-split-e7"
+    ],
     "faq": [
-      {"q": "Short cycling damage?", "a": "Yes - shortens compressor life significantly."}
+      {
+        "q": "Is this the compressor dying?",
+        "a": "Possibly, but it could also be a capacitor or voltage issue."
+      },
+      {
+        "q": "Compressor cost?",
+        "a": "$1,500-$3,000+ installed."
+      },
+      {
+        "q": "Is this dangerous?",
+        "a": "Yes, overcurrent is a fire risk."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-l4",
+    "id": "daikin-mini-split-e7",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "L4",
-    "displayCode": "L4",
+    "code": "E7",
+    "displayCode": "E7",
     "isBlinkCode": false,
-    "title": "Inverter Heat Sink Overheat",
-    "shortDescription": "The inverter heat sink temperature sensor has exceeded its limit.",
-    "fullDescription": "Error L4 indicates the inverter heat sink has reached a critical temperature. Thermal paste degradation between the IPM and heat sink, or a failed heat sink fan, are common causes.\n\nProfessional service is typically needed to reseat the IPM with fresh thermal compound or replace the PCB assembly.",
-    "safetyWarning": "Hot surfaces and lethal voltages.",
+    "title": "Outdoor Fan Motor Error",
+    "shortDescription": "The outdoor fan motor has malfunctioned.",
+    "fullDescription": "E7 indicates the outdoor fan motor is not running or running abnormally.",
+    "safetyWarning": "Turn off unit. A non-functional outdoor fan causes rapid pressure buildup.",
     "causes": [
-      {"cause": "Dried thermal paste between IPM and heat sink", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Blocked heat sink airflow", "likelihood": "medium", "fixDifficulty": "intermediate"},
-      {"cause": "Failed heat sink cooling fan", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Fan motor bearing failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Motor capacitor failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Fan blade obstructed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB motor drive failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["L4 displayed", "Frequent thermal trips", "Weak cooling performance"],
+    "symptoms": [
+      "E7 error",
+      "Outdoor fan not spinning",
+      "Outdoor unit overheating",
+      "Compressor shuts down quickly"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Clean heat sink", "instruction": "Remove dirt and verify airflow.", "tools": ["soft brush"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 2, "title": "Check cooling fan", "instruction": "Verify auxiliary heat sink fan operates.", "tools": [], "difficulty": "advanced", "timeMinutes": 15},
-      {"step": 3, "title": "Reapply thermal paste", "instruction": "Pro to disassemble IPM and apply fresh compound.", "tools": ["thermal paste", "screwdriver"], "difficulty": "professional", "timeMinutes": 90}
+      {
+        "step": 1,
+        "title": "Check Fan Blade",
+        "instruction": "With power off, check if blade spins freely and is not blocked.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Spin by Hand",
+        "instruction": "Check for bearing resistance.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart and observe.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Motor replacement needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
     ],
-    "estimatedCost": {"diy": {"min": 10, "max": 50}, "professional": {"min": 300, "max": 800}},
-    "diyDifficulty": "advanced",
-    "repairTime": "60-120 minutes",
-    "whenToCallPro": "Call a pro for thermal paste replacement or IPM issues.",
-    "relatedCodes": ["L3", "L5"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If fan does not spin freely.",
+    "relatedCodes": [
+      "daikin-mini-split-e5",
+      "daikin-mini-split-e3"
+    ],
     "faq": [
-      {"q": "How often should thermal paste be replaced?", "a": "Typically lasts 7-10 years under normal conditions."}
+      {
+        "q": "Motor cost?",
+        "a": "$150-$350."
+      },
+      {
+        "q": "Can I run without it?",
+        "a": "No, the unit will overheat immediately."
+      },
+      {
+        "q": "How long do motors last?",
+        "a": "10-15 years typically."
+      }
     ]
   },
   {
-    "id": "daikin-mini-split-p1",
+    "id": "daikin-mini-split-e9",
     "brand": "Daikin",
     "brandSlug": "daikin",
     "deviceType": "Mini-Split",
     "deviceTypeSlug": "mini-split",
-    "code": "P1",
-    "displayCode": "P1",
+    "code": "E9",
+    "displayCode": "E9",
     "isBlinkCode": false,
-    "title": "Power Supply Voltage Imbalance",
-    "shortDescription": "Inverter detected power supply voltage imbalance or phase loss.",
-    "fullDescription": "Error P1 indicates the outdoor inverter detected power supply issues, most commonly voltage imbalance on 3-phase units or low/high voltage on single-phase units.\n\nVerify line voltage with a multimeter before deeper diagnostics.",
-    "safetyWarning": "High voltage measurements. Use proper PPE.",
+    "title": "Electronic Expansion Valve Error",
+    "shortDescription": "The electronic expansion valve is not operating correctly.",
+    "fullDescription": "E9 indicates the electronic expansion valve (EEV) that controls refrigerant flow has malfunctioned.",
+    "safetyWarning": "EEV is a precision component. Do not attempt adjustment.",
     "causes": [
-      {"cause": "Low utility voltage", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Loose power connection", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Phase loss (3-phase)", "likelihood": "medium", "fixDifficulty": "professional"}
+      {
+        "cause": "EEV motor failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "EEV coil burnout",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring issue between PCB and EEV",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Foreign material blocking valve",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["P1 displayed", "Unit fails to start"],
+    "symptoms": [
+      "E9 error",
+      "Poor cooling or heating",
+      "Abnormal sounds from outdoor unit",
+      "Refrigerant lines unusually cold or warm"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Measure supply voltage", "instruction": "Check L1/L2/L3 or L/N voltages.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 15},
-      {"step": 2, "title": "Tighten lugs", "instruction": "Torque power connections.", "tools": ["torque screwdriver"], "difficulty": "advanced", "timeMinutes": 20}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart the system.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Wiring",
+        "instruction": "Inspect EEV wiring at the outdoor unit board.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Listen for EEV",
+        "instruction": "On startup, the EEV should make a buzzing/stepping sound. Silence indicates failure.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "EEV replacement requires recovery and recharge of refrigerant.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 600}},
-    "diyDifficulty": "advanced",
-    "repairTime": "30-90 minutes",
-    "whenToCallPro": "Utility voltage issues need electrician or utility.",
-    "relatedCodes": ["P4"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 4 hours",
+    "whenToCallPro": "For any EEV-related code.",
+    "relatedCodes": [
+      "daikin-mini-split-e0"
+    ],
     "faq": [
-      {"q": "Can brownouts damage unit?", "a": "Yes - install surge protection with low-voltage cutoff."}
+      {
+        "q": "What is an EEV?",
+        "a": "An electronically controlled valve that precisely regulates refrigerant flow."
+      },
+      {
+        "q": "EEV cost?",
+        "a": "$100-$300 for the part; $300-$800 total."
+      },
+      {
+        "q": "Can the system run with a bad EEV?",
+        "a": "It will run poorly with incorrect refrigerant flow."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-f3",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "F3",
+    "displayCode": "F3",
+    "isBlinkCode": false,
+    "title": "Discharge Pipe Temperature Too High",
+    "shortDescription": "Compressor discharge line temperature exceeded the safe limit.",
+    "fullDescription": "F3 indicates the temperature at the compressor discharge pipe is dangerously high, typically from low refrigerant or restricted airflow.",
+    "safetyWarning": "Turn off the system to protect the compressor from heat damage.",
+    "causes": [
+      {
+        "cause": "Low refrigerant charge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty outdoor coil",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Restricted metering device",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Compressor valve failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "F3 error",
+      "Very hot discharge pipe",
+      "Poor cooling",
+      "Compressor may be noisy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Stop system to prevent damage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clean Coils",
+        "instruction": "Clean outdoor coils.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Check Fan",
+        "instruction": "Verify outdoor fan operation.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Refrigerant check needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 200,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If cleaning does not help.",
+    "relatedCodes": [
+      "daikin-mini-split-e0",
+      "daikin-mini-split-e3"
+    ],
+    "faq": [
+      {
+        "q": "How hot is too hot?",
+        "a": "Discharge temps above 250F are dangerous for the compressor."
+      },
+      {
+        "q": "Is this from low refrigerant?",
+        "a": "Often yes."
+      },
+      {
+        "q": "Urgent?",
+        "a": "Yes, continued operation can damage the compressor."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-f6",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "F6",
+    "displayCode": "F6",
+    "isBlinkCode": false,
+    "title": "High Pressure Detected (Abnormal)",
+    "shortDescription": "Abnormally high pressure in the refrigerant system.",
+    "fullDescription": "F6 indicates the system has detected high pressure through sensor readings rather than the mechanical high pressure switch. This is an early warning before the mechanical switch trips.",
+    "safetyWarning": "Turn off the system. Do not tamper with refrigerant connections.",
+    "causes": [
+      {
+        "cause": "Dirty condenser coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fan not running at full speed",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Refrigerant overcharge",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Non-condensable gas in system",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "F6 error",
+      "System shuts down",
+      "Outdoor unit hot",
+      "Reduced cooling before shutdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean Outdoor Coil",
+        "instruction": "Hose down the coils.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Ensure Clearance",
+        "instruction": "2+ feet around outdoor unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Fan",
+        "instruction": "Outdoor fan should run at full speed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "If cleaning does not help.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes to 1 hour",
+    "whenToCallPro": "If cleaning and clearance do not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-e3"
+    ],
+    "faq": [
+      {
+        "q": "Difference between F6 and E3?",
+        "a": "F6 is sensor-based detection; E3 is the mechanical switch. F6 is the earlier warning."
+      },
+      {
+        "q": "Is cleaning enough?",
+        "a": "Often yes, especially in dusty or leafy environments."
+      },
+      {
+        "q": "How often to clean?",
+        "a": "At least 2-3 times per year in dirty environments."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-h0",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "H0",
+    "displayCode": "H0",
+    "isBlinkCode": false,
+    "title": "Compressor Sensor Error",
+    "shortDescription": "The compressor temperature sensor has failed.",
+    "fullDescription": "H0 indicates the compressor temperature thermistor on the outdoor unit has failed or is reading out of range.",
+    "safetyWarning": "Turn off the system before inspecting outdoor unit components.",
+    "causes": [
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Disconnected sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corroded connection",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB input failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H0 error",
+      "System may not start",
+      "Compressor protection impaired",
+      "Abnormal operation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart the system.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Connection",
+        "instruction": "Verify sensor is plugged in at outdoor PCB.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test Sensor",
+        "instruction": "Measure resistance.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Install new thermistor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If replacement does not clear error.",
+    "relatedCodes": [
+      "daikin-mini-split-h6",
+      "daikin-mini-split-h9"
+    ],
+    "faq": [
+      {
+        "q": "Sensor cost?",
+        "a": "$10-$40."
+      },
+      {
+        "q": "Important to fix?",
+        "a": "Yes \u2014 compressor temperature protection depends on this sensor."
+      },
+      {
+        "q": "Common?",
+        "a": "Sensors degrade with age and heat exposure."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-h6",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "H6",
+    "displayCode": "H6",
+    "isBlinkCode": false,
+    "title": "Compressor Motor Position Detection Error",
+    "shortDescription": "The inverter cannot detect the compressor motor rotor position.",
+    "fullDescription": "H6 indicates the outdoor unit's inverter drive cannot detect the position of the compressor motor, which is needed for speed control.",
+    "safetyWarning": "Inverter components carry high voltage. Professional service required.",
+    "causes": [
+      {
+        "cause": "Compressor winding failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter PCB fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring between inverter and compressor",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Compressor starting issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H6 error",
+      "Compressor does not start",
+      "Outdoor unit buzzes then stops",
+      "No cooling or heating"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Full power down for 5 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Wiring",
+        "instruction": "Professional check of compressor wiring at the inverter board.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Test Compressor",
+        "instruction": "Measure compressor winding resistance.",
+        "tools": [
+          "Megohmmeter"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace Component",
+        "instruction": "Inverter board or compressor replacement.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 400,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "whenToCallPro": "Immediately \u2014 this requires professional diagnosis.",
+    "relatedCodes": [
+      "daikin-mini-split-h0",
+      "daikin-mini-split-h9"
+    ],
+    "faq": [
+      {
+        "q": "Is this a compressor failure?",
+        "a": "It can be, but sometimes the inverter board is the issue."
+      },
+      {
+        "q": "How much for an inverter board?",
+        "a": "$300-$800 installed."
+      },
+      {
+        "q": "Compressor replacement?",
+        "a": "$1,500-$3,500."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-h9",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "H9",
+    "displayCode": "H9",
+    "isBlinkCode": false,
+    "title": "Outdoor Air Temperature Sensor Fault",
+    "shortDescription": "The outdoor ambient temperature sensor has failed.",
+    "fullDescription": "H9 indicates the outdoor air temperature thermistor is reading incorrectly or has failed.",
+    "safetyWarning": "Turn off outdoor unit before inspecting.",
+    "causes": [
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Disconnected sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Sensor damaged by weather",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H9 error",
+      "System may not operate in certain modes",
+      "Efficiency reduced",
+      "May affect defrost in heat pump mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Sensor",
+        "instruction": "Find and inspect the outdoor ambient sensor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test",
+        "instruction": "Measure resistance.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Install new sensor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "If replacement does not help.",
+    "relatedCodes": [
+      "daikin-mini-split-h0"
+    ],
+    "faq": [
+      {
+        "q": "Cost?",
+        "a": "$10-$30 for sensor."
+      },
+      {
+        "q": "Affects defrost?",
+        "a": "Yes, in heat pump mode."
+      },
+      {
+        "q": "Common?",
+        "a": "Sensors exposed to weather degrade over time."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-j1",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "J1",
+    "displayCode": "J1",
+    "isBlinkCode": false,
+    "title": "Pressure Sensor Error",
+    "shortDescription": "The refrigerant pressure sensor is reading incorrectly.",
+    "fullDescription": "J1 indicates a pressure sensor (transducer) on the outdoor unit has failed or is reading out of range.",
+    "safetyWarning": "Do not tamper with refrigerant system components.",
+    "causes": [
+      {
+        "cause": "Failed pressure transducer",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB sensor input failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Refrigerant system issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "J1 error",
+      "System shuts down",
+      "Abnormal operation",
+      "May not start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Full restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Wiring",
+        "instruction": "Inspect sensor wiring at outdoor PCB.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Test Sensor",
+        "instruction": "Professional testing of pressure transducer signal.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace Sensor",
+        "instruction": "Pressure transducer replacement.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "For any pressure sensor code.",
+    "relatedCodes": [
+      "daikin-mini-split-j3"
+    ],
+    "faq": [
+      {
+        "q": "Sensor cost?",
+        "a": "$50-$150."
+      },
+      {
+        "q": "Is this serious?",
+        "a": "The system cannot operate safely without accurate pressure readings."
+      },
+      {
+        "q": "Can I run the AC?",
+        "a": "Not recommended until repaired."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-j3",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "J3",
+    "displayCode": "J3",
+    "isBlinkCode": false,
+    "title": "Discharge Pipe Temperature Sensor Fault",
+    "shortDescription": "The compressor discharge pipe temperature sensor has failed.",
+    "fullDescription": "J3 indicates the thermistor measuring the compressor discharge line temperature is faulty.",
+    "safetyWarning": "Turn off the unit before inspecting sensors.",
+    "causes": [
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose wire",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Heat damage to sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "J3 error",
+      "Compressor protection impaired",
+      "System may run in safe mode",
+      "No cooling"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Connection",
+        "instruction": "Verify sensor plugged in.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test",
+        "instruction": "Measure thermistor resistance.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Install OEM sensor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If replacement does not clear.",
+    "relatedCodes": [
+      "daikin-mini-split-j1",
+      "daikin-mini-split-f3"
+    ],
+    "faq": [
+      {
+        "q": "Why is this sensor important?",
+        "a": "It prevents the compressor from overheating."
+      },
+      {
+        "q": "Cost?",
+        "a": "$10-$40."
+      },
+      {
+        "q": "Urgent?",
+        "a": "Yes \u2014 without this sensor, the compressor has no overheat protection."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-j9",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "J9",
+    "displayCode": "J9",
+    "isBlinkCode": false,
+    "title": "Suction Pipe Temperature Sensor Fault",
+    "shortDescription": "The suction pipe temperature sensor on the outdoor unit has failed.",
+    "fullDescription": "J9 indicates the thermistor on the compressor suction line is reading out of range.",
+    "safetyWarning": "Professional repair required for outdoor unit sensors.",
+    "causes": [
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose connection",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Environmental damage",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "J9 error",
+      "System operates abnormally",
+      "Efficiency reduced",
+      "May not start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Connection",
+        "instruction": "Verify sensor wire.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test",
+        "instruction": "Measure resistance.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace",
+        "instruction": "Install new sensor.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "If replacement does not fix it.",
+    "relatedCodes": [
+      "daikin-mini-split-j3"
+    ],
+    "faq": [
+      {
+        "q": "What does this sensor do?",
+        "a": "Monitors refrigerant temperature returning to the compressor."
+      },
+      {
+        "q": "Cost?",
+        "a": "$10-$40."
+      },
+      {
+        "q": "Important?",
+        "a": "Yes, helps protect the compressor from liquid return."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-l1",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "L1",
+    "displayCode": "L1",
+    "isBlinkCode": false,
+    "title": "Inverter PCB Error",
+    "shortDescription": "The inverter power control board has an internal error.",
+    "fullDescription": "L1 indicates a fault in the inverter PCB that controls compressor speed. This is a critical component failure.",
+    "safetyWarning": "High voltage present. Do not open the outdoor unit electrical compartment.",
+    "causes": [
+      {
+        "cause": "Inverter board component failure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Power surge",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Overheating of inverter components",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Compressor overload causing inverter fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "L1 error",
+      "Compressor does not run",
+      "Outdoor unit non-functional",
+      "No cooling or heating"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Full shutdown for 5 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check for Recurrence",
+        "instruction": "If error returns immediately, the board has failed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Do Not Attempt DIY",
+        "instruction": "Inverter repairs involve high voltage DC and are dangerous.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Inverter board replacement by Daikin-certified tech.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 400,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 4 hours",
+    "whenToCallPro": "Immediately.",
+    "relatedCodes": [
+      "daikin-mini-split-l5",
+      "daikin-mini-split-h6"
+    ],
+    "faq": [
+      {
+        "q": "Inverter board cost?",
+        "a": "$300-$800."
+      },
+      {
+        "q": "Can the old board be repaired?",
+        "a": "Sometimes, but replacement is more reliable."
+      },
+      {
+        "q": "Warranty?",
+        "a": "Daikin compressor/inverter warranties can be 5-12 years."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-l5",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "L5",
+    "displayCode": "L5",
+    "isBlinkCode": false,
+    "title": "Compressor Overcurrent at Startup (Instantaneous)",
+    "shortDescription": "The compressor drew excessive current at the moment of startup.",
+    "fullDescription": "L5 indicates an instantaneous overcurrent was detected when the compressor tried to start, before reaching running speed.",
+    "safetyWarning": "Do not keep restarting. Excessive starting current can damage the inverter.",
+    "causes": [
+      {
+        "cause": "Compressor bearing seizure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter board fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring fault between inverter and compressor",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low voltage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "L5 error",
+      "Compressor attempts to start then stops",
+      "Loud buzz from outdoor unit",
+      "Immediate shutdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Off for 5 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "One Retry",
+        "instruction": "Restart once. If L5 returns, stop.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Do Not Keep Trying",
+        "instruction": "Repeated starts with overcurrent damage the inverter.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Compressor and inverter testing required.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "whenToCallPro": "After one failed restart.",
+    "relatedCodes": [
+      "daikin-mini-split-l1",
+      "daikin-mini-split-e5"
+    ],
+    "faq": [
+      {
+        "q": "Is the compressor dead?",
+        "a": "Not necessarily \u2014 could be an inverter issue."
+      },
+      {
+        "q": "Can I add a hard start?",
+        "a": "Daikin inverter systems do not use traditional hard-start kits."
+      },
+      {
+        "q": "Cost for compressor?",
+        "a": "$1,500-$3,500."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-l9",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "L9",
+    "displayCode": "L9",
+    "isBlinkCode": false,
+    "title": "Compressor Start Failure",
+    "shortDescription": "The compressor failed to reach operating speed.",
+    "fullDescription": "L9 indicates the compressor attempted to start but could not reach its target speed within the allowed time.",
+    "safetyWarning": "Professional diagnosis required. Do not attempt repeated restarts.",
+    "causes": [
+      {
+        "cause": "Compressor mechanical issue",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter drive failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Voltage issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "L9 error",
+      "Compressor hums briefly then stops",
+      "No cooling",
+      "Outdoor unit repeatedly cycles"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Full restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Voltage",
+        "instruction": "Verify power supply voltage is correct.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "One Retry",
+        "instruction": "Single restart attempt.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Compressor and inverter testing.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "whenToCallPro": "After one failed restart.",
+    "relatedCodes": [
+      "daikin-mini-split-l5",
+      "daikin-mini-split-h6"
+    ],
+    "faq": [
+      {
+        "q": "Why cannot the compressor start?",
+        "a": "Mechanical wear, low charge, or inverter issues."
+      },
+      {
+        "q": "Is this fixable?",
+        "a": "Often yes \u2014 may be a charge or inverter issue rather than compressor failure."
+      },
+      {
+        "q": "Warranty?",
+        "a": "Check your Daikin warranty for compressor coverage."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-p0",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "P0",
+    "displayCode": "P0",
+    "isBlinkCode": false,
+    "title": "Refrigerant Shortage Detected",
+    "shortDescription": "The system has detected low refrigerant charge.",
+    "fullDescription": "P0 indicates the Daikin mini-split has detected that the refrigerant charge is below the minimum operating level, typically from a leak.",
+    "safetyWarning": "Only EPA-certified technicians should handle refrigerant.",
+    "causes": [
+      {
+        "cause": "Refrigerant leak",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Undercharged during installation",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Sensor fault giving false reading",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Restriction in system",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "P0 error",
+      "Poor cooling",
+      "Ice on lines",
+      "Compressor runs hot"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Prevent compressor damage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Check for Leaks",
+        "instruction": "Look for oil stains at flare connections.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Do Not Add Refrigerant Yourself",
+        "instruction": "Refrigerant handling requires certification.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Leak detection, repair, and recharge.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "Immediately for any refrigerant shortage.",
+    "relatedCodes": [
+      "daikin-mini-split-e3",
+      "daikin-mini-split-p4"
+    ],
+    "faq": [
+      {
+        "q": "Is topping off OK?",
+        "a": "No, the leak must be found and repaired."
+      },
+      {
+        "q": "Cost?",
+        "a": "$200-$1,500."
+      },
+      {
+        "q": "Can I run the unit?",
+        "a": "Not recommended \u2014 damages the compressor."
+      }
     ]
   },
   {
@@ -469,57 +2961,101 @@
     "code": "P4",
     "displayCode": "P4",
     "isBlinkCode": false,
-    "title": "Inverter Heat Sink Thermistor Fault",
-    "shortDescription": "The heat sink temperature sensor is open or shorted.",
-    "fullDescription": "Error P4 indicates the heat sink thermistor that monitors inverter module temperature is reporting an invalid value. Without this sensor, the system cannot safely operate the inverter.\n\nThe thermistor is typically integrated with or mounted on the outdoor PCB heat sink and may not be individually replaceable; PCB replacement is common.",
-    "safetyWarning": "Lethal voltages on inverter PCB.",
+    "title": "Inverter Fin Temperature Sensor Fault",
+    "shortDescription": "The temperature sensor on the inverter heat sink has failed.",
+    "fullDescription": "P4 indicates the thermistor monitoring the inverter board heat sink temperature is faulty. This sensor protects the inverter from overheating.",
+    "safetyWarning": "Inverter components are high voltage. Professional service required.",
     "causes": [
-      {"cause": "Thermistor open or shorted", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Wiring fault to sensor", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Disconnected sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter board fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Heat damage",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["P4 displayed", "Compressor will not start"],
+    "symptoms": [
+      "P4 error",
+      "System may not start",
+      "Inverter overheating possible",
+      "No cooling"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect harness", "instruction": "Verify thermistor wiring to PCB.", "tools": [], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 2, "title": "Replace PCB or thermistor", "instruction": "Install OEM parts.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Power Cycle",
+        "instruction": "Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check for Recurrence",
+        "instruction": "If error returns, sensor or board has failed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Clean Outdoor Unit",
+        "instruction": "Ensure airflow to the inverter area is not blocked.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Sensor or inverter board replacement.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 400, "max": 1200}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
     "diyDifficulty": "professional",
-    "repairTime": "90-180 minutes",
-    "whenToCallPro": "Professional service recommended.",
-    "relatedCodes": ["L4"],
-    "faq": [
-      {"q": "Can I replace the thermistor alone?", "a": "Sometimes; depends on model."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-p6",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "P6",
-    "displayCode": "P6",
-    "isBlinkCode": false,
-    "title": "IGBT / IPM Abnormality",
-    "shortDescription": "The IGBT or IPM on the outdoor inverter has faulted.",
-    "fullDescription": "Error P6 indicates an IGBT (insulated-gate bipolar transistor) or IPM fault on the outdoor inverter. These are the main switching devices that drive the compressor.\n\nReplacement of the inverter PCB is typically required.",
-    "safetyWarning": "Lethal voltages. Professional service only.",
-    "causes": [
-      {"cause": "IGBT/IPM failure", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Gate driver IC failure", "likelihood": "medium", "fixDifficulty": "professional"}
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If power cycling does not clear.",
+    "relatedCodes": [
+      "daikin-mini-split-l1"
     ],
-    "symptoms": ["P6 displayed", "Compressor will not run"],
-    "fixSteps": [
-      {"step": 1, "title": "Professional diagnosis", "instruction": "Test IGBT with diode function on meter.", "tools": ["multimeter"], "difficulty": "professional", "timeMinutes": 45},
-      {"step": 2, "title": "Replace PCB", "instruction": "Install OEM inverter board.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
-    ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 700, "max": 1500}},
-    "diyDifficulty": "professional",
-    "repairTime": "90-180 minutes",
-    "whenToCallPro": "Always professional.",
-    "relatedCodes": ["L5", "E5"],
     "faq": [
-      {"q": "Single transistor replacement?", "a": "Theoretically possible but rarely done vs full PCB swap."}
+      {
+        "q": "What is this sensor?",
+        "a": "Monitors inverter heat sink temp to prevent overheating."
+      },
+      {
+        "q": "Important?",
+        "a": "Yes, without it the inverter can overheat and fail."
+      },
+      {
+        "q": "Cost?",
+        "a": "Sensor: $20-$50; board: $300-$800."
+      }
     ]
   },
   {
@@ -531,63 +3067,101 @@
     "code": "U0",
     "displayCode": "U0",
     "isBlinkCode": false,
-    "title": "Low Refrigerant / Insufficient Gas",
-    "shortDescription": "Refrigerant charge is low, triggering gas shortage protection.",
-    "fullDescription": "Error U0 indicates the system detects insufficient refrigerant charge based on superheat/subcool calculations. A refrigerant leak is the usual cause and must be located and repaired before recharging.\n\nSimply topping off refrigerant without finding the leak is illegal under EPA rules and will fail again. R-410A requires proper recovery and recharge procedures.",
-    "safetyWarning": "R-410A is under high pressure. EPA 608 certification required.",
+    "title": "Refrigerant Shortage (System Level)",
+    "shortDescription": "System-level low refrigerant detection.",
+    "fullDescription": "U0 is another refrigerant shortage indicator, typically found on multi-zone Daikin systems.",
+    "safetyWarning": "Turn off system. EPA-certified technician required for refrigerant.",
     "causes": [
-      {"cause": "Refrigerant leak at flare connections", "likelihood": "high", "fixDifficulty": "professional"},
-      {"cause": "Cracked line set", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Improper initial charge", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Service valve not fully open", "likelihood": "low", "fixDifficulty": "easy"}
+      {
+        "cause": "Refrigerant leak",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Installation undercharge",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Piping leak at flare connection",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Sensor error",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["Poor cooling or heating", "U0 displayed", "Ice on suction line"],
+    "symptoms": [
+      "U0 error",
+      "Poor cooling across zones",
+      "Ice formation",
+      "Compressor running hot"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Check service valves", "instruction": "Verify both service valves are fully open (counterclockwise).", "tools": ["allen wrench"], "difficulty": "easy", "timeMinutes": 10},
-      {"step": 2, "title": "Leak search", "instruction": "Pro uses electronic leak detector or soap bubbles on flares.", "tools": ["leak detector"], "difficulty": "professional", "timeMinutes": 60},
-      {"step": 3, "title": "Repair leak", "instruction": "Tighten flares or replace damaged line.", "tools": ["torque wrench", "flaring tool"], "difficulty": "professional", "timeMinutes": 90},
-      {"step": 4, "title": "Evacuate and recharge", "instruction": "Pull vacuum and weigh in correct charge per nameplate.", "tools": ["vacuum pump", "scale"], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Protect the compressor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Inspect Connections",
+        "instruction": "Look for oil at flare fittings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Note Affected Zones",
+        "instruction": "Record which zones are affected for the technician.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Leak detection and repair.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 300, "max": 1200}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 1500
+      }
+    },
     "diyDifficulty": "professional",
-    "repairTime": "120-240 minutes",
-    "whenToCallPro": "Always professional for leak repair and recharge.",
-    "relatedCodes": ["U2", "U4"],
-    "faq": [
-      {"q": "Can I add refrigerant myself?", "a": "No. EPA 608 certification is required by law."}
-    ]
-  },
-  {
-    "id": "daikin-mini-split-u1",
-    "brand": "Daikin",
-    "brandSlug": "daikin",
-    "deviceType": "Mini-Split",
-    "deviceTypeSlug": "mini-split",
-    "code": "U1",
-    "displayCode": "U1",
-    "isBlinkCode": false,
-    "title": "Reverse Phase / Phase Loss",
-    "shortDescription": "Power supply phasing is reversed or a phase is missing.",
-    "fullDescription": "Error U1 indicates the outdoor unit has detected reverse phase or phase loss on its 3-phase input. Compressor rotation direction is critical, so the unit refuses to start.\n\nSwap any two L1/L2/L3 conductors at the outdoor disconnect to correct phasing. Verify all three phases are present.",
-    "safetyWarning": "High voltage wiring. Licensed electrician recommended.",
-    "causes": [
-      {"cause": "Reversed phase rotation", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Lost phase at utility", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Blown fuse in one leg", "likelihood": "medium", "fixDifficulty": "advanced"}
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "Immediately.",
+    "relatedCodes": [
+      "daikin-mini-split-p0"
     ],
-    "symptoms": ["U1 displayed", "Compressor will not start"],
-    "fixSteps": [
-      {"step": 1, "title": "Verify phases", "instruction": "Measure L1-L2, L2-L3, L1-L3 voltages.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 15},
-      {"step": 2, "title": "Swap phases", "instruction": "If reversed, swap any two phase conductors at disconnect.", "tools": ["screwdriver"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Replace fuses", "instruction": "If blown, replace with matching rating.", "tools": [], "difficulty": "advanced", "timeMinutes": 15}
-    ],
-    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 500}},
-    "diyDifficulty": "advanced",
-    "repairTime": "30-60 minutes",
-    "whenToCallPro": "Electrician for phase work.",
-    "relatedCodes": ["P1"],
     "faq": [
-      {"q": "Does single-phase have U1?", "a": "Rare - single-phase models typically show different codes."}
+      {
+        "q": "Difference between U0 and P0?",
+        "a": "U0 is system-level detection on multi-zone systems; P0 is unit-level."
+      },
+      {
+        "q": "Cost?",
+        "a": "$200-$1,500."
+      },
+      {
+        "q": "Common on multi-zone?",
+        "a": "Flare connections are common leak points on multi-zone installations."
+      }
     ]
   },
   {
@@ -599,27 +3173,105 @@
     "code": "U2",
     "displayCode": "U2",
     "isBlinkCode": false,
-    "title": "DC Bus Voltage Abnormal",
-    "shortDescription": "DC bus voltage on the inverter is high or low.",
-    "fullDescription": "Error U2 indicates the DC bus voltage on the outdoor inverter is outside the safe operating window. Causes include low line voltage, failed rectifier, or a damaged DC bus capacitor.\n\nPCB-level diagnosis is required.",
-    "safetyWarning": "Lethal DC voltages. 10-minute discharge wait.",
+    "title": "Power Supply Voltage Abnormal",
+    "shortDescription": "Supply voltage to the outdoor unit is outside normal range.",
+    "fullDescription": "U2 indicates the voltage supplied to the Daikin outdoor unit is too high or too low.",
+    "safetyWarning": "Do not modify electrical connections.",
     "causes": [
-      {"cause": "Low line voltage", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Failed DC capacitor", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Rectifier bridge failure", "likelihood": "medium", "fixDifficulty": "professional"}
+      {
+        "cause": "Utility voltage fluctuation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Undersized wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose electrical connections",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Voltage sensor fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["U2 displayed", "Compressor will not run"],
+    "symptoms": [
+      "U2 error",
+      "System shuts down",
+      "May coincide with power events",
+      "Lights may dim"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Measure line voltage", "instruction": "Verify supply within spec.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 15},
-      {"step": 2, "title": "Replace PCB", "instruction": "If DC bus fault confirmed.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Wait",
+        "instruction": "Wait 30 minutes for voltage to stabilize.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Check Disconnect",
+        "instruction": "Inspect for loose connections.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Measure Voltage",
+        "instruction": "Check voltage at disconnect.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Electrician",
+        "instruction": "Persistent voltage issues need panel inspection.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 500, "max": 1200}},
-    "diyDifficulty": "professional",
-    "repairTime": "60-180 minutes",
-    "whenToCallPro": "Professional required.",
-    "relatedCodes": ["P1", "U1"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If error recurs.",
+    "relatedCodes": [
+      "daikin-mini-split-e5"
+    ],
     "faq": [
-      {"q": "Utility impact?", "a": "Rural/far-end-of-line installs are more prone to U2."}
+      {
+        "q": "Brownouts?",
+        "a": "Yes, they cause U2."
+      },
+      {
+        "q": "One-time OK?",
+        "a": "Yes, single occurrence is usually fine."
+      },
+      {
+        "q": "Surge protector?",
+        "a": "Recommended for mini-splits."
+      }
     ]
   },
   {
@@ -631,30 +3283,1294 @@
     "code": "U4",
     "displayCode": "U4",
     "isBlinkCode": false,
-    "title": "Indoor-Outdoor Communication Error",
-    "shortDescription": "Data cannot be exchanged between indoor and outdoor units.",
-    "fullDescription": "Error U4 indicates communication failure on the S1/S2/S3 signal line between indoor and outdoor units. Causes include broken wires, reversed polarity, water-damaged terminals, or PCB failure on either end.\n\nCheck wiring continuity and terminal tightness first. Many U4 faults resolve with proper wire termination.",
-    "safetyWarning": "Disconnect both indoor and outdoor power before servicing terminals.",
+    "title": "Communication Error Between Indoor and Outdoor Units",
+    "shortDescription": "The indoor and outdoor units have lost communication.",
+    "fullDescription": "U4 is one of the most common Daikin mini-split errors. It indicates the communication link between indoor and outdoor units has been broken.",
+    "safetyWarning": "Turn off both units before checking wiring.",
     "causes": [
-      {"cause": "Loose S1/S2/S3 terminal wire", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Broken interconnect cable", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Water in terminal box", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "PCB communication circuit failure", "likelihood": "low", "fixDifficulty": "professional"}
+      {
+        "cause": "Loose or damaged communication wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Power supply issue to one unit",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCB failure in either unit",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Incorrect wiring during installation",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
     ],
-    "symptoms": ["Unit will not start", "U4 displayed", "Outdoor unit never runs"],
+    "symptoms": [
+      "U4 error",
+      "System unresponsive",
+      "One unit runs, other does not",
+      "Flashing LED on indoor unit"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect terminal block", "instruction": "Verify each S1/S2/S3 wire is tight at both indoor and outdoor.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
-      {"step": 2, "title": "Test continuity", "instruction": "With power off, verify end-to-end continuity of each wire.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Check for moisture", "instruction": "Dry terminal boxes and reseal.", "tools": ["dry cloth"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 4, "title": "Replace damaged cable", "instruction": "Install matching gauge shielded cable.", "tools": ["wire stripper"], "difficulty": "advanced", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Power Cycle Both",
+        "instruction": "Turn off both units at their breakers for 5 minutes, then restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Communication Wire",
+        "instruction": "Inspect the 3-wire or signal cable between indoor and outdoor units for damage or loose connections.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Verify Both Have Power",
+        "instruction": "Ensure both indoor and outdoor breakers are on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "If power cycling and wire checks fail, a PCB may need replacement.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
     ],
-    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 200, "max": 600}},
-    "diyDifficulty": "advanced",
-    "repairTime": "30-120 minutes",
-    "whenToCallPro": "Call a pro if wiring looks intact but fault persists.",
-    "relatedCodes": ["UA", "UF"],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If power cycling does not restore communication.",
+    "relatedCodes": [
+      "daikin-mini-split-u2"
+    ],
     "faq": [
-      {"q": "What is the S1/S2/S3 line?", "a": "Power and communication between indoor and outdoor units."}
+      {
+        "q": "Is U4 common?",
+        "a": "Yes, it is one of the most frequent Daikin error codes, often from loose connections or power issues."
+      },
+      {
+        "q": "After power outage?",
+        "a": "Very common after outages. Power cycling both units usually fixes it."
+      },
+      {
+        "q": "Wiring issue?",
+        "a": "Communication cables can be damaged by rodents, weather, or construction."
+      }
     ]
+  },
+  {
+    "id": "daikin-mini-split-u9",
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "U9",
+    "displayCode": "U9",
+    "isBlinkCode": false,
+    "title": "Communication Error in Multi-System",
+    "shortDescription": "Communication failure between units in a multi-zone system.",
+    "fullDescription": "U9 indicates a communication error between multiple indoor units or between indoor units and the branch box in a multi-zone Daikin system.",
+    "safetyWarning": "Multi-zone system wiring is complex. Professional service recommended.",
+    "causes": [
+      {
+        "cause": "Loose communication wire at branch box",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed indoor unit PCB",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Address setting conflict between units",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Branch box PCB failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "U9 error",
+      "One or more zones not working",
+      "System partially functional",
+      "Different zones showing different errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Cycle All",
+        "instruction": "Turn off all units and the outdoor unit for 5 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Branch Box Wiring",
+        "instruction": "Inspect all connections at the branch box if accessible.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Note Affected Zones",
+        "instruction": "Record which zones have errors for the technician.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Daikin Dealer",
+        "instruction": "Multi-zone communication issues often need dealer diagnostic tools.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "If power cycling does not restore all zones.",
+    "relatedCodes": [
+      "daikin-mini-split-u4"
+    ],
+    "faq": [
+      {
+        "q": "Is this just one zone or all?",
+        "a": "May affect one or more zones depending on the communication path."
+      },
+      {
+        "q": "Branch box?",
+        "a": "A distribution component that routes refrigerant and communication between the outdoor unit and multiple indoor units."
+      },
+      {
+        "q": "Cost?",
+        "a": "$200-$800 depending on the issue."
+      }
+    ]
+  },
+  {
+    "id": "daikin-mini-split-e2",
+    "code": "E2",
+    "displayCode": "E2",
+    "title": "Compressor Locked",
+    "shortDescription": "The compressor motor is mechanically locked and cannot rotate.",
+    "fullDescription": "E2 indicates the compressor rotor is mechanically stuck or the motor windings have failed, preventing rotation.",
+    "safetyWarning": "Turn off the system. A locked compressor draws dangerous current.",
+    "causes": [
+      {
+        "cause": "Compressor bearing seizure",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Liquid slugging",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter drive failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low voltage preventing startup",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "E2 error",
+      "Loud buzzing from outdoor unit",
+      "No cooling",
+      "Breaker may trip"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power Off",
+        "instruction": "Turn off at breaker.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Wait",
+        "instruction": "Wait 30 minutes then try once.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Do Not Repeat",
+        "instruction": "If it fails again, stop.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Compressor testing required.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 6 hours",
+    "whenToCallPro": "After one failed restart.",
+    "relatedCodes": [
+      "daikin-mini-split-e5",
+      "daikin-mini-split-l5"
+    ],
+    "faq": [
+      {
+        "q": "Is the compressor dead?",
+        "a": "Not necessarily \u2014 could be inverter or wiring."
+      },
+      {
+        "q": "Cost?",
+        "a": "Compressor: $1,500-$3,500."
+      },
+      {
+        "q": "Warranty?",
+        "a": "Check Daikin compressor warranty."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-e4",
+    "code": "E4",
+    "displayCode": "E4",
+    "title": "Low Pressure Switch Activated",
+    "shortDescription": "The low pressure safety switch has tripped.",
+    "fullDescription": "E4 indicates the refrigerant low-pressure switch tripped, typically due to a leak or restriction.",
+    "safetyWarning": "Only certified technicians should handle refrigerant.",
+    "causes": [
+      {
+        "cause": "Refrigerant leak",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Restricted metering device",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low ambient operation",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Kinked line",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "E4 error",
+      "Poor cooling",
+      "Ice on lines",
+      "Hissing sound"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Filter",
+        "instruction": "Replace indoor filter.",
+        "tools": [
+          "New filter"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Look for Ice",
+        "instruction": "Check for ice on lines.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Turn Off",
+        "instruction": "Protect compressor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Leak check and recharge.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "For any low pressure code.",
+    "relatedCodes": [
+      "daikin-mini-split-e3",
+      "daikin-mini-split-p0"
+    ],
+    "faq": [
+      {
+        "q": "Can I add refrigerant?",
+        "a": "No, requires EPA certification."
+      },
+      {
+        "q": "Cost?",
+        "a": "$200-$1,500."
+      },
+      {
+        "q": "Topping off?",
+        "a": "Must fix leak first."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-e6",
+    "code": "E6",
+    "displayCode": "E6",
+    "title": "Compressor Motor Overheating",
+    "shortDescription": "The compressor motor temperature is too high.",
+    "fullDescription": "E6 indicates the compressor is overheating due to excessive workload, low refrigerant, or restricted airflow.",
+    "safetyWarning": "Turn off immediately to prevent compressor damage.",
+    "causes": [
+      {
+        "cause": "Low refrigerant",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty condenser coil",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fan failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Compressor wear",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "E6 error",
+      "Compressor very hot",
+      "Poor performance",
+      "Outdoor unit shutting down"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Stop to prevent damage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clean Coils",
+        "instruction": "Hose outdoor coils.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Check Fan",
+        "instruction": "Verify fan runs.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Check charge and compressor.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 200,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 min to 2 hours",
+    "whenToCallPro": "If cleaning does not help.",
+    "relatedCodes": [
+      "daikin-mini-split-e5",
+      "daikin-mini-split-f3"
+    ],
+    "faq": [
+      {
+        "q": "Can this kill the compressor?",
+        "a": "Yes, prolonged overheating damages windings."
+      },
+      {
+        "q": "Is it refrigerant?",
+        "a": "Often."
+      },
+      {
+        "q": "Urgent?",
+        "a": "Yes, stop using until fixed."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-e8",
+    "code": "E8",
+    "displayCode": "E8",
+    "title": "Input Current Abnormal",
+    "shortDescription": "The total input current to the outdoor unit is abnormal.",
+    "fullDescription": "E8 indicates the outdoor unit is drawing abnormal current levels, which could be from a compressor issue, short circuit, or inverter fault.",
+    "safetyWarning": "Overcurrent is a fire risk. Turn off at breaker immediately.",
+    "causes": [
+      {
+        "cause": "Compressor issue",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Short circuit in wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter board fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Voltage imbalance",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "E8 error",
+      "Breaker may trip",
+      "Outdoor unit shuts down",
+      "Abnormal sounds"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Turn Off",
+        "instruction": "Disconnect power immediately.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Check Breaker",
+        "instruction": "If breaker tripped, do not keep resetting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Inspect Wiring",
+        "instruction": "Look for visible damage to outdoor unit wiring.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Electrical diagnosis required.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "Immediately.",
+    "relatedCodes": [
+      "daikin-mini-split-e5"
+    ],
+    "faq": [
+      {
+        "q": "Is this dangerous?",
+        "a": "Yes, overcurrent is a fire risk."
+      },
+      {
+        "q": "Keep resetting breaker?",
+        "a": "No, repeated trips indicate a real problem."
+      },
+      {
+        "q": "Cost?",
+        "a": "Depends on cause \u2014 $200 to $3,000."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-h1",
+    "code": "H1",
+    "displayCode": "H1",
+    "title": "Defrost Mode Active",
+    "shortDescription": "The heat pump is in defrost mode \u2014 this is normal during heating season.",
+    "fullDescription": "H1 is not an error but a status indicator showing the heat pump outdoor unit is in defrost mode to melt ice from the coil. The indoor unit temporarily stops heating during defrost.",
+    "safetyWarning": "No safety concern \u2014 this is normal heat pump operation.",
+    "causes": [
+      {
+        "cause": "Normal defrost cycle",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Frequent defrost may indicate low refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Outdoor coil dirty causing excessive ice",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Defrost sensor issue if too frequent",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H1 displayed",
+      "Indoor unit stops heating temporarily",
+      "Outdoor fan stops",
+      "Steam from outdoor unit"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait",
+        "instruction": "Defrost normally takes 5-15 minutes. Heat will resume automatically.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Monitor Frequency",
+        "instruction": "If defrost occurs every 20-30 minutes, there may be an issue.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Clean Outdoor Coil",
+        "instruction": "If frequently defrosting, clean the outdoor coil.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Call if Excessive",
+        "instruction": "Frequent defrost may indicate low charge or sensor issue.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 15 minutes (wait)",
+    "whenToCallPro": "Only if defrost is abnormally frequent (every 20 minutes or more).",
+    "relatedCodes": [
+      "daikin-mini-split-h9"
+    ],
+    "faq": [
+      {
+        "q": "Is H1 an error?",
+        "a": "No, it is normal heat pump operation in heating mode."
+      },
+      {
+        "q": "Why does the indoor unit blow cold?",
+        "a": "During defrost, the system temporarily reverses to melt outdoor ice. This is normal."
+      },
+      {
+        "q": "How long does defrost last?",
+        "a": "5-15 minutes typically."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-h3",
+    "code": "H3",
+    "displayCode": "H3",
+    "title": "High Pressure Switch Fault",
+    "shortDescription": "The high pressure switch circuit is abnormal.",
+    "fullDescription": "H3 indicates the high pressure switch circuit on the outdoor unit has an issue \u2014 either the switch itself or its wiring.",
+    "safetyWarning": "High pressure systems can be dangerous. Professional service required.",
+    "causes": [
+      {
+        "cause": "Faulty high pressure switch",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Actually high pressure condition",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "PCB switch input fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H3 error",
+      "System shuts down",
+      "May occur on hot days",
+      "Compressor stops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean Outdoor Coil",
+        "instruction": "Rule out actual high pressure by cleaning coils.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Check Fan",
+        "instruction": "Verify outdoor fan works.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart after cleaning.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Switch or wiring replacement needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If cleaning does not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-e3",
+      "daikin-mini-split-f6"
+    ],
+    "faq": [
+      {
+        "q": "Is this the same as E3?",
+        "a": "Similar but H3 indicates a switch circuit fault rather than an actual pressure trip."
+      },
+      {
+        "q": "Cost?",
+        "a": "$150-$500."
+      },
+      {
+        "q": "Common?",
+        "a": "Less common than actual high pressure issues."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-h4",
+    "code": "H4",
+    "displayCode": "H4",
+    "title": "Low Pressure Switch Fault",
+    "shortDescription": "The low pressure switch circuit has an issue.",
+    "fullDescription": "H4 indicates a fault in the low pressure switch circuit \u2014 either the switch or its wiring.",
+    "safetyWarning": "Professional service required for pressure switch work.",
+    "causes": [
+      {
+        "cause": "Faulty low pressure switch",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Actually low pressure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "PCB fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "H4 error",
+      "System shuts down",
+      "May not start",
+      "Compressor does not run"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Filter",
+        "instruction": "Ensure indoor filter is clean.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Power Cycle",
+        "instruction": "Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check for Ice",
+        "instruction": "Look for ice on refrigerant lines.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Switch testing and refrigerant check.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If power cycling does not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-e4",
+      "daikin-mini-split-j1"
+    ],
+    "faq": [
+      {
+        "q": "Is this from low refrigerant?",
+        "a": "Possibly \u2014 the switch may have tripped from actual low pressure."
+      },
+      {
+        "q": "Cost?",
+        "a": "$150-$600."
+      },
+      {
+        "q": "Can I run the unit?",
+        "a": "Not until diagnosed."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-l3",
+    "code": "L3",
+    "displayCode": "L3",
+    "title": "Electrical Component Temperature Too High",
+    "shortDescription": "The temperature of electrical components in the outdoor unit is too high.",
+    "fullDescription": "L3 indicates overheating of the power transistors or other electrical components on the inverter board, usually from poor ventilation.",
+    "safetyWarning": "Overheating components can cause fire. Turn off immediately.",
+    "causes": [
+      {
+        "cause": "Poor ventilation around outdoor unit",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty heat sink on inverter board",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed cooling fan inside outdoor unit",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Inverter board fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "L3 error",
+      "Outdoor unit shuts down",
+      "Hot to touch near electrical compartment",
+      "Error during hot weather"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear Obstructions",
+        "instruction": "Ensure 2+ feet of clearance on all sides of the outdoor unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean Outdoor Unit",
+        "instruction": "Clean the coils and ensure airflow is not restricted.",
+        "tools": [
+          "Garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Wait to Cool",
+        "instruction": "Let the unit cool for 30 minutes before restarting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "If error returns, the heat sink or internal fan may need service.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 min to 2 hours",
+    "whenToCallPro": "If clearing obstructions and cleaning does not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-l1",
+      "daikin-mini-split-p4"
+    ],
+    "faq": [
+      {
+        "q": "Is this from hot weather?",
+        "a": "Hot weather combined with poor ventilation can trigger this."
+      },
+      {
+        "q": "Can the location cause it?",
+        "a": "Yes, units in direct sun or enclosed spaces are more prone."
+      },
+      {
+        "q": "How to prevent?",
+        "a": "Keep the outdoor unit in a well-ventilated location with clearance."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-p1",
+    "code": "P1",
+    "displayCode": "P1",
+    "title": "Power Supply Phase Error",
+    "shortDescription": "The power supply phase or voltage is abnormal for the outdoor unit.",
+    "fullDescription": "P1 indicates a phase detection error or power supply abnormality on three-phase Daikin outdoor units.",
+    "safetyWarning": "Electrical supply issues can damage equipment. Contact electrician if recurrent.",
+    "causes": [
+      {
+        "cause": "Phase loss on 3-phase supply",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Voltage imbalance",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose power connection",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Phase monitor relay failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "P1 error",
+      "Outdoor unit will not start",
+      "May follow power event",
+      "3-phase units only"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check Power",
+        "instruction": "Verify all three phases are present at the disconnect.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Connections",
+        "instruction": "Tighten all power connections at disconnect and outdoor unit.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Power Cycle",
+        "instruction": "Restart after checking.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Call Electrician",
+        "instruction": "Phase loss or imbalance needs electrical service.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30 min to 2 hours",
+    "whenToCallPro": "For any phase-related error on 3-phase systems.",
+    "relatedCodes": [
+      "daikin-mini-split-u2"
+    ],
+    "faq": [
+      {
+        "q": "Is this for 3-phase only?",
+        "a": "Yes, single-phase units do not show P1."
+      },
+      {
+        "q": "What is phase loss?",
+        "a": "One of the three power phases is missing, often from a blown fuse or utility issue."
+      },
+      {
+        "q": "Can I check myself?",
+        "a": "Only if you have a multimeter and understand 3-phase power."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
+  },
+  {
+    "id": "daikin-mini-split-p3",
+    "code": "P3",
+    "displayCode": "P3",
+    "title": "DC Bus Voltage Error",
+    "shortDescription": "The DC bus voltage in the inverter is abnormal.",
+    "fullDescription": "P3 indicates the DC voltage converted from AC power within the inverter circuit is out of the normal operating range, preventing the compressor from operating.",
+    "safetyWarning": "High voltage DC is present in the inverter. Do not open the outdoor unit electrical compartment.",
+    "causes": [
+      {
+        "cause": "Power supply voltage fluctuation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Inverter rectifier component failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Capacitor failure in inverter",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose power wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "P3 error",
+      "Compressor does not start",
+      "Outdoor unit shuts down",
+      "Error after power events"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait",
+        "instruction": "Wait 30 minutes for voltage to stabilize.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Power Cycle",
+        "instruction": "Full restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Voltage",
+        "instruction": "Verify supply voltage is correct.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Call Professional",
+        "instruction": "Inverter component testing needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If power cycling does not resolve.",
+    "relatedCodes": [
+      "daikin-mini-split-l1",
+      "daikin-mini-split-u2"
+    ],
+    "faq": [
+      {
+        "q": "What is DC bus voltage?",
+        "a": "The converted DC power that drives the inverter compressor."
+      },
+      {
+        "q": "Is this from power supply?",
+        "a": "Often yes \u2014 voltage fluctuations can trigger it."
+      },
+      {
+        "q": "Inverter board cost?",
+        "a": "$300-$800 installed."
+      }
+    ],
+    "brand": "Daikin",
+    "brandSlug": "daikin",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "isBlinkCode": false
   }
 ]

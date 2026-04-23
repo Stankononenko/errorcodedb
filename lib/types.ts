@@ -107,7 +107,9 @@ export type ApplianceDeviceType =
   | "generator"
   | "tiller"
   | "robot-mower"
-  | "power-tool";
+  | "power-tool"
+  | "smart-speaker"
+  | "smart-bulb";
 
 export interface ApplianceCause {
   cause: string;

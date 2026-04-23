@@ -1,0 +1,457 @@
+[
+  {
+    "id": "samsung-mini-split-e1",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E1",
+    "displayCode": "E1",
+    "isBlinkCode": false,
+    "title": "Indoor Unit Room Temperature Sensor Error",
+    "shortDescription": "Samsung mini-split detects a fault in the indoor room temperature sensor circuit.",
+    "fullDescription": "The E1 error on Samsung mini-split systems indicates an open or short circuit in the indoor room temperature thermistor. The unit cannot accurately measure ambient room temperature and will typically shut down to protect components.\n\nCommon causes include a loose sensor plug on the main PCB, a failed thermistor, or moisture intrusion. Once the sensor is replaced or the connection restored, the error clears automatically after a successful restart.",
+    "safetyWarning": "Disconnect power at the breaker before opening the indoor unit cover.",
+    "causes": [
+      {"cause": "Disconnected or loose thermistor connector on indoor PCB", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed room temperature thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Damaged wiring harness", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Faulty indoor PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Unit stops cooling or heating", "E1 on display", "Fan may still run"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off the unit", "instruction": "Turn off the breaker feeding the mini-split.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Open indoor front panel", "instruction": "Lift the front cover and remove the electrical box cover screws.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Reseat thermistor plug", "instruction": "Locate the small 2-pin thermistor connector on the PCB (usually labeled ROOM) and reseat firmly.", "tools": [], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Test resistance", "instruction": "With unit powered off, measure thermistor resistance - should be about 10k ohms at 25C.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 40}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Call an HVAC pro if the PCB itself is defective or if you are uncomfortable working inside the indoor unit.",
+    "relatedCodes": ["samsung-mini-split-e2"],
+    "faq": [
+      {"q": "Can I keep running the unit with E1?", "a": "No, the unit will not regulate temperature properly and may cycle off."},
+      {"q": "Is the sensor expensive?", "a": "Replacement thermistors are typically $15-30."}
+    ]
+  },
+  {
+    "id": "samsung-mini-split-e2",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E2",
+    "displayCode": "E2",
+    "isBlinkCode": false,
+    "title": "Indoor Coil (Evaporator) Sensor Error",
+    "shortDescription": "Evaporator coil temperature sensor is open, shorted, or out of range.",
+    "fullDescription": "E2 indicates the indoor coil thermistor has failed or become disconnected. This sensor is essential for defrost logic and anti-freeze protection.\n\nThe unit will stop cooling/heating to prevent icing or overheating of the evaporator. Replacing the sensor or reseating its connector typically resolves the fault.",
+    "causes": [
+      {"cause": "Loose coil sensor plug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed evaporator thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wire chafed by copper tubing", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["No cooling/heating", "E2 displayed", "Possible coil icing before fault"],
+    "fixSteps": [
+      {"step": 1, "title": "Cut power", "instruction": "Shut off breaker.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Access coil sensor", "instruction": "Remove front grille and follow thin white/black sensor wire to the evaporator coil clip.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Replace sensor", "instruction": "Clip a new thermistor onto the same spot on the coil and route wiring back to the PCB.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 40}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Call a pro if the sensor is integrated into the coil assembly.",
+    "relatedCodes": ["samsung-mini-split-e1"],
+    "faq": [{"q": "Will it damage the compressor?", "a": "No - the unit shuts down to prevent damage."}]
+  },
+  {
+    "id": "samsung-mini-split-e3",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E3",
+    "displayCode": "E3",
+    "isBlinkCode": false,
+    "title": "Indoor Fan Motor Error",
+    "shortDescription": "Indoor blower fan motor speed feedback is out of range or missing.",
+    "fullDescription": "E3 means the indoor fan motor is not turning at the commanded speed, or the PCB is not receiving the tachometer feedback signal. Causes range from a stuck fan wheel to a failed DC fan motor.\n\nOn BLDC-equipped Samsung units the motor and PCB must be compatible; mismatched parts can trigger this fault even after replacement.",
+    "safetyWarning": "DC fan motors retain voltage briefly - wait 5 minutes after disconnecting power.",
+    "causes": [
+      {"cause": "Obstructed fan wheel", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed BLDC fan motor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Damaged motor harness", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Faulty indoor PCB drive", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Fan does not spin", "Error E3 on display", "Unit cycles off within seconds"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Disconnect at breaker and wait 5 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect fan wheel", "instruction": "Spin by hand to check for obstructions or stiff bearings.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Test motor", "instruction": "If bearings are stiff or motor does not respond on power, replace fan motor assembly.", "tools": ["Multimeter", "Phillips screwdriver"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 220}, "professional": {"min": 300, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Call an HVAC pro if the motor replacement requires removing the blower wheel or evaporator coil.",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I use any generic fan motor?", "a": "No, BLDC motors must match Samsung's PCB control signals."}]
+  },
+  {
+    "id": "samsung-mini-split-e4",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E4",
+    "displayCode": "E4",
+    "isBlinkCode": false,
+    "title": "EEPROM / Memory Error",
+    "shortDescription": "The indoor unit's PCB cannot read configuration data from EEPROM.",
+    "fullDescription": "E4 is reported when the PCB's non-volatile memory returns bad data or cannot be read. Without valid EEPROM data the unit does not know its model characteristics and refuses to run.\n\nThis typically requires PCB replacement, though a power cycle sometimes clears a transient fault.",
+    "causes": [
+      {"cause": "Corrupt EEPROM after power surge", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed indoor PCB", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E4 immediately on startup", "Unit will not run"],
+    "fixSteps": [
+      {"step": 1, "title": "Hard power cycle", "instruction": "Cut breaker for 10 minutes, then restore.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Replace PCB", "instruction": "If fault returns, replace indoor PCB with a model-specific board.", "tools": ["Phillips screwdriver"], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "PCB replacement and reprogramming should be done by a licensed HVAC technician.",
+    "relatedCodes": [],
+    "faq": [{"q": "Will a universal PCB work?", "a": "No, Samsung indoor PCBs are model-specific."}]
+  },
+  {
+    "id": "samsung-mini-split-e5",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E5",
+    "displayCode": "E5",
+    "isBlinkCode": false,
+    "title": "Indoor-Outdoor Communication Error",
+    "shortDescription": "The indoor unit cannot communicate with the outdoor unit over the S-bus.",
+    "fullDescription": "E5 indicates loss of the communication signal between indoor and outdoor units. Samsung mini-splits use a 3-wire interconnect (L, N, S) where the S wire carries data.\n\nCommon issues include miswired S/N terminals, damaged interconnect cable, or a failed outdoor inverter PCB.",
+    "safetyWarning": "Line voltage is present on the interconnect - shut off power before inspection.",
+    "causes": [
+      {"cause": "Swapped S and N wires", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Damaged interconnect cable", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed outdoor PCB", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Tripped outdoor breaker", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Outdoor unit not running", "E5 after 2-3 minutes", "Indoor fan may run"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify outdoor power", "instruction": "Confirm outdoor breaker and disconnect are on.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check terminal wiring", "instruction": "Match terminals 1-1, 2-2, 3-3 between indoor and outdoor units.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Measure S-wire voltage", "instruction": "With unit on, expect pulsing 30-80 VDC between S and N. Zero suggests open wire or dead PCB.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 200, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If voltage on S wire is missing and outdoor has power, the outdoor PCB likely needs replacement.",
+    "relatedCodes": [],
+    "faq": [{"q": "Is the S wire low voltage?", "a": "No - it carries up to ~100V pulses referenced to N."}]
+  },
+  {
+    "id": "samsung-mini-split-e101",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E101",
+    "displayCode": "E101",
+    "isBlinkCode": false,
+    "title": "Communication Error (Newer Models)",
+    "shortDescription": "Extended code equivalent to E5 on newer Samsung units - indoor-outdoor communication lost.",
+    "fullDescription": "E101 is the detailed diagnostic code on Samsung's newer 4-digit display units for communication failure between indoor and outdoor. The troubleshooting path mirrors E5.\n\nIt often appears after storms or when an outdoor breaker has tripped.",
+    "causes": [
+      {"cause": "Outdoor unit without power", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cable insulation damaged", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Outdoor inverter PCB failure", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E101 on display after 2-3 minutes", "No outdoor operation"],
+    "fixSteps": [
+      {"step": 1, "title": "Reset breakers", "instruction": "Cycle both indoor and outdoor breakers off for 5 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect interconnect", "instruction": "Look for pinched or burned spots in the line-set wiring chase.", "tools": ["Flashlight"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 200, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Call a pro when cable replacement or PCB diagnostics are required.",
+    "relatedCodes": ["samsung-mini-split-e5"],
+    "faq": [{"q": "Is E101 the same as E5?", "a": "Yes, on newer models with 4-digit displays."}]
+  },
+  {
+    "id": "samsung-mini-split-e102",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E102",
+    "displayCode": "E102",
+    "isBlinkCode": false,
+    "title": "Indoor-Outdoor Communication Tracking Error",
+    "shortDescription": "Outdoor unit cannot match addresses with the indoor unit.",
+    "fullDescription": "E102 appears when the outdoor unit initially pairs with the indoor unit but loses synchronization. This can be caused by electrical noise on the S-bus, a failing inverter PCB, or a recently replaced indoor/outdoor pair that was not re-addressed.\n\nOn multi-split systems, conflicting indoor addresses can also cause E102.",
+    "causes": [
+      {"cause": "Address conflict on multi-split", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "EMI noise on interconnect", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failing outdoor PCB", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Intermittent shutdown", "E102 after 5-15 minutes"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle all units", "instruction": "Turn off all indoor and outdoor breakers for 10 minutes and restore simultaneously.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Check DIP switches", "instruction": "On multi-splits, ensure each indoor unit has a unique address.", "tools": ["Phillips screwdriver"], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 200, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Multi-split readdressing and PCB diagnostics should be performed by an HVAC technician.",
+    "relatedCodes": ["samsung-mini-split-e101"],
+    "faq": [{"q": "Will unplugging indoor fix it?", "a": "Only if the issue is address conflict; otherwise the outdoor PCB is the likely cause."}]
+  },
+  {
+    "id": "samsung-mini-split-e103",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E103",
+    "displayCode": "E103",
+    "isBlinkCode": false,
+    "title": "Main-Sub Indoor Communication Error",
+    "shortDescription": "Main indoor PCB cannot communicate with display/remote PCB.",
+    "fullDescription": "E103 indicates a fault between the main indoor PCB and the display PCB that holds the IR receiver. Often caused by a dislodged ribbon cable after servicing.\n\nCheck the small ribbon connector between the display board behind the front panel and the main PCB in the electrical box.",
+    "causes": [
+      {"cause": "Loose display ribbon cable", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Damaged display PCB", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Faulty main PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Display works but unit does not respond", "E103 flashing"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Shut off breaker.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reseat ribbon cable", "instruction": "Open front panel and reseat the flex/ribbon connector at both ends.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If reseating doesn't help, a technician will need to replace the display or main PCB.",
+    "relatedCodes": [],
+    "faq": [{"q": "Does this affect cooling?", "a": "Yes - commands from remote cannot reach the main PCB."}]
+  },
+  {
+    "id": "samsung-mini-split-e201",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E201",
+    "displayCode": "E201",
+    "isBlinkCode": false,
+    "title": "Indoor Fan Locked / Overcurrent",
+    "shortDescription": "Indoor fan draws too much current or is locked.",
+    "fullDescription": "E201 is triggered when the indoor fan motor is stalled or drawing excessive current. Typical causes are debris in the blower wheel, foreign objects, or a failing motor bearing.\n\nCorrect by removing the obstruction or replacing the motor. Persistent E201 after motor replacement suggests PCB drive circuit failure.",
+    "causes": [
+      {"cause": "Debris jamming blower wheel", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Seized motor bearings", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed motor driver on PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Fan struggles then stops", "E201 within seconds of start"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect fan", "instruction": "Remove front panel and spin blower wheel by hand.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Clean or replace", "instruction": "Clean wheel; if bearings are stiff, replace motor.", "tools": ["Phillips screwdriver", "Brush"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 300, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Motor replacement requiring blower wheel removal is best left to a pro.",
+    "relatedCodes": ["samsung-mini-split-e3"],
+    "faq": [{"q": "Can I just oil the motor?", "a": "No - Samsung indoor fans use sealed bearings."}]
+  },
+  {
+    "id": "samsung-mini-split-e202",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E202",
+    "displayCode": "E202",
+    "isBlinkCode": false,
+    "title": "Indoor Fan No Feedback",
+    "shortDescription": "Indoor fan runs but no tach signal returns to the PCB.",
+    "fullDescription": "E202 is tripped when the indoor fan lacks feedback (Hall sensor) signal, even though the drive output appears correct. The motor will keep running but the PCB cannot confirm speed and shuts down after ~30 seconds.\n\nCommonly caused by a bad motor Hall sensor inside the fan or a broken yellow feedback wire.",
+    "causes": [
+      {"cause": "Broken Hall sensor wire in motor harness", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed fan motor", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Fan runs briefly then stops", "E202 after 30s"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Cut breaker.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect harness", "instruction": "Check for broken wires in the motor harness at the connector crimps.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 3, "title": "Replace motor", "instruction": "If harness is intact but feedback wire has no pulse on startup, replace motor.", "tools": ["Phillips screwdriver"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "professional": {"min": 300, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Call a pro for motor replacement.",
+    "relatedCodes": ["samsung-mini-split-e201"],
+    "faq": [{"q": "Is this dangerous to ignore?", "a": "No, but the unit will not run."}]
+  },
+  {
+    "id": "samsung-mini-split-e301",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E301",
+    "displayCode": "E301",
+    "isBlinkCode": false,
+    "title": "Outdoor Pipe Temperature Sensor Error",
+    "shortDescription": "Outdoor discharge pipe or condenser coil sensor failure.",
+    "fullDescription": "E301 reports a fault on the outdoor unit's refrigerant pipe temperature sensor. Without this reading, the inverter cannot modulate compressor speed safely and shuts down.\n\nAccess requires removing the outdoor service panel. Replacement sensors are inexpensive but require careful routing away from hot components.",
+    "safetyWarning": "The outdoor unit has high voltage capacitors - wait 10 minutes after power off.",
+    "causes": [
+      {"cause": "Loose sensor connector", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed pipe thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wire melted on hot pipe", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Outdoor unit shuts down", "E301 on indoor display"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off outdoor unit", "instruction": "Switch off outdoor disconnect.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Open outdoor top cover", "instruction": "Remove top cover screws to access sensors on the coil and discharge pipe.", "tools": ["Phillips screwdriver", "Nut driver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Replace sensor", "instruction": "Unclip old sensor, install new one in same spot, re-route wiring.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 50}, "professional": {"min": 200, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Call a pro if sensor replacement requires opening the refrigerant circuit (it usually does not).",
+    "relatedCodes": [],
+    "faq": [{"q": "Which sensor is this exactly?", "a": "Usually the 2-wire thermistor clipped to the condenser inlet pipe."}]
+  },
+  {
+    "id": "samsung-mini-split-e401",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E401",
+    "displayCode": "E401",
+    "isBlinkCode": false,
+    "title": "Compressor Startup Failure",
+    "shortDescription": "Compressor fails to start or loses rotor lock during startup.",
+    "fullDescription": "E401 is an inverter compressor start failure. Samsung inverter compressors need precise rotor alignment at startup; if the inverter detects back-EMF mismatch it aborts and reports E401.\n\nCauses include low refrigerant (pressure equalization issue), IPM module weakness, or compressor winding faults.",
+    "safetyWarning": "High voltage DC is present on inverter - only qualified techs should probe live.",
+    "causes": [
+      {"cause": "Low refrigerant charge causing high starting pressure", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "IPM / inverter module weak", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Compressor winding shorted", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Compressor hums briefly then stops", "E401 on display"],
+    "fixSteps": [
+      {"step": 1, "title": "Hard reset", "instruction": "Cut power for 10 minutes and retry.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Call technician", "instruction": "If fault persists, a tech must measure inverter output and compressor winding resistance.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 400, "max": 1800}},
+    "diyDifficulty": "professional",
+    "repairTime": "120+ minutes",
+    "whenToCallPro": "Always - this involves inverter, refrigerant, and compressor diagnostics.",
+    "relatedCodes": ["samsung-mini-split-e402"],
+    "faq": [{"q": "Is the compressor dead?", "a": "Not always - often it's the IPM module that fails first."}]
+  },
+  {
+    "id": "samsung-mini-split-e402",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E402",
+    "displayCode": "E402",
+    "isBlinkCode": false,
+    "title": "High Pressure Switch Trip",
+    "shortDescription": "The outdoor high pressure switch has opened, indicating excessive discharge pressure.",
+    "fullDescription": "E402 signals that the high pressure safety switch has opened. This normally protects the compressor from excessive condensing pressure, often due to a dirty outdoor coil, failed outdoor fan, or restricted airflow in heating mode.\n\nIn heating, a dirty indoor filter or blocked blower can also cause this.",
+    "safetyWarning": "Do not bypass the pressure switch - it prevents compressor rupture.",
+    "causes": [
+      {"cause": "Dirty outdoor condenser coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Outdoor fan not running (in cooling)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Indoor filter or coil blocked (in heating)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Overcharged refrigerant", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Unit trips off after ~5 minutes", "E402 displayed"],
+    "fixSteps": [
+      {"step": 1, "title": "Wash condenser coil", "instruction": "Spray outdoor fins with a gentle hose from inside out.", "tools": ["Garden hose"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Verify outdoor fan", "instruction": "Ensure outdoor fan runs whenever compressor runs in cooling.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Clean indoor filter", "instruction": "Remove and wash the indoor air filter.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If airflow is fine and fault returns, a tech must check charge and pressures.",
+    "relatedCodes": ["samsung-mini-split-e401"],
+    "faq": [{"q": "Can I reset it?", "a": "It auto-resets, but you must fix the root cause."}]
+  },
+  {
+    "id": "samsung-mini-split-e464",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E464",
+    "displayCode": "E464",
+    "isBlinkCode": false,
+    "title": "Inverter IPM (Power Module) Over-current",
+    "shortDescription": "The outdoor inverter IPM detected an over-current during compressor operation.",
+    "fullDescription": "E464 is thrown when the intelligent power module (IPM) in the outdoor inverter detects a current spike to the compressor. This can be from a shorted compressor winding, low voltage supply, or a failing IPM.\n\nIt is one of the more serious Samsung faults and usually requires outdoor PCB or compressor replacement.",
+    "safetyWarning": "Lethal DC voltages present in the inverter after power-off. Wait 10 minutes minimum.",
+    "causes": [
+      {"cause": "Shorted compressor windings", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed IPM module", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Supply voltage sag or unbalance", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Compressor trips within seconds", "E464 flashing"],
+    "fixSteps": [
+      {"step": 1, "title": "Check supply voltage", "instruction": "Measure voltage at outdoor disconnect - should be within 10% of rated.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Tech diagnostic", "instruction": "Have a pro measure compressor winding resistance (should be balanced) and inspect IPM.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 2000}},
+    "diyDifficulty": "professional",
+    "repairTime": "120+ minutes",
+    "whenToCallPro": "Always call a licensed HVAC technician.",
+    "relatedCodes": ["samsung-mini-split-e401"],
+    "faq": [{"q": "Is replacement worth it?", "a": "On units over 10 years old, often no - weigh repair cost against new system."}]
+  },
+  {
+    "id": "samsung-mini-split-e500",
+    "brand": "Samsung",
+    "brandSlug": "samsung",
+    "deviceType": "Mini-Split",
+    "deviceTypeSlug": "mini-split",
+    "code": "E500",
+    "displayCode": "E500",
+    "isBlinkCode": false,
+    "title": "Outdoor Temperature Sensor Error",
+    "shortDescription": "Ambient outdoor temperature sensor is open or shorted.",
+    "fullDescription": "E500 refers to the outdoor ambient thermistor failure. This sensor is used for defrost initiation and compressor speed modulation.\n\nLike other Samsung thermistors, nominal resistance is ~10k ohms at 25C. Replacement is straightforward for an experienced DIYer with the outdoor cover removed.",
+    "causes": [
+      {"cause": "Disconnected ambient thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed thermistor", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Defrost problems in heating", "E500 displayed"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off outdoor", "instruction": "Shut off outdoor disconnect.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Locate sensor", "instruction": "Ambient thermistor hangs freely near the coil inlet - reseat connector.", "tools": ["Phillips screwdriver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Replace if needed", "instruction": "If resistance is infinite or zero, replace with matching thermistor.", "tools": ["Multimeter"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 40}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Only if you are uncomfortable working in the outdoor electrical box.",
+    "relatedCodes": ["samsung-mini-split-e301"],
+    "faq": [{"q": "Will cooling work without it?", "a": "Sometimes limited cooling operates but defrost in heating will be impaired."}]
+  }
+]

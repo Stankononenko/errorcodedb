@@ -1,0 +1,334 @@
+[
+  {
+    "id": "lennox-heat-pump-e200",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E200",
+    "displayCode": "E200",
+    "isBlinkCode": false,
+    "title": "Critical Outdoor System Fault",
+    "shortDescription": "A critical fault in the outdoor unit has shut down the system.",
+    "fullDescription": "E200 on Lennox communicating heat pumps (iHarmony / iComfort) indicates a critical outdoor fault that required immediate shutdown. The specific sub-cause is logged in fault history and will typically appear alongside a sub-code (E202, E223, etc.).\n\nCheck the iComfort service menu for the secondary code.",
+    "causes": [
+      {"cause": "Sub-fault - see fault history", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E200 on iComfort thermostat", "Heat pump stops"],
+    "fixSteps": [
+      {"step": 1, "title": "Read fault history", "instruction": "Access Service > Alerts on the iComfort UI.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Follow sub-code", "instruction": "Troubleshoot using the secondary code's article.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Varies",
+    "whenToCallPro": "Usually needed.",
+    "relatedCodes": ["lennox-heat-pump-e202", "lennox-heat-pump-e223"],
+    "faq": [{"q": "Can I reset?", "a": "Yes via breaker, but the sub-cause must be fixed."}]
+  },
+  {
+    "id": "lennox-heat-pump-e202",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E202",
+    "displayCode": "E202",
+    "isBlinkCode": false,
+    "title": "Outdoor Unit Hardware Error",
+    "shortDescription": "Outdoor control board detected internal hardware failure.",
+    "fullDescription": "E202 indicates the outdoor board self-test failed. This is typically a failed control board that requires replacement.",
+    "causes": [
+      {"cause": "Failed outdoor control board", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E202 alert", "No outdoor operation"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Cut outdoor breaker 5 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace board if persistent", "instruction": "A tech will install a matching iHarmony control.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["lennox-heat-pump-e200"],
+    "faq": [{"q": "Is the board generic?", "a": "No - matched to the outdoor model."}]
+  },
+  {
+    "id": "lennox-heat-pump-e223",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E223",
+    "displayCode": "E223",
+    "isBlinkCode": false,
+    "title": "Outdoor Low Line Voltage",
+    "shortDescription": "Outdoor unit detected line voltage below 187V.",
+    "fullDescription": "E223 is triggered when the outdoor control measures line voltage below safe minimum (~187V on 230V). Operation is blocked until voltage normalizes.\n\nCauses include utility brownouts, loose connections at the disconnect, or a contactor issue.",
+    "causes": [
+      {"cause": "Utility brownout", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Loose disconnect lug", "likelihood": "high", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["E223 alert", "Compressor won't run"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure voltage", "instruction": "Verify 208-230V at outdoor disconnect.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Tighten lugs", "instruction": "With power off, tighten service lugs.", "tools": ["Screwdriver"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 150, "max": 400}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If voltage is fine but fault persists.",
+    "relatedCodes": ["lennox-heat-pump-e224"],
+    "faq": [{"q": "Will it self-clear?", "a": "Yes when voltage returns to normal."}]
+  },
+  {
+    "id": "lennox-heat-pump-e224",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E224",
+    "displayCode": "E224",
+    "isBlinkCode": false,
+    "title": "Outdoor High Line Voltage",
+    "shortDescription": "Outdoor unit detected line voltage above 253V.",
+    "fullDescription": "E224 is triggered when incoming line voltage exceeds ~253V. High voltage can damage the inverter and compressor, so the unit shuts down.\n\nCall the utility or an electrician to investigate.",
+    "causes": [
+      {"cause": "Utility over-voltage", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Miswired 208/230V tap", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["E224 alert"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure voltage", "instruction": "Confirm high-voltage condition with a meter.", "tools": ["Multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Contact utility", "instruction": "If service voltage is high, call utility.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 400}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Varies",
+    "whenToCallPro": "Always if voltage truly high.",
+    "relatedCodes": ["lennox-heat-pump-e223"],
+    "faq": [{"q": "Could it be a neutral problem?", "a": "Yes - a broken service neutral can cause high phase voltage."}]
+  },
+  {
+    "id": "lennox-heat-pump-e290",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E290",
+    "displayCode": "E290",
+    "isBlinkCode": false,
+    "title": "Outdoor Unit Communication Failure",
+    "shortDescription": "iComfort/iHarmony bus lost communication with outdoor unit.",
+    "fullDescription": "E290 means the indoor equipment interface cannot reach the outdoor unit over the RSBus. Typical causes are miswired terminals, missing outdoor power, or a failed outdoor communications chip.",
+    "causes": [
+      {"cause": "Outdoor unit without power", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Broken RSBus wire", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed outdoor board", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E290 alert", "Compressor never runs"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify outdoor power", "instruction": "Confirm breakers on.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check RSBus wires", "instruction": "Verify R, i+, i- and C continuity.", "tools": ["Multimeter"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "For board replacement.",
+    "relatedCodes": [],
+    "faq": [{"q": "Do ABCD terminals matter?", "a": "Lennox uses i+/i-/R/C labeling - match by name, not color."}]
+  },
+  {
+    "id": "lennox-heat-pump-e294",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E294",
+    "displayCode": "E294",
+    "isBlinkCode": false,
+    "title": "Outdoor Unit Incompatible / Wrong Model",
+    "shortDescription": "iComfort detected an incompatible outdoor unit.",
+    "fullDescription": "E294 means the outdoor unit doesn't match the indoor/equipment profile. This often appears after replacing one component with a non-matching model or after a firmware issue.\n\nRe-run equipment setup and confirm compatibility on Lennox's AHRI matchup.",
+    "causes": [
+      {"cause": "Non-matching equipment", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Stale equipment setup", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["E294 alert", "System will not operate"],
+    "fixSteps": [
+      {"step": 1, "title": "Re-run setup", "instruction": "On iComfort, Service > Installation Setup.", "tools": [], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 150, "max": 500}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Usually needed.",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I mix older Lennox with iComfort?", "a": "Only certain generations - consult Lennox matchup tool."}]
+  },
+  {
+    "id": "lennox-heat-pump-e400",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E400",
+    "displayCode": "E400",
+    "isBlinkCode": false,
+    "title": "Compressor High Pressure",
+    "shortDescription": "Compressor stopped due to high-pressure switch trip.",
+    "fullDescription": "E400 indicates the high-pressure switch has opened. Usually caused by dirty outdoor coil (cooling) or blocked indoor airflow (heating).\n\nAfter multiple trips the system locks out with E410.",
+    "causes": [
+      {"cause": "Dirty outdoor coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Blocked indoor airflow", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Overcharge", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E400 alert", "Compressor stops after several minutes"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean outdoor coil", "instruction": "Rinse fins.", "tools": ["Garden hose"], "difficulty": "easy", "timeMinutes": 20},
+      {"step": 2, "title": "Clean indoor filter", "instruction": "Wash or replace.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If cleaning doesn't help.",
+    "relatedCodes": ["lennox-heat-pump-e410"],
+    "faq": [{"q": "Is E400 dangerous?", "a": "No - the switch protects the system."}]
+  },
+  {
+    "id": "lennox-heat-pump-e403",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E403",
+    "displayCode": "E403",
+    "isBlinkCode": false,
+    "title": "Compressor Low Pressure",
+    "shortDescription": "Low pressure switch open.",
+    "fullDescription": "E403 indicates the low-pressure switch has tripped, usually from refrigerant loss. After 3 trips in an hour the system locks out with E412.",
+    "causes": [
+      {"cause": "Refrigerant leak", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Stuck TXV", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E403 alert", "Poor cooling/heating"],
+    "fixSteps": [
+      {"step": 1, "title": "Call for service", "instruction": "Pro will perform leak search and charge correction.", "tools": [], "difficulty": "professional", "timeMinutes": 180}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 400, "max": 2000}},
+    "diyDifficulty": "professional",
+    "repairTime": "Several hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["lennox-heat-pump-e412"],
+    "faq": [{"q": "Can I add refrigerant?", "a": "No - EPA license required and leak must be fixed."}]
+  },
+  {
+    "id": "lennox-heat-pump-e410",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E410",
+    "displayCode": "E410",
+    "isBlinkCode": false,
+    "title": "High Pressure Lockout",
+    "shortDescription": "Repeated E400 trips - system locked out.",
+    "fullDescription": "E410 is a lockout after the high-pressure switch opened three or more times. Manual reset required.\n\nFix the root cause (airflow or charge) before resetting.",
+    "causes": [
+      {"cause": "Chronic high pressure", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E410 alert", "Manual reset needed"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean", "instruction": "Clean coil and filter.", "tools": ["Garden hose"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Reset", "instruction": "Cycle breaker.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If quick recurrence.",
+    "relatedCodes": ["lennox-heat-pump-e400"],
+    "faq": [{"q": "Why lockout?", "a": "Protects compressor from repeated stress."}]
+  },
+  {
+    "id": "lennox-heat-pump-e412",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E412",
+    "displayCode": "E412",
+    "isBlinkCode": false,
+    "title": "Low Pressure Lockout",
+    "shortDescription": "Repeated E403 trips - system locked out.",
+    "fullDescription": "E412 occurs after multiple low-pressure trips. Manual reset required; root cause is almost always refrigerant loss.",
+    "causes": [
+      {"cause": "Refrigerant leak", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E412 lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Call pro", "instruction": "Leak search and recharge.", "tools": [], "difficulty": "professional", "timeMinutes": 180}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 400, "max": 2000}},
+    "diyDifficulty": "professional",
+    "repairTime": "Several hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["lennox-heat-pump-e403"],
+    "faq": [{"q": "Will it clear on its own?", "a": "No, manual reset after repair."}]
+  },
+  {
+    "id": "lennox-heat-pump-e420",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E420",
+    "displayCode": "E420",
+    "isBlinkCode": false,
+    "title": "Compressor Inverter Fault",
+    "shortDescription": "Outdoor variable-speed compressor drive fault.",
+    "fullDescription": "E420 on Lennox variable-capacity heat pumps (like XP25) indicates an inverter drive fault - overcurrent, overtemperature, or drive communication error.\n\nUsually requires drive or compressor diagnostics by a Lennox-trained technician.",
+    "causes": [
+      {"cause": "Dirty inverter heatsink", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed IPM", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Compressor winding fault", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E420 alert", "Compressor stops shortly after start"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean outdoor", "instruction": "Blow dust from heatsink fins.", "tools": ["Compressed air"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 2, "title": "Call technician", "instruction": "Requires drive diagnostic tool.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 500, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": [],
+    "faq": [{"q": "Is the compressor dead?", "a": "Not always - often the inverter drive is the failure."}]
+  },
+  {
+    "id": "lennox-heat-pump-e433",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E433",
+    "displayCode": "E433",
+    "isBlinkCode": false,
+    "title": "Outdoor Thermistor Open/Short",
+    "shortDescription": "Outdoor air or coil thermistor is out of range.",
+    "fullDescription": "E433 means a Lennox outdoor temperature sensor has failed open or shorted. The sensors used are 10k ohm NTC thermistors.\n\nLocate the indicated sensor (ambient or coil) and replace if resistance is out of range.",
+    "causes": [
+      {"cause": "Disconnected thermistor plug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed thermistor", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E433 alert", "Reduced efficiency"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Shut disconnect.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reseat or replace", "instruction": "Verify 10k ohms at 25C.", "tools": ["Multimeter"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 50}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If part isn't readily available.",
+    "relatedCodes": [],
+    "faq": [{"q": "Where is the sensor mounted?", "a": "Ambient hangs free near intake; coil is clipped to a return bend."}]
+  }
+]
