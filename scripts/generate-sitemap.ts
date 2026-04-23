@@ -72,13 +72,28 @@ function buildSitemap(): string {
   entries.push({ url: `${SITE_URL}/disclaimer`, priority: 0.2, changefreq: "monthly" });
   entries.push({ url: `${SITE_URL}/contact`, priority: 0.3, changefreq: "monthly" });
 
+  // High-traffic OBD codes — bump priority so Google crawls first.
+  // These are the ones that actually drive search volume.
+  const POPULAR_OBD = new Set([
+    "p0300", "p0301", "p0302", "p0303", "p0304", "p0305", "p0306", "p0307", "p0308",
+    "p0420", "p0430",
+    "p0171", "p0172", "p0174", "p0175",
+    "p0128", "p0456", "p0442", "p0446",
+    "p0011", "p0014",
+    "p0101", "p0102", "p0113", "p0128",
+    "p0440", "p0455",
+    "p0700", "p0750", "p0740",
+    "p0135", "p0141",
+  ]);
+
   // OBD-II code pages
   const obdCodes = getCodesFromDir(path.join(DATA_DIR, "obd2"));
   for (const code of obdCodes) {
+    const lc = code.code.toLowerCase();
     entries.push({
-      url: `${SITE_URL}/obd2/${code.code.toLowerCase()}`,
-      priority: 0.8,
-      changefreq: "monthly",
+      url: `${SITE_URL}/obd2/${lc}`,
+      priority: POPULAR_OBD.has(lc) ? 0.95 : 0.8,
+      changefreq: POPULAR_OBD.has(lc) ? "weekly" : "monthly",
     });
   }
 
