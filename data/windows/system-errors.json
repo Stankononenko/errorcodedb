@@ -4190,7 +4190,7 @@
       {
         "step": 3,
         "title": "Monitor GPU temperatures",
-        "instruction": "Run GPU-Z or HWMonitor while gaming. If GPU temps exceed 85-90\u00b0C, clean dust from the cooler or improve case airflow.",
+        "instruction": "Run GPU-Z or HWMonitor while gaming. If GPU temps exceed 85-90°C, clean dust from the cooler or improve case airflow.",
         "tools": [
           "GPU-Z",
           "HWMonitor"
@@ -5100,7 +5100,7 @@
       {
         "step": 2,
         "title": "Check for overheating",
-        "instruction": "Install HWMonitor or Core Temp and monitor CPU and GPU temperatures under load. Temperatures above 90\u00b0C for CPU or 85\u00b0C for GPU may cause shutdown.",
+        "instruction": "Install HWMonitor or Core Temp and monitor CPU and GPU temperatures under load. Temperatures above 90°C for CPU or 85°C for GPU may cause shutdown.",
         "tools": [
           "HWMonitor"
         ],
@@ -6437,6 +6437,3854 @@
       {
         "q": "How much page file do I need?",
         "a": "For most users, letting Windows manage it automatically is best. If you set it manually, 1.5x to 2x your RAM size is a good starting point."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-appcrash-msedge",
+    "category": "system",
+    "code": "APPCRASH-msedge",
+    "displayCode": "APPCRASH msedge.exe",
+    "title": "Microsoft Edge APPCRASH (msedge.exe)",
+    "shortDescription": "Microsoft Edge browser crashes with APPCRASH event referencing msedge.exe.",
+    "fullDescription": "Event Viewer logs Application Error with faulting module msedge.exe or a related DLL. Edge closes unexpectedly, often when opening a new tab, loading a specific page, or after an update.\n\nCommon triggers include corrupt user profile, incompatible extensions, GPU driver bugs, or damaged Edge installation. Running Edge in safe mode (without extensions) helps isolate the cause.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Edge user data folder",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incompatible extension",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "GPU hardware acceleration bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged Edge installation",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Edge closes immediately on launch",
+      "Tabs crash with 'Aw, Snap!'",
+      "APPCRASH entry in Event Viewer"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable hardware acceleration",
+        "instruction": "Edge > Settings > System > turn off 'Use hardware acceleration when available'.",
+        "tools": [
+          "Edge Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Disable extensions",
+        "instruction": "edge://extensions — disable all, re-enable one by one.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reset Edge",
+        "instruction": "Settings > Reset settings > Restore settings to defaults.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Repair Edge",
+        "instruction": "Settings > Apps > Microsoft Edge > Modify > Repair.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose bookmarks?",
+        "a": "Reset preserves favorites and passwords; repair reinstalls binaries without touching data."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-appcrash-chrome",
+    "category": "system",
+    "code": "APPCRASH-chrome",
+    "displayCode": "APPCRASH chrome.exe",
+    "title": "Google Chrome APPCRASH (chrome.exe)",
+    "shortDescription": "Google Chrome crashes with APPCRASH event in Event Viewer referencing chrome.exe.",
+    "fullDescription": "Chrome terminates unexpectedly, logging Event ID 1000 with faulting module chrome.exe, chrome_elf.dll, or a GPU driver module. Often triggered by corrupt user profile, antivirus conflicts, or incompatible third-party software hooking into the browser.\n\nCreating a new Chrome profile or running with --disable-extensions quickly isolates whether the issue is profile or extension related.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt Chrome profile",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus interference",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party software injection (IME, ad blockers)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated GPU driver",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Chrome closes silently",
+      "'Aw, Snap!' on every page",
+      "Crash on startup"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Create new Chrome profile",
+        "instruction": "chrome://settings/manageProfile — add a new profile, test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable extensions",
+        "instruction": "Launch chrome.exe --disable-extensions from Run dialog.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Update GPU driver",
+        "instruction": "Download latest driver from NVIDIA/AMD/Intel.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Reinstall Chrome",
+        "instruction": "Uninstall via Apps & Features, remove %LOCALAPPDATA%\\Google\\Chrome, reinstall.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-appcrash-explorer",
+    "category": "system",
+    "code": "APPCRASH-explorer.exe",
+    "displayCode": "APPCRASH explorer.exe",
+    "title": "Windows Explorer APPCRASH (explorer.exe)",
+    "shortDescription": "Windows Explorer shell crashes repeatedly with APPCRASH referencing explorer.exe.",
+    "fullDescription": "explorer.exe hosts the taskbar, Start menu, and File Explorer. When it crashes, the desktop goes blank and restarts. Event Viewer logs Application Error with faulting module often being a shell extension DLL from third-party software.\n\nShellExView or autoruns can identify rogue shell extensions. Clean boot isolates the offending component.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty third-party shell extension",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted thumbnail cache",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged user profile",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "System file corruption",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Taskbar disappears and reappears",
+      "Right-click context menu causes crash",
+      "Desktop flickers"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear thumbnail cache",
+        "instruction": "Disk Cleanup > select Thumbnails > OK.",
+        "tools": [
+          "Disk Cleanup"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable shell extensions",
+        "instruction": "Use ShellExView (Nirsoft) — hide Microsoft entries, disable non-Microsoft one by one.",
+        "tools": [
+          "ShellExView"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Create new user account",
+        "instruction": "Settings > Accounts > Family & other users > Add account, test there.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0xc0000005-access-violation-runtime",
+    "category": "system",
+    "code": "0xC0000005-v58",
+    "displayCode": "0xC0000005 (Access Violation)",
+    "title": "Access Violation 0xC0000005 on Application Launch",
+    "shortDescription": "STATUS_ACCESS_VIOLATION occurs when a program attempts to read or write protected memory.",
+    "fullDescription": "0xC0000005 is the NTSTATUS for ACCESS_VIOLATION. The process tried to access memory it did not own — usually a software bug, DEP (Data Execution Prevention) blocking legitimate code, corrupted binary, or damaged RAM.\n\nThis differs from a kernel bugcheck; it happens in user mode and only kills the offending process. Common in older games, pirated software, and programs using outdated DLLs.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "DEP blocking the application",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt or incompatible DLL",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Faulty RAM",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Antivirus false positive",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Program closes with 'The application was unable to start correctly (0xC0000005)'",
+      "Crash immediately after splash screen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Add DEP exception",
+        "instruction": "System Properties > Advanced > Performance Settings > DEP > Add program.",
+        "tools": [
+          "System Properties"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reinstall Visual C++ Redistributables",
+        "instruction": "Download all VC++ runtimes from Microsoft and install.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run MemTest86",
+        "instruction": "Boot MemTest86 overnight to check RAM.",
+        "tools": [
+          "MemTest86"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 120
+      },
+      {
+        "step": 4,
+        "title": "Update or reinstall app",
+        "instruction": "Get latest version from vendor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0xc0000142-dll-init-failed",
+    "category": "system",
+    "code": "0xC0000142-v59",
+    "displayCode": "0xC0000142 (DLL Init Failed)",
+    "title": "DLL Initialization Failed 0xC0000142",
+    "shortDescription": "STATUS_DLL_INIT_FAILED means a DLL required by the application could not initialize.",
+    "fullDescription": "0xC0000142 occurs when a DLL's DllMain returns FALSE during process attach. Common when launching applications from unusual locations, with damaged user profiles, or when graphics/DWM components fail.\n\nFrequently seen with Office apps, legacy games, and RDP sessions when display subsystem is not fully initialized.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged user profile",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupt DirectX or graphics DLLs",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "AppInit_DLLs injection",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Insufficient permissions on Temp folder",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "App fails with 'The application was unable to start correctly'",
+      "Office apps crash on launch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear Temp folder",
+        "instruction": "Win+R > %temp% > delete all.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Run as administrator",
+        "instruction": "Right-click > Run as administrator.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Reinstall DirectX",
+        "instruction": "Download DirectX End-User Runtime Web Installer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Check AppInit_DLLs",
+        "instruction": "regedit > HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows — clear AppInit_DLLs.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0xc000012f-invalid-image",
+    "category": "system",
+    "code": "0xC000012F",
+    "displayCode": "0xC000012F",
+    "title": "Invalid Image Format 0xC000012F",
+    "shortDescription": "STATUS_INVALID_IMAGE_NOT_MZ indicates the executable file is corrupt or not a valid Windows binary.",
+    "fullDescription": "0xC000012F is returned when the loader detects the file's MZ header is missing or malformed. The binary is truncated, infected, or was downloaded incompletely.\n\nSometimes caused by disk corruption affecting a specific file, or antivirus having quarantined part of the binary.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt download or interrupted install",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus altered the binary",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disk sector failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "App won't launch",
+      "'Bad image' dialog listing a specific DLL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-download installer",
+        "instruction": "Fetch fresh copy from vendor's official site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify file hash",
+        "instruction": "Compare SHA-256 against vendor-published value.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Run chkdsk",
+        "instruction": "chkdsk C: /f /r on next reboot.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-7024-service-stopped",
+    "category": "system",
+    "code": "EVENT_7024",
+    "displayCode": "Event ID 7024",
+    "title": "Event ID 7024 — Service Terminated with Specific Error",
+    "shortDescription": "The Service Control Manager logs 7024 when a service stops with a service-specific error code.",
+    "fullDescription": "Event 7024 identifies which service stopped and the error code it reported. The code varies per service. This is a generic SCM record — look at the service's own logs for root cause.\n\nMost common on Windows Update, Print Spooler, WSearch, and SQL Server. Fix depends on the service and the trailing hex error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Service dependency not running",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt service binary",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Permissions issue on service account",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Third-party software conflict",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Feature powered by the service stops working",
+      "Event Viewer System log shows 7024"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify service and error",
+        "instruction": "In Event 7024 details, note Service Name and error code.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check dependencies",
+        "instruction": "services.msc > service > Dependencies tab — ensure all running.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset service to default",
+        "instruction": "sc config ServiceName start= auto && net start ServiceName",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Reinstall associated feature",
+        "instruction": "If service is part of a product (SQL, Office), run Repair.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-7034-service-terminated",
+    "category": "system",
+    "code": "EVENT_7034",
+    "displayCode": "Event ID 7034",
+    "title": "Event ID 7034 — Service Terminated Unexpectedly",
+    "shortDescription": "SCM logs 7034 when a service exits without being requested to stop.",
+    "fullDescription": "Event 7034 indicates a crash inside the service process. Usually paired with an Application Error 1000 in the Application log pointing to the faulting module.\n\nCommon offenders: Print Spooler, Windows Search, antivirus services, and third-party update services.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Memory access violation in service",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupt configuration or database",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Conflicting driver or plug-in",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Service repeatedly stops and auto-restarts",
+      "Feature works intermittently"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Correlate with App log 1000",
+        "instruction": "Filter Application log for Error around the 7034 timestamp — get faulting module.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Set recovery actions",
+        "instruction": "services.msc > service > Recovery tab — restart on first/second failure.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reinstall related product",
+        "instruction": "Uninstall and reinstall the application owning the service.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-7000-service-failed-start",
+    "category": "system",
+    "code": "EVENT_7000",
+    "displayCode": "Event ID 7000",
+    "title": "Event ID 7000 — Service Failed to Start",
+    "shortDescription": "The service did not start due to timeout or error during initialization.",
+    "fullDescription": "Event 7000 reports a service that failed to respond to the start request within the timeout (default 30 seconds) or returned a specific error.\n\nOften caused by slow disk I/O at boot, missing dependencies, or invalid service account credentials.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Service timeout during slow boot",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incorrect logon credentials",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Missing file or registry key",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Boot completes with a feature missing",
+      "Manual start also fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Increase service timeout",
+        "instruction": "regedit > HKLM\\SYSTEM\\CurrentControlSet\\Control — set ServicesPipeTimeout DWORD 60000.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Verify Log On account",
+        "instruction": "services.msc > service > Log On tab — re-enter password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check ImagePath",
+        "instruction": "regedit > HKLM\\SYSTEM\\CurrentControlSet\\Services\\<name> — verify ImagePath points to existing file.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-1074-system-shutdown",
+    "category": "system",
+    "code": "EVENT_1074",
+    "displayCode": "Event ID 1074",
+    "title": "Event ID 1074 — System Shutdown Initiated",
+    "shortDescription": "Event 1074 records who or what initiated a system restart or shutdown and the reason.",
+    "fullDescription": "This is an informational event, but it's the first place to check when the PC reboots unexpectedly. It tells you whether the shutdown was user-initiated, triggered by Windows Update, or caused by a process like RuntimeBroker or a third-party updater.\n\nPair with Event 6006 (clean shutdown) or 6008 (unexpected shutdown) to build a timeline.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Windows Update triggered restart",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party updater forced reboot",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "User-initiated from another session",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "PC restarted without warning",
+      "Shutdown timestamps in System log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Open Event 1074",
+        "instruction": "Event Viewer > System — filter for 1074.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Identify initiator",
+        "instruction": "Read the 'Process' and 'User' fields in the event.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Configure Active Hours",
+        "instruction": "Settings > Update > Active Hours to avoid mid-day reboots.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-6009-system-started",
+    "category": "system",
+    "code": "EVENT_6009",
+    "displayCode": "Event ID 6009",
+    "title": "Event ID 6009 — System Started (EventLog)",
+    "shortDescription": "Event 6009 is logged on every boot, recording Windows version and boot time.",
+    "fullDescription": "This is a benign informational event marking system startup. It's useful for forensics and uptime tracking — pair it with 6005 (Event Log service started), 6006 (clean shutdown), and 6008 (unexpected shutdown).\n\nNo action is needed; it is normal. If 6008 appears without a matching 6006, investigate power or BSOD issues.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Normal startup logging",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Routine entry in System log",
+      "Useful for determining boot history"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review boot history",
+        "instruction": "Event Viewer > System > filter for 6009 to see all boots.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Cross-check with 6008",
+        "instruction": "If 6008 precedes 6009, investigate unexpected shutdowns.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Do I need to fix 6009?",
+        "a": "No — it is informational and always benign."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80070422-service-not-running",
+    "category": "system",
+    "code": "0x80070422",
+    "displayCode": "0x80070422",
+    "title": "Error 0x80070422 — Service Not Running",
+    "shortDescription": "ERROR_SERVICE_DISABLED appears when a required Windows service is disabled or stopped.",
+    "fullDescription": "0x80070422 commonly shows up in Windows Update, Microsoft Store, Firewall, and BITS contexts. The feature cannot function because its backing service is set to Disabled.\n\nRe-enabling the service and starting it resolves the issue. Persistent recurrence often traces to 'debloat' scripts, group policy, or malware disabling services.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Service manually disabled",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Group Policy blocking service",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Debloat script disabled services",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update won't run",
+      "Firewall settings greyed out"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable Windows Update service",
+        "instruction": "services.msc > Windows Update > Startup type: Manual > Start.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Enable BITS and Cryptographic Services",
+        "instruction": "Same steps for BITS and CryptSvc.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Check Group Policy",
+        "instruction": "gpedit.msc > Administrative Templates > Windows Components — reset Windows Update policies.",
+        "tools": [
+          "Group Policy Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-7031-spoolsv",
+    "category": "system",
+    "code": "EVENT_7031_SPOOLSV",
+    "displayCode": "Event ID 7031 (spoolsv)",
+    "title": "Event ID 7031 — Print Spooler Terminated Unexpectedly",
+    "shortDescription": "The Print Spooler service (spoolsv.exe) crashed and was restarted by SCM.",
+    "fullDescription": "Event 7031 naming spoolsv.exe means the print subsystem crashed. Common causes are corrupt printer drivers (especially legacy v3 drivers), stuck print jobs, or vulnerable PrintNightmare-related DLLs.\n\nClearing the spool folder, removing third-party drivers, and keeping Windows patched resolves most cases.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt print driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Stuck print job in queue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Malformed print server connection",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cannot print",
+      "Printers missing from control panel",
+      "Spooler restarts every few minutes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Stop Spooler and clear queue",
+        "instruction": "net stop spooler && del /Q /F %systemroot%\\System32\\spool\\PRINTERS\\* && net start spooler",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Remove unused drivers",
+        "instruction": "Print Management > All Drivers > remove non-essential entries.",
+        "tools": [
+          "Print Management"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reinstall printer",
+        "instruction": "Delete printer, re-add with manufacturer's latest driver.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x800706b5-spooler-endpoint",
+    "category": "system",
+    "code": "0x800706B5",
+    "displayCode": "0x800706B5",
+    "title": "Error 0x800706B5 — Printer Endpoint Not Available",
+    "shortDescription": "RPC_S_UNKNOWN_IF returned when the print spooler endpoint cannot be reached.",
+    "fullDescription": "0x800706B5 (WIN32: 1717) appears when adding a printer or opening Devices and Printers. The spooler is either not running, restricted by a security patch (PrintNightmare mitigation), or blocked from RPC over named pipes.\n\nVerifying Spooler is started and adjusting the RpcAuthnLevelPrivacyEnabled / RestrictDriverInstallationToAdministrators registry keys typically resolves it.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Print Spooler service stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PrintNightmare security mitigation",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firewall blocking RPC",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'The interface is unknown' when adding printer",
+      "Cannot browse shared printers"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start Spooler",
+        "instruction": "services.msc > Print Spooler > Start.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Adjust RPC policy",
+        "instruction": "regedit > HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Printers\\RPC — set RpcUseNamedPipeProtocol 1.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Allow RPC through firewall",
+        "instruction": "wf.msc > Inbound > enable File and Printer Sharing rules.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-print-spooler-crashes",
+    "category": "system",
+    "code": "SPOOLER_CRASH",
+    "displayCode": "Print Spooler Crashes",
+    "title": "Print Spooler Service Crashes Repeatedly",
+    "shortDescription": "spoolsv.exe terminates unexpectedly, often logging Event 1000 and 7031.",
+    "fullDescription": "Frequent Print Spooler crashes usually trace to a specific driver that throws in its DllMain or rendering code. Removing the offending driver via printui.exe or Print Management is the reliable fix.\n\nAfter July 2021 security updates, legacy v3 drivers from some vendors crash until vendors issue updated v4 packages.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Legacy v3 driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Stuck job with malformed spool file",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt printerports registry keys",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Spooler icon disappears",
+      "Error 'Print Spooler is not running' when printing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear PRINTERS folder",
+        "instruction": "Stop Spooler, delete everything in %systemroot%\\System32\\spool\\PRINTERS, start Spooler.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Remove all drivers",
+        "instruction": "printui.exe /s /t2 > remove each driver > Remove driver and driver package.",
+        "tools": [
+          "printui.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Install latest driver",
+        "instruction": "Use v4 or universal driver from vendor site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-spooler-not-running",
+    "category": "system",
+    "code": "SPOOLER_NOT_RUNNING",
+    "displayCode": "Spooler Not Running",
+    "title": "Print Spooler Service Is Not Running",
+    "shortDescription": "Attempts to print show 'Operation could not be completed. Print Spooler is not running.'",
+    "fullDescription": "Without the Spooler, no local or network printing works. The service may be stopped by Group Policy, security software, or have a dependency (RPC, HTTP.sys) that failed.\n\nStart the service manually and set it to Automatic; if it stops again, check for repeated 7031 events.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Service stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dependency not running",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Malware disabling Spooler",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "No printers visible",
+      "Print button greyed out"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start Spooler service",
+        "instruction": "services.msc > Print Spooler > Start.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Set startup to Automatic",
+        "instruction": "Properties > Startup type: Automatic.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Verify RPC running",
+        "instruction": "Ensure Remote Procedure Call (RPC) is Running and Automatic.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-4625-logon-failure",
+    "category": "system",
+    "code": "EVENT_4625",
+    "displayCode": "Event ID 4625",
+    "title": "Event ID 4625 — Logon Failure",
+    "shortDescription": "Security log records 4625 each time an account fails to log on.",
+    "fullDescription": "Event 4625 contains the account name, workstation, logon type, and a Sub Status code explaining why the logon failed (bad password, expired, disabled, etc.).\n\nFloods of 4625 from a single remote IP often indicate brute-force attempts via RDP or SMB. On workstations, 4625 usually means the user is mistyping a password.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Wrong password",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account locked or disabled",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Brute-force attack against RDP",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cached credentials out of sync",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Login denied",
+      "Account lockouts",
+      "Security log full of 4625"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Decode sub-status",
+        "instruction": "Check the Status/Sub Status hex — 0xC000006A bad password, 0xC0000234 locked.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset password",
+        "instruction": "Ctrl+Alt+Del > Change a password, or use another admin.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Block brute-force",
+        "instruction": "If remote: restrict RDP via firewall, enable Network Level Authentication, use VPN.",
+        "tools": [
+          "Windows Firewall"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-4648-explicit-credentials",
+    "category": "system",
+    "code": "EVENT_4648",
+    "displayCode": "Event ID 4648",
+    "title": "Event ID 4648 — Logon with Explicit Credentials",
+    "shortDescription": "A process attempted to log on using credentials different from the current user.",
+    "fullDescription": "Event 4648 appears when a user runs 'runas', schedules a task with stored credentials, or a service connects to a remote resource with explicit credentials. It is often benign but is a key audit indicator for lateral movement.\n\nInvestigate if the Target Server name is unexpected or the Subject account is SYSTEM initiating outbound logons.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "runas or Task Scheduler stored credentials",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Remote management script",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Malicious lateral movement",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "4648 spikes in Security log",
+      "Unfamiliar Target Server names"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review Target Server",
+        "instruction": "Confirm the remote host name matches a legitimate destination.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Audit stored credentials",
+        "instruction": "control /name Microsoft.CredentialManager — remove unknown entries.",
+        "tools": [
+          "Credential Manager"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Escalate if unexplained",
+        "instruction": "If target is external or unknown, treat as potential compromise.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80070002-user-profile",
+    "category": "system",
+    "code": "0x80070002",
+    "displayCode": "0x80070002 (User Profile)",
+    "title": "User Profile Cannot Be Loaded — 0x80070002",
+    "shortDescription": "ERROR_FILE_NOT_FOUND when Windows tries to load the user profile.",
+    "fullDescription": "0x80070002 at logon means the profile directory or NTUSER.DAT is missing. This often follows an antivirus quarantine, failed profile migration, or an aggressive cleanup tool removing files under C:\\Users.\n\nRestoring the profile from a backup, recreating the account, or copying the ProfileImagePath from the .bak registry key are the standard fixes.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Missing NTUSER.DAT",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Antivirus quarantined profile files",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ProfileList .bak key in registry",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "'The User Profile Service service failed the sign-in'",
+      "Temporary profile loaded"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restore profile from File History",
+        "instruction": "Control Panel > File History > Restore personal files.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Fix ProfileList registry",
+        "instruction": "regedit > HKLM\\...\\ProfileList — rename SID.bak removing .bak and fix State, RefCount to 0.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Create new account and migrate",
+        "instruction": "Create admin account, copy data from old profile folder.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-user-profile-service-failed-logon",
+    "category": "system",
+    "code": "USER_PROFILE_FAIL",
+    "displayCode": "User Profile Service Failed",
+    "title": "The User Profile Service Service Failed the Sign-In",
+    "shortDescription": "Windows cannot load the user's profile at login.",
+    "fullDescription": "This is a visible message on the logon screen. Windows either loaded a temporary profile or refused sign-in entirely. The underlying cause is a corrupt NTUSER.DAT, registry ProfileList entry pointing to the wrong folder, or disk corruption in the profile directory.\n\nFixes involve registry edits on ProfileList or recreating the user account.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "ProfileList .bak SID in registry",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Corrupt NTUSER.DAT",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Locked profile files",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'User Profile Service service failed the sign-in' on logon screen",
+      "Temporary profile loaded"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot into Safe Mode",
+        "instruction": "Hold Shift + Restart > Troubleshoot > Safe Mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Fix ProfileList",
+        "instruction": "regedit > HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList — rename the .bak SID, set State=0 RefCount=0.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace NTUSER.DAT",
+        "instruction": "Log in as another admin, copy NTUSER.DAT from C:\\Users\\Default.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-temporary-profile-loaded",
+    "category": "system",
+    "code": "TEMP_PROFILE",
+    "displayCode": "Temporary Profile Loaded",
+    "title": "You've Been Signed In With a Temporary Profile",
+    "shortDescription": "Windows loaded a transient profile because the real one could not be mounted.",
+    "fullDescription": "A temporary profile resets on logoff; files saved to the desktop disappear. Windows shows a notification in the system tray. It is caused by the same issues as the User Profile Service error but Windows allowed login with TEMP.\n\nDo not save important data while on a temp profile — fix the underlying profile before signing out.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Registry ProfileList issues",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Locked registry hive",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted profile folder",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Tray notification about temp profile",
+      "Desktop and documents empty",
+      "Changes lost after reboot"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Do not save work",
+        "instruction": "Back up anything modified to external storage or another account first.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Fix ProfileList .bak",
+        "instruction": "See User Profile Service Failed fix — remove .bak suffix in registry.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reboot and verify",
+        "instruction": "After fix, reboot — full profile should load.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80071a91",
+    "category": "system",
+    "code": "0x80071A91",
+    "displayCode": "0x80071A91",
+    "title": "Error 0x80071A91 — Transaction Support Not Started",
+    "shortDescription": "ERROR_TRANSACTION_SUPPORT_NOT_STARTED appears when TxF (Kernel Transaction Manager) cannot initialize.",
+    "fullDescription": "0x80071A91 surfaces during Windows Update, SFC, or file operations when the Kernel Transaction Manager's common log file is corrupt. Deleting the $Txf and $TxfLog metadata lets NTFS rebuild them.\n\nThe standard fsutil resource commands reinitialize the transactional NTFS resource manager without reinstalling Windows.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt NTFS transaction log",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Abrupt shutdown during filesystem write",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails",
+      "SFC cannot complete"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset resource manager",
+        "instruction": "Admin CMD: fsutil resource setautoreset true C:\\",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Reboot",
+        "instruction": "Restart PC to apply reset.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Run chkdsk",
+        "instruction": "chkdsk C: /f /r on next boot.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0xc000014c-registry-corrupt",
+    "category": "system",
+    "code": "0xC000014C_REG",
+    "displayCode": "0xC000014C (Registry)",
+    "title": "Registry Corruption 0xC000014C",
+    "shortDescription": "STATUS_BAD_FILE reported when Windows cannot read a registry hive during boot.",
+    "fullDescription": "0xC000014C at boot points to a damaged SYSTEM, SOFTWARE, SAM, or SECURITY hive. Recovery uses the RegBack copies (on older Windows) or System Restore.\n\nOn Windows 10 1803+, automatic RegBack was disabled by default — System Restore or repair install is typically required.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt registry hive",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Disk sector failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted Windows Update",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Boot fails early with 0xC000014C",
+      "Recovery Environment offered"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "System Restore",
+        "instruction": "Recovery Env > Troubleshoot > Advanced > System Restore.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Restore from RegBack",
+        "instruction": "copy C:\\Windows\\System32\\config\\RegBack\\* C:\\Windows\\System32\\config\\ (only if files present).",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "In-place upgrade",
+        "instruction": "Mount Windows ISO and run setup.exe keeping files and apps.",
+        "tools": [
+          "Windows ISO"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x800f0828-component-store",
+    "category": "system",
+    "code": "0x800F0828",
+    "displayCode": "0x800F0828",
+    "title": "Error 0x800F0828 — Component Store Corruption",
+    "shortDescription": "CBS_E_SOURCE_MISSING during feature install or update.",
+    "fullDescription": "0x800F0828 is thrown by the Component-Based Servicing engine when required payload files are missing from the component store (WinSxS) and cannot be fetched from Windows Update.\n\nDISM /RestoreHealth with an explicit /Source pointing to a matching install.wim is the authoritative fix.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Missing WinSxS payload",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "No internet during DISM",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Policy blocking WU source",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Feature install fails",
+      "Windows Update fails with 0x800F0828"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DISM with online source",
+        "instruction": "DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Use ISO as source",
+        "instruction": "Mount ISO matching current build, run DISM /RestoreHealth /Source:X:\\sources\\install.wim:1 /LimitAccess",
+        "tools": [
+          "Windows ISO"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      },
+      {
+        "step": 3,
+        "title": "In-place upgrade",
+        "instruction": "Run setup.exe from ISO, keep files.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-sfc-scannow-found-errors",
+    "category": "system",
+    "code": "SFC_FOUND_ERRORS",
+    "displayCode": "SFC /scannow Found Errors",
+    "title": "SFC /scannow Found Corrupt Files But Could Not Fix Some of Them",
+    "shortDescription": "System File Checker detected integrity violations that it could not repair.",
+    "fullDescription": "SFC relies on the component store to supply good copies. If WinSxS is also damaged, SFC reports 'Windows Resource Protection found corrupt files but was unable to fix some of them.'\n\nRun DISM /RestoreHealth first to repair the component store, then re-run SFC.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged component store",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Pending update interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disk errors",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "CBS.log lists unfixable entries",
+      "Problems persist after SFC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DISM",
+        "instruction": "DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Re-run SFC",
+        "instruction": "sfc /scannow after DISM completes.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Review CBS.log",
+        "instruction": "findstr /c:\"[SR]\" %windir%\\Logs\\CBS\\CBS.log >sfc.txt",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-dism-restorehealth-fails",
+    "category": "system",
+    "code": "DISM_FAIL",
+    "displayCode": "DISM RestoreHealth Fails",
+    "title": "DISM /RestoreHealth Fails or Hangs",
+    "shortDescription": "DISM cannot contact Windows Update or fails during image restore.",
+    "fullDescription": "DISM failures usually show error 0x800F081F (source not found) or 0x80240021 (WU connection). Using an explicit /Source:wim parameter bypasses WU entirely.\n\nThe install.wim must match the OS build, edition, and architecture — get an ISO for the current feature update.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Windows Update unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Source WIM mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Proxy blocking DISM",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "DISM hangs at 62% or 80%",
+      "Error 0x800F081F"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use matching ISO",
+        "instruction": "Download ISO with exact build from Microsoft.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Run DISM with source",
+        "instruction": "DISM /Online /Cleanup-Image /RestoreHealth /Source:WIM:E:\\sources\\install.wim:1 /LimitAccess",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      },
+      {
+        "step": 3,
+        "title": "Check DISM.log",
+        "instruction": "%windir%\\Logs\\DISM\\dism.log for exact error.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-2004-resource-exhaustion",
+    "category": "system",
+    "code": "EVENT_2004",
+    "displayCode": "Event ID 2004",
+    "title": "Event ID 2004 — Windows Resource Exhaustion Detector",
+    "shortDescription": "The system logs 2004 when commit charge approaches the commit limit.",
+    "fullDescription": "Event 2004 from source Microsoft-Windows-Resource-Exhaustion-Detector warns that processes consumed most of the virtual memory. The event body lists the top process by commit charge.\n\nUsually a memory leak in a specific process or a too-small page file on a RAM-limited system.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Process memory leak",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Page file too small",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient RAM for workload",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "System slows to a crawl",
+      "Apps close on their own",
+      "Event 2004 present"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify leaking process",
+        "instruction": "Task Manager > Details > sort by Commit Size.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Increase page file",
+        "instruction": "System Properties > Advanced > Performance Settings > Advanced > Virtual Memory > set to system managed or 1.5x RAM.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Update or replace offending app",
+        "instruction": "Get latest version or alternative.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-working-set-exhaustion",
+    "category": "system",
+    "code": "WORKING_SET_EXHAUSTION",
+    "displayCode": "Working Set Exhaustion",
+    "title": "Working Set Exhaustion — System Low on RAM",
+    "shortDescription": "A process's working set is being aggressively trimmed causing extreme slowness.",
+    "fullDescription": "When physical RAM is exhausted, Windows trims working sets of background processes and thrashes the page file. Symptoms include disk LED constantly lit, cursor jerky, and background apps reloading when focused.\n\nAdd RAM, reduce startup programs, or close memory-heavy browser tabs.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Insufficient physical RAM",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Memory leak",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Too many Chrome tabs / Electron apps",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Disk at 100% during simple tasks",
+      "Apps slow to redraw",
+      "Constant paging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Close heavy apps",
+        "instruction": "Task Manager > end Chrome, Teams, Slack, VS Code extras.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable startup apps",
+        "instruction": "Settings > Apps > Startup — disable non-essentials.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Add RAM",
+        "instruction": "Upgrade to 16 GB or 32 GB depending on workload.",
+        "tools": [
+          "Screwdriver",
+          "RAM modules"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Move page file to SSD",
+        "instruction": "Virtual Memory > place pagefile on fastest drive.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x000000ea-thread-stuck",
+    "category": "system",
+    "code": "0x000000EA",
+    "displayCode": "0x000000EA",
+    "title": "BSOD 0x000000EA — Thread Stuck in Device Driver",
+    "shortDescription": "THREAD_STUCK_IN_DEVICE_DRIVER usually indicates an infinite loop in a display driver.",
+    "fullDescription": "0xEA fires when a GPU driver spins without yielding. The watchdog (dxgkrnl TDR) failed to recover the GPU. Almost always traces to a specific video driver version or failing GPU hardware.\n\nRolling back or updating the display driver, or underclocking an overclocked GPU, resolves most instances. Persistent 0xEA after clean driver install suggests failing GPU.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Buggy or outdated GPU driver",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overclocked GPU instability",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failing GPU hardware",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "BSOD 0xEA",
+      "Screen freezes then blue screen",
+      "Recurs under gaming load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean reinstall GPU driver",
+        "instruction": "DDU in Safe Mode, reinstall latest WHQL driver.",
+        "tools": [
+          "DDU",
+          "GPU driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reset GPU clocks",
+        "instruction": "Remove overclocks in MSI Afterburner or vendor tool.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Test GPU",
+        "instruction": "FurMark 15-minute stress test — watch for artifacts or crashes.",
+        "tools": [
+          "FurMark"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80070035-network-path",
+    "category": "system",
+    "code": "0x80070035",
+    "displayCode": "0x80070035",
+    "title": "Error 0x80070035 — Network Path Not Found",
+    "shortDescription": "ERROR_BAD_NETPATH when accessing a share by name or IP.",
+    "fullDescription": "0x80070035 appears when browsing \\\\server\\share. Causes range from SMBv1 disabled (needed for some NAS), firewall rules blocking SMB, Network Discovery off, or DNS not resolving the host.\n\nModern Windows blocks insecure guest logons by default — some NAS configurations need a policy tweak.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "SMBv1 required but disabled",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Insecure guest logons disabled",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firewall blocking TCP 445",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DNS/NetBIOS name resolution",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Windows cannot access \\\\server'",
+      "Error 0x80070035 in dialog"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable Network Discovery",
+        "instruction": "Control Panel > Network and Sharing > Advanced sharing settings — turn on discovery.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Allow insecure guest logons",
+        "instruction": "gpedit.msc > Computer > Admin Templates > Network > Lanman Workstation > Enable insecure guest logons.",
+        "tools": [
+          "Group Policy Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test by IP",
+        "instruction": "Try \\\\192.168.x.y\\share — if that works, DNS is the issue.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Enable SMB1 if NAS requires",
+        "instruction": "Optional Features > SMB 1.0 Client (only if absolutely needed).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80004005-network-share",
+    "category": "system",
+    "code": "0x80004005_NET",
+    "displayCode": "0x80004005 (Network)",
+    "title": "Error 0x80004005 on Network Share Access",
+    "shortDescription": "Unspecified error when opening a mapped drive or shared folder.",
+    "fullDescription": "0x80004005 on shares typically means authentication failed silently — Windows could not negotiate a session. Often post-Windows-Update where guest access or NTLM protocols changed defaults.\n\nMap the drive with /user: explicit credentials or adjust LanmanWorkstation policies.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "NTLM authentication blocked",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cached bad credentials",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SMB signing mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cannot open mapped drive",
+      "'Unspecified error' after credential prompt"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear Credential Manager",
+        "instruction": "control /name Microsoft.CredentialManager — remove Windows Credentials for the server.",
+        "tools": [
+          "Credential Manager"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-map with explicit credentials",
+        "instruction": "net use Z: \\\\server\\share /user:DOMAIN\\user password",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Adjust SMB signing",
+        "instruction": "regedit > HKLM\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters — check RequireSecuritySignature.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-error-1231-network-unreachable",
+    "category": "system",
+    "code": "1231",
+    "displayCode": "Error 1231",
+    "title": "Error 1231 — Network Location Cannot Be Reached",
+    "shortDescription": "ERROR_NETWORK_UNREACHABLE reported by PathPing, ping, or net view.",
+    "fullDescription": "Code 1231 indicates ICMP/IP-level unreachability. There is no route to the destination — either interface is down, gateway missing, VPN split tunnel misconfigured, or Windows Firewall dropping outbound ICMP.\n\nCheck ipconfig for a valid default gateway and route print for correct routes.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "No default gateway",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN capturing default route",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "NIC driver issue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Network location cannot be reached'",
+      "ping returns 1231"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run ipconfig /all",
+        "instruction": "Verify IPv4 address, subnet, and default gateway present.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Release/renew",
+        "instruction": "ipconfig /release && ipconfig /renew",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Reset TCP/IP",
+        "instruction": "netsh int ip reset && netsh winsock reset, then reboot.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Check VPN split tunneling",
+        "instruction": "VPN properties > TCP/IPv4 > Advanced > uncheck 'Use default gateway on remote network'.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-error-1603-fatal-install",
+    "category": "system",
+    "code": "1603",
+    "displayCode": "Error 1603",
+    "title": "MSI Error 1603 — Fatal Error During Installation",
+    "shortDescription": "Windows Installer returns 1603 when installation cannot complete.",
+    "fullDescription": "1603 is the catch-all MSI failure. Common root causes are SYSTEM account lacking Full Control on Temp, encrypted install path, existing broken previous version, or short filename generation disabled.\n\nMSI verbose logs (msiexec /i pkg.msi /l*v log.txt) identify the real culprit — search the log for 'Return value 3' to find the offending action.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Permission issue on Temp or install folder",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Previous install leftovers",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Encrypted target folder",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SYSTEM short filename disabled",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "'Fatal error during installation'",
+      "Install rolls back"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run verbose log",
+        "instruction": "msiexec /i package.msi /l*v c:\\install.log",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Grant SYSTEM permissions",
+        "instruction": "Right-click target folder > Properties > Security > add SYSTEM with Full Control.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Use Program Install/Uninstall Troubleshooter",
+        "instruction": "Download from Microsoft to remove remnants.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Decrypt target",
+        "instruction": "Properties > Advanced > uncheck 'Encrypt contents to secure data'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-error-1618-install-in-progress",
+    "category": "system",
+    "code": "1618",
+    "displayCode": "Error 1618",
+    "title": "MSI Error 1618 — Another Installation Is Already in Progress",
+    "shortDescription": "Only one MSI transaction can run at a time; 1618 means another is active.",
+    "fullDescription": "1618 blocks any new MSI install until the existing one finishes. Sometimes a prior install crashed and left msiexec running. Ending the zombie process or rebooting frees the lock.\n\nWindows Update can hold the mutex — wait for it to finish or pause updates before running installers.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Pending Windows Update in progress",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Zombie msiexec process",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Actual concurrent installer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Another installation is already in progress'",
+      "Setup won't launch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait for Windows Update",
+        "instruction": "Check Settings > Update — wait until idle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Kill msiexec",
+        "instruction": "Task Manager > end any msiexec.exe processes.",
+        "tools": [
+          "Task Manager"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Reboot",
+        "instruction": "Clean reboot releases MSI mutex.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-error-1722-rpc",
+    "category": "system",
+    "code": "1722",
+    "displayCode": "Error 1722",
+    "title": "Error 1722 — The RPC Server Is Unavailable",
+    "shortDescription": "RPC_S_SERVER_UNAVAILABLE blocks install or management calls.",
+    "fullDescription": "1722 appears during installers, domain joins, and remote management. RPC needs TCP 135 plus a dynamic high port, RpcSs service running, and firewall permitting 'Windows Management Instrumentation (WMI)' rules.\n\nOn workgroup PCs, ensure Remote Procedure Call (RPC) and DCOM Server Process Launcher services are started.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "RPC service stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall blocking TCP 135",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DCOM disabled",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Installer fails with 1722",
+      "gpupdate fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start RPC services",
+        "instruction": "services.msc > Remote Procedure Call + DCOM Server Process Launcher > Automatic + Start.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Allow RPC through firewall",
+        "instruction": "wf.msc > Inbound > enable 'Windows Management Instrumentation' rules.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Verify DCOM",
+        "instruction": "dcomcnfg > Component Services > Computers > My Computer > Properties > Default Properties > Enable DCOM.",
+        "tools": [
+          "dcomcnfg"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-error-25004-office",
+    "category": "system",
+    "code": "25004",
+    "displayCode": "Error 25004",
+    "title": "Office Error 25004 — Product Key Already in Use",
+    "shortDescription": "Office install fails with 25004 when the product key has exceeded its activation count.",
+    "fullDescription": "25004 is specific to Microsoft Office volume and retail setups. The key has been used on too many machines, or a previous install left licensing metadata that claims the key is in use.\n\nUse the Microsoft Support and Recovery Assistant (SaRA) Office removal tool to strip licensing, then install with a fresh key.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Key over activation limit",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Previous Office licensing residue",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Click-to-Run vs MSI conflict",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Office install stops at 25004",
+      "'The product key has already been used'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run SaRA Office Uninstaller",
+        "instruction": "Download from Microsoft, remove all Office instances.",
+        "tools": [
+          "SaRA"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Remove OSPP tokens",
+        "instruction": "cscript \"C:\\Program Files\\Microsoft Office\\Office16\\ospp.vbs\" /rearm (if present).",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Install fresh",
+        "instruction": "Reinstall Office and activate with a valid unused key.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x0000009f-driver-power",
+    "category": "system",
+    "code": "0x0000009F",
+    "displayCode": "0x0000009F",
+    "title": "BSOD 0x0000009F — Driver Power State Failure",
+    "shortDescription": "DRIVER_POWER_STATE_FAILURE during sleep, hibernate, or resume.",
+    "fullDescription": "0x9F fires when a driver does not respond to a power IRP within the allotted time. USB, network, and storage drivers are the usual offenders.\n\nverifier.exe with special pool + force pending I/O narrows the driver. Updating chipset and storage drivers often fixes it outright.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Outdated chipset / USB driver",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Problematic fast startup",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NVMe driver bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD on sleep/resume",
+      "PC won't wake, requires hard reset"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable Fast Startup",
+        "instruction": "Power Options > Choose what power buttons do > uncheck 'Turn on fast startup'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Update chipset drivers",
+        "instruction": "Install latest from motherboard / laptop vendor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Run Driver Verifier",
+        "instruction": "verifier.exe > Create standard settings > select non-Microsoft drivers.",
+        "tools": [
+          "verifier"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-10317-audio-service-crash",
+    "category": "system",
+    "code": "EVENT_10317",
+    "displayCode": "Event ID 10317",
+    "title": "Event ID 10317 — Windows Audio Service Crash",
+    "shortDescription": "Audiosrv logs 10317 when the audio service encounters an unhandled exception.",
+    "fullDescription": "10317 from Windows Audio (audiosrv) indicates a crash in an audio endpoint, often caused by a buggy APO (Audio Processing Object) from the chipset vendor (Realtek, Nahimic, SonicSuite).\n\nDisabling 'Audio enhancements' on the device, updating or rolling back the audio driver, and removing 3rd-party audio tools resolves most reports.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party audio enhancement APO",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated Realtek driver",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt audio endpoint",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No sound",
+      "Audio icon shows red X",
+      "Event 10317 recurs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable enhancements",
+        "instruction": "Sound > Playback device > Properties > Enhancements tab > 'Disable all enhancements'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Update audio driver",
+        "instruction": "Device Manager > Sound > Update driver.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Restart Audio services",
+        "instruction": "services.msc > restart Windows Audio + Windows Audio Endpoint Builder.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x887a0006-dxgi-device-hung",
+    "category": "system",
+    "code": "0x887A0006",
+    "displayCode": "0x887A0006",
+    "title": "Error 0x887A0006 — DXGI_ERROR_DEVICE_HUNG",
+    "shortDescription": "The graphics device has stopped responding because of an in-application error.",
+    "fullDescription": "0x887A0006 returns to games and DirectX apps when the GPU hangs under workload. TDR (Timeout Detection and Recovery) kicks in; if the app doesn't handle device-removed events, it crashes.\n\nRoot cause is usually an unstable GPU overclock, driver bug, or a specific game shader. TdrDelay registry extension gives the GPU more time but masks rather than fixes the problem.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "GPU overclock instability",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Buggy driver version",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Specific game/shader bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failing GPU VRAM",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Game crashes with DXGI_ERROR_DEVICE_HUNG",
+      "Screen goes black then recovers"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Remove GPU overclock",
+        "instruction": "Reset to stock in MSI Afterburner or GPU vendor tool.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Increase TDR delay",
+        "instruction": "regedit > HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers — DWORD TdrDelay = 10 (seconds).",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Clean reinstall driver",
+        "instruction": "DDU + latest WHQL.",
+        "tools": [
+          "DDU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0xc000007f-insufficient-resources",
+    "category": "system",
+    "code": "0xC000007F",
+    "displayCode": "0xC000007F",
+    "title": "Error 0xC000007F — Disk Full / Insufficient Resources",
+    "shortDescription": "STATUS_DISK_FULL returned to applications trying to allocate storage or pagefile.",
+    "fullDescription": "0xC000007F indicates the volume is out of space or the quota is exhausted. This affects pagefile growth, temp file creation, and some apps' save operations.\n\nFree 10–20% of the system drive, remove large hidden files (hiberfil.sys, pagefile.sys overage), and verify there's no quota limit on the user.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "System drive full",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Quota enforced on drive",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Shadow copies consuming space",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Insufficient system resources'",
+      "Apps cannot save",
+      "Very little free space on C:"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Storage Sense",
+        "instruction": "Settings > System > Storage > Cleanup recommendations.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable hibernation (if unused)",
+        "instruction": "powercfg /h off — frees hiberfil.sys.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Remove old shadow copies",
+        "instruction": "vssadmin delete shadows /for=c: /oldest (repeat).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Check quota",
+        "instruction": "File Explorer > C: Properties > Quota tab.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x80041316-task-scheduler-rpc",
+    "category": "system",
+    "code": "0x80041316",
+    "displayCode": "0x80041316",
+    "title": "Task Scheduler 0x80041316 — RPC Server Unavailable",
+    "shortDescription": "Task Scheduler cannot contact the Schedule service.",
+    "fullDescription": "0x80041316 appears in Task Scheduler UI or when running tasks programmatically. The Schedule service (schedule) is stopped, its dependencies failed, or DCOM blocked the call.\n\nStart the Task Scheduler service and its dependencies (RPC, DCOM launcher) and retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Schedule service stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "RPC/DCOM issue",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Task Scheduler won't open",
+      "Scheduled tasks don't run"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start Schedule service",
+        "instruction": "services.msc > Task Scheduler > Start + Automatic.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Start dependencies",
+        "instruction": "Ensure RPC and DCOM Server Process Launcher running.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Reset DCOM",
+        "instruction": "dcomcnfg > verify Enable DCOM.",
+        "tools": [
+          "dcomcnfg"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-task-scheduler-0x1-general-failure",
+    "category": "system",
+    "code": "TS_0x1",
+    "displayCode": "0x1 (Task Scheduler)",
+    "title": "Task Scheduler Last Run Result 0x1 — General Failure",
+    "shortDescription": "A scheduled task returned exit code 1, indicating the program failed.",
+    "fullDescription": "0x1 (result code 0x00000001) is the application's own exit code, not a Task Scheduler error. The task launched successfully; the command inside returned 1.\n\nCheck the Action's program, arguments, and Start in folder. Run the exact command manually to reproduce.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Incorrect command or arguments",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Missing Start in / working directory",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Script exits with 1",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Permission issue on resource",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Task History: Last Run Result 0x1",
+      "Expected script output missing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run manually",
+        "instruction": "Open cmd, cd to Start-in, run the exact program and arguments.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Set Start in",
+        "instruction": "Task Properties > Actions > Edit > fill 'Start in (optional)' with full path.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Use Run with highest privileges",
+        "instruction": "General tab > check 'Run with highest privileges' if elevation needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-3104-search-failure",
+    "category": "system",
+    "code": "EVENT_3104",
+    "displayCode": "Event ID 3104",
+    "title": "Event ID 3104 — Windows Search Failed to Load",
+    "shortDescription": "Windows Search (SearchIndexer.exe) could not load required plugin or index.",
+    "fullDescription": "3104 indicates a protocol handler failed to load (commonly the MAPI handler for Outlook search). Index rebuild or Outlook reinstall is usually needed.\n\nIf Outlook search returns no results, this event is the first place to look.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupt search index",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outlook/MAPI protocol handler broken",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Permissions on index location",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No search results in Start menu",
+      "Outlook search returns nothing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Rebuild index",
+        "instruction": "Indexing Options > Advanced > Rebuild.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Re-register Outlook MAPI",
+        "instruction": "In Outlook, File > Options > Search > Indexing Options > Advanced.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Search",
+        "instruction": "Settings > Apps > Windows Search > Advanced options > Reset (via Get-AppxPackage on older builds).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-event-219-driver-failed-load",
+    "category": "system",
+    "code": "EVENT_219",
+    "displayCode": "Event ID 219",
+    "title": "Event ID 219 — Driver Failed to Load",
+    "shortDescription": "Kernel-PnP logs 219 when a driver cannot load for a specific device.",
+    "fullDescription": "Event 219 lists the driver name and device instance that failed. Common with outdated USB filter drivers, leftover drivers from uninstalled devices, or drivers not signed for current Windows build.\n\nIdentify the driver in Device Manager (yellow triangle) and update or remove it.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver not compatible with current Windows build",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Leftover driver from uninstalled device",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted driver file",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Device missing",
+      "Yellow triangle in Device Manager",
+      "Event 219 on boot"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify driver",
+        "instruction": "Event 219 details lists driver name.",
+        "tools": [
+          "Event Viewer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Update in Device Manager",
+        "instruction": "Device Manager > update driver for yellow-triangle device.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Remove phantom devices",
+        "instruction": "Device Manager > View > Show hidden devices > uninstall greyed entries.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
+      }
+    ]
+  },
+  {
+    "id": "windows-system-0x8007007e-module-not-found",
+    "category": "system",
+    "code": "0x8007007E",
+    "displayCode": "0x8007007E",
+    "title": "Error 0x8007007E — The Specified Module Could Not Be Found",
+    "shortDescription": "ERROR_MOD_NOT_FOUND when loading a library or COM component.",
+    "fullDescription": "0x8007007E is returned when LoadLibrary fails because the DLL itself or one of its dependencies is missing from the search path. Common during Explorer shell-extension loading, scheduled tasks that call rundll32, and after incomplete uninstalls.\n\nProcess Monitor with 'NAME NOT FOUND' filter identifies the exact missing file.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Missing dependency DLL",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Path variable missing entry",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incomplete uninstall left orphaned reference",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Rundll32 error dialogs",
+      "Shell crash referencing a DLL",
+      "COM component fails to register"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reinstall the application",
+        "instruction": "Most reliable fix if a specific app throws it.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Use Process Monitor",
+        "instruction": "Filter for NAME NOT FOUND to find the missing DLL path.",
+        "tools": [
+          "Process Monitor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Restore Visual C++ runtimes",
+        "instruction": "Reinstall all VC++ Redistributables.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "When all DIY steps fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually fixable with standard troubleshooting steps."
       }
     ]
   }
