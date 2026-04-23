@@ -13658,5 +13658,4576 @@
         "a": "Small shops may lack factory programming access — ask before the repair."
       }
     ]
+  },
+  {
+    "code": "U0800",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Body Control Module",
+    "shortDescription": "A module received data from the Body Control Module that falls outside expected ranges.",
+    "fullDescription": "Code U0800 sets when a receiving module sees messages from the BCM whose content is implausible — out-of-range values, wrong identifiers, or inconsistent checksums. The BCM broadcasts door, lock, and lighting state onto the CAN bus; when those values are garbage, downstream modules flag U0800.\n\nThe cause is usually inside the BCM (internal fault) or on the bus between the BCM and the receiver (shorts, opens, corroded pins). Symptoms typically include erratic lighting behavior, false door-ajar warnings, and chimes that do not match vehicle state.",
+    "severity": "medium",
+    "safetyImpact": "Incorrect lighting and door status messages may mislead the driver and disable convenience features like auto-locking.",
+    "causes": [
+      {
+        "cause": "Internal BCM fault corrupting broadcast data",
+        "likelihood": "high"
+      },
+      {
+        "cause": "CAN wiring damage between BCM and receiving module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low system voltage during transmission",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Software mismatch after a module was replaced",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "False door-ajar warnings",
+      "Erratic interior lights",
+      "Auto-lock/unlock not working",
+      "Multiple U-codes across modules"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan all modules",
+        "instruction": "Pull codes from every module to see which ones are complaining about BCM data.",
+        "tools": [
+          "Full-system OBD-II scanner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check battery voltage",
+        "instruction": "Verify battery is at least 12.4V resting and 13.8-14.5V running. Low voltage causes bus errors.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Inspect BCM power and ground",
+        "instruction": "Check fuses, B+ at BCM pin, and ground integrity. Clean corroded pins.",
+        "tools": [
+          "Wiring diagram",
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace or reprogram BCM",
+        "instruction": "If data remains invalid with good wiring and power, replace the BCM and program to the VIN.",
+        "tools": [
+          "Factory scan tool",
+          "Replacement BCM"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0140",
+      "U0422"
+    ],
+    "faq": [
+      {
+        "q": "Can a weak battery really set U0800?",
+        "a": "Yes — low voltage drops bus signal levels below the threshold and receiving modules flag the data as invalid."
+      }
+    ]
+  },
+  {
+    "code": "U0801",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Vehicle Immobilizer Control Module",
+    "shortDescription": "Immobilizer data received by another module is outside expected parameters.",
+    "fullDescription": "U0801 indicates the receiving controller (usually the PCM) is getting implausible messages from the immobilizer module. Because the immobilizer gates engine start, invalid data typically results in a no-start condition or a stall shortly after cranking.\n\nCommon root causes include a failed key sensor ring, a damaged antenna coil around the ignition lock cylinder, or internal fault inside the immobilizer control unit itself.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may fail to start or stall, stranding the driver.",
+    "causes": [
+      {
+        "cause": "Failed immobilizer antenna ring",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged key transponder",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal immobilizer module fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN wiring issue between immobilizer and PCM",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Engine cranks but won't start",
+      "Security light flashing",
+      "Stall shortly after start",
+      "Stored U0801 in PCM"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify the key",
+        "instruction": "Try a second known-good key. If the second key works, the first key's transponder is bad.",
+        "tools": [
+          "Spare key"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect antenna ring",
+        "instruction": "Remove steering column shroud and check the antenna coil around the ignition switch for damage and connector seating.",
+        "tools": [
+          "Trim tools",
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Check CAN wiring",
+        "instruction": "Verify continuity and absence of shorts on the CAN pair between the immobilizer and PCM.",
+        "tools": [
+          "Wiring diagram",
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace immobilizer module",
+        "instruction": "Replace faulty module and program keys with factory tool.",
+        "tools": [
+          "Factory scan tool",
+          "Replacement module"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "U0431",
+      "P0513"
+    ],
+    "faq": [
+      {
+        "q": "Will a locksmith be cheaper than the dealer?",
+        "a": "Often yes for key programming, but antenna/module replacement usually requires dealer-level tools."
+      }
+    ]
+  },
+  {
+    "code": "U0831",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Door Switch Module - Driver",
+    "shortDescription": "Implausible data from the driver door switch module on the bus.",
+    "fullDescription": "U0831 is set when a module (usually the BCM) receives data from the driver door module that does not match the expected format or value range. The driver door module reports window position, lock state, mirror adjustment, and switch inputs; faulty data disables one-touch window and memory features.\n\nRoot causes are typically inside the driver door module or in the harness crossing the door jamb — a high-flex area prone to breakage.",
+    "severity": "low",
+    "safetyImpact": "Power window one-touch, auto-lock, and memory seat functions may be unavailable.",
+    "causes": [
+      {
+        "cause": "Broken wire in door jamb harness",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water intrusion into driver door module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal driver door module fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded door connector",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "One-touch window inoperative",
+      "Auto-lock not working",
+      "Mirror/memory seat features lost",
+      "U0831 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Flex test door harness",
+        "instruction": "Open and close the driver door while watching live data — intermittent loss indicates broken wires in the jamb.",
+        "tools": [
+          "Scan tool with live data"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect door module",
+        "instruction": "Remove door panel and check the module for water damage and connector corrosion.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Repair jamb harness",
+        "instruction": "Repair or replace broken conductors in the door jamb boot.",
+        "tools": [
+          "Solder kit",
+          "Heat shrink"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace door module",
+        "instruction": "Replace the driver door module if internal fault is confirmed.",
+        "tools": [
+          "Replacement module"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0155",
+      "U0140"
+    ],
+    "faq": [
+      {
+        "q": "Why does the code come and go?",
+        "a": "The door jamb harness flexes thousands of times — broken strands make intermittent contact."
+      }
+    ]
+  },
+  {
+    "code": "U0836",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Door Switch Module - Passenger",
+    "shortDescription": "Implausible data from the passenger door switch module.",
+    "fullDescription": "U0836 reports invalid passenger-door module data on the CAN/LIN network. Like its driver-side counterpart, the fault usually comes from flex damage in the door jamb, water ingress, or an internal module fault.\n\nThe passenger door module typically handles window, lock, and mirror commands on that side; loss of valid data disables those conveniences but rarely affects drivability.",
+    "severity": "low",
+    "safetyImpact": "Passenger window and lock convenience features may be lost; no drivability impact.",
+    "causes": [
+      {
+        "cause": "Door jamb harness break",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water intrusion into passenger door module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal passenger door module fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Passenger window inoperative from driver switch",
+      "Child-lock indicator wrong",
+      "U0836 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Live data flex test",
+        "instruction": "Wiggle door harness while viewing passenger door module status.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect module and harness",
+        "instruction": "Pull door panel, check for water damage and corrosion.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Repair or replace",
+        "instruction": "Repair harness or swap the passenger door module as required.",
+        "tools": [
+          "Solder kit",
+          "Replacement module"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0831",
+      "U0155"
+    ],
+    "faq": [
+      {
+        "q": "Does this fail state disable airbags?",
+        "a": "No — side airbags are on a separate safety network."
+      }
+    ]
+  },
+  {
+    "code": "U0841",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Door Switch Module - Rear Left",
+    "shortDescription": "Implausible rear-left door switch module data.",
+    "fullDescription": "U0841 sets when the BCM sees malformed or out-of-range data from the left-rear door module. The fault is almost always localized to that door — jamb harness, water intrusion, or the module itself — and does not affect vehicle drivability.\n\nOn vehicles without a dedicated rear-door module, this code can be set by a faulty door ajar switch reporting impossible state transitions to the BCM.",
+    "severity": "low",
+    "safetyImpact": "Rear door ajar warning and child-lock indication may be incorrect.",
+    "causes": [
+      {
+        "cause": "Faulty rear-left door ajar switch",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Jamb harness break on rear-left door",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Rear door module internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Dome light stays on",
+      "Door ajar chime",
+      "U0841 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Actuate door",
+        "instruction": "Cycle the rear-left door open and closed while watching live data.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace ajar switch",
+        "instruction": "If signal is implausible, replace the rear-left door ajar / latch-integrated switch.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0836",
+      "U0848"
+    ],
+    "faq": [
+      {
+        "q": "Will this drain the battery?",
+        "a": "Yes — a stuck door-ajar signal keeps interior lights on and can kill the battery overnight."
+      }
+    ]
+  },
+  {
+    "code": "U0848",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Door Switch Module - Rear Right",
+    "shortDescription": "Implausible rear-right door switch module data.",
+    "fullDescription": "U0848 is the right-rear counterpart of U0841. The BCM is seeing implausible data from the right-rear door switch/module, usually from a failed ajar switch or jamb harness break.\n\nDiagnosis and repair mirror the left-rear side.",
+    "severity": "low",
+    "safetyImpact": "Rear door ajar indication may be incorrect; minimal drivability impact.",
+    "causes": [
+      {
+        "cause": "Faulty rear-right door ajar switch",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Jamb harness break",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Rear door module internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Ajar warning stuck on",
+      "Dome light stays on",
+      "U0848 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test door switch",
+        "instruction": "Watch door status live as you cycle the door — note any missed transitions.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace switch or harness",
+        "instruction": "Replace faulty latch/ajar switch or repair jamb wiring.",
+        "tools": [
+          "Hand tools",
+          "Solder kit"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0841",
+      "U0836"
+    ],
+    "faq": [
+      {
+        "q": "Can I just unplug the switch to clear it?",
+        "a": "Unplugging sets a different code (missing module) — replace the switch instead."
+      }
+    ]
+  },
+  {
+    "code": "U0872",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Tire Pressure Monitor Module",
+    "shortDescription": "TPMS module is sending data that other modules cannot validate.",
+    "fullDescription": "U0872 indicates the receiving module (typically the BCM or instrument cluster) is getting malformed data from the TPMS control module. Common causes include a corrupted TPMS module configuration, damaged antenna, or failing sensors that confuse the controller.\n\nThe result is usually a TPMS warning light that cannot be cleared and pressure displays showing dashes or obviously wrong values.",
+    "severity": "medium",
+    "safetyImpact": "Driver loses reliable tire pressure monitoring, increasing risk of blowouts from underinflation.",
+    "causes": [
+      {
+        "cause": "TPMS module internal fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed or low-battery TPMS sensors confusing the module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged TPMS antenna/wiring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module not relearned after tire rotation",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "TPMS light steady or flashing",
+      "Tire pressure shows dashes",
+      "Wrong tire position highlighted",
+      "U0872 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan TPMS module directly",
+        "instruction": "Connect a TPMS-capable scanner and read sensor IDs and battery status for each wheel.",
+        "tools": [
+          "TPMS scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace weak sensors",
+        "instruction": "Replace any sensor below threshold battery or not responding.",
+        "tools": [
+          "Tire machine or valve-stem tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Relearn positions",
+        "instruction": "Perform the factory relearn procedure to pair sensors to their corners.",
+        "tools": [
+          "TPMS relearn tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace TPMS module",
+        "instruction": "If invalid data persists with good sensors, replace the TPMS control module.",
+        "tools": [
+          "Replacement module"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0429",
+      "C0750"
+    ],
+    "faq": [
+      {
+        "q": "Can cold weather cause this?",
+        "a": "Cold weather drops sensor battery voltage and can trigger transient U0872 — warm and retest before replacement."
+      }
+    ]
+  },
+  {
+    "code": "U0886",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Body Control Module B",
+    "shortDescription": "Secondary body control module is transmitting implausible data.",
+    "fullDescription": "Some vehicles run multiple body-control modules (BCM-A for front cabin, BCM-B for rear/cargo). U0886 indicates invalid data from BCM-B. Symptoms typically revolve around rear cabin features — power liftgate, rear HVAC controls, third-row power features.\n\nRoot causes match a primary BCM fault: bad ground, corrupted flash, CAN bus issues, or internal hardware failure.",
+    "severity": "medium",
+    "safetyImpact": "Rear lighting, liftgate, or convenience features may fail or behave erratically.",
+    "causes": [
+      {
+        "cause": "BCM-B internal fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded rear harness ground",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low battery voltage",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN wiring fault near rear of vehicle",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Power liftgate inoperative",
+      "Rear HVAC erratic",
+      "Rear courtesy lights misbehaving",
+      "U0886 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check voltages",
+        "instruction": "Verify battery voltage and BCM-B power/ground.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect CAN to BCM-B",
+        "instruction": "Check CAN pair continuity and termination at BCM-B connector.",
+        "tools": [
+          "Wiring diagram"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Reprogram or replace BCM-B",
+        "instruction": "Attempt reflash first; replace if hardware is confirmed bad.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "U0800",
+      "U0140"
+    ],
+    "faq": [
+      {
+        "q": "Is BCM-B user-serviceable?",
+        "a": "Replacement is DIY-doable but programming typically requires dealer-level tools."
+      }
+    ]
+  },
+  {
+    "code": "U0890",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Driver's Seat Control Module",
+    "shortDescription": "Driver seat module is sending implausible data on the bus.",
+    "fullDescription": "U0890 is set when the BCM or HVAC/climate module receives malformed data from the driver seat control module — heated/ventilated seat state, memory position, occupant classification flags. Causes are typically water intrusion under the seat, a crushed harness, or a damaged module from spilled drinks.\n\nBecause the driver seat module often feeds occupant classification to the SRS/airbag system on some platforms, clearing this code is important for airbag readiness.",
+    "severity": "medium",
+    "safetyImpact": "May impair memory seat, heating, ventilation, and on some vehicles airbag deployment logic.",
+    "causes": [
+      {
+        "cause": "Liquid spill into seat module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Crushed under-seat harness",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal seat module fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Blown seat circuit fuse",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Seat memory inoperative",
+      "Heated seat inoperative",
+      "Airbag light on (some platforms)",
+      "U0890 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect under seat",
+        "instruction": "Slide seat fully forward and back; check harness and module for damage or moisture.",
+        "tools": [
+          "Flashlight",
+          "Hand tools"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check connector",
+        "instruction": "Unplug and inspect the main seat connector for bent/corroded pins.",
+        "tools": [
+          "Connector pick"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace module",
+        "instruction": "Swap in known-good seat module; may require programming.",
+        "tools": [
+          "Replacement module"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0073",
+      "B0084"
+    ],
+    "faq": [
+      {
+        "q": "Why did a coffee spill kill my seat module?",
+        "a": "Sugar in drinks corrodes the circuit board; even a small spill can bridge traces and cause chronic faults."
+      }
+    ]
+  },
+  {
+    "code": "U0900",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Body Control Module A Mirror",
+    "shortDescription": "Mirror control data from the BCM is implausible.",
+    "fullDescription": "U0900 reports that the mirror portion of the BCM-A broadcast is invalid. Exterior mirror folding, heating, and memory features rely on this data; a fault disables those conveniences. Auto-dim and tilt-in-reverse functions may also be affected.\n\nIssues typically trace to a short inside the mirror assembly, a damaged door harness, or a corroded pin in the mirror connector.",
+    "severity": "low",
+    "safetyImpact": "Loss of power mirror adjust, heat, or tilt-in-reverse can reduce visibility.",
+    "causes": [
+      {
+        "cause": "Short inside mirror housing",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Door jamb harness damage",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal BCM fault",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Failed mirror switch assembly",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Mirror will not adjust",
+      "Mirror heat not working",
+      "Tilt-in-reverse inoperative",
+      "U0900 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command mirrors with scan tool",
+        "instruction": "Actuate mirror functions with bidirectional control to confirm fault.",
+        "tools": [
+          "Bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect mirror wiring",
+        "instruction": "Check door jamb harness and mirror connector for damage.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace mirror or switch",
+        "instruction": "Swap mirror assembly or switch as indicated.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0831",
+      "U0800"
+    ],
+    "faq": [
+      {
+        "q": "Why do both mirrors quit together?",
+        "a": "Both mirrors share a common driver circuit inside the BCM — one BCM failure stops both."
+      }
+    ]
+  },
+  {
+    "code": "U0920",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Front Control Module",
+    "shortDescription": "Front control module (FCM) data is implausible on the bus.",
+    "fullDescription": "U0920 is set when another controller receives implausible data from the Front Control Module — a module common on Chrysler/RAM platforms that drives headlights, horns, wipers, and cooling fan relays. Faults typically manifest as multi-circuit issues: e.g., wipers plus headlights plus horn simultaneously misbehaving.\n\nBecause the FCM lives in the front of the vehicle, it is exposed to water and road salt — corrosion is a frequent root cause.",
+    "severity": "medium",
+    "safetyImpact": "May lose headlights, wipers, or horn — all safety-critical functions.",
+    "causes": [
+      {
+        "cause": "Corroded FCM connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water intrusion into FCM",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal FCM fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN bus wiring damage near FCM",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Headlights, wipers, or horn inoperative",
+      "Cooling fans not running",
+      "Multiple warning lights",
+      "U0920 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Locate and inspect FCM",
+        "instruction": "Find the FCM (usually in the fuse/junction box area) and check for corrosion and water damage.",
+        "tools": [
+          "Flashlight",
+          "Hand tools"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Test FCM outputs",
+        "instruction": "Command outputs with a bidirectional scanner to see which circuits fail.",
+        "tools": [
+          "Bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace FCM",
+        "instruction": "Replace and program the FCM to the VIN.",
+        "tools": [
+          "Factory scan tool",
+          "Replacement FCM"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U0800",
+      "U0140"
+    ],
+    "faq": [
+      {
+        "q": "Can I seal the FCM instead of replacing it?",
+        "a": "Only as a temporary fix — once water has reached the circuit board, corrosion will continue."
+      }
+    ]
+  },
+  {
+    "code": "U0950",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Invalid Data Received",
+    "title": "Invalid Data Received From Remote Function Actuation",
+    "shortDescription": "RFA (keyless entry) module data is invalid.",
+    "fullDescription": "U0950 sets when the BCM receives implausible data from the Remote Function Actuation module — the controller that decodes key-fob commands and passive-entry requests. The result is usually intermittent or total loss of remote unlock, remote start, and passive entry.\n\nCauses include water damage to the RFA antenna/module (often under the driver seat or in the C-pillar), a failing antenna, or internal module fault.",
+    "severity": "low",
+    "safetyImpact": "Convenience only — keyless entry may not work, but physical key still operates the vehicle.",
+    "causes": [
+      {
+        "cause": "Water damage to RFA module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Antenna wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal module fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Weak key-fob battery confusing module",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Remote unlock intermittent",
+      "Passive entry fails",
+      "Remote start fails",
+      "U0950 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace fob batteries",
+        "instruction": "Rule out weak batteries first — cheapest possible fix.",
+        "tools": [
+          "Coin cell batteries"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Locate RFA module",
+        "instruction": "Check under driver seat or in C-pillar for water damage.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace RFA module",
+        "instruction": "Replace and program to the VIN; reprogram keyfobs.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0800",
+      "U0155"
+    ],
+    "faq": [
+      {
+        "q": "Why do my fobs work some days and not others?",
+        "a": "Water-damaged modules are temperature sensitive — they may work cold and fail when hot."
+      }
+    ]
+  },
+  {
+    "code": "U1130",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Honda - ECM/PCM Data Link Failure",
+    "shortDescription": "Honda-specific loss of communication between ECM/PCM and other modules.",
+    "fullDescription": "U1130 on Honda vehicles indicates the engine control module has lost serial communication with the rest of the network. Honda uses a proprietary K-line and F-CAN blend; U1130 typically points to a broken or shorted F-CAN pair or a faulty ECM ground.\n\nAffected systems include the gauge cluster, VSA/ABS, and automatic transmission, all of which rely on engine RPM and torque data from the ECM.",
+    "severity": "high",
+    "safetyImpact": "Loss of gauge cluster data, potential stall, ABS and stability control disabled.",
+    "causes": [
+      {
+        "cause": "Broken F-CAN wire to ECM",
+        "likelihood": "high"
+      },
+      {
+        "cause": "ECM ground corroded",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal ECM fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Incorrect ECM programming after replacement",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Speedometer/tach not working",
+      "VSA light on",
+      "Shift-lock stuck",
+      "U1130 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check DLC CAN pins",
+        "instruction": "Measure resistance between DLC pins 6 and 14 — should be ~60 ohms.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect ECM connectors",
+        "instruction": "Check ECM main connector for bent pins and water.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Verify ECM ground",
+        "instruction": "Confirm ECM ground on transmission/engine has less than 0.1 ohm to battery negative.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace/reprogram ECM",
+        "instruction": "If diagnostics confirm, replace ECM and flash with Honda HDS.",
+        "tools": [
+          "Honda HDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "U0100",
+      "U1135"
+    ],
+    "faq": [
+      {
+        "q": "Is this the same as a dealer-only repair?",
+        "a": "ECM flashing requires HDS, but wiring and ground repair can be done independently."
+      }
+    ]
+  },
+  {
+    "code": "U1135",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Honda - Ignition Signal Communication Error",
+    "shortDescription": "Honda network fault related to ignition/crank signal broadcast.",
+    "fullDescription": "U1135 on Honda indicates the ignition/run signal broadcast from the BCM or ignition switch module to the ECM/PCM is missing or implausible. The code usually appears alongside no-start, stall, or intermittent running conditions.\n\nTypical causes include a worn ignition switch, corroded under-dash harness, or a failed immobilizer/BCM.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start or stall in traffic.",
+    "causes": [
+      {
+        "cause": "Worn ignition switch",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded under-dash harness",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed BCM/immobilizer",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Intermittent no-start",
+      "Stall",
+      "Security light",
+      "U1135 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cycle key and watch data",
+        "instruction": "Cycle the key while watching ignition-run status on a scan tool.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace ignition switch",
+        "instruction": "If signal drops during cycle, replace the electrical portion of the ignition switch.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "BCM reprogramming",
+        "instruction": "If switch is good, reflash or replace BCM.",
+        "tools": [
+          "Honda HDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U1130",
+      "U0801"
+    ],
+    "faq": [
+      {
+        "q": "Will a jiggle of the key fix it temporarily?",
+        "a": "Yes — but that's a clear sign the switch is failing and should be replaced."
+      }
+    ]
+  },
+  {
+    "code": "U1148",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Honda - SRS/Airbag Module Communication Error",
+    "shortDescription": "Honda SRS module not communicating correctly on the bus.",
+    "fullDescription": "U1148 indicates the Honda SRS/airbag module is not communicating or is sending invalid data. Because SRS is safety-critical, U1148 usually triggers an airbag warning lamp and disables deployment in some fault modes.\n\nRoot causes are typically under-seat SRS connectors disturbed during service, corrosion, or internal SRS module fault.",
+    "severity": "high",
+    "safetyImpact": "Airbags may not deploy in a crash.",
+    "causes": [
+      {
+        "cause": "Under-seat SRS connector disturbed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded SRS harness",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal SRS module fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Airbag warning lamp steady",
+      "SRS inoperative",
+      "U1148 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat under-seat connectors",
+        "instruction": "Disconnect battery, wait 5 minutes, then reseat yellow SRS connectors under both front seats.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clear and test",
+        "instruction": "Clear codes with HDS and road-test.",
+        "tools": [
+          "Honda HDS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace SRS module",
+        "instruction": "Replace if a hard fault is found; requires coding to VIN.",
+        "tools": [
+          "Honda HDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0151",
+      "B0001"
+    ],
+    "faq": [
+      {
+        "q": "Is it safe to drive?",
+        "a": "Only short distances — with SRS disabled, airbags may not deploy."
+      }
+    ]
+  },
+  {
+    "code": "U1160",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Honda - Gauge Cluster Communication Error",
+    "shortDescription": "Honda instrument cluster not communicating.",
+    "fullDescription": "U1160 indicates the Honda instrument cluster (gauge assembly) has lost or corrupted communication with the rest of the network. Typical symptoms include blank gauges, stuck mileage, or warning lights flashing erratically.\n\nCauses range from a corroded dash connector to an internal cluster fault (a well-known issue on older Accord/Civic models where cold-solder joints fail with heat cycling).",
+    "severity": "medium",
+    "safetyImpact": "Driver loses speed, RPM, and warning indications.",
+    "causes": [
+      {
+        "cause": "Failed cold-solder joints in cluster",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded dash connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN wiring to cluster damaged",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Gauges blank",
+      "Warning lights flicker",
+      "Odometer stuck",
+      "U1160 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check cluster power",
+        "instruction": "Verify battery and ignition power at the cluster connector.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Reflow or replace cluster",
+        "instruction": "Replace the cluster or have the circuit board reflowed by a specialty shop.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U0155",
+      "U1130"
+    ],
+    "faq": [
+      {
+        "q": "Can I swap a junkyard cluster?",
+        "a": "Yes, but mileage will not transfer without a cluster programmer."
+      }
+    ]
+  },
+  {
+    "code": "U1150",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Mazda - Configuration Mismatch",
+    "shortDescription": "Mazda module configuration data does not match the vehicle.",
+    "fullDescription": "U1150 on Mazda indicates a module (often the BCM or TCM) holds configuration/coding data that does not match the VIN or option content. It typically shows up after module replacement or after a software update was interrupted.\n\nThe fix is re-running the Mazda Modular Diagnostic System configuration procedure — no wiring or hardware fault required.",
+    "severity": "medium",
+    "safetyImpact": "Affected module's features may be disabled until configuration completes.",
+    "causes": [
+      {
+        "cause": "Module replaced without VIN programming",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Interrupted software update",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wrong module part number installed",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Feature(s) missing (e.g., keyless, traction)",
+      "Dash warning lights",
+      "U1150 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect IDS",
+        "instruction": "Connect Mazda MDARS/IDS and query the offending module's configuration.",
+        "tools": [
+          "Mazda IDS/MDARS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Run as-built reprogram",
+        "instruction": "Apply the factory as-built file to the module.",
+        "tools": [
+          "IDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U2100-SHARED"
+    ],
+    "faq": [
+      {
+        "q": "Is there a generic alternative to IDS?",
+        "a": "Only a few high-end aftermarket tools can perform Mazda as-built programming."
+      }
+    ]
+  },
+  {
+    "code": "U1156",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Mazda - Security Access Denied",
+    "shortDescription": "Mazda scan tool security handshake failed.",
+    "fullDescription": "U1156 sets when a scan tool or replacement module fails the Mazda security access challenge. Usually this happens when an aftermarket tool lacks Mazda security licensing, or when an attempted programming session was interrupted.\n\nThe code does not indicate a hardware fault — resolve by using proper Mazda IDS/MDARS with valid security credentials.",
+    "severity": "info",
+    "safetyImpact": "No drivability impact; indicates programming/security issue only.",
+    "causes": [
+      {
+        "cause": "Aftermarket tool without security license",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Interrupted flash session",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Incorrect VIN entered during programming",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Programming session aborts",
+      "U1156 stored",
+      "Module in recovery mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use licensed tool",
+        "instruction": "Retry with Mazda MDARS or a tool with proper security credentials.",
+        "tools": [
+          "Mazda MDARS"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Recover module",
+        "instruction": "If module is bricked, use IDS recovery routine.",
+        "tools": [
+          "IDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U1150"
+    ],
+    "faq": [
+      {
+        "q": "Can I clear this with a generic OBD-II reader?",
+        "a": "No — you must complete a successful security-authenticated session to clear it."
+      }
+    ]
+  },
+  {
+    "code": "U1180",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Mazda - TCM Communication Malfunction",
+    "shortDescription": "Mazda transmission control module communication fault.",
+    "fullDescription": "U1180 on Mazda indicates the TCM has lost or is sending invalid data on the powertrain CAN. Typical symptoms are harsh shifts, failure to shift out of limp mode, and a warning lamp in the cluster.\n\nCauses typically include the common Mazda TCM connector corrosion (well documented on CX-5/CX-9), CAN wiring damage, or internal TCM fault.",
+    "severity": "high",
+    "safetyImpact": "Transmission may remain in limp mode, limiting speed and acceleration.",
+    "causes": [
+      {
+        "cause": "Corroded TCM connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal TCM fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Damaged CAN wiring to TCM",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Harsh shifts",
+      "Transmission limp mode",
+      "Check engine + AT light",
+      "U1180 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect TCM connector",
+        "instruction": "Remove TCM connector and check for the known corrosion issue on Mazda platforms.",
+        "tools": [
+          "Connector pick"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean and seal",
+        "instruction": "Clean connector and apply dielectric grease; reseat and retest.",
+        "tools": [
+          "Contact cleaner",
+          "Dielectric grease"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace TCM",
+        "instruction": "If internal fault is confirmed, replace and program with IDS.",
+        "tools": [
+          "Mazda IDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0101",
+      "P0700"
+    ],
+    "faq": [
+      {
+        "q": "Is the connector corrosion covered under warranty?",
+        "a": "Mazda issued TSBs for specific model/year combinations — check with your dealer."
+      }
+    ]
+  },
+  {
+    "code": "U1259",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Mazda - High-Speed CAN Communication Fault",
+    "shortDescription": "Mazda high-speed CAN bus general fault.",
+    "fullDescription": "U1259 on Mazda is a general high-speed CAN bus malfunction code. It accompanies widespread U-codes and indicates the bus is shorted, open, or missing termination.\n\nStart diagnosis at the DLC: 60 ohms between CAN-H and CAN-L means bus and termination are good; other readings identify the fault type.",
+    "severity": "high",
+    "safetyImpact": "Widespread loss of vehicle communication, multiple systems disabled.",
+    "causes": [
+      {
+        "cause": "CAN bus short to ground or power",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Broken CAN wire",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed termination resistor in a module",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Multiple warning lights",
+      "Modules not communicating",
+      "Engine may not start",
+      "U1259 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure DLC resistance",
+        "instruction": "Key off, measure between pins 6 and 14 — should be 60 ohms.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Disconnect modules",
+        "instruction": "Unplug modules one at a time while watching bus voltage to isolate the faulty one.",
+        "tools": [
+          "Wiring diagram"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Repair wiring or module",
+        "instruction": "Repair damaged CAN wiring or replace the offending module.",
+        "tools": [
+          "Solder kit"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "U0001",
+      "U0100"
+    ],
+    "faq": [
+      {
+        "q": "Can one bad module kill the whole bus?",
+        "a": "Yes — a module with an internal short pulls the CAN pair to ground and silences every controller."
+      }
+    ]
+  },
+  {
+    "code": "U1234",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Hyundai - Vehicle Identification Mismatch",
+    "shortDescription": "Hyundai module reports a VIN mismatch.",
+    "fullDescription": "U1234 on Hyundai indicates two modules disagree about the VIN programmed into them. This commonly occurs after a used module is installed or after a software flash went wrong.\n\nThe fix is to rewrite the VIN in the mismatched module using GDS/KDS. No hardware repair is needed.",
+    "severity": "medium",
+    "safetyImpact": "Some features (immobilizer, audio entitlements) may be disabled until resolved.",
+    "causes": [
+      {
+        "cause": "Used module installed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Interrupted flash",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Typo during VIN write",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Immobilizer light",
+      "Infotainment entitlements lost",
+      "U1234 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect GDS/KDS",
+        "instruction": "Connect Hyundai scan tool and read VIN from each module.",
+        "tools": [
+          "Hyundai GDS/KDS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Write VIN",
+        "instruction": "Use VIN-write function to align all modules.",
+        "tools": [
+          "GDS/KDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U1300-HYUNDAI"
+    ],
+    "faq": [
+      {
+        "q": "Can I buy a used module and program it?",
+        "a": "Only if the donor module supports VIN rewrite — otherwise you must buy new."
+      }
+    ]
+  },
+  {
+    "code": "U1300-HYUNDAI",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Hyundai - CAN Bus Circuit Low",
+    "shortDescription": "Hyundai CAN bus voltage is below the valid range.",
+    "fullDescription": "U1300 on Hyundai indicates the CAN bus is reading abnormally low voltage — often from a short to ground on the CAN-H line or a failed module pulling the bus down. This leaves many modules unable to communicate.\n\nDiagnose by measuring CAN-H and CAN-L at the DLC while systematically disconnecting modules.",
+    "severity": "high",
+    "safetyImpact": "Widespread module communication loss; may cause no-start.",
+    "causes": [
+      {
+        "cause": "CAN-H shorted to ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed module pulling bus low",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Damaged wiring harness",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Multiple U-codes",
+      "No communication with scan tool",
+      "Warning lights"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check DLC voltages",
+        "instruction": "Key on, measure CAN-H (~3.5V) and CAN-L (~1.5V) at the DLC.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Isolate faulty module",
+        "instruction": "Disconnect modules one at a time; bus voltage normalizes when faulty module is unplugged.",
+        "tools": [
+          "Wiring diagram"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Repair or replace",
+        "instruction": "Repair harness short or replace faulty module.",
+        "tools": [
+          "Solder kit"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U0001",
+      "U1400"
+    ],
+    "faq": [
+      {
+        "q": "Why does my scanner lose connection sometimes?",
+        "a": "Intermittent short drops bus voltage enough that the scan tool handshake fails."
+      }
+    ]
+  },
+  {
+    "code": "U1400",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Hyundai - CAN Bus Circuit High",
+    "shortDescription": "Hyundai CAN bus voltage is above the valid range.",
+    "fullDescription": "U1400 indicates the CAN bus is reading high — typically CAN-H shorted to 12V or a module with an internal pull-up defect. All modules downstream of the fault lose communication.\n\nStart at the DLC, check voltages, and isolate the offending module by selective disconnection.",
+    "severity": "high",
+    "safetyImpact": "Widespread communication loss, potential no-start.",
+    "causes": [
+      {
+        "cause": "CAN-H shorted to 12V",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed module internal pull-up",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Damaged harness near fuse box",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Multiple U-codes",
+      "Scan tool intermittent",
+      "Dash warning lights"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure CAN voltages",
+        "instruction": "Look for CAN-H above 4V with key on — indicates short to power.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect harness near power",
+        "instruction": "Check routing near fuse/junction boxes for chafed insulation.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Repair harness",
+        "instruction": "Repair short and verify with DLC voltage readings.",
+        "tools": [
+          "Solder kit"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U1300-HYUNDAI",
+      "U0001"
+    ],
+    "faq": [
+      {
+        "q": "Can a blown fuse cause this?",
+        "a": "No — a fuse blowing usually kills a module, not the bus."
+      }
+    ]
+  },
+  {
+    "code": "U1600-KIA",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Kia - Serial Communication Link Failure",
+    "shortDescription": "Kia serial/CAN link error between modules.",
+    "fullDescription": "U1600 on Kia indicates a serial communication link failure between two modules — typically BCM and cluster or BCM and smart-key unit. Kia platforms are known for moisture-related BCM failures that trigger this code.\n\nInspect the BCM first, then the LIN/CAN harness, before replacing modules.",
+    "severity": "medium",
+    "safetyImpact": "Warning lamps, door-ajar, and keyless entry may malfunction.",
+    "causes": [
+      {
+        "cause": "Moisture-damaged BCM",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Broken LIN wire",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal smart-key unit fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Dome light stays on",
+      "Smart-key intermittent",
+      "U1600 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan modules",
+        "instruction": "Use KDS to scan BCM and related modules.",
+        "tools": [
+          "Kia KDS"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect BCM area",
+        "instruction": "Check under-dash for water stains near BCM.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace BCM",
+        "instruction": "Replace BCM and program to VIN.",
+        "tools": [
+          "Kia KDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U1700-KIA",
+      "U0155"
+    ],
+    "faq": [
+      {
+        "q": "Is this covered under extended warranty?",
+        "a": "Some Kia platforms had BCM water-intrusion campaigns — check with your dealer by VIN."
+      }
+    ]
+  },
+  {
+    "code": "U1700-KIA",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Kia - Smart Key Module Communication Error",
+    "shortDescription": "Kia smart-key unit not communicating correctly.",
+    "fullDescription": "U1700 on Kia indicates loss of communication with the Smart Key Unit (SMK). Symptoms include failure of push-button start, passive entry, and immobilizer rejection.\n\nCommon causes are antenna faults, water damage, or SMK internal failure.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may fail to start, stranding driver.",
+    "causes": [
+      {
+        "cause": "SMK internal fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "SMK antenna damage",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Water damage to SMK",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Push-button start fails",
+      "Passive entry fails",
+      "Smart-key warning lamp",
+      "U1700 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try backup start",
+        "instruction": "Use the emergency fob-on-button method to confirm fob is working.",
+        "tools": [
+          "None"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect SMK location",
+        "instruction": "Check SMK in dash for water damage and connector seating.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace SMK",
+        "instruction": "Replace and program via Kia KDS.",
+        "tools": [
+          "KDS"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U1600-KIA",
+      "U0801"
+    ],
+    "faq": [
+      {
+        "q": "Why does the car start sometimes but not others?",
+        "a": "Water-damaged SMKs are temperature-sensitive — they work cold and fail when heat-soaked."
+      }
+    ]
+  },
+  {
+    "code": "U1100-SUBARU",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Subaru - ECM CAN Communication Error",
+    "shortDescription": "Subaru ECM has lost CAN communication with the vehicle.",
+    "fullDescription": "U1100 on Subaru indicates the ECM is not receiving or not sending valid CAN messages. Subaru platforms are prone to ground strap corrosion on the engine that causes this symptom.\n\nAddress grounds first, then check CAN pair integrity, before condemning the ECM.",
+    "severity": "high",
+    "safetyImpact": "Engine may stall, ABS/stability disabled.",
+    "causes": [
+      {
+        "cause": "Corroded engine ground strap",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Broken CAN wire",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal ECM fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Stall",
+      "Multiple warning lights",
+      "ABS/AWD lights",
+      "U1100 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean engine grounds",
+        "instruction": "Remove and clean ground straps on engine/chassis; retorque to spec.",
+        "tools": [
+          "Wire brush",
+          "Torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Verify CAN continuity",
+        "instruction": "Check CAN pair continuity from ECM to DLC.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace ECM",
+        "instruction": "Replace and reflash with Subaru SSMIV.",
+        "tools": [
+          "Subaru SSMIV"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "U1200-SUBARU",
+      "U0100"
+    ],
+    "faq": [
+      {
+        "q": "Which ground strap is the common culprit?",
+        "a": "The engine-to-chassis strap near the intake manifold — inspect first."
+      }
+    ]
+  },
+  {
+    "code": "U1200-SUBARU",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "CAN Bus Communication",
+    "title": "Subaru - TCM CAN Communication Error",
+    "shortDescription": "Subaru TCM has lost CAN communication.",
+    "fullDescription": "U1200 on Subaru indicates TCM CAN communication failure — the transmission can go into limp mode and the gear indicator may blank. On CVT-equipped Subarus, harness connectors on the TCM are a common failure point.\n\nInspect the TCM harness and connectors before replacing modules.",
+    "severity": "high",
+    "safetyImpact": "Transmission in limp mode; reduced speed capability.",
+    "causes": [
+      {
+        "cause": "Corroded TCM connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Broken CAN wire",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal TCM fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Transmission limp mode",
+      "Gear indicator blank",
+      "AT oil temp light",
+      "U1200 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect TCM connector",
+        "instruction": "Remove TCM connector, check for corrosion, clean and reseat.",
+        "tools": [
+          "Connector pick"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check CAN continuity",
+        "instruction": "Test CAN pair to TCM from DLC.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace TCM",
+        "instruction": "Replace and reflash via SSMIV.",
+        "tools": [
+          "Subaru SSMIV"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U1100-SUBARU",
+      "U0101"
+    ],
+    "faq": [
+      {
+        "q": "Does the CVT need relearning after TCM replacement?",
+        "a": "Yes — Subaru's CVT learn procedure must be run after any TCM replacement."
+      }
+    ]
+  },
+  {
+    "code": "U2012",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Communication Bus A Signal Invalid",
+    "shortDescription": "Bus A is transmitting but signal content is invalid.",
+    "fullDescription": "U2012 sets when the primary (A) communication bus is electrically alive but the message content is not valid — wrong length, bad checksum, or unknown identifier. This points to a misconfigured or malfunctioning transmitter rather than a physical wiring fault.\n\nCommon root causes include a module with corrupted flash or a mismatched part number installed.",
+    "severity": "medium",
+    "safetyImpact": "Various module features may be disabled; no general drivability loss.",
+    "causes": [
+      {
+        "cause": "Module with corrupted software",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wrong module part installed",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Gateway module fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Feature loss",
+      "Dash warnings",
+      "U2012 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify offender",
+        "instruction": "Scan all modules; the one reporting U2012 or the one silent is the target.",
+        "tools": [
+          "Full-system scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Reflash module",
+        "instruction": "Flash to latest calibration with factory tool.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "U2100-SHARED"
+    ],
+    "faq": [
+      {
+        "q": "Will clearing codes fix it?",
+        "a": "Only briefly — the code returns until the module is reflashed."
+      }
+    ]
+  },
+  {
+    "code": "U2050",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Not Programmed",
+    "shortDescription": "A module is installed but has no valid configuration file.",
+    "fullDescription": "U2050 indicates a module has been installed without the required configuration data. The module is alive and on the bus but cannot operate until the correct configuration is programmed.\n\nThis is usually seen after replacing a module with a blank unit.",
+    "severity": "medium",
+    "safetyImpact": "The unconfigured module's features are disabled until programming is complete.",
+    "causes": [
+      {
+        "cause": "Blank replacement module installed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Interrupted initial programming",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Feature loss",
+      "Warning lights",
+      "U2050 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Program module",
+        "instruction": "Use factory tool to load as-built configuration.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U2100-SHARED",
+      "U2500"
+    ],
+    "faq": [
+      {
+        "q": "Can independent shops program modules?",
+        "a": "Many can with J2534 pass-thru tools and factory subscriptions."
+      }
+    ]
+  },
+  {
+    "code": "U2100-SHARED",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Initial CAN Bus Configuration Failure",
+    "shortDescription": "Modules cannot agree on the initial CAN configuration on start-up.",
+    "fullDescription": "U2100 indicates the initial CAN handshake failed at key-on — modules could not enumerate or register with the gateway. The result is that no useful bus communication occurs.\n\nThis is typically a gateway module fault, a termination problem, or a severe wiring short.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start or run; widespread module failures.",
+    "causes": [
+      {
+        "cause": "Gateway module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Missing terminating resistor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Severe CAN short",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "No-start",
+      "Multiple modules offline",
+      "U2100 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check DLC termination",
+        "instruction": "Measure 60 ohms across CAN-H/CAN-L at the DLC.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect gateway",
+        "instruction": "Check gateway power, grounds, and connectors.",
+        "tools": [
+          "Wiring diagram"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace gateway",
+        "instruction": "Replace and program if gateway is confirmed bad.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "U0001",
+      "U2012"
+    ],
+    "faq": [
+      {
+        "q": "Is there a reset procedure?",
+        "a": "Many vehicles require a full power-down (battery disconnect 10+ minutes) to re-enumerate the bus."
+      }
+    ]
+  },
+  {
+    "code": "U2102",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Incompatible",
+    "shortDescription": "Module configuration does not match expected vehicle options.",
+    "fullDescription": "U2102 sets when a module's stored configuration does not match the vehicle's option content as broadcast by the gateway. Example: a module flagged for AWD is installed in a 2WD vehicle.\n\nReprogram with correct as-built data to resolve.",
+    "severity": "medium",
+    "safetyImpact": "Affected features may behave incorrectly.",
+    "causes": [
+      {
+        "cause": "Incorrect configuration loaded",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wrong part number installed",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Feature misbehavior",
+      "Warning lights",
+      "U2102 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify part number",
+        "instruction": "Confirm installed module part number matches VIN requirement.",
+        "tools": [
+          "Parts catalog"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Reprogram",
+        "instruction": "Load correct as-built file.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U2050",
+      "U2100-SHARED"
+    ],
+    "faq": [
+      {
+        "q": "Will any module from a junkyard work?",
+        "a": "Only if part number matches and it supports reprogramming."
+      }
+    ]
+  },
+  {
+    "code": "U2103",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Incorrect Number of Modules",
+    "shortDescription": "Gateway sees a different number of modules than expected.",
+    "fullDescription": "U2103 indicates the gateway's expected module count does not match actual modules on the bus — either extra or missing. After service (removal/addition) this is expected; otherwise it points to a module that has dropped off the bus.\n\nScan all modules, find the missing one, and restore communication.",
+    "severity": "medium",
+    "safetyImpact": "Features corresponding to missing modules are lost.",
+    "causes": [
+      {
+        "cause": "Module lost power/ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "CAN wire broken to a module",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module physically removed",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Feature loss",
+      "Warning lights",
+      "U2103 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Full scan",
+        "instruction": "Run full-system scan to see which module is missing.",
+        "tools": [
+          "Full-system scanner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Restore comms",
+        "instruction": "Check power, ground, and CAN wires for the missing module.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U2100-SHARED"
+    ],
+    "faq": [
+      {
+        "q": "Can I disable a module to stop this code?",
+        "a": "Only via as-built change; simply unplugging keeps the code set."
+      }
+    ]
+  },
+  {
+    "code": "U2109",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Software Incompatible",
+    "shortDescription": "Module software version is not compatible with rest of vehicle.",
+    "fullDescription": "U2109 sets when a module's software version is below (or above) the level expected by the gateway. Common after installing a used module or after a partial flash that only updated some modules.\n\nResolve by flashing all relevant modules to their current TSB-recommended levels.",
+    "severity": "medium",
+    "safetyImpact": "Affected features may malfunction.",
+    "causes": [
+      {
+        "cause": "Outdated module software",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Mismatched software across modules",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Warning lights",
+      "Intermittent feature loss",
+      "U2109 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull software versions",
+        "instruction": "Read software part numbers from each module.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Reflash",
+        "instruction": "Flash to latest TSB-mandated calibration.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U2050",
+      "U2102"
+    ],
+    "faq": [
+      {
+        "q": "Is reflashing safe?",
+        "a": "If done with good battery support and factory tools, yes — it's routine service."
+      }
+    ]
+  },
+  {
+    "code": "U2110",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Programming Incomplete",
+    "shortDescription": "Module reflash process was interrupted.",
+    "fullDescription": "U2110 indicates the last programming session did not complete successfully. The module may be in recovery mode or have partial flash data. Retry the flash with good battery support (maintainer connected).\n\nDo not drive the vehicle until the flash is completed — the module may be non-functional.",
+    "severity": "high",
+    "safetyImpact": "Partially programmed module may cause multiple feature failures.",
+    "causes": [
+      {
+        "cause": "Battery voltage dropped during flash",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Scan tool disconnected during flash",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Flash file corrupt",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "No-start or limp mode",
+      "Feature loss",
+      "U2110 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect battery maintainer",
+        "instruction": "Attach a programming-grade maintainer (14V minimum).",
+        "tools": [
+          "Battery maintainer"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Retry programming",
+        "instruction": "Restart the flash session.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U2109",
+      "U2050"
+    ],
+    "faq": [
+      {
+        "q": "Can a module be bricked?",
+        "a": "Rarely — most modern modules have recovery modes that survive a failed flash."
+      }
+    ]
+  },
+  {
+    "code": "U2114",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Control Module Configuration Data Invalid",
+    "shortDescription": "Stored configuration data in module is corrupt.",
+    "fullDescription": "U2114 indicates the module's EEPROM or flash stores data that fails checksum validation. This can be caused by electrical disturbances, failing memory, or a previous bad flash.\n\nRecover by reprogramming; if recurrent, replace the module.",
+    "severity": "medium",
+    "safetyImpact": "Module features disabled until recovered.",
+    "causes": [
+      {
+        "cause": "Previous bad flash",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failing internal memory",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Voltage spike during operation",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Warning lights",
+      "Feature loss",
+      "U2114 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reprogram",
+        "instruction": "Reload as-built configuration.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace if recurrent",
+        "instruction": "If the code returns within days, the memory is failing — replace the module.",
+        "tools": [
+          "Replacement module"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U2110"
+    ],
+    "faq": [
+      {
+        "q": "Can a voltage spike cause this?",
+        "a": "Yes — jump-starting with reversed polarity is a classic cause."
+      }
+    ]
+  },
+  {
+    "code": "U2128",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Restraint Control Module Configuration Fault",
+    "shortDescription": "Airbag/SRS configuration is invalid.",
+    "fullDescription": "U2128 indicates the Restraint Control Module's configuration data is missing or invalid. SRS features including airbags and seatbelt pretensioners may be disabled for safety.\n\nMust be corrected by factory-level programming before vehicle is considered safe to operate.",
+    "severity": "high",
+    "safetyImpact": "Airbags may not deploy correctly in a crash.",
+    "causes": [
+      {
+        "cause": "RCM replaced without configuration",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Configuration corruption",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Airbag warning lamp",
+      "SRS disabled",
+      "U2128 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Configure RCM",
+        "instruction": "Use factory tool to write SRS as-built data.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0151",
+      "B0001"
+    ],
+    "faq": [
+      {
+        "q": "Can this be cleared with a generic tool?",
+        "a": "No — SRS programming requires manufacturer-specific security access."
+      }
+    ]
+  },
+  {
+    "code": "U2149",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Bus Communication with Instrument Cluster Lost",
+    "shortDescription": "Cluster has dropped off the communication bus.",
+    "fullDescription": "U2149 indicates the instrument cluster is no longer responding on the network bus. Symptoms include blank gauges, no warning lamps, or mileage frozen at last value.\n\nCauses include cluster power/ground issues, CAN wiring to cluster, or internal cluster fault.",
+    "severity": "medium",
+    "safetyImpact": "Driver loses speed, RPM, and warnings.",
+    "causes": [
+      {
+        "cause": "Cluster fuse blown",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal cluster fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN wiring to cluster damaged",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Blank gauges",
+      "No warning lights",
+      "Odometer stuck",
+      "U2149 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check fuses",
+        "instruction": "Verify cluster fuses are intact.",
+        "tools": [
+          "Fuse tester"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Test cluster",
+        "instruction": "Check cluster power/ground and CAN.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace cluster",
+        "instruction": "Replace and program cluster.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0155",
+      "U1160"
+    ],
+    "faq": [
+      {
+        "q": "Will a used cluster work?",
+        "a": "Yes, but mileage will show the donor's unless reprogrammed."
+      }
+    ]
+  },
+  {
+    "code": "U2184",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Vehicle Speed Sensor",
+    "shortDescription": "Speed sensor data on bus is implausible.",
+    "fullDescription": "U2184 indicates a module is receiving vehicle speed data that does not match expected bounds — either impossibly high, negative, or flatlined when the vehicle is moving. The source is typically the ABS module broadcasting wheel-speed-derived vehicle speed.\n\nCheck wheel speed sensors and ABS module first.",
+    "severity": "medium",
+    "safetyImpact": "Speedometer, cruise control, and ABS may be affected.",
+    "causes": [
+      {
+        "cause": "Failed wheel speed sensor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "ABS module internal fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN noise from poor ground",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Speedometer erratic",
+      "Cruise control inoperative",
+      "ABS light",
+      "U2184 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check wheel speed sensors",
+        "instruction": "Scan for ABS codes and replace failed sensor.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect ABS module",
+        "instruction": "Test ABS module grounds and CAN connections.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0035",
+      "U0121"
+    ],
+    "faq": [
+      {
+        "q": "Does bad brakes cause this?",
+        "a": "No — but dirty tone rings that the sensor reads will cause erratic data."
+      }
+    ]
+  },
+  {
+    "code": "U2192",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Engine Control Module",
+    "shortDescription": "ECM broadcast data is outside valid range.",
+    "fullDescription": "U2192 indicates a receiving module is seeing implausible ECM data — RPM, torque request, coolant temp, or similar. Often accompanies other drivability faults.\n\nDiagnose ECM power/ground and wiring before condemning the module.",
+    "severity": "medium",
+    "safetyImpact": "Other modules may derate performance based on bad data.",
+    "causes": [
+      {
+        "cause": "ECM ground issue",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal ECM fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN noise",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Reduced power",
+      "Cluster misreads",
+      "U2192 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test ECM grounds",
+        "instruction": "Less than 0.1 ohm from ECM ground to battery negative.",
+        "tools": [
+          "Multimeter"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope CAN",
+        "instruction": "Look at CAN signal quality near ECM.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace ECM",
+        "instruction": "Replace and reflash if confirmed internal fault.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U0100",
+      "U2184"
+    ],
+    "faq": [
+      {
+        "q": "Is this always ECM's fault?",
+        "a": "No — bad grounds and CAN noise can make a good ECM look bad."
+      }
+    ]
+  },
+  {
+    "code": "U2198",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Occupant Classification Module",
+    "shortDescription": "OCS data for front passenger seat is implausible.",
+    "fullDescription": "U2198 indicates the Occupant Classification System (seat weight/pressure sensor) is sending data outside expected bounds. SRS module then cannot determine whether to enable the passenger airbag.\n\nLiquid spills and physical damage to the seat mat are the most common causes.",
+    "severity": "high",
+    "safetyImpact": "Passenger airbag may be disabled or deploy incorrectly.",
+    "causes": [
+      {
+        "cause": "Damaged OCS seat mat",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Liquid in seat cushion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "OCS module internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Passenger airbag OFF light stuck",
+      "Airbag warning lamp",
+      "U2198 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Calibrate OCS",
+        "instruction": "Run OCS calibration with empty seat and factory tool.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace seat mat",
+        "instruction": "If calibration fails, replace the seat weight sensor mat.",
+        "tools": [
+          "Seat disassembly tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "U0073",
+      "B0084"
+    ],
+    "faq": [
+      {
+        "q": "Can I disable the OCS?",
+        "a": "No — it's a federally mandated safety system."
+      }
+    ]
+  },
+  {
+    "code": "U2202",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Steering Wheel Control Module",
+    "shortDescription": "Steering wheel control module data implausible.",
+    "fullDescription": "U2202 indicates implausible data from the steering wheel control module (clockspring/SWCM) — typically button state or cruise request stuck on. The clockspring is a known wear item and a common cause.\n\nReplacing the clockspring usually clears the code.",
+    "severity": "medium",
+    "safetyImpact": "Cruise control and steering-wheel buttons may malfunction; horn and airbag connections share the clockspring.",
+    "causes": [
+      {
+        "cause": "Worn clockspring",
+        "likelihood": "high"
+      },
+      {
+        "cause": "SWCM internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Buttons stuck or inoperative",
+      "Horn issues",
+      "Airbag light possible",
+      "U2202 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test buttons",
+        "instruction": "Scan live SWCM data while pressing each button.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace clockspring",
+        "instruction": "Replace clockspring — airbag must be disabled first.",
+        "tools": [
+          "Torque wrench"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0428",
+      "B1325"
+    ],
+    "faq": [
+      {
+        "q": "Do I need to recalibrate steering angle after clockspring?",
+        "a": "Usually yes — follow the factory centering procedure."
+      }
+    ]
+  },
+  {
+    "code": "U2224",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Compass Module",
+    "shortDescription": "Compass/heading data invalid on bus.",
+    "fullDescription": "U2224 indicates the compass module is sending invalid heading data. Minor issue; affects mirror-compass display and navigation dead reckoning only.\n\nCalibration (figure-8 drive) typically fixes it; otherwise replace the mirror or sensor housing.",
+    "severity": "info",
+    "safetyImpact": "Compass/navigation heading may be wrong; no safety impact.",
+    "causes": [
+      {
+        "cause": "Uncalibrated compass",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Interference from roof antennas",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Internal sensor fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Wrong heading displayed",
+      "U2224 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Calibrate compass",
+        "instruction": "Drive three figure-8 circles in an open area at low speed.",
+        "tools": [
+          "None"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Do I need to enter a compass zone?",
+        "a": "Most modern vehicles auto-detect; older ones require manual zone entry."
+      }
+    ]
+  },
+  {
+    "code": "U2260",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Climate Control Module",
+    "shortDescription": "HVAC module broadcast data is implausible.",
+    "fullDescription": "U2260 indicates the climate control module is sending invalid temperature or blower setpoint data. The code typically accompanies HVAC symptoms — no heat, no AC, or stuck blower.\n\nInspect the HVAC module and the sensors it reads (ambient, in-car temp, evap).",
+    "severity": "low",
+    "safetyImpact": "Cabin comfort loss; defrost may not operate, reducing visibility.",
+    "causes": [
+      {
+        "cause": "Failed in-car temperature sensor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "HVAC module internal fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Blend door actuator stuck",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "No heat or AC",
+      "Wrong temp displayed",
+      "U2260 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test sensors",
+        "instruction": "Scan HVAC live data and verify sensor values are plausible.",
+        "tools": [
+          "Scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace sensor/module",
+        "instruction": "Replace the faulty input or the HVAC control module.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0164"
+    ],
+    "faq": [
+      {
+        "q": "Will defrost still work?",
+        "a": "Only if the module can still command the blend door; otherwise windows may fog."
+      }
+    ]
+  },
+  {
+    "code": "U2410",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Scan Tool Protocol Error",
+    "shortDescription": "Scan tool-to-module handshake protocol error.",
+    "fullDescription": "U2410 indicates an error in the scan-tool-to-module diagnostic protocol — the scan tool sent a message the module could not parse, or vice versa. Typically seen with aftermarket tools lacking full protocol support.\n\nNot a vehicle hardware fault; use a manufacturer-supported tool.",
+    "severity": "info",
+    "safetyImpact": "None.",
+    "causes": [
+      {
+        "cause": "Unsupported aftermarket scan tool",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Outdated scan tool firmware",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Scan tool errors",
+      "U2410 stored during session"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update tool firmware",
+        "instruction": "Apply latest updates to the scan tool.",
+        "tools": [
+          "PC with tool software"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Use OEM tool",
+        "instruction": "If problem persists, use the manufacturer's scan tool.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will this clear itself?",
+        "a": "Usually yes — it only persists while a non-compliant tool is connected."
+      }
+    ]
+  },
+  {
+    "code": "U2414",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Diagnostic Session Terminated Unexpectedly",
+    "shortDescription": "Diagnostic session dropped before completion.",
+    "fullDescription": "U2414 indicates a diagnostic session (often a flash or coding operation) ended abruptly. Usually caused by low voltage, tool disconnect, or ignition cycling during a session.\n\nRetry the session with a battery maintainer connected.",
+    "severity": "medium",
+    "safetyImpact": "Depends on what was being programmed; partial flash may leave feature disabled.",
+    "causes": [
+      {
+        "cause": "Low battery during session",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Scan tool cable disturbed",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Ignition cycled by user",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Programming aborted",
+      "U2414 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect maintainer",
+        "instruction": "Attach programming-grade battery maintainer.",
+        "tools": [
+          "Battery maintainer"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Retry session",
+        "instruction": "Restart programming and do not disturb until complete.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "U2110"
+    ],
+    "faq": [
+      {
+        "q": "Can I recover from bricked module?",
+        "a": "Most modules have recovery modes; consult factory procedure."
+      }
+    ]
+  },
+  {
+    "code": "U2500",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "CAN Network Reconfiguration Required",
+    "shortDescription": "Gateway requires network reconfiguration after module change.",
+    "fullDescription": "U2500 sets when the gateway detects a network topology change (module added or removed) that requires a reconfiguration sweep. Until completed, some modules may not be visible.\n\nRun the factory network configuration routine to resolve.",
+    "severity": "medium",
+    "safetyImpact": "Affected module features unavailable until reconfiguration completes.",
+    "causes": [
+      {
+        "cause": "Module added/removed recently",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Gateway firmware update",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Missing module features",
+      "Warning lights",
+      "U2500 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run reconfiguration",
+        "instruction": "Factory tool offers a network reconfiguration routine — run it.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "U2103",
+      "U2100-SHARED"
+    ],
+    "faq": [
+      {
+        "q": "Is this the same as 'marry to VIN'?",
+        "a": "It's one step of that process — the gateway needs to know the new module exists."
+      }
+    ]
+  },
+  {
+    "code": "U029F",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "Lost Communication With Hybrid Battery Pack",
+    "shortDescription": "HV battery pack is not communicating with the hybrid controller.",
+    "fullDescription": "U029F indicates loss of communication between the hybrid/EV battery pack and the HV controller (typically via a dedicated internal HV CAN). This disables the hybrid system and the vehicle enters reduced-power or ICE-only mode.\n\nStart diagnosis at the HV battery service disconnect and its CAN harness; moisture and vibration are common enemies.",
+    "severity": "high",
+    "safetyImpact": "Hybrid functions lost; vehicle may not be drivable on EV power.",
+    "causes": [
+      {
+        "cause": "HV CAN harness damage",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Battery management system internal fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Loose HV service disconnect",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Red triangle / hybrid warning",
+      "EV mode unavailable",
+      "Reduced power",
+      "U029F stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Safe isolation first",
+        "instruction": "Observe HV safety procedures — remove service disconnect and wait per manufacturer before any work.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Inspect HV CAN harness",
+        "instruction": "Check the CAN pair between battery pack and HV controller.",
+        "tools": [
+          "Insulated tools",
+          "Multimeter"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 3,
+        "title": "Reseat or replace BMS",
+        "instruction": "Reseat connectors; if internal BMS fault, replace pack BMS.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 500,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-6 hours",
+    "relatedCodes": [
+      "U0293",
+      "U0111"
+    ],
+    "faq": [
+      {
+        "q": "Can I DIY hybrid battery work?",
+        "a": "Not recommended — high voltage is lethal; leave to trained technicians."
+      }
+    ]
+  },
+  {
+    "code": "U02A0",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "HV Battery Cell Voltage Sensor 1 Comm Fault",
+    "shortDescription": "Hybrid battery cell voltage sensor circuit 1 not communicating.",
+    "fullDescription": "U02A0 indicates the BMS cannot read cell voltage data from sensor group 1. Without cell-level voltage data the BMS cannot balance or protect the pack and will derate or disable the hybrid system.\n\nCauses include a failing CMU (cell monitoring unit), wiring harness in the pack, or water intrusion.",
+    "severity": "high",
+    "safetyImpact": "Hybrid system disabled; pack may be at risk if fault persists.",
+    "causes": [
+      {
+        "cause": "Failed cell monitoring unit",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal pack harness break",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Water intrusion into pack",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hybrid warning lamp",
+      "Reduced power",
+      "U02A0 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "HV safe work",
+        "instruction": "Follow HV safety procedures before opening pack.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace CMU",
+        "instruction": "Replace the specific cell monitoring unit.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "U02A1",
+      "U02A2",
+      "U029F"
+    ],
+    "faq": [
+      {
+        "q": "Will the vehicle still drive?",
+        "a": "Often in limp mode — power is severely limited."
+      }
+    ]
+  },
+  {
+    "code": "U02A1",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "HV Battery Cell Voltage Sensor 2 Comm Fault",
+    "shortDescription": "Hybrid battery cell voltage sensor circuit 2 not communicating.",
+    "fullDescription": "U02A1 mirrors U02A0 but for cell sensor group 2. Symptoms and repair path are identical — BMS loses partial visibility into the pack and derates hybrid operation.",
+    "severity": "high",
+    "safetyImpact": "Hybrid system disabled; pack protection reduced.",
+    "causes": [
+      {
+        "cause": "Failed cell monitoring unit 2",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Harness break",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hybrid warning",
+      "Reduced power",
+      "U02A1 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "HV safety",
+        "instruction": "Follow HV work procedures.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace CMU 2",
+        "instruction": "Swap cell monitoring unit 2.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "U02A0",
+      "U02A2"
+    ],
+    "faq": [
+      {
+        "q": "Can I run the pack without this sensor?",
+        "a": "No — safety logic refuses to operate without full visibility."
+      }
+    ]
+  },
+  {
+    "code": "U02A2",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "HV Battery Temperature Sensor Comm Fault",
+    "shortDescription": "Hybrid battery temperature sensor not communicating.",
+    "fullDescription": "U02A2 indicates loss of battery temperature data. Temperature is critical for charge/discharge rate limits and cell balancing; without it the BMS forces a conservative derate or shuts the pack down.\n\nInspect the thermistor harness in the pack and the connector to the BMS.",
+    "severity": "high",
+    "safetyImpact": "Hybrid power severely limited.",
+    "causes": [
+      {
+        "cause": "Failed battery thermistor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Harness damage in pack",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "BMS internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hybrid warning",
+      "Battery temp reads invalid on scan tool",
+      "U02A2 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "HV safety",
+        "instruction": "Follow HV procedures.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace thermistor",
+        "instruction": "Swap faulty thermistor or repair harness.",
+        "tools": [
+          "Insulated tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 600,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "U02A0",
+      "U02A1"
+    ],
+    "faq": [
+      {
+        "q": "Is this a fire risk?",
+        "a": "Loss of temp monitoring is why the BMS derates — the system is protecting itself."
+      }
+    ]
+  },
+  {
+    "code": "U1000-HYBRID",
+    "codeType": "manufacturer-specific",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "Hybrid Vehicle CAN Comm Master Fault",
+    "shortDescription": "Hybrid-specific CAN master fault across multiple HV modules.",
+    "fullDescription": "U1000 on several hybrid platforms (Toyota THS, Honda IMA/i-MMD) is the master 'multiple CAN malfunction' code. When any subordinate HV module loses comms, the HV controller posts U1000 in parallel with the specific sub-code.\n\nThe U1000 itself is not diagnostic — the accompanying sub-codes point to the actual fault.",
+    "severity": "high",
+    "safetyImpact": "Full hybrid disable; vehicle may refuse to shift READY.",
+    "causes": [
+      {
+        "cause": "Any HV CAN sub-fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "HV controller internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "READY light refuses",
+      "Hybrid warning",
+      "Multiple U-codes",
+      "U1000 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Diagnose sub-codes",
+        "instruction": "Address each sub-code individually — U1000 self-clears when they are fixed.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "relatedCodes": [
+      "U029F",
+      "U02A0"
+    ],
+    "faq": [
+      {
+        "q": "Can I clear U1000 alone?",
+        "a": "It will return immediately — treat sub-codes first."
+      }
+    ]
+  },
+  {
+    "code": "U2300",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "Inverter/Converter CAN Communication Fault",
+    "shortDescription": "Traction inverter/converter not communicating with HV controller.",
+    "fullDescription": "U2300 indicates the inverter/converter assembly (which steps HV DC to three-phase AC for the traction motor) has lost or is sending invalid CAN data. The hybrid system cannot safely drive the motor and disables propulsion assist.\n\nInverter faults often follow coolant loss or water intrusion.",
+    "severity": "high",
+    "safetyImpact": "Loss of EV drive and regenerative braking.",
+    "causes": [
+      {
+        "cause": "Inverter internal fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Inverter coolant loss causing overheat",
+        "likelihood": "high"
+      },
+      {
+        "cause": "HV CAN wiring damage",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "EV mode unavailable",
+      "Regen braking lost",
+      "Hybrid warning",
+      "U2300 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check inverter coolant",
+        "instruction": "Verify inverter coolant level and pump operation.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Inspect HV CAN",
+        "instruction": "Test CAN pair between inverter and HV controller.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 3,
+        "title": "Replace inverter",
+        "instruction": "Replace if confirmed bad; very expensive.",
+        "tools": [
+          "Factory tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 1500,
+        "max": 6000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "4-10 hours",
+    "relatedCodes": [
+      "U029F",
+      "U1000-HYBRID"
+    ],
+    "faq": [
+      {
+        "q": "Why is this so expensive?",
+        "a": "Inverters are high-power assemblies and are a dealer-replaced item on most hybrids."
+      }
+    ]
+  },
+  {
+    "code": "U0428",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Steering Angle Sensor",
+    "shortDescription": "Steering angle sensor data is implausible.",
+    "fullDescription": "U0428 indicates the steering angle sensor is reporting data that does not make sense — e.g., unchanging while the vehicle is turning. ESP, lane-keep, and adaptive cruise depend on this signal; they will be disabled until resolved.\n\nFixes include recalibration or replacement of the clockspring-integrated sensor.",
+    "severity": "high",
+    "safetyImpact": "Stability control, lane-keep, and adaptive cruise disabled.",
+    "causes": [
+      {
+        "cause": "Uncalibrated sensor after alignment",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed sensor in clockspring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN wiring issue to SAS",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "ESP/VSC light",
+      "Lane-keep disabled",
+      "U0428 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Calibrate",
+        "instruction": "Run factory zero-point calibration with front wheels straight.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace clockspring",
+        "instruction": "If calibration fails, replace clockspring/SAS assembly.",
+        "tools": [
+          "Torque wrench"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U2202",
+      "C1544"
+    ],
+    "faq": [
+      {
+        "q": "Do I need calibration after alignment?",
+        "a": "Yes — any steering work requires SAS zero-point reset."
+      }
+    ]
+  },
+  {
+    "code": "U0429",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Tire Pressure Monitor",
+    "shortDescription": "Tire pressure monitor broadcast data is implausible.",
+    "fullDescription": "U0429 indicates TPMS is sending out-of-range pressure or ID data. The cluster may show dashes or wrong-position warnings. Sensors with low batteries or damaged antenna are common causes.\n\nReplace failing sensors and relearn the system.",
+    "severity": "medium",
+    "safetyImpact": "TPMS monitoring effectively disabled; risk of undetected low tire.",
+    "causes": [
+      {
+        "cause": "Low TPMS sensor battery",
+        "likelihood": "high"
+      },
+      {
+        "cause": "TPMS antenna damage",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "TPMS light",
+      "Dashed pressure readings",
+      "U0429 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor status",
+        "instruction": "Use TPMS tool to check each sensor's battery and response.",
+        "tools": [
+          "TPMS scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace weak sensors",
+        "instruction": "Replace and relearn.",
+        "tools": [
+          "Tire machine"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "U0872",
+      "C0750"
+    ],
+    "faq": [
+      {
+        "q": "How long do TPMS sensor batteries last?",
+        "a": "Typically 7-10 years, shorter with high-mileage highway use."
+      }
+    ]
+  },
+  {
+    "code": "U0431",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Immobilizer Control Module",
+    "shortDescription": "Immobilizer data is implausible on bus.",
+    "fullDescription": "U0431 is similar to U0801 but set by a different receiving module. The PCM cannot validate the immobilizer message, leading to engine-start prevention or stall after start.\n\nCheck antenna ring, keys, and immobilizer module.",
+    "severity": "high",
+    "safetyImpact": "No-start or stall.",
+    "causes": [
+      {
+        "cause": "Failed antenna ring",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged key transponder",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Immobilizer module fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "No-start",
+      "Security light",
+      "U0431 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try spare key",
+        "instruction": "Confirm fob vs antenna by using spare.",
+        "tools": [
+          "Spare key"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect antenna",
+        "instruction": "Check antenna connector at steering lock.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace module/antenna",
+        "instruction": "Replace faulty component; program keys.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0801"
+    ],
+    "faq": [
+      {
+        "q": "Could a phone in my pocket interfere?",
+        "a": "Rarely — but strong RF sources can cause intermittent read failures."
+      }
+    ]
+  },
+  {
+    "code": "U0434",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Adaptive Headlight Module",
+    "shortDescription": "Adaptive headlight module data is implausible.",
+    "fullDescription": "U0434 indicates the adaptive headlight control module is sending invalid data — beam position, turn angle, or auto-leveling. AFS/AHB features are disabled and lights default to static beam.\n\nCauses are typically headlight leveling motor faults or module internal defects.",
+    "severity": "low",
+    "safetyImpact": "Night-time visibility reduced; beam steering lost.",
+    "causes": [
+      {
+        "cause": "Failed leveling motor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed steering-input feed",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "AFS module internal fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "AFS warning",
+      "Lights static",
+      "U0434 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command motors",
+        "instruction": "Bidirectional command the leveling motors; note non-responders.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace motor/module",
+        "instruction": "Replace faulty motor or headlight control module.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "U0428"
+    ],
+    "faq": [
+      {
+        "q": "Will the MIL come on?",
+        "a": "Usually no — AFS-only light comes on in the cluster."
+      }
+    ]
+  },
+  {
+    "code": "U0449",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Module Configuration",
+    "title": "Invalid Data Received From Rain Sensor Module",
+    "shortDescription": "Rain sensor data is out of range.",
+    "fullDescription": "U0449 indicates the rain/light sensor behind the windshield is reporting invalid data. Automatic wipers, auto-headlights, and auto-dim mirrors lose input.\n\nThe sensor is commonly gel-bonded to the glass; replacement of the gel pad or sensor usually solves it.",
+    "severity": "low",
+    "safetyImpact": "Auto-wipers and auto-headlights inoperative.",
+    "causes": [
+      {
+        "cause": "Aged/dried sensor gel pad",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Dirty/tinted glass interference",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Auto-wipers inoperative",
+      "Auto-headlights inoperative",
+      "U0449 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean sensor area",
+        "instruction": "Clean glass behind sensor and sensor lens.",
+        "tools": [
+          "Glass cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace gel pad",
+        "instruction": "Detach sensor, install fresh gel pad.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Install new rain/light sensor.",
+        "tools": [
+          "Replacement sensor"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Do I need calibration?",
+        "a": "Some vehicles require a short learning drive; others are plug-and-play."
+      }
+    ]
+  },
+  {
+    "code": "U0451",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "Invalid Data Received From Hybrid Battery Pack",
+    "shortDescription": "Hybrid battery pack broadcast data out of range.",
+    "fullDescription": "U0451 indicates a receiving module is getting implausible data from the HV battery pack — state-of-charge jumps, impossible voltages, or wrong IDs. Accompanies other HV codes and indicates BMS or harness issues.\n\nDiagnose with HV safety procedures.",
+    "severity": "high",
+    "safetyImpact": "Hybrid system disabled.",
+    "causes": [
+      {
+        "cause": "BMS fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Harness damage in pack",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hybrid warning",
+      "Battery SOC gauge erratic",
+      "U0451 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "HV safe isolation",
+        "instruction": "Remove service plug and wait.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace BMS",
+        "instruction": "Swap battery management module.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "U029F",
+      "U0452"
+    ],
+    "faq": [
+      {
+        "q": "Is a third-party BMS safe?",
+        "a": "Use OEM or OEM-equivalent; the BMS is safety-critical."
+      }
+    ]
+  },
+  {
+    "code": "U0452",
+    "codeType": "generic",
+    "letter": "U",
+    "system": "network",
+    "subcategory": "Hybrid Battery",
+    "title": "Invalid Data Received From Hybrid Battery Monitor",
+    "shortDescription": "Hybrid battery monitor (sub-module) data implausible.",
+    "fullDescription": "U0452 indicates the battery monitor — a sub-module reporting current, voltage, and temperature to the BMS — is sending invalid data. Result is reduced or disabled hybrid operation.\n\nOften fixed by replacing the current/voltage sense module or its harness.",
+    "severity": "high",
+    "safetyImpact": "Hybrid operation severely limited.",
+    "causes": [
+      {
+        "cause": "Failed current sense module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Loose HV connection",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hybrid warning",
+      "SOC gauge pegged or flat",
+      "U0452 stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "HV safety",
+        "instruction": "Follow HV procedures.",
+        "tools": [
+          "HV PPE"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace monitor",
+        "instruction": "Swap battery monitor module; reseat HV connections.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 700,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "U0451",
+      "U029F"
+    ],
+    "faq": [
+      {
+        "q": "Can a low 12V battery cause this?",
+        "a": "Yes on some hybrids — weak aux 12V can make the monitor boot unreliably."
+      }
+    ]
   }
 ]

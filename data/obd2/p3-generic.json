@@ -2013,5 +2013,1123 @@
     "repairTime": "varies",
     "relatedCodes": ["P3400", "P3402", "P3420"],
     "faq": [{"q": "Is bank 2 the passenger side?", "a": "Depends on engine — bank 2 is the bank not containing cylinder 1."}]
+  },
+  {
+    "code": "P3A00-TESLA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Tesla BMS Communication Fault",
+    "shortDescription": "Battery Management System lost communication with vehicle controller.",
+    "fullDescription": "P3A00-TESLA sets on Model 3, Model Y, Model S, and Model X when the Battery Management System (BMS) cannot communicate with the vehicle control module over the internal CAN bus. Tesla stores this in the BMS ECU and typically disables propulsion and fast charging.\n\nDANGER: The Tesla high-voltage pack operates at 350-400V DC and can deliver lethal current. Only Tesla-trained technicians with Category 0 HV gloves and proper isolation procedures should open the pack or service HV wiring.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may refuse to power on; risk of HV isolation loss.",
+    "causes": [
+      {"cause": "BMS internal failure", "likelihood": "medium"},
+      {"cause": "CAN bus wiring damage from pack flooding/impact", "likelihood": "medium"},
+      {"cause": "12V battery low voltage starving BMS", "likelihood": "high"},
+      {"cause": "Firmware fault after failed OTA update", "likelihood": "low"}
+    ],
+    "symptoms": ["Car will not drive", "Charging disabled", "Red battery warning on touchscreen", "12V battery warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Check 12V battery", "instruction": "Low 12V is the #1 cause. Verify at least 12.4V resting; replace if weak.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Tesla service scan", "instruction": "Requires Tesla Toolbox 3 and service account. Read live BMS data.", "tools": ["Tesla Toolbox"], "difficulty": "professional"},
+      {"step": 3, "title": "HV pack inspection", "instruction": "De-energize pack via service disconnect. Inspect internal CAN harness.", "tools": ["HV gloves CAT 0", "insulated tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 500, "max": 15000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-16 hours",
+    "relatedCodes": ["P3B00-TESLA", "P3C00-TESLA"],
+    "faq": [{"q": "Can I drive with P3A00?", "a": "No. Tesla disables propulsion until BMS communication is restored."}]
+  },
+  {
+    "code": "P3B00-TESLA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Tesla HV Battery Over-Temperature",
+    "shortDescription": "High-voltage battery pack exceeded safe temperature threshold.",
+    "fullDescription": "P3B00-TESLA is set by the BMS on Model 3/Y/S/X when any pack module temperature exceeds the safety limit (typically >55°C). The car throttles power, disables Supercharging, or enters limp mode.\n\nDANGER: Thermal runaway in Li-ion packs can lead to fire. Do NOT attempt to open an overheated pack. Evacuate the vehicle and contact Tesla roadside if the pack is smoking or hissing.",
+    "severity": "high",
+    "safetyImpact": "Thermal runaway risk; potential battery fire.",
+    "causes": [
+      {"cause": "Coolant pump failure", "likelihood": "high"},
+      {"cause": "Low coolant level / leak", "likelihood": "medium"},
+      {"cause": "Chiller/refrigerant fault in Octovalve (2021+)", "likelihood": "medium"},
+      {"cause": "Internal cell failure causing hotspot", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced power", "Supercharging disabled", "Thermal warning on screen", "Cooling fans running loudly"],
+    "fixSteps": [
+      {"step": 1, "title": "Let pack cool", "instruction": "Park in shade; do not charge. Wait minimum 2 hours.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Diagnose cooling system", "instruction": "Tesla Toolbox to command Octovalve and pump tests.", "tools": ["Tesla Toolbox"], "difficulty": "professional"},
+      {"step": 3, "title": "Pack inspection", "instruction": "If cell-level hotspot, module replacement required by Tesla.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 800, "max": 22000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-20 hours",
+    "relatedCodes": ["P3A00-TESLA", "P3C00-TESLA"],
+    "faq": [{"q": "Is it safe to drive home?", "a": "No — park and let it cool. Driving an overheated pack risks fire."}]
+  },
+  {
+    "code": "P3C00-TESLA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Tesla Cell Voltage Imbalance",
+    "shortDescription": "Cell group voltage deviation exceeds BMS threshold.",
+    "fullDescription": "P3C00-TESLA indicates the BMS detected one or more cell groups drifting >100mV from pack average. Common on high-mileage Model S/X packs or packs that sat deeply discharged.\n\nDANGER: Cell replacement requires pack disassembly and cell-matching. Only authorized Tesla service or specialized third-party rebuilders (e.g., Gruber Motors, 057 Technology) should attempt.",
+    "severity": "medium",
+    "safetyImpact": "Reduced range; eventual pack failure.",
+    "causes": [
+      {"cause": "Degraded cell group (age/cycles)", "likelihood": "high"},
+      {"cause": "BMS balancing circuit failure", "likelihood": "medium"},
+      {"cause": "Pack sat below 0% for extended period", "likelihood": "medium"}
+    ],
+    "symptoms": ["Range loss", "Slower charging near 100%", "Intermittent power limits"],
+    "fixSteps": [
+      {"step": 1, "title": "Full balance charge", "instruction": "Charge to 100% and leave plugged in overnight to allow passive balancing.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Read cell voltages", "instruction": "Tesla Toolbox shows per-group voltages. Identify outliers.", "tools": ["Tesla Toolbox"], "difficulty": "professional"},
+      {"step": 3, "title": "Module replacement", "instruction": "Replace affected module; re-balance entire pack.", "tools": ["HV safety kit", "pack lift"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 1500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P3A00-TESLA", "P3B00-TESLA"],
+    "faq": [{"q": "Can balancing fix it?", "a": "Sometimes — try full charge overnight. If code returns, module swap is needed."}]
+  },
+  {
+    "code": "P3D00-TESLA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Tesla HV Contactor Fault",
+    "shortDescription": "High-voltage contactor failed to close or welded closed.",
+    "fullDescription": "P3D00-TESLA sets when the main HV contactors inside the battery pack fail self-test. The contactors physically disconnect the 400V bus from the rest of the car for safety.\n\nDANGER: A welded-closed contactor means HV is always present on the bus — extreme shock hazard during any service work. Follow Tesla's 10-minute discharge wait and verify zero-voltage before touching any HV component.",
+    "severity": "high",
+    "safetyImpact": "Vehicle disabled; HV isolation may be compromised.",
+    "causes": [
+      {"cause": "Contactor contacts welded from high current event", "likelihood": "medium"},
+      {"cause": "Contactor coil open/short", "likelihood": "medium"},
+      {"cause": "Pyrofuse triggered (crash)", "likelihood": "low"},
+      {"cause": "BMS logic fault commanding incorrect state", "likelihood": "low"}
+    ],
+    "symptoms": ["No propulsion", "No charging", "Loud click absent at power-on"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan with Toolbox", "instruction": "Confirm contactor status; rule out BMS before hardware swap.", "tools": ["Tesla Toolbox"], "difficulty": "professional"},
+      {"step": 2, "title": "Pack service", "instruction": "Contactors are inside the pack — requires full pack drop.", "tools": ["HV safety kit", "pack lift"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1800, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-10 hours",
+    "relatedCodes": ["P3A00-TESLA"],
+    "faq": [{"q": "Can I reset this code?", "a": "No — a physical fault must be confirmed. Driving with a welded contactor is dangerous."}]
+  },
+  {
+    "code": "P3050-FORD",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Ford HV Battery Contactor Performance",
+    "shortDescription": "HV contactor circuit performance fault on F-150 Lightning / Mach-E.",
+    "fullDescription": "P3050-FORD is set by the BECM (Battery Energy Control Module) on F-150 Lightning and Mustang Mach-E when the main HV contactor does not match commanded state within timing spec.\n\nDANGER: F-150 Lightning packs operate at 400V (standard range) or 400V+ (extended range). Service requires Ford IDS, HV gloves, and disconnecting the manual service disconnect (MSD) before any pack work.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion; possible HV isolation concern.",
+    "causes": [
+      {"cause": "Contactor internal failure", "likelihood": "medium"},
+      {"cause": "BECM fault", "likelihood": "medium"},
+      {"cause": "HV wiring resistance (corrosion)", "likelihood": "medium"},
+      {"cause": "Low 12V supply to contactor coil", "likelihood": "medium"}
+    ],
+    "symptoms": ["Stop Safely Now message", "No propulsion", "Charging failed"],
+    "fixSteps": [
+      {"step": 1, "title": "Ford IDS diagnostic", "instruction": "Read BECM live data; command contactor cycle.", "tools": ["Ford IDS", "FDRS"], "difficulty": "professional"},
+      {"step": 2, "title": "Remove MSD", "instruction": "Pull manual service disconnect; wait 5 minutes for bus discharge.", "tools": ["HV gloves CAT 0"], "difficulty": "professional"},
+      {"step": 3, "title": "Replace contactor assembly", "instruction": "Contactor is inside pack housing; pack lift required.", "tools": ["pack lift", "torque wrench"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1500, "max": 5500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3055-FORD", "P3060-FORD"],
+    "faq": [{"q": "Covered under warranty?", "a": "Yes — HV components covered 8 yr / 100,000 mi on Ford EVs."}]
+  },
+  {
+    "code": "P3055-FORD",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Ford Motor Inverter Fault",
+    "shortDescription": "Traction motor inverter IGBT/SiC module fault.",
+    "fullDescription": "P3055-FORD indicates the front or rear drive unit inverter on F-150 Lightning or Mach-E has detected an overcurrent, overvoltage, or gate-driver fault. Inverters convert 400V DC to 3-phase AC for the traction motors.\n\nDANGER: Inverter capacitors hold lethal charge for minutes after HV disconnect. Always verify <60V DC at inverter bus bars before servicing.",
+    "severity": "high",
+    "safetyImpact": "Loss of drive; possible sudden power cut.",
+    "causes": [
+      {"cause": "IGBT/SiC module failure", "likelihood": "medium"},
+      {"cause": "Motor winding short causing inverter trip", "likelihood": "medium"},
+      {"cause": "Coolant leak into inverter", "likelihood": "low"},
+      {"cause": "Gate driver board failure", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced power", "Drive unit warning light", "Grinding/whining from drive unit"],
+    "fixSteps": [
+      {"step": 1, "title": "FDRS scan", "instruction": "Identify front vs rear drive unit and specific phase fault.", "tools": ["Ford FDRS"], "difficulty": "professional"},
+      {"step": 2, "title": "Inverter replacement", "instruction": "Inverter usually replaced as unit with drive motor.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 3000, "max": 12000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P3050-FORD"],
+    "faq": [{"q": "Can I drive with this code?", "a": "No — pull over safely. Repeated inverter faults can cause further damage."}]
+  },
+  {
+    "code": "P3060-FORD",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Ford Onboard Charger (OBC) Fault",
+    "shortDescription": "Onboard AC charger module malfunction.",
+    "fullDescription": "P3060-FORD sets when the OBC (onboard charger) on F-150 Lightning/Mach-E fails self-test during AC Level 1/2 charging. The OBC converts AC from the wall/EVSE into DC for the HV battery.\n\nDANGER: OBC contains both AC line voltage and 400V DC sections. Always unplug EVSE and remove MSD before servicing.",
+    "severity": "medium",
+    "safetyImpact": "Cannot AC charge; DC fast charging may still work.",
+    "causes": [
+      {"cause": "OBC internal failure", "likelihood": "medium"},
+      {"cause": "AC input overvoltage from EVSE", "likelihood": "low"},
+      {"cause": "Coolant leak into OBC", "likelihood": "low"},
+      {"cause": "Software/firmware issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["AC charging fails", "Charging port light red", "Slow or no charge at home"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different EVSE", "instruction": "Rule out external charger with known-good unit.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "FDRS module update", "instruction": "Check for PCM/OBC software updates before hardware swap.", "tools": ["Ford FDRS"], "difficulty": "professional"},
+      {"step": 3, "title": "OBC replacement", "instruction": "Replace onboard charger module under HV safety protocol.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 1800, "max": 4500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P3050-FORD", "P3530"],
+    "faq": [{"q": "Can I still fast-charge?", "a": "Usually yes — DC fast charge bypasses the OBC. But plan fewer home charges."}]
+  },
+  {
+    "code": "P3065-FORD",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Ford HV Battery Cooling Pump Fault",
+    "shortDescription": "HV battery coolant pump not performing to spec.",
+    "fullDescription": "P3065-FORD is set when the electric coolant pump circulating glycol through the HV pack fails speed/pressure checks. On Mach-E and F-150 Lightning this pump is critical for DC fast charging and sustained high-power use.",
+    "severity": "high",
+    "safetyImpact": "Pack overheating risk; fast charging disabled.",
+    "causes": [
+      {"cause": "Pump motor failure", "likelihood": "high"},
+      {"cause": "Air in cooling loop", "likelihood": "medium"},
+      {"cause": "Blocked radiator/cooler", "likelihood": "low"},
+      {"cause": "Controller wiring issue", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced DC fast charge speed", "Thermal warning", "Fans running constantly"],
+    "fixSteps": [
+      {"step": 1, "title": "Check coolant level", "instruction": "HV coolant reservoir must be at COLD mark.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Bleed cooling system", "instruction": "Use FDRS active bleed procedure.", "tools": ["Ford FDRS"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace pump", "instruction": "Low-voltage pump, but routes HV coolant — follow Ford procedure.", "tools": ["drain pan", "new pump"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 400, "max": 1200}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P3050-FORD"],
+    "faq": [{"q": "Is this the 12V pump or HV?", "a": "The pump runs on 12V but circulates coolant through the HV pack."}]
+  },
+  {
+    "code": "P3000-CHEVY",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Chevy HV Battery Assembly Fault",
+    "shortDescription": "General HV battery pack assembly fault on Bolt EV/EUV and Volt.",
+    "fullDescription": "P3000-CHEVY is a general HV battery pack code on Chevrolet Bolt, Bolt EUV, and Volt. It covers pack-level faults that don't map to a specific sub-code. Related to the LG Chem / LG Energy Solution battery recall on 2017-2022 Bolts.\n\nDANGER: Bolt packs subject to recall can experience thermal runaway at full charge. If recall remedy is not completed, limit charge to 80% and park outside.",
+    "severity": "high",
+    "safetyImpact": "Possible fire risk on recall-affected vehicles.",
+    "causes": [
+      {"cause": "LG cell manufacturing defect (recall)", "likelihood": "medium"},
+      {"cause": "BECM internal fault", "likelihood": "medium"},
+      {"cause": "HV harness connector corrosion", "likelihood": "low"},
+      {"cause": "Software update failed", "likelihood": "low"}
+    ],
+    "symptoms": ["Service Battery Charging System", "Reduced power", "Stop Safely Now"],
+    "fixSteps": [
+      {"step": 1, "title": "Check recall status", "instruction": "Enter VIN at chevy.com/bolt-recall for pack replacement status.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "GDS2 scan", "instruction": "GM GDS2/Tech2Win reads BECM data and sub-codes.", "tools": ["GDS2"], "difficulty": "professional"},
+      {"step": 3, "title": "Pack/module replacement", "instruction": "Under HV safety protocol. Recall work is free at GM dealer.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 16000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P3010-CHEVY", "P3020-CHEVY"],
+    "faq": [{"q": "Is my Bolt part of the fire recall?", "a": "All 2017-2022 Bolts were recalled. Check VIN — most received new LG packs free of charge."}]
+  },
+  {
+    "code": "P3010-CHEVY",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Chevy Cell Voltage Imbalance",
+    "shortDescription": "Bolt/Volt battery cell group voltage deviation.",
+    "fullDescription": "P3010-CHEVY sets when BECM on Bolt or Volt detects cell voltage imbalance exceeding spec. Often a precursor to the LG pack recall trigger.",
+    "severity": "medium",
+    "safetyImpact": "Range loss; possible fire risk on pre-recall Bolts.",
+    "causes": [
+      {"cause": "Weak cell group", "likelihood": "high"},
+      {"cause": "BECM sensing fault", "likelihood": "medium"},
+      {"cause": "Balancing circuit failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced range", "Propulsion power reduced message"],
+    "fixSteps": [
+      {"step": 1, "title": "Charge to 100%", "instruction": "Allow BECM to balance (post-recall only; pre-recall limit to 80%).", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "GDS2 cell voltage read", "instruction": "Identify which of 96 cell groups is deviating.", "tools": ["GDS2"], "difficulty": "professional"},
+      {"step": 3, "title": "Module replacement", "instruction": "Replace affected 2P96S section per GM TSB.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3000-CHEVY"],
+    "faq": [{"q": "Will my range come back?", "a": "After balancing or module swap, yes — expect full EPA range restored."}]
+  },
+  {
+    "code": "P3020-CHEVY",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Chevy HV Contactor Failure",
+    "shortDescription": "Bolt/Volt HV contactor stuck or open.",
+    "fullDescription": "P3020-CHEVY indicates the main HV contactor on Chevy Bolt/Volt failed to open or close on command. Contactor assembly is inside the battery pack enclosure.",
+    "severity": "high",
+    "safetyImpact": "Vehicle disabled; HV isolation risk.",
+    "causes": [
+      {"cause": "Contactor welded", "likelihood": "medium"},
+      {"cause": "Control coil open circuit", "likelihood": "medium"},
+      {"cause": "BECM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["No Propulsion", "Stop Safely Now", "No charging"],
+    "fixSteps": [
+      {"step": 1, "title": "GDS2 diagnostic", "instruction": "Command contactor cycle; confirm fault side.", "tools": ["GDS2"], "difficulty": "professional"},
+      {"step": 2, "title": "Pack service", "instruction": "Remove pack, replace contactor assembly.", "tools": ["HV safety kit", "pack lift"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1500, "max": 4500}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-10 hours",
+    "relatedCodes": ["P3000-CHEVY"],
+    "faq": [{"q": "Can it be reset?", "a": "No — physical part replacement required."}]
+  },
+  {
+    "code": "P3100-RIVIAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Rivian Front Drive Unit Fault",
+    "shortDescription": "R1T/R1S front dual-motor drive unit error.",
+    "fullDescription": "P3100-RIVIAN sets when the front drive unit (dual motor on Dual/Quad variants) reports an internal fault. Rivian drive units integrate motor, gearbox, and inverter.\n\nDANGER: Rivian pack is 400V+ and service requires Rivian Technician training and factory tools. Field service is limited; most repairs are mobile service or Rivian Service Center.",
+    "severity": "high",
+    "safetyImpact": "Loss of front-axle drive; AWD disabled.",
+    "causes": [
+      {"cause": "Inverter IGBT failure", "likelihood": "medium"},
+      {"cause": "Motor bearing failure", "likelihood": "low"},
+      {"cause": "Coolant intrusion", "likelihood": "low"},
+      {"cause": "Software calibration drift", "likelihood": "medium"}
+    ],
+    "symptoms": ["AWD disabled", "Reduced power", "Front drive unit warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Rivian Service app", "instruction": "Schedule mobile service; remote diagnostics often identify cause.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "OTA update check", "instruction": "Some drive unit faults resolved via software update.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "Drive unit replacement", "instruction": "Rivian replaces complete drive unit assembly.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 12000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P3110-RIVIAN", "P3120-RIVIAN"],
+    "faq": [{"q": "Can I drive in rear-only mode?", "a": "Yes, temporarily — Rivian allows limp to service."}]
+  },
+  {
+    "code": "P3110-RIVIAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Rivian Rear Drive Unit Fault",
+    "shortDescription": "R1T/R1S rear drive unit internal error.",
+    "fullDescription": "P3110-RIVIAN is the rear-axle counterpart to P3100. Rear drive unit drives rear wheels and is critical for towing mode.",
+    "severity": "high",
+    "safetyImpact": "Loss of rear drive; towing disabled.",
+    "causes": [
+      {"cause": "Rear inverter fault", "likelihood": "medium"},
+      {"cause": "Gearbox mechanical failure", "likelihood": "low"},
+      {"cause": "Coolant leak", "likelihood": "low"}
+    ],
+    "symptoms": ["No propulsion", "Towing mode disabled", "Service drive unit warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Contact Rivian Service", "instruction": "Mobile tech dispatch via app.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Drive unit service", "instruction": "Rivian factory replacement.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 14000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P3100-RIVIAN"],
+    "faq": [{"q": "Is this covered under warranty?", "a": "Yes, 8 yr/175k mi HV component warranty."}]
+  },
+  {
+    "code": "P3120-RIVIAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Rivian Battery Pack Fault",
+    "shortDescription": "R1T/R1S HV battery pack general error.",
+    "fullDescription": "P3120-RIVIAN covers general battery pack faults on R1T/R1S Standard/Large/Max packs. Rivian packs use structural design with 21700 cells.\n\nDANGER: 400V pack. Do not attempt disassembly. Pack removal requires factory lift fixture.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion; fire risk if cell-level fault.",
+    "causes": [
+      {"cause": "Cell degradation", "likelihood": "medium"},
+      {"cause": "BMS fault", "likelihood": "medium"},
+      {"cause": "Structural pack impact damage", "likelihood": "low"},
+      {"cause": "Coolant leak into pack", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced range", "Service battery warning", "Charging limited"],
+    "fixSteps": [
+      {"step": 1, "title": "Rivian diagnostic", "instruction": "Factory tools required — schedule service.", "tools": [], "difficulty": "professional"},
+      {"step": 2, "title": "Pack service", "instruction": "Rivian Service Center pack swap or repair.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 25000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-20 hours",
+    "relatedCodes": ["P3100-RIVIAN", "P3110-RIVIAN"],
+    "faq": [{"q": "Can I charge normally?", "a": "Follow the app instructions — sometimes charging is limited as a precaution."}]
+  },
+  {
+    "code": "P3200-LUCID",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Lucid HV Interlock Loop Fault",
+    "shortDescription": "HVIL (High Voltage Interlock Loop) open or short on Lucid Air.",
+    "fullDescription": "P3200-LUCID is set when the HVIL circuit on Lucid Air detects an open connector or damaged interlock wire. Lucid operates the industry's highest production EV bus voltage (~900V), making HVIL critical.\n\nDANGER: Lucid's 900V architecture is more lethal than 400V systems. Never service without Lucid-certified training and Cat 2 HV gloves.",
+    "severity": "high",
+    "safetyImpact": "Vehicle disabled; HV isolation compromised.",
+    "causes": [
+      {"cause": "Unseated HV connector after service", "likelihood": "high"},
+      {"cause": "Damaged HVIL pilot wire", "likelihood": "medium"},
+      {"cause": "Pack structural damage", "likelihood": "low"}
+    ],
+    "symptoms": ["No propulsion", "Charging disabled", "HV interlock warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect all HV connectors", "instruction": "Check inverter, charger, compressor connectors fully seated.", "tools": [], "difficulty": "professional"},
+      {"step": 2, "title": "Lucid diagnostic", "instruction": "Factory service tool traces HVIL loop.", "tools": ["Lucid service tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-6 hours",
+    "relatedCodes": ["P3210-LUCID"],
+    "faq": [{"q": "Why is Lucid 900V?", "a": "Higher voltage = lower current = faster charging and lighter cables."}]
+  },
+  {
+    "code": "P3210-LUCID",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Lucid Motor Controller Fault",
+    "shortDescription": "Lucid Air motor/inverter controller malfunction.",
+    "fullDescription": "P3210-LUCID indicates the wunderbox (combined inverter/OBC/DC-DC) reports internal fault. Lucid's wunderbox is proprietary and serviced only by Lucid.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion.",
+    "causes": [
+      {"cause": "Inverter silicon carbide module failure", "likelihood": "medium"},
+      {"cause": "Cooling loss", "likelihood": "medium"},
+      {"cause": "Software fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "Service drivetrain warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Lucid Service", "instruction": "Schedule via app — Lucid mobile service available in major metros.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Wunderbox replacement", "instruction": "Factory-only service.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 18000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P3200-LUCID"],
+    "faq": [{"q": "Is this under warranty?", "a": "Yes — 8 yr/100k mi powertrain warranty on Lucid Air."}]
+  },
+  {
+    "code": "P3300-HYUNDAI",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Hyundai E-GMP Battery Pack Fault",
+    "shortDescription": "Ioniq 5 / Kia EV6 / Genesis GV60 HV battery general code.",
+    "fullDescription": "P3300-HYUNDAI is set on E-GMP platform vehicles (Ioniq 5, Ioniq 6, EV6, GV60) when the BMS detects a pack-level issue. E-GMP uses 800V architecture for 350kW ultra-fast charging.\n\nDANGER: 800V architecture doubles shock hazard vs 400V systems. Requires specific Cat 2 PPE.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion; charging disabled.",
+    "causes": [
+      {"cause": "BMS internal fault", "likelihood": "medium"},
+      {"cause": "Cell degradation", "likelihood": "medium"},
+      {"cause": "ICCU fault cascading to BMS", "likelihood": "medium"},
+      {"cause": "HV harness connector issue", "likelihood": "low"}
+    ],
+    "symptoms": ["Check EV system warning", "Turtle mode", "Charging fails"],
+    "fixSteps": [
+      {"step": 1, "title": "GDS scan", "instruction": "Hyundai/Kia GDS-Mobile reads BMS sub-codes.", "tools": ["Hyundai GDS"], "difficulty": "professional"},
+      {"step": 2, "title": "Dealer service", "instruction": "E-GMP pack service is dealer-only currently.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 20000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-16 hours",
+    "relatedCodes": ["P3310-HYUNDAI", "P3320-HYUNDAI"],
+    "faq": [{"q": "Is 10-year warranty honored?", "a": "Yes — 10 yr/100k mi EV battery warranty on Hyundai/Kia in USA."}]
+  },
+  {
+    "code": "P3310-HYUNDAI",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Hyundai ICCU Fault",
+    "shortDescription": "Integrated Charging Control Unit failure on Ioniq 5 / EV6.",
+    "fullDescription": "P3310-HYUNDAI indicates a fault in the ICCU (Integrated Charging Control Unit) which combines OBC, V2L inverter, and DC-DC converter. This is a known common failure on Ioniq 5 / EV6 — Hyundai issued recalls 246/248 for ICCU issues.\n\nDANGER: ICCU contains 800V DC and AC line voltage. Typical failure mode blows the 12V battery fuse leaving car dead.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may become undriveable; 12V battery depleted.",
+    "causes": [
+      {"cause": "ICCU internal MOSFET failure (recall)", "likelihood": "high"},
+      {"cause": "Voltage transient on AC input", "likelihood": "low"},
+      {"cause": "Coolant intrusion", "likelihood": "low"}
+    ],
+    "symptoms": ["'Stop vehicle, check power supply' message", "12V battery dead", "V2L not working", "Won't charge"],
+    "fixSteps": [
+      {"step": 1, "title": "Check recall status", "instruction": "VIN lookup at hyundaiusa.com/recall. ICCU replacement covered.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Tow to dealer", "instruction": "Don't attempt to drive; 12V will die. Flat-bed tow only.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "ICCU replacement", "instruction": "Dealer replaces ICCU and updates firmware.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 0, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3300-HYUNDAI"],
+    "faq": [{"q": "Will I be stranded?", "a": "Likely yes when ICCU fails. Keep Hyundai roadside number handy."}]
+  },
+  {
+    "code": "P3320-HYUNDAI",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Hyundai Reduction Gear Fault",
+    "shortDescription": "E-GMP single-speed reduction gearbox fault.",
+    "fullDescription": "P3320-HYUNDAI sets when the reduction gear (single-speed gearbox between motor and wheels) reports mechanical issues — typically bearing wear or noise.",
+    "severity": "medium",
+    "safetyImpact": "Possible gearbox damage if driven extensively.",
+    "causes": [
+      {"cause": "Bearing wear", "likelihood": "medium"},
+      {"cause": "Low gear oil", "likelihood": "low"},
+      {"cause": "Shaft seal leak", "likelihood": "low"}
+    ],
+    "symptoms": ["Whining/grinding from drive unit", "Reduced power warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect for leaks", "instruction": "Check under drive unit for red/amber gear oil.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Dealer diagnosis", "instruction": "Oil analysis and mechanical inspection.", "tools": ["GDS"], "difficulty": "professional"},
+      {"step": 3, "title": "Gearbox repair", "instruction": "Bearing or complete drive unit replacement.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 800, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P3300-HYUNDAI"],
+    "faq": [{"q": "Is gear oil serviceable?", "a": "Hyundai calls it lifetime fill, but oil change at 100k is recommended."}]
+  },
+  {
+    "code": "P3A00-NISSAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Nissan Leaf HV Battery Fault",
+    "shortDescription": "Leaf lithium-ion battery pack general fault.",
+    "fullDescription": "P3A00-NISSAN covers general HV pack faults on Nissan Leaf (all generations). Leaf packs are passively cooled — degradation is common in hot climates.\n\nDANGER: Leaf pack is 360V nominal. Service disconnect (orange plug) must be removed and stored separately before any pack work.",
+    "severity": "high",
+    "safetyImpact": "Reduced range; possible loss of propulsion.",
+    "causes": [
+      {"cause": "Cell degradation (heat)", "likelihood": "high"},
+      {"cause": "BMS fault", "likelihood": "medium"},
+      {"cause": "HV harness corrosion", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced capacity bars", "Turtle mode", "Check EV system light"],
+    "fixSteps": [
+      {"step": 1, "title": "Check capacity bars", "instruction": "12 bars = new. Warranty covers loss below 9 bars (USA, 8 yr/100k).", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "LeafSpy scan", "instruction": "App + OBD dongle reads individual cell voltages.", "tools": ["OBD-II scanner", "LeafSpy"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Pack replacement", "instruction": "Dealer or specialist — new, refurb, or upgraded pack available.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 100}, "mechanic": {"min": 3000, "max": 10000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3A04-NISSAN", "P3B04-NISSAN"],
+    "faq": [{"q": "Can I upgrade to a bigger pack?", "a": "Yes — shops install 40 or 62 kWh packs into older 24 kWh Leafs."}]
+  },
+  {
+    "code": "P3A04-NISSAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Nissan Leaf Lithium-Ion Pack Voltage",
+    "shortDescription": "Lithium-ion battery pack voltage out of range.",
+    "fullDescription": "P3A04-NISSAN sets when overall pack voltage falls outside the BMS-expected window. Commonly seen after deep discharge or after sitting undriven for months.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may not start or drive.",
+    "causes": [
+      {"cause": "Deep discharge (0% for extended time)", "likelihood": "high"},
+      {"cause": "Failed cell group pulling pack voltage low", "likelihood": "medium"},
+      {"cause": "BMS sensor fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Won't turn READY", "Slow to charge", "LBC warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Slow recovery charge", "instruction": "Try L1 charger overnight; sometimes BMS recovers.", "tools": ["L1 EVSE"], "difficulty": "easy"},
+      {"step": 2, "title": "LeafSpy diagnosis", "instruction": "Identify weak cell pair via shunt count and voltage read.", "tools": ["LeafSpy"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Module swap", "instruction": "Replace weak module with matched voltage unit.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "mechanic": {"min": 500, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3A00-NISSAN"],
+    "faq": [{"q": "Did I ruin the pack by letting it sit?", "a": "Possibly — Li-ion dislikes 0% SoC. Keep Leaf plugged in when parked long-term."}]
+  },
+  {
+    "code": "P3B04-NISSAN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Nissan Leaf Battery Management Fault",
+    "shortDescription": "LBC (Lithium Battery Controller) internal fault.",
+    "fullDescription": "P3B04-NISSAN indicates LBC (BMS) internal hardware failure. The LBC monitors 96 cell pairs and commands contactors. Replacement LBCs must be coded to the pack.",
+    "severity": "high",
+    "safetyImpact": "Pack protection disabled — risk if driven.",
+    "causes": [
+      {"cause": "LBC board water damage", "likelihood": "medium"},
+      {"cause": "LBC ROM corruption", "likelihood": "medium"},
+      {"cause": "12V power spike", "likelihood": "low"}
+    ],
+    "symptoms": ["EV system warning light", "No propulsion", "Charging disabled"],
+    "fixSteps": [
+      {"step": 1, "title": "Nissan Consult III scan", "instruction": "Dealer tool reads LBC-specific sub-codes.", "tools": ["Consult III"], "difficulty": "professional"},
+      {"step": 2, "title": "LBC replacement", "instruction": "LBC is inside pack housing — full pack access needed.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P3A00-NISSAN"],
+    "faq": [{"q": "Can I swap an LBC myself?", "a": "Not recommended — requires dealer coding to the pack."}]
+  },
+  {
+    "code": "P3030-TOYOTA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Toyota HV Battery Voltage",
+    "shortDescription": "HV battery voltage out of range on Prius / bZ4X.",
+    "fullDescription": "P3030-TOYOTA sets on Prius hybrid (all gens) and bZ4X EV when HV battery voltage falls outside expected operating range.\n\nDANGER: Prius pack is 201.6-244.8V NiMH (older) or Li-ion (newer). bZ4X is 355V Li-ion. Always remove orange service plug and wait 5 minutes before servicing.",
+    "severity": "high",
+    "safetyImpact": "Possible hybrid disable; loss of EV drive on bZ4X.",
+    "causes": [
+      {"cause": "Weak cell module (Prius NiMH age)", "likelihood": "high"},
+      {"cause": "HV battery fan clogged", "likelihood": "medium"},
+      {"cause": "Battery ECU fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle of death", "Won't enter READY", "Reduced MPG"],
+    "fixSteps": [
+      {"step": 1, "title": "Techstream scan", "instruction": "Toyota Techstream reads block voltages for NiMH packs.", "tools": ["Techstream"], "difficulty": "professional"},
+      {"step": 2, "title": "Clean HV battery fan", "instruction": "Rear seat access; remove fan and clean dust.", "tools": ["basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Module or pack replacement", "instruction": "Aftermarket Prius pack rebuilders widely available.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 1500}, "mechanic": {"min": 1500, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3035-TOYOTA", "P3040-TOYOTA"],
+    "faq": [{"q": "Reconditioned vs new pack?", "a": "Reconditioned ~$1500, OEM new ~$3000+. Refurb often better value on older Prius."}]
+  },
+  {
+    "code": "P3035-TOYOTA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Toyota Hybrid Transaxle Fault",
+    "shortDescription": "eCVT / e-Axle transaxle fault on Prius / bZ4X.",
+    "fullDescription": "P3035-TOYOTA covers Toyota Hybrid Synergy Drive transaxle faults — combined MG1/MG2/planetary gearset on Prius, or eAxle on bZ4X.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion.",
+    "causes": [
+      {"cause": "Transaxle fluid degraded", "likelihood": "medium"},
+      {"cause": "Bearing failure", "likelihood": "medium"},
+      {"cause": "Internal sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Hybrid warning", "Grinding from transaxle", "Cannot engage READY"],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid check", "instruction": "Check Toyota WS fluid level and color.", "tools": ["Techstream"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Dealer inspection", "instruction": "Mechanical teardown may be required.", "tools": ["Techstream"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P3030-TOYOTA", "P3045-TOYOTA"],
+    "faq": [{"q": "What fluid does eCVT use?", "a": "Toyota WS ATF — change every 60k mi for longevity."}]
+  },
+  {
+    "code": "P3040-TOYOTA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Toyota Inverter Fault",
+    "shortDescription": "Power Control Unit / inverter fault on Prius / bZ4X.",
+    "fullDescription": "P3040-TOYOTA is set when the Power Control Unit (PCU) inverter reports fault. PCU houses inverters for MG1 and MG2 plus boost converter.\n\nDANGER: PCU contains capacitors holding 650V DC for minutes after shutdown. Measure and verify before servicing.",
+    "severity": "high",
+    "safetyImpact": "Loss of hybrid/EV propulsion.",
+    "causes": [
+      {"cause": "IGBT module failure", "likelihood": "medium"},
+      {"cause": "Coolant pump failure (known Prius issue)", "likelihood": "high"},
+      {"cause": "Internal short", "likelihood": "low"}
+    ],
+    "symptoms": ["Red triangle", "Reduced power", "Overheat warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Check inverter coolant pump", "instruction": "Common failure on Gen 2/3 Prius. Pump runs on 12V.", "tools": [], "difficulty": "intermediate"},
+      {"step": 2, "title": "PCU diagnosis", "instruction": "Techstream isolate IGBT faults.", "tools": ["Techstream"], "difficulty": "professional"},
+      {"step": 3, "title": "PCU replacement", "instruction": "Remanufactured PCUs available.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 300}, "mechanic": {"min": 500, "max": 4500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3030-TOYOTA", "P3045-TOYOTA"],
+    "faq": [{"q": "How do I test the coolant pump?", "a": "With car ON, look in engine bay reservoir for bubbling/flow."}]
+  },
+  {
+    "code": "P3045-TOYOTA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "Toyota MG1 Motor-Generator Fault",
+    "shortDescription": "MG1 (motor-generator 1) fault on Toyota hybrids.",
+    "fullDescription": "P3045-TOYOTA indicates fault with MG1, primarily used as a generator and engine starter in Toyota Hybrid Synergy Drive.",
+    "severity": "high",
+    "safetyImpact": "Engine cannot start; hybrid disabled.",
+    "causes": [
+      {"cause": "MG1 winding short", "likelihood": "medium"},
+      {"cause": "Position sensor (resolver) fault", "likelihood": "medium"},
+      {"cause": "Transaxle fluid contamination", "likelihood": "low"}
+    ],
+    "symptoms": ["Engine won't start", "Red triangle", "Loud transaxle noise"],
+    "fixSteps": [
+      {"step": 1, "title": "Techstream diagnostic", "instruction": "Read MG1 resolver and winding data.", "tools": ["Techstream"], "difficulty": "professional"},
+      {"step": 2, "title": "Transaxle service", "instruction": "MG1 replacement requires transaxle removal.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1500, "max": 5500}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P3035-TOYOTA", "P3040-TOYOTA"],
+    "faq": [{"q": "Is MG1 the drive motor?", "a": "No — MG2 is drive. MG1 is primarily generator/starter."}]
+  },
+  {
+    "code": "P3400-BMW",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "BMW HV Safety System Fault",
+    "shortDescription": "HV safety system error on i3 / i4 / iX.",
+    "fullDescription": "P3400-BMW is set by SME (HV battery controller) on BMW i3, i4, iX, and iX3 when HV safety circuit (crash sensor / interlock loop / isolation monitor) detects fault.\n\nDANGER: BMW EVs use 353V (i3) to 400V+ (iX) architecture. Always use BMW ISTA to command safe HV shutdown.",
+    "severity": "high",
+    "safetyImpact": "HV isolation may be compromised.",
+    "causes": [
+      {"cause": "Pyro fuse triggered", "likelihood": "low"},
+      {"cause": "Isolation resistance low (moisture)", "likelihood": "medium"},
+      {"cause": "SME software fault", "likelihood": "medium"},
+      {"cause": "HV connector not seated", "likelihood": "medium"}
+    ],
+    "symptoms": ["Drivetrain fault warning", "No propulsion", "Charging disabled"],
+    "fixSteps": [
+      {"step": 1, "title": "ISTA scan", "instruction": "BMW ISTA reads SME sub-codes for exact cause.", "tools": ["BMW ISTA"], "difficulty": "professional"},
+      {"step": 2, "title": "HV isolation test", "instruction": "Megger test between HV and chassis.", "tools": ["insulation tester"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-10 hours",
+    "relatedCodes": ["P3410-BMW", "P3420-BMW"],
+    "faq": [{"q": "Can moisture cause this?", "a": "Yes — water in HV connectors lowers isolation resistance and trips the code."}]
+  },
+  {
+    "code": "P3410-BMW",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "BMW Charging Port Fault",
+    "shortDescription": "EVSE/CCS charging port communication or lock failure.",
+    "fullDescription": "P3410-BMW sets when the charging port controller on i3/i4/iX fails to negotiate with the EVSE or cannot actuate the port lock.",
+    "severity": "medium",
+    "safetyImpact": "Cannot charge.",
+    "causes": [
+      {"cause": "Port lock motor failed", "likelihood": "medium"},
+      {"cause": "Pilot signal circuit damage", "likelihood": "medium"},
+      {"cause": "Dirty/corroded CCS pins", "likelihood": "medium"}
+    ],
+    "symptoms": ["Cable won't lock", "Won't charge", "Charging port flashing red"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean port", "instruction": "Inspect CCS pins; clean with electronics cleaner.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Try another EVSE", "instruction": "Rule out the charger.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "Port replacement", "instruction": "BMW port assembly with lock motor.", "tools": ["BMW ISTA"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P3400-BMW", "P3500"],
+    "faq": [{"q": "Is the charge port HV?", "a": "Yes when charging — never touch pins while plugged in."}]
+  },
+  {
+    "code": "P3420-BMW",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "BMW HV Battery Heater Fault",
+    "shortDescription": "HV battery PTC heater element fault.",
+    "fullDescription": "P3420-BMW sets when the HV pack's PTC heater does not draw expected current when commanded. Heater preconditions pack for fast charging and cold-weather performance.",
+    "severity": "medium",
+    "safetyImpact": "Reduced winter range; slower DC fast charging in cold.",
+    "causes": [
+      {"cause": "PTC element open", "likelihood": "medium"},
+      {"cause": "Heater relay failure", "likelihood": "medium"},
+      {"cause": "Control module fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Slow charge in cold", "Reduced winter range", "Precondition not working"],
+    "fixSteps": [
+      {"step": 1, "title": "ISTA activation test", "instruction": "Command heater and verify current draw.", "tools": ["BMW ISTA"], "difficulty": "professional"},
+      {"step": 2, "title": "Heater replacement", "instruction": "Integrated with pack thermal system.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 600, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P3400-BMW"],
+    "faq": [{"q": "Is it safe to ignore in summer?", "a": "Yes, but expect slower fast charging whenever pack is below 15°C."}]
+  },
+  {
+    "code": "P3500",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "J1772 Pilot Signal Fault",
+    "shortDescription": "SAE J1772 control pilot (CP) signal out of range.",
+    "fullDescription": "P3500 is set on many EVs when the J1772 Control Pilot signal does not match expected PWM duty cycle advertising available amperage from the EVSE. Applies to essentially all Level 1/2 AC charging.",
+    "severity": "medium",
+    "safetyImpact": "Cannot charge via AC.",
+    "causes": [
+      {"cause": "Faulty EVSE", "likelihood": "high"},
+      {"cause": "Wet or corroded J1772 inlet", "likelihood": "medium"},
+      {"cause": "Damaged pilot wire", "likelihood": "low"},
+      {"cause": "Onboard charger input stage fault", "likelihood": "low"}
+    ],
+    "symptoms": ["Charging will not start", "EVSE light red", "Error message on car touchscreen"],
+    "fixSteps": [
+      {"step": 1, "title": "Try another EVSE", "instruction": "Rule out wall charger. Use known-good home or public unit.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect inlet", "instruction": "Dry inlet; verify no debris in pilot pin.", "tools": ["flashlight"], "difficulty": "easy"},
+      {"step": 3, "title": "OBC/inlet diagnostic", "instruction": "Factory tool reads pilot duty cycle.", "tools": ["scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P3410-BMW", "P3530"],
+    "faq": [{"q": "What is J1772?", "a": "The standard 5-pin AC charging connector used in North America for Level 1/2 charging."}]
+  },
+  {
+    "code": "P3510",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "CCS DC Fast Charge Contactor Fault",
+    "shortDescription": "CCS DC contactor failed to close during fast charge.",
+    "fullDescription": "P3510 is set when CCS1/CCS2 DC fast-charging contactors in the vehicle do not close properly when attempting DC charging. Separate from traction contactors.",
+    "severity": "high",
+    "safetyImpact": "Cannot DC fast charge.",
+    "causes": [
+      {"cause": "DC contactor welded/failed", "likelihood": "medium"},
+      {"cause": "BMS logic fault", "likelihood": "medium"},
+      {"cause": "PLC communication error with station", "likelihood": "medium"}
+    ],
+    "symptoms": ["DC charging fails immediately", "Red error on charging station"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different DC station", "instruction": "Rule out station (Electrify America / EVgo / Tesla).", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Factory scan", "instruction": "Read BMS contactor states.", "tools": ["scan tool"], "difficulty": "professional"},
+      {"step": 3, "title": "Contactor replacement", "instruction": "DC contactors inside pack housing.", "tools": ["HV safety kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P3500", "P3520"],
+    "faq": [{"q": "AC charging still work?", "a": "Usually yes — AC uses different path through OBC."}]
+  },
+  {
+    "code": "P3520",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "DC Fast Charge Communication Error",
+    "shortDescription": "CCS PLC or CHAdeMO CAN communication failure.",
+    "fullDescription": "P3520 indicates the vehicle could not complete SECC handshake with DC fast-charge station. Covers both CCS (PLC over HomePlug Green PHY) and CHAdeMO (CAN).",
+    "severity": "medium",
+    "safetyImpact": "Cannot DC fast charge at this station.",
+    "causes": [
+      {"cause": "Station firmware incompatibility", "likelihood": "high"},
+      {"cause": "Vehicle SECC fault", "likelihood": "medium"},
+      {"cause": "Noise on CCS pilot / CAN pair", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging fails with comm error", "Station shows 'unable to authenticate'"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different network", "instruction": "Some stations have firmware quirks. Try EA vs EVgo vs ChargePoint.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Check vehicle software", "instruction": "OTA updates frequently fix handshake issues.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "Dealer diagnosis", "instruction": "Factory tool captures handshake trace.", "tools": ["scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P3510"],
+    "faq": [{"q": "Is this the car or charger?", "a": "Usually charger firmware. Try another station before blaming the car."}]
+  },
+  {
+    "code": "P3530",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EV / Hybrid / Charging",
+    "title": "AC Charging System Fault",
+    "shortDescription": "Onboard AC charger general fault.",
+    "fullDescription": "P3530 is a generic AC charging fault covering OBC overcurrent, overvoltage, or over-temperature during Level 1 or Level 2 charging.",
+    "severity": "medium",
+    "safetyImpact": "AC charging disabled.",
+    "causes": [
+      {"cause": "OBC over-temperature", "likelihood": "medium"},
+      {"cause": "Poor house wiring / voltage sag", "likelihood": "medium"},
+      {"cause": "OBC internal fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging stops mid-session", "Slow charge rate", "Charge fault message"],
+    "fixSteps": [
+      {"step": 1, "title": "Check EVSE and outlet", "instruction": "Measure voltage under load. Should be 110-125V or 220-240V without excessive drop.", "tools": ["multimeter"], "difficulty": "easy"},
+      {"step": 2, "title": "Let OBC cool", "instruction": "Park in shade, retry charging.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "OBC diagnosis", "instruction": "Dealer/shop reads detailed OBC codes.", "tools": ["scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 300, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-6 hours",
+    "relatedCodes": ["P3500", "P3060-FORD"],
+    "faq": [{"q": "Should I upgrade my wiring?", "a": "Yes — dedicated 240V/40A+ circuit ensures stable charging."}]
+  },
+  {
+    "code": "P3435",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 3 Deactivation/Intake Valve Control Performance",
+    "shortDescription": "AFM/MDS cylinder 3 intake valve did not deactivate/reactivate on command.",
+    "fullDescription": "P3435 sets on GM AFM V6/V8 engines and Chrysler MDS Hemi engines when cylinder 3's intake valve lifter fails to collapse/extend on ECM command.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy; possible lifter failure cascade.",
+    "causes": [
+      {"cause": "Collapsed AFM/MDS lifter", "likelihood": "high"},
+      {"cause": "Dirty engine oil blocking lifter oil feed", "likelihood": "high"},
+      {"cause": "Lifter Oil Manifold Assembly (LOMA) solenoid fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Engine tick on cyl 3", "Rough idle", "Reduced MPG"],
+    "fixSteps": [
+      {"step": 1, "title": "Oil change and scan", "instruction": "Fresh oil + AFM-quality may clear if caught early.", "tools": ["basic tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Lifter replacement", "instruction": "Valve cover and cam removal required.", "tools": ["torque wrench", "valve spring compressor"], "difficulty": "advanced"},
+      {"step": 3, "title": "AFM disabler", "instruction": "Range Technology or similar disables AFM to prevent recurrence.", "tools": [], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 800, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P3400", "P3440", "P3455"],
+    "faq": [{"q": "Does AFM delete fix it?", "a": "Mechanical AFM delete kits permanently fix the issue, ~$1200-2000 plus labor."}]
+  },
+  {
+    "code": "P3440",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 4 Deactivation Circuit/Open",
+    "shortDescription": "AFM/MDS cylinder 4 solenoid circuit open.",
+    "fullDescription": "P3440 indicates an open electrical circuit on the cylinder 4 AFM/MDS solenoid in the LOMA (Lifter Oil Manifold Assembly).",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Solenoid coil open", "likelihood": "medium"},
+      {"cause": "Wiring harness connector corroded/broken", "likelihood": "high"},
+      {"cause": "ECM driver fault", "likelihood": "low"}
+    ],
+    "symptoms": ["CEL", "AFM disabled by ECM"],
+    "fixSteps": [
+      {"step": 1, "title": "Check connector", "instruction": "Unplug LOMA connector, inspect pins for corrosion/bent.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Resistance test solenoid", "instruction": "Typically 8-12 ohms; open = bad.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace LOMA", "instruction": "Requires intake manifold removal on most V8.", "tools": ["basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P3435", "P3455"],
+    "faq": [{"q": "Is LOMA a common failure?", "a": "Yes on GM 5.3/6.2 AFM engines, especially high mileage."}]
+  },
+  {
+    "code": "P3455",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Cylinder 5 Deactivation Circuit Performance",
+    "shortDescription": "Cyl 5 AFM/MDS circuit performance out of spec.",
+    "fullDescription": "P3455 sets when cylinder 5's AFM solenoid electrical performance is out of range — typically resistance out of spec or response time too slow.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Worn solenoid", "likelihood": "high"},
+      {"cause": "High resistance in connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean connector", "instruction": "Electrical cleaner + dielectric grease.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "LOMA replacement", "instruction": "Replace if multiple cylinders affected.", "tools": ["basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 400}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P3440", "P3460"],
+    "faq": [{"q": "Common cylinder for AFM problems?", "a": "GM pattern failures vary; cyl 1, 4, 7 most common on 5.3L."}]
+  },
+  {
+    "code": "P3460-GM",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "GM AFM Cylinder 6 Deactivation Circuit Low",
+    "shortDescription": "Cyl 6 AFM/MDS solenoid circuit low voltage.",
+    "fullDescription": "P3460 indicates cylinder 6 AFM/MDS solenoid circuit shows low voltage — either shorted to ground or solenoid internal short.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy.",
+    "causes": [
+      {"cause": "Solenoid shorted", "likelihood": "medium"},
+      {"cause": "Wire grounded against block", "likelihood": "medium"}
+    ],
+    "symptoms": ["CEL", "Possible lifter tick"],
+    "fixSteps": [
+      {"step": 1, "title": "Check wiring", "instruction": "Look for abrasion where harness passes engine edges.", "tools": [], "difficulty": "intermediate"},
+      {"step": 2, "title": "Solenoid test", "instruction": "Resistance to ground should be infinite.", "tools": ["multimeter"], "difficulty": "intermediate"},
+      {"step": 3, "title": "LOMA replacement", "instruction": "Standard repair.", "tools": ["basic tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 400}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P3455", "P3470-GM"],
+    "faq": [{"q": "Will disconnecting the solenoid clear the code?", "a": "No — that creates an open circuit code (P3455 etc.)."}]
+  },
+  {
+    "code": "P3470-GM",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "GM AFM Cylinder 7 Deactivation Mechanical Fault",
+    "shortDescription": "Cyl 7 AFM/MDS mechanical deactivation failed.",
+    "fullDescription": "P3470 indicates mechanical fault — solenoid commanded correctly but lifter did not actually collapse/extend. Strongly indicates collapsed lifter.",
+    "severity": "medium",
+    "safetyImpact": "Possible engine damage if lifter disintegrates.",
+    "causes": [
+      {"cause": "Collapsed AFM lifter", "likelihood": "high"},
+      {"cause": "Worn camshaft lobe", "likelihood": "medium"},
+      {"cause": "Low oil pressure at lifter", "likelihood": "medium"}
+    ],
+    "symptoms": ["Persistent cylinder tick", "Reduced power", "Possible misfire codes"],
+    "fixSteps": [
+      {"step": 1, "title": "Compression test cyl 7", "instruction": "Rule out burned valve or broken piston.", "tools": ["compression tester"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Lifter replacement", "instruction": "May require camshaft if lobe wiped.", "tools": ["valve spring compressor"], "difficulty": "advanced"},
+      {"step": 3, "title": "Consider AFM delete", "instruction": "Prevent recurrence on other cylinders.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 1200, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "6-14 hours",
+    "relatedCodes": ["P3460-GM", "P3480-GM"],
+    "faq": [{"q": "Do I need a new cam?", "a": "Only if the lobe is worn — inspect during lifter replacement."}]
+  },
+  {
+    "code": "P3480-GM",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "GM AFM Cylinder 8 Deactivation Mechanical Fault",
+    "shortDescription": "Cyl 8 AFM/MDS mechanical deactivation failure.",
+    "fullDescription": "P3480 is the cylinder 8 counterpart to P3470 — mechanical fault where AFM/MDS lifter did not respond despite correct solenoid operation. Common on GM 6.2L L86/L87 V8.",
+    "severity": "medium",
+    "safetyImpact": "Possible engine damage from metal in oil.",
+    "causes": [
+      {"cause": "Collapsed AFM lifter (very common)", "likelihood": "high"},
+      {"cause": "Cam lobe damage", "likelihood": "medium"},
+      {"cause": "Lifter oil passage blockage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Loud tick from cyl 8", "CEL", "Misfire on cyl 8"],
+    "fixSteps": [
+      {"step": 1, "title": "Pull valve cover", "instruction": "Inspect rocker and lifter for cyl 8.", "tools": ["basic tools"], "difficulty": "advanced"},
+      {"step": 2, "title": "Lifter replacement", "instruction": "Many owners replace all 16 lifters + cam as preventive on GM DFM/AFM.", "tools": ["valve spring compressor"], "difficulty": "advanced"},
+      {"step": 3, "title": "DFM/AFM delete kit", "instruction": "Mechanical delete with non-AFM cam is best long-term fix.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 300, "max": 2000}, "mechanic": {"min": 1500, "max": 6000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "8-16 hours",
+    "relatedCodes": ["P3470-GM", "P3400"],
+    "faq": [{"q": "Is there a recall?", "a": "GM has extended warranty on some 6.2L lifter failures; check your VIN."}]
+  },
+  {
+    "code": "P3445-MOPAR",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cylinder Deactivation",
+    "title": "Chrysler MDS Cylinder 4 Mechanical Fault",
+    "shortDescription": "Hemi MDS cylinder 4 did not deactivate/reactivate on command.",
+    "fullDescription": "P3445-MOPAR sets on Chrysler/Dodge/Ram 5.7L and 6.4L Hemi MDS (Multi-Displacement System) engines when cylinder 4 fails to deactivate or reactivate as commanded. MDS collapses the cyl 1/4/6/7 lifters under light load to run as a V4.\n\nHemi MDS lifter failures are extremely common on 2009+ engines, especially with extended oil change intervals. Failure often cascades to camshaft damage.",
+    "severity": "medium",
+    "safetyImpact": "Possible engine damage if lifter disintegrates.",
+    "causes": [
+      {"cause": "Collapsed MDS lifter", "likelihood": "high"},
+      {"cause": "Cam lobe wiped out", "likelihood": "medium"},
+      {"cause": "MDS solenoid fault", "likelihood": "medium"},
+      {"cause": "Low oil pressure at lifter oil port", "likelihood": "medium"}
+    ],
+    "symptoms": ["Hemi tick", "Misfire cyl 4", "CEL", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Oil analysis", "instruction": "Check oil for metal flakes indicating cam damage.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Valve cover inspection", "instruction": "Remove passenger valve cover; inspect cyl 4 rocker/lifter.", "tools": ["basic tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Lifter and cam service", "instruction": "Most Hemi owners replace all 16 lifters + cam; MDS delete common at this point.", "tools": ["valve spring compressor"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 500, "max": 2000}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "10-16 hours",
+    "relatedCodes": ["P3435", "P3455"],
+    "faq": [{"q": "Should I MDS-delete?", "a": "Most Hemi shops recommend it — non-MDS cam + deleted tuning eliminates recurrence."}]
   }
 ]
