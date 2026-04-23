@@ -20,15 +20,27 @@ export default function CausesSection({ causes }: CausesSectionProps) {
 
   return (
     <section>
-      <h2 className="text-xl font-bold text-gray-900 mb-4">Common Causes</h2>
-      <div className="space-y-3">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Common causes</h2>
+      <p className="text-sm text-gray-600 mb-4">
+        Ranked by how often each cause shows up in real-world reports. Start with the
+        high-likelihood items first.
+      </p>
+      <ol className="space-y-2">
         {sorted.map((c, i) => (
-          <div key={i} className="flex items-center justify-between bg-gray-50 rounded-md p-3">
-            <span className="text-gray-800">{c.cause}</span>
+          <li
+            key={i}
+            className="flex items-start gap-3 rounded-lg border border-gray-200 bg-white p-3 sm:p-4"
+          >
+            <span className="shrink-0 flex items-center justify-center h-7 w-7 rounded-full bg-gray-100 text-xs font-bold text-gray-700">
+              {i + 1}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="text-gray-900 leading-snug">{c.cause}</p>
+            </div>
             <LikelihoodBadge likelihood={c.likelihood} />
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }
