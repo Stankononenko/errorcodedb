@@ -3,6 +3,7 @@ import { getAllOBDCodes } from "@/lib/data-loader";
 import { SITE_NAME } from "@/lib/constants";
 import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/constants";
+import SearchBar from "@/components/search/SearchBar";
 
 const CATEGORIES = [
   {
@@ -79,14 +80,27 @@ export default function HomePage() {
       <JsonLd data={websiteJsonLd} />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-16 sm:py-24">
+      <section className="bg-gradient-to-b from-blue-50 to-white py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900">
+          <h1 className="text-3xl sm:text-5xl font-bold text-gray-900">
             Find &amp; Fix Any Error Code
           </h1>
-          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-            The most comprehensive error code database. OBD-II car codes, appliance errors, HVAC codes, printer errors, and Windows codes — all with step-by-step fix guides.
+          <p className="mt-3 sm:mt-4 text-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
+            The most comprehensive error code database. 7,000+ codes across cars, appliances, HVAC, printers, and computers — with step-by-step fixes.
           </p>
+          <div className="mt-6 sm:mt-8">
+            <SearchBar variant="hero" />
+          </div>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-gray-500">
+            <span className="font-medium text-gray-600">Try:</span>
+            <Link href="/search?q=P0420" className="hover:text-brand-primary hover:underline font-mono">P0420</Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/search?q=Samsung+washer+1E" className="hover:text-brand-primary hover:underline">Samsung washer 1E</Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/search?q=0x0000007B" className="hover:text-brand-primary hover:underline font-mono">0x0000007B</Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/search?q=blinking+red+light+furnace" className="hover:text-brand-primary hover:underline">blinking furnace</Link>
+          </div>
         </div>
       </section>
 
