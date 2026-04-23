@@ -14,14 +14,14 @@ Comprehensive error code database — ALL devices worldwide. Target: 50,000+ pag
 
 ## Current Status (End of Session 5 — April 17, 2026, continuation)
 
-### GRAND TOTAL: 6,012 error codes, 6,300+ static pages
+### GRAND TOTAL: 6,224 error codes, 6,500+ static pages
 
 | Category | Codes | Details |
 |----------|-------|---------|
-| OBD-II | **2,094** | P0: 13 batches (~760), P1: 403, P2: 180, P3: 110, B: 195, C: 199, U: 238 |
-| Windows | **475** | BSOD 129, Update 102, System 100, Browser 104 |
-| Printers | **472** | HP 105, Canon 90, Epson 77, Brother 60, Xerox 45, Lexmark 45 |
-| Appliances | 2,760+ | 100 brands |
+| OBD-II | **2,094** | P0: 13 batches, P1: 403, P2: 180, P3: 110, B: 195, C: 199, U: 238 |
+| Windows | **531** | BSOD 157, Update 130, System 100, Browser 104 |
+| Printers | **559** | HP 105, Canon 90, Epson 77, Brother 87, Xerox 75, Lexmark 45 |
+| Appliances | **2,869+** | 100 brands (+Samsung/Whirlpool/GE new device types) |
 | HVAC | 301 | 15 brands |
 
 ### Session 5 progress:
