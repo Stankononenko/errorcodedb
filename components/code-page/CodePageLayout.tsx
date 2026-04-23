@@ -22,6 +22,7 @@ import PartsNeeded from "./PartsNeeded";
 import AffectedModels from "./AffectedModels";
 import HelpfulFeedback from "./HelpfulFeedback";
 import ShareButton from "./ShareButton";
+import SaveButton from "./SaveButton";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -54,7 +55,16 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3">
           <Breadcrumbs items={breadcrumbs} />
-          <ShareButton code={code.displayCode} title={code.title} />
+          <div className="flex items-center gap-2">
+            <SaveButton
+              code={code.displayCode}
+              title={code.title}
+              url={canonicalPath}
+              category={code.category}
+              brand={code.brand}
+            />
+            <ShareButton code={code.displayCode} title={code.title} />
+          </div>
         </div>
 
         <div className="mt-4 space-y-8">
