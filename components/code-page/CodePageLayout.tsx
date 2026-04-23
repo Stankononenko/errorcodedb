@@ -25,6 +25,7 @@ import ShareButton from "./ShareButton";
 import SaveButton from "./SaveButton";
 import TrustBadge from "./TrustBadge";
 import Sources from "./Sources";
+import RecentView from "./RecentView";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -53,6 +54,14 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
       <JsonLd data={articleJsonLd} />
       {faqJsonLd && <JsonLd data={faqJsonLd} />}
       {howToJsonLd && <JsonLd data={howToJsonLd} />}
+
+      <RecentView
+        code={code.displayCode}
+        title={code.title}
+        url={canonicalPath}
+        category={code.category}
+        brand={code.brand}
+      />
 
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3">

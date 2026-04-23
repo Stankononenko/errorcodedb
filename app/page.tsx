@@ -4,6 +4,7 @@ import path from "path";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import JsonLd from "@/components/seo/JsonLd";
 import SearchBar from "@/components/search/SearchBar";
+import RecentViewedList from "@/components/code-page/RecentViewedList";
 
 function walkJsonFiles(dir: string, acc: string[] = [], base = dir): string[] {
   if (!fs.existsSync(dir)) return acc;
@@ -198,6 +199,13 @@ export default function HomePage() {
             <StatCard label="Categories" value={stats.byCat.length.toString()} />
             <StatCard label="Price" value="Free" />
           </dl>
+        </div>
+      </section>
+
+      {/* Recently viewed (personal) */}
+      <section className="py-8 border-t border-gray-100 bg-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <RecentViewedList limit={6} />
         </div>
       </section>
 
