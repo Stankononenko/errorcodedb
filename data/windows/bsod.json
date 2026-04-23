@@ -5678,7 +5678,7 @@
     "displayCode": "FAULTY_HARDWARE_CORRUPTED_PAGE",
     "title": "Faulty Hardware Corrupted Page",
     "shortDescription": "A hardware component has corrupted a page of memory, indicating RAM or CPU issues.",
-    "fullDescription": "The FAULTY_HARDWARE_CORRUPTED_PAGE BSOD indicates that a hardware component — most commonly RAM — has corrupted data in a memory page. Windows detected that a page of memory expected to contain specific data was altered unexpectedly, pointing to a hardware fault.\n\nThis error can also be caused by motherboard issues, CPU cache errors, or in some cases, driver bugs that corrupt memory. It became more prevalent with certain Intel and AMD platform chipset issues.\n\nDiagnosis requires thorough hardware testing, starting with RAM and extending to the CPU and motherboard if RAM tests pass.",
+    "fullDescription": "The FAULTY_HARDWARE_CORRUPTED_PAGE BSOD indicates that a hardware component \u2014 most commonly RAM \u2014 has corrupted data in a memory page. Windows detected that a page of memory expected to contain specific data was altered unexpectedly, pointing to a hardware fault.\n\nThis error can also be caused by motherboard issues, CPU cache errors, or in some cases, driver bugs that corrupt memory. It became more prevalent with certain Intel and AMD platform chipset issues.\n\nDiagnosis requires thorough hardware testing, starting with RAM and extending to the CPU and motherboard if RAM tests pass.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -6764,7 +6764,7 @@
       },
       {
         "q": "Is updating BIOS risky?",
-        "a": "There is a small risk — if the update is interrupted, the system may not boot. Use a UPS, follow manufacturer instructions exactly, and do not interrupt the process."
+        "a": "There is a small risk \u2014 if the update is interrupted, the system may not boot. Use a UPS, follow manufacturer instructions exactly, and do not interrupt the process."
       },
       {
         "q": "Can old hardware run Windows 11 with this error?",
@@ -8935,7 +8935,7 @@
     "displayCode": "IO1_INITIALIZATION_FAILED",
     "title": "I/O Subsystem Initialization Failed",
     "shortDescription": "The I/O subsystem failed to initialize during Windows boot.",
-    "fullDescription": "The IO1_INITIALIZATION_FAILED BSOD occurs when the Windows I/O subsystem fails during the early boot initialization phase. The I/O subsystem is fundamental to Windows — it handles all input/output operations including disk access, network communication, and device management.\n\nThis error typically indicates severe system file corruption, missing critical drivers, or hardware issues preventing the I/O subsystem from starting. It can also occur after an interrupted Windows update.\n\nRecovery requires booting from external media and repairing the Windows installation.",
+    "fullDescription": "The IO1_INITIALIZATION_FAILED BSOD occurs when the Windows I/O subsystem fails during the early boot initialization phase. The I/O subsystem is fundamental to Windows \u2014 it handles all input/output operations including disk access, network communication, and device management.\n\nThis error typically indicates severe system file corruption, missing critical drivers, or hardware issues preventing the I/O subsystem from starting. It can also occur after an interrupted Windows update.\n\nRecovery requires booting from external media and repairing the Windows installation.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -9055,7 +9055,7 @@
     "displayCode": "NO_PAGES_AVAILABLE",
     "title": "No Pages Available",
     "shortDescription": "The system ran out of memory pages, unable to allocate any more physical memory.",
-    "fullDescription": "The NO_PAGES_AVAILABLE BSOD occurs when Windows completely exhausts all available memory pages. This means there is no physical memory or page file space left for the system to allocate.\n\nThis error is different from the STATUS_NO_MEMORY error — it occurs at a lower level when the memory manager cannot find any free pages at all. It is typically caused by massive memory leaks in drivers, insufficient RAM combined with heavy workloads, or a disabled/full page file.\n\nIncreasing available memory and fixing memory leaks are the primary solutions.",
+    "fullDescription": "The NO_PAGES_AVAILABLE BSOD occurs when Windows completely exhausts all available memory pages. This means there is no physical memory or page file space left for the system to allocate.\n\nThis error is different from the STATUS_NO_MEMORY error \u2014 it occurs at a lower level when the memory manager cannot find any free pages at all. It is typically caused by massive memory leaks in drivers, insufficient RAM combined with heavy workloads, or a disabled/full page file.\n\nIncreasing available memory and fixing memory leaks are the primary solutions.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -13976,7 +13976,7 @@
     "displayCode": "DATA_COHERENCY_EXCEPTION",
     "title": "CPU Cache Data Coherency Violation",
     "shortDescription": "The CPU detected a cache coherency violation between cores or caches.",
-    "fullDescription": "This bug check indicates the hardware detected that cached data between CPU cores, caches, or memory was inconsistent. It almost always signals a hardware fault — failing CPU, motherboard, or RAM, or instability from overclocking.\n\nReset all clocks and voltages to stock and test hardware systematically.",
+    "fullDescription": "This bug check indicates the hardware detected that cached data between CPU cores, caches, or memory was inconsistent. It almost always signals a hardware fault \u2014 failing CPU, motherboard, or RAM, or instability from overclocking.\n\nReset all clocks and voltages to stock and test hardware systematically.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -14482,7 +14482,7 @@
     "faq": [
       {
         "q": "Is this a C program crash?",
-        "a": "No — it's a kernel driver calling into a kernel CRT, not a user-mode app."
+        "a": "No \u2014 it's a kernel driver calling into a kernel CRT, not a user-mode app."
       }
     ]
   },
@@ -15038,6 +15038,3419 @@
       {
         "q": "Can I work around it?",
         "a": "Temporarily by removing the faulty driver; long-term requires a vendor update."
+      }
+    ]
+  },
+  {
+    "id": "bsod-driver-used-excessive-ptes",
+    "category": "bsod",
+    "code": "0x000000D8",
+    "displayCode": "DRIVER_USED_EXCESSIVE_PTES",
+    "title": "Driver Used Excessive Page Table Entries",
+    "shortDescription": "A driver allocated an excessive number of Page Table Entries, exhausting kernel address space.",
+    "fullDescription": "The DRIVER_USED_EXCESSIVE_PTES bug check indicates that a driver consumed too many PTEs (Page Table Entries), leaving insufficient kernel virtual memory. This is most common on 32-bit systems running workloads that stress the kernel address space, such as imaging, backup, or storage drivers that perform many MDL mappings.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Driver leaking MDLs or page mappings",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Heavy workload on 32-bit Windows",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated storage or backup driver",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Low /3GB or PAE kernel memory",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Blue screen with DRIVER_USED_EXCESSIVE_PTES",
+      "Crashes during heavy disk I/O or imaging tasks",
+      "System becomes unresponsive before BSOD",
+      "Event Viewer shows Pool Allocation warnings"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Increase system PTEs",
+        "instruction": "Add registry DWORD SystemPages under HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management to a higher value (e.g., 0xFFFFFFFF).",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Switch to 64-bit Windows",
+        "instruction": "On 32-bit systems chronically hitting PTE exhaustion, upgrading to 64-bit Windows is the real fix.",
+        "tools": [
+          "Windows Installer"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 120
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If you cannot identify the offending driver from the minidump, a professional can use WinDbg to inspect PTE pool usage.",
+    "relatedCodes": [
+      "DRIVER_CORRUPTED_SYSPTES",
+      "PFN_LIST_CORRUPT",
+      "PAGE_FAULT_IN_NONPAGED_AREA"
+    ],
+    "faq": [
+      {
+        "q": "Is this error common on modern Windows?",
+        "a": "No. It is almost exclusive to 32-bit Windows because 64-bit systems have vastly more kernel virtual address space."
+      },
+      {
+        "q": "Which drivers are usually responsible?",
+        "a": "Backup, imaging, storage filter, and antivirus drivers that map large amounts of memory are the most common offenders."
+      },
+      {
+        "q": "Will updating drivers fix it?",
+        "a": "Often yes, because vendors patch MDL leaks. Always try driver updates first."
+      }
+    ]
+  },
+  {
+    "id": "bsod-winlogon-fatal-error",
+    "category": "bsod",
+    "code": "0x00000156",
+    "displayCode": "WINLOGON_FATAL_ERROR",
+    "title": "Winlogon Fatal Error",
+    "shortDescription": "The Windows Logon process encountered a fatal error and the system cannot continue.",
+    "fullDescription": "Bug check 0x156 indicates Winlogon hit an unrecoverable error, typically due to corrupted logon modules, damaged user profile infrastructure, or interference from credential providers and security software.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted system files",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged credential provider or third-party logon plugin",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Group Policy or registry corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Malware tampering with Winlogon",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with WINLOGON_FATAL_ERROR",
+      "Crash at or shortly after sign-in",
+      "Black screen before Winlogon fails",
+      "System restart loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Hold Shift and click Restart, then Troubleshoot > Advanced Options > Startup Settings > Safe Mode with Networking.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Check credential providers",
+        "instruction": "Review HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Authentication\\Credential Providers and disable suspicious third-party entries.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run malware scan",
+        "instruction": "Boot into Safe Mode and run Windows Defender Offline scan plus Malwarebytes.",
+        "tools": [
+          "Windows Defender",
+          "Malwarebytes"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      },
+      {
+        "step": 5,
+        "title": "System Restore",
+        "instruction": "Use a restore point from before the issue started.",
+        "tools": [
+          "System Restore"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If Safe Mode also fails, professional help is needed to repair Winlogon via offline registry edits.",
+    "relatedCodes": [
+      "CRITICAL_PROCESS_DIED",
+      "SYSTEM_SERVICE_EXCEPTION",
+      "REGISTRY_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Can a bad credential provider cause this?",
+        "a": "Yes. Fingerprint readers, smart card middleware, and SSO plugins frequently trigger Winlogon crashes after updates."
+      },
+      {
+        "q": "Does it affect all users?",
+        "a": "Usually yes, because Winlogon runs before any user session."
+      },
+      {
+        "q": "Will a clean boot help?",
+        "a": "Yes. Disabling non-Microsoft startup services narrows down the culprit."
+      }
+    ]
+  },
+  {
+    "id": "bsod-kernel-thread-priority-floor-violation",
+    "category": "bsod",
+    "code": "0x00000157",
+    "displayCode": "KERNEL_THREAD_PRIORITY_FLOOR_VIOLATION",
+    "title": "Kernel Thread Priority Floor Violation",
+    "shortDescription": "A kernel thread attempted to drop below its assigned priority floor.",
+    "fullDescription": "Bug check 0x157 is issued when a kernel thread tries to lower its priority past a floor that was set by the scheduler. It indicates a logic bug in a kernel-mode driver performing priority boosts.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty kernel-mode driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Third-party scheduler or power management driver",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Corrupted driver installation",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Blue screen with KERNEL_THREAD_PRIORITY_FLOOR_VIOLATION",
+      "Crashes under high CPU load",
+      "Occurs with specific applications that use realtime threads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Enable Driver Verifier",
+        "instruction": "Run verifier.exe and enable standard checks on suspect drivers to reproduce the crash.",
+        "tools": [
+          "Driver Verifier"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Remove third-party tweak utilities",
+        "instruction": "Uninstall CPU/GPU tuning utilities (MSI Afterburner tweaks, Process Lasso, Throttlestop).",
+        "tools": [
+          "Control Panel"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If Driver Verifier cannot isolate the driver, a kernel debugger attached over network may be required.",
+    "relatedCodes": [
+      "KERNEL_SECURITY_CHECK_FAILURE",
+      "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED"
+    ],
+    "faq": [
+      {
+        "q": "Is this a hardware issue?",
+        "a": "Rarely. This is almost always a driver logic bug."
+      },
+      {
+        "q": "Can Driver Verifier identify the driver?",
+        "a": "Yes, running Verifier with standard and DDI compliance checks usually flags the offending driver."
+      },
+      {
+        "q": "Will a BIOS update help?",
+        "a": "Only if the issue stems from a platform power/ACPI driver paired with outdated firmware."
+      }
+    ]
+  },
+  {
+    "id": "bsod-system-parity-error",
+    "category": "bsod",
+    "code": "0x0000013E",
+    "displayCode": "SYSTEM_PARITY_ERROR",
+    "title": "System Parity Error",
+    "shortDescription": "A hardware parity error was detected on the system bus.",
+    "fullDescription": "Bug check 0x13E indicates the CPU detected a parity error reading from a system bus or cache. It is almost always a hardware fault \u2014 defective RAM, cache, motherboard, or CPU.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Defective RAM",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failing motherboard or chipset",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Overheating CPU",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Unstable overclock or memory timings",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Blue screen with SYSTEM_PARITY_ERROR",
+      "Random crashes under load",
+      "POST errors on reboot",
+      "Memory test failures"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset BIOS to defaults",
+        "instruction": "Enter BIOS, load optimized defaults, disable XMP and any overclocking.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Reseat RAM and CPU cooler",
+        "instruction": "Power off, reseat all memory modules and check CPU cooler mounting.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Monitor temperatures",
+        "instruction": "Use HWiNFO to verify CPU and RAM temperatures under load.",
+        "tools": [
+          "HWiNFO"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Replace faulty hardware",
+        "instruction": "If MemTest86 identifies a failing stick, replace it. If all pass, consider motherboard or CPU testing.",
+        "tools": [
+          "Replacement RAM"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "If RAM tests clean but crashes continue, professional hardware diagnosis of motherboard and CPU is recommended.",
+    "relatedCodes": [
+      "WHEA_UNCORRECTABLE_ERROR",
+      "MACHINE_CHECK_EXCEPTION",
+      "MEMORY_MANAGEMENT"
+    ],
+    "faq": [
+      {
+        "q": "Can software cause SYSTEM_PARITY_ERROR?",
+        "a": "Almost never. This is a hardware-level bus parity failure."
+      },
+      {
+        "q": "Which RAM should I replace first?",
+        "a": "Test sticks individually with MemTest86 to identify the failing module."
+      },
+      {
+        "q": "Is it safe to keep using the PC?",
+        "a": "Not recommended. Parity errors indicate unreliable memory that can corrupt data."
+      }
+    ]
+  },
+  {
+    "id": "bsod-driver-invalid-stack-access",
+    "category": "bsod",
+    "code": "0x00000146",
+    "displayCode": "DRIVER_INVALID_STACK_ACCESS",
+    "title": "Driver Accessed Invalid Stack Address",
+    "shortDescription": "A driver referenced a stack address outside the thread's current stack.",
+    "fullDescription": "Bug check 0x146 indicates a driver accessed memory beyond the allowed stack range for the current thread. This is a driver defect, often surfaced by Driver Verifier.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty kernel-mode driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Stack overflow in driver code",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Incompatible driver version",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Blue screen with DRIVER_INVALID_STACK_ACCESS",
+      "Crashes during specific hardware operations",
+      "Often reproducible with the same application"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Hold Shift and click Restart, then Troubleshoot > Advanced Options > Startup Settings > Safe Mode with Networking.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "A kernel debugger session is often needed to pinpoint the specific driver and stack frame.",
+    "relatedCodes": [
+      "DRIVER_OVERRAN_STACK_BUFFER",
+      "DRIVER_IRQL_NOT_LESS_OR_EQUAL"
+    ],
+    "faq": [
+      {
+        "q": "Is Driver Verifier useful here?",
+        "a": "Yes. Standard Verifier checks frequently isolate the offending driver."
+      },
+      {
+        "q": "Will reinstalling drivers help?",
+        "a": "Often yes \u2014 install the latest vendor driver rather than the Windows Update version."
+      },
+      {
+        "q": "Is this a hardware issue?",
+        "a": "No, this is a software defect in a kernel driver."
+      }
+    ]
+  },
+  {
+    "id": "bsod-unexpected-initialization-call",
+    "category": "bsod",
+    "code": "0x00000033",
+    "displayCode": "UNEXPECTED_INITIALIZATION_CALL",
+    "title": "Unexpected Initialization Call During Boot",
+    "shortDescription": "A kernel component received an initialization call that was not expected at this stage of boot.",
+    "fullDescription": "Bug check 0x33 indicates a driver or system component called an initialization routine out of order during startup. Historically associated with legacy driver bugs.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Legacy or incompatible boot-start driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Corrupted system file",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed Windows update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD early in boot",
+      "Cannot reach login screen",
+      "Safe Mode may also fail"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Recovery Environment",
+        "instruction": "Use installation media or three forced shutdowns to reach Recovery.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Uninstall recent update",
+        "instruction": "From Recovery > Advanced Options > Uninstall Updates, remove the latest quality update.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC offline",
+        "instruction": "From Command Prompt in Recovery: sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Startup Repair",
+        "instruction": "Run Startup Repair from Advanced Options.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "System Restore",
+        "instruction": "Pick a restore point from before the issue.",
+        "tools": [
+          "System Restore"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If Recovery options fail, a professional can repair boot via offline registry and DISM.",
+    "relatedCodes": [
+      "INACCESSIBLE_BOOT_DEVICE",
+      "BAD_SYSTEM_CONFIG_INFO"
+    ],
+    "faq": [
+      {
+        "q": "Is this error still seen on Windows 11?",
+        "a": "Rarely. It was more common on Windows XP/7 era systems."
+      },
+      {
+        "q": "Can a Windows update trigger it?",
+        "a": "Yes, a mismatched update can leave the system in a boot-order inconsistent state."
+      },
+      {
+        "q": "Should I reinstall Windows?",
+        "a": "Only after Recovery and System Restore have failed."
+      }
+    ]
+  },
+  {
+    "id": "bsod-session5-init-failed",
+    "category": "bsod",
+    "code": "0x00000071",
+    "displayCode": "SESSION5_INIT_FAILED",
+    "title": "Session 5 Initialization Failed",
+    "shortDescription": "Windows failed to initialize session 5 during startup.",
+    "fullDescription": "Bug check 0x71 indicates that Session Manager could not initialize session 5. It is typically caused by corrupted system files or low disk space preventing session creation.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted system files",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Very low free disk space",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty Windows update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD during boot",
+      "Error before reaching sign-in screen",
+      "Repeating restart loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Free up disk space",
+        "instruction": "Boot into Recovery and delete temporary files or use DISKPART to expand system partition.",
+        "tools": [
+          "Command Prompt",
+          "DISKPART"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Run SFC offline",
+        "instruction": "sfc /scannow /offbootdir=C:\\ /offwindir=C:\\Windows from Recovery Command Prompt.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Uninstall recent updates",
+        "instruction": "Use Recovery > Uninstall Updates to remove the latest update.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Startup Repair",
+        "instruction": "Let Windows attempt automatic boot repair.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "System Restore",
+        "instruction": "Roll back to a working restore point.",
+        "tools": [
+          "System Restore"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "If offline SFC and restore fail, professional in-place upgrade or reinstall is usually required.",
+    "relatedCodes": [
+      "CRITICAL_PROCESS_DIED",
+      "BAD_SYSTEM_CONFIG_INFO"
+    ],
+    "faq": [
+      {
+        "q": "What is session 5?",
+        "a": "It is one of the sessions Session Manager initializes early in boot for system services."
+      },
+      {
+        "q": "Does disk space really matter?",
+        "a": "Yes. Insufficient free space on C: can prevent session creation."
+      },
+      {
+        "q": "Will a repair install help?",
+        "a": "Yes, an in-place upgrade preserves data and replaces system files."
+      }
+    ]
+  },
+  {
+    "id": "bsod-bad-system-config-info",
+    "category": "bsod",
+    "code": "0x00000074",
+    "displayCode": "BAD_SYSTEM_CONFIG_INFO",
+    "title": "Bad System Configuration Information",
+    "shortDescription": "The Windows registry is corrupted or contains invalid configuration data.",
+    "fullDescription": "Bug check 0x74 means the SYSTEM hive of the registry is corrupted or missing required keys. Common causes are unexpected shutdowns during updates, failing storage, or incorrect manual registry edits.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted SYSTEM registry hive",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failing hard drive or SSD",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Improper shutdown during update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incorrect manual registry changes",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD at boot with BAD_SYSTEM_CONFIG_INFO",
+      "Windows cannot start",
+      "Frequent boot loops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use bootrec to rebuild BCD",
+        "instruction": "Boot to Recovery and run: bootrec /rebuildbcd then bootrec /fixmbr and bootrec /fixboot",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Restore registry hives",
+        "instruction": "From Recovery, copy files from C:\\Windows\\System32\\config\\RegBack to C:\\Windows\\System32\\config (if RegBack has non-zero files).",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Check disk",
+        "instruction": "chkdsk C: /f /r from Recovery Command Prompt.",
+        "tools": [
+          "CHKDSK"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "System Restore",
+        "instruction": "Pick a restore point from Recovery.",
+        "tools": [
+          "System Restore"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "In-place upgrade",
+        "instruction": "If nothing works, boot installation media and choose Upgrade to repair Windows.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "If RegBack files are empty (default on Windows 10 1803+), only an in-place upgrade or backup restore will fix corrupted registry.",
+    "relatedCodes": [
+      "INACCESSIBLE_BOOT_DEVICE",
+      "REGISTRY_ERROR",
+      "CRITICAL_PROCESS_DIED"
+    ],
+    "faq": [
+      {
+        "q": "Does Windows 10 back up the registry?",
+        "a": "Not by default after version 1803. You must enable EnablePeriodicBackup via registry to restore RegBack functionality."
+      },
+      {
+        "q": "Can a failing SSD cause this?",
+        "a": "Yes. Registry hives live on disk and corruption often indicates storage problems."
+      },
+      {
+        "q": "Will I lose my files?",
+        "a": "Typically no \u2014 registry repair preserves user data."
+      }
+    ]
+  },
+  {
+    "id": "bsod-setup-failure",
+    "category": "bsod",
+    "code": "0x00000085",
+    "displayCode": "SETUP_FAILURE",
+    "title": "Windows Setup Failure",
+    "shortDescription": "Windows Setup encountered an unrecoverable error during installation.",
+    "fullDescription": "Bug check 0x85 is issued when text-mode Setup fails during a Windows installation. It is largely historical (Windows 2000/XP) but can appear with legacy media or bad installation sources.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted installation media",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incompatible or failing hardware during install",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Incorrect BIOS settings (SATA mode, boot order)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD during Windows Setup",
+      "Setup halts before partitioning",
+      "Install media fails on multiple reboots"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Recreate installation media",
+        "instruction": "Download fresh ISO from Microsoft and create USB with Rufus or Media Creation Tool.",
+        "tools": [
+          "Rufus",
+          "Media Creation Tool"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Change SATA mode in BIOS",
+        "instruction": "Switch between AHCI and RAID/IDE in BIOS to match OS expectation.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test RAM before install",
+        "instruction": "Run MemTest86 from the USB before starting setup.",
+        "tools": [
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Use different USB port",
+        "instruction": "Switch to a USB 2.0 port instead of USB 3.x for installation.",
+        "tools": [
+          "USB drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Check target drive",
+        "instruction": "Verify the target disk is healthy with manufacturer diagnostic before installing.",
+        "tools": [
+          "Vendor diag tool"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "Persistent Setup failures on verified media usually indicate hardware issues requiring professional diagnosis.",
+    "relatedCodes": [
+      "INACCESSIBLE_BOOT_DEVICE",
+      "HAL_INITIALIZATION_FAILED"
+    ],
+    "faq": [
+      {
+        "q": "Is this still relevant on Windows 11?",
+        "a": "Rarely. Modern installers use a different architecture, though the code can still trigger in edge cases."
+      },
+      {
+        "q": "Can bad RAM cause it?",
+        "a": "Yes. Install is memory-intensive and failing RAM commonly triggers this during Setup."
+      },
+      {
+        "q": "What about Secure Boot?",
+        "a": "Disable Secure Boot and CSM combinations if using older media; mixed configurations cause Setup failures."
+      }
+    ]
+  },
+  {
+    "id": "bsod-disorderly-shutdown",
+    "category": "bsod",
+    "code": "0x000000F3",
+    "displayCode": "DISORDERLY_SHUTDOWN",
+    "title": "Disorderly Shutdown Due to Insufficient Memory",
+    "shortDescription": "Windows failed to shut down cleanly because paged pool memory was exhausted.",
+    "fullDescription": "Bug check 0xF3 is issued when the system cannot complete shutdown because drivers or services could not free enough paged pool memory in time. Typically caused by driver leaks.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Driver memory leak",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Stuck service at shutdown",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted Windows update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD only when shutting down or restarting",
+      "System hangs on 'Shutting down' screen",
+      "Minidump references pool allocations"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Check pool usage",
+        "instruction": "Use poolmon.exe (from WDK) to identify the pool tag consuming memory.",
+        "tools": [
+          "Poolmon",
+          "WDK"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Disable problematic services",
+        "instruction": "msconfig > Services, hide Microsoft services, then disable third-party services one at a time.",
+        "tools": [
+          "msconfig"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "Pool tag analysis is best handled by someone familiar with WinDbg and the WDK.",
+    "relatedCodes": [
+      "DRIVER_USED_EXCESSIVE_PTES",
+      "PAGE_FAULT_IN_NONPAGED_AREA"
+    ],
+    "faq": [
+      {
+        "q": "Why only at shutdown?",
+        "a": "Because drivers must release pool at shutdown; a leak accumulates over the session until shutdown cannot complete."
+      },
+      {
+        "q": "Can antivirus cause this?",
+        "a": "Yes. Filter drivers that leak paged pool are frequent culprits."
+      },
+      {
+        "q": "Will a reboot help temporarily?",
+        "a": "Yes, clearing the pool with a hard reset restores normal shutdown temporarily."
+      }
+    ]
+  },
+  {
+    "id": "bsod-loader-block-mismatch",
+    "category": "bsod",
+    "code": "0x00000100",
+    "displayCode": "LOADER_BLOCK_MISMATCH",
+    "title": "Loader Parameter Block Mismatch",
+    "shortDescription": "The OS loader parameter block passed to the kernel did not match expected values.",
+    "fullDescription": "Bug check 0x100 occurs when there is a version mismatch between the OS loader (bootmgr/winload) and the kernel. Commonly caused by mixing files from different Windows builds.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Mismatched kernel and loader versions",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failed Windows upgrade",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted bootmgr or winload",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD immediately after bootloader",
+      "Occurs after partial update or manual file copy",
+      "Cannot boot to login screen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Startup Repair",
+        "instruction": "Run automatic Startup Repair from installation media.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Rebuild BCD",
+        "instruction": "bootrec /rebuildbcd and bcdboot C:\\Windows /s C: /f UEFI from Recovery.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Restore matching system files",
+        "instruction": "Use DISM from Recovery to restore kernel and loader: DISM /Image:C:\\ /Cleanup-Image /RestoreHealth /Source:X:\\sources\\install.wim",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "In-place upgrade",
+        "instruction": "Mount installation media and run an upgrade install.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      },
+      {
+        "step": 5,
+        "title": "Clean install",
+        "instruction": "If no data recovery needed, reinstall Windows from fresh media.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2 to 4 hours",
+    "whenToCallPro": "A mismatched loader usually needs an in-place upgrade using identical-build installation media.",
+    "relatedCodes": [
+      "SYSTEM_LICENSE_VIOLATION",
+      "BAD_SYSTEM_CONFIG_INFO"
+    ],
+    "faq": [
+      {
+        "q": "How does this happen in practice?",
+        "a": "Usually after manually copying system files, recovering partial images, or installing a preview build over a release build."
+      },
+      {
+        "q": "Do I need the exact same ISO to repair?",
+        "a": "Yes, use the matching or newer Windows build to repair."
+      },
+      {
+        "q": "Is data at risk?",
+        "a": "Data on non-system partitions is safe; system partition repair preserves user files in most cases."
+      }
+    ]
+  },
+  {
+    "id": "bsod-agp-invalid-access",
+    "category": "bsod",
+    "code": "0x00000105",
+    "displayCode": "AGP_INVALID_ACCESS",
+    "title": "AGP Invalid Access",
+    "shortDescription": "The AGP driver detected an invalid memory access.",
+    "fullDescription": "Bug check 0x105 is an AGP bus driver bug check, largely legacy since AGP has been replaced by PCIe. It indicates an invalid access by a driver programming the AGP aperture.",
+    "affectedVersions": [
+      "Windows XP",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Legacy AGP display driver bug",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Incompatible chipset driver",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated BIOS on legacy board",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD with AGP_INVALID_ACCESS",
+      "Occurs only on legacy hardware",
+      "Often tied to video playback or 3D apps"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update chipset and GPU drivers",
+        "instruction": "Install latest vendor chipset and display drivers for your legacy board.",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Reduce AGP aperture",
+        "instruction": "In BIOS, set AGP aperture size to 64MB or 128MB.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Disable fast writes",
+        "instruction": "Disable AGP Fast Writes and sideband addressing in BIOS.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Update BIOS",
+        "instruction": "Flash the latest BIOS available for the motherboard.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Replace AGP card",
+        "instruction": "If crashes continue, try a different AGP card to rule out hardware.",
+        "tools": [
+          "Replacement GPU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "Legacy AGP hardware is past end-of-support; a professional upgrade to a PCIe platform is often more economical than repair.",
+    "relatedCodes": [
+      "AGP_INTERNAL",
+      "THREAD_STUCK_IN_DEVICE_DRIVER"
+    ],
+    "faq": [
+      {
+        "q": "Does this affect modern PCs?",
+        "a": "No. AGP was deprecated years ago \u2014 only legacy systems encounter this."
+      },
+      {
+        "q": "Is there a fix without hardware changes?",
+        "a": "Driver and BIOS updates resolve most cases."
+      },
+      {
+        "q": "Can I disable AGP?",
+        "a": "Not usefully \u2014 the card cannot function without it on legacy boards."
+      }
+    ]
+  },
+  {
+    "id": "bsod-critical-structure-corruption",
+    "category": "bsod",
+    "code": "0x00000109",
+    "displayCode": "CRITICAL_STRUCTURE_CORRUPTION",
+    "title": "Critical Kernel Structure Corruption Detected",
+    "shortDescription": "PatchGuard detected that a critical kernel data structure was modified.",
+    "fullDescription": "Bug check 0x109 is raised by Kernel Patch Protection (PatchGuard) when a critical kernel structure (SSDT, IDT, etc.) has been modified. Causes include rootkits, aggressive anticheat, buggy drivers, or hardware-induced memory corruption.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Kernel-mode rootkit or hook",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Aggressive anticheat or security driver",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Defective RAM flipping bits",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Unstable overclock",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD with CRITICAL_STRUCTURE_CORRUPTION",
+      "Crashes during gaming or security software use",
+      "Random crashes under memory pressure"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Full malware scan",
+        "instruction": "Boot Safe Mode, run Windows Defender Offline and Malwarebytes.",
+        "tools": [
+          "Windows Defender",
+          "Malwarebytes"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Uninstall security/anticheat drivers",
+        "instruction": "Remove recently installed antivirus, VPN, or game anticheat (Vanguard, EAC, BattlEye).",
+        "tools": [
+          "Control Panel"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Reset overclocks",
+        "instruction": "Clear all CPU/GPU/RAM overclocks to default.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If malware is suspected and DIY scans are inconclusive, professional forensic analysis is advised.",
+    "relatedCodes": [
+      "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED",
+      "WHEA_UNCORRECTABLE_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Is this always malware?",
+        "a": "No. PatchGuard is extremely sensitive; hardware memory errors can look identical."
+      },
+      {
+        "q": "Does disabling PatchGuard help?",
+        "a": "PatchGuard cannot be safely disabled. Addressing the actual cause is the only fix."
+      },
+      {
+        "q": "Which anticheat triggers this?",
+        "a": "Older Vanguard, EAC, and BattlEye versions have historically triggered it on certain configs."
+      }
+    ]
+  },
+  {
+    "id": "bsod-agp-internal",
+    "category": "bsod",
+    "code": "0x00000115",
+    "displayCode": "AGP_INTERNAL",
+    "title": "AGP Internal Error",
+    "shortDescription": "An internal error occurred in the AGP bus driver.",
+    "fullDescription": "Bug check 0x115 is a legacy AGP driver internal assertion. Relevant only to systems still using AGP graphics.",
+    "affectedVersions": [
+      "Windows XP",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Legacy AGP driver fault",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Incompatible BIOS/driver combination",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD on AGP-equipped systems",
+      "Crashes during graphics-intensive workloads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update GPU and chipset drivers",
+        "instruction": "Install the latest legacy drivers from vendor.",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Update BIOS",
+        "instruction": "Apply the latest BIOS for the motherboard.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Reduce AGP aperture",
+        "instruction": "Set aperture to 64MB in BIOS.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Test with another AGP card",
+        "instruction": "Swap in a known-good AGP card.",
+        "tools": [
+          "Spare GPU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Migrate to PCIe platform",
+        "instruction": "Upgrade motherboard and GPU to modern hardware.",
+        "tools": [
+          "New hardware"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 2 hours",
+    "whenToCallPro": "AGP platforms are end-of-life \u2014 professional migration to PCIe is usually recommended.",
+    "relatedCodes": [
+      "AGP_INVALID_ACCESS",
+      "THREAD_STUCK_IN_DEVICE_DRIVER"
+    ],
+    "faq": [
+      {
+        "q": "Can modern Windows hit this?",
+        "a": "Only on legacy hardware that still uses AGP."
+      },
+      {
+        "q": "Will a new driver fix it?",
+        "a": "Sometimes. Vendor support for AGP is minimal."
+      },
+      {
+        "q": "Is replacing the GPU viable?",
+        "a": "Only if an AGP card of the needed capability still exists; PCIe upgrade is more practical."
+      }
+    ]
+  },
+  {
+    "id": "bsod-attempted-write-to-cm-protected-storage",
+    "category": "bsod",
+    "code": "0x0000011C",
+    "displayCode": "ATTEMPTED_WRITE_TO_CM_PROTECTED_STORAGE",
+    "title": "Attempted Write to Configuration Manager Protected Storage",
+    "shortDescription": "A driver attempted to write to a read-only Configuration Manager structure.",
+    "fullDescription": "Bug check 0x11C indicates a driver tried to modify registry configuration structures that are protected. This is a driver defect exposed by Configuration Manager.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Buggy kernel-mode driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Outdated filter driver",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD with ATTEMPTED_WRITE_TO_CM_PROTECTED_STORAGE",
+      "Crashes during registry-heavy operations"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Hold Shift and click Restart, then Troubleshoot > Advanced Options > Startup Settings > Safe Mode with Networking.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "Driver Verifier plus WinDbg analysis is the standard approach; a professional can speed this up.",
+    "relatedCodes": [
+      "REGISTRY_ERROR",
+      "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED"
+    ],
+    "faq": [
+      {
+        "q": "Can the registry itself be corrupted?",
+        "a": "Rarely. The code indicates an illegal write, not corruption."
+      },
+      {
+        "q": "Will updating Windows help?",
+        "a": "Updating drivers is more impactful than Windows updates for this code."
+      },
+      {
+        "q": "Is Driver Verifier required?",
+        "a": "Verifier is the most reliable way to expose the faulty driver."
+      }
+    ]
+  },
+  {
+    "id": "bsod-hyperguard-violation",
+    "category": "bsod",
+    "code": "0x00000127",
+    "displayCode": "HYPERGUARD_VIOLATION",
+    "title": "HyperGuard Violation in Kernel Memory",
+    "shortDescription": "A page referenced by the kernel was not where it was expected to be.",
+    "fullDescription": "Bug check 0x127 is issued when HyperGuard (Kernel PatchGuard's secure kernel counterpart) detects that a kernel page has been modified or is missing. Typical causes are defective RAM, buggy drivers, or malware tampering.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Defective RAM",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Faulty kernel driver",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Unstable overclock or voltage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Malware",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with HYPERGUARD_VIOLATION",
+      "Random crashes, sometimes under load",
+      "Accompanied by memory corruption errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Reset overclocks",
+        "instruction": "Load BIOS defaults, disable XMP.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Malware scan",
+        "instruction": "Run Defender Offline and Malwarebytes.",
+        "tools": [
+          "Windows Defender",
+          "Malwarebytes"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If MemTest86 passes but crashes continue, a professional can rule out CPU, motherboard, or PSU issues.",
+    "relatedCodes": [
+      "CRITICAL_STRUCTURE_CORRUPTION",
+      "MEMORY_MANAGEMENT",
+      "WHEA_UNCORRECTABLE_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Is this primarily hardware?",
+        "a": "Most 0x127 cases trace to memory hardware issues."
+      },
+      {
+        "q": "Does XMP cause it?",
+        "a": "Aggressive XMP profiles on marginal memory commonly trigger it."
+      },
+      {
+        "q": "Can I ignore an isolated crash?",
+        "a": "Repeated occurrences should not be ignored \u2014 test RAM promptly."
+      }
+    ]
+  },
+  {
+    "id": "bsod-elam-driver-detected-fatal-error",
+    "category": "bsod",
+    "code": "0x00000132",
+    "displayCode": "ELAM_DRIVER_DETECTED_FATAL_ERROR",
+    "title": "ELAM Driver Detected Fatal Error",
+    "shortDescription": "An Early Launch Anti-Malware (ELAM) driver reported an unrecoverable error.",
+    "fullDescription": "Bug check 0x132 is issued when an ELAM driver, which loads before other drivers to check for malware, reports a fatal problem. It is typically seen after antivirus updates.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted ELAM driver after antivirus update",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Conflicting security products",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disk corruption in antivirus files",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD at boot with ELAM_DRIVER_DETECTED_FATAL_ERROR",
+      "Crash shortly after antivirus install/update",
+      "Safe Mode may work"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Reach Safe Mode via Recovery to bypass ELAM-loaded drivers.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Uninstall antivirus",
+        "instruction": "Remove the third-party antivirus from Programs and Features.",
+        "tools": [
+          "Control Panel"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reinstall antivirus fresh",
+        "instruction": "Download the latest installer from the vendor and reinstall.",
+        "tools": [
+          "Vendor installer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Disable ELAM service (last resort)",
+        "instruction": "If antivirus cannot be removed, disable its ELAM entry via Registry Editor under HKLM\\SYSTEM\\CurrentControlSet\\Services.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If Safe Mode is unreachable, professional offline registry edits may be required to disable the offending ELAM driver.",
+    "relatedCodes": [
+      "CRITICAL_PROCESS_DIED",
+      "DRIVER_IRQL_NOT_LESS_OR_EQUAL"
+    ],
+    "faq": [
+      {
+        "q": "What is ELAM?",
+        "a": "Early Launch Anti-Malware \u2014 a Windows-signed class of drivers that can vet other drivers at boot."
+      },
+      {
+        "q": "Which products use ELAM?",
+        "a": "Most major antivirus suites (Defender, Kaspersky, ESET, Bitdefender, Sophos, etc.)."
+      },
+      {
+        "q": "Will removing the antivirus fix it?",
+        "a": "Usually yes; reinstalling after fixes the underlying file corruption."
+      }
+    ]
+  },
+  {
+    "id": "bsod-kernel-auto-boost-invalid-lock-release",
+    "category": "bsod",
+    "code": "0x0000014A",
+    "displayCode": "KERNEL_AUTO_BOOST_INVALID_LOCK_RELEASE",
+    "title": "Kernel AutoBoost Invalid Lock Release",
+    "shortDescription": "A thread released a kernel lock that was being tracked by AutoBoost in an invalid state.",
+    "fullDescription": "Bug check 0x14A is raised when AutoBoost (thread priority boosting) detects that a lock was released incorrectly. This is almost always a kernel driver bug.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Kernel driver lock management bug",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Third-party synchronization driver",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with KERNEL_AUTO_BOOST_INVALID_LOCK_RELEASE",
+      "Crashes under contention with many threads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Hold Shift and click Restart, then Troubleshoot > Advanced Options > Startup Settings > Safe Mode with Networking.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "A professional kernel debugger session usually identifies the driver owning the lock.",
+    "relatedCodes": [
+      "KERNEL_SECURITY_CHECK_FAILURE",
+      "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED"
+    ],
+    "faq": [
+      {
+        "q": "Is Driver Verifier recommended?",
+        "a": "Yes. Enable standard and locks-related verifications on suspected drivers."
+      },
+      {
+        "q": "Can Windows update cause this?",
+        "a": "Rarely \u2014 most commonly a third-party driver that predates modern AutoBoost semantics."
+      },
+      {
+        "q": "Is hardware ever to blame?",
+        "a": "Almost never."
+      }
+    ]
+  },
+  {
+    "id": "bsod-tcpip-aoac-nic-active-reference-leak",
+    "category": "bsod",
+    "code": "0x00000150",
+    "displayCode": "TCPIP_AOAC_NIC_ACTIVE_REFERENCE_LEAK",
+    "title": "TCP/IP AoAC NIC Active Reference Leak",
+    "shortDescription": "The Always On, Always Connected NIC reference count was leaked.",
+    "fullDescription": "Bug check 0x150 indicates the TCP/IP stack detected a reference leak on an AoAC-capable network adapter. It is typically a NIC driver bug on modern laptops with Modern Standby.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Buggy Wi-Fi or Ethernet driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Modern Standby (S0) handling fault",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Firmware bug in network adapter",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD on wake from sleep",
+      "Crashes when Wi-Fi toggles",
+      "Affects AoAC-capable laptops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update network driver",
+        "instruction": "Install the latest Wi-Fi/LAN driver from OEM (HP, Dell, Lenovo).",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update BIOS/firmware",
+        "instruction": "Apply latest BIOS and NIC firmware.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Disable AoAC",
+        "instruction": "Add registry DWORD AllowAoAc=0 under HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power to disable Modern Standby behavior.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Reset network stack",
+        "instruction": "netsh winsock reset and netsh int ip reset from elevated Command Prompt.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If OEM drivers do not resolve it, the laptop vendor's support can escalate to the NIC manufacturer.",
+    "relatedCodes": [
+      "DRIVER_POWER_STATE_FAILURE",
+      "INTERNAL_POWER_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "What is AoAC?",
+        "a": "Always On, Always Connected \u2014 a Modern Standby feature keeping the NIC active in low-power states."
+      },
+      {
+        "q": "Only laptops affected?",
+        "a": "Primarily. Desktops without Modern Standby rarely see this code."
+      },
+      {
+        "q": "Is disabling Wi-Fi a workaround?",
+        "a": "It can prevent the crash but defeats Modern Standby benefits."
+      }
+    ]
+  },
+  {
+    "id": "bsod-unsupported-instruction-mode",
+    "category": "bsod",
+    "code": "0x00000151",
+    "displayCode": "UNSUPPORTED_INSTRUCTION_MODE",
+    "title": "Unsupported Instruction Mode",
+    "shortDescription": "The processor tried to execute an unsupported instruction mode.",
+    "fullDescription": "Bug check 0x151 is raised when the CPU enters an instruction mode the kernel does not support, often due to incorrect CPU state after a hypervisor transition or defective CPU.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Hypervisor or virtualization driver bug",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Defective CPU",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "BIOS microcode issue",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD with UNSUPPORTED_INSTRUCTION_MODE",
+      "Crashes in VMs or with Hyper-V enabled",
+      "Random crashes on specific CPU models"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update BIOS for microcode",
+        "instruction": "Apply the latest BIOS to pick up CPU microcode fixes.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Update virtualization stack",
+        "instruction": "Install latest Hyper-V, VMware, or VirtualBox.",
+        "tools": [
+          "Vendor installer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Disable nested virtualization",
+        "instruction": "Disable nested virt if not required: Set-VMProcessor -ExposeVirtualizationExtensions $false",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Test CPU",
+        "instruction": "Run Prime95 or OCCT to stress-test the CPU.",
+        "tools": [
+          "Prime95",
+          "OCCT"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 5,
+        "title": "Reset overclocks",
+        "instruction": "Load BIOS defaults.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If BIOS and driver updates do not help and stress tests fail, professional hardware replacement may be needed.",
+    "relatedCodes": [
+      "WHEA_UNCORRECTABLE_ERROR",
+      "MACHINE_CHECK_EXCEPTION"
+    ],
+    "faq": [
+      {
+        "q": "Is this always hardware?",
+        "a": "No \u2014 hypervisor bugs can produce identical symptoms."
+      },
+      {
+        "q": "Does microcode help?",
+        "a": "Yes, many such bugs are fixed by CPU microcode updates delivered via BIOS."
+      },
+      {
+        "q": "Is nested virt safe?",
+        "a": "Only where the platform and guest both support it reliably."
+      }
+    ]
+  },
+  {
+    "id": "bsod-set-of-invalid-context",
+    "category": "bsod",
+    "code": "0x00000152",
+    "displayCode": "SET_OF_INVALID_CONTEXT",
+    "title": "Set Of Invalid Context",
+    "shortDescription": "The kernel attempted to set an invalid thread or processor context.",
+    "fullDescription": "Bug check 0x152 is raised when Windows tries to set a thread context that contains invalid CPU register values, typically due to a driver passing a malformed context.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty kernel driver",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Debugger or profiling tool driver",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with SET_OF_INVALID_CONTEXT",
+      "Occurs under debuggers or profilers",
+      "Reproducible with specific workloads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot into Safe Mode",
+        "instruction": "Hold Shift and click Restart, then Troubleshoot > Advanced Options > Startup Settings > Safe Mode with Networking.",
+        "tools": [
+          "Windows Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update or roll back drivers",
+        "instruction": "In Device Manager, identify recently changed devices (display, storage, network). Right-click and choose Update Driver or Roll Back Driver.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Test memory",
+        "instruction": "Run Windows Memory Diagnostic (mdsched.exe) or MemTest86 from a USB drive for at least one full pass.",
+        "tools": [
+          "Windows Memory Diagnostic",
+          "MemTest86"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "Professional WinDbg analysis can identify which driver passed the invalid context.",
+    "relatedCodes": [
+      "KERNEL_SECURITY_CHECK_FAILURE",
+      "SYSTEM_THREAD_EXCEPTION_NOT_HANDLED"
+    ],
+    "faq": [
+      {
+        "q": "Is this a malware indicator?",
+        "a": "Not typically \u2014 more often a third-party debugging or profiling tool."
+      },
+      {
+        "q": "Will uninstalling tools help?",
+        "a": "Removing profilers, cheat engines, and kernel debuggers frequently resolves it."
+      },
+      {
+        "q": "Is hardware involved?",
+        "a": "Almost never."
+      }
+    ]
+  },
+  {
+    "id": "bsod-hal-iommu-internal-error",
+    "category": "bsod",
+    "code": "0x00000159",
+    "displayCode": "HAL_IOMMU_INTERNAL_ERROR",
+    "title": "HAL IOMMU Internal Error",
+    "shortDescription": "The HAL detected an internal IOMMU error.",
+    "fullDescription": "Bug check 0x159 is issued when the Hardware Abstraction Layer encounters an internal fault in the IOMMU subsystem. Often related to DMA remapping on modern platforms.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Defective or misconfigured IOMMU",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "BIOS IOMMU (VT-d/AMD-Vi) issue",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Buggy hypervisor or VT-d aware driver",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with HAL_IOMMU_INTERNAL_ERROR",
+      "Crashes with virtualization-based security enabled",
+      "Seen on servers or high-end desktops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update BIOS",
+        "instruction": "Install latest BIOS that addresses IOMMU/VT-d issues.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Toggle VT-d/AMD-Vi",
+        "instruction": "Disable VT-d/AMD-Vi in BIOS to test, then re-enable after update.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Check VBS and Core Isolation",
+        "instruction": "In Windows Security > Device Security, toggle Memory Integrity off to test.",
+        "tools": [
+          "Windows Security"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Update chipset drivers",
+        "instruction": "Install latest Intel ME/AMD chipset drivers.",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If BIOS and driver updates do not help, vendor support should be engaged for firmware-level IOMMU issues.",
+    "relatedCodes": [
+      "HAL_INITIALIZATION_FAILED",
+      "DRIVER_IRQL_NOT_LESS_OR_EQUAL"
+    ],
+    "faq": [
+      {
+        "q": "What is IOMMU?",
+        "a": "An IO Memory Management Unit that isolates device DMA; used by VT-d/AMD-Vi and VBS."
+      },
+      {
+        "q": "Will disabling VBS help?",
+        "a": "Temporarily yes, but it reduces security; treat it as diagnostic only."
+      },
+      {
+        "q": "Is this common?",
+        "a": "It is uncommon and mostly tied to specific firmware bugs."
+      }
+    ]
+  },
+  {
+    "id": "bsod-hal-blocked-processor-internal-error",
+    "category": "bsod",
+    "code": "0x0000015A",
+    "displayCode": "HAL_BLOCKED_PROCESSOR_INTERNAL_ERROR",
+    "title": "HAL Blocked Processor Internal Error",
+    "shortDescription": "A processor core was blocked by the HAL due to an internal fault.",
+    "fullDescription": "Bug check 0x15A is raised when the HAL cannot bring a processor core online or detects that a core has entered an unrecoverable state.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Failing CPU core",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Buggy platform firmware",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Overheating",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD with HAL_BLOCKED_PROCESSOR_INTERNAL_ERROR",
+      "Boot failures on multi-core systems",
+      "Random crashes under heavy load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check cooling",
+        "instruction": "Clean fans, reseat CPU cooler, verify thermal paste.",
+        "tools": [
+          "Screwdriver",
+          "Thermal paste"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Update BIOS",
+        "instruction": "Flash latest BIOS with microcode updates.",
+        "tools": [
+          "BIOS Update"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Disable SMT/Hyper-Threading (diag)",
+        "instruction": "Temporarily disable SMT in BIOS to see if a specific logical core is bad.",
+        "tools": [
+          "BIOS/UEFI"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "CPU stress test",
+        "instruction": "Run Prime95 small FFT to identify core instability.",
+        "tools": [
+          "Prime95"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 5,
+        "title": "Replace CPU",
+        "instruction": "If a specific core consistently fails, CPU replacement is needed.",
+        "tools": [
+          "Replacement CPU"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 4 hours",
+    "whenToCallPro": "Persistent 0x15A after BIOS updates and thermal checks usually requires professional CPU replacement.",
+    "relatedCodes": [
+      "WHEA_UNCORRECTABLE_ERROR",
+      "MACHINE_CHECK_EXCEPTION",
+      "CLOCK_WATCHDOG_TIMEOUT"
+    ],
+    "faq": [
+      {
+        "q": "Is this usually hardware?",
+        "a": "Yes, most cases are CPU or firmware related."
+      },
+      {
+        "q": "Can cooling alone fix it?",
+        "a": "If overheating is the root cause, improved cooling resolves it."
+      },
+      {
+        "q": "Should I RMA the CPU?",
+        "a": "If tests reliably show a bad core after BIOS updates, an RMA is appropriate."
+      }
+    ]
+  },
+  {
+    "id": "bsod-live-system-dump",
+    "category": "bsod",
+    "code": "0x00000161",
+    "displayCode": "LIVE_SYSTEM_DUMP",
+    "title": "Live System Dump",
+    "shortDescription": "A live kernel memory dump was generated without crashing the system.",
+    "fullDescription": "Bug check 0x161 is actually a diagnostic indication that a live dump was requested. Windows records the state without halting and reports this bug-check code in the dump file rather than on screen.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Administrator triggered live dump for diagnostics",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Telemetry captured a hung state",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Enterprise monitoring tool",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Appears in minidump filename but no BSOD occurred",
+      "System remains running",
+      "Dump file present in %SystemRoot%\\LiveKernelReports"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check LiveKernelReports folder",
+        "instruction": "Open C:\\Windows\\LiveKernelReports to review dump files.",
+        "tools": [
+          "File Explorer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Analyze with WinDbg",
+        "instruction": "Open the .dmp file in WinDbg and run !analyze -v for context.",
+        "tools": [
+          "WinDbg"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Review Reliability Monitor",
+        "instruction": "Open Reliability Monitor to correlate the live dump with system events.",
+        "tools": [
+          "Reliability Monitor"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Disable if unwanted",
+        "instruction": "Live dumps can be disabled via policy: Computer Configuration > Administrative Templates > System > Troubleshooting > Live Kernel Reports.",
+        "tools": [
+          "Group Policy"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "No action if benign",
+        "instruction": "If the system is stable, no fix is required; the dump is informational.",
+        "tools": [
+          "N/A"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Live dumps are diagnostic; a professional is only needed if they indicate a chronic underlying problem.",
+    "relatedCodes": [
+      "KERNEL_SECURITY_CHECK_FAILURE",
+      "SYSTEM_SERVICE_EXCEPTION"
+    ],
+    "faq": [
+      {
+        "q": "Did my PC actually crash?",
+        "a": "No. 0x161 indicates a live dump was captured without halting Windows."
+      },
+      {
+        "q": "Can I delete the dump files?",
+        "a": "Yes, LiveKernelReports files can be safely deleted after review."
+      },
+      {
+        "q": "Should I worry?",
+        "a": "Only if live dumps happen frequently or correlate with performance issues."
+      }
+    ]
+  },
+  {
+    "id": "bsod-win32k-critical-failure",
+    "category": "bsod",
+    "code": "0x00000163",
+    "displayCode": "WIN32K_CRITICAL_FAILURE",
+    "title": "Win32k Critical Failure",
+    "shortDescription": "The Win32k subsystem encountered an unrecoverable error.",
+    "fullDescription": "Bug check 0x163 indicates the kernel-mode Win32k graphics and window manager subsystem hit a critical fault. Display drivers, GDI exhaustion, and corrupted fonts are common causes.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty GPU driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "GDI handle exhaustion",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted fonts",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party window manager hook",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD with WIN32K_CRITICAL_FAILURE",
+      "Crashes when opening specific applications",
+      "Display freezes before BSOD"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update GPU driver",
+        "instruction": "Install latest NVIDIA/AMD/Intel display driver with a clean install.",
+        "tools": [
+          "DDU",
+          "Vendor driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Rebuild font cache",
+        "instruction": "Stop Windows Font Cache Service, delete %LocalAppData%\\Microsoft\\Windows\\Fonts\\*.dat, restart service.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Remove display hooks",
+        "instruction": "Uninstall tools like DisplayFusion overlays, F.lux, or RivaTuner that hook Win32k.",
+        "tools": [
+          "Control Panel"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Run SFC and DISM",
+        "instruction": "Open elevated Command Prompt and run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1 to 3 hours",
+    "whenToCallPro": "If updated drivers and font rebuild do not help, professional analysis of the Win32k call stack is recommended.",
+    "relatedCodes": [
+      "SYSTEM_SERVICE_EXCEPTION",
+      "KERNEL_SECURITY_CHECK_FAILURE"
+    ],
+    "faq": [
+      {
+        "q": "Can a bad font crash Windows?",
+        "a": "Yes. Corrupted or malformed font files have historically triggered Win32k crashes."
+      },
+      {
+        "q": "Will using DDU help?",
+        "a": "Yes. Display Driver Uninstaller removes driver remnants before a clean reinstall."
+      },
+      {
+        "q": "Is this hardware?",
+        "a": "Rarely. It is overwhelmingly software."
+      }
+    ]
+  },
+  {
+    "id": "bsod-cluster-csv-clussvc-disconnect-watchdog",
+    "category": "bsod",
+    "code": "0x00000166",
+    "displayCode": "CLUSTER_CSV_CLUSSVC_DISCONNECT_WATCHDOG",
+    "title": "Cluster CSV ClusSvc Disconnect Watchdog",
+    "shortDescription": "The Cluster Shared Volumes watchdog detected that the Cluster Service disconnected.",
+    "fullDescription": "Bug check 0x166 is issued on Windows Server cluster nodes when the CSV driver detects that the Cluster Service is unresponsive. It ensures the node leaves the cluster gracefully to preserve data integrity.",
+    "affectedVersions": [
+      "Windows Server 2022",
+      "Windows Server 2019",
+      "Windows Server 2016"
+    ],
+    "causes": [
+      {
+        "cause": "Cluster Service hang or crash",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Networking issue between cluster nodes",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Storage latency on CSV volumes",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "BSOD on cluster node with CLUSTER_CSV_CLUSSVC_DISCONNECT_WATCHDOG",
+      "Node evicted from cluster",
+      "Event logs show ClusSvc timeouts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check cluster networks",
+        "instruction": "Validate cluster network latency and heartbeat settings with Test-Cluster.",
+        "tools": [
+          "Failover Cluster Manager",
+          "PowerShell"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Inspect storage latency",
+        "instruction": "Review storage latency on CSV volumes using Performance Monitor.",
+        "tools": [
+          "PerfMon"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Update NIC and storage drivers",
+        "instruction": "Apply latest vendor drivers for NICs and HBAs.",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Adjust CSV timeouts",
+        "instruction": "Modify SameSubnetThreshold, CrossSubnetThreshold with Set-Cluster as appropriate.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Microsoft support",
+        "instruction": "Open a support case for cluster engineering review.",
+        "tools": [
+          "Microsoft Support"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 8 hours",
+    "whenToCallPro": "Clustering issues benefit from professional engagement, especially in production Hyper-V or SQL Server clusters.",
+    "relatedCodes": [
+      "CLOCK_WATCHDOG_TIMEOUT",
+      "WHEA_UNCORRECTABLE_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Is this only on Windows Server?",
+        "a": "Yes, it only occurs on Failover Cluster nodes with CSV."
+      },
+      {
+        "q": "Will increasing timeouts help?",
+        "a": "Sometimes, but the root cause (network or storage) should be addressed."
+      },
+      {
+        "q": "Is data loss likely?",
+        "a": "CSV is designed to fail the node rather than risk data loss; other nodes continue serving."
+      }
+    ]
+  },
+  {
+    "id": "bsod-bugcode-netadapter-driver",
+    "category": "bsod",
+    "code": "0x00000169",
+    "displayCode": "BUGCODE_NETADAPTER_DRIVER",
+    "title": "NetAdapter Driver Error",
+    "shortDescription": "A NetAdapter (NDIS) driver encountered a fatal error.",
+    "fullDescription": "Bug check 0x169 is raised when a NetAdapter-class driver (Wi-Fi, Ethernet, Bluetooth) fails with an unrecoverable error. Common on laptops after Wi-Fi driver updates.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Buggy Wi-Fi/Ethernet driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Conflicting VPN or filter driver",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failing NIC hardware",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "BSOD with BUGCODE_NETADAPTER_DRIVER",
+      "Crashes when connecting to networks",
+      "Wake from sleep triggers crash"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update network driver",
+        "instruction": "Install the latest Wi-Fi/Ethernet driver from OEM (HP/Dell/Lenovo).",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Roll back driver",
+        "instruction": "If the crash started after an update, roll back in Device Manager.",
+        "tools": [
+          "Device Manager"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Remove VPN filter drivers",
+        "instruction": "Uninstall recently installed VPN clients (NordVPN, Cisco AnyConnect).",
+        "tools": [
+          "Control Panel"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Reset network stack",
+        "instruction": "netsh winsock reset and netsh int ip reset.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Analyze minidump",
+        "instruction": "Open C:\\Windows\\Minidump with WinDbg or BlueScreenView to identify the faulting driver.",
+        "tools": [
+          "WinDbg",
+          "BlueScreenView"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If OEM drivers and stack reset fail, hardware replacement via USB Wi-Fi or professional repair may be needed.",
+    "relatedCodes": [
+      "DRIVER_IRQL_NOT_LESS_OR_EQUAL",
+      "NDIS_INTERNAL_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Can I just disable Wi-Fi?",
+        "a": "As a workaround, yes \u2014 but updating the driver is the real fix."
+      },
+      {
+        "q": "Does Windows Update's driver work?",
+        "a": "It is often older; the OEM website usually has a newer one."
+      },
+      {
+        "q": "Is this a hardware fault?",
+        "a": "Rarely \u2014 software is the common cause."
+      }
+    ]
+  },
+  {
+    "id": "bsod-cluster-clusport-status-io-timeout-livedump",
+    "category": "bsod",
+    "code": "0x00000170",
+    "displayCode": "CLUSTER_CLUSPORT_STATUS_IO_TIMEOUT_LIVEDUMP",
+    "title": "Cluster ClusPort Status I/O Timeout Livedump",
+    "shortDescription": "The cluster port driver detected an I/O timeout and generated a livedump.",
+    "fullDescription": "Bug check 0x170 indicates the cluster port driver observed an I/O timeout on CSV traffic and captured a live dump. The node may continue running depending on severity.",
+    "affectedVersions": [
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Slow CSV storage",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Network congestion between nodes",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Misconfigured QoS policy",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Livedump generated with CLUSTER_CLUSPORT_STATUS_IO_TIMEOUT_LIVEDUMP",
+      "Performance degradation on cluster",
+      "CSV I/O latency warnings"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure CSV latency",
+        "instruction": "Use PerfMon counters under Cluster CSV Volumes to measure latency.",
+        "tools": [
+          "PerfMon"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Review storage fabric",
+        "instruction": "Check SAN/NAS health and switch counters for dropped frames.",
+        "tools": [
+          "Vendor tools"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Update SMB/MPIO drivers",
+        "instruction": "Apply latest drivers and hotfixes for SMB Direct and MPIO.",
+        "tools": [
+          "Vendor driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Review QoS",
+        "instruction": "Ensure cluster and storage traffic classes are prioritized correctly.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 5,
+        "title": "Engage Microsoft support",
+        "instruction": "For persistent issues, open a cluster support case.",
+        "tools": [
+          "Microsoft Support"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2 to 8 hours",
+    "whenToCallPro": "Cluster I/O timeouts usually require joint engagement with storage vendor and Microsoft support.",
+    "relatedCodes": [
+      "CLUSTER_CSV_CLUSSVC_DISCONNECT_WATCHDOG",
+      "CLOCK_WATCHDOG_TIMEOUT"
+    ],
+    "faq": [
+      {
+        "q": "Does 0x170 crash the node?",
+        "a": "Not always \u2014 it can be a live dump without halting, used for diagnostics."
+      },
+      {
+        "q": "Is network or storage more often to blame?",
+        "a": "Storage latency tends to dominate, but network issues are common runners-up."
+      },
+      {
+        "q": "Can I suppress this code?",
+        "a": "No, but tuning CSV timeouts and fixing root causes eliminates the triggers."
       }
     ]
   }

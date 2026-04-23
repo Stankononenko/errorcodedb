@@ -4865,7 +4865,7 @@
     "displayCode": "0x80071A91",
     "title": "Windows Update Error - Transaction Not Active",
     "shortDescription": "A transactional file system operation failed because the transaction is no longer active.",
-    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity — if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
+    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity \u2014 if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5015,7 +5015,7 @@
       {
         "step": 1,
         "title": "Run DISM RestoreHealth",
-        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete — it may take 15-30 minutes.",
+        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete \u2014 it may take 15-30 minutes.",
         "tools": [
           "Command Prompt",
           "DISM"
@@ -5202,7 +5202,7 @@
     "displayCode": "0x80072F8F",
     "title": "Windows Update Error - SSL Certificate Validation Failed",
     "shortDescription": "Windows Update could not validate the SSL certificate from the update server.",
-    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock — if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
+    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock \u2014 if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5260,7 +5260,7 @@
       {
         "step": 3,
         "title": "Check for SSL-intercepting software",
-        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites — the issuer should be a Microsoft or DigiCert CA, not your proxy.",
+        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites \u2014 the issuer should be a Microsoft or DigiCert CA, not your proxy.",
         "tools": [
           "Browser",
           "Network Settings"
@@ -5534,7 +5534,7 @@
     "displayCode": "0x800F0984",
     "title": "Windows Update Error - Applicable Update Not Found",
     "shortDescription": "Windows Update could not find an applicable update package for this system configuration.",
-    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state — some components have been updated while others have not — making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
+    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state \u2014 some components have been updated while others have not \u2014 making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -6296,7 +6296,7 @@
       },
       {
         "q": "Can I force install an update that says not applicable?",
-        "a": "No. The applicability check exists for good reason — installing an incompatible update can cause system instability or failure. Always use the matching update version."
+        "a": "No. The applicability check exists for good reason \u2014 installing an incompatible update can cause system instability or failure. Always use the matching update version."
       }
     ]
   },
@@ -11178,6 +11178,3295 @@
       {
         "q": "Does WSUS solve this?",
         "a": "Yes - WSUS syncs updates inside the network so clients do not need to authenticate to external proxies."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200001",
+    "category": "update",
+    "code": "0x80200001",
+    "displayCode": "0x80200001",
+    "title": "BITS Transient Transport Error",
+    "shortDescription": "BITS (Background Intelligent Transfer Service) encountered a transient transport error while downloading an update.",
+    "fullDescription": "Error 0x80200001 is a generic BITS error indicating a temporary transport issue during update download. It often resolves itself but can persist if network configuration, proxy settings, or filter drivers are interfering.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Unstable internet connection",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proxy or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted BITS queue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN or filter driver",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update stalls or fails with 0x80200001",
+      "Downloads restart repeatedly",
+      "BITS shows errors in Event Viewer"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear BITS queue",
+        "instruction": "From elevated CMD: bitsadmin /reset /allusers",
+        "tools": [
+          "BITSAdmin"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Disable proxy temporarily",
+        "instruction": "netsh winhttp reset proxy from elevated CMD.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "Only needed if BITS keeps failing after reset and no ISP issues are found.",
+    "relatedCodes": [
+      "0x80200010",
+      "0x80200014"
+    ],
+    "faq": [
+      {
+        "q": "Is this a serious error?",
+        "a": "No, it is usually transient and fixable with a BITS reset."
+      },
+      {
+        "q": "Does disabling VPN help?",
+        "a": "Often yes \u2014 VPN filter drivers can disrupt BITS."
+      },
+      {
+        "q": "Can I restart just BITS?",
+        "a": "Yes, restarting the BITS service alone sometimes resolves it."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200003",
+    "category": "update",
+    "code": "0x80200003",
+    "displayCode": "0x80200003",
+    "title": "BITS Generic Download Error",
+    "shortDescription": "BITS reported a generic error while transferring update content.",
+    "fullDescription": "0x80200003 is returned when BITS encounters a generic download error it cannot classify. Often accompanies connectivity drops, DNS issues, or corrupted cached content.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Intermittent connectivity",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DNS resolution failure",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted SoftwareDistribution cache",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Download progress stalls then fails",
+      "Error code 0x80200003 in Update history"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Flush DNS",
+        "instruction": "ipconfig /flushdns from elevated CMD.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Use Google DNS",
+        "instruction": "Set DNS to 8.8.8.8/8.8.4.4 in adapter settings.",
+        "tools": [
+          "Network adapter"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80200004"
+    ],
+    "faq": [
+      {
+        "q": "Why blame DNS?",
+        "a": "Failed lookups for Windows Update hosts cause BITS to abort."
+      },
+      {
+        "q": "Will clearing cache help?",
+        "a": "Yes, a stale cached download can loop the failure."
+      },
+      {
+        "q": "Is this Microsoft's fault?",
+        "a": "Usually not; it is almost always local networking."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200004",
+    "category": "update",
+    "code": "0x80200004",
+    "displayCode": "0x80200004",
+    "title": "BITS Authentication Error",
+    "shortDescription": "BITS failed to authenticate to the download server.",
+    "fullDescription": "0x80200004 means BITS could not authenticate to Windows Update endpoints. Common causes include corporate proxies with authentication, expired certificates, and misconfigured WPAD.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Proxy requiring authentication",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Expired or missing trusted root certificates",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "WPAD misconfiguration",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "0x80200004 on Windows Update",
+      "Also affects Microsoft Store downloads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Set proxy credentials",
+        "instruction": "netsh winhttp set proxy with correct credentials, or bypass proxy: netsh winhttp reset proxy.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update root certificates",
+        "instruction": "certutil -generateSSTFromWU roots.sst then import with certutil -addstore -f root roots.sst",
+        "tools": [
+          "CertUtil"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Check WPAD",
+        "instruction": "Disable Automatic proxy detection in Internet Options > Connections > LAN settings.",
+        "tools": [
+          "Internet Options"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "Enterprise proxy/authentication issues are best handled with IT support.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80240032"
+    ],
+    "faq": [
+      {
+        "q": "What if I am on a corporate network?",
+        "a": "Contact IT to whitelist Windows Update endpoints and configure proxy auth."
+      },
+      {
+        "q": "Can expired certs cause this?",
+        "a": "Yes. Keeping root certs current via Windows Update is essential."
+      },
+      {
+        "q": "Is a reset enough?",
+        "a": "Often not \u2014 credentials or certs must be addressed."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200005",
+    "category": "update",
+    "code": "0x80200005",
+    "displayCode": "0x80200005",
+    "title": "BITS Access Denied",
+    "shortDescription": "BITS was denied access to the download or target location.",
+    "fullDescription": "0x80200005 indicates BITS could not access the needed server resource or local file. Permissions on SoftwareDistribution, group policy restrictions, or security software are typical culprits.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Permissions on SoftwareDistribution folder",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Group Policy restriction",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Antivirus blocking BITS",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80200005 on update attempts",
+      "Access denied messages in Event Viewer"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset SoftwareDistribution permissions",
+        "instruction": "Take ownership and reset inheritance on C:\\Windows\\SoftwareDistribution.",
+        "tools": [
+          "File Explorer",
+          "icacls"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Temporarily disable AV",
+        "instruction": "Turn off third-party antivirus and retry.",
+        "tools": [
+          "AV console"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Check Group Policy",
+        "instruction": "gpresult /h report.html to identify restrictive WSUS/Update policies.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "GPO-managed devices should involve the IT administrator.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80242001"
+    ],
+    "faq": [
+      {
+        "q": "Can GPO cause this?",
+        "a": "Yes \u2014 WSUS-managed devices with strict policies often hit 0x80200005."
+      },
+      {
+        "q": "Should I disable AV permanently?",
+        "a": "No, only temporarily for diagnosis."
+      },
+      {
+        "q": "How do I restore permissions?",
+        "a": "icacls C:\\Windows\\SoftwareDistribution /reset /T /C can restore defaults."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200010",
+    "category": "update",
+    "code": "0x80200010",
+    "displayCode": "0x80200010",
+    "title": "BITS Resource Unavailable",
+    "shortDescription": "BITS reported that the required resource is temporarily unavailable.",
+    "fullDescription": "0x80200010 indicates a temporarily unavailable server resource or local file. Usually transient; if persistent, suggests WSUS misconfiguration or content removal.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Temporary Microsoft CDN issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "WSUS server missing content",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Delivery Optimization cache issue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Intermittent 0x80200010 failures",
+      "Update fails only for certain KBs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait and retry",
+        "instruction": "Give the CDN 30-60 minutes to recover.",
+        "tools": [
+          "N/A"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Bypass WSUS",
+        "instruction": "Set registry UseWUServer=0 under HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU and restart wuauserv.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Clear Delivery Optimization cache",
+        "instruction": "Settings > Windows Update > Advanced options > Delivery Optimization > Activity monitor > Clear cache.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "WSUS server missing approved content requires server administrator.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80242016"
+    ],
+    "faq": [
+      {
+        "q": "Should I switch off WSUS?",
+        "a": "Only temporarily for diagnosis, then coordinate with IT."
+      },
+      {
+        "q": "Is clearing DO cache risky?",
+        "a": "No, it just forces fresh downloads."
+      },
+      {
+        "q": "How long to wait for CDN?",
+        "a": "30 to 60 minutes is usually sufficient."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200014",
+    "category": "update",
+    "code": "0x80200014",
+    "displayCode": "0x80200014",
+    "title": "BITS Error While Transferring",
+    "shortDescription": "BITS encountered an error during content transfer.",
+    "fullDescription": "0x80200014 indicates a transfer-layer error, often from interrupted downloads of large feature updates. Commonly tied to unstable connections or mid-download interruptions.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Connection drops during large downloads",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP throttling",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Storage errors on destination",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Feature update fails with 0x80200014",
+      "Downloads restart at 0% repeatedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Use wired connection",
+        "instruction": "Switch from Wi-Fi to Ethernet for large update downloads.",
+        "tools": [
+          "Network cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run CHKDSK",
+        "instruction": "chkdsk C: /f /r to rule out storage errors.",
+        "tools": [
+          "CHKDSK"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 5,
+        "title": "Manual KB install",
+        "instruction": "Download the update from Microsoft Update Catalog and install.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80200015"
+    ],
+    "faq": [
+      {
+        "q": "Does Wi-Fi cause this?",
+        "a": "Unreliable Wi-Fi is one of the most common culprits."
+      },
+      {
+        "q": "Is catalog install reliable?",
+        "a": "Yes, it bypasses BITS for the affected KB."
+      },
+      {
+        "q": "Will VPN help?",
+        "a": "Usually it makes things worse \u2014 disable for updates."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80200015",
+    "category": "update",
+    "code": "0x80200015",
+    "displayCode": "0x80200015",
+    "title": "BITS Insufficient Resources",
+    "shortDescription": "BITS ran out of resources (typically disk space or memory).",
+    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources \u2014 most often disk space. Feature updates commonly need 20+ GB free.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Insufficient free disk space",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Paging file too small",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "System drive nearly full",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80200015 on feature updates",
+      "Update stops partway through"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check disk space",
+        "instruction": "Ensure at least 20 GB free on the system drive before retrying.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Run Disk Cleanup",
+        "instruction": "cleanmgr and select 'Previous Windows installations' and temporary files.",
+        "tools": [
+          "Disk Cleanup"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Move paging file",
+        "instruction": "Move pagefile.sys to another drive via System Properties > Advanced > Performance > Settings > Advanced > Change.",
+        "tools": [
+          "System Properties"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Use external drive",
+        "instruction": "Point Windows to an external drive during feature update via USB installer.",
+        "tools": [
+          "USB drive"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes to 1 hour",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80200001",
+      "0x80200014"
+    ],
+    "faq": [
+      {
+        "q": "How much space do feature updates need?",
+        "a": "At least 20 GB free is recommended for major version upgrades."
+      },
+      {
+        "q": "Is Disk Cleanup safe?",
+        "a": "Yes, as long as you confirm items you recognize."
+      },
+      {
+        "q": "Can I skip feature updates?",
+        "a": "For a time, yes \u2014 but security updates still apply."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80240021",
+    "category": "update",
+    "code": "0x80240021",
+    "displayCode": "0x80240021",
+    "title": "Update Operation Timed Out",
+    "shortDescription": "The Windows Update operation timed out.",
+    "fullDescription": "0x80240021 (WU_E_TIME_OUT) means a Windows Update operation exceeded its allowed time. This can happen under heavy load, poor connectivity, or with misconfigured WSUS.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Slow network or server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Heavy client CPU load",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stuck wuauserv process",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80240021 on scanning or downloading",
+      "Update takes hours then fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "End wuauserv and restart",
+        "instruction": "taskkill /f /im wuauclt.exe and restart wuauserv service.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Try at off-peak hours",
+        "instruction": "Attempt updates during low-traffic hours for faster CDN.",
+        "tools": [
+          "N/A"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80240023",
+      "0x8024002E"
+    ],
+    "faq": [
+      {
+        "q": "Is this temporary?",
+        "a": "Often yes. Retrying after a service restart usually succeeds."
+      },
+      {
+        "q": "Does CPU load matter?",
+        "a": "Heavy load can slow the WU agent enough to time out."
+      },
+      {
+        "q": "Should I wait longer?",
+        "a": "Windows decides the timeout; increasing system resources is the real fix."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80240023",
+    "category": "update",
+    "code": "0x80240023",
+    "displayCode": "0x80240023",
+    "title": "EULA Not Accepted",
+    "shortDescription": "A required End User License Agreement has not been accepted for the update.",
+    "fullDescription": "0x80240023 (WU_E_EULAS_DECLINED) means a EULA required by the update was declined or not yet accepted. Some optional and OEM updates require explicit acceptance.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "EULA not accepted in UI",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt EULA state in registry",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "WSUS policy blocking EULA display",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Specific updates show declined",
+      "0x80240023 appears with optional updates"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check optional updates",
+        "instruction": "Settings > Windows Update > Advanced options > Optional updates \u2014 review and accept any pending EULAs.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reset EULA acceptance",
+        "instruction": "Delete HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentValidation or run dism /Online /Cleanup-Image /RevertPendingActions.",
+        "tools": [
+          "Registry",
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Install via Catalog",
+        "instruction": "Download the KB from Microsoft Update Catalog to bypass EULA routing.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80240021",
+      "0x80240026"
+    ],
+    "faq": [
+      {
+        "q": "Which updates require EULA?",
+        "a": "Some drivers and feature updates with third-party terms."
+      },
+      {
+        "q": "Will Catalog install work?",
+        "a": "Usually yes \u2014 direct MSU install bypasses the EULA workflow."
+      },
+      {
+        "q": "Is EULA acceptance reversible?",
+        "a": "Yes, declining again is possible via optional updates settings."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80240026",
+    "category": "update",
+    "code": "0x80240026",
+    "displayCode": "0x80240026",
+    "title": "Invalid Update Type",
+    "shortDescription": "Windows Update encountered an unknown or invalid update type.",
+    "fullDescription": "0x80240026 (WU_E_INVALID_UPDATE_TYPE) means the agent received an update record with a type it cannot process. Usually indicates corrupted metadata or WSUS synchronization issues.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update metadata",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "WSUS server sync issue",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Mismatched WSUS/client version",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80240026 on scan",
+      "Only certain updates fail while others succeed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Force WSUS re-sync",
+        "instruction": "On server: wsusutil.exe reset; on client: wuauclt /resetauthorization /detectnow.",
+        "tools": [
+          "WSUS Server",
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Disconnect from WSUS (diag)",
+        "instruction": "Temporarily set UseWUServer=0 to test against public Microsoft servers.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "WSUS environment issues usually require IT administrator assistance.",
+    "relatedCodes": [
+      "0x80240023",
+      "0x80240028"
+    ],
+    "faq": [
+      {
+        "q": "Is this a client or server issue?",
+        "a": "Often it is a WSUS server issue, not the client."
+      },
+      {
+        "q": "Can reset fix it?",
+        "a": "Resetting client update store plus server re-sync usually clears it."
+      },
+      {
+        "q": "Will a Windows version mismatch cause it?",
+        "a": "Yes \u2014 very old clients may not parse newer WSUS metadata."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80240028",
+    "category": "update",
+    "code": "0x80240028",
+    "displayCode": "0x80240028",
+    "title": "Update Not Uninstallable",
+    "shortDescription": "The update cannot be uninstalled because it is marked as not uninstallable.",
+    "fullDescription": "0x80240028 (WU_E_NOT_UNINSTALLABLE) occurs when Windows Update refuses to uninstall an update that lacks an uninstall path. Many servicing stack updates and cumulative updates after cleanup are not uninstallable.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Servicing stack update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Component cleanup already performed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Feature update migration",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Uninstall Updates option rejected",
+      "0x80240028 shown when removing a KB"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use System Restore",
+        "instruction": "If within a restore point window, revert via System Restore.",
+        "tools": [
+          "System Restore"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Use Go Back feature",
+        "instruction": "Within 10 days of feature update: Settings > System > Recovery > Go Back.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "In-place upgrade",
+        "instruction": "Re-run the installer of the desired build to roll forward without uninstall.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      },
+      {
+        "step": 5,
+        "title": "Accept it cannot be removed",
+        "instruction": "Accept the update; plan future rollbacks via imaging instead.",
+        "tools": [
+          "N/A"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If rollback is critical, professional help with imaging-based restore may be needed.",
+    "relatedCodes": [
+      "0x80240026",
+      "0x8024002A"
+    ],
+    "faq": [
+      {
+        "q": "Why can't I uninstall?",
+        "a": "Servicing stack updates and cleaned cumulative updates lack uninstall payloads by design."
+      },
+      {
+        "q": "Is System Restore reliable?",
+        "a": "Only if restore points exist from before the update."
+      },
+      {
+        "q": "Can I prevent this?",
+        "a": "Avoid running DISM /StartComponentCleanup /ResetBase if rollback capability matters."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024002a",
+    "category": "update",
+    "code": "0x8024002A",
+    "displayCode": "0x8024002A",
+    "title": "Missing Handler",
+    "shortDescription": "Windows Update cannot find a handler for this update type.",
+    "fullDescription": "0x8024002A (WU_E_MISSING_HANDLER) means the agent lacks the handler needed to install a specific update class. Commonly seen with driver or MSU installs on damaged systems.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Missing servicing stack update",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Third-party software installer corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific update type always fails",
+      "Drivers fail to install via WU"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Install latest SSU",
+        "instruction": "Download the latest Servicing Stack Update from Microsoft Update Catalog and install.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Re-register WU DLLs",
+        "instruction": "From elevated CMD: regsvr32 wuaueng.dll, regsvr32 wuapi.dll, regsvr32 wups.dll",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "Rarely needed unless WU is severely damaged.",
+    "relatedCodes": [
+      "0x80240026",
+      "0x80240028"
+    ],
+    "faq": [
+      {
+        "q": "What is SSU?",
+        "a": "Servicing Stack Update \u2014 maintains the install engine that processes other updates."
+      },
+      {
+        "q": "Will reregistering DLLs help?",
+        "a": "On older Windows versions, yes. On Windows 10/11, reset via commands is preferred."
+      },
+      {
+        "q": "Is a clean install needed?",
+        "a": "Only as a last resort."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024002e",
+    "category": "update",
+    "code": "0x8024002E",
+    "displayCode": "0x8024002E",
+    "title": "Access Disabled for Client",
+    "shortDescription": "Access to the Windows Update service is disabled by policy.",
+    "fullDescription": "0x8024002E (WU_E_WU_DISABLED) indicates Windows Update is disabled, typically by Group Policy or a registry key. Common on enterprise or manually locked-down machines.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Group Policy disabling WU",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DisableWindowsUpdateAccess registry key",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Malware disabling updates",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "0x8024002E in Settings",
+      "Update service appears stopped"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check registry",
+        "instruction": "Remove DisableWindowsUpdateAccess under HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate or set it to 0.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check GPO",
+        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update \u2014 set to Not Configured.",
+        "tools": [
+          "Group Policy Editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Scan for malware",
+        "instruction": "Run Windows Defender Offline scan.",
+        "tools": [
+          "Windows Defender"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      },
+      {
+        "step": 4,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Re-enable WU service",
+        "instruction": "Services.msc \u2014 set Windows Update to Automatic and start.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "Domain-joined devices require coordination with IT.",
+    "relatedCodes": [
+      "0x8024002A",
+      "0x80240032"
+    ],
+    "faq": [
+      {
+        "q": "Can malware disable WU?",
+        "a": "Yes \u2014 many malware families disable WU to block remediation."
+      },
+      {
+        "q": "Is removing the reg key safe?",
+        "a": "Yes if the policy is not mandatory for your environment."
+      },
+      {
+        "q": "Will gpupdate help?",
+        "a": "Run gpupdate /force after edits to apply immediately."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80240032",
+    "category": "update",
+    "code": "0x80240032",
+    "displayCode": "0x80240032",
+    "title": "Invalid Criteria",
+    "shortDescription": "The search criteria passed to Windows Update was invalid.",
+    "fullDescription": "0x80240032 (WU_E_INVALID_CRITERIA) indicates a malformed or unsupported search criteria string. Usually triggered by scripts or management tools sending bad parameters.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Scripted search with bad criteria",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated management tool",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted Windows Update agent",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80240032 in script output",
+      "Tools like PSWindowsUpdate return errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify script criteria",
+        "instruction": "Check any IsInstalled / IsHidden values and syntax in the search filter.",
+        "tools": [
+          "Script editor"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update management tool",
+        "instruction": "Install the latest PSWindowsUpdate or MDT components.",
+        "tools": [
+          "PowerShell Gallery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x8024002E",
+      "0x8024002A"
+    ],
+    "faq": [
+      {
+        "q": "Is this common on normal PCs?",
+        "a": "No. It mostly affects scripted scenarios."
+      },
+      {
+        "q": "Can I ignore it interactively?",
+        "a": "If you are not running scripts, check for outdated third-party update tools."
+      },
+      {
+        "q": "Does WSUS matter?",
+        "a": "Usually not for this code."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242001",
+    "category": "update",
+    "code": "0x80242001",
+    "displayCode": "0x80242001",
+    "title": "Windows Update Unknown Handler Error",
+    "shortDescription": "The Windows Update handler encountered an unknown error.",
+    "fullDescription": "0x80242001 is a generic handler error from the Windows Update agent. Usually indicates a corrupted update state.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted WU data",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Partial update install",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242001 during install",
+      "Generic failure message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Install from Catalog",
+        "instruction": "Manually install via Microsoft Update Catalog.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242002",
+      "0x80242003"
+    ],
+    "faq": [
+      {
+        "q": "Is a reset enough?",
+        "a": "Usually yes."
+      },
+      {
+        "q": "Will SFC help?",
+        "a": "Often yes."
+      },
+      {
+        "q": "Can I skip?",
+        "a": "Only temporarily."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242002",
+    "category": "update",
+    "code": "0x80242002",
+    "displayCode": "0x80242002",
+    "title": "Windows Update Handler Not Found",
+    "shortDescription": "The required update handler could not be located.",
+    "fullDescription": "0x80242002 means the WU agent could not find the handler module for the update type. SSU updates fix this in many cases.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated SSU",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted WU agent files",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242002 on specific updates",
+      "Drivers failing via WU"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install latest SSU",
+        "instruction": "Download current Servicing Stack Update from Catalog and install.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Repair install",
+        "instruction": "Run an in-place upgrade preserving files and apps.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242001",
+      "0x8024002A"
+    ],
+    "faq": [
+      {
+        "q": "Does SSU matter?",
+        "a": "Yes, SSU must be current for the monthly update engine."
+      },
+      {
+        "q": "Is WU agent update needed?",
+        "a": "WU agent updates ship with SSU now."
+      },
+      {
+        "q": "Will Catalog install always work?",
+        "a": "Often yes when the WU agent is broken."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242003",
+    "category": "update",
+    "code": "0x80242003",
+    "displayCode": "0x80242003",
+    "title": "Update Handler Duplicate",
+    "shortDescription": "A duplicate update handler was encountered.",
+    "fullDescription": "0x80242003 indicates the WU agent loaded duplicate handlers for the same update class, typically after an interrupted servicing operation.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Interrupted update install",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted WU state",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242003 on retry",
+      "Updates loop between downloading and installing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Run DISM /StartComponentCleanup",
+        "instruction": "Elevated CMD: DISM /Online /Cleanup-Image /StartComponentCleanup",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "In-place upgrade",
+        "instruction": "Repair via installation media upgrade.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242002",
+      "0x80242004"
+    ],
+    "faq": [
+      {
+        "q": "Is component cleanup safe?",
+        "a": "Yes, but it can block uninstalls of past updates."
+      },
+      {
+        "q": "Will System Restore help?",
+        "a": "If from before the corruption, yes."
+      },
+      {
+        "q": "Can a repair install fix it?",
+        "a": "Yes, almost always."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242004",
+    "category": "update",
+    "code": "0x80242004",
+    "displayCode": "0x80242004",
+    "title": "Handler Installer Invalid",
+    "shortDescription": "The update handler installer was invalid.",
+    "fullDescription": "0x80242004 is raised when WU's handler installer is invalid or corrupted. Usually part of a broader servicing corruption.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted servicing components",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed previous update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242004 on install phase",
+      "Update rolls back"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU",
+        "instruction": "Install current SSU from Microsoft Update Catalog.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Repair install",
+        "instruction": "In-place upgrade with installation media.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242003",
+      "0x80242005"
+    ],
+    "faq": [
+      {
+        "q": "Do I need an SSU?",
+        "a": "Yes, outdated SSUs block many monthly updates."
+      },
+      {
+        "q": "Is DISM safe?",
+        "a": "Yes, it is the recommended repair path."
+      },
+      {
+        "q": "Should I back up first?",
+        "a": "Always back up before repair installs."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242005",
+    "category": "update",
+    "code": "0x80242005",
+    "displayCode": "0x80242005",
+    "title": "Handler Install State Error",
+    "shortDescription": "The update handler reported an invalid install state.",
+    "fullDescription": "0x80242005 indicates the WU handler is in an invalid install state. Typically caused by partial installs or pending reboots.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Pending reboot",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Interrupted install",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted CBS transactions",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80242005 when installing",
+      "Updates stuck pending"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and retry",
+        "instruction": "Reboot to clear pending operations before retrying.",
+        "tools": [
+          "Start menu"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Clear pending xml",
+        "instruction": "Delete C:\\Windows\\WinSxS\\pending.xml after taking ownership.",
+        "tools": [
+          "File Explorer"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242004",
+      "0x80242006"
+    ],
+    "faq": [
+      {
+        "q": "Why reboot first?",
+        "a": "Pending operations must complete before new ones start."
+      },
+      {
+        "q": "Is deleting pending.xml safe?",
+        "a": "Risky \u2014 only do it after DISM fails."
+      },
+      {
+        "q": "Will SFC fix it?",
+        "a": "Sometimes. Try it first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242008",
+    "category": "update",
+    "code": "0x80242008",
+    "displayCode": "0x80242008",
+    "title": "Handler Generic Failure",
+    "shortDescription": "The update handler failed with a generic error.",
+    "fullDescription": "0x80242008 is a generic failure from the WU handler layer. Use standard WU repair flow.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted WU cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus filter interference",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242008 in history",
+      "Repeated generic failures"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Temporarily disable AV",
+        "instruction": "Disable third-party antivirus and retry.",
+        "tools": [
+          "AV console"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Catalog install",
+        "instruction": "Install update from Microsoft Update Catalog directly.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242001",
+      "0x80242010"
+    ],
+    "faq": [
+      {
+        "q": "Is AV to blame?",
+        "a": "Sometimes. Test with AV disabled briefly."
+      },
+      {
+        "q": "Will Catalog install bypass?",
+        "a": "Often yes."
+      },
+      {
+        "q": "Should I reset WU?",
+        "a": "Yes, as the first step."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242010",
+    "category": "update",
+    "code": "0x80242010",
+    "displayCode": "0x80242010",
+    "title": "Handler Post-Reboot Initialization Failed",
+    "shortDescription": "The update handler failed to initialize after a reboot.",
+    "fullDescription": "0x80242010 indicates the post-reboot portion of an update failed to initialize. CBS corruption is the most common cause.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted CBS store",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed previous update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242010 after reboot",
+      "Update rolls back after restart"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Check CBS.log",
+        "instruction": "Review C:\\Windows\\Logs\\CBS\\CBS.log for errors.",
+        "tools": [
+          "Notepad"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "DISM source repair",
+        "instruction": "DISM /Online /Cleanup-Image /RestoreHealth /Source:<mounted ISO>\\sources\\install.wim /LimitAccess",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Repair install",
+        "instruction": "In-place upgrade.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 2 hours",
+    "whenToCallPro": "If CBS repair fails, a professional may be needed for offline servicing.",
+    "relatedCodes": [
+      "0x80242005",
+      "0x80242011"
+    ],
+    "faq": [
+      {
+        "q": "What is CBS?",
+        "a": "Component-Based Servicing \u2014 the engine installing updates."
+      },
+      {
+        "q": "Will DISM source help?",
+        "a": "Yes, when Windows Update itself is broken."
+      },
+      {
+        "q": "Is repair install data-safe?",
+        "a": "Yes if you pick 'Keep files and apps'."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242011",
+    "category": "update",
+    "code": "0x80242011",
+    "displayCode": "0x80242011",
+    "title": "Handler Post-Reboot Initialization Not Required",
+    "shortDescription": "The update handler reported that post-reboot initialization was not required.",
+    "fullDescription": "0x80242011 is often informational \u2014 the handler determined no post-reboot work was needed. It can appear as a false failure.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Informational state",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted history tracking",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242011 in Update history with no real failure"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify update installed",
+        "instruction": "Run wmic qfe list to confirm the KB is present.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Ignore if update is present",
+        "instruction": "If confirmed installed, no action is needed.",
+        "tools": [
+          "N/A"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 5,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242010",
+      "0x80242012"
+    ],
+    "faq": [
+      {
+        "q": "Is this a real error?",
+        "a": "Often not \u2014 confirm the KB is installed before troubleshooting."
+      },
+      {
+        "q": "Does it repeat?",
+        "a": "If history is corrupted, a reset clears it."
+      },
+      {
+        "q": "Any harm?",
+        "a": "Generally no."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80242012",
+    "category": "update",
+    "code": "0x80242012",
+    "displayCode": "0x80242012",
+    "title": "Handler Post-Reboot Outstanding Operation",
+    "shortDescription": "The update handler found an outstanding post-reboot operation.",
+    "fullDescription": "0x80242012 indicates there are outstanding operations from a previous update that must complete before new installs can proceed.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Pending CBS transactions",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Skipped reboots",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80242012 when installing new updates",
+      "Always pending reboot"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot cleanly",
+        "instruction": "Restart the PC and wait for all post-reboot steps to complete.",
+        "tools": [
+          "Start menu"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Clear pending transactions",
+        "instruction": "From elevated CMD: dism /online /Cleanup-Image /RevertPendingActions",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Repair install",
+        "instruction": "If pending cannot be cleared.",
+        "tools": [
+          "Installation media"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80242010",
+      "0x80242011"
+    ],
+    "faq": [
+      {
+        "q": "Does RevertPendingActions delete work?",
+        "a": "It undoes pending servicing operations \u2014 use with care."
+      },
+      {
+        "q": "Is a reboot really enough?",
+        "a": "Often yes \u2014 let Windows finish its post-reboot work."
+      },
+      {
+        "q": "Will a repair install fix it?",
+        "a": "Yes in all cases that survive DISM."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246001",
+    "category": "update",
+    "code": "0x80246001",
+    "displayCode": "0x80246001",
+    "title": "Download Manager File Not Found",
+    "shortDescription": "The download manager could not find a local file for the update.",
+    "fullDescription": "0x80246001 means the WU download manager references a file missing from the local cache, typically due to antivirus quarantine or manual cleanup.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "AV quarantined WU files",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Manual cleanup of SoftwareDistribution",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disk errors",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80246001 during install",
+      "Files disappear between download and install"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check AV quarantine",
+        "instruction": "Restore any WU files from quarantine and add exclusions.",
+        "tools": [
+          "AV console"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Run CHKDSK",
+        "instruction": "chkdsk C: /f /r to rule out disk errors.",
+        "tools": [
+          "CHKDSK"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 5,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80246003",
+      "0x80246004"
+    ],
+    "faq": [
+      {
+        "q": "Will AV really delete WU files?",
+        "a": "Some aggressive AVs do; exclusions fix it."
+      },
+      {
+        "q": "Can I download fresh?",
+        "a": "Yes \u2014 a WU reset does exactly that."
+      },
+      {
+        "q": "Is disk at fault?",
+        "a": "Occasionally. CHKDSK rules it out."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246003",
+    "category": "update",
+    "code": "0x80246003",
+    "displayCode": "0x80246003",
+    "title": "Download Manager Unknown Error",
+    "shortDescription": "The download manager reported an unknown error.",
+    "fullDescription": "0x80246003 is a generic download manager error. Reset WU components and retry.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted download queue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network interruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80246003 intermittently",
+      "Downloads restart"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Catalog install",
+        "instruction": "Download KB from Microsoft Update Catalog.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80246001",
+      "0x80246004"
+    ],
+    "faq": [
+      {
+        "q": "Is this critical?",
+        "a": "No, it is usually transient."
+      },
+      {
+        "q": "Will reset clear it?",
+        "a": "Yes, in most cases."
+      },
+      {
+        "q": "Skip safe?",
+        "a": "Not long-term."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246004",
+    "category": "update",
+    "code": "0x80246004",
+    "displayCode": "0x80246004",
+    "title": "Download Manager Service Not Running",
+    "shortDescription": "The WU download manager service is not running.",
+    "fullDescription": "0x80246004 means the BITS or WU service is not running or has crashed.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "BITS service stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "wuauserv stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disabled by policy",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80246004",
+      "WU button grayed out"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start services",
+        "instruction": "services.msc \u2014 start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check disabled policy",
+        "instruction": "Remove HKLM\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Start if set to 4.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Malware scan",
+        "instruction": "Run Windows Defender Offline scan.",
+        "tools": [
+          "Windows Defender"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80246003",
+      "0x80246008"
+    ],
+    "faq": [
+      {
+        "q": "Could malware disable WU?",
+        "a": "Yes. Scan as a precaution."
+      },
+      {
+        "q": "Are policies common?",
+        "a": "On domain PCs yes \u2014 check with IT."
+      },
+      {
+        "q": "Is manual start enough?",
+        "a": "Combined with setting Automatic, yes."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246008",
+    "category": "update",
+    "code": "0x80246008",
+    "displayCode": "0x80246008",
+    "title": "BITS Job Could Not Be Resumed",
+    "shortDescription": "A BITS job could not be resumed after interruption.",
+    "fullDescription": "0x80246008 indicates the BITS download could not be resumed. Reset the BITS queue and retry.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Interrupted download",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted BITS queue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80246008 appears after sleep/reboot during download",
+      "Downloads fail to resume"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset BITS",
+        "instruction": "bitsadmin /reset /allusers from elevated CMD.",
+        "tools": [
+          "BITSAdmin"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Restart BITS and Windows Update services",
+        "instruction": "Services.msc: restart BITS, Windows Update, Cryptographic Services.",
+        "tools": [
+          "Services.msc"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Use stable connection",
+        "instruction": "Ensure the PC stays awake and connected during downloads.",
+        "tools": [
+          "Power settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80246001",
+      "0x80246003"
+    ],
+    "faq": [
+      {
+        "q": "Does sleep break BITS?",
+        "a": "It can if the resume fails. Plug in for large updates."
+      },
+      {
+        "q": "Is a reset destructive?",
+        "a": "It abandons in-progress jobs but keeps downloaded content."
+      },
+      {
+        "q": "Will a fresh download work?",
+        "a": "Almost always after a reset."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80248008",
+    "category": "update",
+    "code": "0x80248008",
+    "displayCode": "0x80248008",
+    "title": "Missing Service Data",
+    "shortDescription": "Required Windows Update service data is missing.",
+    "fullDescription": "0x80248008 means the Windows Update data store is missing entries it needs to function. Typically caused by SoftwareDistribution corruption.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted DataStore.edb",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Manual deletion of SoftwareDistribution contents",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "0x80248008 during scan",
+      "WU returns no updates"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated CMD: net stop wuauserv && net stop cryptSvc && net stop bits && net stop msiserver && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start cryptSvc && net start bits && net start msiserver",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Rebuild DataStore",
+        "instruction": "Stop wuauserv, delete C:\\Windows\\SoftwareDistribution\\DataStore, start wuauserv.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "Elevated CMD: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth",
+        "tools": [
+          "Command Prompt",
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Install latest SSU manually",
+        "instruction": "Install the latest SSU from the Update Catalog.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to 1 hour",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "0x80248007",
+      "0x8024000B"
+    ],
+    "faq": [
+      {
+        "q": "Is DataStore critical?",
+        "a": "Yes \u2014 it tracks update history and state."
+      },
+      {
+        "q": "Does deletion cause data loss?",
+        "a": "Only update history, not personal files."
+      },
+      {
+        "q": "Will SFC help?",
+        "a": "Indirectly, if system files around WU are damaged."
       }
     ]
   }
