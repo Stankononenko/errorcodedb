@@ -14,11 +14,11 @@ Comprehensive error code database — ALL devices worldwide. Target: 50,000+ pag
 
 ## Current Status (End of Session 5 — April 17, 2026, continuation)
 
-### GRAND TOTAL: 5,545 error codes, 5,900+ static pages
+### GRAND TOTAL: 5,726 error codes, 6,000+ static pages
 
 | Category | Codes | Details |
 |----------|-------|---------|
-| OBD-II | **1,913** | P0: 11 batches (~650), P1: 366 (all major+luxury+exotic+commercial), P2: 180, P3: 110, B: 195, C: 199, U: 207 |
+| OBD-II | **2,094** | P0: 13 batches (~760), P1: 403, P2: 180, P3: 110, B: 195, C: 199, U: 238 |
 | Appliances | 2,760+ | 100 brands |
 | HVAC | 301 | 15 brands |
 | Printers | 361 | 6 brands |
