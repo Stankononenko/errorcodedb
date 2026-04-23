@@ -10440,5 +10440,2369 @@
         "a": "Close - connection reset is a TCP RST; socket read error is a lower-level read failure with broader causes."
       }
     ]
+  },
+  {
+    "id": "windows-browser-edge-status-access-violation",
+    "category": "browser",
+    "code": "STATUS_ACCESS_VIOLATION",
+    "displayCode": "STATUS_ACCESS_VIOLATION",
+    "title": "Edge STATUS_ACCESS_VIOLATION",
+    "shortDescription": "Edge tab crashes with STATUS_ACCESS_VIOLATION (0xC0000005).",
+    "fullDescription": "Edge (Chromium) displays STATUS_ACCESS_VIOLATION on the error page when a renderer tried to access invalid memory. Causes include a faulty extension, corrupt user profile, outdated GPU driver, or injected third-party DLL (security software).",
+    "affectedVersions": [
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Faulty extension",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Injected third-party DLL (AV)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated GPU driver",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt user data folder",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Aw, Snap!' style crash page in Edge",
+      "Multiple tabs die simultaneously"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable extensions",
+        "instruction": "edge://extensions > toggle off all.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Toggle hardware acceleration",
+        "instruction": "Settings > System > Use hardware acceleration - flip it.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Clear profile",
+        "instruction": "Create new Edge profile and test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Update/reinstall Edge",
+        "instruction": "edge://settings/help then reinstall if needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "STATUS_STACK_BUFFER_OVERRUN",
+      "ERR_FAILED"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-status-stack-buffer-overrun",
+    "category": "browser",
+    "code": "STATUS_STACK_BUFFER_OVERRUN",
+    "displayCode": "STATUS_STACK_BUFFER_OVERRUN",
+    "title": "STATUS_STACK_BUFFER_OVERRUN",
+    "shortDescription": "Chromium-based browser tab crash — stack buffer corruption detected.",
+    "fullDescription": "STATUS_STACK_BUFFER_OVERRUN (0xC0000409) is triggered by /GS stack cookie mismatch. For browsers this almost always means a compatibility shim or injected DLL (antivirus, Nahimic, Riot Vanguard) is conflicting with the renderer.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Brave"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party DLL injection",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupt extension manifest",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser version",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Tab crash with this status on error page",
+      "Reloading often continues"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable Chrome Cleanup / scan for injected DLLs",
+        "instruction": "Use Process Explorer, verify loaded modules under chrome.exe.",
+        "tools": [
+          "Process Explorer"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update browser",
+        "instruction": "About > update, relaunch.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable extensions",
+        "instruction": "Disable all, re-enable one at a time.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If DLL injection is from required corporate software.",
+    "relatedCodes": [
+      "STATUS_ACCESS_VIOLATION"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-status-invalid-image-hash",
+    "category": "browser",
+    "code": "STATUS_INVALID_IMAGE_HASH",
+    "displayCode": "STATUS_INVALID_IMAGE_HASH",
+    "title": "STATUS_INVALID_IMAGE_HASH",
+    "shortDescription": "Browser refuses to load a DLL due to integrity check failure.",
+    "fullDescription": "STATUS_INVALID_IMAGE_HASH (0xC0000428) means Windows Code Integrity rejected a DLL signature. Common with out-of-date Chromium versions against patched Windows Code Integrity, or when AV has altered a DLL on disk.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Outdated browser against new Windows build",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "AV has quarantined/modified a DLL",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted download",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Tab crash page with this status",
+      "Starts after a Windows feature update"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update browser",
+        "instruction": "chrome://settings/help - update to latest.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check AV quarantine",
+        "instruction": "Review quarantined items, restore if legitimate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reinstall browser",
+        "instruction": "Uninstall, delete user data, reinstall.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "STATUS_ACCESS_VIOLATION"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-netflix-m7353-5101",
+    "category": "browser",
+    "code": "M7353-5101",
+    "displayCode": "M7353-5101",
+    "title": "Netflix Error M7353-5101",
+    "shortDescription": "Netflix detects an unsupported browser extension.",
+    "fullDescription": "Netflix error M7353-5101 appears when a browser extension interferes with Widevine DRM playback. Typical culprits: ad blockers, VPN extensions, script blockers, or user-agent spoofers.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Ad blocker or privacy extension",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN extension blocking DRM",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware acceleration off",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error overlay on Netflix player",
+      "Other streaming sites work"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable extensions on netflix.com",
+        "instruction": "Extensions > disable on this site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try incognito/InPrivate",
+        "instruction": "No extensions loaded.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Enable hardware acceleration",
+        "instruction": "Settings > System > enable acceleration.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "P-DEV318",
+      "7031"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-hulu-p-dev318",
+    "category": "browser",
+    "code": "P-DEV318",
+    "displayCode": "P-DEV318",
+    "title": "Hulu Error P-DEV318",
+    "shortDescription": "Hulu server/app error while loading content.",
+    "fullDescription": "P-DEV318 is a Hulu playback failure often tied to server load, stale cache, or account sync issues. Clearing cookies and restarting usually resolves it.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Stale Hulu cookies/cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hulu server incident",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Concurrent stream limit",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Play button spins then errors P-DEV318",
+      "Home screen loads but no video"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Hard refresh",
+        "instruction": "Ctrl+Shift+R on the Hulu tab.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Clear Hulu cookies",
+        "instruction": "DevTools > Application > Cookies > hulu.com > clear.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Sign out / sign in",
+        "instruction": "Ends extra sessions and refreshes tokens.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "M7353-5101"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-youtube-network-400",
+    "category": "browser",
+    "code": "YT-400",
+    "displayCode": "YouTube 400",
+    "title": "YouTube Network Error (400)",
+    "shortDescription": "'There was a problem with the network. (Error Code: 400)' on YouTube.",
+    "fullDescription": "YouTube 400 indicates a malformed request to YouTube servers, usually caused by a corrupted cookie, stale auth token, or misbehaving extension modifying headers.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted YouTube cookie",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension modifying Host header",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong date/time",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Player error 400",
+      "Problem happens after extended session"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear cookies for youtube.com",
+        "instruction": "Site settings > clear data.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Sign out of Google",
+        "instruction": "Remove profile, sign back in.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Fix system clock",
+        "instruction": "Enable auto time.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "HTTP 400"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-prime-video-7031",
+    "category": "browser",
+    "code": "7031",
+    "displayCode": "Prime Video 7031",
+    "title": "Prime Video Error 7031",
+    "shortDescription": "Amazon Prime Video playback failed with error 7031.",
+    "fullDescription": "Error 7031 on Prime Video is a DRM/license retrieval failure. Often caused by outdated browser, disabled protected content playback, or VPN use.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Protected content playback disabled",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN/proxy blocking DRM license server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated Widevine CDM",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Prime video won't start, shows 7031",
+      "Other streaming services still work"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable protected content",
+        "instruction": "chrome://settings/content/protectedContent > allow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Disable VPN",
+        "instruction": "Turn off and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Update browser",
+        "instruction": "Update and restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "M7353-5101"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-disney-error-83",
+    "category": "browser",
+    "code": "83",
+    "displayCode": "Disney+ 83",
+    "title": "Disney+ Error 83",
+    "shortDescription": "Disney Plus fails to play content with error 83.",
+    "fullDescription": "Disney+ error 83 means a compatibility issue: unsupported browser, device, or network configuration. Often triggered by VPN use, older browsers, or corporate networks.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Unsupported browser version",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN active",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Weak network connection",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error 83 overlay on Disney+ player",
+      "Content won't start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update browser",
+        "instruction": "Ensure a current supported browser.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Turn off VPN/proxy",
+        "instruction": "Disconnect and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Try different network",
+        "instruction": "Tether mobile hotspot to confirm.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "M7353-5101",
+      "7031"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-zoom-error-1006",
+    "category": "browser",
+    "code": "1006",
+    "displayCode": "Zoom 1006",
+    "title": "Zoom Error 1006",
+    "shortDescription": "Zoom web client cannot connect — error 1006.",
+    "fullDescription": "Zoom error 1006 indicates WebSocket disconnection. Usually a flaky network, proxy stripping WebSocket frames, or an extension injecting content in the meeting iframe.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "WebSocket blocked by proxy",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network interruption",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser extension interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Dropped from meeting",
+      "'Connection lost' banner"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Switch network",
+        "instruction": "Try different Wi-Fi or wired.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Disable extensions",
+        "instruction": "Private window test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Whitelist wss://*.zoom.us",
+        "instruction": "Have IT allow WebSocket on corporate proxy.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If corporate proxy is enforcing SSL inspection.",
+    "relatedCodes": [
+      "5003",
+      "2008"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-zoom-error-5003",
+    "category": "browser",
+    "code": "5003",
+    "displayCode": "Zoom 5003",
+    "title": "Zoom Error 5003",
+    "shortDescription": "Zoom can't connect to server.",
+    "fullDescription": "Error 5003 means the Zoom client failed to establish a network connection to Zoom servers. Root cause is typically firewall, proxy, or an ISP issue.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Firewall blocking Zoom",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proxy not configured for Zoom",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DNS can't resolve zoom.us",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cannot join meetings",
+      "Web client also fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test zoom.us",
+        "instruction": "Open https://zoom.us - must load.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Whitelist firewall",
+        "instruction": "Allow Zoom domains and UDP 8801-8810.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Switch DNS",
+        "instruction": "Try 1.1.1.1 or 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If IT-managed firewall blocking.",
+    "relatedCodes": [
+      "1006",
+      "100000403"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-zoom-error-2008",
+    "category": "browser",
+    "code": "2008",
+    "displayCode": "Zoom 2008",
+    "title": "Zoom Error 2008 — License Required",
+    "shortDescription": "Meeting requires a license the host doesn't have.",
+    "fullDescription": "Error 2008 appears when joining a webinar/large meeting the host's plan doesn't support, or when connecting to a deleted/expired Personal Meeting ID.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Host license changed/expired",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Meeting ID deleted",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Immediate error on join",
+      "'Your license does not allow' message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify with host",
+        "instruction": "Contact host to confirm meeting ID.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Use new link",
+        "instruction": "Request a freshly generated meeting link.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "1006"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-zoom-error-100000403",
+    "category": "browser",
+    "code": "100000403",
+    "displayCode": "Zoom 100000403",
+    "title": "Zoom Error 100000403",
+    "shortDescription": "Zoom authentication error; account not permitted.",
+    "fullDescription": "Error 100000403 is returned when the Zoom account is not permitted to join the meeting — often due to SSO requirements, a locked domain, or an external-user restriction.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "SSO required by host's domain",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "External users restricted",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cannot join after signing in",
+      "Host must admit from waiting room indefinitely"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Sign in via SSO",
+        "instruction": "Use host's SSO link if provided.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Ask host to allow external",
+        "instruction": "Host > Settings > Meeting > allow external participants.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "5003",
+      "2008"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-blocked-by-xss-auditor",
+    "category": "browser",
+    "code": "ERR_BLOCKED_BY_XSS_AUDITOR",
+    "displayCode": "ERR_BLOCKED_BY_XSS_AUDITOR",
+    "title": "ERR_BLOCKED_BY_XSS_AUDITOR",
+    "shortDescription": "Chrome's legacy XSS Auditor blocked the page (legacy).",
+    "fullDescription": "ERR_BLOCKED_BY_XSS_AUDITOR was returned by Chrome's XSS Auditor, since removed in Chrome 78+. If you see it today you're on an old browser or fork. The page contains a pattern the heuristic flagged as reflected XSS.",
+    "affectedVersions": [
+      "Chrome (legacy)",
+      "Chromium forks"
+    ],
+    "causes": [
+      {
+        "cause": "Legitimate form submission tripping heuristic",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Actual reflected XSS (rare)",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Blank page with 'Your browser detected something unusual' message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update browser",
+        "instruction": "Modern Chrome no longer has XSS Auditor.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try another browser",
+        "instruction": "Firefox/Edge not affected.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "ERR_BLOCKED_BY_RESPONSE"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-timed-out-download",
+    "category": "browser",
+    "code": "ERR_TIMED_OUT",
+    "displayCode": "ERR_TIMED_OUT",
+    "title": "Download Failed — ERR_TIMED_OUT",
+    "shortDescription": "Browser download canceled after connection timeout.",
+    "fullDescription": "ERR_TIMED_OUT during a download means the TCP connection was idle too long or the server did not respond within the expected window. Large files on slow links are typical victims.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Slow or unstable connection",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server overloaded",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall dropping idle connections",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Download fails partway",
+      "'Network error' in browser download list"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Resume download",
+        "instruction": "Right-click in Downloads page > Resume.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Use download manager",
+        "instruction": "Try a tool like wget or a dedicated download manager.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Switch network",
+        "instruction": "Try ethernet or another Wi-Fi.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "ERR_CONNECTION_TIMED_OUT"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-file-virus-infected",
+    "category": "browser",
+    "code": "ERR_FILE_VIRUS_INFECTED",
+    "displayCode": "VIRUS_INFECTED",
+    "title": "Download Blocked — Virus Detected",
+    "shortDescription": "Windows Defender or browser Safe Browsing flagged the download.",
+    "fullDescription": "Chrome/Edge integrate with Windows Defender and Safe Browsing. When a download matches a known-bad hash or triggers heuristics, it is deleted and shown as 'Failed - Virus detected'.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "File is genuinely malicious",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "False positive on legit installer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Signed but suspicious binary",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Failed - Virus detected' in browser downloads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify the source",
+        "instruction": "Only download from official vendor sites.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Scan with VirusTotal",
+        "instruction": "Upload URL or SHA256 to virustotal.com.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Add exclusion (if safe)",
+        "instruction": "Windows Security > Virus & threat > Exclusions.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "When unsure about file safety.",
+    "relatedCodes": [
+      "Safe Browsing Alert"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-safe-browsing-alert",
+    "category": "browser",
+    "code": "SafeBrowsing",
+    "displayCode": "Safe Browsing",
+    "title": "Safe Browsing Warning",
+    "shortDescription": "'Deceptive site ahead' red screen from Google Safe Browsing.",
+    "fullDescription": "Safe Browsing is the cross-browser malware/phishing list. When Chrome/Edge/Firefox match the URL against this list, a red warning page appears. The user can proceed if the site is a false positive, but should rarely do so.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Site actually phishing/distributing malware",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "False positive (site recently cleaned)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Compromised subdomain",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Full-page red warning",
+      "'Details' link explains the category"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Do not proceed by default",
+        "instruction": "Close the tab.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Report false positive",
+        "instruction": "safebrowsing.google.com/safebrowsing/report_error.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Verify site independently",
+        "instruction": "Contact the site owner through another channel.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Deceptive Site Warning",
+      "Phishing Warning"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-deceptive-site-warning",
+    "category": "browser",
+    "code": "DeceptiveSite",
+    "displayCode": "Deceptive Site",
+    "title": "Deceptive Site Warning",
+    "shortDescription": "Browser warns site is deceptive/phishing.",
+    "fullDescription": "Separate subcategory of Safe Browsing. The site was reported as imitating a legitimate brand to steal credentials.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Phishing page spoofing a real brand",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cloned login page on compromised host",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Deceptive site ahead' banner"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Close tab immediately",
+        "instruction": "Do not enter any information.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Check the URL carefully",
+        "instruction": "Spot typos or punycode (e.g., paypaI.com vs paypal.com).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Safe Browsing Alert"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-phishing-warning",
+    "category": "browser",
+    "code": "PhishingWarn",
+    "displayCode": "Phishing Warn",
+    "title": "Phishing Warning",
+    "shortDescription": "Browser flags page as phishing.",
+    "fullDescription": "Browser shows a full-page interstitial before the actual phishing page loads. Works only if the URL is already in the block list — do not rely on it as sole defense.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Known phishing URL",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Recently reported impersonation site",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Red warning interstitial",
+      "Click-through link hidden under Advanced"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Return to safety",
+        "instruction": "Click 'Back to safety'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Report if you found it elsewhere",
+        "instruction": "Forward phishing email to reportphishing@apwg.org.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Safe Browsing Alert"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-third-party-cookies-blocked",
+    "category": "browser",
+    "code": "3PC-Blocked",
+    "displayCode": "3PC Blocked",
+    "title": "Third-Party Cookies Blocked",
+    "shortDescription": "Site feature broken because third-party cookies are disabled.",
+    "fullDescription": "With third-party cookies blocked (default in Firefox/Safari, phased in Chrome), embedded content like SSO iframes, payment widgets, and cross-site logins can fail silently or return errors.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "SSO iframe uses 3rd-party cookies",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Payment widget cross-origin session",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Login iframe blank",
+      "Checkout stuck on 'Loading'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Allow for specific site",
+        "instruction": "chrome://settings/cookies > Sites that can always use cookies > add site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Disable tracking prevention on site",
+        "instruction": "Edge: site permissions > tracking prevention exception.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Use partitioned cookies (CHIPS)",
+        "instruction": "Developer guidance: migrate to CHIPS or Related Website Sets.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Cookie Policy Violation"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-cookie-policy-violation",
+    "category": "browser",
+    "code": "CookiePolicy",
+    "displayCode": "Cookie Policy",
+    "title": "Cookie Policy Violation (SameSite)",
+    "shortDescription": "Cookie not set/sent because SameSite or Secure policy violated.",
+    "fullDescription": "Modern browsers reject cookies without SameSite or those set cross-origin without Secure+SameSite=None. DevTools Issues tab shows clear warnings for developers; end users see broken logins and session loss.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "SameSite attribute missing on cross-site cookie",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Secure flag missing over HTTPS-only policy",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Intermittent logouts",
+      "DevTools 'This Set-Cookie was blocked' warnings"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Developer fix",
+        "instruction": "Set SameSite=None; Secure for cross-site cookies.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "User workaround",
+        "instruction": "Disable 'Block third-party cookies' for that site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Never for end users.",
+    "relatedCodes": [
+      "Third-Party Cookies Blocked"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-chrome-extension-corrupted",
+    "category": "browser",
+    "code": "ExtCorrupt",
+    "displayCode": "Extension Corrupt",
+    "title": "Chrome Extension Corrupted",
+    "shortDescription": "'This extension may be corrupted' banner appears.",
+    "fullDescription": "Chrome periodically verifies extension file hashes against signed manifests. If files were tampered with (malware, disk error, manual edits), Chrome disables the extension and prompts to repair.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Disk error corrupting extension files",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Malware modifying extension",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Manual edits to unpacked extension",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Yellow warning above toolbar",
+      "Extension icon greyed out"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Click Repair",
+        "instruction": "Accept the repair prompt in the warning.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Reinstall extension",
+        "instruction": "Remove, then install again from Web Store.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Run malware scan",
+        "instruction": "Windows Security full scan.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "Chrome Extension Permissions"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-chrome-extension-permissions",
+    "category": "browser",
+    "code": "ExtPerms",
+    "displayCode": "Extension Perms",
+    "title": "Chrome Extension Permissions Error",
+    "shortDescription": "Extension requires new permissions and was disabled.",
+    "fullDescription": "When a Chrome extension update requests broader permissions than the previous version, Chrome disables it and shows a banner until the user approves. Some IT policies prohibit approving new permissions.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Update requested new permissions",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Enterprise policy blocks permission change",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Extension disabled after update",
+      "Puzzle icon badge warns"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review new permissions",
+        "instruction": "chrome://extensions > Details - read what's requested.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Re-enable or remove",
+        "instruction": "If permissions seem excessive, remove; else approve.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Contact admin",
+        "instruction": "If a managed install, IT must approve via policy.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Chrome Extension Corrupted"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-edge-inprivate-blocked",
+    "category": "browser",
+    "code": "InPrivateBlock",
+    "displayCode": "InPrivate Blocked",
+    "title": "Edge InPrivate Browsing Blocked",
+    "shortDescription": "InPrivate mode disabled by policy.",
+    "fullDescription": "Organizations can disable InPrivate browsing via Group Policy. Users see a greyed-out menu entry or an error when launching InPrivate windows.",
+    "affectedVersions": [
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "GPO DisableInPrivateBrowsing=1",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Enterprise policy enforced",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "InPrivate menu greyed out",
+      "New InPrivate window hotkey does nothing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check policy",
+        "instruction": "edge://policy shows active policies.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Contact admin",
+        "instruction": "If managed, only IT can re-enable.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-teams-caa7000a",
+    "category": "browser",
+    "code": "caa7000a",
+    "displayCode": "Teams caa7000a",
+    "title": "Teams Error caa7000a",
+    "shortDescription": "Teams web client sign-in fails with caa7000a.",
+    "fullDescription": "caa7000a is a Teams auth error often tied to a corrupted token cache or conditional access policy mismatch. Clearing Teams web cache and cookies usually fixes it.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Stale auth token",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Conditional Access device compliance",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Sign-in page loops",
+      "Error code displayed after credential entry"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear teams.microsoft.com cookies",
+        "instruction": "Site settings > Clear data.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Sign in via office.com first",
+        "instruction": "Establish session there, then launch Teams.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Check device compliance",
+        "instruction": "If managed, ensure device is compliant in Intune.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If conditional access requires unavailable device state.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-firefox-mitm-detected",
+    "category": "browser",
+    "code": "MOZILLA_PKIX_ERROR_MITM_DETECTED",
+    "displayCode": "MITM_DETECTED",
+    "title": "Firefox — MITM Proxy Detected",
+    "shortDescription": "Firefox detects SSL-inspecting proxy intercepting connections.",
+    "fullDescription": "This error indicates a man-in-the-middle proxy is intercepting TLS. Corporate AV (Kaspersky, Bitdefender) and enterprise SSL inspection commonly trigger it. Firefox does not trust the OS root store by default.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Corporate AV with SSL inspection",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Enterprise SSL-inspecting firewall",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Real MITM (rare)",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "'Your connection is not secure' with MITM code",
+      "Same site works in Chrome/Edge"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable OS root import",
+        "instruction": "about:config > security.enterprise_roots.enabled = true.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Disable AV HTTPS scanning",
+        "instruction": "AV settings > turn off SSL/HTTPS scan.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Use another browser temporarily",
+        "instruction": "Chromium family trusts OS store natively.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "If IT-mandated proxy requires configuration.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-chrome-profile-error",
+    "category": "browser",
+    "code": "ProfileError",
+    "displayCode": "Profile Error",
+    "title": "Chrome Profile Error",
+    "shortDescription": "'Your profile could not be opened correctly.'",
+    "fullDescription": "Chrome shows this warning when the profile's Preferences or Web Data file is corrupted, often after a crash or disk error. Data may be partly lost.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Improper shutdown",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Disk corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Sync conflict",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Warning banner on startup",
+      "Some settings reset to defaults"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Acknowledge and continue",
+        "instruction": "Click OK; most data survives.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Back up profile folder",
+        "instruction": "Copy %localappdata%\\Google\\Chrome\\User Data\\Default elsewhere before tinkering.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Create new profile",
+        "instruction": "Chrome menu > profile > Add; sign in to recover from Google sync.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-edge-sync-paused",
+    "category": "browser",
+    "code": "SyncPaused",
+    "displayCode": "Edge Sync Paused",
+    "title": "Edge Sync Paused",
+    "shortDescription": "Microsoft Edge sync paused — re-authenticate to continue.",
+    "fullDescription": "Edge sync pauses when the refresh token expires, the account password was changed, or MFA is required again. The account icon in the toolbar shows a warning.",
+    "affectedVersions": [
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "MS account password changed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Expired refresh token",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "MFA required re-prompt",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Sync paused banner",
+      "Favorites/passwords stop syncing across devices"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Click Sign in again",
+        "instruction": "edge://settings/profiles - verify button.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Complete MFA",
+        "instruction": "Respond to Authenticator prompt.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Sign out and back in",
+        "instruction": "If re-auth fails, remove profile and re-add.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-chrome-sync-error",
+    "category": "browser",
+    "code": "ChromeSyncErr",
+    "displayCode": "Chrome Sync Err",
+    "title": "Chrome Sync Error",
+    "shortDescription": "'Sync isn't working' in Chrome settings.",
+    "fullDescription": "Similar to Edge: Google session expired, encryption passphrase required, or sync service has a temporary outage. Re-authentication usually resolves it.",
+    "affectedVersions": [
+      "Chrome"
+    ],
+    "causes": [
+      {
+        "cause": "Expired Google session",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Encryption passphrase not entered",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Google sync service incident",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Sync is paused / Enter your sync passphrase",
+      "Saved passwords stop syncing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-sign in",
+        "instruction": "chrome://settings > Turn off and back on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Enter passphrase",
+        "instruction": "Your sync passphrase (if set) differs from Google password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Check status page",
+        "instruction": "status.cloud.google.com for outages.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "Edge Sync Paused"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-network-io-suspended-laptop",
+    "category": "browser",
+    "code": "ERR_NETWORK_IO_SUSPENDED-v132",
+    "displayCode": "IO Suspended",
+    "title": "ERR_NETWORK_IO_SUSPENDED (Closed Lid)",
+    "shortDescription": "Network I/O suspended — laptop was asleep during request.",
+    "fullDescription": "Chrome returns this error when the laptop suspended the network adapter mid-request. Reloading fixes it instantly. Also seen on tablets when the browser tab is backgrounded aggressively.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Laptop lid closed during request",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Modern standby suspended NIC",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error on first page after waking laptop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload",
+        "instruction": "F5 usually completes the request.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable power saving on NIC",
+        "instruction": "Device Manager > NIC > Properties > Power Management > uncheck 'Allow the computer to turn off this device'.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-5 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "ERR_NETWORK_CHANGED"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-netflix-nw-2-5",
+    "category": "browser",
+    "code": "NW-2-5",
+    "displayCode": "NW-2-5",
+    "title": "Netflix Error NW-2-5",
+    "shortDescription": "Netflix cannot reach servers — network connectivity issue.",
+    "fullDescription": "NW-2-5 indicates a network connectivity problem between the device and Netflix servers. On PCs using the web app this usually means ISP throttling, VPN detection, or DNS issues.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "VPN detected/blocked by Netflix",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DNS issues",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP geo-restriction",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "NW-2-5 error overlay",
+      "Other streaming services may also fail"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable VPN/proxy",
+        "instruction": "Turn off and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Switch DNS",
+        "instruction": "Try 1.1.1.1 or 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Restart router",
+        "instruction": "Power cycle 30 seconds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Never.",
+    "relatedCodes": [
+      "M7353-5101"
+    ],
+    "faq": [
+      {
+        "q": "Is this serious?",
+        "a": "Usually resolvable with browser troubleshooting."
+      }
+    ]
   }
 ]
