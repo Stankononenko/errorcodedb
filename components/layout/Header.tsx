@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { MAIN_NAV_ITEMS, SITE_NAME } from "@/lib/constants";
+import { MAIN_NAV_ITEMS } from "@/lib/constants";
 import SearchBar from "@/components/search/SearchBar";
+import Logo from "@/components/layout/Logo";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -13,13 +14,8 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Top row: brand + search + nav + menu */}
         <div className="flex h-14 items-center justify-between gap-3">
-          <Link
-            href="/"
-            className="flex shrink-0 items-center gap-1.5 font-bold text-lg sm:text-xl text-brand-primary"
-          >
-            <span aria-hidden="true">&#9889;</span>
-            <span>{SITE_NAME}</span>
-          </Link>
+          <Logo />
+
 
           {/* Desktop search — wide, centered */}
           <div className="hidden md:block flex-1 max-w-xl">

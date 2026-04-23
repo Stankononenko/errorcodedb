@@ -4,25 +4,74 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
+  /* Severity */
   --color-severity-high: #dc2626;
   --color-severity-medium: #f59e0b;
   --color-severity-low: #22c55e;
   --color-severity-info: #3b82f6;
 
+  /* Difficulty */
   --color-difficulty-easy: #22c55e;
   --color-difficulty-intermediate: #f59e0b;
   --color-difficulty-advanced: #dc2626;
   --color-difficulty-professional: #7c3aed;
 
+  /* Likelihood */
   --color-likelihood-high: #dc2626;
   --color-likelihood-medium: #f59e0b;
   --color-likelihood-low: #6b7280;
 
+  /* Brand */
   --color-brand-primary: #1e40af;
   --color-brand-secondary: #1e3a5f;
   --color-brand-accent: #3b82f6;
+
+  /* Category accents — used for per-category theming */
+  --color-cat-obd: #2563eb;
+  --color-cat-appliance: #059669;
+  --color-cat-hvac: #0891b2;
+  --color-cat-printer: #7c3aed;
+  --color-cat-windows: #ea580c;
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Better tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve focus-visible rings for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Skeleton shimmer utility */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 50%, #f3f4f6 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Print styles for repair instructions */
+@media print {
+  header, footer, nav, [role="listbox"] { display: none !important; }
+  body { background: white; }
+  main { max-width: 100% !important; }
+  a { text-decoration: none !important; color: inherit !important; }
 }
