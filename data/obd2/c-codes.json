@@ -11002,5 +11002,1667 @@
         "a": "Many OEMs sell the switch integrated with the center console trim panel, driving cost up."
       }
     ]
+  },
+  {
+    "code": "C0061",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Lane Keep Assist",
+    "title": "Lane Keep Assist Electric Steering Torque Fault",
+    "shortDescription": "The LKA system cannot apply corrective torque through the EPS.",
+    "fullDescription": "Code C0061 indicates that the lane keep assist function has requested a corrective steering torque from the electric power steering motor, but the EPS has either rejected the request or failed to execute it within the expected time window.\n\nThis can happen when the EPS has its own fault, when CAN messages between the camera/ADAS module and EPS are delayed or malformed, or when the driver is applying counter-torque that prevents the assist from acting. After repeated failed attempts, the ADAS module disables LKA and sets this code.\n\nLane keep and lane centering features will be unavailable until repaired.",
+    "severity": "medium",
+    "safetyImpact": "Lane keep assist inoperative — driver must manage lane position without assist.",
+    "causes": [
+      {
+        "cause": "EPS module has an underlying fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "CAN bus congestion or gateway failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Driver override logic stuck active",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "LKA unavailable message",
+      "Lane keep light amber",
+      "Lane departure warning may still work"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan all modules",
+        "instruction": "Check EPS, ADAS camera, gateway for related DTCs.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check CAN activity",
+        "instruction": "Verify LKA torque request messages on the chassis CAN bus.",
+        "tools": [
+          "Oscilloscope",
+          "CAN tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Address root cause",
+        "instruction": "Fix EPS DTCs or replace failed module as indicated.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "C0062",
+      "C0900"
+    ],
+    "faq": [
+      {
+        "q": "Why does LKA fail but steering works?",
+        "a": "LKA uses a special torque channel in the EPS — it can fail while base steering assist still works."
+      }
+    ]
+  },
+  {
+    "code": "C0062",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Lane Keep Assist",
+    "title": "LKA Camera/Module Communication Fault",
+    "shortDescription": "The ADAS camera is not providing lane data to the LKA module.",
+    "fullDescription": "Code C0062 indicates a communication loss between the forward camera that sees lane markings and the module responsible for commanding steering torque. Without lane geometry data, no lane keep action can be requested.\n\nCauses include a failed or obstructed camera (windshield dirt, ice, glare), a windshield replacement without recalibration, or a broken wire between the camera and the ADAS/steering module.\n\nLKA, lane centering, and traffic sign recognition will be disabled.",
+    "severity": "medium",
+    "safetyImpact": "Loss of lane keep and related camera-driven features.",
+    "causes": [
+      {
+        "cause": "Camera obstructed or miscalibrated",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Camera module failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring harness damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Camera blocked message",
+      "LKA off",
+      "Auto high beams inoperative"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean windshield",
+        "instruction": "Remove debris from camera patch area.",
+        "tools": [
+          "Cloth"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check camera wiring",
+        "instruction": "Inspect connector behind rearview mirror.",
+        "tools": [
+          "Trim tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Calibrate camera",
+        "instruction": "Run static/dynamic calibration after addressing obstruction.",
+        "tools": [
+          "Factory scan tool",
+          "Targets"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0061"
+    ],
+    "faq": [
+      {
+        "q": "Is this the same camera as ACC?",
+        "a": "Often yes — a single multi-function camera handles lanes, signs, and forward objects."
+      }
+    ]
+  },
+  {
+    "code": "C0071",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Lane Keep Assist",
+    "title": "LKA Steering Angle Sensor Plausibility",
+    "shortDescription": "The LKA system detects implausible steering angle data.",
+    "fullDescription": "Code C0071 is set when the lane keep assist compares the commanded vs. actual steering angle and finds the difference exceeds tolerance, or when the steering angle sensor's zero point is not valid.\n\nThis commonly follows a wheel alignment, tie-rod or steering rack replacement, or battery disconnect where the SAS zero point was not re-learned. It can also indicate a failing steering angle sensor.\n\nLKA and stability control often go inoperative together because both depend on the SAS.",
+    "severity": "high",
+    "safetyImpact": "Lane keep disabled; often ESC/stability control also affected.",
+    "causes": [
+      {
+        "cause": "Steering angle sensor not calibrated after alignment",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed steering angle sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Steering rack replaced without SAS relearn",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "LKA off",
+      "ESC warning light",
+      "Steering feels normal but assist lost"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Zero SAS",
+        "instruction": "Straighten wheels on level ground, run SAS zero-point procedure with scan tool.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check SAS signal",
+        "instruction": "Verify SAS output matches actual wheel angle through full lock.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace SAS if bad",
+        "instruction": "Replace sensor (usually clockspring assembly) and relearn.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "C0061"
+    ],
+    "faq": [
+      {
+        "q": "Do I need an alignment first?",
+        "a": "Yes — SAS zero-point only works with the vehicle in correct alignment."
+      }
+    ]
+  },
+  {
+    "code": "C0093",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Automatic Emergency Braking",
+    "title": "AEB Brake Actuator Circuit Fault",
+    "shortDescription": "The automatic emergency braking system cannot command the brake actuator.",
+    "fullDescription": "Code C0093 is set when the AEB module requests a brake pressure build but the electro-hydraulic brake booster or ESC pump does not respond. This is a safety-critical failure because the vehicle can no longer self-brake in a collision scenario.\n\nOn modern vehicles this often points to the iBooster (electric brake booster) or an ESC pump with an internal fault. Wiring and CAN between the ADAS module and the brake actuator are also checkpoints.\n\nAEB, ACC (braking portion), and automatic hold typically all fail together.",
+    "severity": "high",
+    "safetyImpact": "Emergency auto-braking inoperative — the vehicle cannot self-brake to avoid a collision.",
+    "causes": [
+      {
+        "cause": "iBooster/electric booster fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "ESC pump motor failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "CAN message loss",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "AEB unavailable",
+      "Service brake assist message",
+      "ABS/ESC lights may also be on"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan brake module",
+        "instruction": "Read DTCs from the EBB/ESC module for root fault.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check actuator",
+        "instruction": "Command brake actuator via scan tool, verify hydraulic response.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Repair as indicated",
+        "instruction": "Replace iBooster or ESC module per root cause.",
+        "tools": [
+          "Brake tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "C0094",
+      "C0710"
+    ],
+    "faq": [
+      {
+        "q": "Is the car safe to drive?",
+        "a": "Base brakes still work but AEB is gone — avoid heavy traffic until fixed."
+      }
+    ]
+  },
+  {
+    "code": "C0094",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Automatic Emergency Braking",
+    "title": "AEB Radar/Camera Target Plausibility",
+    "shortDescription": "The AEB system cannot reconcile radar and camera object data.",
+    "fullDescription": "Code C0094 is set when the fused sensor data from the radar and camera disagrees beyond tolerance, preventing the AEB module from confidently identifying a target. Modern AEB typically requires both sensors to confirm an obstacle before commanding braking, to avoid false activations.\n\nCauses include a miscalibrated camera or radar, differing mounting angles after a repair, or one sensor reporting false targets due to interference.\n\nAEB will be disabled or degraded to a warning-only mode until sensor alignment is restored.",
+    "severity": "high",
+    "safetyImpact": "Automatic braking disabled — forward collision warning may still work.",
+    "causes": [
+      {
+        "cause": "Radar or camera out of calibration",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Minor front-end repair without ADAS recalibration",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failing sensor with noisy output",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "AEB unavailable",
+      "Forward collision warning may still trigger",
+      "Service driver assist"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean sensors",
+        "instruction": "Clear windshield and radar emblem.",
+        "tools": [
+          "Cloth"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Run diagnostics",
+        "instruction": "Compare radar/camera targets live — they should agree on range.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Recalibrate",
+        "instruction": "Perform ADAS static/dynamic calibration with targets.",
+        "tools": [
+          "Factory scan tool",
+          "ADAS targets"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0093"
+    ],
+    "faq": [
+      {
+        "q": "Why fusion fails?",
+        "a": "A 1-degree mounting error at 100m radar range is a 1.7m target offset — fusion sees two objects."
+      }
+    ]
+  },
+  {
+    "code": "C0095-ADAS",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Automatic Emergency Braking",
+    "title": "AEB System Inhibited by Other DTC",
+    "shortDescription": "AEB is disabled because another safety system has a fault.",
+    "fullDescription": "Code C0095 indicates that the AEB module has disabled itself because a prerequisite system — ABS, ESC, EPS, or the tire pressure system — has an active DTC. AEB relies on all these systems to execute a safe braking event, so any upstream fault inhibits it.\n\nThe fix is to diagnose and clear the underlying fault first, then C0095 will clear on its own. It is typically a secondary code, not a root cause.\n\nExpect this code to appear alongside other chassis codes.",
+    "severity": "medium",
+    "safetyImpact": "AEB inoperative until root cause is fixed.",
+    "causes": [
+      {
+        "cause": "Active ABS or ESC DTC",
+        "likelihood": "high"
+      },
+      {
+        "cause": "EPS fault preventing steering override",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "TPMS fault reducing confidence",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "AEB unavailable",
+      "Multiple warning lights on"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan all modules",
+        "instruction": "Find the upstream DTC that triggered the inhibit.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Fix root cause",
+        "instruction": "Address the primary fault — AEB will re-enable automatically.",
+        "tools": [
+          "Varies"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "C0093"
+    ],
+    "faq": [
+      {
+        "q": "Will it clear on its own?",
+        "a": "Yes — once the root-cause DTC is fixed and cleared."
+      }
+    ]
+  },
+  {
+    "code": "C0800",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Collision Avoidance",
+    "title": "Forward Collision System Supply Voltage",
+    "shortDescription": "The forward collision avoidance module is seeing out-of-range supply voltage.",
+    "fullDescription": "Code C0800 means the FCW/AEB module's battery supply voltage is outside its operating range (typically below 9V or above 16V). This can be caused by a weak battery, failing alternator, or a corroded power/ground at the module.\n\nThe module disables itself to prevent erratic behavior when voltage is marginal. Address any charging system issues first — many 'ADAS faults' are actually symptoms of an aging battery.",
+    "severity": "medium",
+    "safetyImpact": "Collision system offline during voltage event — restored when voltage recovers.",
+    "causes": [
+      {
+        "cause": "Weak or aged 12V battery",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failing alternator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded power/ground",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Intermittent ADAS warnings",
+      "Multiple modules reporting voltage codes",
+      "Slow cranking"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test battery",
+        "instruction": "Perform load test — replace if below spec.",
+        "tools": [
+          "Battery tester"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Test charging",
+        "instruction": "Check alternator output at idle and load.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Check grounds",
+        "instruction": "Clean chassis ground points near the module.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "C0093"
+    ],
+    "faq": [
+      {
+        "q": "Battery replaced and still there?",
+        "a": "Clear the code and drive — a stored code takes time to clear after a fix."
+      }
+    ]
+  },
+  {
+    "code": "C2205",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Adaptive Headlights",
+    "title": "Adaptive Front Lighting Left Swivel Motor",
+    "shortDescription": "The left headlight's swivel/steering motor is not reaching commanded position.",
+    "fullDescription": "Code C2205 indicates the AFS (Adaptive Front-lighting System) motor that swivels the left headlight into turns has failed position feedback. The system aims the beam into corners based on steering angle and speed.\n\nFailures come from water intrusion through aged headlight seals, stripped internal gears from an impact, or a failed BCM-to-motor driver circuit.\n\nBeam will default to straight-ahead — no safety loss but reduced cornering visibility at night.",
+    "severity": "low",
+    "safetyImpact": "Loss of cornering beam on left side.",
+    "causes": [
+      {
+        "cause": "Water in headlight housing",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Internal motor gear damage",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Driver circuit fault in BCM",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "AFS off warning",
+      "Headlight fixed straight ahead",
+      "Service adaptive lights message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check housing seal",
+        "instruction": "Inspect headlight for moisture or condensation.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Command motor",
+        "instruction": "Actuate swivel motor with scan tool, watch for movement.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace headlight",
+        "instruction": "AFS motors are rarely serviceable — whole headlight often required.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "C2210"
+    ],
+    "faq": [
+      {
+        "q": "Is there an aftermarket fix?",
+        "a": "Used OEM headlights are often the only economical repair."
+      }
+    ]
+  },
+  {
+    "code": "C2210",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Adaptive Headlights",
+    "title": "Adaptive Front Lighting Right Swivel Motor",
+    "shortDescription": "The right headlight swivel motor is not reaching commanded position.",
+    "fullDescription": "Code C2210 is the right-side counterpart to C2205. Diagnosis and repair are identical.\n\nOn matrix LED systems that do electronic beam shaping instead of mechanical swivel, this code may indicate failure of a specific LED segment driver that was responsible for the cornering beam.",
+    "severity": "low",
+    "safetyImpact": "Loss of cornering beam on right side.",
+    "causes": [
+      {
+        "cause": "Water in headlight housing",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Motor gear damage",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "AFS off warning",
+      "Right beam fixed straight",
+      "Service lights message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect housing",
+        "instruction": "Check right headlight for water.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Actuate motor",
+        "instruction": "Command right swivel motor to test.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace housing",
+        "instruction": "Replace headlight if motor confirmed bad.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "C2205"
+    ],
+    "faq": [
+      {
+        "q": "Both sides at once?",
+        "a": "Yes if both housings lost the same seal — or share a common driver circuit."
+      }
+    ]
+  },
+  {
+    "code": "C0196-ADAS",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Stability Control",
+    "title": "Yaw Rate Sensor Circuit Malfunction",
+    "shortDescription": "The yaw rate sensor used by ESC is reporting out-of-range or no signal.",
+    "fullDescription": "Code C0196 indicates a fault in the yaw rate sensor, which measures how fast the vehicle is rotating about its vertical axis. ESC uses yaw rate together with steering angle and wheel speeds to detect skids and apply corrective braking.\n\nThe sensor is typically combined with a lateral accelerometer in a single module under the center console. It can fail from impact, water intrusion, or internal MEMS failure.\n\nESC, traction control, and roll-over mitigation are disabled until the sensor is repaired.",
+    "severity": "high",
+    "safetyImpact": "Stability and traction control disabled — reduced loss-of-control protection.",
+    "causes": [
+      {
+        "cause": "Internal MEMS sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water intrusion from floor leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring damage under console",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "ESC/ABS/TC lights on",
+      "Hill assist inoperative",
+      "Roll-over mitigation off"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan DTCs",
+        "instruction": "Confirm C0196 is primary, not secondary to another fault.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect mounting",
+        "instruction": "Sensor must be firmly bolted and level.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Install new sensor and run calibration procedure.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0197",
+      "C0242"
+    ],
+    "faq": [
+      {
+        "q": "Does it need calibration?",
+        "a": "Yes — yaw rate sensors require a static zero-point calibration after replacement."
+      }
+    ]
+  },
+  {
+    "code": "C0197",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Stability Control",
+    "title": "Lateral Accelerometer Fault",
+    "shortDescription": "The lateral G-sensor used by ESC is faulty or implausible.",
+    "fullDescription": "Code C0197 indicates the lateral accelerometer — often in the same module as the yaw rate sensor — is reporting implausible data. ESC compares lateral G to expected values from steering angle and speed; significant mismatch indicates skid and triggers intervention.\n\nA bad lateral sensor can cause ESC to intervene on straight roads or fail to intervene when needed. The module disables ESC once the fault persists.\n\nRepair is typically replacement of the combined yaw/lateral sensor module, followed by calibration.",
+    "severity": "high",
+    "safetyImpact": "Stability control disabled — potential phantom ESC activation before fault is stored.",
+    "causes": [
+      {
+        "cause": "Failed accelerometer MEMS",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor not level after collision repair",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "ESC/TC off",
+      "ABS warning light",
+      "Possible phantom brake events before DTC stored"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify mounting",
+        "instruction": "Confirm sensor is square to vehicle and bolts tight.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace sensor",
+        "instruction": "Install new combined sensor, calibrate.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0196",
+      "C0242"
+    ],
+    "faq": [
+      {
+        "q": "Did my car brake for no reason?",
+        "a": "A sensor heading bad can cause phantom ESC events before the fault is stored."
+      }
+    ]
+  },
+  {
+    "code": "C0242-ADAS",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Stability Control",
+    "title": "Rollover Sensor Circuit",
+    "shortDescription": "The roll-rate sensor used for SUV roll mitigation has failed.",
+    "fullDescription": "Code C0242 is set on SUVs and tall vehicles that include a dedicated roll-rate sensor for roll stability control (RSC). This sensor measures rotation about the vehicle's longitudinal axis and allows preemptive brake application to prevent roll-over.\n\nFailures disable RSC but typically leave normal ESC active. The warning indicates the vehicle has lost its high-CG roll protection.\n\nThe sensor is typically integrated with yaw/lateral into one module in modern designs.",
+    "severity": "high",
+    "safetyImpact": "Roll stability control off — increased roll-over risk in avoidance maneuvers.",
+    "causes": [
+      {
+        "cause": "Failed integrated sensor module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water intrusion",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "RSC off message",
+      "ESC/ABS warning lights",
+      "Reduced loss-of-control protection"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check module",
+        "instruction": "Verify sensor is present and bolted.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace module",
+        "instruction": "Install new integrated sensor, calibrate.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0196",
+      "C0197"
+    ],
+    "faq": [
+      {
+        "q": "Does this affect regular ESC?",
+        "a": "Usually no — RSC is a specific high-CG feature separate from ESC."
+      }
+    ]
+  },
+  {
+    "code": "C0545",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Active Suspension",
+    "title": "Front Left Air Spring Pressure Fault",
+    "shortDescription": "The front left air spring is not holding commanded pressure.",
+    "fullDescription": "Code C0545 indicates the air suspension controller is commanding pressure to the front left strut but the measured pressure is not reaching target. This points to an air leak in the bellows, airline, or fitting — or to a failed solenoid in the valve block.\n\nOnboard compressors over-cycle trying to maintain height, leading to premature compressor failure. Air bags that sit collapsed for long periods can develop internal tears.\n\nThe vehicle may sag overnight on the front left corner.",
+    "severity": "medium",
+    "safetyImpact": "Uneven ride height — can affect handling and headlight aim.",
+    "causes": [
+      {
+        "cause": "Torn air spring bellows",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked airline or O-ring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Solenoid stuck in valve block",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed height sensor",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Car sags on left front",
+      "Compressor runs constantly",
+      "Service air suspension message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Soapy water test",
+        "instruction": "Spray airlines and bellows — bubbles reveal leaks.",
+        "tools": [
+          "Spray bottle"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Scan live data",
+        "instruction": "Watch pressure and height sensor readings with scan tool.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace airspring",
+        "instruction": "Install new strut — do not reuse old airline clips.",
+        "tools": [
+          "Suspension tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 300,
+        "max": 700
+      },
+      "mechanic": {
+        "min": 600,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "C0560-C",
+      "C0571"
+    ],
+    "faq": [
+      {
+        "q": "Should I replace all four?",
+        "a": "At minimum replace in pairs (axle) — other corners are likely next."
+      }
+    ]
+  },
+  {
+    "code": "C0560-C",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Active Suspension",
+    "title": "Suspension Height Sensor Front Right",
+    "shortDescription": "The front right ride-height sensor is out of range or disconnected.",
+    "fullDescription": "Code C0560-C indicates the ride height sensor at the front right wheel is reporting values outside expected range. This sensor feeds the air suspension controller so it knows how much to add or bleed air.\n\nLinkage damage from impacts, a seized sensor arm, or water intrusion into the connector are common causes. Replacement requires sensor calibration via scan tool afterward.\n\nWithout valid height data, the vehicle may drop to bump stops or fail to lower for aerodynamic mode.",
+    "severity": "medium",
+    "safetyImpact": "Incorrect ride height — possible handling and headlight-aim effects.",
+    "causes": [
+      {
+        "cause": "Broken sensor linkage from impact",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Internal sensor failure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Uneven ride height",
+      "Kneel mode inoperative",
+      "Service suspension message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect linkage",
+        "instruction": "Check sensor arm and ball joints for damage.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Measure signal",
+        "instruction": "Check sensor voltage through range of travel.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace and calibrate",
+        "instruction": "Install new sensor, run calibration routine.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "C0545"
+    ],
+    "faq": [
+      {
+        "q": "Can I drive with this?",
+        "a": "Short distances yes, but ride quality and headlight aim suffer."
+      }
+    ]
+  },
+  {
+    "code": "C0571",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Active Suspension",
+    "title": "Air Compressor Over-Temperature",
+    "shortDescription": "The air suspension compressor has overheated and shut down.",
+    "fullDescription": "Code C0571 is set when the compressor's thermal sensor detects overheating, usually because the compressor has been running continuously to compensate for a system leak.\n\nThe root cause is almost always an air leak — the compressor itself is fine but cannot keep up. Replacing the compressor without finding the leak leads to rapid failure of the new unit.\n\nThe controller disables the compressor for a cool-down period; the vehicle may sit lower than normal until temperature drops.",
+    "severity": "medium",
+    "safetyImpact": "Ride height cannot be maintained until compressor cools.",
+    "causes": [
+      {
+        "cause": "Air leak causing continuous run",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed compressor bearings",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Blocked intake or filter",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Suspension drops",
+      "Compressor inaudible",
+      "Service air suspension message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Find the leak first",
+        "instruction": "Soap-test all bellows, airlines, and valve block.",
+        "tools": [
+          "Spray bottle"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace air dryer filter",
+        "instruction": "If present, the filter may be saturated.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace compressor",
+        "instruction": "Only after leaks are fixed.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 150,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "C0545"
+    ],
+    "faq": [
+      {
+        "q": "Why did the new compressor die?",
+        "a": "Because the leak wasn't fixed — compressors overheat in minutes against big leaks."
+      }
+    ]
+  },
+  {
+    "code": "C0582",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Active Suspension",
+    "title": "Adaptive Damper Left Front Circuit",
+    "shortDescription": "The left front adaptive damper solenoid is open or shorted.",
+    "fullDescription": "Code C0582 indicates the continuously-variable damper at the left front wheel is not responding to current commands. Adaptive dampers use an electrically-controlled valve to change damping force in milliseconds based on road and driving input.\n\nA failed solenoid leaves the damper in its default (usually firm) setting. Ride quality becomes harsh on that corner but handling is not dangerous.\n\nReplacement is of the entire damper assembly — the solenoid is not separately serviced.",
+    "severity": "low",
+    "safetyImpact": "Rougher ride on one corner — no safety issue.",
+    "causes": [
+      {
+        "cause": "Failed damper solenoid",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged wiring at strut",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded connector",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Service suspension message",
+      "Harsh ride on one corner",
+      "Adaptive mode unavailable"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check wiring",
+        "instruction": "Inspect connector at top of strut for corrosion.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Measure coil",
+        "instruction": "Check solenoid resistance per spec.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace damper",
+        "instruction": "Install new strut/damper assembly.",
+        "tools": [
+          "Suspension tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 500,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is the strut worth fixing?",
+        "a": "Yes — mismatched damping feels terrible and wears tires unevenly."
+      }
+    ]
+  },
+  {
+    "code": "C0710-EV",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Brake Booster",
+    "title": "Electric Brake Booster Motor Fault",
+    "shortDescription": "The electric brake booster (iBooster) motor is not responding to commands.",
+    "fullDescription": "Code C0710 indicates that the electric booster assembly — which replaces the vacuum booster on EVs and many hybrids — has an internal motor or position-sensor fault. These units use a ball-screw driven by a brushless motor to apply pedal force electronically.\n\nFaults commonly follow firmware glitches, coolant intrusion, or age-related motor failures. Base brakes still work via mechanical pushthrough, but pedal effort increases dramatically and regenerative blending is lost.\n\nThis is a serious code on an EV — regen braking, AEB, and pedal feel are all compromised.",
+    "severity": "high",
+    "safetyImpact": "Hard pedal, longer stopping distance, regenerative braking lost.",
+    "causes": [
+      {
+        "cause": "Internal motor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Firmware fault requiring update",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Water intrusion at connector",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hard brake pedal",
+      "Regenerative braking reduced",
+      "Red brake warning light"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check for TSBs",
+        "instruction": "Many iBooster issues are resolved by firmware reflash.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect connector",
+        "instruction": "Verify connector is dry and seated.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace booster",
+        "instruction": "Install new iBooster, bleed, and program.",
+        "tools": [
+          "Brake tools",
+          "Factory scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 1000,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "C0800-C",
+      "C0825"
+    ],
+    "faq": [
+      {
+        "q": "Safe to drive home?",
+        "a": "Only cautiously — pedal effort is much higher and regen is gone."
+      }
+    ]
+  },
+  {
+    "code": "C0800-C",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Supply Voltage Out of Range",
+    "shortDescription": "The electric brake booster is seeing supply voltage outside operating range.",
+    "fullDescription": "Code C0800-C on the brake booster is set when the booster's power supply is out of range. On EVs, the booster typically runs off a redundant power source, and a fault in that redundancy sets this code even when the main 12V is healthy.\n\nThe usual culprit is a weak 12V battery — EV owners forget the 12V still ages and fails, and its failure disables many safety systems.\n\nRegenerative braking may limit itself to ensure the 12V can still power other systems.",
+    "severity": "medium",
+    "safetyImpact": "Brake assist reduced during voltage events.",
+    "causes": [
+      {
+        "cause": "Weak 12V battery (EVs often overlooked)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "DC-DC converter output low",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded ground strap",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Reduced power warnings",
+      "Regen reduced",
+      "Multiple voltage codes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test 12V battery",
+        "instruction": "EV 12V batteries last 3-5 years — replace if weak.",
+        "tools": [
+          "Battery tester"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check DC-DC",
+        "instruction": "Verify DC-DC output with scan tool.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Clean grounds",
+        "instruction": "Address corroded ground paths to booster.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 150,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "C0710"
+    ],
+    "faq": [
+      {
+        "q": "My EV has a 12V battery?",
+        "a": "Yes — all EVs have a small 12V for low-voltage systems; it still wears out."
+      }
+    ]
+  },
+  {
+    "code": "C0825",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Brake Booster",
+    "title": "iBooster Pedal Position Sensor Fault",
+    "shortDescription": "The electric booster's pedal-travel sensor is implausible.",
+    "fullDescription": "Code C0825 indicates the brake pedal position sensor inside the iBooster is not agreeing with the pedal-force sensor or is stuck at a single value. The booster requires both signals to calculate driver intent and blend in regenerative braking.\n\nA single-sensor failure usually leaves the booster in a degraded mode — regen is disabled and only friction braking is available.\n\nSensor is not individually serviceable; the booster assembly is replaced as a unit.",
+    "severity": "high",
+    "safetyImpact": "Regen braking disabled, one-pedal driving unavailable, harsher stopping.",
+    "causes": [
+      {
+        "cause": "Internal pedal sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector moisture",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Regen disabled",
+      "Service brake system message",
+      "Pedal feel changed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan live data",
+        "instruction": "Compare pedal travel and force sensors during slow press.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace booster",
+        "instruction": "Install new iBooster, calibrate, bleed.",
+        "tools": [
+          "Brake tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 1000,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": [
+      "C0710"
+    ],
+    "faq": [
+      {
+        "q": "Why is my one-pedal gone?",
+        "a": "Regen requires pedal-position data — without it, the car can only use friction brakes."
+      }
+    ]
+  },
+  {
+    "code": "C0900",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Electric Power Steering",
+    "title": "EPS Torque Sensor Circuit",
+    "shortDescription": "The electric power steering torque sensor is out of range.",
+    "fullDescription": "Code C0900 indicates the torque sensor inside the EPS assembly — which measures how hard the driver is pushing on the wheel — is reporting invalid data. EPS cannot provide any assist without a valid torque signal, so steering reverts to manual (very heavy) effort.\n\nThe torque sensor is part of the steering rack assembly and is not individually serviceable. Replacement is usually the entire EPS rack or the EPS motor/sensor module depending on vehicle design.\n\nThis is a serious fault — steering effort roughly triples and is a major safety concern.",
+    "severity": "high",
+    "safetyImpact": "Complete loss of power steering — steering still works but with very high effort.",
+    "causes": [
+      {
+        "cause": "Internal torque sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring damage at steering column",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module firmware fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Heavy steering",
+      "EPS warning light",
+      "No steering assist"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check TSBs",
+        "instruction": "Some EPS faults are cured by reflash.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect wiring",
+        "instruction": "Verify harness at EPS module and column connector.",
+        "tools": [
+          "Basic tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace EPS",
+        "instruction": "Install new EPS rack/motor assembly.",
+        "tools": [
+          "Suspension/alignment tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "relatedCodes": [
+      "C0061",
+      "C0946"
+    ],
+    "faq": [
+      {
+        "q": "Is it safe to drive?",
+        "a": "Only at low speeds to a shop — parking-lot maneuvers are very hard."
+      }
+    ]
+  },
+  {
+    "code": "C0946",
+    "codeType": "manufacturer-specific",
+    "letter": "C",
+    "system": "chassis",
+    "subcategory": "Electric Power Steering",
+    "title": "EPS Motor Current High",
+    "shortDescription": "The EPS motor is drawing excessive current.",
+    "fullDescription": "Code C0946 indicates the EPS motor has been drawing current above threshold, which the module interprets as a mechanical binding or motor fault. To protect itself from thermal damage, the EPS will reduce or disable assist.\n\nCauses include a seized intermediate steering shaft, dragging tie-rod or rack bushing, or a failing EPS motor with shorted windings. Some vehicles set this code after extended parking-lot maneuvers in hot weather — assist returns after cooldown.\n\nPersistent setting of this code points to a mechanical problem that should be addressed before motor damage occurs.",
+    "severity": "medium",
+    "safetyImpact": "Intermittent loss of power steering under heavy use.",
+    "causes": [
+      {
+        "cause": "Seized steering shaft U-joint",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failing EPS motor bearings",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Software overreach after mods (lift kits, big tires)",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Heavy steering after parking maneuvers",
+      "EPS overheat warning",
+      "Intermittent assist loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check mechanical bind",
+        "instruction": "Rotate steering off-ground and feel for binding.",
+        "tools": [
+          "Jack stands"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Thermal soak test",
+        "instruction": "Note at what temp/load the fault sets.",
+        "tools": [
+          "Factory scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace EPS or u-joint",
+        "instruction": "Repair root cause — u-joint first if mechanical.",
+        "tools": [
+          "Steering tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "C0900"
+    ],
+    "faq": [
+      {
+        "q": "Why after bigger tires?",
+        "a": "Heavier tires demand more assist current and can trigger protection at the limit."
+      }
+    ]
   }
 ]

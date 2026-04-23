@@ -17624,5 +17624,1202 @@
         "a": "Depends on severity - consult a technician."
       }
     ]
+  },
+  {
+    "code": "P1000-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "OBD Readiness",
+    "title": "Lincoln - OBD-II Monitor Testing Not Complete",
+    "shortDescription": "Drive cycle has not completed since memory clear.",
+    "fullDescription": "Set on Lincoln Navigator, MKX, MKZ, and Aviator when one or more OBD-II readiness monitors have not finished their self-tests after the PCM was reset or battery disconnected.\n\nThis is informational rather than a fault. State emissions testing may fail until the drive cycle completes. Typically resolves after 50-100 miles of mixed driving.",
+    "severity": "info",
+    "safetyImpact": "No direct safety impact.",
+    "causes": [
+      {"cause": "Recent battery disconnect or PCM reset", "likelihood": "high"},
+      {"cause": "Incomplete OBD drive cycle", "likelihood": "high"},
+      {"cause": "Stored DTCs preventing monitor completion", "likelihood": "medium"}
+    ],
+    "symptoms": ["Emissions test refusal", "MIL off but code stored"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan readiness status", "instruction": "Check which monitors are incomplete.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Perform Ford drive cycle", "instruction": "Follow Lincoln-specific drive cycle procedure.", "tools": ["Service manual"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "mechanic": {"min": 50, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "1-3 hours driving",
+    "relatedCodes": [],
+    "faq": [{"q": "Is this a real fault?", "a": "No, it indicates monitors have not run yet."}]
+  },
+  {
+    "code": "P1100-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Air Metering",
+    "title": "Lincoln - MAF Sensor Intermittent",
+    "shortDescription": "Mass airflow sensor signal intermittent out of range.",
+    "fullDescription": "Lincoln Navigator, MKX, and Aviator detect intermittent MAF signal dropouts. Often caused by loose connector, contaminated sensor element, or wiring vibration.\n\nDrivability includes stumble on acceleration and occasional stalls.",
+    "severity": "medium",
+    "safetyImpact": "Possible stalling in traffic.",
+    "causes": [
+      {"cause": "Dirty MAF sensor element", "likelihood": "high"},
+      {"cause": "Loose MAF connector", "likelihood": "medium"},
+      {"cause": "Air intake leak", "likelihood": "medium"}
+    ],
+    "symptoms": ["Hesitation", "Rough idle", "Occasional stall"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean MAF", "instruction": "Use MAF-safe cleaner only.", "tools": ["MAF cleaner"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect connector", "instruction": "Check pins and wiring for corrosion.", "tools": ["Multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 100}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I drive?", "a": "Yes, but address soon."}]
+  },
+  {
+    "code": "P1237-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel System",
+    "title": "Lincoln - Fuel Pump Secondary Circuit Malfunction",
+    "shortDescription": "Fuel pump secondary driver module circuit fault.",
+    "fullDescription": "Detected on Lincoln Navigator and Aviator with dual-stage fuel pump control. PCM cannot command high-speed pump operation via the FPDM (Fuel Pump Driver Module).\n\nResults in power loss under heavy load, hard starts when hot.",
+    "severity": "medium",
+    "safetyImpact": "Possible stall under acceleration.",
+    "causes": [
+      {"cause": "Failed FPDM module", "likelihood": "high"},
+      {"cause": "Fuel pump winding fault", "likelihood": "medium"},
+      {"cause": "Wiring open between PCM and FPDM", "likelihood": "medium"}
+    ],
+    "symptoms": ["Loss of power under load", "Hard hot start"],
+    "fixSteps": [
+      {"step": 1, "title": "Test FPDM output", "instruction": "Verify duty cycle and voltage from module.", "tools": ["Scope", "OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace FPDM", "instruction": "Located under rear cargo area.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 350, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is FPDM common to fail?", "a": "Yes, known weak point on Ford platforms."}]
+  },
+  {
+    "code": "P1309-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire Detection",
+    "title": "Lincoln - Misfire Detection Monitor Not Enabled",
+    "shortDescription": "Misfire monitor disabled due to related fault.",
+    "fullDescription": "Lincoln MKZ, MKX, Navigator. Code indicates the PCM disabled the misfire detection routine because of a CKP/CMP correlation issue or other prerequisite fault.\n\nDoes not indicate a misfire — indicates monitor is not running.",
+    "severity": "low",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "CKP or CMP sensor fault", "likelihood": "high"},
+      {"cause": "Profile ignition pickup (PIP) issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan for prerequisite codes", "instruction": "Fix CKP/CMP codes first.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Is engine misfiring?", "a": "Not necessarily; monitor just cannot run."}]
+  },
+  {
+    "code": "P1450-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Lincoln - Unable to Bleed Up Fuel Tank Vacuum",
+    "shortDescription": "EVAP system cannot achieve purge vacuum.",
+    "fullDescription": "Lincoln MKX, MKZ, Aviator. PCM commands EVAP purge but does not see fuel tank pressure/vacuum change, suggesting a large leak or blocked purge path.\n\nCommon on vehicles with loose or failed gas cap.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Loose or failed gas cap", "likelihood": "high"},
+      {"cause": "Purge valve stuck closed", "likelihood": "medium"},
+      {"cause": "EVAP hose disconnected", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Fuel smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect gas cap", "instruction": "Replace if gasket is damaged.", "tools": ["Hand"], "difficulty": "easy"},
+      {"step": 2, "title": "Test purge valve", "instruction": "Command on with scanner.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 120}, "mechanic": {"min": 120, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1460-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "A/C System",
+    "title": "Lincoln - WAC Relay Circuit Malfunction",
+    "shortDescription": "Wide open throttle A/C cutoff relay circuit fault.",
+    "fullDescription": "Lincoln Navigator, MKX. The PCM commands the A/C compressor off at wide-open throttle via the WAC relay and detects an open or short in that circuit.\n\nA/C may stay on during hard acceleration, reducing available power.",
+    "severity": "low",
+    "safetyImpact": "Minor.",
+    "causes": [
+      {"cause": "Failed WAC relay", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["A/C cycling issue", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap relay", "instruction": "Swap with identical relay to test.", "tools": ["Hand"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "mechanic": {"min": 100, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Will A/C still work?", "a": "Usually yes but may not cut off at WOT."}]
+  },
+  {
+    "code": "P1500-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Vehicle Speed",
+    "title": "Lincoln - Vehicle Speed Sensor Intermittent",
+    "shortDescription": "VSS signal intermittent or missing.",
+    "fullDescription": "Lincoln MKZ, MKX, Navigator. PCM intermittently loses the VSS signal, usually sourced from the ABS/wheel speed sensors via CAN.\n\nSpeedometer may drop, shifts may become erratic.",
+    "severity": "medium",
+    "safetyImpact": "Shift quality and speedometer affected.",
+    "causes": [
+      {"cause": "Wheel speed sensor fault", "likelihood": "high"},
+      {"cause": "CAN bus communication issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Speedometer dropouts", "Harsh shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan ABS module", "instruction": "Look for related C-codes.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I drive?", "a": "Yes, cautiously."}]
+  },
+  {
+    "code": "P1700-LINCOLN",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Lincoln - Transmission Indeterminate Failure",
+    "shortDescription": "Transmission control indicated failure without specific code.",
+    "fullDescription": "Lincoln Navigator, Aviator, MKX with 6R80/10R80 transmissions. Indicates a generic transmission fault where the PCM expected a specific DTC that was not stored.\n\nUsually accompanies other P07xx codes — those are the actionable codes.",
+    "severity": "medium",
+    "safetyImpact": "Possible limp mode.",
+    "causes": [
+      {"cause": "Companion transmission DTC", "likelihood": "high"},
+      {"cause": "Low transmission fluid", "likelihood": "medium"}
+    ],
+    "symptoms": ["Limp mode", "Harsh shifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan and diagnose companion codes", "instruction": "Address primary trans DTC.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 300, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Varies",
+    "relatedCodes": [],
+    "faq": [{"q": "Is trans failing?", "a": "Diagnose companion codes first."}]
+  },
+  {
+    "code": "P1125-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Throttle Control",
+    "title": "GMC - APP Sensor Intermittent",
+    "shortDescription": "Accelerator pedal position sensor intermittent signal.",
+    "fullDescription": "GMC Sierra, Yukon, Acadia, Canyon. PCM detects intermittent dropout in APP sensor voltage, often due to worn pedal assembly or loose connector.\n\nMay cause reduced engine power message and limp mode.",
+    "severity": "medium",
+    "safetyImpact": "Possible loss of throttle response.",
+    "causes": [
+      {"cause": "Worn APP sensor", "likelihood": "high"},
+      {"cause": "Loose connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "Hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect pedal assembly", "instruction": "Replace if signal erratic.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 250}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Cautiously; limp mode possible."}]
+  },
+  {
+    "code": "P1133-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensors",
+    "title": "GMC - HO2S Insufficient Switching Bank 1 Sensor 1",
+    "shortDescription": "Upstream oxygen sensor switches too slowly.",
+    "fullDescription": "GMC Sierra, Yukon, Canyon. The B1S1 sensor is not switching rich/lean within expected response time, typical of aging sensor.\n\nCauses mild drivability complaints and lowered fuel economy.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Aged O2 sensor", "likelihood": "high"},
+      {"cause": "Exhaust leak upstream", "likelihood": "medium"}
+    ],
+    "symptoms": ["Poor fuel economy", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace upstream O2", "instruction": "Use OEM-equivalent sensor.", "tools": ["O2 socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "mechanic": {"min": 200, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "How long does O2 sensor last?", "a": "Typically 80-100k miles."}]
+  },
+  {
+    "code": "P1174-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Trim",
+    "title": "GMC - Fuel Trim Cylinder Balance Bank 1",
+    "shortDescription": "Cylinder-to-cylinder fuel trim imbalance on bank 1.",
+    "fullDescription": "GMC Sierra and Yukon with V8. PCM detects one cylinder on bank 1 running significantly leaner or richer than its neighbors using individual injector trim.\n\nPoints to injector, compression, or ignition issue on a specific cylinder.",
+    "severity": "medium",
+    "safetyImpact": "Possible misfire damage to catalyst.",
+    "causes": [
+      {"cause": "Dirty or failing injector", "likelihood": "high"},
+      {"cause": "Low compression on one cylinder", "likelihood": "medium"},
+      {"cause": "Weak coil/plug", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle", "Slight miss"],
+    "fixSteps": [
+      {"step": 1, "title": "Check individual injector trims", "instruction": "Identify offending cylinder via scan tool.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Service injector/coil/plug", "instruction": "Replace offending component.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 150, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I ignore it?", "a": "No, can damage catalyst."}]
+  },
+  {
+    "code": "P1175-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Trim",
+    "title": "GMC - Fuel Trim Cylinder Balance Bank 2",
+    "shortDescription": "Cylinder-to-cylinder fuel trim imbalance on bank 2.",
+    "fullDescription": "Companion to P1174 but for bank 2. GMC Sierra, Yukon, Canyon V8. Indicates one cylinder on bank 2 has disproportionate fuel trim.\n\nDiagnosis mirrors P1174 approach on the bank 2 side.",
+    "severity": "medium",
+    "safetyImpact": "Possible catalyst damage.",
+    "causes": [
+      {"cause": "Injector issue bank 2", "likelihood": "high"},
+      {"cause": "Compression issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle", "Slight miss"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan individual trims", "instruction": "Identify offending cylinder on bank 2.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 150, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Related to P1174?", "a": "Yes, same fault on other bank."}]
+  },
+  {
+    "code": "P1519-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Control",
+    "title": "GMC - Idle Air Control Valve Stuck",
+    "shortDescription": "IAC valve stuck open or closed.",
+    "fullDescription": "Older GMC Sierra, Yukon with IAC valve. PCM cannot control idle speed because the IAC pintle is stuck.\n\nCauses high/low idle, stalls at stops.",
+    "severity": "medium",
+    "safetyImpact": "Stalling risk.",
+    "causes": [
+      {"cause": "Carbon buildup on IAC", "likelihood": "high"},
+      {"cause": "Failed IAC motor", "likelihood": "medium"}
+    ],
+    "symptoms": ["High idle", "Stalling", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean IAC", "instruction": "Remove and clean with throttle body cleaner.", "tools": ["Screwdriver"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace IAC if still stuck", "instruction": "Install new IAC valve.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 80}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I drive?", "a": "Yes but watch for stalls."}]
+  },
+  {
+    "code": "P1564-GMC",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cruise Control",
+    "title": "GMC - Cruise Control Acceleration Too High",
+    "shortDescription": "Cruise system detected unexpected acceleration.",
+    "fullDescription": "GMC Sierra, Yukon, Acadia. Cruise control module detects vehicle acceleration exceeding safe range during cruise engagement, disabling cruise as a safety measure.\n\nOften due to brake switch or APP signal noise.",
+    "severity": "medium",
+    "safetyImpact": "Cruise disabled for safety.",
+    "causes": [
+      {"cause": "Brake switch fault", "likelihood": "high"},
+      {"cause": "APP sensor noise", "likelihood": "medium"}
+    ],
+    "symptoms": ["Cruise will not engage", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Test brake switch", "instruction": "Confirm switch toggles correctly.", "tools": ["Multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 80}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes, without cruise."}]
+  },
+  {
+    "code": "P1093-ISUZU",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel System",
+    "title": "Isuzu - Fuel Rail Pressure Low During Power Enrichment",
+    "shortDescription": "Rail pressure drops during heavy acceleration.",
+    "fullDescription": "Isuzu Rodeo, Trooper, Ascender, NPR diesel variants. Fuel rail pressure falls below spec when PCM commands enrichment, pointing to high-pressure pump, regulator, or injector leak.\n\nPower loss under load, possible black smoke.",
+    "severity": "high",
+    "safetyImpact": "Power loss merging/passing.",
+    "causes": [
+      {"cause": "Weak high-pressure fuel pump", "likelihood": "high"},
+      {"cause": "Stuck fuel pressure regulator", "likelihood": "medium"},
+      {"cause": "Leaking injector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Power loss", "Hard start", "Black smoke"],
+    "fixSteps": [
+      {"step": 1, "title": "Monitor rail pressure under load", "instruction": "Compare commanded vs actual.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 500, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Drive cautiously?", "a": "Yes; avoid heavy loads."}]
+  },
+  {
+    "code": "P1173-ISUZU",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Trim",
+    "title": "Isuzu - Fuel Trim Malfunction Bank 1",
+    "shortDescription": "Fuel trim on bank 1 out of learning range.",
+    "fullDescription": "Isuzu Rodeo, Trooper, Ascender. Long-term fuel trim on bank 1 is pegged high or low, indicating PCM cannot compensate for a rich or lean condition.\n\nOften linked to vacuum leaks or failing MAF.",
+    "severity": "medium",
+    "safetyImpact": "Drivability and economy.",
+    "causes": [
+      {"cause": "Vacuum leak", "likelihood": "high"},
+      {"cause": "Dirty MAF", "likelihood": "medium"},
+      {"cause": "Fuel pressure out of spec", "likelihood": "medium"}
+    ],
+    "symptoms": ["Poor fuel economy", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test intake", "instruction": "Check for leaks.", "tools": ["Smoke machine"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Will economy improve once fixed?", "a": "Yes, significantly."}]
+  },
+  {
+    "code": "P1405-ISUZU",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGR System",
+    "title": "Isuzu - EGR Valve Position Sensor Circuit",
+    "shortDescription": "EGR valve position feedback out of range.",
+    "fullDescription": "Isuzu NPR diesel, Rodeo, Trooper. EGR position sensor does not match commanded valve position, often due to carbon buildup in valve or failed sensor.\n\nMay trigger limp mode on modern diesel models.",
+    "severity": "medium",
+    "safetyImpact": "Possible limp mode.",
+    "causes": [
+      {"cause": "Carbon buildup in EGR valve", "likelihood": "high"},
+      {"cause": "Failed position sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Limp mode", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean or replace EGR", "instruction": "Remove and inspect for carbon.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 250, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Common on Isuzu diesels?", "a": "Yes, very common."}]
+  },
+  {
+    "code": "P1491-ISUZU",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling System",
+    "title": "Isuzu - Radiator Cooling Fan 2 Control Circuit",
+    "shortDescription": "Secondary cooling fan circuit open/short.",
+    "fullDescription": "Isuzu Ascender, Trooper. PCM cannot control the secondary/high-speed radiator fan. Can lead to overheating in hot weather or under A/C load.\n\nOften a failed relay or fan motor.",
+    "severity": "medium",
+    "safetyImpact": "Overheating risk.",
+    "causes": [
+      {"cause": "Failed fan relay", "likelihood": "high"},
+      {"cause": "Seized fan motor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Overheating at idle", "A/C cutoff"],
+    "fixSteps": [
+      {"step": 1, "title": "Test relay", "instruction": "Swap with known good.", "tools": ["Hand"], "difficulty": "easy"},
+      {"step": 2, "title": "Test fan motor", "instruction": "Apply 12V direct to fan.", "tools": ["Jumper wires"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 250}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I drive?", "a": "Only short trips; monitor temp."}]
+  },
+  {
+    "code": "P1610-ISUZU",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Immobilizer",
+    "title": "Isuzu - Immobilizer Function Error",
+    "shortDescription": "Immobilizer system did not authorize engine start.",
+    "fullDescription": "Isuzu Rodeo, Trooper, Ascender with factory immobilizer. Key or transponder not recognized by immobilizer module, preventing start or causing stall shortly after start.\n\nKey programming or module issue.",
+    "severity": "high",
+    "safetyImpact": "No-start.",
+    "causes": [
+      {"cause": "Damaged/unregistered key", "likelihood": "high"},
+      {"cause": "Immobilizer module fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["No start", "Stall after start", "Security light flashing"],
+    "fixSteps": [
+      {"step": 1, "title": "Reprogram key", "instruction": "Use dealer-level tool to register key.", "tools": ["Dealer scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Can I start car?", "a": "Not until key authorized."}]
+  },
+  {
+    "code": "P1120-SCION",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Throttle Control",
+    "title": "Scion - Accelerator Pedal Position Sensor Circuit",
+    "shortDescription": "APP sensor circuit open or out of range.",
+    "fullDescription": "Scion xB, xD, tC. PCM detects APP sensor 1 voltage out of expected range, often from connector damage or worn pedal assembly.\n\nTriggers reduced engine power and possible limp mode.",
+    "severity": "medium",
+    "safetyImpact": "Reduced throttle response.",
+    "causes": [
+      {"cause": "APP sensor failure", "likelihood": "high"},
+      {"cause": "Connector issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "Hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace pedal assembly", "instruction": "APP sensor integrated.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 220}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Drive cautiously."}]
+  },
+  {
+    "code": "P1128-SCION",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Trim",
+    "title": "Scion - Closed Loop Fueling Not Achieved",
+    "shortDescription": "Engine cannot enter closed-loop fuel control.",
+    "fullDescription": "Scion xB, xD, tC. Engine running open-loop longer than expected because O2 sensors not reaching operating temperature or PCM sees implausible feedback.\n\nFuel economy and emissions suffer.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Slow O2 sensor warmup", "likelihood": "high"},
+      {"cause": "Exhaust leak upstream of sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Poor fuel economy", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Test O2 heater circuit", "instruction": "Check heater resistance.", "tools": ["Multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Drive OK?", "a": "Yes."}]
+  },
+  {
+    "code": "P1133-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensors",
+    "title": "Lexus - Air Fuel Ratio Sensor Circuit Response Bank 1",
+    "shortDescription": "A/F ratio sensor response on bank 1 is slow.",
+    "fullDescription": "Lexus IS, RX, ES with wideband A/F sensor on bank 1 sensor 1. PCM detects slow response time, indicating aged sensor.\n\nLexus A/F sensors are more sensitive than conventional O2 sensors.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Aged A/F sensor", "likelihood": "high"},
+      {"cause": "Contaminated sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Poor economy", "Slight hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace A/F sensor", "instruction": "Use Denso OEM-equivalent.", "tools": ["O2 socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 350}, "mechanic": {"min": 300, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Must I use OEM?", "a": "Strongly recommended on Lexus."}]
+  },
+  {
+    "code": "P1155-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensors",
+    "title": "Lexus - Air Fuel Ratio Sensor Heater Circuit Bank 2",
+    "shortDescription": "A/F heater circuit bank 2 open or short.",
+    "fullDescription": "Lexus IS, RX, ES with V6/V8. Heater circuit for bank 2 sensor 1 shows open or short, preventing sensor from reaching operating temp.\n\nTypically requires sensor replacement.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Failed sensor heater", "likelihood": "high"},
+      {"cause": "Wiring open", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Poor cold-start economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace A/F sensor bank 2", "instruction": "Use OEM-equivalent.", "tools": ["O2 socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 350}, "mechanic": {"min": 300, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "OEM required?", "a": "Recommended."}]
+  },
+  {
+    "code": "P1300-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition",
+    "title": "Lexus - Igniter Circuit Malfunction",
+    "shortDescription": "Ignition coil igniter feedback fault.",
+    "fullDescription": "Lexus IS, RX, ES. Igniter/IGF signal from one or more coils is missing or out of spec. PCM may disable injector to that cylinder.\n\nCommon as coils age past 100k miles.",
+    "severity": "medium",
+    "safetyImpact": "Misfire risk.",
+    "causes": [
+      {"cause": "Failed ignition coil", "likelihood": "high"},
+      {"cause": "Wiring issue to coil", "likelihood": "medium"}
+    ],
+    "symptoms": ["Misfire", "Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify offending coil", "instruction": "Check live data for IGF signal.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace coil", "instruction": "Install new coil-on-plug.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Replace all coils?", "a": "If high mileage, often worth it."}]
+  },
+  {
+    "code": "P1330-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition",
+    "title": "Lexus - Spark Timing Correction Beyond Limit",
+    "shortDescription": "Excessive spark retard commanded by knock control.",
+    "fullDescription": "Lexus IS, RX, ES. Knock sensors force large timing retard, indicating persistent knock or failing sensor.\n\nUse correct octane fuel first.",
+    "severity": "medium",
+    "safetyImpact": "Engine damage risk.",
+    "causes": [
+      {"cause": "Low octane fuel", "likelihood": "high"},
+      {"cause": "Knock sensor fault", "likelihood": "medium"},
+      {"cause": "Carbon buildup", "likelihood": "medium"}
+    ],
+    "symptoms": ["Loss of power", "Pinging"],
+    "fixSteps": [
+      {"step": 1, "title": "Use premium fuel", "instruction": "Refill with 91+ octane.", "tools": [], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "easy",
+    "repairTime": "Varies",
+    "relatedCodes": [],
+    "faq": [{"q": "Must I use premium?", "a": "Yes on most Lexus V6/V8."}]
+  },
+  {
+    "code": "P1404-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGR System",
+    "title": "Lexus - EGR Closed Position Performance",
+    "shortDescription": "EGR valve fails closed position test.",
+    "fullDescription": "Lexus IS, ES, RX with EGR. Valve does not fully close at idle, causing rough running.\n\nUsually carbon keeping valve slightly open.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "Carbon buildup", "likelihood": "high"},
+      {"cause": "Failed EGR valve", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle", "Stalls at stops"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean or replace EGR", "instruction": "Remove and service.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Common issue?", "a": "Yes on older Lexus."}]
+  },
+  {
+    "code": "P1500-LEXUS",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Starter System",
+    "title": "Lexus - Starter Signal Circuit Malfunction",
+    "shortDescription": "Starter signal to PCM missing or incorrect.",
+    "fullDescription": "Lexus IS, ES, RX. PCM does not see proper STA signal during cranking, blocks injection on start or logs fault.\n\nOften ignition switch or wiring.",
+    "severity": "medium",
+    "safetyImpact": "No-start possible.",
+    "causes": [
+      {"cause": "Failed ignition switch", "likelihood": "medium"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Hard start", "No start"],
+    "fixSteps": [
+      {"step": 1, "title": "Check STA signal", "instruction": "Verify voltage to PCM during crank.", "tools": ["Multimeter"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Once started, usually yes."}]
+  },
+  {
+    "code": "P1077-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Variable Valve Timing",
+    "title": "Acura - VTEC System Malfunction Low RPM",
+    "shortDescription": "VTEC low-cam mode not engaging.",
+    "fullDescription": "Acura RDX, MDX, TLX. PCM detects VTEC oil pressure switch does not report expected state at low RPM phase.\n\nCan cause rough running and loss of power at low RPM.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "VTEC solenoid fault", "likelihood": "high"},
+      {"cause": "Low oil level or dirty oil", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough low-RPM", "Loss of power"],
+    "fixSteps": [
+      {"step": 1, "title": "Check oil", "instruction": "Verify correct viscosity and level.", "tools": ["Dipstick"], "difficulty": "easy"},
+      {"step": 2, "title": "Replace VTEC solenoid", "instruction": "Install new solenoid and filter.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is VTEC common to fail?", "a": "Solenoid occasionally sticks."}]
+  },
+  {
+    "code": "P1078-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Variable Valve Timing",
+    "title": "Acura - VTEC Oil Pressure Switch Circuit",
+    "shortDescription": "VTEC pressure switch circuit malfunction.",
+    "fullDescription": "Acura RDX, MDX, TLX. Circuit to VTEC oil pressure switch reads open or short.\n\nOften a wiring issue or failed pressure switch.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "Failed pressure switch", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Slight power loss"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace pressure switch", "instruction": "Install new VTEC switch.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes but fix soon."}]
+  },
+  {
+    "code": "P1128-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Throttle Control",
+    "title": "Acura - MAP Lower Than Expected",
+    "shortDescription": "Manifold absolute pressure reading lower than expected.",
+    "fullDescription": "Acura RDX, MDX, TLX. MAP sensor voltage indicates unusually low manifold pressure, often from vacuum leak or stuck throttle plate.\n\nIdle and low-speed drivability affected.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "Intake vacuum leak", "likelihood": "high"},
+      {"cause": "Failed MAP sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle", "Hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test intake", "instruction": "Identify vacuum leaks.", "tools": ["Smoke machine"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 150}, "mechanic": {"min": 150, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1259-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Variable Valve Timing",
+    "title": "Acura - VTEC System Malfunction Bank 1",
+    "shortDescription": "VTEC changeover failure bank 1.",
+    "fullDescription": "Acura MDX, NSX (older), RDX with V6. VTEC did not switch cam profiles at commanded RPM.\n\nMost often VTEC solenoid or low oil pressure.",
+    "severity": "medium",
+    "safetyImpact": "Power loss at high RPM.",
+    "causes": [
+      {"cause": "VTEC solenoid stuck", "likelihood": "high"},
+      {"cause": "Low oil pressure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Lack of top-end power", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Service VTEC solenoid", "instruction": "Clean screen or replace.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Common failure?", "a": "Well documented on Honda V6."}]
+  },
+  {
+    "code": "P1399-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire Detection",
+    "title": "Acura - Random Cylinder Misfire Detected",
+    "shortDescription": "Random misfire across multiple cylinders.",
+    "fullDescription": "Acura RDX, MDX, TLX, NSX. PCM reports misfires that are not isolated to one cylinder. Typically caused by lean condition, ignition, or fuel pressure issues.\n\nDrive cautiously to avoid catalyst damage.",
+    "severity": "high",
+    "safetyImpact": "Catalyst damage risk.",
+    "causes": [
+      {"cause": "Vacuum leak", "likelihood": "high"},
+      {"cause": "Weak fuel pump", "likelihood": "medium"},
+      {"cause": "Worn plugs/coils", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle", "Shaking", "Flashing MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test intake", "instruction": "Look for leaks.", "tools": ["Smoke machine"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace plugs/coils", "instruction": "If overdue by mileage.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Is it serious?", "a": "Yes if MIL flashes, stop driving."}]
+  },
+  {
+    "code": "P1459-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Acura - EVAP Bypass Solenoid Valve Malfunction",
+    "shortDescription": "EVAP bypass solenoid electrical or functional fault.",
+    "fullDescription": "Acura RDX, MDX, TLX. The EVAP bypass solenoid either fails electrical test or cannot hold vacuum during leak check.\n\nTriggers emissions MIL.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Failed bypass solenoid", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace bypass solenoid", "instruction": "Install new valve.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 150}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1508-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Control",
+    "title": "Acura - Idle Air Control Valve Circuit Failure",
+    "shortDescription": "IAC valve signal low at idle.",
+    "fullDescription": "Older Acura with IAC valve. Drive signal to IAC reads low, preventing idle speed control.\n\nCauses stalling at idle and erratic idle.",
+    "severity": "medium",
+    "safetyImpact": "Stalling risk.",
+    "causes": [
+      {"cause": "Dirty IAC valve", "likelihood": "high"},
+      {"cause": "Failed IAC", "likelihood": "medium"}
+    ],
+    "symptoms": ["Stalling", "Erratic idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean IAC", "instruction": "Remove and clean with throttle body cleaner.", "tools": ["Screwdriver"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 150}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Does cleaning help?", "a": "Often yes."}]
+  },
+  {
+    "code": "P1607-ACURA",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "PCM",
+    "title": "Acura - PCM Internal Circuit Fault",
+    "shortDescription": "PCM internal self-check failure.",
+    "fullDescription": "Acura RDX, MDX, TLX, NSX. Internal PCM watchdog test fails, suggesting module hardware fault or corrupt software.\n\nMay cause intermittent stalls or no-starts.",
+    "severity": "high",
+    "safetyImpact": "Possible stall.",
+    "causes": [
+      {"cause": "Faulty PCM", "likelihood": "high"},
+      {"cause": "Poor grounds", "likelihood": "medium"}
+    ],
+    "symptoms": ["Stall", "No-start", "Multiple codes"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect grounds", "instruction": "Clean PCM ground points.", "tools": ["Wrench"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace/reprogram PCM", "instruction": "Dealer service.", "tools": ["Dealer scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 100}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "PCM replacement needed?", "a": "Often yes if grounds are clean."}]
+  },
+  {
+    "code": "P1125-BUICK",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Throttle Control",
+    "title": "Buick - APP Sensor Intermittent",
+    "shortDescription": "Accelerator pedal position sensor intermittent signal.",
+    "fullDescription": "Buick Enclave, Encore, Regal, LaCrosse. APP sensor signal drops in and out, triggering reduced engine power message.\n\nCommon with worn pedal assembly on Enclave.",
+    "severity": "medium",
+    "safetyImpact": "Possible limp mode.",
+    "causes": [
+      {"cause": "Worn APP sensor", "likelihood": "high"},
+      {"cause": "Loose connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power message", "Hesitation"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace pedal assembly", "instruction": "Install new APP/pedal unit.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 250}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Known issue?", "a": "Yes on Enclave."}]
+  },
+  {
+    "code": "P1193-BUICK",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Temperature Sensors",
+    "title": "Buick - Intake Air Temperature High",
+    "shortDescription": "IAT sensor indicates implausibly high intake air temperature.",
+    "fullDescription": "Buick Enclave, LaCrosse. IAT signal exceeds expected max, often from sensor wiring short to voltage or sensor failure.\n\nCan cause incorrect fueling.",
+    "severity": "low",
+    "safetyImpact": "Minor drivability.",
+    "causes": [
+      {"cause": "IAT sensor short", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Check engine light", "Slight power loss"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace IAT sensor", "instruction": "Often integrated in MAF.", "tools": ["Screwdriver"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 120, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1345-BUICK",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam/Crank Correlation",
+    "title": "Buick - CKP-CMP Correlation",
+    "shortDescription": "Crank and cam position sensors out of correlation.",
+    "fullDescription": "Buick Enclave, Regal with V6. Cam and crank sensor signals out of expected phase, usually from timing chain stretch or sensor fault.\n\nHigh-mileage 3.6L V6 commonly suffers timing chain issues.",
+    "severity": "high",
+    "safetyImpact": "Risk of timing chain failure.",
+    "causes": [
+      {"cause": "Stretched timing chain", "likelihood": "high"},
+      {"cause": "Failed CMP sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rattle at startup", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect timing components", "instruction": "Check chain stretch via scan data.", "tools": ["OBD-II scanner"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 400, "max": 1500}, "mechanic": {"min": 1500, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "10-15 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Major repair?", "a": "Yes if chain is stretched."}]
+  },
+  {
+    "code": "P1404-BUICK",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGR System",
+    "title": "Buick - EGR Valve Closed Position Performance",
+    "shortDescription": "EGR valve not seating fully closed.",
+    "fullDescription": "Buick LaCrosse, Regal. EGR valve fails closed-position test at idle, typically from carbon.\n\nCauses idle roughness.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "Carbon buildup", "likelihood": "high"},
+      {"cause": "Failed EGR valve", "likelihood": "medium"}
+    ],
+    "symptoms": ["Rough idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean EGR", "instruction": "Remove, clean, or replace.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Common issue?", "a": "Yes, known on GM 3.6."}]
+  },
+  {
+    "code": "P1281-DODGE",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Temperature Sensors",
+    "title": "Dodge - Engine is Cold Too Long",
+    "shortDescription": "Engine not reaching operating temperature.",
+    "fullDescription": "Dodge Ram, Charger, Challenger. PCM sees coolant temp remain below closed-loop threshold for too long after start, typically stuck-open thermostat.\n\nPoor heater performance and economy.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Stuck-open thermostat", "likelihood": "high"},
+      {"cause": "ECT sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Weak heat", "Poor economy"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace thermostat", "instruction": "Install OEM-spec thermostat.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1391-DODGE",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cam/Crank Correlation",
+    "title": "Dodge - Intermittent Loss of CMP or CKP",
+    "shortDescription": "CMP or CKP signal drops out intermittently.",
+    "fullDescription": "Dodge Ram, Charger, Challenger. PCM momentarily loses cam or crank signal, often from worn sensor or wiring.\n\nMay cause stall and hot-restart issue.",
+    "severity": "high",
+    "safetyImpact": "Stall risk.",
+    "causes": [
+      {"cause": "Failing CKP/CMP sensor", "likelihood": "high"},
+      {"cause": "Wiring/connector issue", "likelihood": "medium"}
+    ],
+    "symptoms": ["Random stall", "Hard hot-start"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace affected sensor", "instruction": "Install new CKP or CMP.", "tools": ["Socket set"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 150}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Common on HEMI?", "a": "Yes, CKP sensor is a known issue."}]
+  },
+  {
+    "code": "P1496-DODGE",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging System",
+    "title": "Dodge - 5 Volt Supply Output Too Low",
+    "shortDescription": "PCM 5V reference rail below threshold.",
+    "fullDescription": "Dodge Ram, Charger. PCM's 5V supply to sensors reads low, often due to shorted sensor pulling the bus down.\n\nMultiple sensor codes may accompany.",
+    "severity": "medium",
+    "safetyImpact": "Drivability.",
+    "causes": [
+      {"cause": "Shorted sensor on 5V bus", "likelihood": "high"},
+      {"cause": "Damaged wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["Multiple DTCs", "Drivability issues"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate shorted sensor", "instruction": "Disconnect sensors one by one.", "tools": ["Multimeter"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Tricky to diagnose?", "a": "Yes, requires methodical isolation."}]
+  },
+  {
+    "code": "P1696-DODGE",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "PCM",
+    "title": "Dodge - PCM EEPROM Write Denied",
+    "shortDescription": "PCM unable to write to EEPROM memory.",
+    "fullDescription": "Dodge Ram, Charger, Challenger. PCM cannot store learned values or DTCs to non-volatile memory.\n\nUsually indicates PCM hardware failure.",
+    "severity": "high",
+    "safetyImpact": "Codes may not store; learned data lost.",
+    "causes": [
+      {"cause": "Failed PCM EEPROM", "likelihood": "high"}
+    ],
+    "symptoms": ["Codes not storing", "Poor drivability after restart"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace/reprogram PCM", "instruction": "Requires dealer-level programming.", "tools": ["Dealer scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 500, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can PCM be repaired?", "a": "Usually replacement is needed."}]
+  },
+  {
+    "code": "P1195-JEEP",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensors",
+    "title": "Jeep - 1/1 O2 Sensor Slow Response",
+    "shortDescription": "Upstream O2 sensor slow to switch.",
+    "fullDescription": "Jeep Grand Cherokee, Wrangler. Bank 1 Sensor 1 O2 response time exceeds threshold, indicating aged sensor.\n\nCommon at 80k+ miles.",
+    "severity": "medium",
+    "safetyImpact": "Low.",
+    "causes": [
+      {"cause": "Aged O2 sensor", "likelihood": "high"},
+      {"cause": "Exhaust leak", "likelihood": "medium"}
+    ],
+    "symptoms": ["Poor economy", "Check engine light"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace upstream O2", "instruction": "Install OEM-equivalent sensor.", "tools": ["O2 socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "mechanic": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes."}]
+  },
+  {
+    "code": "P1294-JEEP",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Control",
+    "title": "Jeep - Target Idle Not Reached",
+    "shortDescription": "Engine idle does not reach commanded RPM.",
+    "fullDescription": "Jeep Grand Cherokee, Wrangler. Actual idle RPM differs from commanded target. Often vacuum leak, dirty throttle body, or failing IAC.\n\nCauses stalls and rough idle.",
+    "severity": "medium",
+    "safetyImpact": "Stall risk.",
+    "causes": [
+      {"cause": "Vacuum leak", "likelihood": "high"},
+      {"cause": "Dirty throttle body", "likelihood": "medium"},
+      {"cause": "Failing IAC", "likelihood": "medium"}
+    ],
+    "symptoms": ["Low idle", "Stall"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean throttle body", "instruction": "Use throttle body cleaner.", "tools": ["Rag"], "difficulty": "easy"},
+      {"step": 2, "title": "Smoke test for leaks", "instruction": "Find and fix leaks.", "tools": ["Smoke machine"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 120}, "mechanic": {"min": 120, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "DIY doable?", "a": "Yes usually."}]
+  },
+  {
+    "code": "P1489-JEEP",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling System",
+    "title": "Jeep - High Speed Fan Relay Control Circuit",
+    "shortDescription": "High-speed cooling fan relay control fault.",
+    "fullDescription": "Jeep Grand Cherokee, Wrangler. PCM detects open/short on high-speed fan relay drive circuit.\n\nMay cause overheating under A/C load.",
+    "severity": "medium",
+    "safetyImpact": "Overheat risk.",
+    "causes": [
+      {"cause": "Failed relay", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Overheating", "A/C shutoff"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap relay", "instruction": "Swap with known good.", "tools": ["Hand"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "mechanic": {"min": 120, "max": 350}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Monitor temp?", "a": "Yes, until fixed."}]
+  },
+  {
+    "code": "P1687-JEEP",
+    "codeType": "manufacturer-specific",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Communication",
+    "title": "Jeep - No Communication with MIC",
+    "shortDescription": "PCM cannot communicate with Mechanical Instrument Cluster.",
+    "fullDescription": "Jeep Grand Cherokee, Wrangler. PCM loses CCD/CAN bus communication with instrument cluster, causing gauge dropouts and no-MIL displays.\n\nOften a cluster or bus wiring issue.",
+    "severity": "medium",
+    "safetyImpact": "Gauges may be inaccurate.",
+    "causes": [
+      {"cause": "Failed instrument cluster", "likelihood": "high"},
+      {"cause": "Bus wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Dead gauges", "No MIL display"],
+    "fixSteps": [
+      {"step": 1, "title": "Test bus communication", "instruction": "Verify CAN bus integrity.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace cluster", "instruction": "Install replacement cluster.", "tools": ["Dash trim tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 300, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Safe to drive?", "a": "Yes, but with unreliable gauges."}]
   }
 ]

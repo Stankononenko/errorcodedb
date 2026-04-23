@@ -1,0 +1,2080 @@
+[
+  {
+    "code": "P0800",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transfer Case Control System (MIL Request)",
+    "shortDescription": "The transfer case control module has requested the MIL be illuminated due to an internal fault.",
+    "fullDescription": "Code P0800 indicates the Transfer Case Control Module (TCCM) has detected a fault and requested the Powertrain Control Module (PCM) illuminate the Malfunction Indicator Lamp. This is typically found on 4WD or AWD vehicles with electronically controlled transfer cases.\n\nA companion code in the transfer case module usually identifies the specific fault. The vehicle may remain in a default drive mode (typically 2WD or AWD) until the underlying issue is resolved.\n\nDiagnosis requires scanning the TCCM directly because P0800 only reports that another module has flagged a problem — it does not identify the root cause itself.",
+    "severity": "medium",
+    "safetyImpact": "Loss of 4WD or AWD capability may reduce traction on slippery surfaces.",
+    "causes": [
+      {"cause": "Fault in transfer case control module", "likelihood": "high"},
+      {"cause": "Transfer case shift motor failure", "likelihood": "medium"},
+      {"cause": "Wiring or connector issues at TCCM", "likelihood": "medium"},
+      {"cause": "Low or contaminated transfer case fluid", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "4WD/AWD inoperative",
+      "Transfer case warning message",
+      "Difficulty engaging 4WD"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Use a bi-directional scanner to retrieve codes from the TCCM, not just PCM.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Address TCCM codes", "instruction": "Repair the specific fault reported by the transfer case module.", "tools": ["service manual"], "difficulty": "advanced"},
+      {"step": 3, "title": "Clear and retest", "instruction": "Clear codes and verify 4WD function.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 200, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0801", "P0802"],
+    "faq": [
+      {"q": "Can I drive with P0800?", "a": "Usually yes in 2WD, but 4WD may be disabled."},
+      {"q": "Is this a transmission code?", "a": "No, it is specific to the transfer case on 4WD/AWD vehicles."}
+    ]
+  },
+  {
+    "code": "P0801",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Reverse Inhibit Control Circuit",
+    "shortDescription": "A fault has been detected in the circuit that prevents reverse gear engagement at high speeds.",
+    "fullDescription": "P0801 indicates the PCM has detected an electrical fault in the reverse inhibit control circuit. This safety feature prevents drivers from shifting into reverse while traveling forward at speed, which would cause catastrophic transmission damage.\n\nOn manual transmissions this is often a solenoid that locks the reverse gate; on automatics it may be a valve body solenoid or shift lock mechanism.\n\nUntil the circuit is repaired reverse engagement may be intermittent or fail entirely.",
+    "severity": "medium",
+    "safetyImpact": "Reverse may not engage or may engage when it should not, risking drivetrain damage.",
+    "causes": [
+      {"cause": "Reverse inhibit solenoid failure", "likelihood": "high"},
+      {"cause": "Wiring open or short", "likelihood": "medium"},
+      {"cause": "Faulty PCM or TCM output driver", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Cannot engage reverse",
+      "Reverse engages roughly",
+      "Intermittent reverse operation"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test solenoid", "instruction": "Measure solenoid resistance and compare to spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect wiring", "instruction": "Check harness for damage between PCM and solenoid.", "tools": ["DMM", "wiring diagram"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace solenoid if faulty", "instruction": "Install new reverse inhibit solenoid.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0802"],
+    "faq": [
+      {"q": "Is this dangerous?", "a": "It can allow reverse at speed, so repair promptly."}
+    ]
+  },
+  {
+    "code": "P0802",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Control System MIL Request Circuit/Open",
+    "shortDescription": "The TCM is requesting the MIL but the circuit is open.",
+    "fullDescription": "P0802 indicates the Transmission Control Module has requested MIL illumination via an open circuit. This means either the TCM has logged a fault or the communication line between TCM and PCM is broken.\n\nScanning the TCM directly is essential — the reported issue often lies elsewhere in the transmission system.",
+    "severity": "medium",
+    "safetyImpact": "Transmission may enter limp mode.",
+    "causes": [
+      {"cause": "Open MIL request circuit", "likelihood": "high"},
+      {"cause": "TCM internal fault", "likelihood": "medium"},
+      {"cause": "Harness damage between modules", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Transmission warning lamp",
+      "Shift quality changes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan TCM", "instruction": "Pull codes directly from TCM.", "tools": ["OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Check communication", "instruction": "Verify CAN bus integrity between TCM and PCM.", "tools": ["oscilloscope"], "difficulty": "advanced"},
+      {"step": 3, "title": "Repair open circuit", "instruction": "Fix wiring or replace module as needed.", "tools": ["DMM"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 200}, "mechanic": {"min": 150, "max": 1200}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0800", "P0803"],
+    "faq": [
+      {"q": "Must I replace the TCM?", "a": "Only if wiring checks pass and the module is confirmed faulty."}
+    ]
+  },
+  {
+    "code": "P0803",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "1-4 Upshift (Skip Shift) Solenoid Control Circuit",
+    "shortDescription": "A fault exists in the skip-shift solenoid circuit used on some manual transmissions.",
+    "fullDescription": "P0803 sets when the PCM detects an electrical fault in the skip-shift (1-4) solenoid circuit. This feature, found on some performance manual transmissions, forces a 1-4 upshift at light throttle to improve fuel economy.\n\nA failure typically means the skip-shift feature stops working or stays engaged. While not safety-critical, it will illuminate the MIL and may fail emissions testing.",
+    "severity": "low",
+    "safetyImpact": "Minimal — affects fuel economy feature only.",
+    "causes": [
+      {"cause": "Skip-shift solenoid failed", "likelihood": "high"},
+      {"cause": "Circuit wiring fault", "likelihood": "medium"},
+      {"cause": "PCM driver issue", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Skip-shift disabled",
+      "Skip-shift permanently on"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect solenoid", "instruction": "Locate solenoid on transmission and check connector.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test resistance", "instruction": "Measure coil resistance against spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace if defective", "instruction": "Swap solenoid and clear code.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 120}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Does skip-shift affect performance?", "a": "Most enthusiasts disable it; it only affects fuel economy."}
+    ]
+  },
+  {
+    "code": "P0804",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "1-4 Upshift (Skip Shift) Lamp Control Circuit",
+    "shortDescription": "Fault in the skip-shift indicator lamp circuit.",
+    "fullDescription": "P0804 indicates a malfunction in the control circuit for the skip-shift indicator lamp on the instrument cluster. The lamp tells the driver when skip-shift is forcing a 1-4 upshift.\n\nThe root cause is usually a bulb, wiring, or instrument cluster issue, not the transmission itself.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {"cause": "Indicator bulb burned out", "likelihood": "high"},
+      {"cause": "Circuit wiring fault", "likelihood": "medium"},
+      {"cause": "Cluster driver failure", "likelihood": "low"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Skip-shift indicator does not work"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check bulb/LED", "instruction": "Inspect cluster lamp for failure.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test wiring", "instruction": "Check continuity between PCM and cluster.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0803"],
+    "faq": [
+      {"q": "Will this affect driving?", "a": "No, only the indicator lamp is affected."}
+    ]
+  },
+  {
+    "code": "P0805",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Position Sensor Circuit",
+    "shortDescription": "The PCM has detected a general fault in the clutch position sensor circuit.",
+    "fullDescription": "P0805 is set when the clutch position sensor signal is outside expected parameters. The sensor tells the PCM whether the clutch pedal is depressed, which affects start enable, cruise control cancel, and shift timing.\n\nA failure can prevent the engine from cranking or cause other driveability issues.",
+    "severity": "medium",
+    "safetyImpact": "Engine may not start; cruise control may behave oddly.",
+    "causes": [
+      {"cause": "Failed clutch position sensor", "likelihood": "high"},
+      {"cause": "Damaged wiring/connector", "likelihood": "medium"},
+      {"cause": "Misadjusted clutch pedal switch", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No start unless clutch specific position",
+      "Cruise control issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify sensor signal", "instruction": "Watch live data as pedal is pressed.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Adjust or replace sensor", "instruction": "Correct adjustment or replace if faulty.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0806", "P0807"],
+    "faq": [
+      {"q": "Can the car start?", "a": "It depends on whether the signal is stuck at pressed or released."}
+    ]
+  },
+  {
+    "code": "P0806",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Position Sensor Circuit Range/Performance",
+    "shortDescription": "The clutch position sensor signal is out of the expected range.",
+    "fullDescription": "P0806 is set when the clutch pedal position sensor reports a value that does not make sense given vehicle operation — for example, not returning to a zero position or exceeding maximum travel.\n\nCauses are usually mechanical: a bent bracket, broken pedal return spring, or a failing sensor.",
+    "severity": "medium",
+    "safetyImpact": "Shift quality or start enable may be affected.",
+    "causes": [
+      {"cause": "Sensor out of adjustment", "likelihood": "high"},
+      {"cause": "Mechanical linkage problem", "likelihood": "medium"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Poor shift quality",
+      "Engine crank issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check sensor range", "instruction": "Graph sensor data across full pedal travel.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Adjust mounting", "instruction": "Realign sensor to spec.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace if necessary", "instruction": "Install new sensor.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0805"],
+    "faq": [
+      {"q": "Is this the clutch itself?", "a": "No, it is the sensor that monitors pedal position."}
+    ]
+  },
+  {
+    "code": "P0810",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Position Control Error",
+    "shortDescription": "The clutch actuator did not reach its commanded position.",
+    "fullDescription": "P0810 is primarily seen on vehicles with automated manual transmissions or dual-clutch systems. It indicates the clutch actuator failed to achieve the position commanded by the TCM.\n\nCauses range from low hydraulic pressure to a worn clutch pack to an actuator motor failure. This code often accompanies poor engagement or jerky launches.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may lose drive temporarily or launch roughly.",
+    "causes": [
+      {"cause": "Worn clutch friction material", "likelihood": "high"},
+      {"cause": "Faulty clutch actuator", "likelihood": "medium"},
+      {"cause": "Hydraulic/electric control fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh engagement",
+      "Transmission limp mode",
+      "Shudder on takeoff"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Read TCM data", "instruction": "Monitor clutch position vs command.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Perform clutch adaptation", "instruction": "Use factory tool to relearn clutch.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace clutch if worn", "instruction": "Install new clutch assembly.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 800, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0811", "P0812"],
+    "faq": [
+      {"q": "Can the clutch be adapted without replacement?", "a": "Sometimes — try adaptation first."}
+    ]
+  },
+  {
+    "code": "P0811",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Excessive Clutch Slippage",
+    "shortDescription": "The PCM/TCM has detected excessive clutch slip.",
+    "fullDescription": "P0811 is stored when the transmission detects the clutch is slipping more than allowed. The control module compares engine RPM to output RPM; when the ratio indicates slip beyond a threshold, this code sets.\n\nIn manual/automated vehicles this usually means a worn clutch disc; in some automatics it points to a torque converter lock-up clutch issue.",
+    "severity": "high",
+    "safetyImpact": "Power delivery may be compromised; continued driving can destroy the clutch.",
+    "causes": [
+      {"cause": "Worn clutch friction plate", "likelihood": "high"},
+      {"cause": "Contaminated clutch (oil leak)", "likelihood": "medium"},
+      {"cause": "Weak pressure plate", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "RPM rises without speed increase",
+      "Burning clutch smell",
+      "Shudder under load"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm slip", "instruction": "Perform road test while monitoring RPM vs speed.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect for oil contamination", "instruction": "Check rear main seal and input seals.", "tools": ["hand tools"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace clutch", "instruction": "Install new clutch kit and resurface flywheel.", "tools": ["transmission jack"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 600}, "mechanic": {"min": 800, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P0810"],
+    "faq": [
+      {"q": "Can I keep driving?", "a": "Minimally — excessive slip will destroy the clutch and possibly flywheel."}
+    ]
+  },
+  {
+    "code": "P0812",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Reverse Input Circuit",
+    "shortDescription": "The PCM has detected a fault in the reverse input circuit.",
+    "fullDescription": "P0812 indicates an issue with the signal that tells the PCM when the transmission is in reverse. This input is used to enable reverse lamps, disable cruise control, and adjust shift strategy.\n\nCommon causes include a failed reverse switch, wiring, or range sensor.",
+    "severity": "medium",
+    "safetyImpact": "Reverse lights may not work; backup camera may not activate.",
+    "causes": [
+      {"cause": "Faulty reverse/range switch", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No reverse lights",
+      "Backup camera inoperative"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch", "instruction": "Use DMM to check switch continuity in reverse.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "Install new backup/range switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 100}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0801"],
+    "faq": [
+      {"q": "Why do backup lights matter?", "a": "They are a safety feature required to be working."}
+    ]
+  },
+  {
+    "code": "P0815",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Upshift Switch Circuit",
+    "shortDescription": "Fault detected in the upshift request switch circuit.",
+    "fullDescription": "P0815 sets when the driver-requested upshift switch (used on vehicles with manumatic or paddle shifters) has an electrical issue. The switch may be stuck, the wiring shorted, or the steering wheel clockspring damaged.",
+    "severity": "low",
+    "safetyImpact": "Manual shifting mode may not work.",
+    "causes": [
+      {"cause": "Failed upshift switch", "likelihood": "high"},
+      {"cause": "Clockspring damage", "likelihood": "medium"},
+      {"cause": "Wiring short", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Paddle shift non-functional",
+      "Stuck in auto mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch", "instruction": "Check switch with DMM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect clockspring", "instruction": "Check clockspring continuity if paddles are on wheel.", "tools": ["DMM"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0816"],
+    "faq": [
+      {"q": "Does auto mode still work?", "a": "Usually yes — only manual upshift requests are affected."}
+    ]
+  },
+  {
+    "code": "P0816",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Downshift Switch Circuit",
+    "shortDescription": "Fault detected in the downshift request switch circuit.",
+    "fullDescription": "P0816 indicates an electrical problem in the driver downshift request switch. Symptoms and causes mirror P0815 but affect the downshift paddle or lever.",
+    "severity": "low",
+    "safetyImpact": "Manual downshift requests may not work.",
+    "causes": [
+      {"cause": "Failed downshift switch", "likelihood": "high"},
+      {"cause": "Clockspring failure", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Downshift paddle inoperative"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check switch", "instruction": "Verify with DMM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace if faulty", "instruction": "Install new switch or clockspring.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0815"],
+    "faq": [
+      {"q": "Safe to drive?", "a": "Yes, automatic mode is unaffected."}
+    ]
+  },
+  {
+    "code": "P0817",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Starter Disable Circuit",
+    "shortDescription": "Fault in the starter disable safety circuit.",
+    "fullDescription": "P0817 sets when the PCM detects a fault in the circuit that prevents the starter from cranking unless the clutch is depressed or the transmission is in Park/Neutral.\n\nThis is a safety feature — a fault may allow cranking in gear or prevent cranking in Park.",
+    "severity": "medium",
+    "safetyImpact": "Vehicle may crank in gear causing sudden movement.",
+    "causes": [
+      {"cause": "Neutral/clutch safety switch fault", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No crank issues",
+      "Crank in gear"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test safety switch", "instruction": "Check switch continuity at correct position.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "Install new neutral/clutch switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 150, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Is this a safety issue?", "a": "Yes — fix promptly to prevent cranking in gear."}
+    ]
+  },
+  {
+    "code": "P0818",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Driveline Disconnect Switch Input Circuit",
+    "shortDescription": "A fault exists in the driveline disconnect switch circuit.",
+    "fullDescription": "P0818 indicates the PCM has seen an abnormal signal from the driveline disconnect switch, used on some clutch-pedal-equipped vehicles to interrupt drive. Causes are similar to other clutch input circuits.",
+    "severity": "medium",
+    "safetyImpact": "Driveline may not disengage properly.",
+    "causes": [
+      {"cause": "Faulty disconnect switch", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Hard starting",
+      "Driveability issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch", "instruction": "Verify switch function with DMM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair or replace", "instruction": "Fix wiring or install new switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 120}, "mechanic": {"min": 150, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0817"],
+    "faq": [
+      {"q": "Same as clutch switch?", "a": "Functionally similar; specifics vary by manufacturer."}
+    ]
+  },
+  {
+    "code": "P0820",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Lever X-Y Position Sensor Circuit",
+    "shortDescription": "Fault in the gear lever X-Y position sensor.",
+    "fullDescription": "P0820 sets on manual transmissions that use an X-Y sensor at the shifter to detect which gear the driver has selected. A fault here means the PCM cannot determine selected gear, which affects shift timing and engine rev-matching on some vehicles.",
+    "severity": "medium",
+    "safetyImpact": "Shift quality may suffer.",
+    "causes": [
+      {"cause": "Failed X-Y sensor", "likelihood": "high"},
+      {"cause": "Wiring or connector issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Poor shifts",
+      "Cruise behavior odd"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect sensor", "instruction": "Locate at base of shifter and test.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new unit.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "mechanic": {"min": 250, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Is the sensor adjustable?", "a": "Some are; consult service data."}
+    ]
+  },
+  {
+    "code": "P0830",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Pedal Switch A Circuit",
+    "shortDescription": "Circuit fault in clutch pedal switch A.",
+    "fullDescription": "P0830 sets when the PCM detects an electrical problem in the clutch pedal switch A circuit. The switch is used for engine start enable and cruise control cancellation.\n\nFailure may prevent cranking or cause cruise to drop out unexpectedly.",
+    "severity": "medium",
+    "safetyImpact": "Engine may not start; cruise control issues.",
+    "causes": [
+      {"cause": "Failed switch", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Intermittent no-crank",
+      "Cruise control drops"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch", "instruction": "Check continuity.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "Install new clutch pedal switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 80}, "mechanic": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0805"],
+    "faq": [
+      {"q": "Do I need two switches?", "a": "Some vehicles use two — A for start, B for cruise."}
+    ]
+  },
+  {
+    "code": "P0833",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Pedal Switch B Circuit Open",
+    "shortDescription": "The clutch pedal switch B circuit is open.",
+    "fullDescription": "P0833 indicates the secondary clutch pedal switch circuit is open — no signal is reaching the PCM. Causes are typically wiring or switch failure, occasionally a pedal misadjustment.",
+    "severity": "low",
+    "safetyImpact": "Minor — some cruise features disabled.",
+    "causes": [
+      {"cause": "Open circuit in switch B", "likelihood": "high"},
+      {"cause": "Damaged connector", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Cruise does not disengage"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Verify circuit", "instruction": "Check for open using DMM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair wiring", "instruction": "Fix break or replace switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 100}, "mechanic": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0830"],
+    "faq": [
+      {"q": "Same switch as A?", "a": "No, different switch on same pedal."}
+    ]
+  },
+  {
+    "code": "P0840",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch A Circuit",
+    "shortDescription": "Circuit fault in transmission fluid pressure sensor A.",
+    "fullDescription": "P0840 is set when the PCM detects an electrical fault in the transmission fluid pressure sensor A circuit. This sensor is critical for monitoring line pressure and adjusting shift timing.\n\nCauses include sensor failure, harness damage, or occasionally low fluid level causing erratic readings.",
+    "severity": "high",
+    "safetyImpact": "Transmission may enter limp mode.",
+    "causes": [
+      {"cause": "Failed pressure sensor", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"},
+      {"cause": "Low/contaminated fluid", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check fluid", "instruction": "Verify level and condition first.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test sensor", "instruction": "Monitor live data and test with DMM.", "tools": ["OBD-II scanner", "DMM"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "Install new pressure sensor.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0841", "P0842", "P0843"],
+    "faq": [
+      {"q": "Internal repair?", "a": "Often yes — pan must be dropped."}
+    ]
+  },
+  {
+    "code": "P0841",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch A Range/Performance",
+    "shortDescription": "Transmission fluid pressure sensor A reading is implausible.",
+    "fullDescription": "P0841 indicates pressure sensor A is reporting values that don't match operating conditions. A pressure reading that doesn't change with line pressure, or varies erratically, sets this code.\n\nInternal transmission hydraulic faults are common causes in addition to sensor issues.",
+    "severity": "high",
+    "safetyImpact": "Shift behavior may be severely affected.",
+    "causes": [
+      {"cause": "Internal valve body issue", "likelihood": "medium"},
+      {"cause": "Failed sensor", "likelihood": "high"},
+      {"cause": "Clogged filter", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Slipping",
+      "Harsh or delayed shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid check", "instruction": "Inspect level and condition.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Pressure test", "instruction": "Attach external gauge to compare.", "tools": ["pressure gauge"], "difficulty": "advanced"},
+      {"step": 3, "title": "Internal repair", "instruction": "Service valve body or replace sensor.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 400, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0840", "P0842"],
+    "faq": [
+      {"q": "Will fluid change help?", "a": "Sometimes, if fluid is old or contaminated."}
+    ]
+  },
+  {
+    "code": "P0842",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch A Circuit Low",
+    "shortDescription": "Transmission fluid pressure sensor A signal is too low.",
+    "fullDescription": "P0842 indicates pressure sensor A voltage is below the minimum threshold. This is usually caused by a shorted sensor or ground wire, but true low hydraulic pressure can cause it too.",
+    "severity": "high",
+    "safetyImpact": "Transmission may slip or enter limp mode.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"},
+      {"cause": "Low line pressure", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Limp mode",
+      "Slipping"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check wiring", "instruction": "Look for shorts to ground.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new pressure sensor.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0840", "P0843"],
+    "faq": [
+      {"q": "Can I drive?", "a": "Only briefly — damage risk is high."}
+    ]
+  },
+  {
+    "code": "P0843",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch A Circuit High",
+    "shortDescription": "Transmission fluid pressure sensor A signal is too high.",
+    "fullDescription": "P0843 sets when pressure sensor A voltage is above the maximum threshold, indicating an open circuit, short to voltage, or extreme high pressure condition.",
+    "severity": "high",
+    "safetyImpact": "Shift quality and gear selection may suffer.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to voltage", "likelihood": "medium"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect harness", "instruction": "Check for open or shorts to power.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0840", "P0842"],
+    "faq": [
+      {"q": "Which fails more often?", "a": "Open circuits and connector corrosion are common."}
+    ]
+  },
+  {
+    "code": "P0844",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch A Intermittent",
+    "shortDescription": "Intermittent signal from pressure sensor A.",
+    "fullDescription": "P0844 indicates the signal from transmission pressure sensor A drops out or spikes intermittently. Loose connectors and chafed wiring are prime suspects.",
+    "severity": "medium",
+    "safetyImpact": "Intermittent shift issues.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high"},
+      {"cause": "Chafed wire", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Intermittent shift flare"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Monitor data while wiggling connectors.", "tools": ["OBD-II scanner"], "difficulty": "advanced"},
+      {"step": 2, "title": "Repair harness", "instruction": "Repair or replace damaged wiring.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0840"],
+    "faq": [
+      {"q": "Why is it hard to find?", "a": "Intermittent faults often require wiggle testing under load."}
+    ]
+  },
+  {
+    "code": "P0850",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Park/Neutral Switch Input Circuit",
+    "shortDescription": "Fault in the park/neutral safety switch input.",
+    "fullDescription": "P0850 indicates the PCM sees an abnormal signal from the park/neutral safety switch. This switch enables cranking only in Park or Neutral and informs engine and transmission strategies about gear state.\n\nA fault may prevent cranking or allow cranking in gear.",
+    "severity": "medium",
+    "safetyImpact": "Potential crank-in-gear hazard.",
+    "causes": [
+      {"cause": "Failed neutral safety switch", "likelihood": "high"},
+      {"cause": "Misadjusted linkage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No crank in Park",
+      "Crank in gear"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check adjustment", "instruction": "Verify linkage and switch alignment.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test signal", "instruction": "Monitor PNP input across range.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace switch", "instruction": "Install new PNP switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 180}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0851", "P0852", "P0853"],
+    "faq": [
+      {"q": "Is this the range sensor?", "a": "Related but specifically the PNP portion."}
+    ]
+  },
+  {
+    "code": "P0851",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Park/Neutral Switch Input Circuit Low",
+    "shortDescription": "Park/neutral switch input is low.",
+    "fullDescription": "P0851 sets when the PNP input voltage is below the expected range. Common causes are short to ground or a failed switch stuck closed.",
+    "severity": "medium",
+    "safetyImpact": "Starter may engage in gear.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed switch", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Starting issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect wiring", "instruction": "Check for short to ground.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "Install new PNP switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 180}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0850"],
+    "faq": [
+      {"q": "Safety risk?", "a": "Yes — diagnose promptly."}
+    ]
+  },
+  {
+    "code": "P0852",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Park/Neutral Switch Input Circuit High",
+    "shortDescription": "Park/neutral switch input is high.",
+    "fullDescription": "P0852 sets when the PNP input voltage exceeds the expected range, indicating open circuit or short to voltage. The vehicle may not allow starting in Park.",
+    "severity": "medium",
+    "safetyImpact": "No start condition.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to voltage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No crank in Park"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test circuit", "instruction": "Check for open or short to power.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "Install new switch if needed.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 180}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0850"],
+    "faq": [
+      {"q": "Why won't my car start?", "a": "High circuit may block starter enable."}
+    ]
+  },
+  {
+    "code": "P0853",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Drive Switch Input Circuit",
+    "shortDescription": "Fault detected in the drive switch input.",
+    "fullDescription": "P0853 indicates an abnormal signal from the drive switch input. On vehicles with separate drive position input this switch tells the PCM when drive is selected for shift scheduling.",
+    "severity": "low",
+    "safetyImpact": "Shift scheduling may be affected.",
+    "causes": [
+      {"cause": "Failed switch", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Odd shift points"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan live data", "instruction": "Monitor drive switch state.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair or replace", "instruction": "Fix wiring or replace switch.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 150}, "mechanic": {"min": 150, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0850"],
+    "faq": [
+      {"q": "Same as range sensor?", "a": "Related but focuses on drive position only."}
+    ]
+  },
+  {
+    "code": "P0856",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Traction Control Input Signal",
+    "shortDescription": "Fault in traction control input to PCM.",
+    "fullDescription": "P0856 sets when the traction control module input to the PCM is invalid. This input is used by the PCM to reduce torque during wheel slip. A fault may disable traction control cooperation between modules.",
+    "severity": "medium",
+    "safetyImpact": "Traction control effectiveness reduced.",
+    "causes": [
+      {"cause": "TCS module fault", "likelihood": "medium"},
+      {"cause": "CAN bus issue", "likelihood": "medium"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "TCS warning lamp"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan TCS module", "instruction": "Check for TCS codes.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect CAN", "instruction": "Verify bus communication.", "tools": ["oscilloscope"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Can I still drive?", "a": "Yes, but with reduced traction assistance."}
+    ]
+  },
+  {
+    "code": "P0871",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch C Range/Performance",
+    "shortDescription": "Pressure sensor C reports implausible values.",
+    "fullDescription": "P0871 sets when transmission pressure sensor C shows readings that do not correspond with operating conditions. Internal transmission issues or a failing sensor are typical causes.",
+    "severity": "high",
+    "safetyImpact": "Limp mode, slipping.",
+    "causes": [
+      {"cause": "Failed sensor C", "likelihood": "high"},
+      {"cause": "Valve body issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid check", "instruction": "Verify level and condition.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Sensor test", "instruction": "Check sensor and wiring.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 3, "title": "Internal repair", "instruction": "Service as needed.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 400, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0872", "P0873"],
+    "faq": [
+      {"q": "Multiple sensors?", "a": "Yes, transmissions may have A, B, C, D sensors."}
+    ]
+  },
+  {
+    "code": "P0872",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch C Circuit Low",
+    "shortDescription": "Pressure sensor C circuit voltage is low.",
+    "fullDescription": "P0872 indicates pressure sensor C voltage is below threshold. Usually caused by a short to ground, connector corrosion, or a failed sensor.",
+    "severity": "high",
+    "safetyImpact": "Limp mode.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Transmission limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiring check", "instruction": "Look for shorts to ground.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0871", "P0873"],
+    "faq": [
+      {"q": "What is sensor C?", "a": "A third pressure sensor in complex transmissions."}
+    ]
+  },
+  {
+    "code": "P0873",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch C Circuit High",
+    "shortDescription": "Pressure sensor C circuit voltage is high.",
+    "fullDescription": "P0873 indicates sensor C voltage is above threshold due to open circuit, short to voltage, or failed sensor. Diagnosis mirrors other high-circuit pressure sensor codes.",
+    "severity": "high",
+    "safetyImpact": "Shift quality affected.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check harness", "instruction": "Test for opens.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0871", "P0872"],
+    "faq": [
+      {"q": "Should I replace the whole valve body?", "a": "Only if sensor replacement doesn't resolve."}
+    ]
+  },
+  {
+    "code": "P0875",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch D Circuit",
+    "shortDescription": "Circuit fault in pressure sensor D.",
+    "fullDescription": "P0875 sets when the PCM sees an electrical issue in pressure sensor D. Sensors A-D correspond to different hydraulic circuits within the transmission.",
+    "severity": "high",
+    "safetyImpact": "Transmission may not shift correctly.",
+    "causes": [
+      {"cause": "Failed sensor D", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test sensor", "instruction": "Check sensor and harness.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace if needed", "instruction": "Install new sensor D.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0876", "P0877"],
+    "faq": [
+      {"q": "Four sensors?", "a": "Yes, on complex automatics."}
+    ]
+  },
+  {
+    "code": "P0876",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch D Range/Performance",
+    "shortDescription": "Pressure sensor D reading is implausible.",
+    "fullDescription": "P0876 sets when sensor D reports values inconsistent with operating conditions, often due to internal transmission issues or sensor drift.",
+    "severity": "high",
+    "safetyImpact": "Shift quality degraded.",
+    "causes": [
+      {"cause": "Failed sensor D", "likelihood": "high"},
+      {"cause": "Internal hydraulic fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid check", "instruction": "Start with fluid inspection.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test sensor", "instruction": "Verify sensor operation.", "tools": ["DMM"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 400, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0875", "P0877"],
+    "faq": [
+      {"q": "Is it serious?", "a": "Yes — sustained issues can damage the transmission."}
+    ]
+  },
+  {
+    "code": "P0877",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Fluid Pressure Sensor/Switch D Circuit Low",
+    "shortDescription": "Pressure sensor D voltage is low.",
+    "fullDescription": "P0877 indicates pressure sensor D circuit voltage is below threshold, typically from a short to ground or failed sensor.",
+    "severity": "high",
+    "safetyImpact": "Transmission limp mode.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Slipping"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check wiring", "instruction": "Inspect for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new sensor D.", "tools": ["hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 300, "max": 1000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0875", "P0876"],
+    "faq": [
+      {"q": "Limp mode permanent?", "a": "No — clears once fault is fixed and reset."}
+    ]
+  },
+  {
+    "code": "P0880",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Input Signal",
+    "shortDescription": "Fault in Transmission Control Module power input signal.",
+    "fullDescription": "P0880 indicates the TCM power input signal is abnormal. This may be caused by a bad fuse, corroded connector, or a weak battery feed to the TCM.\n\nThe TCM requires stable power for proper shift control; low or interrupted power can cause erratic shifting and default strategies.",
+    "severity": "high",
+    "safetyImpact": "Erratic transmission behavior possible.",
+    "causes": [
+      {"cause": "Blown fuse or relay", "likelihood": "high"},
+      {"cause": "Corroded connector", "likelihood": "medium"},
+      {"cause": "Faulty wiring", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh or no shifting"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuses", "instruction": "Inspect TCM fuses and relays.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Verify voltage", "instruction": "Confirm TCM power supply is stable.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 80}, "mechanic": {"min": 100, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0882", "P0883"],
+    "faq": [
+      {"q": "Can battery cause this?", "a": "A weak battery or bad ground can, yes."}
+    ]
+  },
+  {
+    "code": "P0882",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Input Signal Low",
+    "shortDescription": "TCM power input signal is low.",
+    "fullDescription": "P0882 indicates the power feed to the TCM is below minimum threshold. Usually caused by corroded grounds, loose battery terminals, or a damaged fuse holder.",
+    "severity": "high",
+    "safetyImpact": "Transmission may operate erratically.",
+    "causes": [
+      {"cause": "Low battery voltage", "likelihood": "high"},
+      {"cause": "Poor ground connection", "likelihood": "high"},
+      {"cause": "Corroded fuse holder", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh shifts",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Battery test", "instruction": "Check battery and charging.", "tools": ["DMM"], "difficulty": "easy"},
+      {"step": 2, "title": "Ground clean", "instruction": "Clean and tighten all grounds.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 150}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0880", "P0883"],
+    "faq": [
+      {"q": "Start with battery?", "a": "Yes — always verify charging first."}
+    ]
+  },
+  {
+    "code": "P0883",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Input Signal High",
+    "shortDescription": "TCM power input signal is high.",
+    "fullDescription": "P0883 sets when the TCM power input exceeds normal voltage. This may indicate a failing voltage regulator or a charging system overvoltage condition.",
+    "severity": "high",
+    "safetyImpact": "Possible TCM damage if overvoltage persists.",
+    "causes": [
+      {"cause": "Overcharging alternator", "likelihood": "high"},
+      {"cause": "Wiring short to B+", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Other electrical codes",
+      "Bulbs burning out"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Charging test", "instruction": "Verify regulator output.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace alternator", "instruction": "If overcharging confirmed.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0880", "P0882"],
+    "faq": [
+      {"q": "Can overvoltage harm modules?", "a": "Yes — fix promptly."}
+    ]
+  },
+  {
+    "code": "P0884",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Input Signal Intermittent",
+    "shortDescription": "Intermittent TCM power input.",
+    "fullDescription": "P0884 sets when the TCM power signal drops out intermittently. Causes are usually loose connections or a worn ignition switch.",
+    "severity": "medium",
+    "safetyImpact": "Sporadic shift issues.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high"},
+      {"cause": "Worn ignition switch", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Intermittent limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Monitor TCM voltage while wiggling harness.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Repair connections", "instruction": "Tighten or replace as found.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 150}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0880"],
+    "faq": [
+      {"q": "Can ignition switch cause this?", "a": "Yes, especially on older vehicles."}
+    ]
+  },
+  {
+    "code": "P0890",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Relay Sense Circuit",
+    "shortDescription": "Fault in TCM power relay sense circuit.",
+    "fullDescription": "P0890 indicates the PCM/TCM cannot confirm the TCM power relay state via the sense line. The relay itself may be fine but the feedback signal is missing or incorrect.",
+    "severity": "medium",
+    "safetyImpact": "Possible transmission defaults.",
+    "causes": [
+      {"cause": "Failed relay", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Intermittent shifting"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test relay", "instruction": "Check relay function.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Verify sense circuit", "instruction": "Confirm signal reaches module.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0891"],
+    "faq": [
+      {"q": "Relay location?", "a": "Usually in underhood fuse box."}
+    ]
+  },
+  {
+    "code": "P0891",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "TCM Power Relay Sense Circuit Range/Performance",
+    "shortDescription": "TCM relay sense signal is implausible.",
+    "fullDescription": "P0891 sets when the TCM power relay sense line shows values that do not match the commanded relay state. Typical causes include a failing relay contact or corrupted wiring.",
+    "severity": "medium",
+    "safetyImpact": "Transmission may operate erratically.",
+    "causes": [
+      {"cause": "Relay contact worn", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Shift quality problems"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Swap relay", "instruction": "Try known-good relay.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Test sense circuit", "instruction": "Verify harness and terminals.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": ["P0890"],
+    "faq": [
+      {"q": "Can I swap with another relay?", "a": "Often yes — identical relays in the fuse box."}
+    ]
+  },
+  {
+    "code": "P0894",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Transmission Component Slipping",
+    "shortDescription": "The TCM has detected slippage in a transmission component.",
+    "fullDescription": "P0894 is set when the TCM sees a clutch pack, band, or torque converter slipping more than tolerated. Unlike P0730 family, this is a generic component-slip indicator.\n\nSlippage is often caused by worn friction material, low pressure, or stuck valve body passages.",
+    "severity": "high",
+    "safetyImpact": "Severe transmission damage if ignored.",
+    "causes": [
+      {"cause": "Worn clutches or bands", "likelihood": "high"},
+      {"cause": "Low fluid pressure", "likelihood": "medium"},
+      {"cause": "Stuck valve body", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Slipping",
+      "Rising RPM without acceleration"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid inspection", "instruction": "Check level/color/smell.", "tools": ["hand tools"], "difficulty": "easy"},
+      {"step": 2, "title": "Pressure test", "instruction": "Use external gauge on line pressure.", "tools": ["pressure gauge"], "difficulty": "advanced"},
+      {"step": 3, "title": "Rebuild if needed", "instruction": "Internal service typically required.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "mechanic": {"min": 1500, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-16 hours",
+    "relatedCodes": ["P0895", "P0896"],
+    "faq": [
+      {"q": "Fluid change first?", "a": "Worth trying on early slip with burnt fluid."}
+    ]
+  },
+  {
+    "code": "P0895",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Shift Time Too Short",
+    "shortDescription": "Shifts are completing faster than expected.",
+    "fullDescription": "P0895 indicates the time the transmission takes to complete a shift is below the expected window. This usually means harsh, abrupt shifts caused by excessive line pressure or stuck accumulator/valve body components.",
+    "severity": "medium",
+    "safetyImpact": "Harsh shifting is uncomfortable and stresses drivetrain.",
+    "causes": [
+      {"cause": "High line pressure", "likelihood": "high"},
+      {"cause": "Stuck accumulator", "likelihood": "medium"},
+      {"cause": "Valve body issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Harsh jerky shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Pressure test", "instruction": "Measure line pressure.", "tools": ["pressure gauge"], "difficulty": "advanced"},
+      {"step": 2, "title": "Valve body service", "instruction": "Inspect or replace valve body.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 600, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0894", "P0896"],
+    "faq": [
+      {"q": "Is harsh shifting harmful?", "a": "Yes — it wears components faster."}
+    ]
+  },
+  {
+    "code": "P0896",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Shift Time Too Long",
+    "shortDescription": "Shifts are taking longer than expected.",
+    "fullDescription": "P0896 sets when transmission shifts exceed their expected duration. This is often due to low fluid pressure, worn clutches, or restricted hydraulic passages causing lingering overlap.",
+    "severity": "high",
+    "safetyImpact": "Slipping can quickly destroy the transmission.",
+    "causes": [
+      {"cause": "Low line pressure", "likelihood": "high"},
+      {"cause": "Worn clutches", "likelihood": "high"},
+      {"cause": "Clogged filter", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Flared shifts",
+      "Slipping"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Fluid and filter", "instruction": "Replace fluid and filter.", "tools": ["hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Pressure test", "instruction": "Measure pressure across gears.", "tools": ["pressure gauge"], "difficulty": "advanced"},
+      {"step": 3, "title": "Internal repair", "instruction": "Rebuild if friction material is worn.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 600}, "mechanic": {"min": 1500, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-16 hours",
+    "relatedCodes": ["P0894", "P0895"],
+    "faq": [
+      {"q": "Fluid service worth trying?", "a": "Yes on early stages."}
+    ]
+  },
+  {
+    "code": "P0900",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Actuator Circuit/Open",
+    "shortDescription": "Clutch actuator circuit is open.",
+    "fullDescription": "P0900 indicates the clutch actuator control circuit is open — typical on automated manual and DCT vehicles. Causes include broken wires, failed actuator motor, or connector issues.",
+    "severity": "high",
+    "safetyImpact": "Clutch may not engage, causing loss of drive.",
+    "causes": [
+      {"cause": "Broken wiring", "likelihood": "high"},
+      {"cause": "Failed actuator", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No drive",
+      "Clutch warning"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiring check", "instruction": "Inspect actuator harness.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Install new clutch actuator.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0901", "P0902", "P0903"],
+    "faq": [
+      {"q": "DCT only?", "a": "Mostly — also automated manuals."}
+    ]
+  },
+  {
+    "code": "P0901",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Actuator Circuit Range/Performance",
+    "shortDescription": "Clutch actuator circuit performance is out of range.",
+    "fullDescription": "P0901 indicates the clutch actuator is not responding as commanded. The position feedback may not match the command signal.",
+    "severity": "high",
+    "safetyImpact": "Clutch engagement unreliable.",
+    "causes": [
+      {"cause": "Worn actuator", "likelihood": "high"},
+      {"cause": "Position sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Slipping launches",
+      "Clutch limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Adaptation", "instruction": "Run clutch adaptation with factory tool.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "If adaptation fails.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0900"],
+    "faq": [
+      {"q": "Adaptation often fixes?", "a": "Yes, especially after fluid service."}
+    ]
+  },
+  {
+    "code": "P0902",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Actuator Circuit Low",
+    "shortDescription": "Clutch actuator circuit voltage low.",
+    "fullDescription": "P0902 indicates the clutch actuator control circuit voltage is below threshold, usually caused by a short to ground or a shorted actuator coil.",
+    "severity": "high",
+    "safetyImpact": "Clutch may be unusable.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed actuator", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No drive"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check wiring", "instruction": "Test for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0900", "P0903"],
+    "faq": [
+      {"q": "Low vs open?", "a": "Low = short, open = broken wire."}
+    ]
+  },
+  {
+    "code": "P0903",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Clutch Actuator Circuit High",
+    "shortDescription": "Clutch actuator circuit voltage high.",
+    "fullDescription": "P0903 indicates the clutch actuator control circuit voltage is above threshold due to an open or short to voltage.",
+    "severity": "high",
+    "safetyImpact": "Loss of clutch function.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to voltage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No drive"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test harness", "instruction": "Check for opens and shorts to B+.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "If confirmed faulty.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0900", "P0902"],
+    "faq": [
+      {"q": "Which code is worse?", "a": "All three prevent clutch operation."}
+    ]
+  },
+  {
+    "code": "P0904",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Position Circuit",
+    "shortDescription": "Fault in gate select position sensor circuit.",
+    "fullDescription": "P0904 is set when the gate select position sensor circuit (used in automated transmissions to select shift gates) reports an electrical fault.",
+    "severity": "high",
+    "safetyImpact": "Shifting between gears may fail.",
+    "causes": [
+      {"cause": "Failed sensor", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Stuck in one gear"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test sensor", "instruction": "Check sensor and harness.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0905", "P0906", "P0907"],
+    "faq": [
+      {"q": "Gate select vs shift select?", "a": "Gate is lateral, shift is longitudinal."}
+    ]
+  },
+  {
+    "code": "P0905",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Position Circuit Range/Performance",
+    "shortDescription": "Gate select sensor reading out of range.",
+    "fullDescription": "P0905 indicates gate select position sensor values are inconsistent with expected movement. Mechanical binding or sensor drift are common causes.",
+    "severity": "high",
+    "safetyImpact": "Gear selection may fail.",
+    "causes": [
+      {"cause": "Mechanical binding", "likelihood": "medium"},
+      {"cause": "Sensor drift", "likelihood": "high"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Shift refusal"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Adaptation", "instruction": "Run relearn procedure.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "If relearn fails.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0904"],
+    "faq": [
+      {"q": "Scan tool required?", "a": "Yes — factory-level tool usually needed."}
+    ]
+  },
+  {
+    "code": "P0906",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Position Circuit Low",
+    "shortDescription": "Gate select sensor signal low.",
+    "fullDescription": "P0906 indicates the gate select position sensor voltage is below threshold. Usually caused by a short to ground or failed sensor.",
+    "severity": "high",
+    "safetyImpact": "Selection failure.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No gear change"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check harness", "instruction": "Look for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new sensor.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0904", "P0907"],
+    "faq": [
+      {"q": "Common on AMT?", "a": "Yes, especially on older systems."}
+    ]
+  },
+  {
+    "code": "P0907",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Position Circuit High",
+    "shortDescription": "Gate select sensor signal high.",
+    "fullDescription": "P0907 indicates gate select position sensor voltage is above threshold, from open or short to voltage.",
+    "severity": "high",
+    "safetyImpact": "Selection failure.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to voltage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Stuck gear"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test harness", "instruction": "Look for open or short to B+.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "If sensor confirmed bad.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0906"],
+    "faq": [
+      {"q": "How to isolate?", "a": "Disconnect sensor and measure harness."}
+    ]
+  },
+  {
+    "code": "P0908",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Control Circuit",
+    "shortDescription": "Fault in gate select actuator control.",
+    "fullDescription": "P0908 indicates an electrical problem in the gate select actuator output circuit. The TCM commands the actuator to move the shift fork laterally between gates.",
+    "severity": "high",
+    "safetyImpact": "Cannot change gear groups.",
+    "causes": [
+      {"cause": "Failed actuator motor", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Transmission won't select odd/even gates"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test motor", "instruction": "Check motor resistance and command.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0909", "P0910"],
+    "faq": [
+      {"q": "Can be serviced?", "a": "Sometimes — more often replaced as an assembly."}
+    ]
+  },
+  {
+    "code": "P0909",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Control Performance",
+    "shortDescription": "Gate select actuator performance fault.",
+    "fullDescription": "P0909 sets when the gate select actuator does not perform the commanded movement correctly, often due to wear, binding, or adaptation drift.",
+    "severity": "high",
+    "safetyImpact": "Gear change failure.",
+    "causes": [
+      {"cause": "Actuator wear", "likelihood": "high"},
+      {"cause": "Linkage binding", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Missed shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Relearn", "instruction": "Run actuator adaptation.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace", "instruction": "Install new actuator if relearn fails.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0908"],
+    "faq": [
+      {"q": "How long do actuators last?", "a": "Varies — many last the life of the vehicle."}
+    ]
+  },
+  {
+    "code": "P0910",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Actuator Circuit Low",
+    "shortDescription": "Gate select actuator circuit voltage low.",
+    "fullDescription": "P0910 indicates the gate select actuator circuit voltage is below threshold — typically a short to ground or failed motor.",
+    "severity": "high",
+    "safetyImpact": "No gear selection.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed motor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Transmission limp mode"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Harness test", "instruction": "Check for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace motor", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0908", "P0911"],
+    "faq": [
+      {"q": "Can I drive?", "a": "Often no — call a tow."}
+    ]
+  },
+  {
+    "code": "P0911",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Actuator Circuit High",
+    "shortDescription": "Gate select actuator circuit voltage high.",
+    "fullDescription": "P0911 indicates the gate select actuator circuit voltage is above threshold — an open or short to voltage.",
+    "severity": "high",
+    "safetyImpact": "No gear selection.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to B+", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Gear change failure"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test harness", "instruction": "Look for open or short to power.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace motor", "instruction": "Install new actuator.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0910"],
+    "faq": [
+      {"q": "Part availability?", "a": "Usually OEM-only, can be expensive."}
+    ]
+  },
+  {
+    "code": "P0912",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gate Select Actuator Intermittent",
+    "shortDescription": "Gate select actuator signal intermittent.",
+    "fullDescription": "P0912 sets when the gate select actuator signal drops out intermittently, usually from a loose connector or fatigued wire.",
+    "severity": "medium",
+    "safetyImpact": "Sporadic shift issues.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high"},
+      {"cause": "Wiring fatigue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Intermittent missed shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Monitor data while wiggling.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Repair connector", "instruction": "Fix or replace.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0908"],
+    "faq": [
+      {"q": "Hard to reproduce?", "a": "Often — try road-test wiggle."}
+    ]
+  },
+  {
+    "code": "P0913",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Circuit",
+    "shortDescription": "Fault in gear shift position circuit.",
+    "fullDescription": "P0913 sets when the PCM/TCM sees an electrical fault on the gear shift position (longitudinal) sensor circuit. Used on automated manual and DCT systems.",
+    "severity": "high",
+    "safetyImpact": "Gear changes may fail.",
+    "causes": [
+      {"cause": "Failed sensor", "likelihood": "high"},
+      {"cause": "Wiring issue", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Can't engage gear"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test sensor", "instruction": "Verify sensor operation.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0914", "P0915", "P0916"],
+    "faq": [
+      {"q": "Same as gate select?", "a": "No — this is shift axis (engagement depth)."}
+    ]
+  },
+  {
+    "code": "P0914",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Circuit Range/Performance",
+    "shortDescription": "Gear shift position sensor reading out of range.",
+    "fullDescription": "P0914 indicates the shift position sensor reports values that do not match commanded positions. Sensor drift or binding is common.",
+    "severity": "high",
+    "safetyImpact": "Shift reliability affected.",
+    "causes": [
+      {"cause": "Sensor drift", "likelihood": "high"},
+      {"cause": "Mechanical wear", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Missed engagements"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Relearn", "instruction": "Run adaptation procedure.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "If relearn fails.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0913"],
+    "faq": [
+      {"q": "Check other codes first?", "a": "Yes — actuator issues can cause false sensor codes."}
+    ]
+  },
+  {
+    "code": "P0915",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Circuit Low",
+    "shortDescription": "Gear shift position sensor circuit low.",
+    "fullDescription": "P0915 indicates low voltage on the shift position sensor circuit — short to ground or failed sensor are typical.",
+    "severity": "high",
+    "safetyImpact": "Shift failures.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed sensor", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Won't shift"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check wiring", "instruction": "Look for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0913", "P0916"],
+    "faq": [
+      {"q": "Typical first step?", "a": "Inspect connector for corrosion."}
+    ]
+  },
+  {
+    "code": "P0916",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Circuit High",
+    "shortDescription": "Gear shift position sensor circuit high.",
+    "fullDescription": "P0916 indicates high voltage on the shift position sensor circuit — open or short to voltage.",
+    "severity": "high",
+    "safetyImpact": "Shift failures.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Short to B+", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "No shifting"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Harness test", "instruction": "Verify continuity.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Install new if faulty.", "tools": ["specialty tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 350}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0915"],
+    "faq": [
+      {"q": "Common failure mode?", "a": "Connector corrosion is very common."}
+    ]
+  },
+  {
+    "code": "P0917",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Circuit Intermittent",
+    "shortDescription": "Intermittent shift position signal.",
+    "fullDescription": "P0917 sets when the shift position signal is intermittent. Usually a connector, terminal fit, or wiring harness issue.",
+    "severity": "medium",
+    "safetyImpact": "Sporadic shift problems.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high"},
+      {"cause": "Broken wire", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Random missed shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Monitor during harness movement.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Repair", "instruction": "Fix terminal fit or replace harness.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0913"],
+    "faq": [
+      {"q": "Spray contact cleaner?", "a": "It can help but a proper repair is better."}
+    ]
+  },
+  {
+    "code": "P0918",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Forward Actuator Circuit",
+    "shortDescription": "Fault in forward shift actuator control.",
+    "fullDescription": "P0918 sets when the forward shift actuator control circuit has an electrical fault. The actuator drives the shift rail forward to engage specific gears.",
+    "severity": "high",
+    "safetyImpact": "Forward gear engagement may fail.",
+    "causes": [
+      {"cause": "Failed actuator", "likelihood": "high"},
+      {"cause": "Wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Can't engage certain gears"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test actuator", "instruction": "Check resistance and response.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Install new unit.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0919", "P0920"],
+    "faq": [
+      {"q": "Can be tested in place?", "a": "Partially — full test usually needs removal."}
+    ]
+  },
+  {
+    "code": "P0919",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Position Control Error",
+    "shortDescription": "Shift position control did not reach target.",
+    "fullDescription": "P0919 indicates the TCM commanded a shift position and the actuator did not achieve it within the time window. Common causes are worn actuators, synchros, or internal hydraulic problems.",
+    "severity": "high",
+    "safetyImpact": "Missed gears, loss of drive.",
+    "causes": [
+      {"cause": "Worn actuator", "likelihood": "high"},
+      {"cause": "Worn synchros", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Grinding or missed shifts"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Adaptation", "instruction": "Run shift relearn.", "tools": ["scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Internal repair", "instruction": "Service gearbox if needed.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 800}, "mechanic": {"min": 1000, "max": 4000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P0918"],
+    "faq": [
+      {"q": "Can fluid help?", "a": "Sometimes fluid service addresses early issues."}
+    ]
+  },
+  {
+    "code": "P0920",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Forward Actuator Circuit Low",
+    "shortDescription": "Forward shift actuator circuit voltage low.",
+    "fullDescription": "P0920 indicates the forward shift actuator control circuit voltage is below threshold, typically a short to ground.",
+    "severity": "high",
+    "safetyImpact": "Forward gear engagement fails.",
+    "causes": [
+      {"cause": "Short to ground", "likelihood": "high"},
+      {"cause": "Failed actuator", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Missing gears"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Harness test", "instruction": "Check for shorts.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Install new actuator.", "tools": ["specialty tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 150, "max": 700}, "mechanic": {"min": 700, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0918"],
+    "faq": [
+      {"q": "Related to rearward?", "a": "Yes — there are separate codes for rearward actuator."}
+    ]
+  },
+  {
+    "code": "P0928",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Lock Solenoid Control Circuit Range/Performance",
+    "shortDescription": "Shift lock solenoid performance issue.",
+    "fullDescription": "P0928 sets when the gear shift lock solenoid (which prevents shifter movement out of Park without brake depressed) operates outside expected parameters. Usually an internal solenoid issue.",
+    "severity": "medium",
+    "safetyImpact": "May prevent shifting out of Park or allow it without brake.",
+    "causes": [
+      {"cause": "Failed shift lock solenoid", "likelihood": "high"},
+      {"cause": "Brake switch fault", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Cannot shift out of Park"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test brake switch", "instruction": "Verify brake pedal input.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace solenoid", "instruction": "Install new lock solenoid.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0929"],
+    "faq": [
+      {"q": "Override available?", "a": "Most vehicles have a shift lock override slot."}
+    ]
+  },
+  {
+    "code": "P0929",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission / Clutch / Shift / Gear",
+    "title": "Gear Shift Lock Solenoid Control Circuit High",
+    "shortDescription": "Shift lock solenoid circuit voltage high.",
+    "fullDescription": "P0929 indicates the shift lock solenoid circuit voltage is above threshold — open or short to voltage.",
+    "severity": "medium",
+    "safetyImpact": "Shift lock may not function.",
+    "causes": [
+      {"cause": "Open circuit", "likelihood": "high"},
+      {"cause": "Failed solenoid", "likelihood": "medium"}
+    ],
+    "symptoms": [
+      "Check Engine Light",
+      "Shift lock issues"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Test circuit", "instruction": "Look for open or short.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace solenoid", "instruction": "Install new unit.", "tools": ["hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0928"],
+    "faq": [
+      {"q": "Ignition interlock?", "a": "Yes — can be tied to key removal logic."}
+    ]
+  }
+]
