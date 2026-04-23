@@ -23,6 +23,8 @@ import AffectedModels from "./AffectedModels";
 import HelpfulFeedback from "./HelpfulFeedback";
 import ShareButton from "./ShareButton";
 import SaveButton from "./SaveButton";
+import TrustBadge from "./TrustBadge";
+import Sources from "./Sources";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -70,6 +72,8 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
         <div className="mt-4 space-y-8">
           <CodeHero code={code} />
 
+          <TrustBadge />
+
           <AdUnit position="leaderboard" className="my-6" />
 
           <SymptomsSection symptoms={code.symptoms} />
@@ -106,6 +110,8 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
           />
 
           <FAQSection faqs={code.faq} />
+
+          <Sources category={code.category} brand={code.brand} />
         </div>
       </div>
     </>
