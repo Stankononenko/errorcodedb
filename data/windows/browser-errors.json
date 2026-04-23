@@ -7426,5 +7426,3019 @@
         "a": "Google initiated Certificate Transparency and Chrome enforces it strictly. Firefox has been adopting CT enforcement more gradually and may not yet require it for all certificates."
       }
     ]
+  },
+  {
+    "id": "windows-browser-http-300",
+    "category": "browser",
+    "code": "HTTP 300",
+    "displayCode": "HTTP 300 Multiple Choices",
+    "title": "HTTP 300 Multiple Choices",
+    "shortDescription": "The requested resource has multiple representations and the server needs the client to choose one.",
+    "fullDescription": "HTTP 300 Multiple Choices indicates the target resource has more than one representation, each with its own identifier, and the user agent or user must pick one. This is rare in practice because most servers either auto-redirect or use content negotiation.\n\nBrowsers usually do not render a 300 visibly; they follow a Location header if present or display the server's HTML body listing options. Developers may see this when inspecting Network tab responses.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Server has multiple versions of the resource (language, format)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Misconfigured content negotiation on server",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Page shows list of alternative URLs",
+      "Browser stays on current page without navigating"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Click a preferred variant",
+        "instruction": "If the page lists choices, click the one matching your language or format needs.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Check Accept headers",
+        "instruction": "Developers: verify the Accept-Language and Accept headers your client sends so the server can auto-pick.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-5 minutes",
+    "whenToCallPro": "If you run the server and cannot configure proper content negotiation.",
+    "relatedCodes": [
+      "HTTP 301",
+      "HTTP 302"
+    ],
+    "faq": [
+      {
+        "q": "Is HTTP 300 an error?",
+        "a": "No, it is an informational redirection status that asks the client to pick among variants."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-301",
+    "category": "browser",
+    "code": "HTTP 301",
+    "displayCode": "HTTP 301 Moved Permanently",
+    "title": "HTTP 301 Moved Permanently",
+    "shortDescription": "The requested resource has been permanently moved to a new URL.",
+    "fullDescription": "HTTP 301 tells browsers and search engines that the resource has permanently relocated to the URL provided in the Location header. Browsers cache this redirect aggressively and may bypass the original URL on future requests.\n\nThis status is commonly used when migrating a site to HTTPS, changing domain names, or restructuring URL paths. If the new URL is wrong, users can get stuck in a cached loop that is difficult to recover from without clearing browser data.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Site moved to new domain or HTTPS",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "URL structure changed permanently",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incorrect permanent redirect cached by browser",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Browser automatically navigates to a different URL",
+      "Old bookmark now opens new address",
+      "Cannot access original URL even after server rollback"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update your bookmarks",
+        "instruction": "Save the new final URL as the bookmark instead of the old one.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clear cached redirects",
+        "instruction": "If a bad 301 is cached, clear browsing data (cached images and files) for the affected site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-10 minutes",
+    "whenToCallPro": "If you administer the server and a bad 301 was pushed site-wide.",
+    "relatedCodes": [
+      "HTTP 302",
+      "HTTP 308"
+    ],
+    "faq": [
+      {
+        "q": "Why can't I go back to the old URL?",
+        "a": "Browsers cache 301 redirects heavily. Clear cache or use a private window to retry the original URL."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-302",
+    "category": "browser",
+    "code": "HTTP 302",
+    "displayCode": "HTTP 302 Found",
+    "title": "HTTP 302 Found (Temporary Redirect)",
+    "shortDescription": "The resource is temporarily at a different URL; use the original URL for future requests.",
+    "fullDescription": "HTTP 302 Found indicates a temporary redirect. The server asks the browser to fetch the resource from a different URL this time, but to keep using the original URL for future requests. Unlike 301, 302 is not cached permanently.\n\n302 is commonly used for login redirects, A/B testing, and regional routing. Problems appear when session cookies or auth tokens are lost across the redirect, leading to redirect loops.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Login or authentication redirect",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Temporary server maintenance redirect",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Broken session causes redirect loop",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Automatic jump to another URL",
+      "Redirect loop ending in ERR_TOO_MANY_REDIRECTS",
+      "Login page reappears after signing in"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear site cookies",
+        "instruction": "Open site settings and clear cookies for the affected domain to break broken session loops.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try incognito mode",
+        "instruction": "Test in a private window to rule out extensions or stored cookies.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-5 minutes",
+    "whenToCallPro": "If the redirect loop is server-side and you cannot modify the server.",
+    "relatedCodes": [
+      "HTTP 301",
+      "HTTP 307"
+    ],
+    "faq": [
+      {
+        "q": "Is 302 bad for SEO?",
+        "a": "Yes for permanent moves - search engines won't transfer ranking. Use 301 for permanent redirects."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-304",
+    "category": "browser",
+    "code": "HTTP 304",
+    "displayCode": "HTTP 304 Not Modified",
+    "title": "HTTP 304 Not Modified",
+    "shortDescription": "The cached version of the resource is still valid; no new content is sent.",
+    "fullDescription": "HTTP 304 Not Modified is returned when the browser makes a conditional request (using If-Modified-Since or If-None-Match) and the server confirms the cached copy is still current. No response body is sent, saving bandwidth.\n\nThis is normal behavior, not an error. Issues arise only when a 304 is returned incorrectly and the user sees stale content that should have been refreshed.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Normal cache validation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server returns 304 when content actually changed (bad ETag)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Page looks outdated despite updates",
+      "DevTools Network tab shows 304 for files you expected to reload"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Hard refresh",
+        "instruction": "Press Ctrl+F5 (Cmd+Shift+R on macOS) to force revalidation and bypass the cache.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Clear cache",
+        "instruction": "If hard refresh doesn't help, clear cached images and files in browser settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-3 minutes",
+    "whenToCallPro": "Rarely needed - only if site-wide caching misconfiguration persists.",
+    "relatedCodes": [
+      "HTTP 200",
+      "HTTP 404"
+    ],
+    "faq": [
+      {
+        "q": "Is 304 an error?",
+        "a": "No, it's a success status meaning your cached copy is up to date."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-307",
+    "category": "browser",
+    "code": "HTTP 307",
+    "displayCode": "HTTP 307 Temporary Redirect",
+    "title": "HTTP 307 Temporary Redirect",
+    "shortDescription": "Temporary redirect that preserves the original HTTP method and body.",
+    "fullDescription": "HTTP 307 is like 302 but strictly requires the browser to reuse the original HTTP method. If the original request was POST, the follow-up must also be POST with the same body. This prevents accidental method changes that older 302 implementations allowed.\n\n307 is commonly used by HSTS preloads to force HTTPS without changing POST requests into GETs.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "HSTS upgrade from HTTP to HTTPS",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Temporary server routing redirect",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "URL switches from http:// to https:// automatically",
+      "POST form resubmits to a different endpoint"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use the HTTPS URL directly",
+        "instruction": "Bookmark and share the https:// URL to skip the redirect.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 minutes",
+    "whenToCallPro": "Not needed for end users.",
+    "relatedCodes": [
+      "HTTP 302",
+      "HTTP 308"
+    ],
+    "faq": [
+      {
+        "q": "How is 307 different from 302?",
+        "a": "307 forbids changing the HTTP method, while 302 implementations historically allowed POST to become GET."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-308",
+    "category": "browser",
+    "code": "HTTP 308",
+    "displayCode": "HTTP 308 Permanent Redirect",
+    "title": "HTTP 308 Permanent Redirect",
+    "shortDescription": "Permanent redirect that preserves the original HTTP method and body.",
+    "fullDescription": "HTTP 308 Permanent Redirect indicates the resource is permanently at a new URL, and unlike 301, the browser must preserve the HTTP method. Use this when migrating APIs permanently where POST and PUT semantics must not be changed.\n\nBrowsers cache 308 aggressively, similar to 301.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Permanent API endpoint migration",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Permanent HTTPS upgrade",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "API calls always rerouted to new URL",
+      "Bad 308 cached and persists after server rollback"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update bookmarks and API configs",
+        "instruction": "Change saved URLs to the final destination.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear cached redirects",
+        "instruction": "Remove cached 308 by clearing site data if the redirect needs to be reverted.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-10 minutes",
+    "whenToCallPro": "If you manage the server and need to unwind a mistaken 308.",
+    "relatedCodes": [
+      "HTTP 301",
+      "HTTP 307"
+    ],
+    "faq": [
+      {
+        "q": "Is 308 widely supported?",
+        "a": "Yes, all modern browsers from 2016+ support it."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-402",
+    "category": "browser",
+    "code": "HTTP 402",
+    "displayCode": "HTTP 402 Payment Required",
+    "title": "HTTP 402 Payment Required",
+    "shortDescription": "Reserved status code intended for digital payment systems; used by some APIs to signal a paid resource.",
+    "fullDescription": "HTTP 402 Payment Required was reserved for future use and has no standardized meaning. Some modern APIs (Stripe, Shopify) repurpose it to signal that a request cannot proceed until payment is made or a paid plan is upgraded.\n\nEnd users rarely encounter 402 from a browser directly; it usually appears in API responses inspected via DevTools.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "API requires payment or paid subscription upgrade",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Billing or payment method expired",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "API call fails with 402 status",
+      "Paid feature returns error",
+      "Web app shows billing upgrade prompt"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check billing status",
+        "instruction": "Log into the service's billing portal and verify your subscription or payment method.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update payment method",
+        "instruction": "Add a valid card and retry the request.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the billing is enterprise and requires your account team.",
+    "relatedCodes": [
+      "HTTP 401",
+      "HTTP 403"
+    ],
+    "faq": [
+      {
+        "q": "Is 402 official?",
+        "a": "It's reserved in the HTTP spec but has no universal meaning; implementations vary by API."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-410",
+    "category": "browser",
+    "code": "HTTP 410",
+    "displayCode": "HTTP 410 Gone",
+    "title": "HTTP 410 Gone",
+    "shortDescription": "The requested resource is permanently unavailable with no forwarding address.",
+    "fullDescription": "HTTP 410 Gone is like 404 but explicitly tells clients and search engines the resource has been intentionally removed and will not return. Search engines drop 410 URLs from their index faster than 404s.\n\nUsers see 410 when a page, product, or article has been deliberately retired.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Content deliberately removed by site owner",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Product discontinued or article retracted",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Page shows 'Gone' or 410 message",
+      "Old link no longer resolves"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Search for replacement content",
+        "instruction": "Use the site search or Google to find an updated or equivalent page.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Check the Wayback Machine",
+        "instruction": "Visit web.archive.org and paste the URL to view an archived version.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-5 minutes",
+    "whenToCallPro": "Not applicable - the content is intentionally gone.",
+    "relatedCodes": [
+      "HTTP 404",
+      "HTTP 301"
+    ],
+    "faq": [
+      {
+        "q": "How is 410 different from 404?",
+        "a": "410 means the resource is gone permanently and intentionally; 404 means it wasn't found but might exist elsewhere or return."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-413",
+    "category": "browser",
+    "code": "HTTP 413",
+    "displayCode": "HTTP 413 Payload Too Large",
+    "title": "HTTP 413 Payload Too Large",
+    "shortDescription": "The request body exceeds the server's size limit.",
+    "fullDescription": "HTTP 413 Payload Too Large (formerly 'Request Entity Too Large') means the server rejected the upload because it exceeds configured size limits. Common when uploading large files, images, or videos through a web form.\n\nLimits are set at the web server (nginx, Apache, IIS) or application layer. Typical defaults are 1-10 MB.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "File upload exceeds server size limit",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Very long form field (e.g., pasted data)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Upload fails with 413 error",
+      "Large file posts fail while small ones succeed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compress or resize the file",
+        "instruction": "Use image compression, video transcoding, or ZIP to shrink the payload below the limit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Split the upload",
+        "instruction": "If the site supports chunked uploads, use a client that splits files.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Contact site admin",
+        "instruction": "Ask the site to raise client_max_body_size (nginx) or equivalent.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If you run the server and need to reconfigure upload limits across the stack.",
+    "relatedCodes": [
+      "HTTP 414",
+      "HTTP 431"
+    ],
+    "faq": [
+      {
+        "q": "What's a typical 413 limit?",
+        "a": "nginx defaults to 1 MB, PHP to 2 MB. Many hosts raise to 20-100 MB for media sites."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-414",
+    "category": "browser",
+    "code": "HTTP 414",
+    "displayCode": "HTTP 414 URI Too Long",
+    "title": "HTTP 414 URI Too Long",
+    "shortDescription": "The request URL exceeds the server's maximum length.",
+    "fullDescription": "HTTP 414 URI Too Long happens when the full request URL, including query string, is longer than the server allows. Typical limits are 2,000-8,000 characters. Triggered by GET forms with many fields or by encoding large data in query strings.\n\nSwitching to POST with a body usually fixes the issue.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Very long query string from a GET form",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Recursive redirect appending parameters",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Search with many filters returns 414",
+      "Very long URL fails to load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Shorten the URL",
+        "instruction": "Remove unnecessary query parameters, or use fewer filters.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Convert form to POST",
+        "instruction": "Developers: switch the form method from GET to POST so data goes in the body.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If you control the app and must redesign request flow.",
+    "relatedCodes": [
+      "HTTP 413",
+      "HTTP 431"
+    ],
+    "faq": [
+      {
+        "q": "What URL length is safe?",
+        "a": "Stay under 2,000 characters for maximum browser and server compatibility."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-415",
+    "category": "browser",
+    "code": "HTTP 415",
+    "displayCode": "HTTP 415 Unsupported Media Type",
+    "title": "HTTP 415 Unsupported Media Type",
+    "shortDescription": "The server refuses the request because it does not support the submitted content type.",
+    "fullDescription": "HTTP 415 Unsupported Media Type means the request body's Content-Type header does not match anything the endpoint accepts. Common with REST APIs expecting application/json but receiving form-encoded data, or file uploads of the wrong MIME type.\n\nFix by setting the correct Content-Type header and encoding the body accordingly.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Wrong Content-Type header sent by client",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Upload file extension not whitelisted",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "API call returns 415",
+      "File upload rejected with 'unsupported media type'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify accepted file types",
+        "instruction": "Check the upload form for a list of allowed extensions (PDF, PNG, etc.).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Set Content-Type header",
+        "instruction": "Developers: ensure requests set Content-Type: application/json or multipart/form-data as appropriate.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If developing against a poorly documented API.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 422"
+    ],
+    "faq": [
+      {
+        "q": "Why does my JSON post return 415?",
+        "a": "The server likely requires Content-Type: application/json and your client is sending text/plain or form-encoded."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-418",
+    "category": "browser",
+    "code": "HTTP 418",
+    "displayCode": "HTTP 418 I'm a teapot",
+    "title": "HTTP 418 I'm a teapot",
+    "shortDescription": "A joke status code from an April Fools RFC, occasionally used by sites to block bots.",
+    "fullDescription": "HTTP 418 I'm a teapot was defined in RFC 2324 (Hyper Text Coffee Pot Control Protocol) as an April Fools joke. It is not a standard production status but some services use it as a non-standard way to signal that the server refuses to brew coffee - or more practically, to reject obvious bots.\n\nUsers encountering 418 in production usually hit a site that deliberately returns it.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Site uses 418 as a bot-detection or joke response",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cloudflare or WAF configured to return 418 for abuse",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Page shows 'I'm a teapot' message",
+      "Only some pages affected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Review your automation",
+        "instruction": "If you are scripting requests, switch to official APIs or slow down request rate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Contact site support",
+        "instruction": "If you believe you are misidentified as a bot, ask the site to whitelist your IP.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not applicable.",
+    "relatedCodes": [
+      "HTTP 429",
+      "HTTP 403"
+    ],
+    "faq": [
+      {
+        "q": "Is 418 a real error?",
+        "a": "It's a valid but joke HTTP status. Some services repurpose it; browsers treat it as any other 4xx."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-422",
+    "category": "browser",
+    "code": "HTTP 422",
+    "displayCode": "HTTP 422 Unprocessable Entity",
+    "title": "HTTP 422 Unprocessable Entity",
+    "shortDescription": "The request body was well-formed but contains semantic errors the server cannot process.",
+    "fullDescription": "HTTP 422 Unprocessable Entity means the server understood the content type and parsed the body, but validation failed - for example, a missing required field, invalid email format, or value outside allowed range.\n\nIt's distinct from 400 Bad Request, which usually signals malformed syntax. REST APIs (especially Rails, Laravel) use 422 heavily for validation failures.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Missing required fields in form or API call",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Field values fail validation (format, range, uniqueness)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Form submission fails with 422",
+      "API response includes validation error array"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check the response body",
+        "instruction": "Open DevTools Network tab and inspect the 422 response - it usually lists which fields failed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Correct the invalid fields",
+        "instruction": "Fix the highlighted fields in the form and resubmit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-10 minutes",
+    "whenToCallPro": "Not applicable for end users.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 415"
+    ],
+    "faq": [
+      {
+        "q": "How is 422 different from 400?",
+        "a": "400 means the request syntax is broken; 422 means the syntax is fine but the data fails business rules."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-423",
+    "category": "browser",
+    "code": "HTTP 423",
+    "displayCode": "HTTP 423 Locked",
+    "title": "HTTP 423 Locked",
+    "shortDescription": "The resource is locked - usually by WebDAV or a collaborative editing system.",
+    "fullDescription": "HTTP 423 Locked is a WebDAV extension status code. It indicates the target resource is locked, typically because another user or process has it open for editing. Common in SharePoint, document collaboration tools, and WebDAV file servers.\n\nThe lock is usually released automatically after a timeout or when the other session closes the file.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Another user has the file open for editing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stale lock not released after a crash",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cannot save to shared document",
+      "WebDAV operation blocked"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait and retry",
+        "instruction": "Wait 1-2 minutes and try again; most locks auto-release.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Ask the other user to close the file",
+        "instruction": "Coordinate so the current holder releases the file.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Administrator unlock",
+        "instruction": "If lock is stale, an admin can break the lock via the server console.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "For stale SharePoint/WebDAV locks requiring admin access.",
+    "relatedCodes": [
+      "HTTP 409",
+      "HTTP 403"
+    ],
+    "faq": [
+      {
+        "q": "Can I force-unlock?",
+        "a": "Only an administrator can break another user's lock via the WebDAV server interface."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-451",
+    "category": "browser",
+    "code": "HTTP 451",
+    "displayCode": "HTTP 451 Unavailable For Legal Reasons",
+    "title": "HTTP 451 Unavailable For Legal Reasons",
+    "shortDescription": "The content is blocked due to legal demands such as court orders or government censorship.",
+    "fullDescription": "HTTP 451 Unavailable For Legal Reasons signals the server is blocking access because of a legal order - copyright takedown, court injunction, government censorship, or GDPR geographic restriction. The status code number references Ray Bradbury's novel Fahrenheit 451.\n\nIt is usually regional - content may be accessible from other countries.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Geographic content restriction (country blocks)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DMCA or copyright takedown",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Court order removing content",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Page shows legal-reasons block",
+      "Site works from other countries",
+      "Only specific content unavailable"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check if regional",
+        "instruction": "Try the same URL via a different network or region; some 451 blocks are geographic.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Seek alternate source",
+        "instruction": "Look for cached or mirrored copies on web.archive.org or other legal archives.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "3-10 minutes",
+    "whenToCallPro": "If you own the blocked content and want to dispute the takedown - contact a media lawyer.",
+    "relatedCodes": [
+      "HTTP 403",
+      "HTTP 410"
+    ],
+    "faq": [
+      {
+        "q": "Is 451 always government censorship?",
+        "a": "No, it includes DMCA takedowns, GDPR geo-blocks, and any other legally mandated block."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-501",
+    "category": "browser",
+    "code": "HTTP 501",
+    "displayCode": "HTTP 501 Not Implemented",
+    "title": "HTTP 501 Not Implemented",
+    "shortDescription": "The server does not recognize or support the functionality required to fulfill the request.",
+    "fullDescription": "HTTP 501 Not Implemented means the server cannot handle the HTTP method used (e.g., PUT or PATCH against a read-only endpoint) or feature requested. It differs from 405 Method Not Allowed, which means the method is known but not permitted on that resource.\n\nFor end users, this is typically a permanent condition until the server operator adds support.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "HTTP method not implemented by the server",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Requested feature not supported by the backend",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Specific action fails with 501",
+      "Other actions on the same site work fine"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use supported method",
+        "instruction": "If you are a developer, consult API docs and use supported methods (GET/POST) instead.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Contact site support",
+        "instruction": "Report the feature as missing and ask when it will be implemented.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If you are the server operator and need to implement the missing feature.",
+    "relatedCodes": [
+      "HTTP 405",
+      "HTTP 500"
+    ],
+    "faq": [
+      {
+        "q": "Is 501 a temporary error?",
+        "a": "Usually permanent until the server operator adds the missing functionality."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-505",
+    "category": "browser",
+    "code": "HTTP 505",
+    "displayCode": "HTTP 505 HTTP Version Not Supported",
+    "title": "HTTP 505 HTTP Version Not Supported",
+    "shortDescription": "The server does not support the HTTP protocol version used in the request.",
+    "fullDescription": "HTTP 505 HTTP Version Not Supported is returned when a client sends a request using an HTTP version the server cannot or will not process. For example, a very old server may refuse HTTP/2, or a very new server may refuse HTTP/0.9.\n\nThis is extremely rare for modern browsers, which negotiate protocol version with the server.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Client using outdated HTTP version",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Misconfigured reverse proxy stripping HTTP version info",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Site fails with 505",
+      "Custom HTTP client gets rejected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update your browser",
+        "instruction": "Install the latest version of Chrome, Firefox, Edge, or Safari.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check custom client settings",
+        "instruction": "For curl or scripts, force HTTP/1.1 with --http1.1 flag.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If running a server or proxy that must negotiate HTTP versions.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 501"
+    ],
+    "faq": [
+      {
+        "q": "Can I see which HTTP version I'm using?",
+        "a": "DevTools Network tab shows the protocol column (h2, h3, http/1.1) for each request."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-508",
+    "category": "browser",
+    "code": "HTTP 508",
+    "displayCode": "HTTP 508 Loop Detected",
+    "title": "HTTP 508 Loop Detected",
+    "shortDescription": "The server detected an infinite loop while processing the request.",
+    "fullDescription": "HTTP 508 Loop Detected, part of the WebDAV extension, signals that the server aborted because a request triggered an infinite loop. Common in WebDAV operations that recursively traverse circular references, or in reverse-proxy setups that route requests back to themselves.\n\nEnd users see it mostly on SharePoint, Nextcloud, or similar file-sharing servers.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Circular reference in WebDAV resource tree",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Reverse proxy misconfiguration routing to itself",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "WebDAV action fails with 508",
+      "Sync client reports loop-detected errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Retry outside the loop",
+        "instruction": "Navigate manually to a different folder and operate from there.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Administrator intervention",
+        "instruction": "Admin must remove the circular symlink or fix reverse proxy config.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Most 508 errors need server admin access to resolve.",
+    "relatedCodes": [
+      "HTTP 500",
+      "HTTP 502"
+    ],
+    "faq": [
+      {
+        "q": "Can I fix 508 myself?",
+        "a": "Only if you administer the WebDAV server or reverse proxy causing the loop."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-blocked-by-client-adblock",
+    "category": "browser",
+    "code": "ERR_BLOCKED_BY_CLIENT-v82",
+    "displayCode": "ERR_BLOCKED_BY_CLIENT (Adblock)",
+    "title": "Request Blocked by Ad Blocker",
+    "shortDescription": "A browser extension, most often an ad blocker, blocked the request from being sent.",
+    "fullDescription": "ERR_BLOCKED_BY_CLIENT attributed to adblock means an extension (uBlock Origin, AdBlock Plus, AdGuard, Privacy Badger) intercepted and blocked the network request before it left the browser. Commonly affects ad network URLs, analytics scripts, and sometimes legitimate CDN assets whose names match blocklist patterns.\n\nThe block is client-side, so the site itself can be fine when viewed without extensions.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Ad blocker matches the URL against its filter list",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Privacy extension blocks third-party trackers",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Custom user filter accidentally blocking a legit asset",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Some requests missing from Network tab",
+      "Page partially broken with broken images or scripts",
+      "Only affected when extensions are enabled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable ad blocker for this site",
+        "instruction": "Click the adblock icon in toolbar and choose 'Don't run on this site'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Test in incognito without extensions",
+        "instruction": "Open incognito mode with extensions disabled to confirm the block source.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Whitelist the specific domain",
+        "instruction": "Add the blocked URL to the extension's allowlist permanently.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-5 minutes",
+    "whenToCallPro": "Not applicable.",
+    "relatedCodes": [
+      "ERR_BLOCKED_BY_CLIENT",
+      "ERR_BLOCKED_BY_RESPONSE"
+    ],
+    "faq": [
+      {
+        "q": "Should I disable my ad blocker?",
+        "a": "Only for trusted sites that need the blocked assets; keep it on globally for safety."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-failed",
+    "category": "browser",
+    "code": "ERR_FAILED",
+    "displayCode": "ERR_FAILED",
+    "title": "Generic Request Failure",
+    "shortDescription": "A catch-all error when the browser can't categorize why the request failed.",
+    "fullDescription": "ERR_FAILED is Chrome's fallback error when a network request fails but the exact cause doesn't map to a more specific error. It often appears during service worker failures, CORS preflight issues, or when an extension cancels a request without a clearer signal.\n\nBecause the code is generic, diagnosing requires DevTools Network and Console tabs to find the underlying reason.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Service worker intercepted and failed the request",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "CORS preflight rejected",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Extension cancelled the request silently",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Network request shows (failed) with no clearer message",
+      "Page fails to load assets intermittently"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Open DevTools Console",
+        "instruction": "Press F12, go to Console tab, and look for CORS or service worker errors for more detail.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Unregister service workers",
+        "instruction": "In Application tab -> Service Workers, unregister workers for the site, then reload.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Disable extensions",
+        "instruction": "Test in incognito to rule out extension interference.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the failure is server-side and you run the backend.",
+    "relatedCodes": [
+      "ERR_BLOCKED_BY_CLIENT",
+      "ERR_ABORTED"
+    ],
+    "faq": [
+      {
+        "q": "Why is ERR_FAILED so vague?",
+        "a": "It's a catch-all when Chrome can't classify the failure; DevTools Console usually reveals the real cause."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-name-resolution-failed",
+    "category": "browser",
+    "code": "ERR_NAME_RESOLUTION_FAILED",
+    "displayCode": "ERR_NAME_RESOLUTION_FAILED",
+    "title": "Domain Name Resolution Failed",
+    "shortDescription": "The browser could not resolve the domain name into an IP address through any configured resolver.",
+    "fullDescription": "ERR_NAME_RESOLUTION_FAILED is similar to ERR_NAME_NOT_RESOLVED but covers broader DNS resolution failures, including secure DNS (DoH) provider errors and resolver misconfigurations. The browser couldn't find an IP for the requested hostname through any configured resolver.\n\nOften temporary - caused by a flaky DNS server, VPN DNS leak protection, or a temporary glitch at your ISP.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "DNS server is down or slow",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Secure DNS (DoH) provider misconfigured",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN DNS leak protection blocking resolution",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hosts file has stale or invalid entries",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'This site can't be reached' with ERR_NAME_RESOLUTION_FAILED",
+      "Some domains work, others do not"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Flush DNS cache",
+        "instruction": "Open Command Prompt as admin and run: ipconfig /flushdns",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Switch to Google or Cloudflare DNS",
+        "instruction": "Network Settings -> change DNS to 8.8.8.8 / 1.1.1.1.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable Secure DNS temporarily",
+        "instruction": "Chrome Settings -> Privacy and security -> Use secure DNS -> Off, then retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If network-wide DNS issues persist and you don't manage the router.",
+    "relatedCodes": [
+      "ERR_NAME_NOT_RESOLVED",
+      "DNS_PROBE_FINISHED_NXDOMAIN"
+    ],
+    "faq": [
+      {
+        "q": "What's the difference from ERR_NAME_NOT_RESOLVED?",
+        "a": "ERR_NAME_NOT_RESOLVED means the DNS query returned NXDOMAIN; ERR_NAME_RESOLUTION_FAILED covers broader resolution-layer failures."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-sec-error-bad-signature",
+    "category": "browser",
+    "code": "SEC_ERROR_BAD_SIGNATURE",
+    "displayCode": "SEC_ERROR_BAD_SIGNATURE",
+    "title": "Firefox: Bad Certificate Signature",
+    "shortDescription": "Firefox rejected the site's TLS certificate because its cryptographic signature is invalid.",
+    "fullDescription": "SEC_ERROR_BAD_SIGNATURE indicates Firefox verified the certificate chain but the signature on one of the certificates does not match. This can happen from certificate corruption, man-in-the-middle interception, or a misconfigured server presenting a tampered cert.\n\nNever ignore this warning - it can signal an attacker intercepting your traffic.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "TLS interception by antivirus or corporate proxy",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted certificate on the server",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Active man-in-the-middle attack on network",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Firefox shows SEC_ERROR_BAD_SIGNATURE warning",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable TLS-scanning in antivirus",
+        "instruction": "In your AV (Kaspersky, Avast, ESET), turn off HTTPS / SSL scanning and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try a different network",
+        "instruction": "Switch to mobile hotspot to confirm the issue isn't a compromised local network.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Update Firefox",
+        "instruction": "Make sure Firefox is up to date so its crypto library is current.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If the error persists across networks and devices - could indicate targeted attack.",
+    "relatedCodes": [
+      "SEC_ERROR_EXPIRED_CERTIFICATE",
+      "SEC_ERROR_UNKNOWN_ISSUER"
+    ],
+    "faq": [
+      {
+        "q": "Is it safe to bypass this warning?",
+        "a": "No. A bad signature can indicate an active attack; do not proceed."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-ssl-error-handshake-failure",
+    "category": "browser",
+    "code": "SSL_ERROR_HANDSHAKE_FAILURE",
+    "displayCode": "SSL_ERROR_HANDSHAKE_FAILURE",
+    "title": "Firefox: TLS Handshake Failure",
+    "shortDescription": "Firefox and the server could not agree on TLS parameters during the handshake.",
+    "fullDescription": "SSL_ERROR_HANDSHAKE_FAILURE (alert 40) means the TLS handshake was aborted by the server. Common causes include the server requiring a client certificate, unsupported cipher suites, TLS version mismatches, or SNI misconfiguration.\n\nFirefox and Chrome may behave differently because they ship different cipher lists.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Server requires client certificate not installed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "No matching cipher suite between client and server",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "TLS 1.0/1.1 only server rejected by modern Firefox",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Secure connection failed in Firefox",
+      "Other browsers may succeed",
+      "Intranet or legacy sites more affected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update Firefox",
+        "instruction": "Ensure you're on the latest Firefox for updated cipher support.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check for required client cert",
+        "instruction": "For corporate sites, confirm you've imported the required personal certificate in Firefox options.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test in about:config",
+        "instruction": "Check security.tls.version.min and adjust only if instructed by IT.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If server is internal and handshake negotiation needs server-side fix.",
+    "relatedCodes": [
+      "SSL_ERROR_NO_CYPHER_OVERLAP",
+      "ERR_SSL_PROTOCOL_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Why only Firefox?",
+        "a": "Firefox uses NSS with its own cipher list; handshake may fail differently than Chrome's BoringSSL."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-ssl-error-no-cypher-overlap",
+    "category": "browser",
+    "code": "SSL_ERROR_NO_CYPHER_OVERLAP",
+    "displayCode": "SSL_ERROR_NO_CYPHER_OVERLAP",
+    "title": "Firefox: No Common Cipher with Server",
+    "shortDescription": "Firefox and the server have no cipher suite in common, so TLS cannot be established.",
+    "fullDescription": "SSL_ERROR_NO_CYPHER_OVERLAP appears when Firefox's supported cipher suites don't overlap with the server's. Modern Firefox no longer supports RC4, 3DES, and other legacy ciphers, so old servers that only offer these will fail.\n\nThe sustainable fix is for the server to be upgraded. Temporary workarounds exist in about:config but weaken security.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Server only supports deprecated ciphers (RC4, 3DES)",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Server running very old TLS library",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Secure connection failed",
+      "Site loads in older browsers but not Firefox",
+      "Legacy devices (routers, printers) affected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Ask admin to update server TLS",
+        "instruction": "Report the site to its operator so they can enable modern cipher suites.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Use a different browser temporarily",
+        "instruction": "For legacy local devices, use a dedicated old browser rather than weakening Firefox settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If you manage the server and need to upgrade TLS configuration.",
+    "relatedCodes": [
+      "SSL_ERROR_HANDSHAKE_FAILURE",
+      "ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+    ],
+    "faq": [
+      {
+        "q": "Can I re-enable old ciphers?",
+        "a": "Technically yes via about:config, but it seriously weakens security - avoid unless absolutely necessary."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-pr-connect-reset-error",
+    "category": "browser",
+    "code": "PR_CONNECT_RESET_ERROR",
+    "displayCode": "PR_CONNECT_RESET_ERROR",
+    "title": "Firefox: Connection Reset by Peer",
+    "shortDescription": "Firefox's Netscape Portable Runtime (NSPR) reports that the TCP connection was reset by the server.",
+    "fullDescription": "PR_CONNECT_RESET_ERROR is Firefox's equivalent of Chrome's ERR_CONNECTION_RESET. The server or an intermediate device sent a TCP RST, terminating the connection mid-flight. Causes range from firewalls dropping idle connections to DDoS protections rejecting your IP.\n\nTypically transient. If persistent, a network device between you and the server is deliberately killing the connection.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Firewall or DPI device resets connection",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server overloaded and closing connections abruptly",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus HTTPS scanning interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'The connection was reset' page in Firefox",
+      "Other browsers may show ERR_CONNECTION_RESET"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload the page",
+        "instruction": "Retry the URL - transient resets often clear up.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable HTTPS scanning",
+        "instruction": "Turn off antivirus TLS inspection temporarily to see if it resolves.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a different network",
+        "instruction": "Switch to mobile hotspot to rule out local firewall issues.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-15 minutes",
+    "whenToCallPro": "If the reset comes from corporate firewall and needs IT policy change.",
+    "relatedCodes": [
+      "ERR_CONNECTION_RESET",
+      "PR_END_OF_FILE_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Is my data safe?",
+        "a": "Connection was aborted before completion; no sensitive data was sent if the reset occurred early in handshake."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-pr-end-of-file-error",
+    "category": "browser",
+    "code": "PR_END_OF_FILE_ERROR",
+    "displayCode": "PR_END_OF_FILE_ERROR",
+    "title": "Firefox: Unexpected End of Connection",
+    "shortDescription": "Firefox hit an unexpected end-of-stream while reading from the server.",
+    "fullDescription": "PR_END_OF_FILE_ERROR means Firefox (via NSPR) was reading a response when the connection closed unexpectedly without the expected TLS close_notify. Commonly tied to proxies, firewalls, or servers that abruptly terminate TLS.\n\nIt is similar to ERR_EMPTY_RESPONSE in Chrome.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Proxy or gateway drops the connection early",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server crashes mid-response",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Aggressive antivirus TLS inspection",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Secure Connection Failed' with PR_END_OF_FILE_ERROR",
+      "Reload sometimes fixes it"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Retry the request",
+        "instruction": "Refresh to see if the issue is transient.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable antivirus TLS scan",
+        "instruction": "Turn off HTTPS scanning to test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Bypass proxy",
+        "instruction": "Temporarily disable any configured proxy in OS or Firefox settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If the server consistently fails and you administer it.",
+    "relatedCodes": [
+      "ERR_EMPTY_RESPONSE",
+      "PR_CONNECT_RESET_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Does this mean the site is hacked?",
+        "a": "Not necessarily - usually a proxy or antivirus is interrupting the connection."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-mozilla-pkix-error-ocsp-response-for-cert-missing",
+    "category": "browser",
+    "code": "MOZILLA_PKIX_ERROR_OCSP_RESPONSE_FOR_CERT_MISSING",
+    "displayCode": "MOZILLA_PKIX_ERROR_OCSP_RESPONSE_FOR_CERT_MISSING",
+    "title": "Firefox: OCSP Response Missing for Certificate",
+    "shortDescription": "Firefox could not verify the certificate's revocation status because the OCSP response was missing.",
+    "fullDescription": "MOZILLA_PKIX_ERROR_OCSP_RESPONSE_FOR_CERT_MISSING is raised when Firefox performs an OCSP check (or uses stapled OCSP) but the response for the certificate was absent. Firefox can be configured to hard-fail on missing OCSP - if the OCSP server is unreachable, the page will be blocked.\n\nCommon when OCSP stapling is misconfigured on the server, or when the client network blocks OCSP endpoints.",
+    "affectedVersions": [
+      "Firefox"
+    ],
+    "causes": [
+      {
+        "cause": "Server's OCSP stapling misconfigured",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Client network blocks OCSP URLs",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "OCSP responder temporarily down",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Firefox blocks HTTPS site with OCSP error",
+      "Other browsers may load the site fine"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Retry after a minute",
+        "instruction": "OCSP responders have brief outages - retry soon.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try different network",
+        "instruction": "Some corporate firewalls block OCSP; test from home or mobile hotspot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Adjust OCSP settings (advanced)",
+        "instruction": "In about:config, temporarily set security.OCSP.require to false - lowers security.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If you own the server and need to fix OCSP stapling configuration.",
+    "relatedCodes": [
+      "SEC_ERROR_OCSP_INVALID_SIGNING_CERT",
+      "SEC_ERROR_OCSP_SERVER_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Should I turn off OCSP checks?",
+        "a": "No - OCSP is how Firefox detects revoked certificates. Disable only temporarily for diagnostics."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-webkit-blob-resource-error-1",
+    "category": "browser",
+    "code": "WebKitBlobResource error 1",
+    "displayCode": "WebKitBlobResource error 1",
+    "title": "Safari: Blob Resource Loading Error",
+    "shortDescription": "Safari failed to load a Blob or media resource from memory, often during video playback.",
+    "fullDescription": "WebKitBlobResource error 1 commonly appears in Safari's console when a video or audio element tries to load from a Blob URL that has already been revoked or is inaccessible. Typical triggers include Media Source Extensions (MSE) streaming errors, aggressive power-saving on macOS, or seeking past available buffer.\n\nUsers experience it as videos that refuse to play or stop mid-stream.",
+    "affectedVersions": [
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Blob URL revoked before playback completed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "MSE streaming buffer issue",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "macOS Low Power Mode throttling",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Video fails to play in Safari",
+      "Playback stalls and never resumes",
+      "Console shows 'WebKitBlobResource error 1'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable Low Power Mode",
+        "instruction": "System Settings -> Battery -> turn off Low Power Mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Clear Safari website data",
+        "instruction": "Safari -> Settings -> Privacy -> Manage Website Data -> Remove All.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a different browser",
+        "instruction": "Test the video in Chrome or Firefox to confirm it's Safari-specific.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-10 minutes",
+    "whenToCallPro": "Not applicable for end users.",
+    "relatedCodes": [
+      "ERR_FAILED",
+      "NSURLErrorDomain -1001"
+    ],
+    "faq": [
+      {
+        "q": "Why only Safari?",
+        "a": "Safari's media stack enforces Blob URL lifetimes strictly; Chrome and Firefox are more lenient."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-nsurlerror-1001",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1001",
+    "displayCode": "NSURLErrorDomain -1001",
+    "title": "Safari: Request Timed Out",
+    "shortDescription": "Safari's URL loading system reports the request took too long and was cancelled.",
+    "fullDescription": "NSURLErrorDomain -1001 (NSURLErrorTimedOut) on macOS and iOS Safari indicates the request exceeded its timeout budget. The TCP connection may have stalled, the server may be very slow, or the network is congested.\n\nIt is the Safari equivalent of ERR_CONNECTION_TIMED_OUT.",
+    "affectedVersions": [
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Slow or congested network",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server very slow to respond",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN or proxy adding latency",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Safari shows 'The request timed out'",
+      "Only some sites affected",
+      "Works on other devices on the same network"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Retry the page",
+        "instruction": "Tap reload - transient latency often clears.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Toggle Wi-Fi",
+        "instruction": "Turn Wi-Fi off and back on to re-establish the connection.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Disable VPN",
+        "instruction": "Turn off VPN temporarily to see if the timeout originates there.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-10 minutes",
+    "whenToCallPro": "Persistent timeouts on a managed network needing IT review.",
+    "relatedCodes": [
+      "ERR_CONNECTION_TIMED_OUT",
+      "NSURLErrorDomain -1004"
+    ],
+    "faq": [
+      {
+        "q": "What timeout does Safari use?",
+        "a": "Default is 60 seconds but apps can adjust it; the 60-second ceiling is typical for web loads."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-nsurlerror-1003",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1003",
+    "displayCode": "NSURLErrorDomain -1003",
+    "title": "Safari: A server with the specified hostname could not be found",
+    "shortDescription": "Safari could not resolve the hostname to an IP address.",
+    "fullDescription": "NSURLErrorDomain -1003 (NSURLErrorCannotFindHost) means DNS resolution failed - the hostname does not resolve to any IP. This is Safari's counterpart to ERR_NAME_NOT_RESOLVED.\n\nCaused by typos in the URL, DNS outages, or network configuration issues.",
+    "affectedVersions": [
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Typo in the URL or stale bookmark",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DNS server outage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN blocking DNS",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Cannot find server' page",
+      "Works on mobile data but not Wi-Fi or vice versa"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify the URL",
+        "instruction": "Double-check spelling of the domain.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Change DNS",
+        "instruction": "System Settings -> Network -> Wi-Fi -> Details -> DNS -> set to 1.1.1.1 and 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Restart router",
+        "instruction": "Power-cycle the router if issue is network-wide.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-10 minutes",
+    "whenToCallPro": "Persistent DNS issues on corporate networks.",
+    "relatedCodes": [
+      "ERR_NAME_NOT_RESOLVED",
+      "NSURLErrorDomain -1001"
+    ],
+    "faq": [
+      {
+        "q": "Why does Safari report -1003 but Chrome works?",
+        "a": "They may use different DNS caches; try clearing system DNS cache with 'sudo dscacheutil -flushcache'."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-nsurlerror-1004",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1004",
+    "displayCode": "NSURLErrorDomain -1004",
+    "title": "Safari: Could Not Connect to the Server",
+    "shortDescription": "Safari reached the DNS but failed to open a TCP connection to the server.",
+    "fullDescription": "NSURLErrorDomain -1004 (NSURLErrorCannotConnectToHost) means DNS resolved but the subsequent TCP connect attempt failed. Server may be down, port blocked, or local firewall rejecting outgoing traffic.\n\nSimilar to ERR_CONNECTION_REFUSED in Chrome.",
+    "affectedVersions": [
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Server is down or not listening on the port",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall blocking the port",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Local proxy misconfigured",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Safari cannot open the page because it could not connect to the server'",
+      "Works from other networks"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Retry after a minute",
+        "instruction": "Server may be rebooting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Check firewall settings",
+        "instruction": "System Settings -> Network -> Firewall - temporarily disable to test.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Disable proxy",
+        "instruction": "Network -> Proxies -> uncheck all boxes and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "2-15 minutes",
+    "whenToCallPro": "If server-side outage requires vendor involvement.",
+    "relatedCodes": [
+      "ERR_CONNECTION_REFUSED",
+      "NSURLErrorDomain -1001"
+    ],
+    "faq": [
+      {
+        "q": "Is this a server or client problem?",
+        "a": "Either - try from another device/network to narrow it down."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-421",
+    "category": "browser",
+    "code": "HTTP 421",
+    "displayCode": "HTTP 421 Misdirected Request",
+    "title": "HTTP 421 Misdirected Request",
+    "shortDescription": "The server received a request not intended for it, typically due to HTTP/2 connection coalescing.",
+    "fullDescription": "HTTP 421 Misdirected Request means the server received a request on a connection that is not configured to produce responses for the requested authority. This most often occurs with HTTP/2 connection coalescing, where a browser reuses a TLS connection for a different hostname that happens to share the IP and certificate.\n\nIt's a signal for the browser to open a new connection and retry.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "HTTP/2 connection coalescing with different virtual host",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Load balancer routing quirks",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Sporadic 421 errors",
+      "Issue clears on reload"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload the page",
+        "instruction": "Browser will open a new dedicated connection and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable HTTP/2 coalescing (advanced)",
+        "instruction": "Server admin: ensure certs and SNI configs don't invite coalescing for unrelated hosts.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-10 minutes",
+    "whenToCallPro": "If you run the server and 421 is frequent for users.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 502"
+    ],
+    "faq": [
+      {
+        "q": "Is 421 a server or browser bug?",
+        "a": "Neither - it's a protocol-level signal to open a fresh connection; browsers handle it automatically."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-425",
+    "category": "browser",
+    "code": "HTTP 425",
+    "displayCode": "HTTP 425 Too Early",
+    "title": "HTTP 425 Too Early",
+    "shortDescription": "The server refuses to process the request sent in TLS early-data to prevent replay attacks.",
+    "fullDescription": "HTTP 425 Too Early is returned when a server does not want to risk processing a request that may have been replayed using TLS 1.3 0-RTT (zero round-trip time) early data. The client should retry after the TLS handshake completes.\n\nMostly invisible to end users - modern browsers retry automatically.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Server rejected 0-RTT data to avoid replay",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Rare, mostly transparent to users",
+      "Visible in DevTools Network tab"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Let the browser retry",
+        "instruction": "Modern browsers automatically retry after the full handshake.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1 minute",
+    "whenToCallPro": "Not applicable.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 421"
+    ],
+    "faq": [
+      {
+        "q": "Is 425 related to TLS 1.3?",
+        "a": "Yes, it's specific to 0-RTT early data in TLS 1.3."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-426",
+    "category": "browser",
+    "code": "HTTP 426",
+    "displayCode": "HTTP 426 Upgrade Required",
+    "title": "HTTP 426 Upgrade Required",
+    "shortDescription": "The server requires the client to switch to a different protocol, such as HTTPS or HTTP/2.",
+    "fullDescription": "HTTP 426 Upgrade Required tells the client it must use a different protocol. The response includes an Upgrade header naming the required protocol (e.g., TLS/1.3 or WebSocket). Servers commonly return 426 when HTTP/1.1 is no longer allowed.\n\nModern browsers rarely see 426 because they typically negotiate TLS and HTTP/2 by default.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Server requires HTTPS upgrade",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "API expects WebSocket upgrade",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Legacy client fails with 426",
+      "API call returns upgrade required"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use HTTPS URL",
+        "instruction": "Change http:// to https:// in your URL and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Update your client library",
+        "instruction": "Developers: update the HTTP/TLS library to a version supporting the required protocol.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-15 minutes",
+    "whenToCallPro": "If updating a legacy embedded client that can't speak the newer protocol.",
+    "relatedCodes": [
+      "HTTP 400",
+      "HTTP 505"
+    ],
+    "faq": [
+      {
+        "q": "Why does my old script get 426?",
+        "a": "It's probably using HTTP/1.0 or plain HTTP against a server that now requires TLS."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-431",
+    "category": "browser",
+    "code": "HTTP 431",
+    "displayCode": "HTTP 431 Request Header Fields Too Large",
+    "title": "HTTP 431 Request Header Fields Too Large",
+    "shortDescription": "The server refuses to process the request because its headers (e.g., cookies) are too large.",
+    "fullDescription": "HTTP 431 Request Header Fields Too Large is returned when the combined size of request headers - especially cookies - exceeds the server's limit. Typical limits are 8KB per header and 16-32KB total.\n\nFixing involves trimming cookies or other headers. Clearing site cookies usually resolves the issue immediately.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Cookies from many extensions or sessions accumulated",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overly large custom headers set by code",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Page fails with 431 after long session",
+      "Clearing cookies fixes it"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear cookies for the site",
+        "instruction": "DevTools -> Application -> Cookies -> select domain -> Clear.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try incognito",
+        "instruction": "Open the site in a private window with no cookies.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Trim custom headers",
+        "instruction": "Developers: shrink Authorization tokens or move state into request body.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-15 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "HTTP 413",
+      "HTTP 414"
+    ],
+    "faq": [
+      {
+        "q": "What's the typical header limit?",
+        "a": "Nginx and Apache default to 8 KB per header and 8-16 KB total; some CDNs are stricter."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-506",
+    "category": "browser",
+    "code": "HTTP 506",
+    "displayCode": "HTTP 506 Variant Also Negotiates",
+    "title": "HTTP 506 Variant Also Negotiates",
+    "shortDescription": "Server-side content negotiation is misconfigured and produces a circular reference.",
+    "fullDescription": "HTTP 506 Variant Also Negotiates indicates a server configuration error where a selected variant is itself configured to engage in content negotiation, causing a loop. Extremely rare in practice; only appears on servers using transparent content negotiation (TCN).\n\nFix is server-side only.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured TCN on Apache server",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Rare - typically seen by server admins during debugging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact site admin",
+        "instruction": "Report the URL - this error requires server-side reconfiguration.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Almost always - this is a server configuration bug.",
+    "relatedCodes": [
+      "HTTP 500",
+      "HTTP 508"
+    ],
+    "faq": [
+      {
+        "q": "Can I work around 506?",
+        "a": "No - only the site owner can fix the configuration."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-http-510",
+    "category": "browser",
+    "code": "HTTP 510",
+    "displayCode": "HTTP 510 Not Extended",
+    "title": "HTTP 510 Not Extended",
+    "shortDescription": "The server requires further extensions to the request before it can be fulfilled.",
+    "fullDescription": "HTTP 510 Not Extended comes from RFC 2774 and indicates the server needs additional extension headers to fulfill the request. Rare and mostly obsolete, but some enterprise APIs still emit it.\n\nEnd users can't typically fix it.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Enterprise API demands HTTP extension framework",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "API call fails with 510"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Consult API docs",
+        "instruction": "Check vendor documentation for required extension headers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Typically required - most 510 errors need API vendor support.",
+    "relatedCodes": [
+      "HTTP 501",
+      "HTTP 505"
+    ],
+    "faq": [
+      {
+        "q": "Is 510 common?",
+        "a": "No - it's used by a narrow set of enterprise systems."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-ssl-server-cert-bad-format",
+    "category": "browser",
+    "code": "ERR_SSL_SERVER_CERT_BAD_FORMAT",
+    "displayCode": "ERR_SSL_SERVER_CERT_BAD_FORMAT",
+    "title": "SSL Server Certificate Has Bad Format",
+    "shortDescription": "The server's TLS certificate is malformed and cannot be parsed by the browser.",
+    "fullDescription": "ERR_SSL_SERVER_CERT_BAD_FORMAT means the browser received a certificate during TLS handshake that it cannot parse - usually a DER/PEM encoding error, wrong ASN.1 structure, or truncated chain. The site owner must re-issue or reconfigure the certificate.\n\nUsers cannot bypass this safely; do not click 'proceed anyway'.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Server admin installed a truncated or corrupted cert",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Incorrect cert chain concatenation",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Page blocked with cert bad format warning",
+      "Other browsers may show different cert errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Report to site owner",
+        "instruction": "Contact the site's support and mention the cert format error.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Use alternate access",
+        "instruction": "If available, use the site's mobile app or a different domain.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "If you manage the server, work with your CA to re-issue the certificate.",
+    "relatedCodes": [
+      "ERR_CERT_AUTHORITY_INVALID",
+      "ERR_SSL_PROTOCOL_ERROR"
+    ],
+    "faq": [
+      {
+        "q": "Can I bypass this error?",
+        "a": "No - a malformed cert is a sign of serious misconfiguration; wait for the site owner to fix it."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http-response-code-failure",
+    "category": "browser",
+    "code": "ERR_HTTP_RESPONSE_CODE_FAILURE",
+    "displayCode": "ERR_HTTP_RESPONSE_CODE_FAILURE",
+    "title": "HTTP Response Code Failure",
+    "shortDescription": "Chrome received an HTTP response code that triggered a network-layer failure.",
+    "fullDescription": "ERR_HTTP_RESPONSE_CODE_FAILURE appears in Chrome when the server returns a status code the networking stack treats as a failure, typically in contexts like Signed HTTP Exchanges, prefetch, or subresource integrity flows.\n\nRare in everyday browsing; usually encountered by developers working with advanced features.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Signed HTTP Exchange validation failure",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Prefetch hint mismatched status code",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Resource fails to load with this code",
+      "Prefetch or SXG errors in DevTools"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload without prefetch",
+        "instruction": "Hard reload (Ctrl+F5) to bypass prefetch hints.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Developers: inspect response",
+        "instruction": "Use DevTools to inspect the exact status code and headers returned.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-20 minutes",
+    "whenToCallPro": "If you operate the server and need SXG or prefetch correctness.",
+    "relatedCodes": [
+      "ERR_FAILED",
+      "HTTP 500"
+    ],
+    "faq": [
+      {
+        "q": "Is this a common error?",
+        "a": "No - mostly seen in advanced networking scenarios like prefetch or SXG."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-socket-read-error",
+    "category": "browser",
+    "code": "ERR_SOCKET_READ_ERROR",
+    "displayCode": "ERR_SOCKET_READ_ERROR",
+    "title": "Socket Read Error",
+    "shortDescription": "Chrome failed while reading data from the network socket mid-transfer.",
+    "fullDescription": "ERR_SOCKET_READ_ERROR signals that a low-level read from the TCP socket failed while the response was still arriving. Possible causes include network interface flaps, VPN tunnel drops, system sleep interrupting the transfer, or firewall killing the connection.\n\nUsually recoverable with a reload.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge"
+    ],
+    "causes": [
+      {
+        "cause": "Network interface flapped (Wi-Fi, Ethernet)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN disconnected mid-transfer",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall terminated the socket",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Page fails partway through load",
+      "Reload usually succeeds"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload",
+        "instruction": "Press Ctrl+R to retry the request.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Check connection stability",
+        "instruction": "Move closer to router, plug in Ethernet, or switch Wi-Fi band.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable VPN temporarily",
+        "instruction": "Turn off VPN to see if it's the source of drops.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-10 minutes",
+    "whenToCallPro": "Persistent read errors on a managed/corporate network.",
+    "relatedCodes": [
+      "ERR_CONNECTION_RESET",
+      "ERR_NETWORK_CHANGED"
+    ],
+    "faq": [
+      {
+        "q": "Is this the same as connection reset?",
+        "a": "Close - connection reset is a TCP RST; socket read error is a lower-level read failure with broader causes."
+      }
+    ]
   }
 ]
