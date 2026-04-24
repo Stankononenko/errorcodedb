@@ -40,6 +40,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/symptoms" className="text-sm text-gray-600 hover:text-brand-primary">
+                  Diagnose by symptom
+                </Link>
+              </li>
+              <li>
                 <Link href="/guides" className="text-sm text-gray-600 hover:text-brand-primary">
                   Guides
                 </Link>

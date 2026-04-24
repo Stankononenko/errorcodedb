@@ -182,7 +182,8 @@ export type HVACDeviceType =
   | "heat-pump"
   | "mini-split"
   | "water-heater"
-  | "thermostat";
+  | "thermostat"
+  | "boiler";
 
 export interface HVACCode {
   id: string;

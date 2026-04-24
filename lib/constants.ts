@@ -343,6 +343,7 @@ export const HVAC_DEVICE_TYPES: Record<HVACDeviceType, { label: string; labelPlu
   "mini-split": { label: "Mini-Split", labelPlural: "Mini-Splits" },
   "water-heater": { label: "Water Heater", labelPlural: "Water Heaters" },
   thermostat: { label: "Thermostat", labelPlural: "Thermostats" },
+  boiler: { label: "Boiler", labelPlural: "Boilers" },
 };
 
 // ── Printer Brands ──

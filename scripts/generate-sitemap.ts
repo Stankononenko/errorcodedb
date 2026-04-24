@@ -96,6 +96,23 @@ function buildSitemap(): string {
     });
   }
 
+  // Symptom entry pages (high-intent long-tail SEO)
+  entries.push({ url: `${SITE_URL}/symptoms`, priority: 0.75, changefreq: "weekly" });
+  const SYMPTOM_SLUGS = [
+    "check-engine-light", "car-wont-start", "car-stalls", "car-misfiring",
+    "transmission-rough-shift", "washer-wont-drain", "washer-wont-spin",
+    "dryer-not-heating", "dishwasher-not-draining", "fridge-not-cooling",
+    "furnace-wont-ignite", "ac-not-cooling", "pc-wont-boot",
+    "windows-update-fails", "printer-paper-jam", "printer-wont-print",
+  ];
+  for (const slug of SYMPTOM_SLUGS) {
+    entries.push({
+      url: `${SITE_URL}/symptoms/${slug}`,
+      priority: 0.9,
+      changefreq: "weekly",
+    });
+  }
+
   // High-traffic OBD codes — bump priority so Google crawls first.
   // These are the ones that actually drive search volume.
   const POPULAR_OBD = new Set([
