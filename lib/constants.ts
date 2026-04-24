@@ -449,6 +449,12 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "hot-tub": { label: "Hot Tub", labelPlural: "Hot Tubs" },
   "water-softener": { label: "Water Softener", labelPlural: "Water Softeners" },
   "irrigation-controller": { label: "Irrigation Controller", labelPlural: "Irrigation Controllers" },
+  "vr-headset": { label: "VR Headset", labelPlural: "VR Headsets" },
+  "video-card": { label: "Video Card", labelPlural: "Video Cards" },
+  "home-security": { label: "Home Security", labelPlural: "Home Security Systems" },
+  "smart-toilet": { label: "Smart Toilet", labelPlural: "Smart Toilets" },
+  "smart-faucet": { label: "Smart Faucet", labelPlural: "Smart Faucets" },
+  "leak-detector": { label: "Leak Detector", labelPlural: "Leak Detectors" },
 };
 
 // ── HVAC Brands ──

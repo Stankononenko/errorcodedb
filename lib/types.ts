@@ -167,7 +167,14 @@ export type ApplianceDeviceType =
   | "pool-cleaner"
   | "hot-tub"
   | "water-softener"
-  | "irrigation-controller";
+  | "irrigation-controller"
+  | "vr-headset"
+  | "video-card"
+  | "home-security"
+  | "smart-toilet"
+  | "smart-faucet"
+  | "leak-detector"
+  | "ice-maker";
 
 export interface ApplianceCause {
   cause: string;

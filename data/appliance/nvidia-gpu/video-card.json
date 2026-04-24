@@ -1,0 +1,1015 @@
+[
+  {
+    "id": "nvidia-gpu-video-card-installer-failed",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "INSTALLER FAILED",
+    "displayCode": "NVIDIA Installer Failed",
+    "alternativeCodes": [],
+    "title": "NVIDIA driver installer could not continue",
+    "shortDescription": "GeForce driver installation aborts with a generic failure.",
+    "fullDescription": "The NVIDIA installer can fail when a previous driver is partially installed, when antivirus blocks DLL registration, or when the Windows GPU is not supported by the target driver branch.",
+    "causes": [
+      {
+        "cause": "Residual driver files",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Antivirus interference",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Unsupported GPU/OS",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Installer aborts",
+      "Error on GeForce Experience"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DDU in Safe Mode",
+        "instruction": "Boot Windows Safe Mode and run Display Driver Uninstaller.",
+        "tools": [
+          "DDU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Clean install",
+        "instruction": "Run NVIDIA installer and select Custom > Perform a clean install.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If hardware fault suspected, contact NVIDIA or board partner.",
+    "relatedCodes": [
+      "DRIVER STOPPED RESPONDING"
+    ],
+    "videoSearchQuery": "NVIDIA installer failed fix",
+    "faq": [
+      {
+        "q": "Is DDU safe?",
+        "a": "Yes, widely used to cleanly remove GPU drivers."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-dxgi-device-hung",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "DXGI_ERROR_DEVICE_HUNG",
+    "displayCode": "DXGI_ERROR_DEVICE_HUNG",
+    "alternativeCodes": [
+      "0x887A0006"
+    ],
+    "title": "GPU hung while processing a command",
+    "shortDescription": "DirectX detected that the GPU stopped responding.",
+    "fullDescription": "This error indicates the GPU failed to respond within the TDR window. Common causes are unstable overclocks, driver bugs, or failing hardware.",
+    "causes": [
+      {
+        "cause": "Unstable overclock",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Driver bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failing VRAM",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Game crashes to desktop",
+      "GPU temporarily frozen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset clocks",
+        "instruction": "Reset MSI Afterburner or similar to stock clocks.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update driver",
+        "instruction": "Install latest GeForce driver.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GeForce RTX series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If errors persist at stock settings.",
+    "relatedCodes": [
+      "VIDEO_TDR_FAILURE"
+    ],
+    "videoSearchQuery": "DXGI_ERROR_DEVICE_HUNG fix",
+    "faq": [
+      {
+        "q": "Does RAM affect this?",
+        "a": "Yes, unstable system RAM can trigger hangs."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-driver-stopped-responding",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "DRIVER STOPPED RESPONDING",
+    "displayCode": "Display Driver Stopped Responding",
+    "alternativeCodes": [
+      "TDR"
+    ],
+    "title": "Display driver stopped responding and has recovered",
+    "shortDescription": "Windows TDR recovered the GPU driver after a hang.",
+    "fullDescription": "TDR (Timeout Detection and Recovery) kicks in when the GPU does not respond within 2 seconds. Caused by driver bugs, overclocks, or heat.",
+    "causes": [
+      {
+        "cause": "Thermal throttling",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Unstable overclock",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PSU undersized",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Screen flashes black",
+      "Event Viewer warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check temperatures",
+        "instruction": "Monitor GPU temp; clean dust if above 85C.",
+        "tools": [
+          "compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If the card is physically damaged.",
+    "relatedCodes": [
+      "DXGI_ERROR_DEVICE_HUNG",
+      "VIDEO_TDR_FAILURE"
+    ],
+    "videoSearchQuery": "display driver stopped responding NVIDIA",
+    "faq": [
+      {
+        "q": "Can I disable TDR?",
+        "a": "Not recommended; can mask hardware issues."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-cuda-error",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "CUDA ERROR",
+    "displayCode": "CUDA Error",
+    "alternativeCodes": [
+      "cudaErrorUnknown"
+    ],
+    "title": "CUDA initialization or execution failed",
+    "shortDescription": "Compute workloads fail on NVIDIA GPU.",
+    "fullDescription": "CUDA errors in AI/rendering apps often stem from driver/CUDA version mismatch or out-of-memory conditions.",
+    "causes": [
+      {
+        "cause": "Driver/CUDA mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Out of VRAM",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Training crashes",
+      "Render fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Match CUDA version",
+        "instruction": "Install CUDA Toolkit that matches your driver.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "GeForce RTX",
+      "Quadro",
+      "Tesla"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If hardware fault suspected.",
+    "relatedCodes": [],
+    "videoSearchQuery": "CUDA error fix NVIDIA",
+    "faq": [
+      {
+        "q": "Do I need CUDA for gaming?",
+        "a": "No, only for compute apps."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-code-43",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "CODE 43",
+    "displayCode": "Code 43",
+    "alternativeCodes": [],
+    "title": "Windows has stopped this device because it has reported problems",
+    "shortDescription": "Device Manager reports Code 43 for the GPU.",
+    "fullDescription": "Code 43 indicates Windows disabled the GPU due to a reported failure. Common with driver corruption, hardware failure, or PCIe contact issues.",
+    "causes": [
+      {
+        "cause": "Corrupted driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose PCIe seating",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "GPU failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Device Manager yellow triangle",
+      "No display acceleration"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean driver reinstall",
+        "instruction": "Use DDU and reinstall latest driver.",
+        "tools": [
+          "DDU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reseat GPU",
+        "instruction": "Power off, remove card, reseat in PCIe slot.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "whenToCallPro": "If persists after reinstall and reseat.",
+    "relatedCodes": [],
+    "videoSearchQuery": "NVIDIA code 43 fix",
+    "faq": [
+      {
+        "q": "Is code 43 always hardware?",
+        "a": "No, often driver-related."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-video-tdr-failure",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "VIDEO_TDR_FAILURE",
+    "displayCode": "VIDEO_TDR_FAILURE",
+    "alternativeCodes": [
+      "0x116",
+      "nvlddmkm.sys"
+    ],
+    "title": "BSOD referencing nvlddmkm.sys",
+    "shortDescription": "Blue Screen from NVIDIA display driver.",
+    "fullDescription": "This BSOD occurs when the GPU driver fails to recover from a hang. Can be overclock, overheat, or PSU related.",
+    "causes": [
+      {
+        "cause": "Overclock instability",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient PSU",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BSOD with nvlddmkm.sys",
+      "Immediate reboot"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Stock clocks",
+        "instruction": "Reset all OC settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Test PSU",
+        "instruction": "Ensure PSU meets GPU recommendation.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If PSU and OC not the cause.",
+    "relatedCodes": [
+      "DXGI_ERROR_DEVICE_HUNG",
+      "DRIVER STOPPED RESPONDING"
+    ],
+    "videoSearchQuery": "VIDEO_TDR_FAILURE nvlddmkm fix",
+    "faq": [
+      {
+        "q": "Is this always GPU?",
+        "a": "Usually, but system RAM can contribute."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-overheating",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "OVERHEATING",
+    "displayCode": "GPU Overheating",
+    "alternativeCodes": [],
+    "title": "GPU thermal limit reached",
+    "shortDescription": "GPU throttles or shuts down due to heat.",
+    "fullDescription": "When GPU reaches ~83C (core) or ~100C (memory junction), it throttles. Dust, dried thermal paste, or poor airflow cause this.",
+    "causes": [
+      {
+        "cause": "Dust in heatsink",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dried thermal paste",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Fan at 100%",
+      "Performance drop",
+      "Thermal shutdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean dust",
+        "instruction": "Use compressed air on heatsink and fans.",
+        "tools": [
+          "compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Repaste GPU",
+        "instruction": "Disassemble heatsink, replace thermal paste.",
+        "tools": [
+          "screwdriver",
+          "thermal paste"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [
+      {
+        "part": "thermal paste",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "thermal pads",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 40
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If teardown is outside your comfort.",
+    "relatedCodes": [
+      "VIDEO_TDR_FAILURE"
+    ],
+    "videoSearchQuery": "GPU overheating repaste",
+    "faq": [
+      {
+        "q": "What temp is safe?",
+        "a": "Under 80C core is ideal."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-black-screen",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "BLACK SCREEN",
+    "displayCode": "Black Screen After Driver Install",
+    "alternativeCodes": [],
+    "title": "Display goes black after installing NVIDIA driver",
+    "shortDescription": "Monitor shows no signal after driver load.",
+    "fullDescription": "Caused by EDID conflicts, HDMI/DP mode issue, or corrupt driver install.",
+    "causes": [
+      {
+        "cause": "Driver corruption",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EDID mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Boot works, post-login black"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot Safe Mode",
+        "instruction": "Hold Shift+Restart, boot Safe Mode with Networking.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "DDU + reinstall",
+        "instruction": "Clean driver and reinstall stable branch.",
+        "tools": [
+          "DDU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "whenToCallPro": "If persists across drivers.",
+    "relatedCodes": [
+      "CODE 43"
+    ],
+    "videoSearchQuery": "NVIDIA black screen after driver",
+    "faq": [
+      {
+        "q": "Should I try DP and HDMI?",
+        "a": "Yes, test both."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-control-panel-missing",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "CONTROL PANEL MISSING",
+    "displayCode": "NVIDIA Control Panel Missing",
+    "alternativeCodes": [],
+    "title": "Control Panel not in Windows menu",
+    "shortDescription": "NVIDIA Control Panel disappeared from context menu.",
+    "fullDescription": "Often missing after driver updates if the Microsoft Store app is not installed.",
+    "causes": [
+      {
+        "cause": "Microsoft Store app missing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "No 'NVIDIA Control Panel' in right-click"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install from Store",
+        "instruction": "Search 'NVIDIA Control Panel' in Microsoft Store.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "NVIDIA control panel missing",
+    "faq": [
+      {
+        "q": "Is it free?",
+        "a": "Yes, free in Microsoft Store."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-shader-cache-corrupt",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "SHADER CACHE CORRUPT",
+    "displayCode": "Shader Cache Corrupt",
+    "alternativeCodes": [],
+    "title": "Shader compilation errors in games",
+    "shortDescription": "Games stutter or crash at shader compile.",
+    "fullDescription": "Shader cache at %LOCALAPPDATA% can be corrupted after crashes.",
+    "causes": [
+      {
+        "cause": "Corrupt shader cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Shader compile stutter",
+      "Crashes at startup"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear cache",
+        "instruction": "Delete %LOCALAPPDATA%\\NVIDIA\\DXCache and GLCache.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "NVIDIA shader cache clear",
+    "faq": [
+      {
+        "q": "Will clearing cause stutter?",
+        "a": "Temporary re-caching stutter, yes."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-geforce-experience-error",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "GFE ERROR",
+    "displayCode": "GeForce Experience Error",
+    "alternativeCodes": [
+      "0x0003"
+    ],
+    "title": "GeForce Experience won't open",
+    "shortDescription": "GFE returns error 0x0003.",
+    "fullDescription": "Error 0x0003 caused by disabled NVIDIA services or network adapter issues.",
+    "causes": [
+      {
+        "cause": "NVIDIA services stopped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cannot launch GFE"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Start services",
+        "instruction": "services.msc, start all NVIDIA services.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "GeForce Experience error 0x0003",
+    "faq": [
+      {
+        "q": "Can I skip GFE?",
+        "a": "Yes, use NVIDIA App or plain driver."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-vram-artifact",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "VRAM ARTIFACT",
+    "displayCode": "VRAM Artifacts",
+    "alternativeCodes": [],
+    "title": "Pixel artifacts on screen",
+    "shortDescription": "Visual corruption from failing VRAM.",
+    "fullDescription": "Lines, squares, or color corruption indicate failing VRAM or memory overclock too aggressive.",
+    "causes": [
+      {
+        "cause": "Memory overclock too high",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failing VRAM",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Colored lines",
+      "Tiling pattern"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset memory clock",
+        "instruction": "Reset VRAM OC to stock.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "If persists at stock, RMA.",
+    "relatedCodes": [],
+    "videoSearchQuery": "NVIDIA VRAM artifacts fix",
+    "faq": [
+      {
+        "q": "Are artifacts always hardware?",
+        "a": "No, OC can cause them."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-power-connector",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "12VHPWR",
+    "displayCode": "12VHPWR Connector",
+    "alternativeCodes": [],
+    "title": "RTX 40-series 12VHPWR melting risk",
+    "shortDescription": "Power connector not fully seated on RTX 4090.",
+    "fullDescription": "Improperly seated 12VHPWR connector causes melt damage. Ensure full insertion and avoid tight bends.",
+    "causes": [
+      {
+        "cause": "Partial insertion",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Burn smell",
+      "Shutdown under load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat connector",
+        "instruction": "Fully insert 12VHPWR until click, inspect for damage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "RTX 4090",
+      "RTX 4080"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "If connector damaged, contact NVIDIA for RMA.",
+    "relatedCodes": [],
+    "videoSearchQuery": "RTX 4090 12VHPWR melting fix",
+    "faq": [
+      {
+        "q": "Is the new 12V-2x6 safer?",
+        "a": "Yes, revised spec reduces risk."
+      }
+    ]
+  },
+  {
+    "id": "nvidia-gpu-video-card-fan-not-spinning",
+    "brand": "NVIDIA",
+    "brandSlug": "nvidia-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "FAN NOT SPINNING",
+    "displayCode": "GPU Fan Not Spinning",
+    "alternativeCodes": [],
+    "title": "GPU fans stopped at idle or under load",
+    "shortDescription": "Zero-RPM idle or fan failure.",
+    "fullDescription": "Many modern GeForce cards have zero-RPM mode below 50C. If fans don't start under load, check fan header or bearing.",
+    "causes": [
+      {
+        "cause": "Zero-RPM mode normal",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fan bearing failed",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Fans idle at 0 RPM",
+      "Fans never spin up"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test fan curve",
+        "instruction": "Use MSI Afterburner to force 50% fans and verify.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GeForce GTX/RTX"
+    ],
+    "partsNeeded": [
+      {
+        "part": "replacement fan",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 60
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If fan bearing failed and under warranty.",
+    "relatedCodes": [
+      "OVERHEATING"
+    ],
+    "videoSearchQuery": "GPU fan not spinning fix",
+    "faq": [
+      {
+        "q": "Is 0 RPM idle bad?",
+        "a": "No, it's designed behavior below threshold."
+      }
+    ]
+  }
+]
