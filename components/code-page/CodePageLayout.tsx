@@ -26,6 +26,7 @@ import SaveButton from "./SaveButton";
 import TrustBadge from "./TrustBadge";
 import Sources from "./Sources";
 import RecentView from "./RecentView";
+import SafetyBanner from "./SafetyBanner";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -82,6 +83,8 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
           <CodeHero code={code} />
 
           <TrustBadge />
+
+          <SafetyBanner code={code} />
 
           <AdUnit position="leaderboard" className="my-6" />
 
