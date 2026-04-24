@@ -1,0 +1,592 @@
+[
+  {
+    "id": "kyocera-printer-c0100",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C0100",
+    "displayCode": "C0100",
+    "errorType": "hardware",
+    "title": "Backup memory device error",
+    "shortDescription": "EEPROM read/write failure detected on the main board.",
+    "fullDescription": "Error C0100 indicates that the Kyocera TASKalfa cannot read from or write to its backup memory (EEPROM) on the main controller board. The device stores machine configuration, counters, and serial number in this memory.\n\nThe error typically appears at power-on and prevents the printer from reaching ready state. It can be caused by a corrupt EEPROM, loose connector between the EEPROM board and main PCB, or a failing main controller board.\n\nResetting the controller may clear a transient fault but persistent occurrence requires EEPROM replacement by a technician with the correct serial-number reprogramming tools.",
+    "causes": [
+      {"cause": "Corrupted EEPROM data after power surge", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Loose or damaged EEPROM connector", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failing main controller PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Error C0100 on display at boot", "Machine will not initialize", "Cannot access menus"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Switch the printer off at the main switch, wait 60 seconds, and power back on.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check connections", "instruction": "If comfortable with service access, a technician should verify the EEPROM board is seated correctly on the main PCB.", "tools": ["screwdriver"], "difficulty": "professional", "timeMinutes": 30},
+      {"step": 3, "title": "Replace EEPROM board", "instruction": "Technician replaces the EEPROM and reprograms the serial number and counters using Kyocera service software.", "tools": ["service software", "replacement EEPROM"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci", "TASKalfa 5053ci", "TASKalfa 6053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 180, "max": 400}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Always call authorized Kyocera service for C0100; serial number reprogramming is required.",
+    "relatedCodes": ["C0110", "C0120"],
+    "faq": [
+      {"q": "Can I reset C0100 myself?", "a": "A power cycle is worth trying, but persistent C0100 needs a technician."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c0110",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C0110",
+    "displayCode": "C0110",
+    "errorType": "hardware",
+    "title": "Backup memory data problem",
+    "shortDescription": "Checksum mismatch detected in EEPROM contents.",
+    "fullDescription": "C0110 is raised when the backup memory contents fail their integrity check. The stored counters or settings no longer match the verification checksum, typically due to an aborted write during power loss.\n\nUnlike C0100 (hardware access failure), C0110 is a data-level problem — the chip is readable but the data is inconsistent. In some cases service mode can reinitialize the relevant section.\n\nSuccessful recovery depends on whether only non-critical data is corrupted or if counter/serial data is affected. The latter usually requires EEPROM replacement.",
+    "causes": [
+      {"cause": "Power loss during write operation", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Battery-backed RAM failure", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C0110 on startup", "Machine halts at self-test"],
+    "fixSteps": [
+      {"step": 1, "title": "Reboot machine", "instruction": "Power off, wait 30 seconds, power on.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Service mode reinit", "instruction": "Technician enters service mode and reinitializes backup RAM section.", "tools": ["service code"], "difficulty": "professional", "timeMinutes": 20}
+    ],
+    "affectedSeries": ["TASKalfa 2552ci", "TASKalfa 3252ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 120, "max": 300}},
+    "diyDifficulty": "professional",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Any time C0110 persists after a reboot.",
+    "relatedCodes": ["C0100"],
+    "faq": [
+      {"q": "Will I lose my settings?", "a": "A reinit typically preserves counters but custom settings may need to be re-entered."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c0180",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C0180",
+    "displayCode": "C0180",
+    "errorType": "hardware",
+    "title": "Machine serial number mismatch",
+    "shortDescription": "Serial number in main PCB does not match engine PCB.",
+    "fullDescription": "C0180 occurs when the serial number stored in the main control board differs from the one stored in the engine board. This typically happens after a board replacement without proper reprogramming.\n\nKyocera uses cross-verification between boards to prevent mixing parts from different machines. A technician must use Kyocera-Net service software to rewrite the serial number to match.\n\nWithout this step the machine will refuse to start and continue to display C0180.",
+    "causes": [
+      {"cause": "Main board replaced without serial reprogramming", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Engine board replaced without serial reprogramming", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C0180 on display", "Occurs immediately after a repair"],
+    "fixSteps": [
+      {"step": 1, "title": "Reprogram serial", "instruction": "Technician connects Kyocera service software and writes correct serial number to both boards.", "tools": ["Kyocera service software", "laptop"], "difficulty": "professional", "timeMinutes": 30}
+    ],
+    "affectedSeries": ["TASKalfa 4002i", "TASKalfa 5002i", "TASKalfa 6002i"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "professional",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "Always — this requires Kyocera service tooling.",
+    "relatedCodes": ["C0100", "C0110"],
+    "faq": [
+      {"q": "Why does this appear after a repair?", "a": "The technician forgot the serial number reprogramming step."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c2101",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C2101",
+    "displayCode": "C2101",
+    "errorType": "hardware",
+    "title": "Drum motor error",
+    "shortDescription": "Drum motor did not reach target rotation speed.",
+    "fullDescription": "Error C2101 indicates the drum motor failed to reach its target speed within the expected window, or the encoder feedback is missing. This stops all print operations.\n\nCauses include a seized drum from debris, a failed motor, a wiring harness issue, or a failed drive PCB. In high-volume environments this motor wears out around 600-800k pages.\n\nInspection involves rotating the drum by hand to check for resistance, then electrical checks of the motor harness, before replacement of the motor unit.",
+    "causes": [
+      {"cause": "Worn or seized drum motor", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Drive gear jam from paper debris", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed motor driver PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C2101 shortly after print start", "Unusual noise from drum area"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect drum area", "instruction": "Open front door and remove drum unit; check for shredded paper or debris in drive gears.", "tools": ["gloves"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Test motor", "instruction": "Technician runs motor test in service mode to confirm failure.", "tools": ["service mode access"], "difficulty": "professional", "timeMinutes": 10},
+      {"step": 3, "title": "Replace motor", "instruction": "Technician replaces the drum drive motor assembly.", "tools": ["screwdriver", "replacement motor"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci", "TASKalfa 5053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 600}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-90 minutes",
+    "whenToCallPro": "If debris removal does not clear the code.",
+    "relatedCodes": ["C2102", "C2203"],
+    "faq": [
+      {"q": "Can I replace the drum motor myself?", "a": "No, it requires partial disassembly and service mode calibration."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c2500",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C2500",
+    "displayCode": "C2500",
+    "errorType": "paper",
+    "title": "Paper feed motor error",
+    "shortDescription": "The paper feed motor failed to operate correctly.",
+    "fullDescription": "C2500 indicates the paper feed motor driving pickup/feed rollers did not reach speed or stalled. It can be triggered by worn pickup rollers, a jammed gear train, or motor failure.\n\nBecause the same motor drives multiple trays in many Kyocera models, the error affects all paper sources. Users see printing stop at the start of a job with C2500 on screen.\n\nCheck rollers for wear and remove any trapped paper fragments. If mechanical inspection is clean, the motor or driver PCB likely needs replacement.",
+    "causes": [
+      {"cause": "Jammed paper fragments in feed path", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Worn feed clutches", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed feed motor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C2500 at start of print", "No paper movement audible"],
+    "fixSteps": [
+      {"step": 1, "title": "Clear paper path", "instruction": "Open all cassettes and doors and remove any paper or debris from rollers.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect rollers", "instruction": "Check pickup and feed rollers for shine or flat spots; replace if worn.", "tools": ["replacement rollers"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Professional service", "instruction": "If cleared path does not restore function, a technician replaces the feed motor.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["ECOSYS M3550idn", "ECOSYS M3655idn", "TASKalfa 2552ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "After clearing the paper path and replacing rollers fails.",
+    "relatedCodes": ["C2501", "C2502"],
+    "faq": [
+      {"q": "Does a power cycle clear C2500?", "a": "Only if the underlying jam has been removed."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c4000",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C4000",
+    "displayCode": "C4000",
+    "errorType": "hardware",
+    "title": "Polygon motor error",
+    "shortDescription": "Laser polygon mirror motor did not reach rated RPM.",
+    "fullDescription": "C4000 tells the printer that the polygon mirror inside the laser scanner unit (LSU) did not spin up to operating speed within the allowed timeout.\n\nThis is a high-precision component spinning at tens of thousands of RPM. Bearing wear or dust contamination are frequent causes on older machines. An electrical failure in the scanner PCB will also trigger the error.\n\nThe fix is almost always replacement of the entire laser scanner unit; the polygon motor is not field-serviceable.",
+    "causes": [
+      {"cause": "Worn polygon motor bearings", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Dust contamination inside LSU", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed scanner PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C4000 immediately after print command", "Blank pages before error"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Power off for 2 minutes then power on; may clear a stuck bearing temporarily.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "LSU replacement", "instruction": "Technician removes and replaces the laser scanner unit, then realigns.", "tools": ["screwdriver", "replacement LSU"], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "affectedSeries": ["TASKalfa 4052ci", "TASKalfa 5052ci", "ECOSYS P3055dn"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Always — LSU replacement requires calibration.",
+    "relatedCodes": ["C4001", "C4010"],
+    "faq": [
+      {"q": "Can dust inside the LSU be cleaned?", "a": "Field cleaning typically introduces more dust; replacement is recommended."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c6000",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C6000",
+    "displayCode": "C6000",
+    "errorType": "hardware",
+    "title": "Broken fuser heat lamp",
+    "shortDescription": "Fuser heater lamp open circuit detected.",
+    "fullDescription": "C6000 indicates that the main heat lamp inside the fuser is open-circuit — no current flows when the printer applies power. Kyocera flags this immediately because a non-heating fuser cannot melt toner.\n\nCauses are usually a burned-out halogen lamp or a failed thermistor providing incorrect feedback. A failed triac on the power supply could also be responsible.\n\nReplacement is done as a complete fuser assembly in most Kyocera TASKalfa models.",
+    "causes": [
+      {"cause": "Blown halogen fuser lamp", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Open thermistor", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed triac on low voltage PSU", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C6000 during warm-up", "Pages cold to the touch if printed"],
+    "fixSteps": [
+      {"step": 1, "title": "Cool and inspect", "instruction": "Allow fuser to cool for 30 minutes, then remove and visually inspect the lamp filament.", "tools": ["gloves"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Replace fuser", "instruction": "Technician replaces fuser assembly.", "tools": ["replacement fuser"], "difficulty": "professional", "timeMinutes": 40}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 350, "max": 900}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Always for C6000; mains-voltage components.",
+    "relatedCodes": ["C6020", "C6030"],
+    "faq": [
+      {"q": "Is the fuser the same as the drum?", "a": "No. The fuser melts toner onto paper; the drum transfers it."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c6020",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C6020",
+    "displayCode": "C6020",
+    "errorType": "hardware",
+    "title": "Fuser thermistor high temperature",
+    "shortDescription": "Fuser overheated beyond safe threshold.",
+    "fullDescription": "C6020 triggers when the fuser thermistor reports a temperature above the safety limit. The machine shuts down to prevent scorching paper or damaging the fuser sleeve.\n\nThis can result from a stuck triac locking the lamp on, a shorted thermistor, or a physical obstruction preventing heat distribution. The error latches and requires service-mode clearing after repair.\n\nDo not attempt to clear C6020 without investigating the cause — continued operation risks fire.",
+    "causes": [
+      {"cause": "Shorted thermistor", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Stuck triac on PSU", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C6020 after short period of use", "Smell of warm paper before error"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Immediately power the machine off and do not restart until inspected.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Professional inspection", "instruction": "Technician measures thermistor resistance and tests triac.", "tools": ["multimeter"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["TASKalfa 5053ci", "TASKalfa 6053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "Always — safety-critical overheat condition.",
+    "relatedCodes": ["C6000", "C6030"],
+    "faq": [
+      {"q": "Can I just reset it?", "a": "No. Investigate first; resetting without fixing risks damage."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c6030",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C6030",
+    "displayCode": "C6030",
+    "errorType": "hardware",
+    "title": "Fuser thermistor low temperature",
+    "shortDescription": "Fuser failed to warm up within timeout.",
+    "fullDescription": "C6030 is logged when the fuser thermistor does not see the expected temperature rise after the lamp is energized. Either the lamp is not heating, the thermistor is open-circuit reading low, or mains voltage is insufficient.\n\nOn TASKalfa devices, C6030 often follows a brief C6000. Replacing the fuser assembly is usually the fix.\n\nIn some locations, repeated failures point to low line voltage; a dedicated circuit may be required for larger MFPs.",
+    "causes": [
+      {"cause": "Failed fuser lamp", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Open thermistor", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Low mains voltage", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["C6030 during warm-up cycle", "Machine idle-cold after power-on"],
+    "fixSteps": [
+      {"step": 1, "title": "Check mains", "instruction": "Verify 220-240V or 110-120V as appropriate with a socket tester.", "tools": ["socket tester"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace fuser", "instruction": "Technician installs new fuser assembly.", "tools": ["replacement fuser"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4002i"],
+    "estimatedCost": {"diy": {"min": 0, "max": 5}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "If mains is known good.",
+    "relatedCodes": ["C6000", "C6020"],
+    "faq": [
+      {"q": "Can cold room temperature cause this?", "a": "Only if below 10C; most failures are hardware."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c6400",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C6400",
+    "displayCode": "C6400",
+    "errorType": "hardware",
+    "title": "Zero-cross signal error",
+    "shortDescription": "Power supply zero-cross detection failed.",
+    "fullDescription": "The zero-cross signal tells the printer when the AC mains waveform crosses zero, which it uses to time fuser triac firing. C6400 is logged when this signal is missing or distorted.\n\nThis often points to the low-voltage power supply (LVPS) rather than the fuser itself. A failing triac or opto-isolator on the PSU is typical.\n\nReplacement of the LVPS generally resolves the error.",
+    "causes": [
+      {"cause": "Failed LVPS zero-cross circuit", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Poor mains quality (UPS square wave)", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["C6400 at start-up", "Intermittent if UPS-related"],
+    "fixSteps": [
+      {"step": 1, "title": "Bypass UPS", "instruction": "Plug directly into wall socket to rule out waveform issues.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace LVPS", "instruction": "Technician swaps the low-voltage power supply board.", "tools": ["replacement PSU"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 2552ci", "TASKalfa 3252ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 600}},
+    "diyDifficulty": "professional",
+    "repairTime": "60 minutes",
+    "whenToCallPro": "If not UPS-related.",
+    "relatedCodes": ["C6000"],
+    "faq": [
+      {"q": "Is using a UPS bad?", "a": "A pure sine wave UPS is fine; cheap simulated sine units can cause C6400."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c7001",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C7001",
+    "displayCode": "C7001",
+    "errorType": "ink",
+    "title": "Toner motor error (Black)",
+    "shortDescription": "Black toner supply motor failed to run.",
+    "fullDescription": "C7001 is raised when the motor that augers black toner from the supply bottle to the developer unit fails to turn. Kyocera monitors motor current; an overload or open winding trips this code.\n\nCheck first that the toner bottle is seated and not caked; hardened toner can lock the auger. If that is clear, the motor itself or the driver circuit is at fault.\n\nThe error blocks printing because toner levels cannot be maintained.",
+    "causes": [
+      {"cause": "Caked or clumped toner in bottle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed auger motor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C7001 mid-job", "Low toner warnings preceding"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat bottle", "instruction": "Remove the black toner bottle, shake it 5-6 times, and reinstall.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Replace bottle", "instruction": "If reseating fails, install a fresh genuine Kyocera bottle.", "tools": ["new toner bottle"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Professional repair", "instruction": "Technician replaces the auger motor.", "tools": [], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci"],
+    "estimatedCost": {"diy": {"min": 40, "max": 120}, "professional": {"min": 150, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-60 minutes",
+    "whenToCallPro": "If a new bottle does not clear the code.",
+    "relatedCodes": ["C7002", "C7003", "C7004"],
+    "faq": [
+      {"q": "Does shaking a new bottle help?", "a": "Yes, always shake Kyocera TK series bottles before installing."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c7101",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C7101",
+    "displayCode": "C7101",
+    "errorType": "ink",
+    "title": "Toner sensor error (Cyan)",
+    "shortDescription": "Cyan toner level sensor gives invalid reading.",
+    "fullDescription": "C7101 is a toner level sensor fault on the cyan channel. The sensor is typically a magnetic or optical device detecting toner flow in the developer. When the signal is stuck or implausible, the code triggers.\n\nContamination of the sensor with toner dust is a common cause. The sensor can sometimes be cleaned; more often the developer unit is replaced as a service item.\n\nPrinting is blocked until the sensor reports valid levels again.",
+    "causes": [
+      {"cause": "Toner dust on sensor", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed sensor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C7101 on startup", "Cyan cast on prints before failure"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat developer", "instruction": "A technician removes and cleans the cyan developer area.", "tools": ["vacuum"], "difficulty": "professional", "timeMinutes": 30},
+      {"step": 2, "title": "Replace developer", "instruction": "If cleaning fails, replace the cyan developer unit.", "tools": ["replacement developer"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci", "TASKalfa 5053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 600}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Always — developer access required.",
+    "relatedCodes": ["C7102", "C7103"],
+    "faq": [
+      {"q": "Will the same code happen on other colors?", "a": "Yes — C7102 for magenta, C7103 for yellow."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c7401",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C7401",
+    "displayCode": "C7401",
+    "errorType": "ink",
+    "title": "Developer unit mismatch",
+    "shortDescription": "Installed developer unit is not compatible.",
+    "fullDescription": "C7401 is logged when the machine reads the developer unit ID chip and finds it does not match the expected model or region. Common triggers are swapping developer units between TASKalfa models or installing a unit intended for another region.\n\nKyocera verifies region and model on installation; a mismatch halts operation.\n\nThe fix is to install the correct developer unit. Cross-region refills are generally not supported.",
+    "causes": [
+      {"cause": "Wrong region developer unit installed", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Incompatible third-party unit", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["C7401 immediately after developer swap"],
+    "fixSteps": [
+      {"step": 1, "title": "Check part number", "instruction": "Confirm the part number matches your region and model on the Kyocera compatibility list.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Install correct unit", "instruction": "Replace with genuine Kyocera developer unit for your region.", "tools": ["correct developer"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci"],
+    "estimatedCost": {"diy": {"min": 150, "max": 400}, "professional": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If uncertain which part number applies.",
+    "relatedCodes": ["C7411", "C7421"],
+    "faq": [
+      {"q": "Can I use a US developer in Europe?", "a": "No, region codes differ."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c7980",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C7980",
+    "displayCode": "C7980",
+    "errorType": "ink",
+    "title": "Waste toner full",
+    "shortDescription": "Waste toner container reached capacity.",
+    "fullDescription": "C7980 indicates the waste toner box is full and must be replaced. The Kyocera machine tracks consumption electronically and locks when the limit is reached, even if the box appears to have room.\n\nReplace the waste container with a genuine WT series box; aftermarket units rarely carry the correct ID chip.\n\nDo not empty and reinstall the same box — the sensor will re-trigger.",
+    "causes": [
+      {"cause": "Waste toner container full", "likelihood": "high", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["C7980 after long run of prints", "Warning level shown prior"],
+    "fixSteps": [
+      {"step": 1, "title": "Open waste toner door", "instruction": "Locate the waste toner compartment, usually behind the front cover.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Swap container", "instruction": "Remove the old box, cap it, and install a new genuine WT-xx container.", "tools": ["new waste toner box"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci", "TASKalfa 5053ci"],
+    "estimatedCost": {"diy": {"min": 20, "max": 60}, "professional": {"min": 80, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not required; user-serviceable.",
+    "relatedCodes": ["C7981"],
+    "faq": [
+      {"q": "Can I empty and reuse it?", "a": "No; the chip counter will still read full."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c8010",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C8010",
+    "displayCode": "C8010",
+    "errorType": "hardware",
+    "title": "Scanner motor error",
+    "shortDescription": "Scanner carriage motor did not reach home position.",
+    "fullDescription": "C8010 flags a failure in the scanner (flatbed) unit: the carriage did not return to its home sensor within the allowed time. It affects copy and scan functions but print may still work.\n\nA common cause is an object blocking the carriage or a broken drive belt. Motor or home sensor failures are also possible.\n\nOpen the top cover and inspect the carriage track; clear any obstructions.",
+    "causes": [
+      {"cause": "Object on scanner glass blocking carriage", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Broken scanner drive belt", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed home sensor", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C8010 at copy or scan start", "Grinding from scanner area"],
+    "fixSteps": [
+      {"step": 1, "title": "Clear glass", "instruction": "Remove any items from the scanner glass and document feeder.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Inspect belt", "instruction": "Technician opens scanner unit and checks belt tension.", "tools": ["screwdriver"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4002i"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 180, "max": 400}},
+    "diyDifficulty": "professional",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If clearing the glass does not resolve.",
+    "relatedCodes": ["C8020"],
+    "faq": [
+      {"q": "Can I still print when C8010 is shown?", "a": "On most models yes; scan and copy are disabled."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c8140",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C8140",
+    "displayCode": "C8140",
+    "errorType": "hardware",
+    "title": "DP lift motor error",
+    "shortDescription": "Document processor paper lift motor fault.",
+    "fullDescription": "C8140 indicates the document processor (ADF) paper lift motor failed. The motor raises the stack to the feed level; when it does not reach height, copies cannot start.\n\nCheck for paper or staples jamming the lift mechanism. If clear, a technician will evaluate motor and sensor health.\n\nSingle-sheet copying from the flatbed still works while the ADF is disabled.",
+    "causes": [
+      {"cause": "Paper or staple jamming lift tray", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed lift motor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C8140 when using ADF", "ADF tray does not lift"],
+    "fixSteps": [
+      {"step": 1, "title": "Remove obstructions", "instruction": "Check the ADF lift tray for paper scraps or staples.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Service call", "instruction": "Technician inspects and replaces motor as needed.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "professional",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "If the path is clear and the tray still will not lift.",
+    "relatedCodes": ["C8010"],
+    "faq": [
+      {"q": "Can I use the flatbed instead?", "a": "Yes, single-sheet scanning is unaffected."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c8800",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C8800",
+    "displayCode": "C8800",
+    "errorType": "hardware",
+    "title": "Finisher communication error",
+    "shortDescription": "No response from attached finisher.",
+    "fullDescription": "C8800 appears when the main controller loses communication with the optional finisher (sorter, stapler, booklet unit). Jobs requiring finishing options cannot be completed.\n\nLoose cables between the printer and finisher are the most frequent cause, often after someone moves the finisher for cleaning. A failed finisher PCB is possible.\n\nPower both units off before reseating cables.",
+    "causes": [
+      {"cause": "Loose interface cable between printer and finisher", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed finisher PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C8800 on power-up", "Finisher icon greyed out"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off both", "instruction": "Turn off printer and finisher.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Reseat cable", "instruction": "Detach and reinsert the finisher interface cable firmly.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Restart and test", "instruction": "Power on printer first, then finisher.", "tools": [], "difficulty": "easy", "timeMinutes": 3}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci", "TASKalfa 5053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 150, "max": 400}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "If cable reseat does not clear it.",
+    "relatedCodes": ["C8810", "C8820"],
+    "faq": [
+      {"q": "Can I print without the finisher?", "a": "Yes, via disabling finisher options in the driver."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c9000",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C9000",
+    "displayCode": "C9000",
+    "errorType": "hardware",
+    "title": "DP communication error",
+    "shortDescription": "No response from document processor.",
+    "fullDescription": "C9000 is communication loss between the main controller and the Document Processor. Like C8800 for finishers, it is frequently a cable problem.\n\nInspect the connector between the MFP body and the DP for loose pins or debris. Reseating usually clears it.\n\nPersistent C9000 after a good reseat points to the DP PCB or the main board's DP port.",
+    "causes": [
+      {"cause": "Loose DP cable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed DP PCB", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C9000 on boot", "ADF copy unavailable"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Turn off the MFP.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Reseat DP cable", "instruction": "Lift DP, reseat connector at hinge.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["TASKalfa 4002i", "TASKalfa 5002i"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If reseating does not clear the fault.",
+    "relatedCodes": ["C8140"],
+    "faq": [
+      {"q": "Is the DP the same as ADF?", "a": "Yes — Kyocera uses DP for Document Processor."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c9500",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C9500",
+    "displayCode": "C9500",
+    "errorType": "connectivity",
+    "title": "Network engine communication error",
+    "shortDescription": "Internal bus to network controller failed.",
+    "fullDescription": "C9500 indicates that the main engine cannot communicate with the network sub-system. The printer will still function as a standalone copier, but printing over network and scan-to-email are unavailable.\n\nA firmware update that partially failed, or a failed network PCB, are common causes. A factory reset often clears software-induced instances.\n\nHardware failures require network controller board replacement.",
+    "causes": [
+      {"cause": "Corrupt network firmware", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed network controller board", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C9500 on boot", "No IP address assigned"],
+    "fixSteps": [
+      {"step": 1, "title": "Reflash firmware", "instruction": "Download latest firmware from Kyocera and reflash via USB.", "tools": ["USB drive"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Replace board", "instruction": "Technician replaces network controller board.", "tools": ["replacement board"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "ECOSYS P3055dn"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 500}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If firmware reflash fails.",
+    "relatedCodes": ["C9510"],
+    "faq": [
+      {"q": "Can I still copy?", "a": "Yes, standalone copy continues to work."}
+    ]
+  },
+  {
+    "id": "kyocera-printer-c9900",
+    "brand": "Kyocera",
+    "brandSlug": "kyocera",
+    "code": "C9900",
+    "displayCode": "C9900",
+    "errorType": "software",
+    "title": "System firmware error",
+    "shortDescription": "Firmware integrity check failed during boot.",
+    "fullDescription": "C9900 is a general firmware integrity error. The boot loader found corrupt sectors or mismatched module versions after a power loss during update.\n\nRecovery mode on Kyocera devices allows reflashing with a matching firmware file via USB. The process takes up to 15 minutes and must not be interrupted.\n\nIf recovery mode fails the main board or flash chip is faulty.",
+    "causes": [
+      {"cause": "Interrupted firmware update", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupt eMMC storage", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["C9900 on power-up", "Machine reboots into recovery"],
+    "fixSteps": [
+      {"step": 1, "title": "Reflash firmware", "instruction": "Put correct firmware file on USB stick and follow Kyocera recovery steps.", "tools": ["USB stick", "firmware file"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Replace main board", "instruction": "Technician replaces main controller if flash chip is dead.", "tools": ["replacement board"], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "affectedSeries": ["TASKalfa 3253ci", "TASKalfa 4053ci"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "If reflash fails twice.",
+    "relatedCodes": ["C9500"],
+    "faq": [
+      {"q": "Will I lose data?", "a": "Stored jobs and address book may be erased during reflash."}
+    ]
+  }
+]

@@ -1,0 +1,583 @@
+[
+  {
+    "id": "ricoh-printer-sc101",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC101",
+    "displayCode": "SC101",
+    "errorType": "hardware",
+    "title": "Exposure lamp error",
+    "shortDescription": "Scanner exposure lamp failed to provide correct brightness.",
+    "fullDescription": "SC101 is logged when the Ricoh scanner lamp does not produce the expected light level during the pre-scan calibration. The scanner uses a white strip under the glass to check brightness; if it reads too low, SC101 is raised.\n\nCommon causes are a dirty white reference strip, a failed lamp, or a dirty scanner mirror. On newer LED-based scanners, a dead LED array triggers the same code.\n\nCleaning is the first step; replacement of the scanner lamp unit is done by a technician.",
+    "causes": [
+      {"cause": "Dirty white reference strip", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed scanner lamp or LED", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC101 during copy or scan", "Dark copies before fail"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean scanner", "instruction": "Clean the scanner glass and the white strip just under the edge.", "tools": ["lint-free cloth"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace lamp", "instruction": "Technician replaces the scanner lamp assembly.", "tools": ["replacement lamp"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["Ricoh MP 2554", "Ricoh MP 3554", "Ricoh IM C3500"],
+    "estimatedCost": {"diy": {"min": 0, "max": 10}, "professional": {"min": 180, "max": 450}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-60 minutes",
+    "whenToCallPro": "After cleaning if the code remains.",
+    "relatedCodes": ["SC102"],
+    "faq": [
+      {"q": "Can I still print?", "a": "Yes; printing is not affected by SC101."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc195",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC195",
+    "displayCode": "SC195",
+    "errorType": "hardware",
+    "title": "Machine serial number error",
+    "shortDescription": "Serial number not programmed or lost from NVRAM.",
+    "fullDescription": "SC195 indicates the main machine serial number is missing from NVRAM. It occurs after controller board replacement without NVRAM transfer or NVRAM corruption.\n\nA technician uses SP mode to rewrite the correct serial number from the machine label.\n\nThis error is benign on boot but blocks billing/counter functions.",
+    "causes": [
+      {"cause": "Controller replaced without NVRAM transfer", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "NVRAM battery failure", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC195 on boot", "Occurs after service"],
+    "fixSteps": [
+      {"step": 1, "title": "SP mode serial write", "instruction": "Technician enters SP5-811 and writes correct serial number.", "tools": ["SP mode"], "difficulty": "professional", "timeMinutes": 15}
+    ],
+    "affectedSeries": ["Ricoh MP C4504", "Ricoh MP C5504"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "professional",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC196"],
+    "faq": [
+      {"q": "Where is the serial printed?", "a": "On the label on the back of the machine."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc202",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC202",
+    "displayCode": "SC202",
+    "errorType": "hardware",
+    "title": "Polygon motor error",
+    "shortDescription": "Laser polygon motor did not lock to target speed.",
+    "fullDescription": "SC202 indicates the Ricoh laser polygon motor did not reach or maintain its lock signal. The polygon spins the mirror that sweeps laser across the drum.\n\nWorn bearings, dust in the LSU, or a failed scanner motor PCB cause this. Ricoh recommends LSU replacement rather than motor-only repair.\n\nThe error is detected during the polygon spin-up phase.",
+    "causes": [
+      {"cause": "Failed polygon motor bearings", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Dust in laser scanner unit", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC202 at print start", "No printed output"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Power off 60 seconds; may temporarily clear.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Replace LSU", "instruction": "Technician replaces laser scanner unit.", "tools": ["replacement LSU"], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "affectedSeries": ["Ricoh MP 4054", "Ricoh MP 5054"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 350, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Always for LSU replacement.",
+    "relatedCodes": ["SC203"],
+    "faq": [
+      {"q": "Can I clean the LSU myself?", "a": "Not recommended — contamination risk."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc320",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC320",
+    "displayCode": "SC320",
+    "errorType": "hardware",
+    "title": "Polygon motor error (Color)",
+    "shortDescription": "Color laser unit polygon motor fault.",
+    "fullDescription": "SC320 is the color-printer equivalent of SC202: the polygon mirror motor inside the color LSU did not lock to the required speed. A single LSU may serve all four colors or one per color depending on model.\n\nConsistently returning SC320 after a power cycle signals a failed motor assembly.\n\nThe LSU must be replaced by a technician with proper alignment.",
+    "causes": [
+      {"cause": "Failed color LSU polygon motor", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC320 during color print attempt", "Color pages blank"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off/on", "instruction": "Let the machine sit powered off for 2 minutes, then restart.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "LSU replacement", "instruction": "Technician installs new color LSU.", "tools": ["replacement LSU"], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "affectedSeries": ["Ricoh MP C3004", "Ricoh MP C4504", "Ricoh IM C3500"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 1200}},
+    "diyDifficulty": "professional",
+    "repairTime": "90-150 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC202"],
+    "faq": [
+      {"q": "Can I print in black and white?", "a": "Often no — Ricoh color LSU failure usually stops the machine entirely."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc390",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC390",
+    "displayCode": "SC390",
+    "errorType": "ink",
+    "title": "Development motor error",
+    "shortDescription": "Developer unit motor stalled or failed to reach speed.",
+    "fullDescription": "SC390 is logged when the motor driving the developer roller fails. Without development motion toner cannot be charged and transferred to paper.\n\nThe fault is usually a failed motor or drive gear. On machines nearing end of life, the developer unit itself may have seized.\n\nAfter motor replacement the developer bias and density should be recalibrated in SP mode.",
+    "causes": [
+      {"cause": "Failed developer drive motor", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Seized developer unit", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC390 on print", "Light or missing prints before fail"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect developer", "instruction": "Technician rotates developer by hand to check resistance.", "tools": [], "difficulty": "professional", "timeMinutes": 20},
+      {"step": 2, "title": "Replace motor", "instruction": "Install new motor and recalibrate in SP mode.", "tools": ["replacement motor"], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "affectedSeries": ["Ricoh MP 3055", "Ricoh MP 4055"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 550}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC395"],
+    "faq": [
+      {"q": "Does SC390 block the entire machine?", "a": "Yes, printing is halted."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc440",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC440",
+    "displayCode": "SC440",
+    "errorType": "hardware",
+    "title": "Image transfer bias leak",
+    "shortDescription": "High voltage transfer leak detected.",
+    "fullDescription": "SC440 indicates a leakage current in the image transfer high-voltage circuit. The transfer roller applies a bias to pull toner from the drum onto the paper or transfer belt.\n\nMoisture, a worn transfer roller, or a failed HVPS can leak this voltage, triggering SC440.\n\nDrying in a warm environment helps if moisture is the cause; persistent SC440 requires HVPS or transfer unit replacement.",
+    "causes": [
+      {"cause": "Moisture in transfer area", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Worn transfer roller", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed HVPS", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC440 in humid conditions", "Poor transfer prints before fail"],
+    "fixSteps": [
+      {"step": 1, "title": "Dry out machine", "instruction": "Leave the printer powered off in a dry room for 24 hours.", "tools": [], "difficulty": "easy", "timeMinutes": 1440},
+      {"step": 2, "title": "Replace transfer unit", "instruction": "Technician installs new transfer unit.", "tools": ["replacement transfer unit"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["Ricoh MP C4504", "Ricoh MP C5504"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "45 minutes to 24 hours",
+    "whenToCallPro": "After drying if the error persists.",
+    "relatedCodes": ["SC441"],
+    "faq": [
+      {"q": "Can humidity cause this?", "a": "Yes; above 70% RH increases risk."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc495",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC495",
+    "displayCode": "SC495",
+    "errorType": "hardware",
+    "title": "Drum temperature sensor error",
+    "shortDescription": "Drum thermistor reading out of range.",
+    "fullDescription": "SC495 flags a drum temperature sensor whose reading is outside valid range. Ricoh monitors drum temperature to compensate image density.\n\nA disconnected or failed thermistor, or an aged drum with the sensor compromised, can trigger this.\n\nTechnician reseats connectors first, then replaces the thermistor or drum unit.",
+    "causes": [
+      {"cause": "Loose thermistor connector", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed thermistor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC495 on warm-up", "Image density drifts"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Technician checks thermistor harness for looseness.", "tools": [], "difficulty": "professional", "timeMinutes": 20}
+    ],
+    "affectedSeries": ["Ricoh MP 3055", "Ricoh MP 4055"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "professional",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC541"],
+    "faq": [
+      {"q": "Does this damage the drum?", "a": "No, but continued operation may cause density issues."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc541",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC541",
+    "displayCode": "SC541",
+    "errorType": "hardware",
+    "title": "Fusing lamp thermistor open",
+    "shortDescription": "Fuser thermistor reading no temperature rise.",
+    "fullDescription": "SC541 is one of the most common Ricoh errors. It means the fusing thermistor reads no or very slow temperature rise when the fuser lamps are powered.\n\nCauses include a blown fuser lamp, an open thermistor, tripped thermal fuse, or a failed AC drive board.\n\nRicoh requires SP5-810 reset after the fuser or thermistor is replaced.",
+    "causes": [
+      {"cause": "Blown fuser lamp", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Open thermistor", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Tripped thermal fuse", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC541 during warm-up", "No heat from fuser"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace fuser", "instruction": "Technician swaps the fuser unit with a known good one.", "tools": ["replacement fuser"], "difficulty": "professional", "timeMinutes": 45},
+      {"step": 2, "title": "SP5-810 reset", "instruction": "Enter SP5-810 to clear the fusing error latch.", "tools": ["SP mode"], "difficulty": "professional", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["Ricoh MP 2554", "Ricoh MP 3554", "Ricoh MP 4054"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "45-60 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC542", "SC543"],
+    "faq": [
+      {"q": "Can I reset SC541 without fixing?", "a": "SP5-810 will reset but will return immediately if hardware is faulty."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc542",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC542",
+    "displayCode": "SC542",
+    "errorType": "hardware",
+    "title": "Fusing warm-up timeout",
+    "shortDescription": "Fuser did not reach ready temperature in time.",
+    "fullDescription": "SC542 is logged when the fuser does not reach ready temperature within the timeout period. The lamp is working but insufficient to warm the sleeve.\n\nCommon causes: weak lamp output from age, low mains voltage, or a partially failed lamp filament.\n\nReplace the fuser assembly and clear with SP5-810.",
+    "causes": [
+      {"cause": "Aged fuser lamp", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Low mains voltage", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["SC542 after extended idle", "Slow warm-up before failure"],
+    "fixSteps": [
+      {"step": 1, "title": "Check mains", "instruction": "Verify voltage with socket tester.", "tools": ["socket tester"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace fuser", "instruction": "Technician installs new fuser.", "tools": ["replacement fuser"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["Ricoh MP 3055", "Ricoh MP 4055"],
+    "estimatedCost": {"diy": {"min": 0, "max": 5}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "45-60 minutes",
+    "whenToCallPro": "If mains is good.",
+    "relatedCodes": ["SC541", "SC543"],
+    "faq": [
+      {"q": "Does room temperature matter?", "a": "Cold rooms make SC542 more likely on marginal lamps."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc543",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC543",
+    "displayCode": "SC543",
+    "errorType": "hardware",
+    "title": "Fusing overheat",
+    "shortDescription": "Fuser temperature exceeded safe limit.",
+    "fullDescription": "SC543 indicates the fuser overheated — the thermistor reported a temperature above the safety threshold. The machine locks to prevent damage.\n\nUsually caused by a failed triac keeping the lamp on, or a shorted thermistor.\n\nDo not reset until the underlying fault is found — continued operation risks fire.",
+    "causes": [
+      {"cause": "Stuck triac on AC drive board", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Shorted thermistor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC543 after short use", "Smell of heat"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off immediately", "instruction": "Keep printer off until inspected.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Diagnose", "instruction": "Technician checks triac and thermistor.", "tools": ["multimeter"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedSeries": ["Ricoh MP 2554", "Ricoh MP 3554"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 900}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "Always — safety critical.",
+    "relatedCodes": ["SC541", "SC542"],
+    "faq": [
+      {"q": "Can I just reset?", "a": "No, investigate first."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc552",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC552",
+    "displayCode": "SC552",
+    "errorType": "hardware",
+    "title": "Fusing temperature drop",
+    "shortDescription": "Fuser temperature fell below target during printing.",
+    "fullDescription": "SC552 is logged when the fuser cannot maintain its target temperature during a print run. The lamp pulses cannot keep up with heat loss into paper.\n\nHeavy card stock or high-volume runs exacerbate the issue, but a failing lamp or thermistor is usually the root cause.\n\nFuser replacement is the standard fix.",
+    "causes": [
+      {"cause": "Weak fuser lamp", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Low mains voltage under load", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["SC552 mid-job on long runs", "Prints progressively lighter"],
+    "fixSteps": [
+      {"step": 1, "title": "Move to dedicated circuit", "instruction": "Ensure no heavy loads share the outlet.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace fuser", "instruction": "Technician swaps fuser.", "tools": ["replacement fuser"], "difficulty": "professional", "timeMinutes": 45}
+    ],
+    "affectedSeries": ["Ricoh MP 4054", "Ricoh MP 5054"],
+    "estimatedCost": {"diy": {"min": 0, "max": 5}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "If outlet is dedicated.",
+    "relatedCodes": ["SC541", "SC542"],
+    "faq": [
+      {"q": "Is card stock the problem?", "a": "Heavy stock accelerates the fault if the lamp is already weak."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc672",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC672",
+    "displayCode": "SC672",
+    "errorType": "software",
+    "title": "Controller start-up error",
+    "shortDescription": "Main controller did not respond to engine board.",
+    "fullDescription": "SC672 is the classic Ricoh 'stuck boot' error: the main controller did not respond to the engine within the boot window. The operation panel displays SC672.\n\nCauses include corrupt firmware, a loose controller-to-engine cable, or a failed controller board. Many cases resolve with a simple power cycle or cable reseat.\n\nIf firmware corruption is suspected, reflash is required via SD card.",
+    "causes": [
+      {"cause": "Loose controller-to-engine harness", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Corrupt firmware", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed controller board", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC672 on boot", "Operation panel frozen"],
+    "fixSteps": [
+      {"step": 1, "title": "Hold power off", "instruction": "Unplug machine for 5 minutes, then restart.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reseat harness", "instruction": "Technician reseats the controller-engine cable.", "tools": ["screwdriver"], "difficulty": "professional", "timeMinutes": 30},
+      {"step": 3, "title": "Reflash firmware", "instruction": "Use SD card with matching firmware to reflash.", "tools": ["SD card", "firmware"], "difficulty": "intermediate", "timeMinutes": 40}
+    ],
+    "affectedSeries": ["Ricoh MP 3554", "Ricoh MP C3004", "Ricoh MP C4504"],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-90 minutes",
+    "whenToCallPro": "If power cycle and reflash fail.",
+    "relatedCodes": ["SC673", "SC670"],
+    "faq": [
+      {"q": "Is SC672 fatal?", "a": "No, many cases are cable-related."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc670",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC670",
+    "displayCode": "SC670",
+    "errorType": "software",
+    "title": "Engine start-up error",
+    "shortDescription": "Engine board did not respond at start.",
+    "fullDescription": "SC670 is the inverse of SC672 — the controller is up but the engine did not respond. Wiring between boards or engine board failure is typical.\n\nBasic troubleshooting is cable reseating. If unresolved, the engine board is replaced.",
+    "causes": [
+      {"cause": "Loose engine board connector", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed engine board", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC670 after power on"],
+    "fixSteps": [
+      {"step": 1, "title": "Cable reseat", "instruction": "Technician reseats engine board connectors.", "tools": [], "difficulty": "professional", "timeMinutes": 30}
+    ],
+    "affectedSeries": ["Ricoh MP 3055", "Ricoh MP 4055"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 200, "max": 550}},
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SC672"],
+    "faq": [
+      {"q": "Does firmware matter?", "a": "Rarely — SC670 is usually hardware."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc720",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC720",
+    "displayCode": "SC720",
+    "errorType": "hardware",
+    "title": "Finisher error",
+    "shortDescription": "Optional finisher motor or sensor failure.",
+    "fullDescription": "SC720 covers finisher faults — stapler, sorter, or paddle issues. The exact sub-code refines the cause (SC720-01 stapler, SC720-02 paddle, etc.).\n\nCheck the finisher for jams or staple remnants first. If clear, the finisher drive motor or sensor needs service.\n\nUser-level jam clearing resolves many SC720 events.",
+    "causes": [
+      {"cause": "Jam or staple stuck in finisher", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed finisher motor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC720 after stapled job", "Partial stapling"],
+    "fixSteps": [
+      {"step": 1, "title": "Open finisher", "instruction": "Remove stapler cartridge and clear any stuck staples.", "tools": ["tweezers"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reinstall stapler", "instruction": "Seat cartridge and close cover; run test job.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["Ricoh MP 3554 + SR3230 finisher", "Ricoh MP C5504 + SR3260"],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 200, "max": 500}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-60 minutes",
+    "whenToCallPro": "If clearing jams does not fix.",
+    "relatedCodes": ["SC721", "SC722"],
+    "faq": [
+      {"q": "Can I still print?", "a": "Yes, just disable finishing in the driver."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc816",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC816",
+    "displayCode": "SC816",
+    "errorType": "software",
+    "title": "Energy saver mode error",
+    "shortDescription": "Machine could not transition to energy-save state.",
+    "fullDescription": "SC816 is a soft error logged when the machine's energy saver mode transition fails. Often triggered by firmware bugs or stuck sub-board communication.\n\nA reboot typically clears it. Persistent SC816 may call for a firmware update.\n\nThe machine usually remains operational but with SC816 shown on the panel.",
+    "causes": [
+      {"cause": "Firmware bug", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Sub-board communication glitch", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["SC816 displayed intermittently"],
+    "fixSteps": [
+      {"step": 1, "title": "Reboot", "instruction": "Power cycle the MFP.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Update firmware", "instruction": "Apply latest Ricoh firmware.", "tools": ["SD card"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedSeries": ["Ricoh IM C3500", "Ricoh IM C4500"],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-45 minutes",
+    "whenToCallPro": "If firmware update fails.",
+    "relatedCodes": ["SC817"],
+    "faq": [
+      {"q": "Is SC816 urgent?", "a": "No, cosmetic more than functional."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc819",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC819",
+    "displayCode": "SC819",
+    "errorType": "software",
+    "title": "Kernel error",
+    "shortDescription": "Fatal controller software exception.",
+    "fullDescription": "SC819 is a kernel-level software error on the Ricoh main controller. It indicates the controller firmware encountered an unrecoverable state and halted.\n\nReboot and firmware reflash are the main responses. If it recurs under specific job conditions, logs should be collected for Ricoh support.\n\nHardware failure (RAM, NVRAM battery) can also trigger it.",
+    "causes": [
+      {"cause": "Firmware exception from bad job data", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failing RAM on controller", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["SC819 after a specific print job", "Random crashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Hold the power button to cold-boot.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Firmware update", "instruction": "Install latest firmware.", "tools": ["SD card"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Replace controller", "instruction": "If hardware fault suspected, technician replaces controller board.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "affectedSeries": ["Ricoh MP C4504", "Ricoh IM C3000"],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-120 minutes",
+    "whenToCallPro": "If reflash does not clear recurring SC819.",
+    "relatedCodes": ["SC820"],
+    "faq": [
+      {"q": "Is print data lost?", "a": "Yes, pending jobs may be lost."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc899",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC899",
+    "displayCode": "SC899",
+    "errorType": "software",
+    "title": "Software performance error",
+    "shortDescription": "Application-level software error.",
+    "fullDescription": "SC899 is a Ricoh software error typically raised by the application stack (e.g., SmartSDK apps, embedded scanning). Compared to SC819 it is recoverable and does not halt the whole device.\n\nRestarting the affected application or rebooting usually clears it.\n\nRepeated SC899 may point to a specific add-on app that needs reinstallation.",
+    "causes": [
+      {"cause": "Third-party embedded app crash", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corrupt app install", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["SC899 when launching a specific app"],
+    "fixSteps": [
+      {"step": 1, "title": "Restart app", "instruction": "From Web Image Monitor, stop and start the app.", "tools": ["web browser"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Reinstall app", "instruction": "Remove and reinstall the SDK application.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedSeries": ["Ricoh IM C3500", "Ricoh IM C6500"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-45 minutes",
+    "whenToCallPro": "If app cannot be removed.",
+    "relatedCodes": ["SC819"],
+    "faq": [
+      {"q": "Does SC899 stop printing?", "a": "No, usually only the app is affected."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc990",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC990",
+    "displayCode": "SC990",
+    "errorType": "software",
+    "title": "Software operation error",
+    "shortDescription": "Unexpected operation condition.",
+    "fullDescription": "SC990 is a catch-all for unexpected software conditions on Ricoh MFPs. The system detected an inconsistency during operation that does not map to any specific sub-code.\n\nA power cycle typically clears it. Reoccurrence with the same job suggests problematic print data.\n\nCollect the job details and report to Ricoh if it persists.",
+    "causes": [
+      {"cause": "Malformed print job", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware bug", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["SC990 after a specific job", "Infrequent occurrences"],
+    "fixSteps": [
+      {"step": 1, "title": "Reboot", "instruction": "Power cycle the machine.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Print test page", "instruction": "Try a simple test document to confirm stability.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["Ricoh MP 3554", "Ricoh MP 4054"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If recurring daily.",
+    "relatedCodes": ["SC899"],
+    "faq": [
+      {"q": "Is SC990 serious?", "a": "Usually transient; monitor if it repeats."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc995",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC995",
+    "displayCode": "SC995",
+    "errorType": "software",
+    "title": "Print job error",
+    "shortDescription": "Job could not be processed.",
+    "fullDescription": "SC995 occurs when a specific print job fails to process. Reasons include unsupported PDL commands, oversized jobs, or incompatible paper settings.\n\nThe machine remains operational; the job is dropped. Reprint from a simpler source to test.\n\nLog the job characteristics if it repeats.",
+    "causes": [
+      {"cause": "Unsupported driver options", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Oversized job overflowing spool", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["SC995 only on particular prints"],
+    "fixSteps": [
+      {"step": 1, "title": "Update driver", "instruction": "Install current Ricoh PCL or PostScript driver.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Simplify job", "instruction": "Split large jobs or reduce resolution in driver settings.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedSeries": ["Ricoh MP 2554", "Ricoh MP 3554"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 200}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Only if driver update does not help.",
+    "relatedCodes": ["SC899", "SC990"],
+    "faq": [
+      {"q": "Do I need more RAM in the printer?", "a": "Only for very large PostScript jobs; rare."}
+    ]
+  },
+  {
+    "id": "ricoh-printer-sc997",
+    "brand": "Ricoh",
+    "brandSlug": "ricoh",
+    "code": "SC997",
+    "displayCode": "SC997",
+    "errorType": "software",
+    "title": "Application selection error",
+    "shortDescription": "Selected application failed to start.",
+    "fullDescription": "SC997 is raised when an application from the home screen (copy, scan, fax, app) cannot launch. Memory shortage or corrupted app state is the usual cause.\n\nRebooting frees memory and typically clears it. If reoccurring, disable recently installed SDK apps one-by-one to isolate the culprit.\n\nIf hardware-related the controller board may need service.",
+    "causes": [
+      {"cause": "Memory exhaustion from too many apps", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupt app state", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["SC997 when tapping copy or scan"],
+    "fixSteps": [
+      {"step": 1, "title": "Reboot", "instruction": "Power cycle to free memory.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Disable SDK apps", "instruction": "From Web Image Monitor disable non-essential apps.", "tools": ["web browser"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "affectedSeries": ["Ricoh IM C3500", "Ricoh IM C4500"],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If reboot and app disable do not help.",
+    "relatedCodes": ["SC899"],
+    "faq": [
+      {"q": "Will my data be lost?", "a": "No; stored jobs and address book persist."}
+    ]
+  }
+]

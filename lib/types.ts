@@ -276,7 +276,7 @@ export interface PrinterCode {
 
 // ── Windows Types ──
 
-export type WindowsErrorCategory = "bsod" | "update" | "system" | "browser";
+export type WindowsErrorCategory = "bsod" | "update" | "system" | "browser" | "gaming";
 
 export interface WindowsCode {
   id: string;

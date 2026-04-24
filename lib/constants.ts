@@ -501,6 +501,13 @@ export const PRINTER_BRANDS = [
   { name: "Brother", slug: "brother" },
   { name: "Xerox", slug: "xerox" },
   { name: "Lexmark", slug: "lexmark" },
+  { name: "Kyocera", slug: "kyocera" },
+  { name: "Ricoh", slug: "ricoh" },
+  { name: "Konica Minolta", slug: "konica-minolta" },
+  { name: "OKI", slug: "oki" },
+  { name: "Sharp", slug: "sharp-printer" },
+  { name: "Toshiba", slug: "toshiba-printer" },
+  { name: "Dell", slug: "dell" },
 ] as const;
 
 // ── Windows Categories ──
@@ -510,6 +517,7 @@ export const WINDOWS_CATEGORIES = [
   { name: "Windows Update", slug: "update", description: "Windows Update error codes" },
   { name: "System Errors", slug: "system", description: "System and application errors" },
   { name: "Browser & Network", slug: "browser", description: "Browser and network error codes" },
+  { name: "Gaming & Launchers", slug: "gaming", description: "Steam, Epic, Battle.net, Xbox PC app, game launcher errors" },
 ] as const;
 
 // ── Severity Labels ──

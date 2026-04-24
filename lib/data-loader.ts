@@ -111,6 +111,7 @@ const WINDOWS_FILE_MAP: Record<string, string[]> = {
   update: ["update-errors.json", "update.json"],
   system: ["system-errors.json", "system.json"],
   browser: ["browser-errors.json", "browser.json"],
+  gaming: ["gaming.json"],
 };
 
 export function getWindowsCodes(category?: string): WindowsCode[] {

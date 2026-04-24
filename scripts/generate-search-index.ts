@@ -127,12 +127,14 @@ const WIN_SLUG: Record<string, string> = {
   "update-errors.json": "update",
   "system-errors.json": "system",
   "browser-errors.json": "browser",
+  "gaming.json": "gaming",
 };
 const WIN_LABEL: Record<string, string> = {
   bsod: "BSOD",
   update: "Windows Update",
   system: "System",
   browser: "Browser/Network",
+  gaming: "Gaming & Launchers",
 };
 for (const file of jsonFilesIn(path.join(DATA_DIR, "windows"))) {
   const slug = WIN_SLUG[file] || file.replace(".json", "");
