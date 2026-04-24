@@ -213,6 +213,34 @@ export const APPLIANCE_BRANDS = [
   // ── Pool Equipment ──
   { name: "Pentair", slug: "pentair", country: "USA" },
   { name: "Hayward", slug: "hayward", country: "USA" },
+  // ── Motorcycles ──
+  { name: "Harley-Davidson", slug: "harley-davidson", country: "USA" },
+  { name: "Honda Motorcycle", slug: "honda-moto", country: "Japan" },
+  { name: "Yamaha Motorcycle", slug: "yamaha-moto", country: "Japan" },
+  { name: "Kawasaki", slug: "kawasaki", country: "Japan" },
+  { name: "Ducati", slug: "ducati", country: "Italy" },
+  { name: "BMW Motorrad", slug: "bmw-moto", country: "Germany" },
+  { name: "Indian Motorcycle", slug: "indian", country: "USA" },
+  // ── Fitness ──
+  { name: "Peloton", slug: "peloton", country: "USA" },
+  { name: "NordicTrack", slug: "nordictrack", country: "USA" },
+  { name: "Bowflex", slug: "bowflex", country: "USA" },
+  { name: "Echelon", slug: "echelon", country: "USA" },
+  // ── Medical ──
+  { name: "ResMed", slug: "resmed", country: "Australia" },
+  { name: "Philips Respironics", slug: "philips-respironics", country: "Netherlands" },
+  { name: "Dexcom", slug: "dexcom", country: "USA" },
+  // ── Smart Home ──
+  { name: "August Home", slug: "august-lock", country: "USA" },
+  { name: "Schlage", slug: "schlage", country: "USA" },
+  { name: "Yale", slug: "yale", country: "USA" },
+  { name: "TP-Link Kasa", slug: "kasa", country: "China" },
+  // ── Solar ──
+  { name: "Enphase", slug: "enphase", country: "USA" },
+  { name: "SolarEdge", slug: "solaredge", country: "Israel" },
+  // ── Marine ──
+  { name: "Mercury Marine", slug: "mercury-marine", country: "USA" },
+  { name: "Yamaha Marine", slug: "yamaha-marine", country: "Japan" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
@@ -278,6 +306,14 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   projector: { label: "Projector", labelPlural: "Projectors" },
   "sewing-machine": { label: "Sewing Machine", labelPlural: "Sewing Machines" },
   "pool-equipment": { label: "Pool Equipment", labelPlural: "Pool Equipment" },
+  motorcycle: { label: "Motorcycle", labelPlural: "Motorcycles" },
+  fitness: { label: "Fitness Equipment", labelPlural: "Fitness Equipment" },
+  cpap: { label: "CPAP", labelPlural: "CPAP Machines" },
+  "glucose-monitor": { label: "Glucose Monitor", labelPlural: "Glucose Monitors" },
+  "smart-lock": { label: "Smart Lock", labelPlural: "Smart Locks" },
+  "smart-plug": { label: "Smart Plug", labelPlural: "Smart Plugs" },
+  "solar-inverter": { label: "Solar Inverter", labelPlural: "Solar Inverters" },
+  "marine-engine": { label: "Marine Engine", labelPlural: "Marine Engines" },
 };
 
 // ── HVAC Brands ──

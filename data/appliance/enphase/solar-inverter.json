@@ -1,0 +1,1167 @@
+[
+  {
+    "id": "enphase-solar-inverter-grid-profile-mismatch",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "GRID PROFILE MISMATCH",
+    "displayCode": "Grid Profile Mismatch",
+    "alternativeCodes": [
+      "Profile Sync Failed"
+    ],
+    "title": "Grid Profile Mismatch",
+    "shortDescription": "Microinverters are not on the profile expected by the utility.",
+    "fullDescription": "Enphase microinverters operate on a utility-specific grid profile that controls voltage and frequency thresholds. After a utility change, system expansion, or Envoy update, microinverters can drift off profile.\n\nRe-push the correct profile via Enlighten. Only certified installers can change profile without risking a code violation.",
+    "causes": [
+      {
+        "cause": "New utility requirements (Rule 21, IEEE 1547)",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Profile not pushed after commissioning",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Envoy banner in Enlighten",
+      "Microinverters on wrong curve"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify required profile",
+        "instruction": "Confirm the utility profile required for your jurisdiction.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Push profile",
+        "instruction": "Via Enlighten Manager or Installer Toolkit, apply and commit profile.",
+        "tools": [
+          "Installer Toolkit"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "IQ7",
+      "IQ7+",
+      "IQ8",
+      "Envoy-S"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Always. Grid profile changes require a licensed installer.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase grid profile mismatch fix installer",
+    "faq": [
+      {
+        "q": "Can I change profile myself?",
+        "a": "No, it typically requires installer-tier access."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-dc-power-fault",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "DC POWER FAULT",
+    "displayCode": "DC Power Fault",
+    "alternativeCodes": [
+      "No DC Power"
+    ],
+    "title": "No DC Input From Module",
+    "shortDescription": "Microinverter reports module is not producing power.",
+    "fullDescription": "A DC power fault means the microinverter senses no PV input. Possible causes include a disconnected MC4, a failed module, shading, or soiling.\n\nDC panel voltage can exceed 40 V per module; treat all wiring as live during daylight.",
+    "causes": [
+      {
+        "cause": "MC4 connector disconnected",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed PV module",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Heavy shading or soiling",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Single microinverter at 0 W",
+      "Array map shows missing panel"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean panel",
+        "instruction": "Rinse dust/snow with low-pressure water when safe.",
+        "tools": [
+          "Hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Installer checks MC4",
+        "instruction": "Installer isolates DC, inspects MC4 continuity.",
+        "tools": [
+          "DC meter"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "IQ7",
+      "IQ8"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Anything involving DC wiring. PV strings remain live whenever sun is up.",
+    "relatedCodes": [
+      "MICROINVERTER-NOT-REPORTING"
+    ],
+    "videoSearchQuery": "Enphase DC power fault troubleshooting",
+    "faq": [
+      {
+        "q": "Is DC voltage dangerous?",
+        "a": "Yes, each panel is 30-40 V and cannot be fully shut off during daylight."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-ac-voltage-out-of-range",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "AC VOLTAGE OUT OF RANGE",
+    "displayCode": "AC Voltage Out of Range",
+    "alternativeCodes": [
+      "Grid Voltage High/Low"
+    ],
+    "title": "Grid Voltage Outside Operating Window",
+    "shortDescription": "Microinverter tripped because utility voltage exceeded limits.",
+    "fullDescription": "Microinverters measure grid voltage and trip to comply with IEEE 1547. If the utility voltage is consistently high or low at the service entrance, the array shuts down during the window.\n\nHave the utility measure voltage at the meter and adjust if needed.",
+    "causes": [
+      {
+        "cause": "Utility voltage high at service",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Long undersized AC run causing voltage rise",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Array stops mid-day",
+      "Recovers later",
+      "Multiple panels flag same event"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Log voltage",
+        "instruction": "Installer logs AC voltage across a day.",
+        "tools": [
+          "Power logger"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 1440
+      },
+      {
+        "step": 2,
+        "title": "Utility adjustment",
+        "instruction": "Report high service voltage to utility for tap adjustment.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Multiple days",
+    "whenToCallPro": "Always - grid voltage diagnosis requires installer and utility.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase AC voltage out of range fix",
+    "faq": [
+      {
+        "q": "Why at midday?",
+        "a": "Max production causes voltage rise on your service, pushing over the limit."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-ground-fault",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "GROUND FAULT",
+    "displayCode": "Ground Fault",
+    "alternativeCodes": [
+      "GFDI Trip"
+    ],
+    "title": "Ground Fault Detected",
+    "shortDescription": "DC circuit leaking to ground detected.",
+    "fullDescription": "A ground fault indicates insulation damage between a DC conductor and ground. NEC requires the array to shut down. Common sources are damaged MC4 pins, pinched wiring under mounts, or water ingress into junction boxes.\n\nThis is a shock and fire hazard - do not attempt DIY.",
+    "causes": [
+      {
+        "cause": "Damaged DC conductor insulation",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Water ingress into j-box",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Envoy ground fault alarm",
+      "Array offline during rain"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Call installer",
+        "instruction": "Do not reset repeatedly - isolate and call professional.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Professional diagnosis only",
+    "whenToCallPro": "Always. DC ground fault = shock and roof-fire risk.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase ground fault troubleshooting",
+    "faq": [
+      {
+        "q": "Can I reset a GF alarm?",
+        "a": "Only after the underlying fault is corrected by an installer."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-frequency-out-of-range",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "FREQUENCY OUT OF RANGE",
+    "displayCode": "Frequency Out of Range",
+    "alternativeCodes": [
+      "Freq Trip"
+    ],
+    "title": "Grid Frequency Outside Window",
+    "shortDescription": "Utility frequency drifted outside 59.3-60.5 Hz.",
+    "fullDescription": "Microinverters trip if grid frequency excursions exceed the profile. Brief utility events are normal; persistent trips indicate generator-backed microgrid or unstable utility.\n\nReview the grid profile with the installer if this happens frequently.",
+    "causes": [
+      {
+        "cause": "Grid frequency excursion (weather/load)",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Site powered by generator",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Momentary offline, auto-recover",
+      "Clustered frequency events"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Monitor",
+        "instruction": "Check Enlighten for frequency over time.",
+        "tools": [
+          "Smartphone"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Installer reviews",
+        "instruction": "If frequent, installer reviews grid profile settings.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Varies",
+    "whenToCallPro": "If trips are frequent or after a utility upgrade.",
+    "relatedCodes": [
+      "GRID-PROFILE-MISMATCH"
+    ],
+    "videoSearchQuery": "Enphase frequency out of range fix",
+    "faq": [
+      {
+        "q": "Is this my fault?",
+        "a": "Usually a utility or generator issue."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-over-temp",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "OVER TEMPERATURE",
+    "displayCode": "Over Temperature",
+    "alternativeCodes": [
+      "High Temp Derate"
+    ],
+    "title": "Microinverter Over Temperature",
+    "shortDescription": "Internal temperature exceeded safe operating range.",
+    "fullDescription": "Microinverters derate output above ~65 C. Sustained over-temp indicates inadequate airflow behind the module, very hot roof surface, or failing thermal pad inside the unit.\n\nRarely an installation issue; sometimes a sign of a failing microinverter.",
+    "causes": [
+      {
+        "cause": "High ambient and roof temps",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Insufficient clearance behind module",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failing microinverter",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Production drops mid-afternoon",
+      "Temperature alert in Enlighten"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify ventilation",
+        "instruction": "Installer confirms mounting clearance.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Warranty claim",
+        "instruction": "If unit runs hot vs peers, file an RMA.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Professional diagnosis",
+    "whenToCallPro": "Always - rooftop work and DC handling.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase microinverter over temperature fix",
+    "faq": [
+      {
+        "q": "Will heat damage the unit?",
+        "a": "Derating protects it, but chronic over-temp shortens life."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-comm-failure-envoy",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "COMM FAILURE ENVOY",
+    "displayCode": "Communication Failure - Envoy",
+    "alternativeCodes": [],
+    "title": "Envoy Cannot Reach Enphase Cloud",
+    "shortDescription": "Envoy gateway has no internet or cellular backhaul.",
+    "fullDescription": "Envoy gateways backhaul via Ethernet, Wi-Fi, or cellular. Loss of internet stops Enlighten reporting although microinverters continue to produce.\n\nCheck LEDs on the Envoy to verify status.",
+    "causes": [
+      {
+        "cause": "Home router offline",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Envoy Wi-Fi credentials lost",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cellular modem outage",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No data in Enlighten",
+      "Red comm LED on Envoy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check router",
+        "instruction": "Verify internet on other devices.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reconnect Wi-Fi",
+        "instruction": "Use Installer Toolkit or local Envoy UI to reconfigure Wi-Fi.",
+        "tools": [
+          "Smartphone"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Envoy-S Standard",
+      "Envoy-S Metered",
+      "IQ Gateway"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If cellular backup fails, call installer.",
+    "relatedCodes": [
+      "WIFI-DISCONNECT"
+    ],
+    "videoSearchQuery": "Enphase Envoy no internet fix",
+    "faq": [
+      {
+        "q": "Does production stop without internet?",
+        "a": "No, microinverters still generate."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-production-mismatch",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "PRODUCTION MISMATCH",
+    "displayCode": "Production Mismatch",
+    "alternativeCodes": [],
+    "title": "Expected Production Not Met",
+    "shortDescription": "Array producing significantly less than modeled.",
+    "fullDescription": "Enlighten flags when actual production falls well below expected. Causes range from soiling to failed microinverters or panels.\n\nReview per-panel stats in the array view.",
+    "causes": [
+      {
+        "cause": "Soiling or shading",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "One or more microinverters down",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Module degradation",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Lower kWh than expected",
+      "Panels show uneven output"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean panels",
+        "instruction": "Rinse soiling safely from the ground.",
+        "tools": [
+          "Hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Review per-panel",
+        "instruction": "In Enlighten, identify outlier panels.",
+        "tools": [
+          "Smartphone"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Schedule service",
+        "instruction": "Installer inspects underperformers.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Varies",
+    "whenToCallPro": "After cleaning, if output still low.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase production underperforming",
+    "faq": [
+      {
+        "q": "How low is 'significant'?",
+        "a": "More than 10 percent under expected for the conditions."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-reporting-error",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "REPORTING ERROR",
+    "displayCode": "Reporting Error",
+    "alternativeCodes": [],
+    "title": "Envoy Reporting Error",
+    "shortDescription": "Envoy could not upload a data packet to Enlighten.",
+    "fullDescription": "Typically transient, caused by cloud service hiccups or local network flakiness. Repeated errors for hours suggest an Envoy issue.\n\nReboot Envoy via the app or power cycle.",
+    "causes": [
+      {
+        "cause": "Transient cloud upload error",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Intermittent Wi-Fi",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Data gaps in Enlighten graphs"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot Envoy",
+        "instruction": "Unplug 30 s or reboot via local UI.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Envoy-S",
+      "IQ Gateway"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "If persistent after reboot.",
+    "relatedCodes": [
+      "COMM-FAILURE-ENVOY"
+    ],
+    "videoSearchQuery": "Enphase Envoy reporting error",
+    "faq": [
+      {
+        "q": "Do I lose production data?",
+        "a": "No, gaps fill once connectivity restores."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-array-offline",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "ARRAY OFFLINE",
+    "displayCode": "Array Offline",
+    "alternativeCodes": [],
+    "title": "Entire Array Not Producing",
+    "shortDescription": "All microinverters offline simultaneously.",
+    "fullDescription": "Entire-array outage usually means the AC feed to the array is open: PV breaker tripped, AC disconnect opened, or a main panel issue.\n\nCheck the solar AC breaker first.",
+    "causes": [
+      {
+        "cause": "PV breaker tripped",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "AC disconnect in OFF position",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Main panel outage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "All panels gray in Enlighten"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset breaker",
+        "instruction": "Flip PV breaker fully OFF then back ON.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Check disconnect",
+        "instruction": "Verify outdoor solar AC disconnect handle is ON.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "All IQ series"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If breaker trips repeatedly.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase array offline fix",
+    "faq": [
+      {
+        "q": "Why does my PV breaker trip?",
+        "a": "Often nuisance trips from voltage excursion, but could indicate a fault - call installer if repeated."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-battery-soc",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "BATTERY SOC",
+    "displayCode": "Battery SOC Error",
+    "alternativeCodes": [
+      "Encharge SOC"
+    ],
+    "title": "Battery State of Charge Abnormal",
+    "shortDescription": "IQ Battery reports inconsistent SOC.",
+    "fullDescription": "Occasionally an Encharge/IQ Battery loses SOC calibration after deep discharges. Enphase recommends a full charge cycle to recalibrate.\n\nIf SOC sticks at 0 or 100, contact installer.",
+    "causes": [
+      {
+        "cause": "SOC calibration drift",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "BMS firmware glitch",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "SOC stuck at value",
+      "Battery not charging past X%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Full charge cycle",
+        "instruction": "Allow battery to hit 100% on grid charge, then use normally.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1440
+      },
+      {
+        "step": 2,
+        "title": "Installer check",
+        "instruction": "If no improvement, installer reads BMS logs.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "IQ Battery 3T",
+      "IQ Battery 10T",
+      "Encharge 10"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 days for recalibration",
+    "whenToCallPro": "If calibration does not resolve in 48 hours.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase battery SOC calibration",
+    "faq": [
+      {
+        "q": "Is SOC drift normal?",
+        "a": "Minor drift yes; large jumps warrant service."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-microinverter-not-reporting",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "MICROINVERTER NOT REPORTING",
+    "displayCode": "Microinverter Not Reporting",
+    "alternativeCodes": [],
+    "title": "Single Microinverter Silent",
+    "shortDescription": "One microinverter missing from Envoy communication.",
+    "fullDescription": "An individual microinverter may drop off due to powerline-communication (PLC) noise, AC connector fault, or unit failure.\n\nEnphase covers microinverters under a long warranty; installer replacement is straightforward.",
+    "causes": [
+      {
+        "cause": "PLC noise on shared circuit",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "AC connector issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Microinverter failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Array map has one gray panel"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Envoy scan",
+        "instruction": "Installer runs device scan.",
+        "tools": [
+          "Installer Toolkit"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Replace unit",
+        "instruction": "If hardware fault, installer swaps under warranty.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "affectedModels": [
+      "IQ7",
+      "IQ8"
+    ],
+    "partsNeeded": [
+      {
+        "part": "IQ microinverter (warranty)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase microinverter not reporting fix",
+    "faq": [
+      {
+        "q": "Is the warranty 25 years?",
+        "a": "Yes for IQ7/IQ8 residential."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-zigbee-fail",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "ZIGBEE FAIL",
+    "displayCode": "Zigbee Communication Failure",
+    "alternativeCodes": [],
+    "title": "Zigbee Radio Failure",
+    "shortDescription": "Envoy Zigbee link (CT/consumption) disrupted.",
+    "fullDescription": "Older Envoy-S systems use Zigbee between the Envoy and consumption CT module. Radio interference or distance can drop the link.\n\nReseat the Zigbee USB stick and reposition the Envoy away from routers/microwaves.",
+    "causes": [
+      {
+        "cause": "Zigbee USB dongle loose",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "2.4 GHz interference",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Consumption data missing",
+      "CT not reported"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat dongle",
+        "instruction": "Installer unplugs/replugs Zigbee USB.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Relocate Envoy",
+        "instruction": "Move away from Wi-Fi AP and microwaves.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "Envoy-S Metered (older)"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Always - Envoy is mounted in load center area.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase Envoy zigbee failure fix",
+    "faq": [
+      {
+        "q": "Can I replace the Zigbee dongle?",
+        "a": "Not end-user serviceable; installer swap only."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-wifi-disconnect",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "WIFI DISCONNECT",
+    "displayCode": "Wi-Fi Disconnect",
+    "alternativeCodes": [],
+    "title": "Envoy Wi-Fi Dropped",
+    "shortDescription": "Envoy lost Wi-Fi to home router.",
+    "fullDescription": "Common after router replacement or SSID change. The Envoy buffers data locally but Enlighten shows a reporting gap.\n\nUse Installer Toolkit or the local Envoy page to rejoin the new network.",
+    "causes": [
+      {
+        "cause": "Router/SSID changed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Weak Wi-Fi at Envoy",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Envoy Wi-Fi LED off",
+      "Data gap in Enlighten"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reconnect Wi-Fi",
+        "instruction": "Toolkit app > Wi-Fi setup on Envoy.",
+        "tools": [
+          "Smartphone"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Relocate or Ethernet",
+        "instruction": "Consider wired Ethernet for reliability.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Envoy-S",
+      "IQ Gateway"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Not usually needed.",
+    "relatedCodes": [
+      "COMM-FAILURE-ENVOY"
+    ],
+    "videoSearchQuery": "Enphase Envoy wifi disconnect fix",
+    "faq": [
+      {
+        "q": "Can Envoy use Ethernet?",
+        "a": "Yes, wired is recommended."
+      }
+    ]
+  },
+  {
+    "id": "enphase-solar-inverter-firmware-update",
+    "brand": "Enphase",
+    "brandSlug": "enphase",
+    "deviceType": "Solar Inverter",
+    "deviceTypeSlug": "solar-inverter",
+    "code": "FIRMWARE UPDATE",
+    "displayCode": "Firmware Update Issue",
+    "alternativeCodes": [],
+    "title": "Firmware Update Stalled",
+    "shortDescription": "Envoy or microinverter firmware update not completing.",
+    "fullDescription": "Firmware updates require a stable internet connection and can take an hour. Weak Wi-Fi or early reboot can stall the update.\n\nLeave the system alone for up to 24 hours.",
+    "causes": [
+      {
+        "cause": "Weak Wi-Fi during update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Update paused awaiting conditions",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update notification persistent"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait",
+        "instruction": "Allow up to 24 hours for retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1440
+      },
+      {
+        "step": 2,
+        "title": "Reboot Envoy",
+        "instruction": "If stuck, power-cycle Envoy.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Envoy-S",
+      "IQ Gateway",
+      "All IQ microinverters"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "Up to 24 hours",
+    "whenToCallPro": "If still stuck after a week.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Enphase firmware update stuck fix",
+    "faq": [
+      {
+        "q": "Do I need to click anything?",
+        "a": "No, updates are pushed automatically."
+      }
+    ]
+  }
+]

@@ -117,7 +117,15 @@ export type ApplianceDeviceType =
   | "ups"
   | "projector"
   | "sewing-machine"
-  | "pool-equipment";
+  | "pool-equipment"
+  | "motorcycle"
+  | "fitness"
+  | "cpap"
+  | "glucose-monitor"
+  | "smart-lock"
+  | "smart-plug"
+  | "solar-inverter"
+  | "marine-engine";
 
 export interface ApplianceCause {
   cause: string;
