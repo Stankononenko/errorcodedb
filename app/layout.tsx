@@ -35,6 +35,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} — Find & Fix Any Error Code`,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: `${SITE_URL}/og/default.svg`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — Find & Fix Any Error Code`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — Find & Fix Any Error Code`,
+    description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/og/default.svg`],
   },
 };
 

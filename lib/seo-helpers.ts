@@ -54,6 +54,37 @@ export function getCanonicalUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }
 
+/**
+ * Returns the URL of the per-category OG image (1200×630 SVG).
+ * Generated at build time by scripts/generate-og-images.ts.
+ */
+export function getOgImageUrl(category?: CodeCategory | "default"): string {
+  const slug = category || "default";
+  return `${SITE_URL}/og/${slug}.svg`;
+}
+
+/** Build an openGraph metadata object keyed to a category. */
+export function buildOgMetadata(
+  title: string,
+  description: string,
+  category?: CodeCategory | "default",
+) {
+  const imageUrl = getOgImageUrl(category);
+  return {
+    openGraph: {
+      title,
+      description,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
+
 export function buildBreadcrumbJsonLd(
   items: { name: string; url: string }[]
 ) {

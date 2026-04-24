@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getApplianceCodes, getApplianceCode, applianceToUnified } from "@/lib/data-loader";
 import { APPLIANCE_BRANDS, APPLIANCE_DEVICE_TYPES } from "@/lib/constants";
-import { getCodePageTitle, getCodePageDescription, getCanonicalUrl } from "@/lib/seo-helpers";
+import {
+  getCodePageTitle,
+  getCodePageDescription,
+  getCanonicalUrl,
+  buildOgMetadata,
+} from "@/lib/seo-helpers";
 import CodePageLayout from "@/components/code-page/CodePageLayout";
 import { ApplianceDeviceType } from "@/lib/types";
 
@@ -25,14 +30,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!appCode) return { title: "Code Not Found" };
 
   const unified = applianceToUnified(appCode);
+  const title = getCodePageTitle(unified);
+  const description = getCodePageDescription(unified);
   return {
-    title: getCodePageTitle(unified),
-    description: getCodePageDescription(unified),
+    title,
+    description,
     alternates: { canonical: getCanonicalUrl(`/appliance/${brand}/${deviceType}/${codeSlug}`) },
-    openGraph: {
-      title: getCodePageTitle(unified),
-      description: getCodePageDescription(unified),
-    },
+    ...buildOgMetadata(title, description, "appliance"),
   };
 }
 

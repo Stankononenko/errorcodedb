@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllOBDCodes, getOBDCodeBySlug, obdToUnified } from "@/lib/data-loader";
-import { getCodePageTitle, getCodePageDescription, getCanonicalUrl } from "@/lib/seo-helpers";
+import {
+  getCodePageTitle,
+  getCodePageDescription,
+  getCanonicalUrl,
+  buildOgMetadata,
+} from "@/lib/seo-helpers";
 import CodePageLayout from "@/components/code-page/CodePageLayout";
 
 interface PageProps {
@@ -19,14 +24,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!obdCode) return { title: "Code Not Found" };
 
   const unified = obdToUnified(obdCode);
+  const title = getCodePageTitle(unified);
+  const description = getCodePageDescription(unified);
   return {
-    title: getCodePageTitle(unified),
-    description: getCodePageDescription(unified),
+    title,
+    description,
     alternates: { canonical: getCanonicalUrl(`/obd2/${slug}`) },
-    openGraph: {
-      title: getCodePageTitle(unified),
-      description: getCodePageDescription(unified),
-    },
+    ...buildOgMetadata(title, description, "obd2"),
   };
 }
 
