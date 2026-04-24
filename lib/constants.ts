@@ -253,6 +253,27 @@ export const APPLIANCE_BRANDS = [
   { name: "RIDGID", slug: "ridgid", country: "USA" },
   { name: "Honda Power Equipment", slug: "honda-power", country: "Japan" },
   { name: "Kubota", slug: "kubota", country: "Japan" },
+  // ── Medical Devices ──
+  { name: "Omron", slug: "omron", country: "Japan" },
+  { name: "Welch Allyn", slug: "welch-allyn", country: "USA" },
+  { name: "Medtronic", slug: "medtronic", country: "USA" },
+  { name: "Abbott Libre", slug: "abbott-libre", country: "USA" },
+  { name: "Invacare", slug: "invacare", country: "USA" },
+  { name: "Pride Mobility", slug: "pride-mobility", country: "USA" },
+  { name: "Drive Medical", slug: "drive-medical", country: "USA" },
+  { name: "Philips Avent", slug: "philips-avent", country: "Netherlands" },
+  // ── RV / Camper ──
+  { name: "Dometic", slug: "dometic", country: "Sweden" },
+  { name: "Norcold", slug: "norcold", country: "USA" },
+  { name: "Atwood", slug: "atwood", country: "USA" },
+  { name: "Suburban", slug: "suburban", country: "USA" },
+  // ── Marine Electronics ──
+  { name: "Garmin Marine", slug: "garmin-marine", country: "USA" },
+  { name: "Raymarine", slug: "raymarine", country: "UK" },
+  { name: "Simrad", slug: "simrad", country: "Norway" },
+  { name: "Minn Kota", slug: "minn-kota", country: "USA" },
+  // ── Gaming ──
+  { name: "Steam Deck", slug: "steam-deck", country: "USA" },
   // ── Motorcycles ──
   { name: "Harley-Davidson", slug: "harley-davidson", country: "USA" },
   { name: "Honda Motorcycle", slug: "honda-moto", country: "Japan" },
@@ -368,6 +389,17 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "smart-thermostat": { label: "Smart Thermostat", labelPlural: "Smart Thermostats" },
   wearable: { label: "Wearable", labelPlural: "Wearables" },
   "smart-hub": { label: "Smart Hub", labelPlural: "Smart Hubs" },
+  "blood-pressure-monitor": { label: "Blood Pressure Monitor", labelPlural: "Blood Pressure Monitors" },
+  "medical-thermometer": { label: "Medical Thermometer", labelPlural: "Medical Thermometers" },
+  "insulin-pump": { label: "Insulin Pump", labelPlural: "Insulin Pumps" },
+  "mobility-scooter": { label: "Mobility Scooter", labelPlural: "Mobility Scooters" },
+  "baby-monitor": { label: "Baby Monitor", labelPlural: "Baby Monitors" },
+  "rv-appliance": { label: "RV Appliance", labelPlural: "RV Appliances" },
+  "rv-fridge": { label: "RV Refrigerator", labelPlural: "RV Refrigerators" },
+  "rv-water-heater": { label: "RV Water Heater", labelPlural: "RV Water Heaters" },
+  "rv-furnace": { label: "RV Furnace", labelPlural: "RV Furnaces" },
+  "marine-electronics": { label: "Marine Electronics", labelPlural: "Marine Electronics" },
+  "trolling-motor": { label: "Trolling Motor", labelPlural: "Trolling Motors" },
 };
 
 // ── HVAC Brands ──

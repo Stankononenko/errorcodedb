@@ -1,0 +1,1184 @@
+[
+  {
+    "id": "steam-deck-gaming-console-desktop-mode-crash",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "DESKTOP-MODE-CRASH",
+    "displayCode": "Desktop Mode Crash",
+    "alternativeCodes": [
+      "KDE crash",
+      "Plasma crash"
+    ],
+    "title": "Steam Deck Desktop Mode Crashes or Freezes",
+    "shortDescription": "KDE Plasma desktop mode freezes, crashes, or fails to load on Steam Deck.",
+    "fullDescription": "The Steam Deck's desktop mode (Plasma/KDE) can crash due to corrupted KWin compositor settings, out-of-memory conditions from running heavy desktop apps, or filesystem issues after a forced shutdown. Symptoms range from a black screen after switching to desktop, frozen taskbar, to immediate reboots.\n\nCommon triggers include running Chromium with many tabs, third-party Flatpaks that don't sandbox properly, or attempting to use desktop mode with low internal storage. A SteamOS update can also reset or corrupt the Plasma config.\n\nRecovery usually involves resetting Plasma config via SSH or TTY, freeing up storage space, or as a last resort, performing a SteamOS reinstall without wiping user data.",
+    "causes": [
+      {
+        "cause": "Corrupted Plasma/KDE config files",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Low internal storage (<5 GB free)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Misbehaving Flatpak application",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Post-update filesystem issue",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Black screen after switching to desktop",
+      "Taskbar unresponsive",
+      "Auto-reboot to gaming mode",
+      "Cursor frozen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Force reboot to gaming mode",
+        "instruction": "Hold power button 10 seconds, release, power on, let gaming mode load.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Free storage space",
+        "instruction": "Uninstall unused games so at least 10 GB is free on internal SSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset Plasma config",
+        "instruction": "Boot to desktop, open Konsole, run: mv ~/.config/plasma* ~/plasma-backup ; reboot.",
+        "tools": [
+          "Keyboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Contact Steam Support if desktop mode keeps crashing after a SteamOS reinstall and factory reset.",
+    "relatedCodes": [
+      "STEAMOS-UPDATE-FAILED",
+      "BOOT-FAILURE"
+    ],
+    "videoSearchQuery": "Steam Deck desktop mode crash fix KDE Plasma",
+    "faq": [
+      {
+        "q": "Will resetting Plasma config delete my games?",
+        "a": "No. Plasma config only affects desktop mode appearance and behavior, not Steam library or save games."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-gaming-mode-freeze",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "GAMING-MODE-FREEZE",
+    "displayCode": "Gaming Mode Freeze",
+    "alternativeCodes": [
+      "Steam UI freeze"
+    ],
+    "title": "Steam Deck Gaming Mode Freezes on Library or In-Game",
+    "shortDescription": "Gaming mode (Big Picture-style Steam UI) freezes requiring a force reboot.",
+    "fullDescription": "Gaming mode freezes are typically caused by Proton compatibility issues, broken shader caches, or a hung GPU driver (RADV). The screen may become unresponsive while audio continues, or the whole system locks up.\n\nThe issue often appears after a major Proton or SteamOS update when older shader caches become invalid but are not automatically rebuilt, or when a specific game triggers a known RADV regression.\n\nMost freezes are solved by clearing shader cache, switching Proton versions, or disabling steam overlay for the problem game.",
+    "causes": [
+      {
+        "cause": "Corrupted shader cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proton version incompatibility",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "GPU driver hang (RADV)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Overheating",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Image frozen but audio still playing",
+      "Controls unresponsive",
+      "Steam button does not open menu",
+      "Requires 10-second power button hold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Force reboot",
+        "instruction": "Hold power button 10 seconds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Clear shader cache",
+        "instruction": "In Steam, right-click game > Properties > Installed Files > Clear Shader Cache.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Switch Proton version",
+        "instruction": "Properties > Compatibility > force Proton Experimental or Proton 8.0.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Contact Steam Support if freezes occur in multiple games after all software fixes.",
+    "relatedCodes": [
+      "SHADER-PRE-CACHING",
+      "PERFORMANCE-OVERLAY"
+    ],
+    "videoSearchQuery": "Steam Deck gaming mode freeze fix",
+    "faq": [
+      {
+        "q": "Does force reboot damage the Deck?",
+        "a": "Occasional force reboots are safe. Frequent forced shutdowns can eventually corrupt filesystem, so fix the root cause."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-steamos-update-failed",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "STEAMOS-UPDATE-FAILED",
+    "displayCode": "SteamOS Update Failed",
+    "alternativeCodes": [
+      "Update error",
+      "rauc error"
+    ],
+    "title": "SteamOS Update Fails to Download or Install",
+    "shortDescription": "A SteamOS update fails to download, verify, or install, leaving the Deck on the previous version.",
+    "fullDescription": "SteamOS updates use an A/B partition scheme via RAUC. Failures occur when the update partition is full due to leftover data, when the network is unstable during download, or when a previous update left the system in an inconsistent state.\n\nSymptoms include a 'Failed to install update' message, infinite 'Checking for updates' spinner, or the update downloading but refusing to reboot and apply.\n\nResetting the update via terminal or performing a SteamOS reinstall with the official recovery image resolves most cases while preserving user data.",
+    "causes": [
+      {
+        "cause": "Unstable internet connection",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted update partition",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Full internal storage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Beta/Preview channel regression",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update stuck at X%",
+      "'Update failed' error message",
+      "System reboots without applying update"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Switch to stable channel",
+        "instruction": "Settings > System > System Update Channel > Stable. Reboot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Use stable Wi-Fi or Ethernet",
+        "instruction": "Connect via dock Ethernet or move closer to router and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reinstall SteamOS",
+        "instruction": "Download recovery image from Steam support site, write to USB with Rufus/Balena, boot holding Volume Down, choose 'Reinstall SteamOS' (keeps games).",
+        "tools": [
+          "USB drive",
+          "Dock"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Contact Steam Support if recovery image reinstall fails, indicating possible SSD hardware issue.",
+    "relatedCodes": [
+      "BOOT-FAILURE",
+      "SSD-ERROR"
+    ],
+    "videoSearchQuery": "Steam Deck SteamOS update failed fix recovery",
+    "faq": [
+      {
+        "q": "Will reinstalling SteamOS delete my games?",
+        "a": "Choose 'Reinstall SteamOS' (not 'Re-image'). This keeps the /home partition and your games intact."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-boot-failure",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "BOOT-FAILURE",
+    "displayCode": "Boot Failure",
+    "alternativeCodes": [
+      "Will not boot",
+      "Black screen on power"
+    ],
+    "title": "Steam Deck Will Not Boot Past Logo",
+    "shortDescription": "Steam Deck powers on but hangs on Valve logo or shows black screen.",
+    "fullDescription": "Boot failures can stem from bootloader corruption after a failed update, eMMC/SSD filesystem damage, or low battery preventing full POST. The Deck may display the Valve logo indefinitely, show a brief logo then power off, or remain on a black screen with illuminated power LED.\n\nThe recovery image booted from USB can repair most software-level boot failures. Hardware causes (bad SSD, damaged battery, motherboard fault) require service.",
+    "causes": [
+      {
+        "cause": "Corrupted bootloader after failed update",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Depleted battery unable to hold charge for boot",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failing SSD or eMMC",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Motherboard fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Stuck on Valve logo",
+      "Black screen with power LED on",
+      "Continuous reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Charge for 2 hours",
+        "instruction": "Plug in 45W PD charger and leave 2 hours before attempting power on.",
+        "tools": [
+          "45W USB-C PD charger"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Boot recovery image",
+        "instruction": "Create USB with official SteamOS recovery image. Hold Volume Down, press power, choose boot from USB.",
+        "tools": [
+          "USB drive",
+          "Dock or USB-C hub"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Contact Steam Support RMA if recovery image does not boot or fails halfway through reinstall.",
+    "relatedCodes": [
+      "STEAMOS-UPDATE-FAILED",
+      "SSD-ERROR"
+    ],
+    "videoSearchQuery": "Steam Deck will not boot fix recovery image",
+    "faq": [
+      {
+        "q": "Can I lose my saves?",
+        "a": "If you reinstall (not re-image), local saves remain. Cloud-synced saves can be restored via any Steam login."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-controller-drift",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "CONTROLLER-DRIFT",
+    "displayCode": "Stick Drift",
+    "alternativeCodes": [
+      "Analog stick drift",
+      "Thumbstick drift"
+    ],
+    "title": "Steam Deck Analog Stick Drift",
+    "shortDescription": "Left or right analog stick registers movement when not being touched.",
+    "fullDescription": "Analog stick drift on the Steam Deck LCD model is caused by the same Alps potentiometer design used in most modern controllers: dust ingress and carbon track wear over months of use cause the stick to report non-zero values at rest. The OLED model uses improved sticks but is not immune.\n\nSymptoms include the character walking on its own, cursor moving in desktop mode, or menus scrolling uncontrollably. A software deadzone adjustment masks mild cases; replacing the potentiometer or the full thumbstick module fixes severe drift.",
+    "causes": [
+      {
+        "cause": "Dust or debris under stick cap",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Worn potentiometer carbon track",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Outdated firmware",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Character walks without input",
+      "Menu scrolls by itself",
+      "Camera pans on its own"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean under stick cap",
+        "instruction": "Lift stick, spray compressed air and isopropyl alcohol (90%+) around the base while rotating the stick.",
+        "tools": [
+          "Compressed air",
+          "Isopropyl alcohol 90%+"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Increase deadzone",
+        "instruction": "Steam > Controller Settings > Calibration & Advanced Settings > increase Stick Deadzone by 1000-3000.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Replace thumbstick module",
+        "instruction": "Power off, remove back cover (8 screws), disconnect battery, replace thumbstick module via iFixit guide.",
+        "tools": [
+          "PH00 screwdriver",
+          "iFixit replacement part",
+          "Spudger"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED (less common)"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Steam Deck thumbstick module (iFixit)",
+        "estimatedPrice": 30,
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 40
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "If Deck is still under 1-year warranty, RMA through Steam Support before opening.",
+    "relatedCodes": [
+      "TOUCHSCREEN-CALIBRATION"
+    ],
+    "videoSearchQuery": "Steam Deck stick drift fix replacement iFixit",
+    "faq": [
+      {
+        "q": "Is drift covered under warranty?",
+        "a": "Yes, Valve covers stick drift under the 1-year warranty in most regions."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-touchscreen-calibration",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "TOUCHSCREEN-CALIBRATION",
+    "displayCode": "Touchscreen Unresponsive",
+    "alternativeCodes": [
+      "Touch miscalibrated"
+    ],
+    "title": "Steam Deck Touchscreen Unresponsive or Miscalibrated",
+    "shortDescription": "Touchscreen fails to respond, registers ghost touches, or taps offset from actual finger position.",
+    "fullDescription": "Touch issues arise from screen protector interference, a loose digitizer ribbon cable after drops, or a SteamOS driver regression. Symptoms include complete unresponsiveness, taps appearing at the wrong location, or random phantom touches that scroll menus.\n\nMost cases are resolved by removing a poorly applied screen protector, rebooting to reset the touch driver, or performing a SteamOS update. Hardware-level faults require opening the Deck to reseat or replace the digitizer cable.",
+    "causes": [
+      {
+        "cause": "Poor-fitment screen protector with bubbles",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose digitizer ribbon after drop",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Driver glitch after update",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Touches not detected",
+      "Taps offset from finger",
+      "Random phantom scrolling"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot",
+        "instruction": "Steam button > Power > Restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Remove screen protector",
+        "instruction": "Carefully peel back screen protector; test touch response without it.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reseat digitizer cable",
+        "instruction": "Remove back cover and front shield, gently reseat digitizer FPC connector on main board. Professional level.",
+        "tools": [
+          "PH00 screwdriver",
+          "Plastic spudger"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-45 minutes",
+    "whenToCallPro": "RMA under warranty if no screen protector is used and touch remains dead after reboot.",
+    "relatedCodes": [
+      "CONTROLLER-DRIFT"
+    ],
+    "videoSearchQuery": "Steam Deck touchscreen not working fix",
+    "faq": [
+      {
+        "q": "Does Steam Deck have touch calibration?",
+        "a": "No user-facing calibration exists in gaming mode. Desktop mode has xinput_calibrator for advanced users."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-ssd-error",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "SSD-ERROR",
+    "displayCode": "SSD / eMMC Error",
+    "alternativeCodes": [
+      "I/O error",
+      "NVMe error"
+    ],
+    "title": "Steam Deck Internal Storage Read/Write Error",
+    "shortDescription": "Internal SSD or eMMC reports I/O errors, failed writes, or disappears from the system.",
+    "fullDescription": "Storage errors manifest as games failing to install with 'disk write error', SteamOS refusing to boot, or journalctl entries showing 'I/O error' on /dev/nvme0n1. Causes include end-of-life for the 64 GB eMMC LCD model, a failing aftermarket 2230 NVMe, or filesystem corruption after a forced shutdown.\n\nRunning an fsck from recovery USB repairs corruption. Hardware failure requires replacing the SSD (simple DIY on Steam Deck — 6 screws, 1 screw for the drive itself).",
+    "causes": [
+      {
+        "cause": "Filesystem corruption after power loss",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failing SSD/eMMC (wear)",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Loose NVMe after self-installed upgrade",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Disk write error' during install",
+      "Games disappear from library",
+      "Boot fails with fsck errors",
+      "System freezes on large file operations"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot recovery, run fsck",
+        "instruction": "Boot from SteamOS recovery USB, open Konsole, run: sudo fsck -y /dev/nvme0n1p8",
+        "tools": [
+          "USB drive",
+          "Keyboard"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reseat or replace SSD",
+        "instruction": "Power off, remove 8 back screws, remove shield, unscrew single M2 screw holding NVMe 2230 drive, reseat or replace.",
+        "tools": [
+          "PH00 screwdriver",
+          "2230 NVMe SSD"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD 64GB eMMC",
+      "Steam Deck LCD 256/512 NVMe",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [
+      {
+        "part": "2230 NVMe SSD 512GB/1TB",
+        "estimatedPrice": 70,
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 150
+      },
+      "professional": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If under warranty and SSD has not been user-replaced, RMA through Steam Support.",
+    "relatedCodes": [
+      "BOOT-FAILURE",
+      "STEAMOS-UPDATE-FAILED"
+    ],
+    "videoSearchQuery": "Steam Deck SSD replacement 2230 NVMe fix",
+    "faq": [
+      {
+        "q": "Does replacing the SSD void warranty?",
+        "a": "Valve officially says SSD replacement does not void the warranty, but any damage caused during replacement is not covered."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-dock-issue",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "DOCK-ISSUE",
+    "displayCode": "Dock Not Working",
+    "alternativeCodes": [
+      "External display fail",
+      "Dock HDMI fail"
+    ],
+    "title": "Steam Deck Official Dock Not Detecting Display or Peripherals",
+    "shortDescription": "Deck in dock fails to output video, USB peripherals don't work, or Ethernet does not connect.",
+    "fullDescription": "Dock issues commonly result from outdated dock firmware, a non-compliant HDMI cable, or resolution/refresh rate mismatches. SteamOS periodically ships dock firmware updates through the regular update channel; older dock firmware may reject newer HDMI handshakes on 4K displays.\n\nMost issues resolve by updating dock firmware, trying another HDMI cable, or forcing 1080p60 in display settings until stability is confirmed.",
+    "causes": [
+      {
+        "cause": "Outdated dock firmware",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bad HDMI cable or port",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Resolution/refresh incompatibility",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dock power supply failure",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "External TV shows 'no signal'",
+      "USB keyboard/mouse not detected",
+      "Ethernet no link light",
+      "Deck not charging in dock"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update dock firmware",
+        "instruction": "With Deck in dock connected to power, Settings > System > Dock Firmware Update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Force 1080p60",
+        "instruction": "Settings > Display > External display > 1920x1080 at 60Hz.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Swap HDMI cable",
+        "instruction": "Try a Premium High-Speed HDMI cable; avoid generic 4K/8K cables under 1 m length.",
+        "tools": [
+          "HDMI cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED",
+      "Official Valve Dock"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Contact Steam Support if dock firmware update fails repeatedly or dock shows no LED.",
+    "relatedCodes": [
+      "STEAMOS-UPDATE-FAILED"
+    ],
+    "videoSearchQuery": "Steam Deck dock not working fix firmware",
+    "faq": [
+      {
+        "q": "Do third-party docks work?",
+        "a": "Yes, any USB-C dock with DisplayPort Alt Mode and PD passthrough works, though Valve only guarantees its own dock."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-performance-overlay",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "PERFORMANCE-OVERLAY",
+    "displayCode": "Performance Overlay Stuck",
+    "alternativeCodes": [
+      "MangoHud stuck"
+    ],
+    "title": "Steam Deck Performance Overlay Stuck On or Reporting Wrong Values",
+    "shortDescription": "MangoHud-based performance overlay stays on screen, shows 0 FPS, or blocks input.",
+    "fullDescription": "The performance overlay on Steam Deck is a MangoHud integration. It can get stuck after Alt-Tabbing from non-Steam games, after Proton version changes, or if MangoHud config is corrupted by third-party tools like DeckyLoader plugins.\n\nReverting overlay level to Off and back, or removing custom MangoHud configs, resolves most cases. Persistent issues usually trace back to a misbehaving plugin.",
+    "causes": [
+      {
+        "cause": "Overlay level stuck after game switch",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party plugin conflict (Decky)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted MangoHud config",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Overlay visible in every game permanently",
+      "Values show 0 FPS or dashes",
+      "Framerate capped unexpectedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cycle overlay level",
+        "instruction": "Quick Access > Performance > Performance Overlay Level: Off, then back to desired level.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable per-game profile",
+        "instruction": "In Performance tab, turn off 'Use per-game profile' then back on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Remove Decky plugins",
+        "instruction": "Uninstall overlay-related plugins via Decky settings and reboot.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Not applicable — software only.",
+    "relatedCodes": [
+      "GAMING-MODE-FREEZE"
+    ],
+    "videoSearchQuery": "Steam Deck performance overlay stuck fix",
+    "faq": [
+      {
+        "q": "Is MangoHud a Valve tool?",
+        "a": "MangoHud is an open-source project Valve integrates into SteamOS; it reports FPS, CPU, GPU and power metrics."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-shader-pre-caching",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "SHADER-PRE-CACHING",
+    "displayCode": "Shader Pre-Caching Issue",
+    "alternativeCodes": [
+      "Processing Vulkan shaders"
+    ],
+    "title": "Steam Deck Shader Pre-Caching Endless or Stuttering",
+    "shortDescription": "Shader pre-caching takes hours, never completes, or game stutters badly without it.",
+    "fullDescription": "Shader pre-caching downloads precompiled Vulkan pipeline caches so Proton/DXVK games run smoothly. Endless pre-caching can be caused by low storage space, network issues, or a disabled Steam Cloud shaders option. In-game stutter without pre-cache indicates Steam failed to download or the cache was cleared.\n\nAllowing background downloads, connecting to fast Wi-Fi, and ensuring 'Enable Shader Pre-Caching' and 'Allow background processing of Vulkan shaders' are both on resolves most issues.",
+    "causes": [
+      {
+        "cause": "Background processing disabled",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Low internal storage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Slow or intermittent Wi-Fi",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cache corrupted",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Download progress bar never completes",
+      "Heavy stutter on first play",
+      "Fan ramps to max while idle in gaming mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable background processing",
+        "instruction": "Settings > Downloads > enable 'Allow background processing of Vulkan shaders' and 'Enable Shader Pre-Caching'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Free storage",
+        "instruction": "Ensure at least 10 GB free on internal SSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Clear shader cache for problem game",
+        "instruction": "Right-click game > Properties > Installed Files > Clear Shader Cache. Relaunch to re-download.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Not applicable — software only.",
+    "relatedCodes": [
+      "GAMING-MODE-FREEZE",
+      "PERFORMANCE-OVERLAY"
+    ],
+    "videoSearchQuery": "Steam Deck shader pre-caching stuck fix",
+    "faq": [
+      {
+        "q": "Can I play without pre-cached shaders?",
+        "a": "Yes, but expect stuttering in the first play session while shaders compile on the fly."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-wifi-disconnect",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "WIFI-DISCONNECT",
+    "displayCode": "Wi-Fi Disconnect",
+    "alternativeCodes": [
+      "Network drop"
+    ],
+    "title": "Steam Deck Wi-Fi Disconnects or Slow Speeds",
+    "shortDescription": "Wi-Fi drops periodically, fails to reconnect after sleep, or shows very slow speeds.",
+    "fullDescription": "The Steam Deck uses a Qualcomm WCN6855 Wi-Fi 6E module. Frequent disconnects can be caused by 2.4 GHz band congestion, router channel instability, outdated NetworkManager in SteamOS, or interference when charging via certain USB-C cables that emit RFI.\n\nSwitching to 5 GHz, updating SteamOS, and using a shielded USB-C charging cable resolves most complaints.",
+    "causes": [
+      {
+        "cause": "2.4 GHz band congestion",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "USB 3.0 / charging cable RF interference",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NetworkManager regression",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failing Wi-Fi module",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Random disconnects during downloads",
+      "Slow speed compared to other devices",
+      "'No Internet' after waking from sleep"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Switch to 5 GHz",
+        "instruction": "In router settings, give 5 GHz SSID a unique name and connect Deck only to the 5 GHz band.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update SteamOS",
+        "instruction": "Settings > System > Check for Updates.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Use a shielded USB-C cable",
+        "instruction": "Replace non-certified charging cable with Valve OEM or a certified shielded PD cable.",
+        "tools": [
+          "USB-C PD cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD (Wi-Fi 5)",
+      "Steam Deck OLED (Wi-Fi 6E)"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "RMA through Steam Support if issue persists after recovery reinstall with fresh SteamOS.",
+    "relatedCodes": [
+      "DOCK-ISSUE"
+    ],
+    "videoSearchQuery": "Steam Deck wifi disconnect fix",
+    "faq": [
+      {
+        "q": "Does OLED have better Wi-Fi?",
+        "a": "Yes, OLED has Wi-Fi 6E tri-band support and generally stronger performance than LCD's Wi-Fi 5."
+      }
+    ]
+  },
+  {
+    "id": "steam-deck-gaming-console-battery-drain-sleep",
+    "brand": "Steam",
+    "brandSlug": "steam-deck",
+    "deviceType": "Gaming Console",
+    "deviceTypeSlug": "gaming-console",
+    "code": "BATTERY-DRAIN-SLEEP",
+    "displayCode": "Battery Drain in Sleep",
+    "alternativeCodes": [
+      "Standby drain"
+    ],
+    "title": "Steam Deck Battery Drains Quickly in Sleep Mode",
+    "shortDescription": "Battery drops more than 5-10% per 24 hours while in sleep mode.",
+    "fullDescription": "A Steam Deck in sleep mode should drop about 1-3% per 24 hours. Higher drain rates indicate background processes not properly suspending — typically a misbehaving game, a Decky plugin, or a USB device connected that keeps the system partially awake.\n\nUpdating SteamOS, shutting down (not sleeping) the Deck when not used for more than a day, and removing problem plugins resolve most drain cases.",
+    "causes": [
+      {
+        "cause": "Misbehaving game holding wake lock",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Decky plugin preventing deep sleep",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "USB device connected (SD card, dock)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Aged battery losing capacity",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Battery at 80% at sleep is 40% next morning",
+      "Deck is warm when woken",
+      "Fan briefly spins while sleeping"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Quit games before sleeping",
+        "instruction": "Exit games cleanly (Steam > Exit Game) instead of sleeping mid-game for long periods.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Remove USB devices",
+        "instruction": "Eject microSD and unplug USB accessories when going to sleep.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Full shutdown for extended idle",
+        "instruction": "Hold power > Shutdown when not used for 24+ hours.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "affectedModels": [
+      "Steam Deck LCD",
+      "Steam Deck OLED"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "If battery capacity is visibly degraded (short runtime even freshly charged), consider battery replacement service.",
+    "relatedCodes": [
+      "GAMING-MODE-FREEZE"
+    ],
+    "videoSearchQuery": "Steam Deck battery drain sleep fix",
+    "faq": [
+      {
+        "q": "How long can Steam Deck stay in sleep?",
+        "a": "A healthy Deck can sit in sleep for 1-2 weeks before dropping below 10%."
+      }
+    ]
+  }
+]

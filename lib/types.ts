@@ -139,7 +139,18 @@ export type ApplianceDeviceType =
   | "soft-serve-machine"
   | "smart-thermostat"
   | "wearable"
-  | "smart-hub";
+  | "smart-hub"
+  | "blood-pressure-monitor"
+  | "medical-thermometer"
+  | "insulin-pump"
+  | "mobility-scooter"
+  | "baby-monitor"
+  | "rv-appliance"
+  | "rv-fridge"
+  | "rv-water-heater"
+  | "rv-furnace"
+  | "marine-electronics"
+  | "trolling-motor";
 
 export interface ApplianceCause {
   cause: string;

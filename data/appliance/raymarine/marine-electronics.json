@@ -1,0 +1,356 @@
+[
+  {
+    "id": "raymarine-marine-electronics-stng-fail",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "STNG FAIL",
+    "displayCode": "STNG FAIL",
+    "alternativeCodes": ["SeaTalkng Error"],
+    "title": "SeaTalkNG Bus Failure",
+    "shortDescription": "Axiom display has lost communication on the SeaTalkNG backbone.",
+    "fullDescription": "Raymarine's SeaTalkNG is a proprietary NMEA 2000 implementation. Error means the backbone has lost power, lost termination, or has a shorted drop cable.\n\nCheck the red power tap (one per backbone, never two), the two terminators (one at each end), and all drop cables for water intrusion.\n\nBackbone resistance measured end-to-end with power off should be 60 ohms (two 120-ohm terminators in parallel).",
+    "causes": [
+      {"cause": "Missing or failed terminator", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Unpowered backbone", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Water intrusion in drop cable", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Two power inputs on same backbone", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["No engine data", "Wind/depth missing", "Red STNG warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify power", "instruction": "Confirm 12V at SeaTalkNG power tap.", "tools": ["Multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Measure termination", "instruction": "Backbone end-to-end resistance should be 60 ohms.", "tools": ["Multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Inspect connectors", "instruction": "Open each connector, check for water or corrosion.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Axiom 7/9/12", "Axiom+", "Axiom Pro"],
+    "partsNeeded": ["SeaTalkNG terminator", "T-piece"],
+    "estimatedCost": {"diy": {"min": 25, "max": 100}, "professional": {"min": 200, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If backbone routing is complex across large vessel.",
+    "relatedCodes": ["NO RADAR"],
+    "videoSearchQuery": "Raymarine SeaTalkNG error fix",
+    "faq": [
+      {"q": "Can I mix SeaTalkNG and NMEA 2000?", "a": "Yes with adapter cables — electrically identical."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-no-radar",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "NO RADAR",
+    "displayCode": "NO RADAR",
+    "alternativeCodes": ["Radar Offline"],
+    "title": "Radar Scanner Not Detected",
+    "shortDescription": "Axiom cannot connect to Quantum or Magnum radar.",
+    "fullDescription": "Raymarine Quantum radar uses Wi-Fi or RayNet Ethernet; Magnum uses Ethernet only. Offline status indicates power, network, or firmware mismatch.\n\nOn Quantum Wi-Fi: check pairing state in Axiom Settings > Radar. On wired: check RayNet cable and power breaker.\n\nQuantum cold start takes ~30 sec; Magnum up to 90 sec — wait before diagnosing.",
+    "causes": [
+      {"cause": "Radar breaker off or fuse blown", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "RayNet cable damaged or loose", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Firmware mismatch between scanner and display", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed scanner magnetron (older models)", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Radar screen grey", "Spinning 'connecting' icon", "No scan line"],
+    "fixSteps": [
+      {"step": 1, "title": "Reset radar breaker", "instruction": "Cycle dedicated radar breaker for 30 seconds.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Check RayNet cable", "instruction": "Inspect and reseat at both ends.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Update firmware", "instruction": "Use LightHouse 4 via microSD to update Axiom and scanner.", "tools": ["microSD card"], "difficulty": "easy", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Quantum 2", "Magnum 4/6 kW", "Axiom Pro"],
+    "partsNeeded": ["RayNet cable"],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "professional": {"min": 400, "max": 2000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "If magnetron replacement needed on open-array radars.",
+    "relatedCodes": ["STNG FAIL"],
+    "videoSearchQuery": "Raymarine Quantum radar offline fix",
+    "faq": [
+      {"q": "Is Quantum radar better than open array?", "a": "Quantum is solid-state and CHIRP pulse — safer and clearer at short range; open array has longer maximum range."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-sonar-connect",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "SONAR CONNECT",
+    "displayCode": "SONAR CONNECT",
+    "alternativeCodes": ["No Sonar"],
+    "title": "Sonar Transducer Connectivity Fault",
+    "shortDescription": "Axiom unable to detect RealVision 3D or CHIRP transducer.",
+    "fullDescription": "Axiom's internal sonar or external CP470/CP570 modules look for transducer handshake on startup. Connectivity fault means transducer is missing, cable damaged, or sonar module unpowered.\n\nRealVision 3D uses a 25-pin Rayvision connector with multiple channels — any single pin failure can disable 3D mode but leave 2D working.\n\nRoute transducer cables away from engine harness — induced noise prevents handshake.",
+    "causes": [
+      {"cause": "Transducer cable damaged at thru-hull", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Bent pin in 25-pin connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "CP series module unpowered", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Transducer element damaged by impact/lightning", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No depth reading", "Sonar page empty", "3D view unavailable"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat transducer", "instruction": "Unplug, inspect pins, reseat firmly.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Check CP module", "instruction": "Verify power LED on external sonar module.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Swap transducer", "instruction": "Test with known-good transducer.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Axiom with RealVision", "CP470", "CP570"],
+    "partsNeeded": ["RV-100 transducer", "Transducer extension cable"],
+    "estimatedCost": {"diy": {"min": 0, "max": 700}, "professional": {"min": 400, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "If thru-hull transducer needs replacement — requires haulout.",
+    "relatedCodes": ["STNG FAIL"],
+    "videoSearchQuery": "Raymarine Axiom sonar not detected",
+    "faq": [
+      {"q": "Will 2D work without 3D?", "a": "Yes — if only 3D channel is damaged, 2D CHIRP still functions."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-lighthouse",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "LIGHTHOUSE",
+    "displayCode": "LIGHTHOUSE",
+    "alternativeCodes": ["OS Error"],
+    "title": "LightHouse Operating System Error",
+    "shortDescription": "Axiom's LightHouse 3 or 4 OS has encountered a startup or runtime error.",
+    "fullDescription": "Axiom runs LightHouse OS (Linux-based). Errors during boot or runtime can cause reboot loops or freeze. Common fixes: power cycle, factory reset via settings, or OS reinstall from microSD.\n\nDownload latest LightHouse image from Raymarine website to a microSD card (FAT32) and insert during power-on to reinstall.",
+    "causes": [
+      {"cause": "Corrupt OS install after interrupted update", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Full internal storage", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed update download", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Unit boots, then crashes", "Spinning wheel forever", "Unit won't boot past splash"],
+    "fixSteps": [
+      {"step": 1, "title": "Force shutdown", "instruction": "Hold power 10 seconds, wait 1 minute, retry.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 2, "title": "Clear user data", "instruction": "Settings > Reset > User Settings (if accessible).", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Reinstall LightHouse", "instruction": "Download image from Raymarine to microSD, reinstall during boot.", "tools": ["microSD card", "Computer"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Axiom 7/9/12", "Axiom+", "Axiom Pro"],
+    "partsNeeded": ["microSD card (min 8GB)"],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If reinstall doesn't resolve — likely hardware, needs Raymarine service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Raymarine Axiom LightHouse OS reinstall",
+    "faq": [
+      {"q": "Will I lose my waypoints?", "a": "Back them up first to an SD card via export menu."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-wind",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "WIND",
+    "displayCode": "WIND",
+    "alternativeCodes": ["No Wind Data"],
+    "title": "Wind Vane Data Missing",
+    "shortDescription": "Plotter not receiving wind data from masthead unit.",
+    "fullDescription": "Raymarine wind (Wireless or iTC-5 wired) sends data over SeaTalkNG. Missing data means masthead battery dead (wireless), no STNG sync, or iTC-5 misconfigured.\n\nSailors depend on wind data — if down, the plotter will also lose apparent/true wind calculations.",
+    "causes": [
+      {"cause": "Wireless wind solar panel dirty or battery dead", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "iTC-5 / ITC-5 module unpowered", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Masthead cable chafed", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No wind speed/direction", "Sail performance gauges blank"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify STNG bus", "instruction": "Ensure SeaTalkNG is up (other instruments working).", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check iTC-5", "instruction": "Verify LED status on the transducer interface.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Clean masthead panel", "instruction": "For Wireless Wind, clean solar panel — requires going up mast.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "affectedModels": ["Wireless Wind", "iTC-5", "Axiom with wind display"],
+    "partsNeeded": ["Wireless Wind unit", "iTC-5"],
+    "estimatedCost": {"diy": {"min": 0, "max": 600}, "professional": {"min": 400, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes to several hours",
+    "whenToCallPro": "If masthead work is needed — requires rigger or bosun's chair.",
+    "relatedCodes": ["STNG FAIL"],
+    "videoSearchQuery": "Raymarine wind no data fix",
+    "faq": [
+      {"q": "How long does Wireless Wind battery last?", "a": "Solar-charged, no battery replacement — panel just needs to stay clean."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-autopilot",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "EVOLUTION FAIL",
+    "displayCode": "EVOLUTION FAIL",
+    "alternativeCodes": ["EV Error"],
+    "title": "Evolution Autopilot Fault",
+    "shortDescription": "EV-1 or EV-2 autopilot sensor has an error.",
+    "fullDescription": "Raymarine Evolution autopilots use an EV-1 CCU with a 9-axis solid-state compass. Faults include compass calibration loss (after installing new gear near CCU), power issues, or STNG sync loss.\n\nDockside calibration wizard must be rerun after major hardware changes.",
+    "causes": [
+      {"cause": "New magnetic interference near EV-1", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "ACU unpowered", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Compass not calibrated", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Heading wanders", "Autopilot disengages", "No course hold"],
+    "fixSteps": [
+      {"step": 1, "title": "Recalibrate compass", "instruction": "Run Swinging Compass calibration in calm water.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Check EV-1 location", "instruction": "Verify no new magnets or electronics within 3 ft.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Redo dockside setup", "instruction": "Full setup wizard for drive type and rudder limits.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["EV-100", "EV-200", "EV-400"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "If ACU needs replacement or drive unit has issues.",
+    "relatedCodes": ["STNG FAIL"],
+    "videoSearchQuery": "Raymarine Evolution autopilot calibration",
+    "faq": [
+      {"q": "How often calibrate?", "a": "Once at install, and any time major metal/magnets added near CCU."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-gps-fail",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "GPS FAIL",
+    "displayCode": "GPS FAIL",
+    "alternativeCodes": ["No GPS"],
+    "title": "Internal GPS Not Receiving",
+    "shortDescription": "Axiom's internal GPS has no fix.",
+    "fullDescription": "Axiom has internal GPS; higher antennas (RS150) can be connected for better performance in covered cockpits. GPS fail means no fix on either.\n\nMount Axiom with clear view of sky above — metal biminis, hardtops, and below-deck mounts block reception.",
+    "causes": [
+      {"cause": "Metal structure blocking GPS antenna", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "External antenna (RS150) unplugged", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Internal GPS failed", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No position on chart", "COG and SOG blank"],
+    "fixSteps": [
+      {"step": 1, "title": "Move to open sky", "instruction": "Relocate vessel out from under cover.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Add external RS150", "instruction": "Install external antenna on open sky location.", "tools": ["Drill"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 3, "title": "Configure GPS source", "instruction": "Settings > GPS > Source — select external.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Axiom 7/9/12", "RS150 external"],
+    "partsNeeded": ["RS150 GPS sensor"],
+    "estimatedCost": {"diy": {"min": 0, "max": 250}, "professional": {"min": 300, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If internal GPS confirmed dead — Raymarine repair.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Raymarine Axiom GPS no fix",
+    "faq": [
+      {"q": "Does RS150 help if Axiom is below?", "a": "Yes — mount it on open deck/mast for far better reception."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-chart-fail",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "CHART FAIL",
+    "displayCode": "CHART FAIL",
+    "alternativeCodes": ["Chart Error"],
+    "title": "Chart Cartridge Error",
+    "shortDescription": "LightHouse, Navionics, or C-Map cartridge unreadable.",
+    "fullDescription": "Axiom reads charts from microSD slot. Errors occur from dirty card contacts, unsupported format, wrong slot (some Axioms have dual slots with different purposes), or failed subscription.\n\nSwap the card into a computer to confirm it reads there before blaming the unit.",
+    "causes": [
+      {"cause": "Dirty microSD contacts", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Card inserted in wrong slot", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Expired Navionics subscription", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupt card", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Chart area blank", "Error message on chart screen"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean card", "instruction": "Wipe contacts with microfiber, reinsert.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Try other slot", "instruction": "If dual-slot unit, try the other slot.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Verify card on PC", "instruction": "Confirm readable and subscription valid.", "tools": ["Computer"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Axiom series"],
+    "partsNeeded": ["Navionics or LightHouse chart card"],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Rare — almost always DIY.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Raymarine Axiom chart card not reading",
+    "faq": [
+      {"q": "Can I use both LightHouse and Navionics?", "a": "Yes — dual-slot Axioms support one of each."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-ais",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "AIS FAIL",
+    "displayCode": "AIS FAIL",
+    "alternativeCodes": ["AIS Offline"],
+    "title": "AIS Receiver Not Responding",
+    "shortDescription": "AIS650/700 transponder or receiver unreachable.",
+    "fullDescription": "Raymarine AIS units connect via SeaTalkNG and USB. AIS fail indicates bus sync loss or GPS antenna problem on the AIS itself (Class B transponders need their own GPS lock).\n\nCheck the AIS status via its web interface (USB to laptop) — this gives detailed diagnostics.",
+    "causes": [
+      {"cause": "SeaTalkNG drop cable failed", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "AIS GPS antenna bad", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VHF splitter failed", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["AIS targets disappear", "Own ship not transmitting", "AIS error icon"],
+    "fixSteps": [
+      {"step": 1, "title": "Check AIS LEDs", "instruction": "Green/red pattern per manual indicates health.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reseat connections", "instruction": "STNG drop, VHF, GPS antenna.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "AIS web interface", "instruction": "USB to PC, open ProAIS2 for diagnostics.", "tools": ["USB cable", "Computer"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["AIS650", "AIS700"],
+    "partsNeeded": ["VHF splitter"],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If Class B transmitter needs MMSI change — dealer must reprogram.",
+    "relatedCodes": ["STNG FAIL"],
+    "videoSearchQuery": "Raymarine AIS650 offline fix",
+    "faq": [
+      {"q": "Can I change the MMSI myself?", "a": "No — once programmed, only dealers or Raymarine can reprogram."}
+    ]
+  },
+  {
+    "id": "raymarine-marine-electronics-backlight",
+    "brand": "Raymarine",
+    "brandSlug": "raymarine",
+    "deviceType": "Marine Electronics",
+    "deviceTypeSlug": "marine-electronics",
+    "code": "BACKLIGHT",
+    "displayCode": "BACKLIGHT",
+    "alternativeCodes": ["Dim Fault"],
+    "title": "Display Backlight Issue",
+    "shortDescription": "Axiom screen goes dark or flickers.",
+    "fullDescription": "Backlight issues on Axiom can be settings (auto-dim enabled with dirty ambient sensor) or hardware (failed LED driver). Direct sun baking can overheat the display and reduce backlight dimmer to protective level.\n\nCheck brightness menu first; if manual brightness maxed and screen still dim, hardware fault.",
+    "causes": [
+      {"cause": "Auto-dim with dirty ambient light sensor", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Overheat from direct sun", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed backlight LED driver", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Screen very dim", "Flicker", "Screen off but unit on"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean ambient sensor", "instruction": "Wipe front of unit with microfiber — sensor is usually a small hole.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Disable auto-dim", "instruction": "Settings > Display > Manual brightness.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
+      {"step": 3, "title": "Shade the unit", "instruction": "Install sun cover when docked.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+    ],
+    "affectedModels": ["Axiom 7/9/12", "Axiom+"],
+    "partsNeeded": ["Sun cover"],
+    "estimatedCost": {"diy": {"min": 20, "max": 60}, "professional": {"min": 300, "max": 800}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes",
+    "whenToCallPro": "If confirmed hardware backlight failure — Raymarine flat-rate repair.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Raymarine Axiom backlight dim fix",
+    "faq": [
+      {"q": "Does UV damage the screen?", "a": "Yes over time — use sun cover when not in use."}
+    ]
+  }
+]
