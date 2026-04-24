@@ -10,6 +10,7 @@ import { SITE_URL } from "@/lib/constants";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import AdUnit from "@/components/ads/AdUnit";
+import AnchorAd from "@/components/ads/AnchorAd";
 import CodeHero from "./CodeHero";
 import SymptomsSection from "./SymptomsSection";
 import CausesSection from "./CausesSection";
@@ -65,68 +66,97 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
         brand={code.brand}
       />
 
-      <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3">
-          <Breadcrumbs items={breadcrumbs} />
-          <div className="flex items-center gap-2">
-            <SaveButton
-              code={code.displayCode}
-              title={code.title}
-              url={canonicalPath}
-              category={code.category}
-              brand={code.brand}
-            />
-            <ShareButton code={code.displayCode} title={code.title} />
+      {/* Mobile-only sticky anchor ad (appears after 30% scroll) */}
+      <AnchorAd />
+
+      {/* Two-column layout on desktop (content + sidebar), single-column on mobile */}
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="flex gap-8">
+          <div className="flex-1 min-w-0 max-w-4xl">
+            <div className="flex items-center justify-between gap-3">
+              <Breadcrumbs items={breadcrumbs} />
+              <div className="flex items-center gap-2">
+                <SaveButton
+                  code={code.displayCode}
+                  title={code.title}
+                  url={canonicalPath}
+                  category={code.category}
+                  brand={code.brand}
+                />
+                <ShareButton code={code.displayCode} title={code.title} />
+              </div>
+            </div>
+
+            <div className="mt-4 space-y-6 sm:space-y-8">
+              {/* 1. TLDR — first content, AI-citable block */}
+              <TLDR code={code} />
+
+              {/* Hero (the original first paragraph of real content) */}
+              <CodeHero code={code} />
+
+              {/* Trust + safety before any ads — better UX, also AdSense policy */}
+              <TrustBadge />
+              <SafetyBanner code={code} />
+
+              {/* 2. TOP-BANNER — first ad, only after real intro content */}
+              <AdUnit position="top-banner" />
+
+              <SymptomsSection symptoms={code.symptoms} />
+
+              <CausesSection causes={code.causes} />
+
+              {/* 3. AFTER-INTRO — before fix steps */}
+              <AdUnit position="after-intro" />
+
+              <FixStepsSection steps={code.fixSteps} codeDisplay={code.displayCode} />
+
+              <HelpfulFeedback codeId={feedbackId} />
+
+              {/* 4. IN-ARTICLE-1 — between fix-steps and cost */}
+              <AdUnit position="in-article-1" />
+
+              <CostEstimate diy={code.estimatedCost.diy} professional={code.estimatedCost.professional} />
+
+              {/* 5. HIGH-INTENT — right after cost section, highest eCPM slot */}
+              <AdUnit position="high-intent" />
+
+              {code.partsNeeded && code.partsNeeded.length > 0 && (
+                <PartsNeeded parts={code.partsNeeded} />
+              )}
+
+              <AffectedModels
+                models={code.affectedModels}
+                series={code.affectedSeries}
+                versions={code.affectedVersions}
+              />
+
+              {code.whenToCallPro && <WhenToCallPro text={code.whenToCallPro} />}
+
+              {/* 6. MATCHED-CONTENT — Google's highest-RPM format */}
+              <AdUnit position="matched-content" />
+
+              <RelatedCodes
+                codes={code.relatedCodes}
+                category={code.category}
+                brandSlug={code.brandSlug}
+                deviceTypeSlug={code.deviceTypeSlug}
+              />
+
+              <FAQSection faqs={code.faq} />
+
+              <Sources category={code.category} brand={code.brand} />
+
+              {/* 7. BOTTOM-BANNER — last chance impression */}
+              <AdUnit position="bottom-banner" />
+            </div>
           </div>
-        </div>
 
-        <div className="mt-4 space-y-6 sm:space-y-8">
-          <TLDR code={code} />
-
-          <CodeHero code={code} />
-
-          <TrustBadge />
-
-          <SafetyBanner code={code} />
-
-          <AdUnit position="leaderboard" className="my-6" />
-
-          <SymptomsSection symptoms={code.symptoms} />
-
-          <CausesSection causes={code.causes} />
-
-          <AdUnit position="in-content-1" className="my-6" />
-
-          <FixStepsSection steps={code.fixSteps} codeDisplay={code.displayCode} />
-
-          <HelpfulFeedback codeId={feedbackId} />
-
-          <CostEstimate diy={code.estimatedCost.diy} professional={code.estimatedCost.professional} />
-
-          {code.partsNeeded && code.partsNeeded.length > 0 && (
-            <PartsNeeded parts={code.partsNeeded} />
-          )}
-
-          <AffectedModels
-            models={code.affectedModels}
-            series={code.affectedSeries}
-            versions={code.affectedVersions}
-          />
-
-          {code.whenToCallPro && <WhenToCallPro text={code.whenToCallPro} />}
-
-          <AdUnit position="in-content-2" className="my-6" />
-
-          <RelatedCodes
-            codes={code.relatedCodes}
-            category={code.category}
-            brandSlug={code.brandSlug}
-            deviceTypeSlug={code.deviceTypeSlug}
-          />
-
-          <FAQSection faqs={code.faq} />
-
-          <Sources category={code.category} brand={code.brand} />
+          {/* Desktop-only sticky sidebar ad (hidden on mobile, shown lg+) */}
+          <aside className="hidden lg:block w-[300px] shrink-0">
+            <div className="sticky top-20">
+              <AdUnit position="sidebar-sticky" />
+            </div>
+          </aside>
         </div>
       </div>
     </>
