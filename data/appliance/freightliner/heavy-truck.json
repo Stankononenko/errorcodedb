@@ -1,0 +1,598 @@
+[
+  {
+    "id": "freightliner-heavy-truck-spn-97-fmi-5",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 97 FMI 5",
+    "displayCode": "SPN 97 FMI 5",
+    "alternativeCodes": ["SPN97/FMI5", "PID 97"],
+    "title": "Water in Fuel Detected",
+    "shortDescription": "Water-in-fuel sensor circuit current below normal — water contamination in fuel/water separator.",
+    "fullDescription": "The ECM has detected an abnormal signal from the water-in-fuel (WIF) sensor in the fuel/water separator. SPN 97 indicates the water-in-fuel component, and FMI 5 signals current below normal or open circuit. Water in diesel fuel can severely damage high-pressure common rail injectors (which operate at 30,000+ PSI) and cause corrosion throughout the fuel system.\n\nThis code commonly sets when the separator bowl fills with water from condensation or contaminated fuel, but can also appear when the sensor harness is broken or corroded. Freightliner Cascadia, M2, and Columbia models all use similar WIF sensor topology on the primary fuel filter housing.\n\nDriving with water in the fuel risks catastrophic injector failure with replacement costs exceeding $4,000. Drain the separator immediately and diagnose the sensor circuit before extended operation.",
+    "causes": [
+      {"cause": "Water accumulated in fuel/water separator bowl", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Contaminated fuel from supplier or storage tank", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed WIF sensor (open circuit)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded or broken sensor harness", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Check Engine or amber warning lamp",
+      "Water-in-fuel dash indicator",
+      "Rough idle or hard starting",
+      "Reduced power / derate",
+      "Visible water in separator bowl"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Drain water from separator", "instruction": "Locate primary fuel/water separator (frame rail or engine-mounted). Open drain valve at bottom of bowl into a clear container until pure diesel flows. Close drain.", "tools": ["Drain pan", "Shop rags"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Prime and verify", "instruction": "Use primer pump until firm. Start engine and clear codes with DDDL or JPro. Verify the code does not return after a short road test.", "tools": ["DDDL diagnostic software", "JPro scan tool"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Test WIF sensor circuit", "instruction": "If code returns with no water present, disconnect WIF sensor and measure resistance per OEM spec. Inspect harness for corrosion. Replace sensor if out of spec.", "tools": ["DMM", "Basic hand tools"], "difficulty": "advanced", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "professional": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes - 2 hours",
+    "whenToCallPro": "If water continues to appear after draining, suspect tank contamination requiring fuel polishing or tank pumpout — call a fleet shop.",
+    "relatedCodes": ["SPN 94 FMI 18", "SPN 157 FMI 4"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 97 FMI 5 water in fuel drain",
+    "faq": [
+      {"q": "Can I keep driving?", "a": "Drain the separator first. Continuing with water in fuel risks $4,000+ injector damage."},
+      {"q": "Why does water keep coming back?", "a": "Likely contaminated tank or failing tank cap seal letting rain in. Get fuel tested."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-100-fmi-17",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 100 FMI 17",
+    "displayCode": "SPN 100 FMI 17",
+    "alternativeCodes": ["SPN100/FMI17"],
+    "title": "Engine Oil Pressure Low — Least Severe",
+    "shortDescription": "Engine oil pressure below the least-severe threshold — possible low oil, worn pump, or sensor fault.",
+    "fullDescription": "SPN 100 FMI 17 indicates engine oil pressure is below the lowest warning threshold set by the ECM. This is typically the first-level warning before FMI 1 (most severe) triggers engine protection shutdown. On Detroit DD13/DD15 engines in Freightliner chassis, this code often precedes serious bearing damage if ignored.\n\nCauses range from simply low oil level, to a failing oil pump, worn bearings increasing clearances, or a faulty oil pressure sensor. Because modern diesels rely on precise oil galley pressure for piston cooling jets and VGT turbo actuation, even marginal low pressure can cause progressive damage.\n\nThe ECM logs this as a pre-alert. Ignoring it and continuing to load the engine can escalate to FMI 1 with automatic derate/shutdown within minutes.",
+    "causes": [
+      {"cause": "Low engine oil level", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed oil pressure sensor", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Worn oil pump or pickup tube", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Worn main/rod bearings", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Oil dilution (fuel in oil from injector leak)", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Yellow CEL and oil pressure warning",
+      "Low oil pressure gauge reading",
+      "Engine derate at higher RPM",
+      "Ticking / lifter noise at idle"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check oil level and condition", "instruction": "On level ground with engine off 10+ minutes, check dipstick. Top off to full mark with correct spec oil (e.g., Delo 400 15W-40 CK-4). Inspect for fuel smell or milkiness.", "tools": ["Correct spec oil"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Verify pressure with mechanical gauge", "instruction": "Install a mechanical oil pressure gauge at the sender port. Compare to ECM reading via DDDL. If mechanical reading is normal, replace sensor.", "tools": ["Mechanical oil pressure gauge adapter", "DDDL"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Inspect oil pump and bearings (if pressure confirmed low)", "instruction": "This requires pan drop and possibly engine overhaul diagnosis — tow to a dealer or certified Detroit/Freightliner shop.", "tools": [], "difficulty": "professional", "timeMinutes": 480}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 20, "max": 300}, "professional": {"min": 400, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "15 minutes - 2 days",
+    "whenToCallPro": "If oil level is correct and mechanical gauge confirms low pressure, tow to dealer — continued operation will destroy the engine.",
+    "relatedCodes": ["SPN 100 FMI 1", "SPN 100 FMI 18"],
+    "videoSearchQuery": "Freightliner DD15 SPN 100 FMI 17 low oil pressure diagnostic",
+    "faq": [
+      {"q": "Is it safe to drive home?", "a": "Only if oil level is full and noise is normal. Pull over and shut down if pressure drops further or knocking develops."},
+      {"q": "Could it just be the sensor?", "a": "Yes — about 30% of SPN 100 cases are faulty senders. Confirm with a mechanical gauge."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-110-fmi-0",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 110 FMI 0",
+    "displayCode": "SPN 110 FMI 0",
+    "alternativeCodes": ["SPN110/FMI0"],
+    "title": "Engine Coolant Temperature — Above Normal",
+    "shortDescription": "Coolant temperature exceeded the high warning threshold — overheating condition.",
+    "fullDescription": "SPN 110 FMI 0 indicates the engine coolant temperature has exceeded the ECM's high operational threshold (typically around 221°F / 105°C on Detroit DD-series engines). This triggers a progressive derate to protect the engine from head gasket failure, cracked heads, and warped components.\n\nCommon root causes on Freightliner Cascadia and M2 trucks include plugged charge-air coolers, failed viscous fan clutch, low coolant from a leak, air pocket after service, stuck thermostat, or debris in the CAC-radiator stack. Modern emissions components (EGR cooler, DPF/DOC stack heat soak) contribute significantly to underhood thermal load, making cooling system maintenance critical.\n\nIgnoring this code and continuing to load the engine will escalate to FMI 16 and eventually FMI 31 engine shutdown. Overheating damage to a Detroit DD15 easily exceeds $15,000.",
+    "causes": [
+      {"cause": "Low coolant level due to leak", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Debris blocking radiator/CAC fins", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed viscous fan clutch", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Stuck thermostat", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failing water pump", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "Head gasket / EGR cooler internal leak", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Red STOP engine lamp",
+      "Coolant temp gauge in red",
+      "Steam or sweet smell",
+      "Engine derate / power loss",
+      "Coolant spraying or puddle under truck"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Safe shutdown", "instruction": "Pull over safely. Do NOT open the surge tank cap while hot — steam can cause severe burns. Let cool at least 30 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Inspect coolant and airflow", "instruction": "Check surge tank level. Inspect radiator and CAC for bugs, debris, bent fins. Look for external leaks at hoses, water pump, EGR cooler.", "tools": ["Flashlight", "Garden hose for rinsing fins"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 3, "title": "Test fan clutch engagement", "instruction": "With engine hot and idling, fan should lock in above ~210°F. Command fan ON via DDDL. If fan does not engage, replace viscous clutch.", "tools": ["DDDL"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 4, "title": "Combustion gas test", "instruction": "If no external leak but coolant disappearing, test for combustion gases in coolant — positive test means head gasket or EGR cooler failure.", "tools": ["Block tester (Bluebird kit)"], "difficulty": "advanced", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 400}, "professional": {"min": 500, "max": 15000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes - 2 days",
+    "whenToCallPro": "If head gasket or EGR cooler suspected, this is a fleet shop / dealer job — internal engine damage risk.",
+    "relatedCodes": ["SPN 110 FMI 16", "SPN 111 FMI 1"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 110 FMI 0 overheating diagnosis",
+    "faq": [
+      {"q": "Can I just add water to get home?", "a": "In an emergency yes, but only after engine cools — use 50/50 antifreeze mix once you reach a shop."},
+      {"q": "Why does coolant keep disappearing?", "a": "Internal leak into EGR cooler or combustion chamber is common on DD15 — get a block test done."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-157-fmi-4",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 157 FMI 4",
+    "displayCode": "SPN 157 FMI 4",
+    "alternativeCodes": ["SPN157/FMI4"],
+    "title": "Fuel Rail Pressure Sensor Voltage Low",
+    "shortDescription": "Injector metering rail 1 pressure sensor signal voltage below normal — circuit or sensor fault.",
+    "fullDescription": "SPN 157 monitors the high-pressure common-rail fuel pressure sensor. FMI 4 indicates the sensor circuit voltage is below the expected minimum, suggesting a shorted sensor, open return/reference wire, or a genuinely low rail pressure.\n\nThe Detroit DD-series and Cummins ISX common rail systems operate at 30,000+ PSI during peak injection. At this pressure, leaks atomize into an invisible mist that can cut skin and cause serious fuel injection injuries. Never put hands or face near a suspected rail leak while cranking.\n\nThis code commonly sets when the rail sensor has internal short, the harness chafes against the rocker cover, or the pigtail corrodes from diesel/water exposure. If the sensor is good and voltage truly reflects low pressure, suspect the high-pressure pump, pressure regulator, or a severe rail leak.",
+    "causes": [
+      {"cause": "Failed fuel rail pressure sensor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Chafed or corroded sensor harness", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed high-pressure fuel pump", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Leaking injector or rail line", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "No start or hard start",
+      "Severe power derate",
+      "Rough run / misfire",
+      "Check Engine Lamp"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "SAFETY — depressurize rail", "instruction": "Turn off ignition and wait at least 10 minutes for rail pressure to bleed down. Diesel at 30,000+ PSI can inject through skin causing life-threatening injury. Never loosen a rail fitting with engine running.", "tools": [], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Inspect sensor and harness", "instruction": "Unplug rail pressure sensor. Inspect pins for corrosion/bent. Check harness for rubs against rocker cover or heat damage near turbo.", "tools": ["Flashlight", "Basic hand tools"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 3, "title": "Measure sensor reference and signal", "instruction": "With key on, check 5V reference and ground at connector. Back-probe signal wire: should be ~0.5V at 0 PSI. Replace sensor if out of range with good reference.", "tools": ["DMM", "Back-probe pins", "DDDL"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 4, "title": "Replace rail pressure sensor", "instruction": "Clean around sensor before removal to prevent debris entry. Torque new sensor to spec. Clear codes and verify rail pressure via DDDL.", "tools": ["Torque wrench", "Sensor socket"], "difficulty": "advanced", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Cascadia DD13/DD15/DD16", "M2 106 (Cummins ISB)", "Columbia"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 150, "max": 600}, "professional": {"min": 500, "max": 4000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If sensor tests good and rail pressure is actually low, high-pressure pump replacement is a dealer-level job costing $3,500+.",
+    "relatedCodes": ["SPN 157 FMI 3", "SPN 164 FMI 17"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 157 FMI 4 fuel rail pressure sensor replace",
+    "faq": [
+      {"q": "Is the sensor the problem or the pump?", "a": "Sensor is ~70% of cases. Swap sensor first before condemning the $3,500 HPFP."},
+      {"q": "Why the strict safety warning?", "a": "Common rail fuel at 30,000 PSI pierces skin and causes gas gangrene — amputation risk if untreated."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-3251-fmi-2",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 3251 FMI 2",
+    "displayCode": "SPN 3251 FMI 2",
+    "alternativeCodes": ["SPN3251/FMI2"],
+    "title": "DPF Differential Pressure — Data Erratic / Regen Required",
+    "shortDescription": "Diesel particulate filter differential pressure data is erratic or soot load is high — forced regen needed.",
+    "fullDescription": "SPN 3251 represents the differential pressure across the diesel particulate filter (DPF). FMI 2 indicates the ECM sees the data as intermittent, erratic, or incorrect — often triggered when DPF soot loading exceeds the active regen threshold but passive/active regen has failed to clear it.\n\nFreightliner Cascadia trucks with Detroit DD-series engines track DPF soot via pressure drop across the filter. Stop-and-go urban duty cycles prevent adequate exhaust temperature (~1100°F) needed to passively burn soot. Once soot load crosses 100%, the DPF lamp illuminates solid and the truck derates to ~50% power.\n\nA parked regeneration (commanded via dash switch or DDDL) typically clears the condition in 30-45 minutes. If regen fails or soot exceeds 150%, the DPF requires removal and forced ash cleaning or replacement ($2,500-$6,000).",
+    "causes": [
+      {"cause": "Excessive idle time / short-haul duty cycle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DPF soot loaded — active regen incomplete", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed delta-pressure sensor or plugged sample lines", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Faulty 7th injector / dosing injector (DD13/DD15)", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "DPF internally cracked or ash-loaded beyond service", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "DPF lamp solid",
+      "Amber CEL",
+      "Power derate",
+      "HEST (high exhaust temp) lamp during regen"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Perform parked regen", "instruction": "Park in safe open area with no flammable material overhead (regen exhaust exceeds 1200°F). Engage parking brake, neutral, set high idle. Initiate regen via dash switch or DDDL. Expect 30-45 min.", "tools": ["DDDL (optional)"], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 2, "title": "Check DP sensor and lines", "instruction": "If regen fails or code returns quickly, inspect the DPF differential pressure sensor and its two small sample hoses for soot blockage, kinks, or cracks. Blow out lines with compressed air.", "tools": ["Compressed air", "Hand tools"], "difficulty": "intermediate", "timeMinutes": 45},
+      {"step": 3, "title": "DPF cleaning or replacement", "instruction": "If soot > 150% or ash load high, remove DPF for forced thermal/pneumatic cleaning at a certified facility. Replace if substrate cracked.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "professional": {"min": 400, "max": 6000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes - 6 hours",
+    "whenToCallPro": "If parked regen fails repeatedly or DPF needs bake cleaning, see a Freightliner dealer or certified aftertreatment shop.",
+    "relatedCodes": ["SPN 3251 FMI 0", "SPN 3719 FMI 15"],
+    "videoSearchQuery": "Freightliner Cascadia parked regen SPN 3251 FMI 2 DPF",
+    "faq": [
+      {"q": "Can I just delete the DPF?", "a": "No — EPA tampering violations are $5,000+ per count and make the truck unsaleable."},
+      {"q": "How long does a parked regen take?", "a": "30 to 45 minutes typically. Do not interrupt — it will restart from the beginning."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-3610-fmi-0",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 3610 FMI 0",
+    "displayCode": "SPN 3610 FMI 0",
+    "alternativeCodes": ["SPN3610/FMI0"],
+    "title": "DEF Tank Level Low / Empty",
+    "shortDescription": "Diesel Exhaust Fluid tank level critically low — refill immediately to avoid 5 mph derate.",
+    "fullDescription": "SPN 3610 monitors DEF (Diesel Exhaust Fluid / AdBlue) tank level. FMI 0 signals the level is at/below the critical empty threshold. EPA emissions regulations require the ECM to apply a cascading derate when DEF is empty: first a 25% power reduction, then limp to 5 mph ('5 mph derate') until DEF is refilled and the truck is restarted.\n\nFreightliner Cascadia and M2 trucks use a blue-capped DEF tank (never put DEF in the diesel tank — it destroys the fuel system). DEF is a 32.5% urea solution that freezes at 12°F (–11°C); the ECM has a thaw cycle but level sensors can read incorrectly if ice is around the float.\n\nDo not attempt to defeat the derate — reflashing or tampering voids warranty and violates EPA regulations with penalties up to $5,000 per violation.",
+    "causes": [
+      {"cause": "DEF tank empty", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Frozen DEF around level sensor", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed DEF level/temp/quality sensor (header unit)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Contaminated DEF (diesel or water mixed in)", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "DEF gauge empty",
+      "Amber then red CEL",
+      "Countdown warning to derate",
+      "5 mph speed limit",
+      "Wrench / engine derate lamp"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Refill DEF tank", "instruction": "Add API-certified DEF (e.g., BlueDEF, Peak Blue) to at least 10% of tank capacity. Cycle key OFF for 30 seconds, then start. Drive above 5 mph to clear derate.", "tools": ["DEF jug or pump"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "If derate persists — check sensor", "instruction": "Use DDDL to read DEF tank sensor data. If level still reads 0% with a full tank, suspect frozen fluid (thaw with garage heat) or failed header unit.", "tools": ["DDDL"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 3, "title": "Replace DEF header assembly", "instruction": "Drain tank, remove locking ring, replace sensor header, refill with fresh DEF. Torque ring per spec.", "tools": ["DEF tank header tool", "Drain pan"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 10, "max": 500}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10 minutes - 3 hours",
+    "whenToCallPro": "If header unit is suspect or DEF contamination has spread to the SCR doser, dealer service required.",
+    "relatedCodes": ["SPN 3516 FMI 18", "SPN 3364 FMI 2"],
+    "videoSearchQuery": "Freightliner Cascadia DEF empty 5 mph derate SPN 3610",
+    "faq": [
+      {"q": "Can I use water or washer fluid?", "a": "No — water/washer fluid destroys the SCR catalyst ($4,000+ repair). Only API-certified DEF."},
+      {"q": "Why won't the derate clear after refill?", "a": "Must drive above 5 mph. If still derated, sensor or quality issue — scan with DDDL."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-3364-fmi-2",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 3364 FMI 2",
+    "displayCode": "SPN 3364 FMI 2",
+    "alternativeCodes": ["SPN3364/FMI2"],
+    "title": "DEF Quality Poor / Incorrect Fluid",
+    "shortDescription": "The DEF quality sensor detected non-conforming fluid — wrong fluid added or contamination.",
+    "fullDescription": "SPN 3364 FMI 2 indicates the DEF quality sensor (in the tank header or inline) has read a urea concentration outside the 31.8-33.2% range required by ISO 22241. FMI 2 = erratic/incorrect data — commonly triggered when water, washer fluid, diesel, or counterfeit DEF has been added to the tank.\n\nContaminated DEF is extremely damaging: urea concentrations below 30% cause SCR efficiency faults (SPN 4364), while diesel contamination destroys the SCR catalyst in hours with repair costs over $6,000. The Cascadia will escalate through amber lamp, red lamp, and finally 5 mph derate.\n\nA tampered or contaminated DEF tank must be fully drained, flushed with clean DEF, and the SCR system inspected before returning to service.",
+    "causes": [
+      {"cause": "Wrong fluid added (water, washer fluid, diesel)", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Expired or counterfeit DEF", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "DEF degraded from heat/sun in tank", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed DEF quality sensor", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "DEF quality warning",
+      "Amber CEL escalating to red",
+      "Countdown to derate",
+      "SCR efficiency codes (SPN 4364)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Drain contaminated DEF", "instruction": "Remove DEF tank header or siphon tank dry. Dispose of contaminated fluid per local regulations — do not pour on ground.", "tools": ["Siphon", "Waste container"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 2, "title": "Flush tank with clean DEF", "instruction": "Fill with 2-3 gallons fresh API-certified DEF, agitate, drain. Repeat until drained fluid is clear and tests 32.5% on DEF refractometer.", "tools": ["DEF refractometer", "Fresh DEF"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Refill and test", "instruction": "Fill to 100%, clear codes with DDDL, drive truck to verify SCR efficiency returns. If SPN 4364 persists, SCR catalyst may be poisoned and require dealer diagnosis.", "tools": ["DDDL"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "professional": {"min": 400, "max": 7000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "If diesel entered the DEF system or SCR efficiency codes persist after flush — dealer job, possible $6,000+ SCR replacement.",
+    "relatedCodes": ["SPN 3610 FMI 0", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 3364 FMI 2 DEF quality flush",
+    "faq": [
+      {"q": "I filled my DEF tank with diesel — what now?", "a": "Do NOT start the truck. Tow to dealer. Starting spreads diesel to doser and SCR = $6,000+ damage."},
+      {"q": "How do I know if DEF is still good?", "a": "Use a DEF refractometer — should read 32.5% urea. Above 90°F storage degrades it in 6-12 months."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-4364-fmi-18",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 4364 FMI 18",
+    "displayCode": "SPN 4364 FMI 18",
+    "alternativeCodes": ["SPN4364/FMI18"],
+    "title": "SCR NOx Conversion Efficiency Below Threshold",
+    "shortDescription": "SCR catalyst is not converting enough NOx — derate imminent.",
+    "fullDescription": "SPN 4364 FMI 18 indicates the selective catalytic reduction (SCR) system is converting NOx below the EPA-required efficiency threshold. The inlet NOx sensor (upstream of SCR) and outlet NOx sensor (downstream) compare readings; when the outlet/inlet ratio exceeds allowable limits, this code sets.\n\nOn Freightliner Cascadia with Detroit DD-series engines, this is one of the most common aftertreatment faults. Causes include failed NOx sensors (most common), plugged or failed DEF doser, SCR catalyst poisoning from contaminated DEF, DEF line restriction, or exhaust leak before the outlet NOx sensor.\n\nThe truck progresses through amber lamp → solid CEL → inducement derate. Ignoring this code results in 5 mph derate within several drive cycles.",
+    "causes": [
+      {"cause": "Failed inlet or outlet NOx sensor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DEF doser clogged or failed", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "SCR catalyst poisoned by contaminated DEF", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Exhaust leak upstream of outlet NOx sensor", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "DEF supply line frozen/kinked", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Amber CEL",
+      "Inducement countdown",
+      "Power derate",
+      "Multiple aftertreatment codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Diagnose NOx sensors", "instruction": "With DDDL, compare inlet vs outlet NOx readings at steady cruise. If outlet is reading higher than inlet or values are stuck, replace the bad sensor. Most common failure point.", "tools": ["DDDL", "22mm O2/NOx socket"], "difficulty": "advanced", "timeMinutes": 90},
+      {"step": 2, "title": "Test DEF dosing rate", "instruction": "Run DEF dosing test via DDDL. Measure pump output in ml/min. If low, inspect doser for crystallization, replace if clogged.", "tools": ["DDDL", "Graduated cylinder"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Inspect exhaust for leaks", "instruction": "Check V-band clamps between turbo, DOC, DPF, SCR. Any leak dilutes exhaust sample at outlet NOx sensor.", "tools": ["Inspection mirror", "Shop light"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 300, "max": 1500}, "professional": {"min": 800, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-8 hours",
+    "whenToCallPro": "If SCR catalyst is poisoned or replacement is needed, dealer service required — $6,000+ repair.",
+    "relatedCodes": ["SPN 3364 FMI 2", "SPN 3246 FMI 0"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 4364 FMI 18 SCR efficiency NOx sensor",
+    "faq": [
+      {"q": "Which NOx sensor fails more often?", "a": "Outlet (downstream) NOx sensor fails roughly 2:1 vs inlet due to SCR heat soak."},
+      {"q": "Can I delete the SCR?", "a": "EPA $5,000+ fine per violation and makes truck unsaleable. Not recommended."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-520-fmi-3",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 520 FMI 3",
+    "displayCode": "SPN 520 FMI 3",
+    "alternativeCodes": ["SPN520/FMI3"],
+    "title": "Engine Brake Output Voltage High",
+    "shortDescription": "Engine (Jake) brake solenoid circuit voltage above normal — wiring short to power or solenoid fault.",
+    "fullDescription": "SPN 520 covers the engine compression brake (Jake Brake) actuator circuit. FMI 3 indicates the circuit voltage is higher than expected, suggesting a short to battery voltage, failed solenoid with internal short, or ECM driver fault.\n\nOn Freightliner Cascadia with Detroit DD13/DD15, the engine brake uses hydraulic actuators on select cylinders to provide retarding power — critical for safe mountain descent with loaded trailers. A failed engine brake dramatically increases service brake wear and can lead to runaway loads on grades.\n\nThe code disables engine brake function as a safety measure. Diagnose and repair before operating in mountainous terrain.",
+    "causes": [
+      {"cause": "Wiring harness shorted to 12V (chafed in rocker cover harness)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed engine brake solenoid", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "ECM driver output fault", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Oil leak into solenoid connector", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Engine brake inoperative",
+      "CEL illuminated",
+      "Reduced retarding power on descent"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Read active and inactive codes", "instruction": "Pull full fault history with DDDL to identify which solenoid/bank is affected.", "tools": ["DDDL"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Inspect valve cover harness", "instruction": "Remove valve cover and inspect internal engine brake solenoid harness for chafing, oil saturation, or pin damage. Common failure point on DD15.", "tools": ["Torque wrench", "Socket set"], "difficulty": "advanced", "timeMinutes": 120},
+      {"step": 3, "title": "Replace solenoid / harness", "instruction": "Replace failed solenoid and/or internal harness. Torque solenoid to spec. Install new valve cover gasket.", "tools": ["Torque wrench", "New valve cover gasket"], "difficulty": "advanced", "timeMinutes": 180}
+    ],
+    "affectedModels": ["Cascadia DD13/DD15/DD16", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 200, "max": 800}, "professional": {"min": 600, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "whenToCallPro": "If ECM driver fault suspected or multiple solenoids affected, dealer for module diagnosis.",
+    "relatedCodes": ["SPN 520 FMI 4", "SPN 520 FMI 5"],
+    "videoSearchQuery": "Freightliner DD15 engine brake solenoid SPN 520 harness",
+    "faq": [
+      {"q": "Can I drive without engine brake?", "a": "Yes on flat terrain, but avoid mountain grades — service brakes alone can overheat and fail."},
+      {"q": "Why does oil cause this?", "a": "Oil wicks up solenoid wire into connector causing shorts — replace pigtail and seal."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-628-fmi-12",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 628 FMI 12",
+    "displayCode": "SPN 628 FMI 12",
+    "alternativeCodes": ["SPN628/FMI12"],
+    "title": "ECM Program Memory (EEPROM) Fault",
+    "shortDescription": "Engine ECM internal memory corruption — module may need reflash or replacement.",
+    "fullDescription": "SPN 628 refers to the program memory (EEPROM/Flash) inside the engine ECM. FMI 12 indicates the module has detected a memory device that is bad or not responding. This is an internal ECM fault — not a wiring issue.\n\nWhen this code sets on Freightliner Cascadia, the ECM may still run but could behave erratically: stored parameters lost, adaptations reset, or intermittent no-starts. Causes include voltage spikes (jump-starting with reversed polarity), lightning damage, water intrusion into the module, or end-of-life failure after many reflash cycles.\n\nRepair typically requires a dealer reflash with current calibration file. If the module fails to accept the reflash, ECM replacement and programming is required ($3,000-$4,500 parts and labor). Always disconnect batteries before welding on the chassis to prevent this type of damage.",
+    "causes": [
+      {"cause": "Voltage spike / reverse polarity jump-start", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Water intrusion into ECM", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed reflash or interrupted programming", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "ECM end-of-life", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Intermittent no-start",
+      "Lost parameter settings",
+      "Multiple unrelated codes",
+      "Solid CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check ECM power and ground", "instruction": "Verify battery voltage above 12.4V and all ECM grounds are tight and clean. Low voltage during programming can corrupt memory.", "tools": ["DMM"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Attempt reflash", "instruction": "At a Freightliner dealer, ECM is reflashed with current cal file. Requires Detroit ServiceLink and proper connection.", "tools": ["Detroit ServiceLink (dealer)"], "difficulty": "professional", "timeMinutes": 90},
+      {"step": 3, "title": "Replace ECM if reflash fails", "instruction": "New ECM is serialized to the truck VIN and must be programmed by dealer with customer parameters and injector trim codes.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["Cascadia DD13/DD15/DD16", "M2 106", "M2 112", "Columbia"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 4500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "Always — ECM diagnosis and reflash is dealer-only.",
+    "relatedCodes": ["SPN 628 FMI 2", "SPN 630 FMI 12"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 628 FMI 12 ECM reflash",
+    "faq": [
+      {"q": "Can I swap in a used ECM?", "a": "No — ECMs are VIN-locked on Cascadia and require dealer programming with injector trim codes."},
+      {"q": "Will a reflash fix it?", "a": "About 60% of SPN 628 FMI 12 cases clear with a fresh reflash. The rest need ECM replacement."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-102-fmi-18",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 102 FMI 18",
+    "displayCode": "SPN 102 FMI 18",
+    "alternativeCodes": ["SPN102/FMI18"],
+    "title": "Boost Pressure Low — Moderate",
+    "shortDescription": "Manifold (boost) pressure below expected for commanded load — boost leak or turbo fault.",
+    "fullDescription": "SPN 102 FMI 18 flags intake manifold absolute pressure below the ECM's commanded value during loaded operation. On Freightliner Cascadia with Detroit DD15, this typically means a boost leak in the charge-air system or a failing VGT (variable geometry turbocharger) actuator.\n\nCommon failure points include the CAC (charge air cooler) end-tank seam splitting from thermal cycling, the CAC boot at turbo outlet or CAC inlet loosening, the EGR valve stuck open, or the VGT vanes stuck with soot. Power is noticeably reduced and fuel economy drops.\n\nDiagnose with a smoke test of the charge-air system first — most common cause. If sealed, verify VGT actuation via DDDL live data.",
+    "causes": [
+      {"cause": "Charge-air cooler (CAC) end-tank leak or boot loose", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "VGT stuck with soot", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "EGR valve stuck open", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed boost pressure sensor", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Noticeable power loss on grades",
+      "Black smoke on acceleration",
+      "CEL illuminated",
+      "Whistle / hiss under load (boost leak)"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test charge air system", "instruction": "Pressurize CAC system to ~15 PSI with shop smoke machine. Watch for smoke escaping at CAC, boots, clamps.", "tools": ["Smoke machine", "CAC test adapters"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 2, "title": "Inspect and replace leaking component", "instruction": "Replace CAC or reseal boots/clamps. Torque clamps to spec — over-tightening cuts silicone boots.", "tools": ["Torque wrench", "T-bolt clamps"], "difficulty": "intermediate", "timeMinutes": 120},
+      {"step": 3, "title": "Check VGT operation", "instruction": "With DDDL, command VGT 0-100% and watch actual position. If sluggish, remove turbo for vane cleaning or replace actuator.", "tools": ["DDDL"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "affectedModels": ["Cascadia DD13/DD15/DD16", "M2 106", "Columbia", "Coronado"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 100, "max": 800}, "professional": {"min": 400, "max": 5000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-6 hours",
+    "whenToCallPro": "If VGT replacement required — $4,000+ turbo job, typically dealer.",
+    "relatedCodes": ["SPN 102 FMI 17", "SPN 103 FMI 0"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 102 FMI 18 boost leak smoke test",
+    "faq": [
+      {"q": "What's the most common cause?", "a": "CAC end tank split or loose boot clamp — 70% of cases."},
+      {"q": "Can I drive with this code?", "a": "Yes, but fuel economy suffers and prolonged black smoke soots the DPF."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-639-fmi-14",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 639 FMI 14",
+    "displayCode": "SPN 639 FMI 14",
+    "alternativeCodes": ["SPN639/FMI14", "J1939 Data Link"],
+    "title": "J1939 Data Link — Special Instruction / Bus Off",
+    "shortDescription": "Vehicle CAN bus communication fault — multiple modules may show codes.",
+    "fullDescription": "SPN 639 monitors the SAE J1939 vehicle data bus (CAN backbone that connects ECM, ACM, TCM, ABS, instrument cluster, etc.). FMI 14 indicates a special instruction condition — usually bus off, high error rate, or termination fault.\n\nOn Freightliner Cascadia and M2 models, common root causes include a failed terminating resistor (should be 60Ω across CAN H/L with key on), a chafed CAN wire shorting to ground or 12V, or a failed module that is flooding the bus with corrupted packets. Multiple secondary codes typically log (gauges dead, cruise disabled, fan clutch stuck) as modules lose communication.\n\nDiagnosis requires a scope or DMM on the CAN pair and module-by-module isolation. This is beyond most DIY capability.",
+    "causes": [
+      {"cause": "Failed 120Ω terminating resistor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Chafed CAN wiring shorted to ground/12V", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed module flooding the bus", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Corroded backbone connector (firewall pass-through)", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Dash gauges inoperative or erratic",
+      "Multiple module codes",
+      "No-start or intermittent start",
+      "Cruise control disabled"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Measure CAN resistance", "instruction": "With key OFF, measure between CAN H and CAN L at the 9-pin diagnostic port — should read ~60Ω (two 120Ω resistors in parallel).", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 2, "title": "Isolate the fault", "instruction": "Disconnect modules one at a time while monitoring bus health. When removing a module restores communication, that module or its harness is the culprit.", "tools": ["DDDL", "DMM"], "difficulty": "professional", "timeMinutes": 120},
+      {"step": 3, "title": "Repair wiring or replace module", "instruction": "Repair chafed harness with solder and adhesive heat shrink. Replace failed module and reprogram if required.", "tools": ["Soldering iron", "Heat shrink"], "difficulty": "professional", "timeMinutes": 180}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado", "122SD"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "professional": {"min": 400, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1 hour - full day",
+    "whenToCallPro": "Almost always — CAN diagnosis requires training and tooling.",
+    "relatedCodes": ["SPN 639 FMI 2", "SPN 639 FMI 9"],
+    "videoSearchQuery": "Freightliner Cascadia J1939 CAN bus off SPN 639 diagnose",
+    "faq": [
+      {"q": "Why are my gauges dead too?", "a": "All gauges get data from J1939 — when the bus is off, they read zero or last value."},
+      {"q": "What's the 60 ohm test?", "a": "Two 120Ω terminating resistors in parallel = 60Ω. Higher reading means one is open."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-1231-fmi-9",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 1231 FMI 9",
+    "displayCode": "SPN 1231 FMI 9",
+    "alternativeCodes": ["SPN1231/FMI9"],
+    "title": "J1939 Network #2 Abnormal Update Rate",
+    "shortDescription": "Secondary powertrain CAN bus losing messages — ECM not receiving expected data.",
+    "fullDescription": "SPN 1231 represents the secondary J1939 powertrain CAN bus. FMI 9 means the ECM is not receiving messages from one or more nodes at the expected update rate. Common on Cascadia between engine ECM, aftertreatment control module (ACM), and transmission control.\n\nThe bus may still be running, but a noisy node, high error counter, or intermittent wiring fault reduces packet throughput. Often seen alongside SPN 639 faults. Cold weather contraction of connectors often triggers this code first thing in the morning.\n\nInspect backbone connectors under hood and at firewall pass-through — corrosion and pin-fit are common causes on aging Cascadia tractors.",
+    "causes": [
+      {"cause": "Corroded backbone connector", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Intermittent wiring chafe", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed module on the bus", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed terminating resistor", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Intermittent code",
+      "ACM communication lost",
+      "Transmission harsh shifts",
+      "CEL on at cold start"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect firewall connectors", "instruction": "Locate 9-pin chassis harness and firewall pass-through connectors. Disconnect, inspect pins for green corrosion, spread pin sockets, bent pins. Clean with contact cleaner.", "tools": ["Contact cleaner", "Pin tool"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 2, "title": "Wiggle test live", "instruction": "With DDDL live monitoring, wiggle harness sections while watching for intermittent codes. Flex at firewall and engine bay grommets.", "tools": ["DDDL"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 3, "title": "Repair and dielectric", "instruction": "Repair identified harness section with solder and adhesive heat shrink. Apply dielectric grease to connectors before reassembly.", "tools": ["Solder", "Heat shrink", "Dielectric grease"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 300, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If module replacement needed — dealer.",
+    "relatedCodes": ["SPN 639 FMI 14", "SPN 1231 FMI 14"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 1231 FMI 9 J1939 network diagnose",
+    "faq": [
+      {"q": "Why only cold mornings?", "a": "Cold contracts plastic connectors exposing loose pins — as engine warms, contact restores."},
+      {"q": "Is dielectric grease worth it?", "a": "Yes — keeps moisture out of pins and is standard practice on fleet Cascadia repairs."}
+    ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-3719-fmi-15",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 3719 FMI 15",
+    "displayCode": "SPN 3719 FMI 15",
+    "alternativeCodes": ["SPN3719/FMI15"],
+    "title": "DPF Soot Load Very High — Stage 1 Warning",
+    "shortDescription": "DPF soot load exceeded stage 1 threshold — parked regen required now.",
+    "fullDescription": "SPN 3719 FMI 15 indicates the ECM has calculated DPF soot load above the stage 1 warning threshold but passive or active regen has not kept up. FMI 15 is 'least severe' — still drivable, but a parked regen is required before the code escalates to FMI 16 (power derate) or FMI 0 (5 mph derate).\n\nFreightliner Cascadia and M2 trucks that run short-haul, urban, or PTO-heavy duty cycles are the most common victims because exhaust never gets hot enough for passive regen (~850°F). The ECM attempts active regen by dosing fuel to the 7th injector or DOC; if vehicle speed drops or ambient conditions prevent completion, soot accumulates.\n\nPerform a parked regen as soon as possible in a safe location. Do not park over dry grass — regen exhaust exceeds 1200°F.",
+    "causes": [
+      {"cause": "Short-haul / idle-heavy duty cycle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Interrupted active regens", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed 7th injector / dosing system", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "DOC degradation", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "DPF lamp (flashing)",
+      "Amber CEL",
+      "HEST lamp during regen"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Perform parked regen", "instruction": "Park on gravel or pavement — NOT dry grass. Apply parking brake, transmission in neutral. Initiate regen from dash switch. 30-45 min runtime.", "tools": [], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 2, "title": "Drive at highway speed", "instruction": "After parked regen clears, run truck at 55+ mph for 30+ min to encourage passive regen baseline.", "tools": [], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 3, "title": "Check dosing system", "instruction": "If parked regen fails to initiate, test 7th injector dosing with DDDL. Replace if clogged.", "tools": ["DDDL"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["Cascadia DD13/DD15/DD16", "M2 106", "M2 112"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 150, "max": 3000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes - 3 hours",
+    "whenToCallPro": "If parked regen fails repeatedly — dealer for DPF service or dosing system.",
+    "relatedCodes": ["SPN 3251 FMI 2", "SPN 3719 FMI 16"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 3719 FMI 15 parked regen how to",
+    "faq": [
+      {"q": "Can I ignore it?", "a": "No — escalates to 5 mph derate within a few drive cycles."},
+      {"q": "How often should I get DPF ashed?", "a": "Every ~200,000-300,000 miles or when ash load reaches service threshold."}
+    ]
+  }
+]

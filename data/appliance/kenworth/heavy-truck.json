@@ -1,0 +1,504 @@
+[
+  {
+    "id": "kenworth-heavy-truck-spn-639-fmi-2",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 639 FMI 2",
+    "displayCode": "SPN 639 FMI 2",
+    "alternativeCodes": ["SPN639/FMI2"],
+    "title": "J1939 Data Link Erratic",
+    "shortDescription": "Intermittent CAN bus communication loss between vehicle modules.",
+    "fullDescription": "SPN 639 is the SAE J1939 primary data link shared by engine ECM, transmission, ABS, body controller, and instrument cluster on Kenworth T680/T880/W990 trucks. FMI 2 means erratic/intermittent/incorrect data — packets are being received but not at expected content/rate.\n\nKenworth's shared platform with Peterbilt (both PACCAR) uses common failure points in the chassis harness, especially at the firewall pass-through and 9-pin diagnostic port. Corrosion at the battery junction box is another high-frequency cause. Symptoms range from flickering gauges to intermittent derate and transmission harsh shifting.\n\nAlways inspect grounds and backbone connectors before condemning a module.",
+    "causes": [
+      {"cause": "Corroded chassis/body harness connectors", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Loose or corroded battery ground", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed terminating resistor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed module on bus", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Flickering gauges",
+      "Random CEL",
+      "Transmission harsh shifts",
+      "Multiple module codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check grounds", "instruction": "Inspect and clean battery negative, engine block ground, and cab ground straps. Torque to spec.", "tools": ["Wire brush", "Torque wrench"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Measure CAN termination", "instruction": "Key off, measure CAN H to CAN L at 9-pin: should be ~60Ω.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 3, "title": "Inspect firewall harness", "instruction": "Pull firewall pass-through connector, inspect and clean pins with contact cleaner. Apply dielectric grease.", "tools": ["Contact cleaner", "Dielectric grease"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T270", "T370", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 150}, "professional": {"min": 300, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 min - 3 hours",
+    "whenToCallPro": "If bus-off condition persists — PACCAR dealer diagnosis.",
+    "relatedCodes": ["SPN 639 FMI 14", "SPN 1231 FMI 9"],
+    "videoSearchQuery": "Kenworth T680 SPN 639 FMI 2 J1939 CAN fault",
+    "faq": [
+      {"q": "Why do my gauges flicker?", "a": "Gauges rely on J1939 data — intermittent bus = intermittent gauges."},
+      {"q": "Could it be the ECM?", "a": "Less than 10% of cases. Grounds and connectors first."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-1569-fmi-31",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 1569 FMI 31",
+    "displayCode": "SPN 1569 FMI 31",
+    "alternativeCodes": ["SPN1569/FMI31"],
+    "title": "Engine Protection Derate Active",
+    "shortDescription": "ECM commanded power reduction based on another critical parameter — secondary code to investigate.",
+    "fullDescription": "SPN 1569 FMI 31 is a 'downstream' code indicating the engine is currently derated as a protective response to a separate primary fault — usually low oil pressure, high coolant temp, or DEF system issues. FMI 31 means 'condition exists' rather than a specific sensor fault.\n\nOn Kenworth T680/T880 with PACCAR MX-11/MX-13 or Cummins ISX engines, this code never stands alone — always look for the companion root-cause code (SPN 100 for oil, SPN 110 for coolant, SPN 3610/3364 for DEF). Fixing the primary code clears 1569 automatically.\n\nIgnoring the derate and continuing under load risks escalation to engine shutdown or catastrophic engine damage.",
+    "causes": [
+      {"cause": "Low oil pressure (check SPN 100)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "High coolant temp (check SPN 110)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DEF system fault (check SPN 3610/3364)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Aftertreatment derate (check SPN 4364/5246)", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Noticeable power loss",
+      "Red STOP lamp possible",
+      "Speed limiter active",
+      "Companion fault codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Pull full code list", "instruction": "Connect PACCAR Electronic Service Analyst (ESA) or JPro. Record ALL active codes. SPN 1569 is always secondary.", "tools": ["ESA", "JPro"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Address primary code", "instruction": "Repair the primary fault (oil, coolant, DEF, etc.). SPN 1569 will clear automatically once condition resolves.", "tools": [], "difficulty": "advanced", "timeMinutes": 120},
+      {"step": 3, "title": "Verify clear", "instruction": "After repair, run truck through a drive cycle. Rescan to confirm 1569 is inactive and no inducement remains.", "tools": ["ESA"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800", "T370"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 200, "max": 10000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Depends on primary code",
+    "whenToCallPro": "If primary code is internal engine or aftertreatment — PACCAR dealer.",
+    "relatedCodes": ["SPN 100 FMI 17", "SPN 110 FMI 0"],
+    "videoSearchQuery": "Kenworth T680 SPN 1569 FMI 31 engine derate diagnose",
+    "faq": [
+      {"q": "Why is my truck derated with no obvious fault?", "a": "There IS a primary fault — scan with a proper tool, not just a cheap code reader."},
+      {"q": "Can I force-clear it?", "a": "Clearing without fixing root cause causes it to return within minutes under load."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-1761-fmi-1",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 1761 FMI 1",
+    "displayCode": "SPN 1761 FMI 1",
+    "alternativeCodes": ["SPN1761/FMI1"],
+    "title": "DEF Tank Level Very Low (Severe)",
+    "shortDescription": "DEF tank is essentially empty — 5 mph derate imminent or active.",
+    "fullDescription": "SPN 1761 FMI 1 indicates the DEF tank level is below the most-severe threshold. On Kenworth T680/T880, this triggers full EPA inducement: first a power derate (~25%), then 5 mph limp-home until DEF is refilled and the key is cycled.\n\nAlways refill with API-certified DEF (32.5% urea solution). Never substitute water, washer fluid, or non-certified additives — these destroy the SCR catalyst and cause multi-thousand-dollar damage.\n\nIf the gauge shows DEF present but this code is active, suspect frozen fluid around the level float (DEF freezes at 12°F / -11°C) or a failed DEF tank header sensor assembly.",
+    "causes": [
+      {"cause": "DEF tank empty", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Frozen DEF", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed DEF header sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "DEF gauge at 0",
+      "Red STOP lamp",
+      "5 mph derate",
+      "Inducement countdown expired"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Refill DEF", "instruction": "Add at least 2 gallons API-certified DEF. Cycle key off 30 sec, then start and drive above 5 mph.", "tools": ["DEF jug"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Thaw if frozen", "instruction": "If ambient below 12°F and gauge still reads 0, park indoors or use engine heat — heated DEF line will thaw as engine warms.", "tools": [], "difficulty": "easy", "timeMinutes": 120},
+      {"step": 3, "title": "Replace DEF header if faulty", "instruction": "Drain DEF, remove retaining ring, swap header assembly, refill.", "tools": ["DEF header tool"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 10, "max": 500}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "10 min - 3 hours",
+    "whenToCallPro": "If header fault or SCR derate persists after refill — PACCAR dealer.",
+    "relatedCodes": ["SPN 3610 FMI 0", "SPN 3364 FMI 2"],
+    "videoSearchQuery": "Kenworth T680 DEF empty 5 mph derate SPN 1761",
+    "faq": [
+      {"q": "Can I tape over the DEF sensor wire?", "a": "No — EPA tampering $5,000+ fine, and the truck still derates via NOx sensors."},
+      {"q": "How far does DEF get me?", "a": "DEF consumes ~2-3% of diesel gallons. A full 13-gallon DEF tank covers ~4,500 miles."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-2791-fmi-7",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 2791 FMI 7",
+    "displayCode": "SPN 2791 FMI 7",
+    "alternativeCodes": ["SPN2791/FMI7"],
+    "title": "EGR Valve Not Responding Properly",
+    "shortDescription": "Exhaust gas recirculation valve not moving to commanded position — stuck or sooted.",
+    "fullDescription": "SPN 2791 FMI 7 indicates the EGR valve is not reaching its commanded position. On Kenworth T680/T880 with PACCAR MX-11/MX-13, the EGR valve cycles soot-laden exhaust back to the intake — over time carbon deposits bind the valve shaft.\n\nThis code is commonly paired with poor fuel economy, black smoke, and power loss. Cleaning is often possible, but advanced cases require valve replacement. The EGR cooler is a companion component that can also fail — internal coolant leaks trigger SPN 110 overheating codes simultaneously.\n\nBe aware: EGR components can exceed 500°F during operation — allow extended cooldown before service.",
+    "causes": [
+      {"cause": "Carbon fouling on valve shaft", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed EGR valve actuator motor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Wiring harness fault", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "ECM driver fault", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Power loss",
+      "Black smoke",
+      "Poor fuel economy",
+      "CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clean EGR valve", "instruction": "Allow engine to cool. Remove EGR valve, clean carbon from shaft and sealing face with CRC intake cleaner and brass brush.", "tools": ["CRC intake cleaner", "Brass brush"], "difficulty": "advanced", "timeMinutes": 120},
+      {"step": 2, "title": "Actuation test", "instruction": "Reconnect and command EGR 0-100% via PACCAR ESA. Watch actual vs commanded. If sluggish, replace valve.", "tools": ["PACCAR ESA"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 3, "title": "Replace EGR valve", "instruction": "Install new EGR valve with new gasket. Torque to spec. Perform calibration routine in ESA.", "tools": ["Torque wrench", "ESA"], "difficulty": "advanced", "timeMinutes": 180}
+    ],
+    "affectedModels": ["T680", "T880", "W990"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 50, "max": 1200}, "professional": {"min": 400, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "whenToCallPro": "If cooler leak suspected or calibration required — dealer.",
+    "relatedCodes": ["SPN 2791 FMI 3", "SPN 411 FMI 0"],
+    "videoSearchQuery": "Kenworth T680 PACCAR MX EGR valve clean SPN 2791",
+    "faq": [
+      {"q": "Can I just delete it?", "a": "EPA violation $5,000+ fine, plus modern tuning won't run without EGR."},
+      {"q": "How often to clean EGR?", "a": "Every 300,000-500,000 miles depending on duty cycle."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-3719-fmi-0",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 3719 FMI 0",
+    "displayCode": "SPN 3719 FMI 0",
+    "alternativeCodes": ["SPN3719/FMI0"],
+    "title": "DPF Soot Load Critical — Regen Inhibited",
+    "shortDescription": "DPF soot at critical level and regen cannot initiate — manual dealer service required.",
+    "fullDescription": "SPN 3719 FMI 0 means DPF soot load is at the most severe threshold. Automatic and parked regens are inhibited because conditions are unsafe or would not complete. The truck enters 5 mph derate.\n\nOn Kenworth T680/T880, this occurs when soot load exceeds ~150% — the regen would generate excessive exhaust temperatures and potentially damage the DPF substrate. A forced regen via PACCAR ESA at a dealer is typically the next step, or DPF removal for off-vehicle cleaning/baking.\n\nIf the DPF substrate has cracked from an uncontrolled burn or thermal event, replacement ($4,500+) is the only option.",
+    "causes": [
+      {"cause": "Soot exceeded regen threshold", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed dosing system (cannot raise exhaust temp)", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "DPF substrate damaged", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "5 mph derate",
+      "Red STOP lamp",
+      "DPF lamp solid",
+      "Multiple aftertreatment codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Tow to dealer", "instruction": "5 mph derate — tow to PACCAR dealer with ESA capability for forced regen diagnosis.", "tools": [], "difficulty": "professional", "timeMinutes": 60},
+      {"step": 2, "title": "Forced regen or DPF removal", "instruction": "Dealer attempts a service-mode forced regen. If fails, DPF is removed for thermal/pneumatic cleaning at certified facility.", "tools": [], "difficulty": "professional", "timeMinutes": 360},
+      {"step": 3, "title": "Replace if cracked", "instruction": "If substrate cracked, replace DPF assembly. New DPF $4,500-$6,000.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 800, "max": 7000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours at shop",
+    "whenToCallPro": "Always — dealer or certified aftertreatment shop.",
+    "relatedCodes": ["SPN 3251 FMI 2", "SPN 3719 FMI 15"],
+    "videoSearchQuery": "Kenworth T680 SPN 3719 FMI 0 DPF critical forced regen",
+    "faq": [
+      {"q": "Can I force regen myself?", "a": "Not with FMI 0 — service-mode only, requires ESA and dealer authorization."},
+      {"q": "How to prevent?", "a": "Avoid excessive idle, run highway miles weekly, change fuel and CCV filters on schedule."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-4094-fmi-18",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 4094 FMI 18",
+    "displayCode": "SPN 4094 FMI 18",
+    "alternativeCodes": ["SPN4094/FMI18"],
+    "title": "DEF Pressure Low (Dosing System)",
+    "shortDescription": "DEF supply module pressure below threshold — doser/pump/filter fault.",
+    "fullDescription": "SPN 4094 FMI 18 monitors DEF supply module output pressure during dosing. Low pressure means the DEF pump cannot build adequate pressure, a filter is clogged, or a supply line is restricted.\n\nOn Kenworth T680/T880, the DEF supply module (pump/heater/filter combo) is mounted near the tank. Common failures include plugged internal filter (replaceable), crystallized urea in the pump, or frozen lines in cold weather. If pressure cannot be built, SCR dosing stops and NOx conversion efficiency codes (SPN 4364) follow.\n\nAlways use fresh API-certified DEF. Contaminated or expired DEF clogs pump filters within months.",
+    "causes": [
+      {"cause": "Plugged DEF pump internal filter", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Crystallized urea in pump", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Frozen DEF line", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed DEF pump", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "CEL",
+      "Inducement countdown",
+      "SCR efficiency codes",
+      "Derate"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check DEF lines for freeze", "instruction": "If below 12°F and truck sat overnight, wait for engine to warm and heated lines to thaw (15-30 min run time).", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Replace DEF pump filter", "instruction": "Remove filter cap on DEF supply module, extract filter cartridge, install new. Prime system via ESA.", "tools": ["DEF filter kit", "ESA"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 3, "title": "Replace DEF pump if still low pressure", "instruction": "Remove and replace supply module. Re-prime and test pressure build via ESA.", "tools": ["Hand tools", "ESA"], "difficulty": "advanced", "timeMinutes": 180}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 50, "max": 1500}, "professional": {"min": 300, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 min - 4 hours",
+    "whenToCallPro": "If full supply module replacement — dealer pricing.",
+    "relatedCodes": ["SPN 4363 FMI 2", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Kenworth T680 DEF pump SPN 4094 filter replace",
+    "faq": [
+      {"q": "When should DEF pump filter be replaced?", "a": "Every 300,000 miles per PACCAR maintenance schedule, or at any 4094 code."},
+      {"q": "Why is my DEF freezing?", "a": "DEF freezes at 12°F. Heated lines thaw it but cold-start grace period is 20 min."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-5246-fmi-15",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 5246 FMI 15",
+    "displayCode": "SPN 5246 FMI 15",
+    "alternativeCodes": ["SPN5246/FMI15"],
+    "title": "Aftertreatment SCR Inducement Severity 1",
+    "shortDescription": "First-stage SCR inducement — persistent DEF or NOx fault causing derate countdown.",
+    "fullDescription": "SPN 5246 represents the aftertreatment SCR inducement counter. FMI 15 is the first severity stage — amber warnings active, with cascading derate over subsequent drive cycles if root cause isn't addressed.\n\nOn Kenworth T680/T880, SPN 5246 is always a companion code — the primary fault (SCR efficiency, DEF quality, dosing pressure, NOx sensor) sets first and 5246 tracks the EPA-mandated inducement timeline. Clearing 5246 alone does nothing; root cause must be fixed.\n\nThe 5-stage inducement progresses: amber CEL → solid amber → red lamp → derate → 5 mph limp home. Each stage typically spans 1-4 hours of operation depending on fault type.",
+    "causes": [
+      {"cause": "Primary SCR efficiency fault (SPN 4364)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DEF quality issue (SPN 3364)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DEF tank level issue (SPN 3610/1761)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "NOx sensor fault", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Amber CEL",
+      "Inducement countdown",
+      "Progressive power reduction"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Pull all active codes", "instruction": "With ESA, identify primary SCR-related fault driving the inducement.", "tools": ["PACCAR ESA"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Repair primary fault", "instruction": "Address DEF system, NOx sensor, or SCR catalyst issue per the root-cause SPN procedure.", "tools": [], "difficulty": "advanced", "timeMinutes": 180},
+      {"step": 3, "title": "Inducement reset", "instruction": "After repair, a drive cycle typically resets inducement. Dealer ESA can force reset if required.", "tools": ["ESA"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["T680", "T880", "W990"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 1500}, "professional": {"min": 300, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Depends on primary fault",
+    "whenToCallPro": "If SCR catalyst damage suspected.",
+    "relatedCodes": ["SPN 4364 FMI 18", "SPN 3364 FMI 2"],
+    "videoSearchQuery": "Kenworth T680 SPN 5246 SCR inducement diagnose",
+    "faq": [
+      {"q": "Why is my truck warning me but running fine?", "a": "Inducement is EPA-mandated escalation — running fine now doesn't mean it will be in 4 hours."},
+      {"q": "Can I reset without repair?", "a": "Inducement resets after primary fault clears and a drive cycle completes."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-110-fmi-16",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 110 FMI 16",
+    "displayCode": "SPN 110 FMI 16",
+    "alternativeCodes": ["SPN110/FMI16"],
+    "title": "Coolant Temp High — Moderate Severity",
+    "shortDescription": "Coolant temperature elevated above normal but below shutdown threshold.",
+    "fullDescription": "SPN 110 FMI 16 on Kenworth T680/T880 flags coolant temp between the warning and shutdown thresholds (typically 221-235°F / 105-113°C). The ECM derates power to prevent escalation to FMI 0 (severe) or FMI 31 (shutdown).\n\nCommon causes on PACCAR MX engines include clogged radiator fins, failed viscous fan clutch, low coolant, or stuck thermostat. A gradual rise under load typically indicates airflow/cooling capacity issue; rapid rise suggests head gasket or internal leak.\n\nPull over, let cool, and diagnose before continuing. Continued loading causes head gasket failure or cylinder head warpage.",
+    "causes": [
+      {"cause": "Plugged radiator/CAC external fins", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed viscous fan clutch", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Low coolant", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Stuck thermostat", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failing water pump", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Amber CEL",
+      "High temp gauge",
+      "Power derate",
+      "Steam visible"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Safe cooldown", "instruction": "Pull over, idle 2-3 min, then shut down. Wait 30+ min before opening hood. Never open cap hot.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Inspect and clean", "instruction": "Rinse radiator/CAC fins with low-pressure water. Check coolant level in surge tank. Look for external leaks.", "tools": ["Garden hose"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 3, "title": "Test fan and thermostat", "instruction": "Command fan on with ESA — should lock audibly. If not, replace viscous clutch. Thermostat test: feel upper radiator hose during warmup.", "tools": ["ESA"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "professional": {"min": 300, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 min - 6 hours",
+    "whenToCallPro": "If head gasket or water pump failure — dealer.",
+    "relatedCodes": ["SPN 110 FMI 0", "SPN 111 FMI 1"],
+    "videoSearchQuery": "Kenworth T680 PACCAR MX overheat SPN 110 FMI 16",
+    "faq": [
+      {"q": "How hot is too hot?", "a": "Over 225°F is the danger zone. Over 240°F is head gasket territory."},
+      {"q": "Why does it overheat on hills?", "a": "Loaded climbs add heat faster than cooling can remove. Clean fins and check fan first."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-102-fmi-17",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 102 FMI 17",
+    "displayCode": "SPN 102 FMI 17",
+    "alternativeCodes": ["SPN102/FMI17"],
+    "title": "Boost Pressure Below Normal — Least Severe",
+    "shortDescription": "Intake boost below expected — mild CAC leak or VGT sluggish.",
+    "fullDescription": "SPN 102 FMI 17 is the least-severe low-boost code on Kenworth T680/T880 with PACCAR MX-11/MX-13. A mild boost shortfall — often an early-warning sign of a developing CAC leak, loose boot, or early VGT fouling.\n\nFuel economy typically drops 0.3-0.8 mpg as the ECM compensates with extra fuel. Smoke test the charge-air side first; most cases are a split end-tank on the CAC or a clamp that backed off.\n\nIf sealed, inspect VGT actuator for sticking. Commercial MX engines accumulate carbon on VGT vanes over 300,000+ miles.",
+    "causes": [
+      {"cause": "CAC boot / clamp loose", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "CAC end-tank hairline crack", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VGT actuator sluggish", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Boost pressure sensor drift", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Slight power loss",
+      "MPG drop",
+      "Whistling under load",
+      "Amber CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test CAC", "instruction": "Pressurize charge-air with smoke machine. Look for leaks at boots, clamps, CAC tanks.", "tools": ["Smoke machine"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 2, "title": "Tighten or replace", "instruction": "Re-torque T-bolt clamps or replace cracked CAC / split boot.", "tools": ["Torque wrench"], "difficulty": "intermediate", "timeMinutes": 90},
+      {"step": 3, "title": "VGT test", "instruction": "With ESA, command VGT 0-100% and confirm actual tracks. If slow, remove turbo for vane cleaning.", "tools": ["ESA"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["T680", "T880", "W990"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 50, "max": 600}, "professional": {"min": 300, "max": 4000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If VGT service needed.",
+    "relatedCodes": ["SPN 102 FMI 18", "SPN 103 FMI 0"],
+    "videoSearchQuery": "Kenworth T680 boost leak smoke test SPN 102",
+    "faq": [
+      {"q": "Is it safe to drive?", "a": "Yes — but fuel economy suffers and black smoke sooted the DPF."},
+      {"q": "Best tool to find leaks?", "a": "Shop smoke machine. Soap spray works too but misses small leaks."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-100-fmi-1",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 100 FMI 1",
+    "displayCode": "SPN 100 FMI 1",
+    "alternativeCodes": ["SPN100/FMI1"],
+    "title": "Engine Oil Pressure Critical Low",
+    "shortDescription": "Oil pressure below critical shutdown threshold — engine damage imminent.",
+    "fullDescription": "SPN 100 FMI 1 is the most severe oil-pressure code on Kenworth T680/T880 with PACCAR MX or Cummins ISX. The ECM triggers immediate engine protection shutdown timer — typically 30-60 seconds before engine stops.\n\nIf this code sets, STOP DRIVING. Continued operation in 30 seconds can destroy $25,000+ of main bearings, piston skirts, and cylinder liners. Common causes: catastrophic low oil (blown hose, drain plug out), failed oil pump, broken pickup tube, or spun bearing already in progress.\n\nShut down immediately and check oil level before attempting to restart. If level is fine, do not restart — tow to service.",
+    "causes": [
+      {"cause": "Very low oil (leak or spillout)", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed oil pump", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Spun main/rod bearing", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Broken oil pickup tube", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Red STOP engine lamp",
+      "Engine shutdown timer active",
+      "Knocking noise possible",
+      "Oil pressure gauge at 0"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "STOP immediately", "instruction": "Pull safely off road and shut down engine. Do not attempt to restart until diagnosed.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check oil and leaks", "instruction": "Look under truck for oil puddle. Pull dipstick — if dry, major external leak. If full, internal failure likely.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Tow to dealer", "instruction": "If internal failure suspected or level unchanged, tow to PACCAR dealer. Do not restart — damage is progressive.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 1500, "max": 30000}},
+    "diyDifficulty": "professional",
+    "repairTime": "Variable",
+    "whenToCallPro": "Always — engine teardown assessment required.",
+    "relatedCodes": ["SPN 100 FMI 17", "SPN 100 FMI 18"],
+    "videoSearchQuery": "Kenworth T680 SPN 100 FMI 1 low oil pressure shutdown",
+    "faq": [
+      {"q": "Can I drive to the next exit?", "a": "NO. 30 seconds can destroy the engine. Pull over now."},
+      {"q": "What if oil level is full?", "a": "Internal failure — oil pump, bearing, or pickup. Tow, do not restart."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-411-fmi-0",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 411 FMI 0",
+    "displayCode": "SPN 411 FMI 0",
+    "alternativeCodes": ["SPN411/FMI0"],
+    "title": "EGR Differential Pressure Above Normal",
+    "shortDescription": "EGR delta-pressure sensor reads higher than expected — sooted venturi or stuck EGR.",
+    "fullDescription": "SPN 411 FMI 0 on Kenworth T680/T880 indicates the ECM sees excessive pressure drop across the EGR metering venturi. Usually means the EGR system is heavily sooted, restricting flow, or the delta-pressure sensor sample lines are plugged.\n\nThis often pairs with power loss, black smoke, and SCR efficiency codes as combustion temperatures and NOx targets drift. Routine EGR cleaning (every 300,000-500,000 miles on PACCAR MX) prevents escalation.\n\nWork hot-side EGR components only after extended cooldown — EGR cooler surfaces exceed 500°F.",
+    "causes": [
+      {"cause": "EGR venturi sooted", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Plugged DP sensor sample lines", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "EGR valve stuck partially closed", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed DP sensor", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Power loss",
+      "Black smoke",
+      "SCR efficiency codes",
+      "CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clean DP sample lines", "instruction": "Remove small metal tubes from EGR DP sensor and venturi. Blow out with compressed air — often carbon plugs cause false high readings.", "tools": ["Compressed air"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Clean EGR components", "instruction": "Remove EGR valve and venturi. Clean carbon with brass brush and intake cleaner. Reinstall with new gaskets.", "tools": ["CRC intake cleaner", "Brass brush", "Gaskets"], "difficulty": "advanced", "timeMinutes": 180},
+      {"step": 3, "title": "Replace components if damaged", "instruction": "If venturi warped or valve seized, replace assembly.", "tools": [], "difficulty": "advanced", "timeMinutes": 180}
+    ],
+    "affectedModels": ["T680", "T880", "W990"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 20, "max": 800}, "professional": {"min": 400, "max": 3500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "whenToCallPro": "If EGR cooler replacement needed — dealer.",
+    "relatedCodes": ["SPN 2791 FMI 7", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Kenworth T680 PACCAR MX EGR DP sensor SPN 411",
+    "faq": [
+      {"q": "Can soot really block sensor tubes?", "a": "Yes — hairline restrictions cause false high-DP readings all the time."},
+      {"q": "How often to clean EGR?", "a": "Every 300,000-500,000 miles based on PACCAR recommendation."}
+    ]
+  },
+  {
+    "id": "kenworth-heavy-truck-spn-157-fmi-3",
+    "brand": "Kenworth",
+    "brandSlug": "kenworth",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 157 FMI 3",
+    "displayCode": "SPN 157 FMI 3",
+    "alternativeCodes": ["SPN157/FMI3"],
+    "title": "Fuel Rail Pressure Sensor Voltage High",
+    "shortDescription": "Rail pressure sensor reads above normal — circuit open or sensor fault.",
+    "fullDescription": "SPN 157 FMI 3 indicates the fuel rail pressure sensor signal is above the expected maximum, typically from an open ground, open signal wire, or failed sensor. On Kenworth T680/T880 with PACCAR MX or Cummins ISX common rail, the rail operates at 25,000-32,000 PSI — a pressure capable of skin injection injury.\n\nNever loosen fuel lines on a running engine. Always wait 10+ minutes after shutdown for rail pressure to bleed down before servicing.\n\nDiagnose sensor harness first — pin corrosion or chafed wires against the engine are most common. A true out-of-range pressure reading can also set this code if the pressure regulator fails closed (rare).",
+    "causes": [
+      {"cause": "Open signal or ground wire", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed rail pressure sensor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Stuck-closed pressure regulator", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "CEL",
+      "Hard start",
+      "Power derate",
+      "Rough idle"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "SAFETY — bleed pressure", "instruction": "Turn off key and wait 10+ min for rail to depressurize. Never work on common rail with engine running.", "tools": [], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Test sensor circuit", "instruction": "Key on, back-probe 5V reference, ground, and signal. Missing reference/ground points to harness. Signal above 4.8V with rail empty = sensor failure.", "tools": ["DMM", "Back-probe pins"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 3, "title": "Replace sensor", "instruction": "Clean sensor boss before removal. Install new sensor with proper torque. Clear codes with ESA.", "tools": ["Torque wrench", "ESA"], "difficulty": "advanced", "timeMinutes": 45}
+    ],
+    "affectedModels": ["T680", "T880", "W990", "T800"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 150, "max": 500}, "professional": {"min": 400, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If regulator or HPFP suspected.",
+    "relatedCodes": ["SPN 157 FMI 4", "SPN 164 FMI 17"],
+    "videoSearchQuery": "Kenworth T680 SPN 157 FMI 3 rail pressure sensor",
+    "faq": [
+      {"q": "Skin injection is real?", "a": "Yes — common rail diesel at 30,000 PSI pierces skin invisibly, causes gangrene, amputation risk. ER immediately if exposed."},
+      {"q": "Sensor first or pump?", "a": "Sensor — 70%+ of 157 codes. HPFP is last resort."}
+    ]
+  }
+]
