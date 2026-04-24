@@ -29,6 +29,11 @@ import Sources from "./Sources";
 import RecentView from "./RecentView";
 import SafetyBanner from "./SafetyBanner";
 import TLDR from "./TLDR";
+import FreezeFrameData from "./FreezeFrameData";
+import DiagnosticTools from "./DiagnosticTools";
+import RegionalCost from "./RegionalCost";
+import CommonMisdiagnoses from "./CommonMisdiagnoses";
+import DiyVsShopMatrix from "./DiyVsShopMatrix";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -105,8 +110,14 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
 
               <CausesSection causes={code.causes} />
 
+              {/* Technician-grade content: freeze frame (OBD only) */}
+              <FreezeFrameData code={code} />
+
               {/* 3. AFTER-INTRO — before fix steps */}
               <AdUnit position="after-intro" />
+
+              {/* Which tools actually diagnose this code */}
+              <DiagnosticTools code={code} />
 
               <FixStepsSection steps={code.fixSteps} codeDisplay={code.displayCode} />
 
@@ -117,7 +128,16 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
 
               <CostEstimate diy={code.estimatedCost.diy} professional={code.estimatedCost.professional} />
 
-              {/* 5. HIGH-INTENT — right after cost section, highest eCPM slot */}
+              {/* Regional cost breakdown — high-intent readers compare locales */}
+              <RegionalCost code={code} />
+
+              {/* DIY vs shop decision matrix */}
+              <DiyVsShopMatrix code={code} />
+
+              {/* Common misdiagnoses — unique high-SEO-value content */}
+              <CommonMisdiagnoses code={code} />
+
+              {/* 5. HIGH-INTENT — right after cost + decision content */}
               <AdUnit position="high-intent" />
 
               {code.partsNeeded && code.partsNeeded.length > 0 && (
