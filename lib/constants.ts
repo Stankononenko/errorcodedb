@@ -455,6 +455,10 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "smart-toilet": { label: "Smart Toilet", labelPlural: "Smart Toilets" },
   "smart-faucet": { label: "Smart Faucet", labelPlural: "Smart Faucets" },
   "leak-detector": { label: "Leak Detector", labelPlural: "Leak Detectors" },
+  "cable-modem": { label: "Cable Modem", labelPlural: "Cable Modems" },
+  "fiber-gateway": { label: "Fiber Gateway", labelPlural: "Fiber Gateways" },
+  "av-receiver": { label: "AV Receiver", labelPlural: "AV Receivers" },
+  "streaming-device": { label: "Streaming Device", labelPlural: "Streaming Devices" },
 };
 
 // ── HVAC Brands ──
@@ -528,6 +532,7 @@ export const WINDOWS_CATEGORIES = [
   { name: "System Errors", slug: "system", description: "System and application errors" },
   { name: "Browser & Network", slug: "browser", description: "Browser and network error codes" },
   { name: "Gaming & Launchers", slug: "gaming", description: "Steam, Epic, Battle.net, Xbox PC app, game launcher errors" },
+  { name: "macOS Errors", slug: "macos", description: "macOS kernel panics, iCloud, Time Machine, Safari, SIP errors" },
 ] as const;
 
 // ── Severity Labels ──

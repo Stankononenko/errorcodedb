@@ -17680,5 +17680,3665 @@
         "a": "Yes — CDN blips are common; try again after a few hours."
       }
     ]
+  },
+  {
+    "id": "update-0x800f080d",
+    "category": "update",
+    "code": "0x800F080D",
+    "displayCode": "0x800F080D",
+    "title": "CBS Manifest Corrupted",
+    "shortDescription": "Component-Based Servicing detected a corrupted or missing component manifest.",
+    "fullDescription": "CBS cannot apply the update because a referenced manifest (*.mum/*.cat) is missing or tampered. This often happens after aborted updates, disk errors, or third-party system cleaners that strip WinSxS files. Running DISM /RestoreHealth with a known-good source usually recovers the manifest store.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F080D",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0805",
+    "category": "update",
+    "code": "0x800F0805",
+    "displayCode": "0x800F0805",
+    "title": "CBS Invalid Package Path",
+    "shortDescription": "CBS rejected the update because the package path is invalid.",
+    "fullDescription": "The update payload location passed to TrustedInstaller could not be resolved. Typical causes are a corrupted .msu in the SoftwareDistribution cache, a mapped OneDrive/network redirector intercepting the path, or a group policy relocating %ProgramData%.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F0805",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0243",
+    "category": "update",
+    "code": "0x800F0243",
+    "displayCode": "0x800F0243",
+    "title": "CBS Package Not Applicable",
+    "shortDescription": "The servicing package is not applicable to this installation.",
+    "fullDescription": "Usually occurs with cumulative updates (LCU) when the required Servicing Stack Update (SSU) is missing, or when the build/edition mismatches the package. Install the latest SSU from the Microsoft Update Catalog before retrying the LCU.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F0243",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0247",
+    "category": "update",
+    "code": "0x800F0247",
+    "displayCode": "0x800F0247",
+    "title": "CBS Exception In Deployment",
+    "shortDescription": "Deployment threw an unhandled exception inside CBS.",
+    "fullDescription": "Indicates a second-chance exception inside TrustedInstaller while committing components. Corrupted WinSxS state or interrupted prior installs are the usual causes.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F0247",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0825",
+    "category": "update",
+    "code": "0x800F0825",
+    "displayCode": "0x800F0825",
+    "title": "CBS Package Cannot Uninstall",
+    "shortDescription": "The cumulative update cannot be uninstalled.",
+    "fullDescription": "Windows blocks rollback once a payload becomes integral to the image. To recover, restore a system image or perform an in-place upgrade with the matching ISO.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F0825",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f081e",
+    "category": "update",
+    "code": "0x800F081E",
+    "displayCode": "0x800F081E",
+    "title": "PSFX Corruption Generic",
+    "shortDescription": "PSFX corruption detected in the component store.",
+    "fullDescription": "The payload store found a mismatched hash on a component. Runs DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase followed by /RestoreHealth with a matching-build install.wim.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F081E",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900101-0x40017",
+    "category": "update",
+    "code": "0xC1900101-0x40017",
+    "displayCode": "0xC1900101-0x40017",
+    "title": "Safe OS Phase Failed Generic",
+    "shortDescription": "The Safe OS phase of feature update installation failed.",
+    "fullDescription": "Occurs inside the MOSETUP Safe OS (WinRE-like) phase. The most common culprits are BitLocker still active, insufficient System Reserved partition size, or an EFI driver that cannot load under WinPE.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0xC1900101-0x40017",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900101-0x4000d",
+    "category": "update",
+    "code": "0xC1900101-0x4000D",
+    "displayCode": "0xC1900101-0x4000D",
+    "title": "Safe OS SECOND_BOOT Rollback",
+    "shortDescription": "Rollback during the SECOND_BOOT phase from the Safe OS environment.",
+    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry — MOSETUP rolls back to the prior build.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0xC1900101-0x4000D",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900101-0x20017",
+    "category": "update",
+    "code": "0xC1900101-0x20017",
+    "displayCode": "0xC1900101-0x20017",
+    "title": "Safe OS FIRST_BOOT Driver Rollback",
+    "shortDescription": "Driver failure in the FIRST_BOOT Safe OS phase.",
+    "fullDescription": "A boot-critical driver (storage, USB, or network boot) failed to load after the first reboot. Update storage controller firmware and remove third-party disk encryption before retrying.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0xC1900101-0x20017",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900101-0x30018",
+    "category": "update",
+    "code": "0xC1900101-0x30018",
+    "displayCode": "0xC1900101-0x30018",
+    "title": "Safe OS Driver Install Failed",
+    "shortDescription": "A driver failed to install during the Safe OS phase.",
+    "fullDescription": "MOSETUP could not install one of the boot-critical inbox drivers during the WinRE-like Safe OS phase. Typically resolved by disabling fingerprint/biometric devices and running setup again.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0xC1900101-0x30018",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f083d",
+    "category": "update",
+    "code": "0x800F083D",
+    "displayCode": "0x800F083D",
+    "title": "SSU Missing For LCU",
+    "shortDescription": "Servicing Stack Update required by the cumulative update is missing.",
+    "fullDescription": "Install the latest Servicing Stack Update (SSU) for the Windows build from Microsoft Update Catalog before retrying the cumulative update. Modern combined SSU+LCU packages avoid this failure.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F083D",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0988-ssu",
+    "category": "update",
+    "code": "0x800F0988-SSU",
+    "displayCode": "0x800F0988-SSU",
+    "title": "SSU PSFX Corruption",
+    "shortDescription": "Servicing stack component store corruption during SSU install.",
+    "fullDescription": "The SSU itself cannot validate its payload. Typically repaired by copying the matching SSU .msu into a clean folder and installing via wusa.exe from an elevated prompt.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F0988-SSU",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800b0101",
+    "category": "update",
+    "code": "0x800B0101",
+    "displayCode": "0x800B0101",
+    "title": "Update Certificate Expired",
+    "shortDescription": "The update payload is not signed by a trusted publisher.",
+    "fullDescription": "Root certificate chain for Microsoft Code Signing PCA is missing or expired. Run 'certutil -generateSSTFromWU roots.sst' and reinstall Microsoft root certificates.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800B0101",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80096002",
+    "category": "update",
+    "code": "0x80096002",
+    "displayCode": "0x80096002",
+    "title": "Update Signature Not Valid",
+    "shortDescription": "Signature validation failed for an update catalog file.",
+    "fullDescription": "The .cat file bundled with the update could not be verified. System time drift or a removed intermediate CA is the usual cause; sync time with time.windows.com and reinstall.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80096002",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024a11b",
+    "category": "update",
+    "code": "0x8024A11B",
+    "displayCode": "0x8024A11B",
+    "title": "Insider Build Expired",
+    "shortDescription": "The current Windows Insider Preview build has expired.",
+    "fullDescription": "The evaluation period for the preview build has lapsed, and the Insider service refuses further updates until a newer ISO is installed. Sign in to the Insider Program and install the latest flight.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x8024A11B",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024a10b",
+    "category": "update",
+    "code": "0x8024A10B",
+    "displayCode": "0x8024A10B",
+    "title": "Insider Channel Changed",
+    "shortDescription": "The Insider channel changed and cached content is invalid.",
+    "fullDescription": "After switching from Canary/Dev/Beta/Release Preview, cached metadata must be flushed. Stop wuauserv, remove SoftwareDistribution/Download, and retry.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x8024A10B",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024a10a",
+    "category": "update",
+    "code": "0x8024A10A",
+    "displayCode": "0x8024A10A",
+    "title": "Insider Flight Signing Expired",
+    "shortDescription": "Insider flight signing keys have expired.",
+    "fullDescription": "Test-signed Insider builds use rotating keys. If the device has been offline for long periods, it may no longer trust the flight. Sign out of the Insider Program and re-enroll.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x8024A10A",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070663",
+    "category": "update",
+    "code": "0x80070663",
+    "displayCode": "0x80070663",
+    "title": "KB Payload Already Installed",
+    "shortDescription": "The specific KB cumulative update is already installed at a higher revision.",
+    "fullDescription": "Common when manually installing older .msu after Windows Update already delivered the newer LCU. Verify the installed version in settings > update history before forcing the older package.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80070663",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070bc4",
+    "category": "update",
+    "code": "0x80070BC4",
+    "displayCode": "0x80070BC4",
+    "title": "Reboot Required Before Update",
+    "shortDescription": "A pending reboot is blocking the new update.",
+    "fullDescription": "The servicing stack detected pending file operations from a prior update. Reboot, then rerun Windows Update; persistent cases need 'Get-ChildItem HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending' cleaned.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80070BC4",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80240022-kb",
+    "category": "update",
+    "code": "0x80240022-KB",
+    "displayCode": "0x80240022-KB",
+    "title": "KB Cumulative Update Partial Failure",
+    "shortDescription": "The cumulative update installed only a subset of components.",
+    "fullDescription": "Happens when Windows Update times out mid-install of a mega-LCU. The remaining components show as pending; run DISM /Online /Cleanup-Image /StartComponentCleanup and reinstall.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80240022-KB",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024200d",
+    "category": "update",
+    "code": "0x8024200D",
+    "displayCode": "0x8024200D",
+    "title": "Install Requires Additional Metadata",
+    "shortDescription": "The update requires metadata not present in WSUS.",
+    "fullDescription": "WSUS-controlled machines may refuse LCUs until the new metadata is synced from Microsoft. On the WSUS server, sync the appropriate classifications and approve the SSU first.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x8024200D",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80244030",
+    "category": "update",
+    "code": "0x80244030",
+    "displayCode": "0x80244030",
+    "title": "Enhanced Update Retry Needed",
+    "shortDescription": "Windows Update client requires a retry after enhanced metadata sync.",
+    "fullDescription": "Transient issue where WU tries an extended protocol. Re-run 'wuauclt /detectnow' or use Get-WindowsUpdate (PSWindowsUpdate) to retry.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80244030",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80188309",
+    "category": "update",
+    "code": "0x80188309",
+    "displayCode": "0x80188309",
+    "title": "Delivery Optimization P2P Blocked",
+    "shortDescription": "Peer-to-peer delivery was blocked by group policy or firewall.",
+    "fullDescription": "DO cannot reach peers over port 7680. Allow inbound/outbound on TCP 7680 and UDP 3544, or set DODownloadMode to HTTP-only.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80188309",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80248009",
+    "category": "update",
+    "code": "0x80248009",
+    "displayCode": "0x80248009",
+    "title": "DataStore Corruption",
+    "shortDescription": "Windows Update datastore (Datastore.edb) is corrupted.",
+    "fullDescription": "The ESE database under C:\\Windows\\SoftwareDistribution\\DataStore\\Datastore.edb has become inconsistent. Stop wuauserv, rename the DataStore folder, and restart the service to rebuild.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80248009",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024afff",
+    "category": "update",
+    "code": "0x8024AFFF",
+    "displayCode": "0x8024AFFF",
+    "title": "Unknown Windows Update Error",
+    "shortDescription": "Windows Update returned an unclassified error.",
+    "fullDescription": "Generic fallback surfaced when WU cannot map the underlying HRESULT. Pull %windir%\\WindowsUpdate.log and the ETL traces via Get-WindowsUpdateLog for diagnosis.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x8024AFFF",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f020b",
+    "category": "update",
+    "code": "0x800F020B",
+    "displayCode": "0x800F020B",
+    "title": "Feature On Demand Source Missing",
+    "shortDescription": "Feature on Demand (FOD) source files are unavailable.",
+    "fullDescription": "When adding RSAT or language FODs, Windows needs a matching-build source (ISO FOD disc or Windows Update). Provide -Source via DISM or allow online fallback under 'Specify settings for optional component installation'.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x800F020B",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070bca",
+    "category": "update",
+    "code": "0x80070BCA",
+    "displayCode": "0x80070BCA",
+    "title": "Reboot In Progress",
+    "shortDescription": "A reboot is already queued and blocking the update.",
+    "fullDescription": "Servicing cannot proceed while a prior servicing event is pending. Complete the pending reboot, verify with 'shutdown /a' if needed, and retry.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80070BCA",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80072efd-insider",
+    "category": "update",
+    "code": "0x80072EFD-INSIDER",
+    "displayCode": "0x80072EFD-INSIDER",
+    "title": "Insider Service Unreachable",
+    "shortDescription": "The Insider flight service is unreachable.",
+    "fullDescription": "The device cannot contact the flighting service (flightingservice.microsoft.com). Usually caused by a transparent proxy or captive portal; allow the flighting endpoints or switch off the Insider channel temporarily.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80072EFD-INSIDER",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070437",
+    "category": "update",
+    "code": "0x80070437",
+    "displayCode": "0x80070437",
+    "title": "Logon Rights Insufficient For Update",
+    "shortDescription": "The account running Windows Update lacks required logon rights.",
+    "fullDescription": "TrustedInstaller or the MoUsoCoreWorker cannot impersonate SYSTEM. Re-enable the default service accounts and ensure 'Log on as a service' is not stripped by restrictive GPO.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80070437",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80188308",
+    "category": "update",
+    "code": "0x80188308",
+    "displayCode": "0x80188308",
+    "title": "Delivery Optimization Disk Full",
+    "shortDescription": "Delivery Optimization cache disk is full.",
+    "fullDescription": "DO cache under C:\\Windows\\SoftwareDistribution\\DeliveryOptimization\\Cache filled the system drive. Free at least 10 GB and/or move the cache via 'DOCacheHost' policy.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows Server 2022",
+      "Windows Server 2019"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update (SSU)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted component store (WinSxS / CBS manifest)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Interrupted prior update leaving pending operations",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Third-party antivirus or disk encryption blocking servicing",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Windows Update returns 0x80188308",
+      "Update installs to 30-99% then rolls back",
+      "CBS.log shows failures under C:\\Windows\\Logs\\CBS\\",
+      "Update history marks the KB as Failed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "From elevated PowerShell: Stop-Service wuauserv,bits,cryptsvc; rename C:\\Windows\\SoftwareDistribution and C:\\Windows\\System32\\catroot2; Start-Service wuauserv,bits,cryptsvc.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install latest SSU manually",
+        "instruction": "Download the current Servicing Stack Update for your build from the Microsoft Update Catalog (catalog.update.microsoft.com) and install before the LCU.",
+        "tools": [
+          "Microsoft Update Catalog",
+          "wusa.exe"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Repair the component store",
+        "instruction": "Run: DISM /Online /Cleanup-Image /RestoreHealth followed by sfc /scannow. Supply /Source:WIM: if the online repair fails.",
+        "tools": [
+          "DISM",
+          "SFC"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 5,
+        "title": "Collect logs and retry",
+        "instruction": "Copy C:\\Windows\\Logs\\CBS\\CBS.log and %windir%\\WindowsUpdate.log (via Get-WindowsUpdateLog). Reboot and retry the update.",
+        "tools": [
+          "Event Viewer",
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 40,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15 minutes to 2 hours",
+    "whenToCallPro": "If repeated DISM/SFC passes cannot restore the component store and the servicing failures persist across reboots, escalate to an IT professional or Microsoft Support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will my files be lost?",
+        "a": "No. Update failures roll back without touching user data."
+      },
+      {
+        "q": "Can I skip this update?",
+        "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
+      }
+    ]
   }
 ]

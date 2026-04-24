@@ -12804,5 +12804,3033 @@
         "a": "Usually resolvable with browser troubleshooting."
       }
     ]
+  },
+  {
+    "id": "browser-nsurlerrordomain-1200",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1200",
+    "displayCode": "NSURLErrorDomain -1200",
+    "title": "Safari SSL Error",
+    "shortDescription": "Safari reports NSURLErrorDomain -1200 when the SSL/TLS handshake fails.",
+    "fullDescription": "An underlying CFNetwork SSL error was raised while loading the page in Safari on macOS. Most commonly triggered by expired server certificates, outdated macOS trust store, or broken Keychain certificate entries.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows NSURLErrorDomain -1200",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1200 caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-nsurlerrordomain-1202",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1202",
+    "displayCode": "NSURLErrorDomain -1202",
+    "title": "Safari Server Certificate Untrusted",
+    "shortDescription": "Safari blocked the page because the server certificate was not trusted.",
+    "fullDescription": "macOS's trust evaluation rejected the certificate chain. Usually fixed by updating macOS, reinstalling the corporate root certificate via Profiles, or cycling Keychain's System Roots.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows NSURLErrorDomain -1202",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1202 caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-nsurlerrordomain-1005",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1005",
+    "displayCode": "NSURLErrorDomain -1005",
+    "title": "Network Connection Lost (Safari)",
+    "shortDescription": "The network connection was dropped mid-request in Safari.",
+    "fullDescription": "Safari's CFNetwork stack detected the TCP connection reset by the peer or the network interface. Common on flaky Wi-Fi, switching between Wi-Fi and cellular, or when a VPN reconnects.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows NSURLErrorDomain -1005",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1005 caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-nsurlerrordomain-1100",
+    "category": "browser",
+    "code": "NSURLErrorDomain -1100",
+    "displayCode": "NSURLErrorDomain -1100",
+    "title": "Safari File Does Not Exist",
+    "shortDescription": "Safari could not locate the requested file:// URL.",
+    "fullDescription": "When Safari opens local HTML files or app-bundled resources, this error indicates the file path no longer exists or Gatekeeper quarantined the resource.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows NSURLErrorDomain -1100",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1100 caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-nsurlerrordomain-999",
+    "category": "browser",
+    "code": "NSURLErrorDomain -999",
+    "displayCode": "NSURLErrorDomain -999",
+    "title": "Safari Request Cancelled",
+    "shortDescription": "The load request was cancelled before completion.",
+    "fullDescription": "Typically surfaces when Safari navigates away from a page before the load finishes, or a content blocker cancels the request. Benign unless seen consistently.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows NSURLErrorDomain -999",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -999 caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-safari-private-browsing-crash",
+    "category": "browser",
+    "code": "Safari Private Browsing Crash",
+    "displayCode": "Safari Private Browsing Crash",
+    "title": "Safari Private Window Crashed",
+    "shortDescription": "A Safari Private Browsing window crashed and reloaded.",
+    "fullDescription": "Safari isolates Private windows in a separate WebContent process. Crashes here usually indicate a third-party extension incompatible with the isolation model, or a corrupt WebKit cache.",
+    "affectedVersions": [
+      "Safari 16",
+      "Safari 17",
+      "Safari 18",
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Safari setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Safari Private Browsing Crash",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Safari Private Browsing Crash caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-inet-e-resource-not-found",
+    "category": "browser",
+    "code": "INET_E_RESOURCE_NOT_FOUND",
+    "displayCode": "INET_E_RESOURCE_NOT_FOUND",
+    "title": "Edge Resource Not Found",
+    "shortDescription": "Microsoft Edge cannot find the DNS or cached resource for the page.",
+    "fullDescription": "Edge-specific error from the WinHTTP/WinINet stack. Usually resolved by flushing DNS, clearing Edge cache, and resetting network settings.",
+    "affectedVersions": [
+      "Microsoft Edge 120+",
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Edge setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows INET_E_RESOURCE_NOT_FOUND",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is INET_E_RESOURCE_NOT_FOUND caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-inet-e-download-failure",
+    "category": "browser",
+    "code": "INET_E_DOWNLOAD_FAILURE",
+    "displayCode": "INET_E_DOWNLOAD_FAILURE",
+    "title": "Edge Download Failure",
+    "shortDescription": "Edge failed to download a file from the network.",
+    "fullDescription": "The WinINet download pipeline terminated before completion. Frequently triggered by SmartScreen quarantine, connection resets, or disk-full conditions on the downloads folder.",
+    "affectedVersions": [
+      "Microsoft Edge 120+",
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Edge setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows INET_E_DOWNLOAD_FAILURE",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is INET_E_DOWNLOAD_FAILURE caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-inet-e-security-problem",
+    "category": "browser",
+    "code": "INET_E_SECURITY_PROBLEM",
+    "displayCode": "INET_E_SECURITY_PROBLEM",
+    "title": "Edge Security Problem",
+    "shortDescription": "Edge blocked the page due to a security policy violation.",
+    "fullDescription": "Covers mixed-content blocking, corrupt site certificates, and Windows Defender SmartScreen rejections inside Edge.",
+    "affectedVersions": [
+      "Microsoft Edge 120+",
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Edge setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows INET_E_SECURITY_PROBLEM",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is INET_E_SECURITY_PROBLEM caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-inet-e-cannot-connect",
+    "category": "browser",
+    "code": "INET_E_CANNOT_CONNECT",
+    "displayCode": "INET_E_CANNOT_CONNECT",
+    "title": "Edge Cannot Connect",
+    "shortDescription": "Edge could not establish a connection to the remote server.",
+    "fullDescription": "Windows-level network failure surfaced by Edge. Verify LAN settings, proxy configuration, and that the Microsoft Edge is permitted through Windows Firewall.",
+    "affectedVersions": [
+      "Microsoft Edge 120+",
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Edge setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows INET_E_CANNOT_CONNECT",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is INET_E_CANNOT_CONNECT caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-status-breakpoint-edge",
+    "category": "browser",
+    "code": "STATUS_BREAKPOINT (Edge)",
+    "displayCode": "STATUS_BREAKPOINT (Edge)",
+    "title": "Edge STATUS_BREAKPOINT",
+    "shortDescription": "Edge crashed with STATUS_BREAKPOINT (0x80000003).",
+    "fullDescription": "Indicates a renderer process hit a debug breakpoint, usually after a bad extension, corrupt profile, or Memory integrity conflict in Core Isolation.",
+    "affectedVersions": [
+      "Microsoft Edge 120+",
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured Edge setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows STATUS_BREAKPOINT (Edge)",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is STATUS_BREAKPOINT (Edge) caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-webview2-runtime-missing",
+    "category": "browser",
+    "code": "WEBVIEW2_RUNTIME_MISSING",
+    "displayCode": "WEBVIEW2_RUNTIME_MISSING",
+    "title": "WebView2 Runtime Missing",
+    "shortDescription": "The WebView2 Evergreen Runtime is not installed on the device.",
+    "fullDescription": "Applications embedding WebView2 (Outlook, Teams, many Microsoft 365 apps) fail to render when the runtime is missing. Install the Evergreen Runtime from Microsoft.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11",
+      "WebView2 Runtime"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured WebView2 setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows WEBVIEW2_RUNTIME_MISSING",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is WEBVIEW2_RUNTIME_MISSING caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-webview2-user-data-folder-error",
+    "category": "browser",
+    "code": "WEBVIEW2_USER_DATA_FOLDER_ERROR",
+    "displayCode": "WEBVIEW2_USER_DATA_FOLDER_ERROR",
+    "title": "WebView2 User Data Folder Error",
+    "shortDescription": "WebView2 cannot create or access its user data folder.",
+    "fullDescription": "Permission, path length, or AV quarantine on %LOCALAPPDATA%\\Microsoft\\EdgeWebView cause this. Reset folder permissions and exclude it from antivirus.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11",
+      "WebView2 Runtime"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured WebView2 setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows WEBVIEW2_USER_DATA_FOLDER_ERROR",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is WEBVIEW2_USER_DATA_FOLDER_ERROR caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-webview2-navigation-failed",
+    "category": "browser",
+    "code": "WEBVIEW2_NAVIGATION_FAILED",
+    "displayCode": "WEBVIEW2_NAVIGATION_FAILED",
+    "title": "WebView2 Navigation Failed",
+    "shortDescription": "A WebView2 navigation raised NavigationCompleted with IsSuccess=false.",
+    "fullDescription": "The embedded page failed to load inside a WebView2 control, usually due to CORS, TLS failure, or an invalid URL passed by the host app.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11",
+      "WebView2 Runtime"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured WebView2 setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows WEBVIEW2_NAVIGATION_FAILED",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is WEBVIEW2_NAVIGATION_FAILED caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-webview2-process-failed",
+    "category": "browser",
+    "code": "WEBVIEW2_PROCESS_FAILED",
+    "displayCode": "WEBVIEW2_PROCESS_FAILED",
+    "title": "WebView2 Process Failed",
+    "shortDescription": "The WebView2 browser process crashed or was killed.",
+    "fullDescription": "ProcessFailed event fired from the WebView2 runtime. Corrupted user data folder, running out of virtual memory, or antivirus termination are the typical causes.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11",
+      "WebView2 Runtime"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured WebView2 setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows WEBVIEW2_PROCESS_FAILED",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is WEBVIEW2_PROCESS_FAILED caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-uncaught-referenceerror",
+    "category": "browser",
+    "code": "Uncaught ReferenceError",
+    "displayCode": "Uncaught ReferenceError",
+    "title": "JavaScript Uncaught ReferenceError",
+    "shortDescription": "A ReferenceError was raised because a variable was accessed before definition.",
+    "fullDescription": "Appears in DevTools Console when JavaScript references an identifier that has not been declared. Typically caused by a typo, a script loaded in the wrong order, or a module import that did not resolve.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured JavaScript setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Uncaught ReferenceError",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Uncaught ReferenceError caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-uncaught-typeerror",
+    "category": "browser",
+    "code": "Uncaught TypeError",
+    "displayCode": "Uncaught TypeError",
+    "title": "JavaScript Uncaught TypeError",
+    "shortDescription": "A TypeError was raised when calling a method on an undefined or null value.",
+    "fullDescription": "The most common JavaScript console error: attempting '.foo()' on null/undefined, or passing wrong argument types. Usually fixed with optional chaining (?.) or stricter null checks.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured JavaScript setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Uncaught TypeError",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Uncaught TypeError caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-uncaught-syntaxerror",
+    "category": "browser",
+    "code": "Uncaught SyntaxError",
+    "displayCode": "Uncaught SyntaxError",
+    "title": "JavaScript Uncaught SyntaxError",
+    "shortDescription": "The JavaScript parser rejected the script file.",
+    "fullDescription": "A build tool shipped malformed JS, or an inline <script> has invalid syntax. Use source maps and the browser Sources panel to locate the offending token.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured JavaScript setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Uncaught SyntaxError",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Uncaught SyntaxError caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-uncaught-rangeerror",
+    "category": "browser",
+    "code": "Uncaught RangeError",
+    "displayCode": "Uncaught RangeError",
+    "title": "JavaScript Uncaught RangeError",
+    "shortDescription": "A numeric value fell outside the allowed range.",
+    "fullDescription": "Typical triggers: infinite recursion (Maximum call stack size exceeded), invalid Array length, or toFixed() with an out-of-range digit count.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured JavaScript setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Uncaught RangeError",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Uncaught RangeError caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-uncaught-in-promise-error",
+    "category": "browser",
+    "code": "Uncaught (in promise) Error",
+    "displayCode": "Uncaught (in promise) Error",
+    "title": "Unhandled Promise Rejection",
+    "shortDescription": "A Promise rejected and no .catch() handler was attached.",
+    "fullDescription": "Modern browsers log these to the console. Add window.addEventListener('unhandledrejection') or ensure every Promise chain ends with .catch().",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured JavaScript setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows Uncaught (in promise) Error",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Uncaught (in promise) Error caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-cors-missing-allow-origin",
+    "category": "browser",
+    "code": "CORS Missing Allow Origin",
+    "displayCode": "CORS Missing Allow Origin",
+    "title": "CORS Missing Access-Control-Allow-Origin",
+    "shortDescription": "The cross-origin response did not include an Access-Control-Allow-Origin header.",
+    "fullDescription": "The browser blocked the response because the server did not opt in via CORS. The server must return Access-Control-Allow-Origin for the requesting origin, or the client must route through a same-origin proxy.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured CORS setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows CORS Missing Allow Origin",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is CORS Missing Allow Origin caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-cors-preflight-did-not-succeed",
+    "category": "browser",
+    "code": "CORS Preflight Did Not Succeed",
+    "displayCode": "CORS Preflight Did Not Succeed",
+    "title": "CORS Preflight Failed",
+    "shortDescription": "The OPTIONS preflight request did not return 2xx.",
+    "fullDescription": "The browser aborted the actual request because the OPTIONS probe failed. The server must handle OPTIONS and return appropriate Access-Control-Allow-* headers.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured CORS setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows CORS Preflight Did Not Succeed",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is CORS Preflight Did Not Succeed caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-cors-header-contains-multiple-values",
+    "category": "browser",
+    "code": "CORS Header Contains Multiple Values",
+    "displayCode": "CORS Header Contains Multiple Values",
+    "title": "CORS Multiple Allow-Origin Values",
+    "shortDescription": "The server returned more than one Access-Control-Allow-Origin value.",
+    "fullDescription": "RFC-level violation: reverse proxies sometimes append the header twice. Configure the origin server or the proxy to emit exactly one value.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured CORS setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows CORS Header Contains Multiple Values",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is CORS Header Contains Multiple Values caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-cors-credentials-mode-mismatch",
+    "category": "browser",
+    "code": "CORS Credentials Mode Mismatch",
+    "displayCode": "CORS Credentials Mode Mismatch",
+    "title": "CORS Credentials Mode Mismatch",
+    "shortDescription": "Credentials were included but Access-Control-Allow-Credentials was not set to true.",
+    "fullDescription": "When the request uses 'credentials: include', the server must respond with Access-Control-Allow-Credentials: true AND a specific (non-wildcard) Access-Control-Allow-Origin value.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured CORS setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows CORS Credentials Mode Mismatch",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is CORS Credentials Mode Mismatch caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
+  },
+  {
+    "id": "browser-cors-disabled-by-extension",
+    "category": "browser",
+    "code": "CORS Disabled by Extension",
+    "displayCode": "CORS Disabled by Extension",
+    "title": "CORS Blocked by Browser Extension",
+    "shortDescription": "A browser extension stripped or modified CORS headers.",
+    "fullDescription": "Security or privacy extensions (uBlock Origin, Privacy Badger, enterprise DLP plugins) sometimes strip Access-Control-* headers. Disable extensions to confirm, then whitelist the origin in the offending extension.",
+    "affectedVersions": [
+      "Chrome",
+      "Edge",
+      "Firefox",
+      "Safari"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured CORS setup on the remote server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Browser cache or profile corruption",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extension or enterprise security product interfering",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated browser or operating system",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DevTools Console shows CORS Disabled by Extension",
+      "Page fails to load or a specific resource is missing",
+      "Error reproduces in normal mode but not in a fresh profile",
+      "Other browsers may or may not show the same error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reproduce with DevTools open",
+        "instruction": "Open DevTools (F12 / Cmd+Opt+I) and reload the page. Check the Console and Network tabs for the exact failing request.",
+        "tools": [
+          "Browser DevTools"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear browser cache",
+        "instruction": "Clear cached data for the affected site (Settings > Privacy > Clear browsing data, or Cmd+Shift+Delete).",
+        "tools": [
+          "Browser Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Try a fresh profile or Private window",
+        "instruction": "Open a Private/Incognito window to test without extensions. If the error goes away, disable extensions one by one.",
+        "tools": [
+          "Browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Update the browser and OS",
+        "instruction": "Install the latest browser update and any pending macOS/Windows updates to refresh the TLS/CORS stack.",
+        "tools": [
+          "Browser Settings",
+          "Windows Update",
+          "Software Update"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 5,
+        "title": "Contact the site owner if the server is at fault",
+        "instruction": "If the issue is CORS or server configuration, share the failing request and response headers with the site's operator.",
+        "tools": [
+          "Email"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 75
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If the error only affects your enterprise network or a corporate site, escalate to your IT/help desk — the server or proxy configuration is usually at fault.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is CORS Disabled by Extension caused by my browser?",
+        "a": "Often partly — but server configuration, extensions, and OS-level trust stores all contribute. Use the steps above to narrow down the source."
+      },
+      {
+        "q": "Will reinstalling the browser help?",
+        "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
+      }
+    ]
   }
 ]

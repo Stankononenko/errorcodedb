@@ -174,7 +174,11 @@ export type ApplianceDeviceType =
   | "smart-toilet"
   | "smart-faucet"
   | "leak-detector"
-  | "ice-maker";
+  | "ice-maker"
+  | "cable-modem"
+  | "fiber-gateway"
+  | "av-receiver"
+  | "streaming-device";
 
 export interface ApplianceCause {
   cause: string;
@@ -287,7 +291,7 @@ export interface PrinterCode {
 
 // ── Windows Types ──
 
-export type WindowsErrorCategory = "bsod" | "update" | "system" | "browser" | "gaming";
+export type WindowsErrorCategory = "bsod" | "update" | "system" | "browser" | "gaming" | "macos";
 
 export interface WindowsCode {
   id: string;

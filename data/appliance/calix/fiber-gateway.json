@@ -1,0 +1,862 @@
+[
+  {
+    "id": "calix-fiber-gateway-los-alarm",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "LOS",
+    "displayCode": "LOS (Loss of Signal)",
+    "alternativeCodes": [
+      "Red LOS LED"
+    ],
+    "title": "LOS - loss of optical signal",
+    "shortDescription": "Gateway receives no optical signal from the OLT - bent fiber, dirty connector, or ISP outage.",
+    "fullDescription": "The LOS LED on a Calix GigaCenter / GigaSpire goes solid red when the ONT cannot detect a light signal from the ISP's OLT. This means either the fiber is physically broken/disconnected, a connector is dirty, the fiber is bent below minimum radius, or there is an upstream outage.\n\nLOS is the most common fiber fault homeowners encounter. Unlike copper, fiber has no tolerance for kinks or dirty connectors.",
+    "causes": [
+      {
+        "cause": "Fiber disconnected at ONT",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty SC/APC connector",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bent/crushed fiber",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "ISP OLT outage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Severed drop fiber",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Red LOS LED",
+      "No internet",
+      "Phone VoIP dead too"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check ISP outage",
+        "instruction": "Call ISP before touching anything - outages are common.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect fiber routing",
+        "instruction": "Look for kinks, furniture pinching the cable, or pulled connectors. Never bend fiber tighter than a 1-inch radius.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reseat SC/APC connector",
+        "instruction": "Unplug, inspect green connector tip, clean with lint-free wipe if available, reinsert firmly until it clicks.",
+        "tools": [
+          "Lint-free wipe"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Power cycle ONT",
+        "instruction": "Unplug the Calix for 30 seconds then reboot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 5,
+        "title": "Schedule ISP tech",
+        "instruction": "Any damaged fiber or broken connector needs a splice truck.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GigaCenter 844G",
+      "GigaSpire u6",
+      "GS4227E",
+      "803G"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 0,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Any visible fiber damage, broken connector, or if reseating does not clear LOS.",
+    "relatedCodes": [
+      "PON Alarm",
+      "Dying Gasp"
+    ],
+    "videoSearchQuery": "Calix GigaSpire LOS red light fix",
+    "faq": [
+      {
+        "q": "Can I splice fiber myself?",
+        "a": "No - fiber splicing requires a fusion splicer and training. Call the ISP."
+      },
+      {
+        "q": "How fragile is the fiber cable?",
+        "a": "Tighter than a 1-inch bend radius permanently damages the glass core."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-pon-alarm",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "PON Alarm",
+    "displayCode": "PON ALARM",
+    "alternativeCodes": [
+      "PON LED off"
+    ],
+    "title": "PON link not established",
+    "shortDescription": "Optical signal detected but PON session cannot be established with the OLT.",
+    "fullDescription": "The ONT has optical power but cannot complete the PON registration handshake. Differs from LOS - light is present but communication fails. Often a provisioning issue or OLT-side mismatch.",
+    "causes": [
+      {
+        "cause": "ONT not provisioned on OLT",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Serial number mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "OLT PON port issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "PON LED blinking slowly",
+      "Green LOS, red PON"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot ONT",
+        "instruction": "Power cycle for 60 seconds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Contact ISP",
+        "instruction": "ISP must verify ONT serial on OLT provisioning.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GigaCenter 844G",
+      "GigaSpire u6"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Always ISP-side fix.",
+    "relatedCodes": [
+      "LOS",
+      "ONT Registration Fail"
+    ],
+    "videoSearchQuery": "Calix PON alarm registration",
+    "faq": [
+      {
+        "q": "What's the difference between LOS and PON alarm?",
+        "a": "LOS means no light at all; PON alarm means light is present but session fails."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-ont-registration-fail",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "ONT Registration Fail",
+    "displayCode": "REG FAIL",
+    "alternativeCodes": [],
+    "title": "ONT failed registration with OLT",
+    "shortDescription": "OLT did not accept this ONT's registration request.",
+    "fullDescription": "After optical link is established, the ONT must register with the OLT using its serial number. If the OLT has not been told to expect this serial, registration fails. Common after an ONT swap.",
+    "causes": [
+      {
+        "cause": "Serial not provisioned",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wrong VLAN profile",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "LAN LEDs off",
+      "No internet despite PON"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Give ISP your ONT serial",
+        "instruction": "Read serial number from sticker and provide to ISP for provisioning.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Calix GPON/XGS-PON ONTs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "ISP provisioning only.",
+    "relatedCodes": [
+      "PON Alarm"
+    ],
+    "videoSearchQuery": "Calix ONT serial provisioning",
+    "faq": [
+      {
+        "q": "Where is the serial number?",
+        "a": "On the bottom sticker, usually labeled SN or S/N, 12 characters."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-no-sync",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "No Sync",
+    "displayCode": "NO SYNC",
+    "alternativeCodes": [],
+    "title": "ONT has no sync with OLT",
+    "shortDescription": "PON LED never goes solid - no sync achieved.",
+    "fullDescription": "Optical signal may be intermittent or weak. The ONT keeps attempting handshake but never completes. Usually a dirty connector or weak optical power.",
+    "causes": [
+      {
+        "cause": "Dirty fiber connector",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Weak receive power (below -27 dBm)",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "PON LED flashing",
+      "Internet drops every few minutes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean fiber connector",
+        "instruction": "Use one-click cleaner or isopropyl-moistened lint-free wipe.",
+        "tools": [
+          "Fiber cleaner"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "ISP optical power test",
+        "instruction": "Ask ISP to measure Rx power - should be -8 to -27 dBm.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GigaSpire u6",
+      "GS4227E"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Fiber cleaner optional",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Weak Rx power needs splice/line work.",
+    "relatedCodes": [
+      "LOS"
+    ],
+    "videoSearchQuery": "fiber ONT no sync fix",
+    "faq": [
+      {
+        "q": "How low is too low for Rx?",
+        "a": "Below -27 dBm is out of spec for GPON; most ONTs target -8 to -24 dBm."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-dying-gasp",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "Dying Gasp",
+    "displayCode": "DYING GASP",
+    "alternativeCodes": [],
+    "title": "Dying gasp - ONT lost power",
+    "shortDescription": "ONT sent a dying-gasp PDU indicating imminent power loss.",
+    "fullDescription": "This is logged on the OLT, not shown on the device. It means the ONT detected input power loss and broadcasted a final message. A battery backup unit (BBU) can keep it alive briefly.\n\nIf you see this reported by your ISP, check the power brick, surge protector, or add a UPS/BBU.",
+    "causes": [
+      {
+        "cause": "Power outage",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed power brick",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dead BBU battery",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "All LEDs off",
+      "Internet dies during brownouts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check outlet",
+        "instruction": "Test another device on the same outlet.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Replace power brick",
+        "instruction": "Confirm 12V DC adapter matches original rating.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Install UPS",
+        "instruction": "A small UPS bridges short outages and prevents dying gasp.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Calix ONTs"
+    ],
+    "partsNeeded": [
+      {
+        "part": "12V power adapter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "UPS optional",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 120
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Not needed - DIY power fix.",
+    "relatedCodes": [
+      "LOS"
+    ],
+    "videoSearchQuery": "fiber ONT dying gasp UPS",
+    "faq": [
+      {
+        "q": "Does the ONT have an internal battery?",
+        "a": "No, but some models support an external BBU for VoIP continuity."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-wifi-offline",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "WiFi Radio Off",
+    "displayCode": "WIFI RADIO OFF",
+    "alternativeCodes": [],
+    "title": "WiFi radio disabled or crashed",
+    "shortDescription": "2.4/5 GHz radios show as offline in GigaSpire app.",
+    "fullDescription": "Calix GigaSpire units occasionally have a radio go offline after firmware updates. Wired works but WiFi is missing.",
+    "causes": [
+      {
+        "cause": "Firmware glitch",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overheating",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "No SSID broadcast",
+      "Wired LAN works"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot via app",
+        "instruction": "Use GigaSpire/CommandIQ app reboot function.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check ventilation",
+        "instruction": "Ensure unit is vertical and not in enclosed cabinet.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Ask ISP for firmware",
+        "instruction": "Some versions have known radio bugs.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "GigaSpire u4",
+      "u6",
+      "u10"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "Radios die after every reboot - RMA needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Calix GigaSpire WiFi not working",
+    "faq": [
+      {
+        "q": "Can I add my own router?",
+        "a": "Yes - disable WiFi on Calix and plug your router into a LAN port."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-voice-no-dial-tone",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "Voice No Dial Tone",
+    "displayCode": "NO DIAL TONE",
+    "alternativeCodes": [],
+    "title": "VoIP port has no dial tone",
+    "shortDescription": "Phone plugged into Tel port gets silence.",
+    "fullDescription": "When the ONT's integrated ATA fails to register with the ISP's SIP server, phones on Tel1/Tel2 have no dial tone. Often after a firmware update or internet outage.",
+    "causes": [
+      {
+        "cause": "SIP registration failed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Phone line short",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP VoIP outage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Phone silent",
+      "Internet works fine"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Unplug all phones",
+        "instruction": "A shorted phone can kill dial tone on that port.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reboot ONT",
+        "instruction": "Forces SIP re-registration.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check ISP voice status",
+        "instruction": "Confirm no voice outage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "GigaCenter 844G",
+      "GigaSpire u6"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Confirmed SIP issue - ISP must re-register line.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Calix ONT no dial tone VoIP",
+    "faq": [
+      {
+        "q": "Does phone work during power outage?",
+        "a": "Only if an external BBU is installed."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-dhcp-fail",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "WAN DHCP Fail",
+    "displayCode": "WAN DHCP FAIL",
+    "alternativeCodes": [],
+    "title": "WAN DHCP lease not obtained",
+    "shortDescription": "PON is up but ONT cannot get IP from ISP.",
+    "fullDescription": "PON session is established, but WAN side fails DHCP. Usually a provisioning or VLAN issue.",
+    "causes": [
+      {
+        "cause": "Provisioning mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wrong VLAN profile",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "PON solid, internet LED off"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot",
+        "instruction": "Power cycle ONT for 60 seconds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Call ISP",
+        "instruction": "Request DHCP/VLAN check on OLT.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Calix ONTs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "ISP must fix VLAN/DHCP config.",
+    "relatedCodes": [
+      "ONT Registration Fail"
+    ],
+    "videoSearchQuery": "Calix ONT WAN DHCP fail",
+    "faq": [
+      {
+        "q": "Can I use bridge mode?",
+        "a": "Only if ISP has a bridge profile provisioned."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-rx-power-low",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "Rx Power Low",
+    "displayCode": "RX POWER LOW",
+    "alternativeCodes": [
+      "Receive signal too weak"
+    ],
+    "title": "Optical receive power below -27 dBm",
+    "shortDescription": "Rx optical power is below GPON spec causing intermittent errors.",
+    "fullDescription": "As splitters, splices and long drop lengths accumulate loss, Rx power drops. Below -27 dBm for GPON you see CRC errors and intermittent drops. Fix requires splice inspection or drop replacement.",
+    "causes": [
+      {
+        "cause": "Dirty connector",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Long drop with extra splice",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Intermittent drops",
+      "Packet loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean connector",
+        "instruction": "One-click cleaner on SC/APC.",
+        "tools": [
+          "Fiber cleaner"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Request OLT Rx check",
+        "instruction": "ISP reads Rx power - if out of spec schedule tech.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Calix ONTs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Rx still low after cleaning - splice work needed.",
+    "relatedCodes": [
+      "No Sync"
+    ],
+    "videoSearchQuery": "fiber Rx power low",
+    "faq": [
+      {
+        "q": "What is healthy Rx?",
+        "a": "-8 to -24 dBm is good; below -27 is failing."
+      }
+    ]
+  },
+  {
+    "id": "calix-fiber-gateway-factory-reset",
+    "brand": "Calix",
+    "brandSlug": "calix",
+    "deviceType": "Fiber Gateway",
+    "deviceTypeSlug": "fiber-gateway",
+    "code": "Locked Out",
+    "displayCode": "LOCKED OUT",
+    "alternativeCodes": [],
+    "title": "Cannot access admin - locked out",
+    "shortDescription": "ISP-locked device prevents admin login.",
+    "fullDescription": "Calix gateways deployed by ISPs usually disable end-user admin access. The 192.168.1.1 page may not show advanced settings. Factory reset will not unlock these - they redeploy with the same profile.",
+    "causes": [
+      {
+        "cause": "ISP-locked firmware",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No admin login",
+      "Limited settings"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact ISP",
+        "instruction": "Ask for advanced mode or bridge mode activation.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Use own router",
+        "instruction": "Put ISP gateway in bridge mode and add a personal router.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "GigaSpire u4/u6/u10"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Aftermarket router optional",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 300
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Only ISP can unlock admin.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Calix GigaSpire admin unlock bridge mode",
+    "faq": [
+      {
+        "q": "Can I replace it with my own ONT?",
+        "a": "Rarely - ISPs provision only specific models."
+      }
+    ]
+  }
+]

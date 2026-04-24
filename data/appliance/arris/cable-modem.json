@@ -1,0 +1,956 @@
+[
+  {
+    "id": "arris-cable-modem-t3-timeout",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "T3 Timeout",
+    "displayCode": "T3 TIMEOUT",
+    "alternativeCodes": [
+      "T3 Error",
+      "Received T3 timeouts"
+    ],
+    "title": "T3 timeout - upstream communication lost",
+    "shortDescription": "Modem sent a ranging request upstream but got no response from the CMTS before the T3 timer expired.",
+    "fullDescription": "A T3 timeout occurs when your Arris Surfboard modem transmits a ranging request to the cable modem termination system (CMTS) at your ISP, but no reply arrives within the allotted window. This usually points to upstream signal problems - too much noise, weak signal level, or line damage between the modem and the neighborhood node.\n\nYou will typically see T3 timeouts logged repeatedly in the modem's event log before the modem loses sync entirely. Internet drops intermittently then stops working completely.\n\nMost T3 timeouts are caused by loose coax fittings, damaged splitters, degraded drop cables, or ISP-side plant issues. A reboot sometimes helps briefly but the underlying signal problem must be fixed.",
+    "causes": [
+      {
+        "cause": "Loose or corroded coax connector",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Too many splitters degrading signal",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged drop cable from pole to house",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "ISP plant issue or node congestion",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Ingress noise from faulty home wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Internet drops intermittently",
+      "US light blinking",
+      "Slow speeds",
+      "Modem reboots on its own"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Tighten all coax connections",
+        "instruction": "Hand-tighten then use a wrench 1/8 turn more on every coax connector from wall to modem.",
+        "tools": [
+          "Coax wrench"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Remove unnecessary splitters",
+        "instruction": "Connect modem directly to the wall outlet bypassing any splitters for testing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check signal levels in modem UI",
+        "instruction": "Log in to 192.168.100.1 and review upstream power (should be 35-51 dBmV) and SNR (35+ dB).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Contact ISP",
+        "instruction": "If levels are out of spec, schedule a technician visit to inspect the drop line.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Surfboard SB6183",
+      "SB8200",
+      "SBG10",
+      "SBG7600AC2",
+      "S33"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If signal levels are out of spec after tightening connections, call your ISP for a line technician.",
+    "relatedCodes": [
+      "T1 Timeout",
+      "T2 Timeout",
+      "T4 Timeout"
+    ],
+    "videoSearchQuery": "Arris Surfboard T3 timeout fix",
+    "faq": [
+      {
+        "q": "Will replacing the modem fix T3 errors?",
+        "a": "Rarely. T3 errors point to line/signal problems, not the modem itself."
+      },
+      {
+        "q": "What upstream power is normal?",
+        "a": "Between 35 and 51 dBmV for DOCSIS 3.0/3.1."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-t1-timeout",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "T1 Timeout",
+    "displayCode": "T1 TIMEOUT",
+    "alternativeCodes": [],
+    "title": "T1 timeout - no sync message received",
+    "shortDescription": "Modem failed to receive a sync message from the CMTS within 600 ms.",
+    "fullDescription": "T1 timeouts happen on the downstream path - the modem is listening for periodic SYNC messages from the CMTS and has not received one. This indicates the modem either cannot lock a downstream channel or the signal is too weak/noisy to decode.\n\nT1 errors usually appear alongside 'No Ranging Response received' and downstream scan loops. The modem will cycle through startup repeatedly and never complete registration.\n\nMost commonly caused by very low downstream power, cable disconnected upstream of the modem, or CMTS-side outage.",
+    "causes": [
+      {
+        "cause": "Loose coax at wall or modem",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Downstream power out of spec",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "ISP outage in area",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Damaged coax center conductor",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "DS light blinking",
+      "Modem stuck in startup",
+      "No internet"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check ISP outage map",
+        "instruction": "Visit your ISP's outage page or call the outage hotline before anything else.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reseat coax at wall and modem",
+        "instruction": "Remove and firmly reattach the coax cable on both ends.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Power cycle modem",
+        "instruction": "Unplug for 30 seconds, plug back in, wait 3 minutes for full boot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Try a known-good coax cable",
+        "instruction": "Swap in a different RG6 coax to rule out cable damage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Surfboard SB6190",
+      "SB8200",
+      "SBG10"
+    ],
+    "partsNeeded": [
+      {
+        "part": "RG6 coax cable if damaged",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If ISP confirms no outage and downstream power is still out of spec, request a tech visit.",
+    "relatedCodes": [
+      "T3 Timeout",
+      "No Ranging Response"
+    ],
+    "videoSearchQuery": "Arris modem T1 timeout downstream fix",
+    "faq": [
+      {
+        "q": "What is normal downstream power?",
+        "a": "Between -15 and +15 dBmV, ideally near 0 dBmV."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-no-internet-light",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "No Internet Light",
+    "displayCode": "NO INTERNET LIGHT",
+    "alternativeCodes": [
+      "Online LED off"
+    ],
+    "title": "Online/Internet LED is off",
+    "shortDescription": "Modem is powered and has signal but cannot complete registration with the ISP.",
+    "fullDescription": "When the Internet/Online LED stays dark while Power, Downstream and Upstream are solid, the modem has signal sync but is failing the final DHCP/registration handshake with the ISP. This usually means the modem is not provisioned on the account or the MAC address has not been registered.\n\nCommon after buying a used modem, moving, or when an ISP swaps provisioning systems.",
+    "causes": [
+      {
+        "cause": "Modem not activated/provisioned",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "MAC address not on account",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account past due",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP DHCP server issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "DS/US solid",
+      "Online LED off",
+      "No internet"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Self-activate online",
+        "instruction": "Visit your ISP's activation URL (e.g., xfinity.com/activate) from a phone on cellular data.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Call ISP with MAC address",
+        "instruction": "Provide the modem's MAC (on the sticker) and ask to register it on your account.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reboot after provisioning",
+        "instruction": "Unplug modem for 60 seconds after ISP confirms provisioning is complete.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "All Surfboard retail models"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Always start with the ISP - this is an account/provisioning issue.",
+    "relatedCodes": [
+      "DHCP Timeout"
+    ],
+    "videoSearchQuery": "Arris modem online light not on activate",
+    "faq": [
+      {
+        "q": "Can I use any Arris modem?",
+        "a": "Only modems on your ISP's approved list will activate."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-downstream-scan",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "Downstream Scan",
+    "displayCode": "DS SCAN LOOP",
+    "alternativeCodes": [
+      "Acquiring Downstream Channel"
+    ],
+    "title": "Modem stuck scanning downstream channels",
+    "shortDescription": "Downstream LED flashes continuously as modem searches for a lockable carrier.",
+    "fullDescription": "The modem is in an endless downstream acquisition loop - it cannot find and lock onto a usable DOCSIS channel. The DS light blinks steadily rather than going solid. Often the modem eventually gives up and reboots.\n\nCaused by absent or extremely weak downstream signal. If other services on the same coax (TV) also fail, the problem is upstream of the home.",
+    "causes": [
+      {
+        "cause": "No signal from tap/drop",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Broken coax center pin",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed splitter",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DS LED blinking forever",
+      "Modem cycles every few minutes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bypass splitters",
+        "instruction": "Remove all splitters and connect modem directly to the wall.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Inspect coax connectors",
+        "instruction": "Check that center conductors are straight, clean and protrude ~1/8 inch.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Factory reset modem",
+        "instruction": "Hold the reset button for 30 seconds with modem powered on.",
+        "tools": [
+          "Paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Schedule ISP tech",
+        "instruction": "If no signal is present at the wall, the drop or tap needs ISP attention.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "SB6183",
+      "SB8200",
+      "S33"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement coax if damaged",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "When no signal is present even with modem plugged directly into the wall.",
+    "relatedCodes": [
+      "T1 Timeout"
+    ],
+    "videoSearchQuery": "Arris modem downstream scan loop fix",
+    "faq": [
+      {
+        "q": "How long should the DS light take to go solid?",
+        "a": "Typically under 60 seconds after power-on."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-dhcp-timeout",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "DHCP Timeout",
+    "displayCode": "DHCP TIMEOUT",
+    "alternativeCodes": [
+      "No response to DHCP DISCOVER"
+    ],
+    "title": "DHCP request to ISP timed out",
+    "shortDescription": "Modem registered but failed to get an IP address lease from the ISP DHCP server.",
+    "fullDescription": "After ranging completes, the modem sends a DHCP DISCOVER to obtain a WAN IP. If the ISP's DHCP server does not reply, the modem logs 'Started Unicast Maintenance Ranging - No Response received - T3 time-out' or 'DHCP Timeout'. This is typically account/provisioning related.\n\nSometimes also caused by stale DHCP leases that a modem reboot clears.",
+    "causes": [
+      {
+        "cause": "Account not provisioned",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stale DHCP lease on ISP side",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP DHCP outage",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Ranging complete but no internet",
+      "Online light off"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "30-second power cycle",
+        "instruction": "Unplug modem for 30+ seconds to release lease.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Confirm provisioning",
+        "instruction": "Call ISP to verify the modem MAC is active on your account.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Arris retail modems"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "After a clean reboot if DHCP still times out, ISP support needs to flush the lease.",
+    "relatedCodes": [
+      "No Internet Light"
+    ],
+    "videoSearchQuery": "Arris modem DHCP timeout fix",
+    "faq": [
+      {
+        "q": "Does this mean my router is bad?",
+        "a": "No - DHCP timeout on the modem refers to WAN-side DHCP from the ISP, not your LAN."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-ipv6-error",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "IPv6 Error",
+    "displayCode": "IPV6 ERROR",
+    "alternativeCodes": [
+      "DHCPv6 Failed"
+    ],
+    "title": "IPv6 provisioning failed",
+    "shortDescription": "Modem obtained IPv4 but failed to acquire an IPv6 address/prefix.",
+    "fullDescription": "The modem logs DHCPv6 solicitation or RA failures. IPv4 works but IPv6 connectivity is missing. Some ISPs roll out IPv6 gradually so this may occur after a region-wide upgrade.\n\nOften a firmware-side issue on older Arris models (SB6183 known to have IPv6 quirks) or an ISP provisioning problem.",
+    "causes": [
+      {
+        "cause": "Outdated modem firmware",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "ISP IPv6 provisioning issue",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Unsupported modem for IPv6",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "IPv4 works, IPv6 test fails",
+      "Some services slow"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power cycle modem and router",
+        "instruction": "Unplug both for 60 seconds, boot modem first then router.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Ask ISP to push firmware",
+        "instruction": "Retail modems get firmware only from the ISP - request the latest push.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "SB6183",
+      "SB6190"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Persistent IPv6 failure after firmware push - consider replacing with DOCSIS 3.1 model.",
+    "relatedCodes": [
+      "DHCP Timeout"
+    ],
+    "videoSearchQuery": "Arris modem IPv6 not working",
+    "faq": [
+      {
+        "q": "Do I need IPv6?",
+        "a": "Yes for some streaming services and future-proofing, but IPv4 alone still works for most sites."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-t2-timeout",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "T2 Timeout",
+    "displayCode": "T2 TIMEOUT",
+    "alternativeCodes": [],
+    "title": "T2 timeout - no broadcast maintenance opportunity",
+    "shortDescription": "Modem did not receive a broadcast maintenance opportunity during initial ranging.",
+    "fullDescription": "T2 is the timer for receiving a broadcast maintenance opportunity from the CMTS during initial ranging. A T2 timeout means the modem saw the downstream but never got scheduled to transmit upstream. Often indicates a completely severed upstream path or a plant outage.",
+    "causes": [
+      {
+        "cause": "Upstream path severed (bad cable)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Plant outage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "US LED off or blinking",
+      "DS solid"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check ISP outage map",
+        "instruction": "Verify there is no known outage before troubleshooting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Replace coax to modem",
+        "instruction": "Try a different known-good RG6 cable.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All Surfboard models"
+    ],
+    "partsNeeded": [
+      {
+        "part": "RG6 coax",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Persistent T2 after cable swap - ISP line work needed.",
+    "relatedCodes": [
+      "T1 Timeout",
+      "T3 Timeout"
+    ],
+    "videoSearchQuery": "Arris modem T2 timeout fix",
+    "faq": [
+      {
+        "q": "Is T2 worse than T3?",
+        "a": "T2 usually means a harder signal loss than intermittent T3 errors."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-no-ranging-response",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "No Ranging Response",
+    "displayCode": "NO RANGING RESPONSE",
+    "alternativeCodes": [
+      "No Ranging Response received"
+    ],
+    "title": "CMTS did not respond to ranging request",
+    "shortDescription": "Modem sent RNG-REQ but received no RNG-RSP from the CMTS.",
+    "fullDescription": "During ranging, the modem repeatedly sends RNG-REQ messages. If the CMTS never responds with RNG-RSP, the modem logs 'No Ranging Response received - T3 time-out'. Often appears in bursts alongside T3 timeouts and indicates upstream signal instability.",
+    "causes": [
+      {
+        "cause": "High upstream noise",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Upstream signal too low/high",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Frequent disconnections",
+      "Slow uploads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect home coax",
+        "instruction": "Replace any old splitters with 5-1002 MHz rated units.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Request signal check from ISP",
+        "instruction": "Have a tech measure upstream power at the tap.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All Arris retail modems"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Modern splitter if needed",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 0,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Recurring ranging failures usually require a line tech.",
+    "relatedCodes": [
+      "T3 Timeout"
+    ],
+    "videoSearchQuery": "Arris no ranging response fix",
+    "faq": [
+      {
+        "q": "Can weather cause this?",
+        "a": "Yes - wet connectors and water ingress are a common trigger."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-dynamic-range-window",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "Dynamic Range Window",
+    "displayCode": "DYNAMIC RANGE VIOLATION",
+    "alternativeCodes": [
+      "DRW violation"
+    ],
+    "title": "Upstream dynamic range window violation",
+    "shortDescription": "Upstream channels are operating at different power levels outside the CMTS-allowed window.",
+    "fullDescription": "On DOCSIS 3.0/3.1 channel-bonded upstreams, the CMTS requires all channels to stay within a few dB of each other (the dynamic range window). If home wiring introduces tilt or one channel becomes attenuated, the modem logs DRW violations and may drop channels.\n\nCommonly caused by old frequency-limited splitters or long cable runs.",
+    "causes": [
+      {
+        "cause": "Old splitter with high-frequency roll-off",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Tilt from long cable run",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Reduced upload speed",
+      "Channel bonding drops to fewer channels"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace older splitters",
+        "instruction": "Install 5-1002 MHz or 5-1218 MHz splitters throughout the home.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "SB8200",
+      "S33",
+      "SBG8300"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Modern coax splitter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 25
+      },
+      "professional": {
+        "min": 75,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20-30 minutes",
+    "whenToCallPro": "If new splitters do not resolve the tilt, call ISP for in-line amp evaluation.",
+    "relatedCodes": [
+      "T3 Timeout"
+    ],
+    "videoSearchQuery": "DOCSIS dynamic range window violation",
+    "faq": [
+      {
+        "q": "What splitter rating should I buy?",
+        "a": "At minimum 5-1002 MHz; prefer 5-1218 MHz for DOCSIS 3.1."
+      }
+    ]
+  },
+  {
+    "id": "arris-cable-modem-firmware-corrupt",
+    "brand": "Arris",
+    "brandSlug": "arris",
+    "deviceType": "Cable Modem",
+    "deviceTypeSlug": "cable-modem",
+    "code": "Firmware Corrupt",
+    "displayCode": "FW CORRUPT",
+    "alternativeCodes": [
+      "Boot Loop"
+    ],
+    "title": "Modem firmware corrupted or boot looping",
+    "shortDescription": "Modem reboots every few minutes and never completes registration.",
+    "fullDescription": "A rare but serious fault where firmware on the modem's flash becomes corrupted - usually after a failed ISP firmware push or a lightning event. The modem will cycle LEDs in a repeating pattern and never come online.\n\nRetail DOCSIS modems cannot have firmware manually reflashed by end users; recovery requires the ISP to push a fresh image or RMA of the unit.",
+    "causes": [
+      {
+        "cause": "Failed firmware update",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Lightning/surge damage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Flash wear after years of use",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Constant reboots",
+      "LEDs cycle endlessly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Factory reset",
+        "instruction": "Hold reset button 30 seconds - sometimes clears a corrupt config.",
+        "tools": [
+          "Paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Ask ISP to push firmware",
+        "instruction": "Support can trigger an over-the-air firmware push to a known-good image.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "RMA or replace",
+        "instruction": "If within warranty, contact Arris support for replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Any Arris modem"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement modem if RMA",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 200
+      },
+      "professional": {
+        "min": 0,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If factory reset does not help, ISP or Arris RMA is the only route.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Arris modem boot loop fix",
+    "faq": [
+      {
+        "q": "Can I flash firmware myself?",
+        "a": "No - retail cable modems do not expose user-accessible firmware flashing."
+      }
+    ]
+  }
+]

@@ -1,0 +1,3542 @@
+[
+  {
+    "id": "windows-macos-0x80100000",
+    "category": "macos",
+    "code": "0x80100000",
+    "displayCode": "0x80100000",
+    "title": "macOS Kernel Panic Generic",
+    "shortDescription": "Generic macOS kernel panic from the 0x80100000 prefix.",
+    "fullDescription": "macOS shows the 'Your computer restarted because of a problem' banner and the panic log lands in /Library/Logs/DiagnosticReports. Most panics in this range come from third-party kernel extensions (kexts), failing RAM on Intel Macs, or buggy Thunderbolt/USB-C docks on Apple Silicon.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80100000 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is 0x80100000 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-0x80100001",
+    "category": "macos",
+    "code": "0x80100001",
+    "displayCode": "0x80100001",
+    "title": "macOS Panic Kext Fault",
+    "shortDescription": "A third-party kernel extension caused a panic.",
+    "fullDescription": "The panic string references a third-party kext (Sophos, Kaspersky, VirtualBox, older Logitech/Razer drivers). Load macOS in Safe Mode (hold Shift at boot) and remove the offending kext from /Library/Extensions.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80100001 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is 0x80100001 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-0x80100002",
+    "category": "macos",
+    "code": "0x80100002",
+    "displayCode": "0x80100002",
+    "title": "macOS Panic Thunderbolt",
+    "shortDescription": "Kernel panic triggered by Thunderbolt / USB-C hardware.",
+    "fullDescription": "Happens when a dock, eGPU, or bus-powered SSD hot-plugs at a bad moment. Disconnect peripherals and verify with Apple Diagnostics (hold D at boot on Intel; on Apple Silicon hold power then press 'Options' and choose diagnostics).",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "0x80100002 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is 0x80100002 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-nsurlerrordomain-1",
+    "category": "macos",
+    "code": "NSURLErrorDomain -1",
+    "displayCode": "NSURLErrorDomain -1",
+    "title": "NSURL Generic Error",
+    "shortDescription": "Generic Cocoa URL loading error.",
+    "fullDescription": "Umbrella code for CFNetwork/Foundation URL loading problems on macOS. The Console.app shows more specific subcodes (-1001 timeout, -1003 host not found, -1200 TLS).",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "NSURLErrorDomain -1 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-nsurlerrordomain-1009",
+    "category": "macos",
+    "code": "NSURLErrorDomain -1009",
+    "displayCode": "NSURLErrorDomain -1009",
+    "title": "No Internet Connection",
+    "shortDescription": "macOS reports no active internet connection.",
+    "fullDescription": "Returned when the network interface reports offline (Wi-Fi off, Ethernet unplugged, or Airplane mode). Reset Wi-Fi from the menu bar, or run 'sudo ifconfig en0 down && sudo ifconfig en0 up'.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "NSURLErrorDomain -1009 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is NSURLErrorDomain -1009 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-smc-reset-required",
+    "category": "macos",
+    "code": "SMC Reset Required",
+    "displayCode": "SMC Reset Required",
+    "title": "SMC Reset Required",
+    "shortDescription": "Symptoms suggest the System Management Controller needs a reset.",
+    "fullDescription": "On Intel Macs, the SMC manages power, fans, battery, and sleep. On laptops, shut down, press Shift+Control+Option + Power for 10 seconds. On Apple Silicon, the SMC is replaced by power cycling the Mac via Shut Down > 10s hold.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "SMC Reset Required reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is SMC Reset Required a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-pram-nvram-reset",
+    "category": "macos",
+    "code": "PRAM/NVRAM Reset",
+    "displayCode": "PRAM/NVRAM Reset",
+    "title": "PRAM/NVRAM Reset Required",
+    "shortDescription": "NVRAM contains corrupt settings that require a reset.",
+    "fullDescription": "NVRAM stores startup disk, display resolution, and sound settings. Intel Macs: hold Cmd+Option+P+R at boot for 20 seconds. Apple Silicon resets NVRAM automatically at each boot.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "PRAM/NVRAM Reset reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is PRAM/NVRAM Reset a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-boot-camp-bootcamp-error",
+    "category": "macos",
+    "code": "Boot Camp BOOTCAMP-ERROR",
+    "displayCode": "Boot Camp BOOTCAMP-ERROR",
+    "title": "Boot Camp Assistant Failure",
+    "shortDescription": "Boot Camp Assistant could not partition the disk.",
+    "fullDescription": "On Intel Macs, Boot Camp requires a healthy APFS container and Windows 10/11 ISO. Common causes: disk has multiple partitions, FileVault encryption enabled, or the APFS container is fragmented.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Boot Camp BOOTCAMP-ERROR reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Boot Camp BOOTCAMP-ERROR a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-icloud-sync-error-ckerrordomain-4",
+    "category": "macos",
+    "code": "iCloud Sync Error CKErrorDomain 4",
+    "displayCode": "iCloud Sync Error CKErrorDomain 4",
+    "title": "iCloud Network Unavailable",
+    "shortDescription": "CloudKit reports the network is unavailable.",
+    "fullDescription": "iCloud Drive, Photos, and Notes all use CloudKit. Error 4 means the client cannot reach api.icloud.com or a captive portal is intercepting traffic. Sign out/in of iCloud in System Settings > Apple ID.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "iCloud Sync Error CKErrorDomain 4 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is iCloud Sync Error CKErrorDomain 4 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-icloud-ckerrordomain-15",
+    "category": "macos",
+    "code": "iCloud CKErrorDomain 15",
+    "displayCode": "iCloud CKErrorDomain 15",
+    "title": "iCloud Zone Not Found",
+    "shortDescription": "CloudKit zone could not be located.",
+    "fullDescription": "App-specific iCloud containers may become orphaned after restore. Sign out of iCloud and sign back in, or reset the app's local data (e.g., delete and reinstall).",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "iCloud CKErrorDomain 15 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is iCloud CKErrorDomain 15 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-mds-stores-100",
+    "category": "macos",
+    "code": "mds_stores 100%",
+    "displayCode": "mds_stores 100%",
+    "title": "Spotlight Indexer High CPU",
+    "shortDescription": "mds/mds_stores process is consuming excessive CPU.",
+    "fullDescription": "Spotlight is rebuilding its index. Expected after macOS upgrades, but persistent high CPU indicates a corrupt Spotlight index. Run 'sudo mdutil -E /' to force a rebuild.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "mds_stores 100% reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is mds_stores 100% a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-mdworker-shared-crash",
+    "category": "macos",
+    "code": "mdworker_shared Crash",
+    "displayCode": "mdworker_shared Crash",
+    "title": "Spotlight Worker Crash",
+    "shortDescription": "A Spotlight worker process crashed while importing a file.",
+    "fullDescription": "A buggy Spotlight importer plugin (often installed by third-party apps) crashes on a specific file type. Check Console.app under 'Crash Reports' and remove the offending .mdimporter from /Library/Spotlight.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "mdworker_shared Crash reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is mdworker_shared Crash a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-sip-enabled-block",
+    "category": "macos",
+    "code": "SIP Enabled Block",
+    "displayCode": "SIP Enabled Block",
+    "title": "System Integrity Protection Blocked Operation",
+    "shortDescription": "SIP prevented a process from writing to a protected location.",
+    "fullDescription": "SIP protects /System, /usr (except /usr/local), /bin, and /sbin. The app needs to be signed and notarized, or SIP must be disabled from Recovery with 'csrutil disable' (not recommended on daily drivers).",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "SIP Enabled Block reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is SIP Enabled Block a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-sip-status-unknown",
+    "category": "macos",
+    "code": "SIP Status Unknown",
+    "displayCode": "SIP Status Unknown",
+    "title": "SIP Status Could Not Be Determined",
+    "shortDescription": "csrutil cannot determine whether SIP is enabled.",
+    "fullDescription": "Usually indicates NVRAM corruption or booting from a non-Apple bootloader. Reset NVRAM and verify with 'csrutil status' after reboot.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "SIP Status Unknown reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is SIP Status Unknown a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-rosetta-not-installed",
+    "category": "macos",
+    "code": "Rosetta Not Installed",
+    "displayCode": "Rosetta Not Installed",
+    "title": "Rosetta 2 Not Installed",
+    "shortDescription": "The app requires Rosetta 2 but it is not installed.",
+    "fullDescription": "Apple Silicon Macs need Rosetta 2 to run Intel (x86_64) binaries. Install from Terminal with: softwareupdate --install-rosetta --agree-to-license",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Rosetta Not Installed reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Rosetta Not Installed a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-rosetta-translation-failed",
+    "category": "macos",
+    "code": "Rosetta Translation Failed",
+    "displayCode": "Rosetta Translation Failed",
+    "title": "Rosetta Translation Failed",
+    "shortDescription": "Rosetta 2 could not translate the Intel binary.",
+    "fullDescription": "Happens with binaries using AVX/AVX2 SIMD, or unsigned apps on macOS Sonoma+. Check the app vendor for an Apple Silicon native build; reinstall Rosetta via softwareupdate if the failure is generic.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Rosetta Translation Failed reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Rosetta Translation Failed a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-filevault-0x4005",
+    "category": "macos",
+    "code": "FileVault 0x4005",
+    "displayCode": "FileVault 0x4005",
+    "title": "FileVault Personal Recovery Key Failed",
+    "shortDescription": "The Personal Recovery Key was rejected during FileVault unlock.",
+    "fullDescription": "macOS has eight attempts before wiping the key slot. Boot to Recovery (Cmd+R / power+Options), open Disk Utility > File > Unlock APFS Volume, or use your iCloud recovery key.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "FileVault 0x4005 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is FileVault 0x4005 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-filevault-escrow-failed",
+    "category": "macos",
+    "code": "FileVault Escrow Failed",
+    "displayCode": "FileVault Escrow Failed",
+    "title": "FileVault Escrow To iCloud Failed",
+    "shortDescription": "macOS could not escrow the FileVault recovery key to iCloud.",
+    "fullDescription": "Sign-in issues, managed Apple IDs, or MDM configuration blocking key escrow cause this. Disable and re-enable FileVault or hand the key to your MDM's escrow server.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "FileVault Escrow Failed reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is FileVault Escrow Failed a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-time-machine-45-backup-failed",
+    "category": "macos",
+    "code": "Time Machine 45 - Backup Failed",
+    "displayCode": "Time Machine 45 - Backup Failed",
+    "title": "Time Machine Backup Failed",
+    "shortDescription": "Time Machine could not complete the backup.",
+    "fullDescription": "Covers unmounted disks, sparsebundle corruption on network shares, and APFS snapshot exhaustion. Run 'tmutil listbackups' and 'sudo tmutil startbackup --auto' to diagnose, and repair the destination with Disk Utility.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Time Machine 45 - Backup Failed reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Time Machine 45 - Backup Failed a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-time-machine-109-sparsebundle-corrupt",
+    "category": "macos",
+    "code": "Time Machine 109 - Sparsebundle Corrupt",
+    "displayCode": "Time Machine 109 - Sparsebundle Corrupt",
+    "title": "Time Machine Sparsebundle Corrupt",
+    "shortDescription": "The Time Machine network backup sparsebundle is corrupt.",
+    "fullDescription": "Network Time Machine shares wrap the backup in a sparsebundle that can corrupt after abrupt disconnects. Mount the sparsebundle and run 'fsck_hfs' or 'fsck_apfs' from Terminal.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Time Machine 109 - Sparsebundle Corrupt reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Time Machine 109 - Sparsebundle Corrupt a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-mail-0x1e",
+    "category": "macos",
+    "code": "Mail 0x1E",
+    "displayCode": "Mail 0x1E",
+    "title": "Mail Connection Doctor Error 0x1E",
+    "shortDescription": "macOS Mail could not connect to the mail server.",
+    "fullDescription": "Authentication failures, TLS downgrade, or outdated app-specific passwords. Check Mail > Window > Connection Doctor for the exact failing account, then regenerate an app password for iCloud/Gmail.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Mail 0x1E reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Mail 0x1E a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-mail-0x23",
+    "category": "macos",
+    "code": "Mail 0x23",
+    "displayCode": "Mail 0x23",
+    "title": "Mail Envelope Index Corrupt",
+    "shortDescription": "Mail's Envelope Index database is corrupt.",
+    "fullDescription": "Quit Mail, move ~/Library/Mail/V10/MailData/Envelope\\ Index* to Desktop, and relaunch. Mail rebuilds the index from the message store.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Mail 0x23 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Mail 0x23 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-safari-private-0xdead10cc",
+    "category": "macos",
+    "code": "Safari Private 0xDEAD10CC",
+    "displayCode": "Safari Private 0xDEAD10CC",
+    "title": "Safari Private Window File Lock",
+    "shortDescription": "A Private Browsing window crashed with 0xDEAD10CC.",
+    "fullDescription": "0xDEAD10CC is Apple's signature for a process killed while holding a file lock during App Nap. Usually caused by a stuck WebContent process; quit Safari fully and delete ~/Library/Caches/com.apple.Safari.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Safari Private 0xDEAD10CC reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Safari Private 0xDEAD10CC a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-safari-webcontent-crash",
+    "category": "macos",
+    "code": "Safari WebContent Crash",
+    "displayCode": "Safari WebContent Crash",
+    "title": "Safari WebContent Process Crash",
+    "shortDescription": "A Safari tab's WebContent process crashed.",
+    "fullDescription": "An individual WebKit renderer crashed, isolating the damage to one tab. Persistent crashes on the same site indicate a WebKit bug — update macOS and Safari.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Safari WebContent Crash reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Safari WebContent Crash a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-app-store-1001",
+    "category": "macos",
+    "code": "App Store 1001",
+    "displayCode": "App Store 1001",
+    "title": "App Store Download Error 1001",
+    "shortDescription": "The App Store could not download the requested app.",
+    "fullDescription": "Transient CDN issue or corrupted partial download. Quit the App Store, remove ~/Library/Caches/com.apple.appstore, and retry.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "App Store 1001 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is App Store 1001 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-app-store-100-unknown-error",
+    "category": "macos",
+    "code": "App Store 100 - Unknown Error",
+    "displayCode": "App Store 100 - Unknown Error",
+    "title": "App Store Unknown Error",
+    "shortDescription": "The App Store reported error 100 during purchase/install.",
+    "fullDescription": "Apple ID payment method, regional storefront mismatch, or MDM purchasing restrictions. Verify billing information and, if managed, that Volume Purchasing is configured.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "App Store 100 - Unknown Error reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is App Store 100 - Unknown Error a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-gatekeeper-l0w",
+    "category": "macos",
+    "code": "Gatekeeper L0W",
+    "displayCode": "Gatekeeper L0W",
+    "title": "Gatekeeper Launch Blocked",
+    "shortDescription": "Gatekeeper refused to launch an app because it is not notarized.",
+    "fullDescription": "On Sonoma+, unsigned/unnotarized apps require System Settings > Privacy & Security > 'Open Anyway'. Alternatively remove the quarantine bit with: xattr -d com.apple.quarantine /path/to/App.app",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Gatekeeper L0W reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is Gatekeeper L0W a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-xprotect-detected",
+    "category": "macos",
+    "code": "XProtect Detected",
+    "displayCode": "XProtect Detected",
+    "title": "XProtect Malware Detection",
+    "shortDescription": "macOS XProtect detected malware in a downloaded file.",
+    "fullDescription": "Apple's built-in malware signature scan quarantined the file. Do not bypass unless you are certain of the source; update XProtect definitions via 'sudo softwareupdate --background'.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "XProtect Detected reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is XProtect Detected a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-apfs-container-full",
+    "category": "macos",
+    "code": "APFS Container Full",
+    "displayCode": "APFS Container Full",
+    "title": "APFS Container Full",
+    "shortDescription": "The APFS container is out of space.",
+    "fullDescription": "macOS retains local Time Machine snapshots that can consume the container. Run 'tmutil thinlocalsnapshots / 10000000000 4' to reclaim space.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "APFS Container Full reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is APFS Container Full a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  },
+  {
+    "id": "windows-macos-diskarbitration-119930868",
+    "category": "macos",
+    "code": "DiskArbitration -119930868",
+    "displayCode": "DiskArbitration -119930868",
+    "title": "Disk Could Not Be Unmounted",
+    "shortDescription": "macOS could not unmount a volume.",
+    "fullDescription": "A process still has files open on the volume. Identify with 'lsof /Volumes/YourDisk' and kill the offender, or force-eject with 'diskutil unmountDisk force /dev/diskX'.",
+    "affectedVersions": [
+      "macOS Ventura",
+      "macOS Sonoma",
+      "macOS Sequoia"
+    ],
+    "causes": [
+      {
+        "cause": "Third-party kernel extension or driver",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted system caches or preferences",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Outdated macOS build missing Apple-side fix",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware issue (RAM, SSD, Thunderbolt peripheral)",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "DiskArbitration -119930868 reported in Console.app or a system dialog",
+      "Issue reproduces after reboot",
+      "Related crash reports in /Library/Logs/DiagnosticReports",
+      "Problem clears temporarily after clearing caches"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot and reproduce",
+        "instruction": "Restart the Mac normally and reproduce the issue. Capture the exact error string from Console.app > 'All Messages'.",
+        "tools": [
+          "Console.app"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update macOS",
+        "instruction": "System Settings > General > Software Update. Install all available updates.",
+        "tools": [
+          "System Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Boot into Safe Mode",
+        "instruction": "Intel: hold Shift at boot. Apple Silicon: shut down, hold Power until 'Options', select startup disk while holding Shift.",
+        "tools": [
+          "macOS Recovery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Reset relevant subsystem",
+        "instruction": "If the code relates to power/thermal: reset SMC. If it relates to display/startup disk: reset NVRAM. If iCloud: sign out and back in.",
+        "tools": [
+          "Recovery Mode"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 5,
+        "title": "Run Apple Diagnostics",
+        "instruction": "Intel: hold D at boot. Apple Silicon: boot to Options and press Cmd+D. Review reference codes and escalate hardware failures to Apple.",
+        "tools": [
+          "Apple Diagnostics"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Apple Support or Genius Bar — in-warranty Macs get free diagnosis; AppleCare covers repair after hardware tests fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is DiskArbitration -119930868 a hardware problem?",
+        "a": "Not usually. Try software fixes (update, Safe Mode, cache reset) first. Apple Diagnostics confirms hardware failures."
+      },
+      {
+        "q": "Will I lose data?",
+        "a": "Software fixes are non-destructive. Before advanced steps (reinstall, erase), make a Time Machine backup."
+      }
+    ]
+  }
+]

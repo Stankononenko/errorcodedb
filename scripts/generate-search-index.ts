@@ -128,6 +128,7 @@ const WIN_SLUG: Record<string, string> = {
   "system-errors.json": "system",
   "browser-errors.json": "browser",
   "gaming.json": "gaming",
+  "macos.json": "macos",
 };
 const WIN_LABEL: Record<string, string> = {
   bsod: "BSOD",
@@ -135,6 +136,7 @@ const WIN_LABEL: Record<string, string> = {
   system: "System",
   browser: "Browser/Network",
   gaming: "Gaming & Launchers",
+  macos: "macOS Errors",
 };
 for (const file of jsonFilesIn(path.join(DATA_DIR, "windows"))) {
   const slug = WIN_SLUG[file] || file.replace(".json", "");
