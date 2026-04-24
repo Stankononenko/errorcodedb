@@ -1,0 +1,985 @@
+[
+  {
+    "id": "samsung-ssd-ssd-drive-not-recognized",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "NOT_RECOGNIZED",
+    "displayCode": "SSD Not Recognized",
+    "alternativeCodes": [],
+    "title": "Samsung T7 Shield not detected",
+    "shortDescription": "Portable SSD doesn't appear on host.",
+    "fullDescription": "T7/T7 Shield enumeration failures are usually cable, port, or firmware related. Samsung Magician can detect internal issues the OS won't.",
+    "causes": [
+      {
+        "cause": "Bad or charge-only USB-C cable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Underpowered port",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware stale",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "LED on but no drive",
+      "OS doesn't mount",
+      "Disappears after few seconds"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test new cable",
+        "instruction": "Use certified USB-C 10 Gbps cable.",
+        "tools": [
+          "USB-C cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Try another computer",
+        "instruction": "Rule out host.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Firmware via Magician",
+        "instruction": "Install Samsung Magician and update firmware.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Samsung T7",
+      "Samsung T7 Shield",
+      "Samsung 980 Pro"
+    ],
+    "partsNeeded": [
+      {
+        "part": "USB-C cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Critical data loss – professional recovery.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Samsung T7 Shield not recognized",
+    "faq": [
+      {
+        "q": "Does T7 need USB 3.2 Gen 2?",
+        "a": "Yes, for full 1050 MB/s."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-trim-not-supported",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "TRIM_NOT_SUPPORTED",
+    "displayCode": "TRIM Not Supported",
+    "alternativeCodes": [],
+    "title": "TRIM not passing to Samsung SSD",
+    "shortDescription": "TRIM disabled – performance degrades.",
+    "fullDescription": "External enclosures or RAID controllers may block TRIM. Magician reports TRIM status; enable where possible.",
+    "causes": [
+      {
+        "cause": "USB bridge without TRIM support",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "macOS default disables TRIM on external",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "RAID container",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Magician: TRIM disabled",
+      "Gradual slowdown",
+      "High write amplification"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check status",
+        "instruction": "Magician > Overview shows TRIM status.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Enable TRIM OS",
+        "instruction": "Windows fsutil, macOS trimforce enable.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Upgrade enclosure",
+        "instruction": "UASP-capable enclosure required for TRIM passthrough.",
+        "tools": [
+          "UASP enclosure"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Samsung T7",
+      "Samsung 870 EVO (external)"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 40
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Samsung SSD TRIM not supported",
+    "faq": [
+      {
+        "q": "Is TRIM necessary?",
+        "a": "For longevity and speed yes."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-performance-throttled",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "THROTTLED",
+    "displayCode": "Performance Throttled",
+    "alternativeCodes": [],
+    "title": "Samsung SSD throttling",
+    "shortDescription": "Speeds drop during sustained workload.",
+    "fullDescription": "980 Pro and other high-end drives throttle aggressively when controller temperatures exceed ~70°C, which is common in M.2 slots without heatsinks. T7 also thermally throttles; T7 Shield has better sustained speeds.",
+    "causes": [
+      {
+        "cause": "Thermal throttling",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Exhausted SLC cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCIe lane misconfiguration (internal)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Speed drops mid-write",
+      "SSD temp > 70°C",
+      "Hot case"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Add heatsink (internal)",
+        "instruction": "For 980 Pro, install an M.2 heatsink.",
+        "tools": [
+          "M.2 heatsink"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Airflow",
+        "instruction": "Ensure case airflow around M.2 slot / external SSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Split big transfers",
+        "instruction": "Pause between large batches.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Samsung 980 Pro",
+      "Samsung T7",
+      "Samsung T7 Shield"
+    ],
+    "partsNeeded": [
+      {
+        "part": "M.2 heatsink",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "samsung-ssd-ssd-drive-overheat"
+    ],
+    "videoSearchQuery": "Samsung 980 Pro throttling fix",
+    "faq": [
+      {
+        "q": "Heatsink mandatory for 980 Pro?",
+        "a": "Highly recommended; PS5 requires heatsink."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-firmware-update-required",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "FW_UPDATE_REQ",
+    "displayCode": "Firmware Update Required",
+    "alternativeCodes": [],
+    "title": "Samsung SSD firmware outdated",
+    "shortDescription": "Firmware update available – stability and speed fixes.",
+    "fullDescription": "Samsung released critical firmware fixes for 980 Pro (and 990 Pro) to address rapid health degradation. Updating is essential.",
+    "causes": [
+      {
+        "cause": "Pre-fix firmware",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Magician prompts update",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Host compatibility bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Magician 'Firmware update available'",
+      "Erratic health percentage drops",
+      "Random stability issues"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Always back up before firmware update.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Magician update",
+        "instruction": "Samsung Magician > Firmware Update.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Verify version",
+        "instruction": "Confirm current firmware version after update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Samsung 980 Pro",
+      "Samsung 990 Pro",
+      "Samsung T7"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If drive bricks during update, Samsung support/RMA.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Samsung 980 Pro firmware update",
+    "faq": [
+      {
+        "q": "980 Pro health issue?",
+        "a": "Firmware fix (3B2QGXA7+) addressed rapid health drop bug."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-smart-critical",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "SMART_CRITICAL",
+    "displayCode": "S.M.A.R.T. Critical",
+    "alternativeCodes": [],
+    "title": "Samsung SSD SMART critical warning",
+    "shortDescription": "SMART attributes indicate critical condition.",
+    "fullDescription": "Magician SMART warning. Attributes like Available Spare or Media Errors have gone beyond threshold. Back up and replace drive.",
+    "causes": [
+      {
+        "cause": "Wear-out (TBW exceeded)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NAND defect",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Controller failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "'Critical' warning in Magician",
+      "Dropping health percentage",
+      "Random read errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up everything",
+        "instruction": "Copy off immediately.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Check SMART attributes",
+        "instruction": "Note attributes triggering warning.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace / RMA",
+        "instruction": "In warranty, Samsung RMA.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Samsung 980 Pro",
+      "Samsung 990 Pro",
+      "Samsung 870 EVO"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 500,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "Hours for backup",
+    "whenToCallPro": "Data recovery if fails mid-backup.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Samsung SSD SMART critical",
+    "faq": [
+      {
+        "q": "Warranty covers wear-out?",
+        "a": "Up to rated TBW; beyond not."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-overheat",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "OVERHEAT",
+    "displayCode": "Over-Temperature",
+    "alternativeCodes": [],
+    "title": "Samsung SSD over-temperature",
+    "shortDescription": "SSD hit thermal limit – throttle or shutdown.",
+    "fullDescription": "980 Pro regularly exceeds 70°C without heatsink. Portable T7 also reaches 60-65°C in alu case. Beyond ~80°C drives throttle or disconnect to protect hardware.",
+    "causes": [
+      {
+        "cause": "No heatsink on M.2",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Poor case airflow",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Sustained load",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Temp > 75°C in Magician",
+      "Throttling during load",
+      "Sudden disconnects"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Heatsink",
+        "instruction": "Install M.2 heatsink on 980/990 Pro.",
+        "tools": [
+          "M.2 heatsink"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Airflow",
+        "instruction": "Improve case airflow; external SSDs on metal stand.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reduce load",
+        "instruction": "Break large transfers into chunks.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Samsung 980 Pro",
+      "Samsung 990 Pro",
+      "Samsung T7"
+    ],
+    "partsNeeded": [
+      {
+        "part": "M.2 heatsink",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "samsung-ssd-ssd-drive-performance-throttled"
+    ],
+    "videoSearchQuery": "Samsung 980 Pro overheat fix",
+    "faq": [
+      {
+        "q": "Critical temp?",
+        "a": "Throttle starts ~70°C; protection shutdown near 85°C."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-bad-block",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "BAD_BLOCK",
+    "displayCode": "Bad Block Detected",
+    "alternativeCodes": [],
+    "title": "Samsung SSD bad blocks rising",
+    "shortDescription": "NAND block remap count increasing.",
+    "fullDescription": "Normal at low rates; rising count signals wear-out. 980 Pro known health drop issue mitigated via firmware update.",
+    "causes": [
+      {
+        "cause": "NAND wear",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Pre-patch 980 Pro firmware",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Manufacturing defect",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Magician reports bad block rise",
+      "Health percentage drop",
+      "Occasional read errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Copy data to new drive.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Firmware update",
+        "instruction": "Apply Samsung firmware fix if 980 Pro.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "RMA if premature",
+        "instruction": "Under warranty, Samsung will RMA.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Samsung 980 Pro",
+      "Samsung 870 EVO"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "Data recovery if can't back up.",
+    "relatedCodes": [
+      "samsung-ssd-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "Samsung SSD bad block fix",
+    "faq": [
+      {
+        "q": "Is 980 Pro defective?",
+        "a": "Some early units had firmware bug now patched."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-write-protect",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "WRITE_PROTECT",
+    "displayCode": "Write Protection Active",
+    "alternativeCodes": [],
+    "title": "Samsung SSD went read-only",
+    "shortDescription": "Drive writes blocked due to self-protection.",
+    "fullDescription": "Drives entering end-of-life may lock into read-only to preserve data. Pull your data and retire drive.",
+    "causes": [
+      {
+        "cause": "End-of-life self-protection",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Firmware bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Host mount options",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Writes fail",
+      "Dashboard 'Read-Only'",
+      "Wear-out indicator at 100%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Copy data",
+        "instruction": "Back up immediately.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Firmware update",
+        "instruction": "Try Magician firmware update.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Retire drive after backup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Samsung 870 EVO",
+      "Samsung 980 Pro"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "samsung-ssd-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "Samsung SSD read only fix",
+    "faq": [
+      {
+        "q": "Reversible?",
+        "a": "Wear-out read-only is permanent."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-io-error",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "IO_ERROR",
+    "displayCode": "I/O Error",
+    "alternativeCodes": [],
+    "title": "Samsung SSD I/O errors",
+    "shortDescription": "Read/write failures during access.",
+    "fullDescription": "I/O errors point to firmware, cable, or NAND issues. Back up before further troubleshooting.",
+    "causes": [
+      {
+        "cause": "Firmware bug",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cable/enclosure issue",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NAND wear",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Fatal device hardware error'",
+      "Random disconnects",
+      "Partial transfers"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Back up data.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Swap cable/port",
+        "instruction": "Try known-good cable.",
+        "tools": [
+          "USB-C cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Firmware update",
+        "instruction": "Update via Magician.",
+        "tools": [
+          "Samsung Magician"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Samsung T7",
+      "Samsung 980 Pro"
+    ],
+    "partsNeeded": [
+      {
+        "part": "USB-C cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Critical data – pro recovery.",
+    "relatedCodes": [
+      "samsung-ssd-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "Samsung SSD I/O error fix",
+    "faq": [
+      {
+        "q": "Magician required?",
+        "a": "Recommended for firmware and SMART."
+      }
+    ]
+  },
+  {
+    "id": "samsung-ssd-ssd-drive-encryption-lock",
+    "brand": "Samsung SSD",
+    "brandSlug": "samsung-ssd",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "ENCRYPTION_LOCK",
+    "displayCode": "Portable SSD Locked",
+    "alternativeCodes": [],
+    "title": "Samsung T7 password lock",
+    "shortDescription": "Drive locked by Samsung Portable SSD software.",
+    "fullDescription": "Samsung Portable SSD software sets AES-256 password; forgotten password renders data unrecoverable.",
+    "causes": [
+      {
+        "cause": "Password protection enabled",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Forgotten password",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "App missing on host",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Samsung Portable SSD app prompts password",
+      "Only Samsung_T7.exe visible",
+      "Drive not usable without app"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install software",
+        "instruction": "Download latest Samsung Portable SSD app.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Enter password",
+        "instruction": "Unlock via app.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Reset destroys data",
+        "instruction": "Factory reset in app only clears data – resets password but loses everything.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Samsung T7",
+      "Samsung T7 Shield",
+      "Samsung T5"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 500,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Pro recovery unlikely to help with hardware AES.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Samsung T7 password locked",
+    "faq": [
+      {
+        "q": "Can Samsung unlock?",
+        "a": "No – password is not recoverable by Samsung."
+      }
+    ]
+  }
+]

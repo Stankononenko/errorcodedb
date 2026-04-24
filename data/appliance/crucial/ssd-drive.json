@@ -1,0 +1,780 @@
+[
+  {
+    "id": "crucial-ssd-drive-not-recognized",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "NOT_RECOGNIZED",
+    "displayCode": "SSD Not Recognized",
+    "alternativeCodes": [],
+    "title": "Crucial SSD not detected by BIOS or OS",
+    "shortDescription": "Drive doesn't appear in boot menu or Windows.",
+    "fullDescription": "Crucial MX500 (SATA) and T700 (PCIe 5.0 NVMe) detection issues typically trace to cabling, M.2 slot config, or firmware quirks. Check BIOS first – if not there, it's hardware or physical.",
+    "causes": [
+      {
+        "cause": "Loose SATA/M.2 seating",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incompatible BIOS for PCIe 5.0 SSD",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firmware bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Drive missing in BIOS",
+      "Windows Disk Management empty",
+      "Boot failure if system drive"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat drive",
+        "instruction": "Power off, reseat the M.2 or SATA SSD.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update BIOS",
+        "instruction": "For T700, ensure BIOS supports PCIe 5.0 x4; update to latest.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Test in another system",
+        "instruction": "Rule out motherboard slot by testing in second PC.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial T700",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Critical data – professional recovery.",
+    "relatedCodes": [
+      "crucial-ssd-drive-firmware-update-required"
+    ],
+    "videoSearchQuery": "Crucial SSD not detected BIOS",
+    "faq": [
+      {
+        "q": "T700 need PCIe 5.0?",
+        "a": "For full speed yes; backwards compatible with PCIe 4.0 at reduced speed."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-trim-not-supported",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "TRIM_NOT_SUPPORTED",
+    "displayCode": "TRIM Not Supported",
+    "alternativeCodes": [],
+    "title": "TRIM disabled on Crucial SSD",
+    "shortDescription": "OS isn't sending TRIM commands.",
+    "fullDescription": "Crucial Storage Executive reports TRIM status. Issue usually external enclosure, RAID array, or OS setting.",
+    "causes": [
+      {
+        "cause": "RAID mode instead of AHCI",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "USB enclosure without UASP",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Old OS without TRIM",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Storage Executive TRIM: No",
+      "Slowdown over time",
+      "High write amp in SMART"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check status",
+        "instruction": "Run 'fsutil behavior query DisableDeleteNotify' – 0 means TRIM enabled.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Enable TRIM",
+        "instruction": "Windows: fsutil behavior set DisableDeleteNotify 0.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Switch to AHCI",
+        "instruction": "Change BIOS from RAID to AHCI (may require reinstall).",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Crucial SSD TRIM not supported",
+    "faq": [
+      {
+        "q": "Intel RST block TRIM?",
+        "a": "Some RAID configs do; Intel RST-enabled AHCI passes it."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-performance-throttled",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "THROTTLED",
+    "displayCode": "Performance Throttled",
+    "alternativeCodes": [],
+    "title": "Crucial T700 throttling under load",
+    "shortDescription": "Sustained writes cap far below rated speed.",
+    "fullDescription": "T700 can exceed 12 GB/s reads, but generates significant heat. Without the Crucial or third-party heatsink, throttling kicks in within seconds of heavy load.",
+    "causes": [
+      {
+        "cause": "Thermal throttling (T700)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "SLC cache exhausted",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PCIe Gen3 slot used",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Speed drops mid-write",
+      "Temp > 75°C",
+      "PCIe link reported as Gen3 instead of Gen5"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install heatsink",
+        "instruction": "Use Crucial's heatsink version of T700 or add motherboard M.2 heatsink.",
+        "tools": [
+          "M.2 heatsink"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Verify PCIe gen",
+        "instruction": "BIOS/Storage Executive – confirm Gen5 link if board supports it.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Improve airflow",
+        "instruction": "Case fans aimed at M.2 area.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Crucial T700",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [
+      {
+        "part": "M.2 heatsink",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 50
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "crucial-ssd-drive-overheat"
+    ],
+    "videoSearchQuery": "Crucial T700 throttling fix",
+    "faq": [
+      {
+        "q": "T700 needs heatsink?",
+        "a": "Yes – heat output requires active cooling for sustained speeds."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-firmware-update-required",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "FW_UPDATE_REQ",
+    "displayCode": "Firmware Update Required",
+    "alternativeCodes": [],
+    "title": "Crucial SSD firmware update",
+    "shortDescription": "Out-of-date firmware – stability/performance fix needed.",
+    "fullDescription": "MX500 had firmware updates addressing unexpected wear counter bug. Always update firmware via Storage Executive before deploying.",
+    "causes": [
+      {
+        "cause": "Pre-update firmware",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Executive prompts update",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bug report from Crucial support",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Firmware update available' in Storage Executive",
+      "Erratic SMART values",
+      "Unexpected slowdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Back up before firmware update.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Storage Executive update",
+        "instruction": "Run Crucial Storage Executive > Firmware Updates.",
+        "tools": [
+          "Storage Executive"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Bootable ISO",
+        "instruction": "If Windows update fails, use Crucial bootable ISO.",
+        "tools": [
+          "USB flash drive"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial T700",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If drive bricks during update.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Crucial SSD firmware update",
+    "faq": [
+      {
+        "q": "MX500 known bugs?",
+        "a": "Earlier firmware had unreliable SMART; later firmware stabilized."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-smart-critical",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "SMART_CRITICAL",
+    "displayCode": "S.M.A.R.T. Critical",
+    "alternativeCodes": [],
+    "title": "Crucial SSD SMART critical warning",
+    "shortDescription": "SMART indicates critical condition – failure near.",
+    "fullDescription": "Storage Executive displays critical warning when wear, spare blocks, or errors exceed threshold. Back up immediately, plan replacement.",
+    "causes": [
+      {
+        "cause": "Wear-out (TBW reached)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NAND failures",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Controller fault",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Executive 'Warning'",
+      "Health percentage low",
+      "Read errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up now",
+        "instruction": "Prioritize critical data off-drive.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Inspect attributes",
+        "instruction": "Identify which SMART attribute failed for RMA evidence.",
+        "tools": [
+          "Storage Executive"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "RMA / replace",
+        "instruction": "Warranty claim if in period.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial T700",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 300
+      },
+      "professional": {
+        "min": 500,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "Hours for backup",
+    "whenToCallPro": "Data recovery if backup can't finish.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Crucial SSD SMART critical",
+    "faq": [
+      {
+        "q": "What does 'Health' mean?",
+        "a": "Percentage of remaining endurance based on writes and wear."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-overheat",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "OVERHEAT",
+    "displayCode": "Over-Temperature",
+    "alternativeCodes": [],
+    "title": "Crucial T700 overheating",
+    "shortDescription": "SSD temperature exceeds safe operating range.",
+    "fullDescription": "PCIe 5.0 drives like T700 run significantly hotter than Gen4. Without heatsink and good airflow, temps spike past 80°C under load causing throttling or protective shutdown.",
+    "causes": [
+      {
+        "cause": "No heatsink on PCIe 5.0 SSD",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Poor case airflow",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "GPU blocking M.2",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Executive temp > 80°C",
+      "Throttle during gaming/loading",
+      "System freeze under load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Heatsink version",
+        "instruction": "Buy T700 w/ heatsink or install motherboard M.2 heatsink.",
+        "tools": [
+          "M.2 heatsink"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Case fans",
+        "instruction": "Ensure top/side fans blow across M.2.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Move M.2 slot",
+        "instruction": "If CPU M.2 slot under GPU, move to secondary slot if thermal better.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Crucial T700",
+      "Crucial T705"
+    ],
+    "partsNeeded": [
+      {
+        "part": "M.2 heatsink",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 60
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "crucial-ssd-drive-performance-throttled"
+    ],
+    "videoSearchQuery": "Crucial T700 overheat fix",
+    "faq": [
+      {
+        "q": "Can I use T700 without heatsink?",
+        "a": "Not recommended – throttles severely."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-bad-block",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "BAD_BLOCK",
+    "displayCode": "Bad Block Detected",
+    "alternativeCodes": [],
+    "title": "Crucial SSD bad blocks rising",
+    "shortDescription": "NAND block remap count increasing.",
+    "fullDescription": "Normal at low rates; rapid increase signals wear-out or defective NAND. Back up and plan replacement or RMA.",
+    "causes": [
+      {
+        "cause": "NAND wear",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Manufacturing defect",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Power loss during write",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Storage Executive reports bad block growth",
+      "Health percentage drops",
+      "Read errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Save data to fresh drive.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Firmware update",
+        "instruction": "Update firmware to confirm not a software bug.",
+        "tools": [
+          "Storage Executive"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "RMA if under warranty",
+        "instruction": "Crucial warranty portal for RMA.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 250
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "Data recovery if backup fails.",
+    "relatedCodes": [
+      "crucial-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "Crucial SSD bad block fix",
+    "faq": [
+      {
+        "q": "How many bad blocks are normal?",
+        "a": "A few over lifetime; rapid growth is not."
+      }
+    ]
+  },
+  {
+    "id": "crucial-ssd-drive-write-protect",
+    "brand": "Crucial",
+    "brandSlug": "crucial",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "WRITE_PROTECT",
+    "displayCode": "Write Protection Active",
+    "alternativeCodes": [],
+    "title": "Crucial SSD became read-only",
+    "shortDescription": "Self-protection read-only mode activated.",
+    "fullDescription": "When rated TBW exceeded or serious errors encountered, Crucial SSDs may lock to read-only to protect data. Back up and retire.",
+    "causes": [
+      {
+        "cause": "End-of-life self-protect",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Firmware hiccup",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Host mount options",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Write errors",
+      "Executive shows 'Read-only'",
+      "Wear-out 100%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Copy all data off immediately.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Firmware update",
+        "instruction": "Try firmware update – may clear if false positive.",
+        "tools": [
+          "Storage Executive"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "After backup retire the SSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Crucial MX500",
+      "Crucial P3 Plus"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 250
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "crucial-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "Crucial SSD read only fix",
+    "faq": [
+      {
+        "q": "Can the drive be reset?",
+        "a": "End-of-life read-only is permanent; firmware bug read-only may clear after update."
+      }
+    ]
+  }
+]

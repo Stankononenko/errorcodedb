@@ -1,0 +1,958 @@
+[
+  {
+    "id": "sandisk-ssd-drive-not-recognized",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "NOT_RECOGNIZED",
+    "displayCode": "SSD Not Recognized",
+    "alternativeCodes": [],
+    "title": "SanDisk portable SSD not detected",
+    "shortDescription": "Computer doesn't see the portable SSD.",
+    "fullDescription": "SanDisk Extreme Pro and portable SSDs occasionally fail to enumerate due to the well-known SD/Extreme firmware bug, bad USB-C cable, or power delivery issues.\n\nFirmware updates addressed a major failure wave in 2023 – check version first.",
+    "causes": [
+      {
+        "cause": "Known Extreme firmware bug (pre-2023 FW)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cheap USB-C cable",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Port not providing enough power",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Drive invisible to OS",
+      "LED on but no mount",
+      "Occasional disconnects then permanent failure"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Firmware check",
+        "instruction": "Install SanDisk Dashboard / Western Digital Dashboard and update firmware.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Use quality USB-C cable",
+        "instruction": "Use a certified USB-C 10 Gbps cable, not a charge-only cable.",
+        "tools": [
+          "USB-C cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Claim warranty",
+        "instruction": "Many affected Extreme/Extreme Pro are eligible for warranty replacement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro Portable SSD",
+      "SanDisk Extreme Portable SSD V2"
+    ],
+    "partsNeeded": [
+      {
+        "part": "USB-C cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Critical data on failed Extreme series – data recovery, then RMA.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-firmware-update-required"
+    ],
+    "videoSearchQuery": "SanDisk Extreme SSD not recognized fix",
+    "faq": [
+      {
+        "q": "Is my drive in the affected batch?",
+        "a": "Pre-firmware-update Extreme Pro V2 with certain controllers – check SanDisk advisory."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-trim-not-supported",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "TRIM_NOT_SUPPORTED",
+    "displayCode": "TRIM Not Supported",
+    "alternativeCodes": [],
+    "title": "TRIM not passing through to SanDisk SSD",
+    "shortDescription": "OS can't send TRIM commands to the SSD.",
+    "fullDescription": "TRIM keeps SSDs fast by telling them which blocks are freed. External enclosures, USB bridges, or RAID controllers may block TRIM, leading to performance degradation over time.",
+    "causes": [
+      {
+        "cause": "USB bridge doesn't support UASP/TRIM",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "macOS external SSD default",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "RAID / software container",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Dashboard shows TRIM: disabled",
+      "Gradual slow-down over weeks",
+      "High write amplification in SMART"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check TRIM status",
+        "instruction": "Windows: 'fsutil behavior query DisableDeleteNotify'. macOS: system_profiler SPSerialATADataType.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Enable TRIM",
+        "instruction": "Windows: 'fsutil behavior set DisableDeleteNotify 0'. macOS: trimforce enable.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Swap enclosure",
+        "instruction": "If USB bridge blocks TRIM, use a UASP-capable enclosure.",
+        "tools": [
+          "UASP enclosure"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Portable SSD",
+      "SanDisk Extreme Pro"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 40
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "SanDisk SSD TRIM not supported",
+    "faq": [
+      {
+        "q": "Does TRIM cause data loss?",
+        "a": "No – it only hints the SSD which blocks are unused."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-performance-throttled",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "THROTTLED",
+    "displayCode": "Performance Throttled",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD throttling under sustained load",
+    "shortDescription": "Sustained writes drop far below advertised speeds.",
+    "fullDescription": "Portable SSDs throttle to protect controller and NAND from thermal damage. The Extreme series gets hot quickly due to small aluminum housing. SLC cache exhaustion also causes sharp speed drops.",
+    "causes": [
+      {
+        "cause": "Thermal throttling",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SLC cache exhausted",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Slow host port (USB 3.0 5 Gbps)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Speed drops from 1000 MB/s to ~300 MB/s",
+      "Drive warm/hot to touch",
+      "Progress bar slows mid-copy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Improve cooling",
+        "instruction": "Place on a metal surface or use a small fan during long transfers.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Break up writes",
+        "instruction": "Pause between large batches to let SLC cache clear.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Use USB 3.2 Gen 2",
+        "instruction": "Connect to a 10 Gbps port for full throughput.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Portable SSD",
+      "SanDisk Extreme Pro Portable SSD"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-15 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-overheat"
+    ],
+    "videoSearchQuery": "SanDisk Extreme SSD throttling fix",
+    "faq": [
+      {
+        "q": "Is throttling harmful?",
+        "a": "No – it protects the drive but reduces speed."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-firmware-update-required",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "FW_UPDATE_REQ",
+    "displayCode": "Firmware Update Required",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD needs firmware update",
+    "shortDescription": "Outdated firmware with known bugs.",
+    "fullDescription": "SanDisk released critical firmware updates for the Extreme / Extreme Pro Portable SSD line after widespread data loss reports in 2023. Updating is strongly recommended.",
+    "causes": [
+      {
+        "cause": "Pre-bugfix firmware",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Host OS reports firmware mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Dashboard prompts update",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Dashboard 'Update available'",
+      "Random disconnects",
+      "Drive behavior erratic"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up data",
+        "instruction": "Back up to another drive BEFORE firmware update.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Run dashboard update",
+        "instruction": "SanDisk Dashboard > Firmware Update.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Verify version",
+        "instruction": "After update confirm firmware version reported in dashboard.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro Portable SSD V2",
+      "SanDisk Extreme Portable SSD V2"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If firmware update bricks drive, contact SanDisk support.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-not-recognized"
+    ],
+    "videoSearchQuery": "SanDisk Extreme firmware update",
+    "faq": [
+      {
+        "q": "Safe to update?",
+        "a": "Yes, but always back up data first."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-smart-critical",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "SMART_CRITICAL",
+    "displayCode": "S.M.A.R.T. Critical",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD SMART critical warning",
+    "shortDescription": "SMART attributes indicate critical wear or failure.",
+    "fullDescription": "Dashboard flagged a critical SMART attribute such as Media Wearout, Available Spare, or Uncorrectable Errors. Back up immediately and plan replacement.",
+    "causes": [
+      {
+        "cause": "Excessive write wear (TBW reached)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NAND failure",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Controller error spike",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Dashboard 'Critical' warning",
+      "Read errors on certain files",
+      "Slow writes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Copy data off drive immediately.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Check SMART attributes",
+        "instruction": "Note attribute IDs that tripped to diagnose cause.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Plan replacement",
+        "instruction": "Don't use drive for new data – RMA if in warranty.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro",
+      "SanDisk Extreme Portable SSD"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 300
+      },
+      "professional": {
+        "min": 500,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "Hours for backup",
+    "whenToCallPro": "If drive fails before full backup complete.",
+    "relatedCodes": [],
+    "videoSearchQuery": "SanDisk SSD SMART critical fix",
+    "faq": [
+      {
+        "q": "Can I keep using it?",
+        "a": "Not for important data – likely to fail soon."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-overheat",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "OVERHEAT",
+    "displayCode": "Over-Temperature",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD over-temperature",
+    "shortDescription": "SSD hits thermal limit and throttles or disconnects.",
+    "fullDescription": "Portable SSD aluminum housings absorb heat fast. Sustained writes or hot environments push controller temps past 70-80°C, triggering throttle or emergency shutdown.",
+    "causes": [
+      {
+        "cause": "Sustained high throughput",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Poor ventilation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Enclosed case/bag",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Drive too hot to hold",
+      "Random disconnect during long transfer",
+      "Dashboard temperature alert"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Allow cool-down",
+        "instruction": "Disconnect, let drive cool 10-15 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Improve airflow",
+        "instruction": "Place on metal stand, avoid fabric surfaces.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Split large jobs",
+        "instruction": "Break backups into smaller chunks with rest periods.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro Portable SSD",
+      "SanDisk Extreme Portable SSD"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-performance-throttled"
+    ],
+    "videoSearchQuery": "SanDisk SSD overheat fix",
+    "faq": [
+      {
+        "q": "Max safe temp?",
+        "a": "Below 70°C under load; above that throttle activates."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-bad-block",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "BAD_BLOCK",
+    "displayCode": "Bad Block Detected",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD reporting bad blocks",
+    "shortDescription": "NAND blocks failing and being remapped.",
+    "fullDescription": "Every SSD retires worn blocks; normal at low rate. Rising bad block count indicates wear-out nearing end of life. Back up and consider replacement.",
+    "causes": [
+      {
+        "cause": "NAND wear (high TBW)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Manufacturing defect",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Write errors from power loss",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Dashboard reports bad block count rising",
+      "Occasional read errors",
+      "Performance degraded"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up now",
+        "instruction": "Copy data to a fresh drive.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Check TBW vs rating",
+        "instruction": "If near or past rated TBW, normal wear-out – replace.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "RMA if premature",
+        "instruction": "If low host writes but many bad blocks, RMA.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro",
+      "SanDisk Ultra 3D"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 300
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "Hours for backup",
+    "whenToCallPro": "Rarely needed for consumer drives.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "SanDisk SSD bad block fix",
+    "faq": [
+      {
+        "q": "Normal to have bad blocks?",
+        "a": "A few yes; rapidly growing count is not."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-write-protect",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "WRITE_PROTECT",
+    "displayCode": "Write Protection Active",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD in read-only mode",
+    "shortDescription": "Drive became read-only due to wear-out protection.",
+    "fullDescription": "When NAND reaches end of life, SanDisk drives may enter read-only mode to preserve data. This is terminal – data can be copied off but no further writes possible.",
+    "causes": [
+      {
+        "cause": "End-of-life self-protection",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Firmware bug locking writes",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Host OS mounted read-only",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cannot delete/save files",
+      "Dashboard shows 'Read-only'",
+      "SMART wear-out at 100%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up data",
+        "instruction": "Copy everything off immediately – read-only is usually terminal.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 120
+      },
+      {
+        "step": 2,
+        "title": "Check firmware",
+        "instruction": "Update firmware if Dashboard prompts.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "SSD at end of life – retire.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro",
+      "SanDisk Portable SSD"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 300
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 hours backup",
+    "whenToCallPro": "Rarely needed – drive is effectively dead.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-smart-critical"
+    ],
+    "videoSearchQuery": "SanDisk SSD read only fix",
+    "faq": [
+      {
+        "q": "Can I reset it?",
+        "a": "No – wear-out read-only is permanent."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-io-error",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "IO_ERROR",
+    "displayCode": "I/O Error",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD I/O errors",
+    "shortDescription": "I/O errors during access.",
+    "fullDescription": "I/O errors on an SSD point to firmware bugs, USB bridge problems, or failing NAND. Back up before further troubleshooting.",
+    "causes": [
+      {
+        "cause": "Firmware bug (pre-update Extreme)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bad USB-C cable",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NAND wear",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Fatal device hardware error'",
+      "File copy failures",
+      "Disconnects"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Back up",
+        "instruction": "Back up immediately.",
+        "tools": [
+          "Spare drive"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Cable and port swap",
+        "instruction": "Try new USB-C cable and different port.",
+        "tools": [
+          "USB-C cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Firmware update",
+        "instruction": "Update via SanDisk Dashboard.",
+        "tools": [
+          "SanDisk Dashboard"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Extreme Pro Portable SSD V2"
+    ],
+    "partsNeeded": [
+      {
+        "part": "USB-C cable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Critical data – Ontrack or similar.",
+    "relatedCodes": [
+      "sandisk-ssd-drive-not-recognized"
+    ],
+    "videoSearchQuery": "SanDisk SSD I/O error fix",
+    "faq": [
+      {
+        "q": "Same as HDD I/O error?",
+        "a": "Similar symptom, different causes – SSDs fail suddenly."
+      }
+    ]
+  },
+  {
+    "id": "sandisk-ssd-drive-encryption-lock",
+    "brand": "SanDisk",
+    "brandSlug": "sandisk",
+    "deviceType": "SSD Drive",
+    "deviceTypeSlug": "ssd-drive",
+    "code": "ENCRYPTION_LOCK",
+    "displayCode": "SecureAccess Locked",
+    "alternativeCodes": [],
+    "title": "SanDisk SSD SecureAccess locked",
+    "shortDescription": "Drive shows only the SecureAccess vault app.",
+    "fullDescription": "SanDisk SecureAccess creates an encrypted vault on the drive. Without the password the vault contents cannot be accessed.",
+    "causes": [
+      {
+        "cause": "SecureAccess vault enabled with password",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Forgotten password",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "SecureAccess app missing",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Only RunSanDiskSecureAccess.exe visible",
+      "Vault folder requires password",
+      "Cannot access files"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run SecureAccess",
+        "instruction": "Launch app, enter password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Reinstall app",
+        "instruction": "Download latest SecureAccess 3.x from SanDisk.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Reset = data loss",
+        "instruction": "Forgotten password = data unrecoverable; only option is to delete vault and lose contents.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "SanDisk Portable SSD",
+      "SanDisk USB drives"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 500,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Professional recovery unlikely to help with AES-256 encryption.",
+    "relatedCodes": [],
+    "videoSearchQuery": "SanDisk SecureAccess locked",
+    "faq": [
+      {
+        "q": "Can SanDisk unlock my vault?",
+        "a": "No – SanDisk cannot recover the password."
+      }
+    ]
+  }
+]
