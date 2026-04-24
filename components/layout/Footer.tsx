@@ -39,6 +39,16 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/editorial-policy" className="text-sm text-gray-600 hover:text-brand-primary">
+                  Editorial Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/corrections" className="text-sm text-gray-600 hover:text-brand-primary">
+                  Corrections
+                </Link>
+              </li>
             </ul>
           </div>
 

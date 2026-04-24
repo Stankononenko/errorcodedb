@@ -133,13 +133,66 @@ export function buildHowToJsonLd(
 }
 
 export function buildTechArticleJsonLd(code: UnifiedCode, url: string) {
+  const now = new Date().toISOString().split("T")[0];
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline: getCodePageTitle(code),
     description: getCodePageDescription(code),
-    author: { "@type": "Organization", name: SITE_NAME },
-    publisher: { "@type": "Organization", name: SITE_NAME },
+    author: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}#organization`,
+      name: `${SITE_NAME} Editorial Team`,
+      url: `${SITE_URL}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon.svg`,
+        width: 32,
+        height: 32,
+      },
+      foundingDate: "2026",
+      foundingLocation: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Calgary",
+          addressRegion: "AB",
+          addressCountry: "CA",
+        },
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "editorial",
+        email: "contact@errorcodedb.com",
+        availableLanguage: ["English"],
+      },
+      sameAs: [`${SITE_URL}/about`, `${SITE_URL}/editorial-policy`],
+    },
+    datePublished: now,
+    dateModified: now,
     mainEntityOfPage: url,
+    isAccessibleForFree: true,
+    inLanguage: "en",
+    about: {
+      "@type": "Thing",
+      name: `Error code ${code.displayCode}`,
+    },
+    // Topical / category context
+    articleSection:
+      code.category === "obd2"
+        ? "OBD-II Diagnostic Trouble Codes"
+        : code.category === "appliance"
+          ? "Appliance Error Codes"
+          : code.category === "hvac"
+            ? "HVAC Error Codes"
+            : code.category === "printer"
+              ? "Printer Error Codes"
+              : "Windows Error Codes",
   };
 }
