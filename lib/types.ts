@@ -163,7 +163,11 @@ export type ApplianceDeviceType =
   | "electric-shaver"
   | "water-flosser"
   | "electric-toothbrush"
-  | "massage-device";
+  | "massage-device"
+  | "pool-cleaner"
+  | "hot-tub"
+  | "water-softener"
+  | "irrigation-controller";
 
 export interface ApplianceCause {
   cause: string;

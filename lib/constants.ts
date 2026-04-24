@@ -445,6 +445,10 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "water-flosser": { label: "Water Flosser", labelPlural: "Water Flossers" },
   "electric-toothbrush": { label: "Electric Toothbrush", labelPlural: "Electric Toothbrushes" },
   "massage-device": { label: "Massage Device", labelPlural: "Massage Devices" },
+  "pool-cleaner": { label: "Pool Cleaner", labelPlural: "Pool Cleaners" },
+  "hot-tub": { label: "Hot Tub", labelPlural: "Hot Tubs" },
+  "water-softener": { label: "Water Softener", labelPlural: "Water Softeners" },
+  "irrigation-controller": { label: "Irrigation Controller", labelPlural: "Irrigation Controllers" },
 };
 
 // ── HVAC Brands ──
