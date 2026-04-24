@@ -367,6 +367,17 @@ export const APPLIANCE_BRANDS = [
   { name: "Panasonic TV", slug: "panasonic-tv", country: "Japan" },
   { name: "Roku TV", slug: "roku-tv", country: "USA" },
   { name: "Insignia", slug: "insignia", country: "USA" },
+  // ── Audio ──
+  { name: "Sonos", slug: "sonos", country: "USA" },
+  { name: "Bose", slug: "bose", country: "USA" },
+  { name: "JBL", slug: "jbl", country: "USA" },
+  { name: "Yamaha Audio", slug: "yamaha-audio", country: "Japan" },
+  { name: "Denon", slug: "denon", country: "Japan" },
+  { name: "Marantz", slug: "marantz", country: "Japan" },
+  { name: "Sennheiser", slug: "sennheiser", country: "Germany" },
+  { name: "Bose Headphones", slug: "bose-headphones", country: "USA" },
+  { name: "AirPods", slug: "airpods", country: "USA" },
+  { name: "Jabra", slug: "jabra", country: "Denmark" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
@@ -536,6 +547,13 @@ export const HVAC_BRANDS = [
   { name: "Coleman HVAC", slug: "coleman-hvac" },
   { name: "Payne", slug: "payne" },
   { name: "Luxaire", slug: "luxaire" },
+  { name: "Coleman", slug: "coleman" },
+  { name: "Comfortmaker", slug: "comfortmaker" },
+  { name: "KeepRite", slug: "keeprite" },
+  { name: "Ducane", slug: "ducane" },
+  { name: "Aire-Flo", slug: "aire-flo" },
+  { name: "Concord", slug: "concord" },
+  { name: "State Water Heater", slug: "state-water" },
 ] as const;
 
 export const HVAC_DEVICE_TYPES: Record<HVACDeviceType, { label: string; labelPlural: string }> = {

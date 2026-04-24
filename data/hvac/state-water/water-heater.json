@@ -1,0 +1,301 @@
+[
+  {
+    "id": "state-water-water-heater-pilot-out",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "1F",
+    "displayCode": "1 Flash (Pilot Outage)",
+    "isBlinkCode": true,
+    "blinkCount": 1,
+    "title": "Pilot Outage / No Pilot",
+    "shortDescription": "Gas valve does not detect pilot flame.",
+    "fullDescription": "On State gas water heaters, a single LED flash on the gas control valve indicates pilot outage — the thermopile is not generating enough millivolts to keep the pilot valve open.\n\nMost commonly the thermopile has weakened with age, or the pilot orifice is clogged with dust or spider webs (FVIR units especially).",
+    "safetyWarning": "If you smell gas, do not light. Ventilate and call gas utility.",
+    "causes": [
+      {"cause": "Weak thermopile", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Dirty pilot orifice", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Closed manual gas valve", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["No hot water", "1 flash on status LED"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas supply", "instruction": "Check manual gas valve open and other appliances work.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Test thermopile", "instruction": "Measure millivolts at gas valve TH-TP terminals; should be 600-800mV.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Replace thermopile", "instruction": "Install matching OEM thermopile.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Call pro if pilot will not stay lit after thermopile swap.",
+    "relatedCodes": ["state-water-water-heater-pilot-not-lit"],
+    "faq": [{"q": "Thermopile life?", "a": "About 4-6 years."}]
+  },
+  {
+    "id": "state-water-water-heater-pilot-not-lit",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "2F",
+    "displayCode": "2 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 2,
+    "title": "Pilot Will Not Light / Gas Valve Fault",
+    "shortDescription": "Pilot ignition attempted but no flame detected.",
+    "fullDescription": "Two flashes mean the pilot did not light during the ignition attempt. Causes include no gas, blocked orifice, or failed igniter on power-vent models.",
+    "safetyWarning": "Ventilate before retrying ignition.",
+    "causes": [
+      {"cause": "Air in gas line", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Blocked pilot orifice", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed igniter (power vent)", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["No hot water", "2 flashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Purge gas line", "instruction": "If recently shut off, hold pilot button longer to bleed air.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clean pilot assembly", "instruction": "Vacuum FVIR air intake screen and pilot tube.", "tools": ["vacuum"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 200, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If pilot still will not light.",
+    "relatedCodes": ["state-water-water-heater-pilot-out"],
+    "faq": [{"q": "FVIR?", "a": "Flammable Vapor Ignition Resistant feature."}]
+  },
+  {
+    "id": "state-water-water-heater-3-flash",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "3F",
+    "displayCode": "3 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 3,
+    "title": "Thermopile / Thermocouple Voltage Low",
+    "shortDescription": "Thermopile output below operating threshold.",
+    "fullDescription": "Three flashes warn the thermopile millivolt output is below the gas valve hold-in threshold. Pilot may light but burner may not stay on.",
+    "causes": [
+      {"cause": "Aged thermopile", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Loose connection at gas valve", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Burner cycles short", "3 flashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Tighten connections", "instruction": "TH-TP terminals at gas valve.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace thermopile", "instruction": "Install OEM part.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If new thermopile does not help.",
+    "relatedCodes": ["state-water-water-heater-pilot-out"],
+    "faq": [{"q": "Voltage target?", "a": "650mV+ closed circuit."}]
+  },
+  {
+    "id": "state-water-water-heater-4-flash",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "4F",
+    "displayCode": "4 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 4,
+    "title": "Tank Temperature Exceeds Limit",
+    "shortDescription": "Tank water exceeded high-limit threshold.",
+    "fullDescription": "Four flashes indicate the tank temperature sensor read above the safety limit (typically 190F). Gas valve will lock out.\n\nPossible causes: failed gas valve, scale buildup, or thermostat failure.",
+    "safetyWarning": "Hot water can scald. Allow tank to cool before service.",
+    "causes": [
+      {"cause": "Failed gas valve thermostat", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Scale buildup at sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Lockout", "4 flashes", "Very hot water before lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Allow cooldown", "instruction": "Let tank cool 1 hour before reset.", "tools": [], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "Replace gas valve", "instruction": "OEM matched valve, requires gas leak test.", "tools": ["wrench"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "Pro service",
+    "whenToCallPro": "Always for gas valve work.",
+    "relatedCodes": [],
+    "faq": [{"q": "Self reset?", "a": "Some models yes when cooled."}]
+  },
+  {
+    "id": "state-water-water-heater-5-flash",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "5F",
+    "displayCode": "5 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 5,
+    "title": "Sensor Failure",
+    "shortDescription": "Tank temperature sensor open or shorted.",
+    "fullDescription": "Five flashes mean the tank temperature sensor input is invalid. On most State models the sensor is integrated with the gas valve.",
+    "causes": [
+      {"cause": "Failed gas valve sensor", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No heating", "5 flashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace gas valve", "instruction": "Sensor usually integrated.", "tools": ["wrench"], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "Pro service",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["state-water-water-heater-4-flash"],
+    "faq": [{"q": "Common?", "a": "Yes after 6-10 years."}]
+  },
+  {
+    "id": "state-water-water-heater-6-flash",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "6F",
+    "displayCode": "6 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 6,
+    "title": "Combustion Air Blocked / FVIR Trip",
+    "shortDescription": "Air intake screen blocked or vapor sensor tripped.",
+    "fullDescription": "Six flashes on FVIR-equipped State water heaters indicate the combustion air screen is blocked with lint and dust, or the vapor sensor detected flammable vapors.",
+    "safetyWarning": "Never store gasoline or solvents near a gas water heater.",
+    "causes": [
+      {"cause": "Lint-clogged air screen", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Flammable vapor in area", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Lockout", "6 flashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Vacuum air screen", "instruction": "Use vacuum on bottom intake screen of tank.", "tools": ["vacuum"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Remove vapor sources", "instruction": "Move paint, gasoline, solvents away from heater.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If lockout returns after cleaning.",
+    "relatedCodes": [],
+    "faq": [{"q": "What is FVIR?", "a": "Flammable vapor ignition resistant safety."}]
+  },
+  {
+    "id": "state-water-water-heater-7-flash",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "7F",
+    "displayCode": "7 Flashes",
+    "isBlinkCode": true,
+    "blinkCount": 7,
+    "title": "Gas Valve Internal Failure",
+    "shortDescription": "Electronic gas control board fault.",
+    "fullDescription": "Seven flashes indicate the integrated gas control board has an internal failure. The valve must be replaced.",
+    "safetyWarning": "Gas valve work requires leak testing.",
+    "causes": [
+      {"cause": "Failed gas valve electronics", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Lockout", "7 flashes"],
+    "fixSteps": [
+      {"step": 1, "title": "Call pro", "instruction": "Replace gas valve.", "tools": [], "difficulty": "professional", "timeMinutes": 0}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 350, "max": 700}},
+    "diyDifficulty": "professional",
+    "repairTime": "Pro service",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["state-water-water-heater-5-flash"],
+    "faq": [{"q": "Warranty?", "a": "State often covers 6-10 years on parts."}]
+  },
+  {
+    "id": "state-water-water-heater-electric-e1",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "E1",
+    "displayCode": "E1 (Electric Tank)",
+    "isBlinkCode": false,
+    "blinkCount": 0,
+    "title": "Electric Element Open / Failed",
+    "shortDescription": "Heating element has failed open.",
+    "fullDescription": "On State electric tank water heaters with digital control, E1 indicates an open heating element. Tank scale and burnout from dry-firing are common causes.",
+    "safetyWarning": "Turn off breaker before service. 240V can be lethal.",
+    "causes": [
+      {"cause": "Burned out element", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed thermostat", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["No hot water (one element) or lukewarm only", "E1"],
+    "fixSteps": [
+      {"step": 1, "title": "Test elements", "instruction": "Power off; measure resistance — open circuit means failure.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Replace element", "instruction": "Drain tank, swap element, refill before powering up.", "tools": ["element wrench"], "difficulty": "intermediate", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 250, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-120 minutes",
+    "whenToCallPro": "If unfamiliar with 240V wiring or draining tank.",
+    "relatedCodes": ["state-water-water-heater-electric-e2"],
+    "faq": [{"q": "Element life?", "a": "8-12 years typical."}]
+  },
+  {
+    "id": "state-water-water-heater-electric-e2",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "E2",
+    "displayCode": "E2 (Electric Tank)",
+    "isBlinkCode": false,
+    "blinkCount": 0,
+    "title": "ECO / High Limit Trip",
+    "shortDescription": "Energy cutoff tripped due to overheat.",
+    "fullDescription": "E2 indicates the ECO (Energy Cut Off) on the upper thermostat tripped because tank water exceeded ~170F. Usually caused by a stuck thermostat.",
+    "safetyWarning": "Hot water hazard; allow tank to cool.",
+    "causes": [
+      {"cause": "Stuck-on thermostat", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["No power to elements", "E2"],
+    "fixSteps": [
+      {"step": 1, "title": "Press reset button", "instruction": "Red ECO reset on upper thermostat assembly.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Replace thermostat", "instruction": "If trips repeatedly, swap upper thermostat.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 60}, "professional": {"min": 200, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If trips return.",
+    "relatedCodes": ["state-water-water-heater-electric-e1"],
+    "faq": [{"q": "Where is ECO?", "a": "Upper thermostat, red button."}]
+  },
+  {
+    "id": "state-water-water-heater-tankless-11",
+    "brand": "State Water Heater",
+    "brandSlug": "state-water",
+    "deviceType": "Water Heater",
+    "deviceTypeSlug": "water-heater",
+    "code": "11",
+    "displayCode": "11 (Tankless)",
+    "isBlinkCode": false,
+    "blinkCount": 0,
+    "title": "No Ignition (Tankless)",
+    "shortDescription": "Tankless unit failed to ignite.",
+    "fullDescription": "Code 11 on State tankless gas water heaters means no ignition was detected. Causes include closed gas valve, low gas pressure, or air in line on initial install.",
+    "safetyWarning": "Check for gas odor before retry.",
+    "causes": [
+      {"cause": "Closed manual gas valve", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Air in gas line", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Undersized gas line", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed igniter", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Cold water at tap", "Code 11"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas", "instruction": "Confirm valve fully open and other appliances work.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset and retry", "instruction": "Power cycle to retry ignition; allow line to bleed.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Check gas line size", "instruction": "Tankless needs 3/4 in. supply for most BTU ratings.", "tools": [], "difficulty": "professional", "timeMinutes": 0}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "Call pro if gas pressure or line size issue.",
+    "relatedCodes": ["state-water-water-heater-pilot-not-lit"],
+    "faq": [{"q": "Tankless install needs?", "a": "Larger gas line and dedicated venting."}]
+  }
+]

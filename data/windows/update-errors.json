@@ -4865,7 +4865,7 @@
     "displayCode": "0x80071A91",
     "title": "Windows Update Error - Transaction Not Active",
     "shortDescription": "A transactional file system operation failed because the transaction is no longer active.",
-    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity — if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
+    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity \u2014 if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5015,7 +5015,7 @@
       {
         "step": 1,
         "title": "Run DISM RestoreHealth",
-        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete — it may take 15-30 minutes.",
+        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete \u2014 it may take 15-30 minutes.",
         "tools": [
           "Command Prompt",
           "DISM"
@@ -5202,7 +5202,7 @@
     "displayCode": "0x80072F8F",
     "title": "Windows Update Error - SSL Certificate Validation Failed",
     "shortDescription": "Windows Update could not validate the SSL certificate from the update server.",
-    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock — if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
+    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock \u2014 if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5260,7 +5260,7 @@
       {
         "step": 3,
         "title": "Check for SSL-intercepting software",
-        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites — the issuer should be a Microsoft or DigiCert CA, not your proxy.",
+        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites \u2014 the issuer should be a Microsoft or DigiCert CA, not your proxy.",
         "tools": [
           "Browser",
           "Network Settings"
@@ -5534,7 +5534,7 @@
     "displayCode": "0x800F0984",
     "title": "Windows Update Error - Applicable Update Not Found",
     "shortDescription": "Windows Update could not find an applicable update package for this system configuration.",
-    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state — some components have been updated while others have not — making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
+    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state \u2014 some components have been updated while others have not \u2014 making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -6296,7 +6296,7 @@
       },
       {
         "q": "Can I force install an update that says not applicable?",
-        "a": "No. The applicability check exists for good reason — installing an incompatible update can cause system instability or failure. Always use the matching update version."
+        "a": "No. The applicability check exists for good reason \u2014 installing an incompatible update can cause system instability or failure. Always use the matching update version."
       }
     ]
   },
@@ -11297,7 +11297,7 @@
       },
       {
         "q": "Does disabling VPN help?",
-        "a": "Often yes — VPN filter drivers can disrupt BITS."
+        "a": "Often yes \u2014 VPN filter drivers can disrupt BITS."
       },
       {
         "q": "Can I restart just BITS?",
@@ -11537,7 +11537,7 @@
       },
       {
         "q": "Is a reset enough?",
-        "a": "Often not — credentials or certs must be addressed."
+        "a": "Often not \u2014 credentials or certs must be addressed."
       }
     ]
   },
@@ -11648,7 +11648,7 @@
     "faq": [
       {
         "q": "Can GPO cause this?",
-        "a": "Yes — WSUS-managed devices with strict policies often hit 0x80200005."
+        "a": "Yes \u2014 WSUS-managed devices with strict policies often hit 0x80200005."
       },
       {
         "q": "Should I disable AV permanently?",
@@ -11892,7 +11892,7 @@
       },
       {
         "q": "Will VPN help?",
-        "a": "Usually it makes things worse — disable for updates."
+        "a": "Usually it makes things worse \u2014 disable for updates."
       }
     ]
   },
@@ -11903,7 +11903,7 @@
     "displayCode": "0x80200015",
     "title": "BITS Insufficient Resources",
     "shortDescription": "BITS ran out of resources (typically disk space or memory).",
-    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources — most often disk space. Feature updates commonly need 20+ GB free.",
+    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources \u2014 most often disk space. Feature updates commonly need 20+ GB free.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -12010,7 +12010,7 @@
       },
       {
         "q": "Can I skip feature updates?",
-        "a": "For a time, yes — but security updates still apply."
+        "a": "For a time, yes \u2014 but security updates still apply."
       }
     ]
   },
@@ -12170,7 +12170,7 @@
       {
         "step": 1,
         "title": "Check optional updates",
-        "instruction": "Settings > Windows Update > Advanced options > Optional updates — review and accept any pending EULAs.",
+        "instruction": "Settings > Windows Update > Advanced options > Optional updates \u2014 review and accept any pending EULAs.",
         "tools": [
           "Settings"
         ],
@@ -12243,7 +12243,7 @@
       },
       {
         "q": "Will Catalog install work?",
-        "a": "Usually yes — direct MSU install bypasses the EULA workflow."
+        "a": "Usually yes \u2014 direct MSU install bypasses the EULA workflow."
       },
       {
         "q": "Is EULA acceptance reversible?",
@@ -12368,7 +12368,7 @@
       },
       {
         "q": "Will a Windows version mismatch cause it?",
-        "a": "Yes — very old clients may not parse newer WSUS metadata."
+        "a": "Yes \u2014 very old clients may not parse newer WSUS metadata."
       }
     ]
   },
@@ -12600,7 +12600,7 @@
     "faq": [
       {
         "q": "What is SSU?",
-        "a": "Servicing Stack Update — maintains the install engine that processes other updates."
+        "a": "Servicing Stack Update \u2014 maintains the install engine that processes other updates."
       },
       {
         "q": "Will reregistering DLLs help?",
@@ -12660,7 +12660,7 @@
       {
         "step": 2,
         "title": "Check GPO",
-        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update — set to Not Configured.",
+        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update \u2014 set to Not Configured.",
         "tools": [
           "Group Policy Editor"
         ],
@@ -12690,7 +12690,7 @@
       {
         "step": 5,
         "title": "Re-enable WU service",
-        "instruction": "Services.msc — set Windows Update to Automatic and start.",
+        "instruction": "Services.msc \u2014 set Windows Update to Automatic and start.",
         "tools": [
           "Services.msc"
         ],
@@ -12718,7 +12718,7 @@
     "faq": [
       {
         "q": "Can malware disable WU?",
-        "a": "Yes — many malware families disable WU to block remediation."
+        "a": "Yes \u2014 many malware families disable WU to block remediation."
       },
       {
         "q": "Is removing the reg key safe?",
@@ -13422,7 +13422,7 @@
       },
       {
         "q": "Is deleting pending.xml safe?",
-        "a": "Risky — only do it after DISM fails."
+        "a": "Risky \u2014 only do it after DISM fails."
       },
       {
         "q": "Will SFC fix it?",
@@ -13648,7 +13648,7 @@
     "faq": [
       {
         "q": "What is CBS?",
-        "a": "Component-Based Servicing — the engine installing updates."
+        "a": "Component-Based Servicing \u2014 the engine installing updates."
       },
       {
         "q": "Will DISM source help?",
@@ -13667,7 +13667,7 @@
     "displayCode": "0x80242011",
     "title": "Handler Post-Reboot Initialization Not Required",
     "shortDescription": "The update handler reported that post-reboot initialization was not required.",
-    "fullDescription": "0x80242011 is often informational — the handler determined no post-reboot work was needed. It can appear as a false failure.",
+    "fullDescription": "0x80242011 is often informational \u2014 the handler determined no post-reboot work was needed. It can appear as a false failure.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -13762,7 +13762,7 @@
     "faq": [
       {
         "q": "Is this a real error?",
-        "a": "Often not — confirm the KB is installed before troubleshooting."
+        "a": "Often not \u2014 confirm the KB is installed before troubleshooting."
       },
       {
         "q": "Does it repeat?",
@@ -13877,11 +13877,11 @@
     "faq": [
       {
         "q": "Does RevertPendingActions delete work?",
-        "a": "It undoes pending servicing operations — use with care."
+        "a": "It undoes pending servicing operations \u2014 use with care."
       },
       {
         "q": "Is a reboot really enough?",
-        "a": "Often yes — let Windows finish its post-reboot work."
+        "a": "Often yes \u2014 let Windows finish its post-reboot work."
       },
       {
         "q": "Will a repair install fix it?",
@@ -14001,7 +14001,7 @@
       },
       {
         "q": "Can I download fresh?",
-        "a": "Yes — a WU reset does exactly that."
+        "a": "Yes \u2014 a WU reset does exactly that."
       },
       {
         "q": "Is disk at fault?",
@@ -14162,7 +14162,7 @@
       {
         "step": 1,
         "title": "Start services",
-        "instruction": "services.msc — start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
+        "instruction": "services.msc \u2014 start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
         "tools": [
           "Services.msc"
         ],
@@ -14234,7 +14234,7 @@
       },
       {
         "q": "Are policies common?",
-        "a": "On domain PCs yes — check with IT."
+        "a": "On domain PCs yes \u2014 check with IT."
       },
       {
         "q": "Is manual start enough?",
@@ -14458,7 +14458,7 @@
     "faq": [
       {
         "q": "Is DataStore critical?",
-        "a": "Yes — it tracks update history and state."
+        "a": "Yes \u2014 it tracks update history and state."
       },
       {
         "q": "Does deletion cause data loss?",
@@ -14688,7 +14688,7 @@
     "faq": [
       {
         "q": "Can I bypass?",
-        "a": "Not recommended — the block exists because a known issue can cause data loss or crashes."
+        "a": "Not recommended \u2014 the block exists because a known issue can cause data loss or crashes."
       }
     ]
   },
@@ -14699,7 +14699,7 @@
     "displayCode": "0x8024A224",
     "title": "Windows 11 Deferred for Hardware Not Ready",
     "shortDescription": "Upgrade deferred because hardware reports not ready.",
-    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet — often reflecting firmware or driver updates needed before proceeding.",
+    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet \u2014 often reflecting firmware or driver updates needed before proceeding.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -15227,7 +15227,7 @@
     "faq": [
       {
         "q": "Wire helps?",
-        "a": "Yes — wired Ethernet often cures flaky OTA downloads."
+        "a": "Yes \u2014 wired Ethernet often cures flaky OTA downloads."
       }
     ]
   },
@@ -15346,7 +15346,7 @@
     "displayCode": "0x80244020",
     "title": "WU Client Not Allowed Methods",
     "shortDescription": "Windows Update client used an HTTP method the server doesn't allow.",
-    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method — typically outdated WSUS or a proxy stripping headers.",
+    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method \u2014 typically outdated WSUS or a proxy stripping headers.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15663,7 +15663,7 @@
     "displayCode": "0x80070079",
     "title": "Semaphore Timeout During Update",
     "shortDescription": "Network semaphore timeout while transferring update content.",
-    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout — commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
+    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout \u2014 commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15759,7 +15759,7 @@
     "faq": [
       {
         "q": "Retry helps?",
-        "a": "Usually yes — transient. If persistent, switch to a wired connection."
+        "a": "Usually yes \u2014 transient. If persistent, switch to a wired connection."
       }
     ]
   },
@@ -16207,7 +16207,7 @@
     "displayCode": "0x800F0988",
     "title": "CBS_E_INSTALLERS_FAILED_VALIDATION",
     "shortDescription": "CBS rejected an update because an installer failed validation.",
-    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution — often a corrupted download.",
+    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution \u2014 often a corrupted download.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16303,7 +16303,7 @@
     "faq": [
       {
         "q": "Re-download?",
-        "a": "Yes — delete SoftwareDistribution\\Download and retry."
+        "a": "Yes \u2014 delete SoftwareDistribution\\Download and retry."
       }
     ]
   },
@@ -16743,7 +16743,7 @@
     "displayCode": "0x80248011",
     "title": "DataStore Read Failure",
     "shortDescription": "Windows Update could not read its DataStore.edb.",
-    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted — rename SoftwareDistribution\\DataStore to force rebuild.",
+    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted \u2014 rename SoftwareDistribution\\DataStore to force rebuild.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16850,7 +16850,7 @@
     "displayCode": "0x80248030",
     "title": "DataStore Table Missing",
     "shortDescription": "WU DataStore is missing expected tables.",
-    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables — typically from partial corruption.",
+    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables \u2014 typically from partial corruption.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16941,7 +16941,7 @@
     "faq": [
       {
         "q": "Same fix?",
-        "a": "Yes — rebuild DataStore by renaming SoftwareDistribution."
+        "a": "Yes \u2014 rebuild DataStore by renaming SoftwareDistribution."
       }
     ]
   },
@@ -17146,7 +17146,7 @@
     "faq": [
       {
         "q": "Use external drive?",
-        "a": "Yes — Windows Setup can use a USB drive as scratch space."
+        "a": "Yes \u2014 Windows Setup can use a USB drive as scratch space."
       }
     ]
   },
@@ -17478,7 +17478,7 @@
     "displayCode": "0x8024A215",
     "title": "Feature Update Postponed",
     "shortDescription": "Feature update postponed by update policy or deadline.",
-    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed — either by user snooze, active hours, or policy.",
+    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed \u2014 either by user snooze, active hours, or policy.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17583,7 +17583,7 @@
     "displayCode": "0xC1900223",
     "title": "Feature Update Download Issue",
     "shortDescription": "Feature update content couldn't be downloaded.",
-    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download — network or DO issue.",
+    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download \u2014 network or DO issue.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17677,7 +17677,7 @@
     "faq": [
       {
         "q": "Retry later?",
-        "a": "Yes — CDN blips are common; try again after a few hours."
+        "a": "Yes \u2014 CDN blips are common; try again after a few hours."
       }
     ]
   },
@@ -18542,7 +18542,7 @@
     "displayCode": "0xC1900101-0x4000D",
     "title": "Safe OS SECOND_BOOT Rollback",
     "shortDescription": "Rollback during the SECOND_BOOT phase from the Safe OS environment.",
-    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry — MOSETUP rolls back to the prior build.",
+    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry \u2014 MOSETUP rolls back to the prior build.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -21340,5 +21340,2003 @@
         "a": "You can pause updates for up to 5 weeks, but security updates should be applied as soon as practical."
       }
     ]
+  },
+  {
+    "id": "windows-update-0x80092004",
+    "category": "update",
+    "code": "0x80092004",
+    "displayCode": "0x80092004",
+    "title": "CRYPT_E_NOT_FOUND",
+    "shortDescription": "Update failed because a required cryptographic catalog entry was not found.",
+    "fullDescription": "0x80092004 (CRYPT_E_NOT_FOUND) usually appears during Servicing Stack Updates (SSU) when Windows cannot find the catalog entry it needs to verify a package's signature.\n\nThis is often resolved by installing the latest SSU first, then retrying the cumulative update.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Missing or outdated Servicing Stack Update",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted cryptographic store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong package architecture (x86 vs x64)",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "KB install fails with 0x80092004",
+      "WindowsUpdate.log shows CRYPT_E_NOT_FOUND"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install latest SSU",
+        "instruction": "Download the matching Servicing Stack Update from Microsoft Update Catalog.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Re-register cryptographic DLLs",
+        "instruction": "regsvr32 /s wintrust.dll, then softpub.dll, mssip32.dll.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset catroot2",
+        "instruction": "net stop cryptsvc, ren C:\\Windows\\System32\\catroot2 catroot2old, net start cryptsvc.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Retry the cumulative update",
+        "instruction": "Run Windows Update again or install the LCU manually.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024d015",
+    "category": "update",
+    "code": "0x8024D015",
+    "displayCode": "0x8024D015",
+    "title": "WU_E_SETUP_BLOCKED_CONFIGURATION",
+    "shortDescription": "Windows Update Agent self-update is blocked by configuration policy.",
+    "fullDescription": "0x8024D015 surfaces when the WUA tries to update itself but is blocked by configuration: typically a Group Policy that pins the agent version, a feature update blocker, or BlockTLS settings.\n\nResolution requires removing or relaxing the policy, then forcing a fresh detection.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Group Policy blocks WUA self-update",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Feature update block policy active",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated WUA on Windows 7/8.1",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Update Agent never updates itself",
+      "0x8024D015 in WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect group policy",
+        "instruction": "Run rsop.msc; review Windows Update settings.",
+        "tools": [
+          "rsop"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Set DisableWindowsUpdateAccess to 0",
+        "instruction": "HKLM\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate.",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Force detection",
+        "instruction": "wuauclt /resetauthorization /detectnow then USOClient StartScan.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0xc1900201",
+    "category": "update",
+    "code": "0xC1900201",
+    "displayCode": "0xC1900201",
+    "title": "SETUP_FAIL_NEEDS_REBOOT",
+    "shortDescription": "A pending reboot prevented setup from continuing.",
+    "fullDescription": "0xC1900201 reports that another component (typically a previous update or installer) requires a reboot before the upgrade can run.\n\nRebooting and re-running setup is generally enough.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Pending reboot from previous update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Pending file rename operation",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Setup exits with 0xC1900201 immediately",
+      "PendingFileRenameOperations registry key exists"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot the PC",
+        "instruction": "A simple restart clears most pending operations.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear PendingFileRenameOperations",
+        "instruction": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager \u2014 delete the value (advanced).",
+        "tools": [
+          "Registry Editor"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Re-run setup",
+        "instruction": "Try the upgrade again from Windows Update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x800f0900",
+    "category": "update",
+    "code": "0x800F0900",
+    "displayCode": "0x800F0900",
+    "title": "SXS_FILE_HASH_MISSING",
+    "shortDescription": "WinSxS manifest references a file whose hash record is missing.",
+    "fullDescription": "0x800F0900 is reported by CBS when it tries to validate a side-by-side manifest and finds a referenced file whose hash entry is missing or inconsistent.\n\nThis points to disk corruption or a botched servicing transaction.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Disk corruption",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Aborted servicing transaction",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Pending operations not flushed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Updates fail with 0x800F0900",
+      "DISM RestoreHealth itself errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run chkdsk",
+        "instruction": "chkdsk C: /f /r \u2014 schedule on next reboot.",
+        "tools": [
+          "chkdsk"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Run DISM with /Source",
+        "instruction": "Use install.wim from a matching ISO as a recovery source.",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Perform in-place upgrade",
+        "instruction": "If repair fails, run setup.exe from ISO with Keep apps and files.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80240035",
+    "category": "update",
+    "code": "0x80240035",
+    "displayCode": "0x80240035",
+    "title": "WU_E_UPDATE_NOT_PROCESSED",
+    "shortDescription": "Windows Update could not process an update entry it discovered.",
+    "fullDescription": "0x80240035 means the agent found an update in the catalog but failed to process its metadata. Often this is because the update has been superseded but not declined on WSUS.\n\nDecline superseded updates on WSUS, or run the cumulative update directly from the catalog.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Superseded update still offered",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Damaged update metadata",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "A specific KB fails consistently with 0x80240035"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Decline superseded updates on WSUS",
+        "instruction": "Run Server Cleanup Wizard from the WSUS console.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Install the update manually",
+        "instruction": "Download .msu from Microsoft Update Catalog.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80246017",
+    "category": "update",
+    "code": "0x80246017",
+    "displayCode": "0x80246017",
+    "title": "WU_E_DM_UNAUTHORIZED_LOCAL_USER",
+    "shortDescription": "BITS download was rejected because the user is not authorized.",
+    "fullDescription": "0x80246017 means the BITS download was rejected because the local user account requesting it is not authorized to download updates (often because the SYSTEM account is denied or BITS impersonation is broken).\n\nReset BITS and verify SoftwareDistribution permissions.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "BITS impersonation broken",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "SoftwareDistribution permissions altered",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BITS jobs fail with E_ACCESSDENIED in the log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Stop wuauserv and bits, rename folder, restart.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Restore default permissions",
+        "instruction": "icacls C:\\Windows\\SoftwareDistribution /reset /T /C.",
+        "tools": [
+          "icacls"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Re-register BITS",
+        "instruction": "sc config bits start= auto, then net start bits.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80073bc3",
+    "category": "update",
+    "code": "0x80073BC3",
+    "displayCode": "0x80073BC3",
+    "title": "ERROR_SXS_VERSION_CONFLICT",
+    "shortDescription": "Two component versions conflict in the WinSxS store during update.",
+    "fullDescription": "0x80073BC3 indicates the side-by-side store contains a conflicting version of a component required by the update. CBS cannot continue without resolving the conflict.\n\nThis typically requires DISM RestoreHealth or an in-place upgrade.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Inconsistent WinSxS state",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Aborted previous CBS transaction",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Update fails with 0x80073BC3",
+      "CBS.log shows version mismatch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DISM RestoreHealth",
+        "instruction": "DISM /Online /Cleanup-Image /RestoreHealth.",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "If RestoreHealth fails, use ISO source",
+        "instruction": "Add /Source:WIM:E:\\sources\\install.wim:1 /LimitAccess.",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "In-place upgrade",
+        "instruction": "Run setup.exe with Keep apps and files.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x800f0824",
+    "category": "update",
+    "code": "0x800F0824",
+    "displayCode": "0x800F0824",
+    "title": "PSFX_E_MATCHING_COMPONENT_NOT_FOUND",
+    "shortDescription": "CBS could not find a component required by an update package.",
+    "fullDescription": "0x800F0824 is similar to 0x800F0247 \u2014 CBS needs a component that is not present in the store. The fix is the same: refresh the store via RestoreHealth or in-place upgrade.\n\nThis often appears after partial uninstalls of language packs or features.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Removed feature still referenced",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Partial uninstall of language pack",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific KB fails with 0x800F0824"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DISM RestoreHealth",
+        "instruction": "Use ISO as source if online repair fails.",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reinstall the missing feature",
+        "instruction": "Use Optional Features in Settings to reinstall language packs or .NET 3.5.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "In-place upgrade as last resort",
+        "instruction": "Run setup.exe from a matching ISO.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80073b92",
+    "category": "update",
+    "code": "0x80073B92",
+    "displayCode": "0x80073B92",
+    "title": "ERROR_PACKAGE_FOUND_FOR_OUTDATED_OS",
+    "shortDescription": "An update was offered for an OS version no longer supported.",
+    "fullDescription": "0x80073B92 means the package being applied targets an OS version older than what is currently installed (or vice versa). This typically happens when a WSUS server still offers obsolete packages or Group Policy pins the wrong feature update.\n\nDecline the obsolete update on WSUS or switch to current target.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "WSUS still offers obsolete updates",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "TargetReleaseVersion policy outdated",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Old KBs fail with 0x80073B92"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update Target Release Version policy",
+        "instruction": "Set to current Windows feature version.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Decline old updates on WSUS",
+        "instruction": "Decline anything older than the current LCU baseline.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80073bc1",
+    "category": "update",
+    "code": "0x80073BC1",
+    "displayCode": "0x80073BC1",
+    "title": "ERROR_SXS_FILE_HASH_MISMATCH",
+    "shortDescription": "A file in the side-by-side store does not match the expected hash.",
+    "fullDescription": "0x80073BC1 is raised when CBS validates a payload file and the hash does not match the manifest. This indicates corruption, often caused by aborted updates or disk problems.\n\nFix with DISM RestoreHealth or replace the offending file from a matching ISO.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Disk corruption affecting WinSxS",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Anti-malware modified system file",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update fails with 0x80073BC1"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run chkdsk",
+        "instruction": "chkdsk C: /f /r.",
+        "tools": [
+          "chkdsk"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "DISM RestoreHealth with ISO source",
+        "instruction": "Provide /Source:WIM:E:\\sources\\install.wim:1.",
+        "tools": [
+          "DISM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Disable third-party AV",
+        "instruction": "Some AVs alter system files; disable temporarily.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x800705b4",
+    "category": "update",
+    "code": "0x800705B4",
+    "displayCode": "0x800705B4",
+    "title": "ERROR_TIMEOUT_UPDATE",
+    "shortDescription": "A Windows Update operation timed out.",
+    "fullDescription": "0x800705B4 is a generic timeout. In Windows Update context it usually means BITS or the WUA could not finish an operation in time, often due to an unstable network or extremely large update.\n\nRetry on a stable network or split work across multiple sessions.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Slow or unstable network",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Extremely large feature update download",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Operations time out with 0x800705B4"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Update components",
+        "instruction": "Run net stop wuauserv, net stop bits, ren C:\\Windows\\SoftwareDistribution SDold, net start bits, net start wuauserv.",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Manually install KB",
+        "instruction": "Download the .msu from Microsoft Update Catalog and install it.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80246019",
+    "category": "update",
+    "code": "0x80246019",
+    "displayCode": "0x80246019",
+    "title": "WU_E_DM_INVALIDPROXYAUTHSCHEME",
+    "shortDescription": "BITS could not negotiate authentication with the configured proxy.",
+    "fullDescription": "0x80246019 means the proxy required an authentication scheme BITS does not support (or credentials were not supplied). Common in enterprise networks with NTLM-only proxies that block service accounts.\n\nResolve by exempting Windows Update endpoints or providing service-account credentials.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Proxy requires NTLM/Kerberos that SYSTEM cannot provide",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Proxy credentials missing from BITS",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BITS jobs fail with 0x80246019 on managed networks"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Whitelist Windows Update endpoints",
+        "instruction": "Bypass authentication for *.windowsupdate.com.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Set BITS proxy to AUTODETECT",
+        "instruction": "bitsadmin /util /setieproxy LocalSystem AUTODETECT.",
+        "tools": [
+          "bitsadmin"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Provide service-account credentials",
+        "instruction": "Use netsh winhttp set proxy and configure firewall ACL accordingly.",
+        "tools": [
+          "netsh"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80072ee2",
+    "category": "update",
+    "code": "0x80072EE2",
+    "displayCode": "0x80072EE2",
+    "title": "ERROR_INTERNET_TIMEOUT_UPDATE",
+    "shortDescription": "WinINet timed out connecting to the update server.",
+    "fullDescription": "0x80072EE2 is a WinINet timeout. The update agent waited for a response from windowsupdate.com but received nothing in time. Look for transient network issues, ISP DNS problems, or aggressive proxies.\n\nFlushing DNS and switching DNS resolvers usually helps.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "ISP DNS slow or hijacked",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Routing issue to Microsoft CDN",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Proxy delay",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Updates fail intermittently with 0x80072EE2"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Flush DNS",
+        "instruction": "ipconfig /flushdns.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try alternate DNS",
+        "instruction": "Set adapter DNS to 1.1.1.1 and 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset Winsock and TCP/IP",
+        "instruction": "netsh winsock reset and netsh int ip reset.",
+        "tools": [
+          "netsh"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80004002",
+    "category": "update",
+    "code": "0x80004002",
+    "displayCode": "0x80004002",
+    "title": "E_NOINTERFACE_UPDATE",
+    "shortDescription": "Windows Update COM call failed because the requested interface is unavailable.",
+    "fullDescription": "0x80004002 (E_NOINTERFACE) in WU context usually means a COM component (often the Windows Update Agent) is registered incorrectly. This can happen after an aborted upgrade or registry corruption.\n\nRe-registering WUA DLLs typically restores it.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged WUA COM registration",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bad antivirus interaction",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update GUI shows unspecified error 0x80004002"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-register WUA DLLs",
+        "instruction": "for %i in (atl.dll urlmon.dll mshtml.dll wuaueng.dll wuapi.dll) do regsvr32 /s %i.",
+        "tools": [
+          "regsvr32"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Standard reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024401c",
+    "category": "update",
+    "code": "0x8024401C",
+    "displayCode": "0x8024401C",
+    "title": "WU_E_PT_HTTP_STATUS_REQUEST_TIMEOUT",
+    "shortDescription": "Windows Update received HTTP 408 Request Timeout from the server.",
+    "fullDescription": "0x8024401C is the WU mapping for HTTP 408. The server (typically WSUS) closed the connection because the client did not send the request fast enough.\n\nRoot cause is usually network instability or an overloaded WSUS.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10"
+    ],
+    "causes": [
+      {
+        "cause": "Slow upload to WSUS",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "WSUS overloaded by simultaneous clients",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Updates intermittently fail with 0x8024401C"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Stagger client check-in times",
+        "instruction": "Use detection frequency randomization in Group Policy.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Restart IIS WsusPool",
+        "instruction": "On WSUS server, recycle the WsusPool app pool.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Retry on a wired connection",
+        "instruction": "Wi-Fi packet loss commonly triggers 408 timeouts.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If the update repeatedly fails after running the Update Troubleshooter, resetting the Windows Update components, and an in-place upgrade, IT support may need to recreate the user profile or reinstall Windows.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024402d",
+    "category": "update",
+    "code": "0x8024402D",
+    "displayCode": "0x8024402D",
+    "title": "WU_E_PT_INVALID_FORMAT",
+    "shortDescription": "Server response format is invalid.",
+    "fullDescription": "0x8024402D means the WUA received a response from the server that does not match expected XML format. Usually caused by transparent proxies or web filters mangling responses.\n\nBypass the proxy/filter for Windows Update endpoints.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Transparent proxy mangling response",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Update fails behind web filters"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bypass WU URLs in proxy",
+        "instruction": "Whitelist *.windowsupdate.com.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Test on different network",
+        "instruction": "Mobile hotspot to confirm.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x800b0001",
+    "category": "update",
+    "code": "0x800B0001",
+    "displayCode": "0x800B0001",
+    "title": "TRUST_E_PROVIDER_UNKNOWN",
+    "shortDescription": "Cryptographic trust provider is unknown.",
+    "fullDescription": "0x800B0001 means Windows could not find the trust provider for the package. Indicates damaged crypto subsystem.\n\nRe-register crypto DLLs and reset catroot2.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged crypto services",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Updates fail with 0x800B0001"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-register DLLs",
+        "instruction": "regsvr32 wintrust.dll softpub.dll.",
+        "tools": [
+          "regsvr32"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset catroot2",
+        "instruction": "net stop cryptsvc, rename, restart.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x800b0003",
+    "category": "update",
+    "code": "0x800B0003",
+    "displayCode": "0x800B0003",
+    "title": "TRUST_E_SUBJECT_FORM_UNKNOWN",
+    "shortDescription": "Form specified for the subject is not supported.",
+    "fullDescription": "0x800B0003 means the trust subsystem cannot interpret the file format. Typically a corrupted package signature.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted package signature",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific KB fails repeatedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-download .msu",
+        "instruction": "From Update Catalog.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify file hash",
+        "instruction": "certutil -hashfile file SHA256.",
+        "tools": [
+          "certutil"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80246002",
+    "category": "update",
+    "code": "0x80246002",
+    "displayCode": "0x80246002",
+    "title": "WU_E_DM_INCORRECTFILEHASH",
+    "shortDescription": "Downloaded file hash does not match expected hash.",
+    "fullDescription": "0x80246002 means BITS finished downloading a file but its hash didn't match what the server reported. Usually a CDN issue or corrupted local cache.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted local cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "CDN delivered wrong file",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Downloads finish then error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Stop services, delete cache, restart.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Manual download",
+        "instruction": "From Microsoft Update Catalog.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80072f76",
+    "category": "update",
+    "code": "0x80072F76",
+    "displayCode": "0x80072F76",
+    "title": "ERROR_INTERNET_HEADER_NOT_FOUND",
+    "shortDescription": "Required HTTP header was not found in server response.",
+    "fullDescription": "0x80072F76 means the WUA expected an HTTP header (such as Content-Length) that the server did not include. Common with damaged WSUS responses or hostile proxies.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "WSUS server bug",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Proxy stripping headers",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "WSUS detection fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check WSUS health",
+        "instruction": "Run server cleanup wizard.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Bypass proxy",
+        "instruction": "Whitelist WU endpoints.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244005",
+    "category": "update",
+    "code": "0x80244005",
+    "displayCode": "0x80244005",
+    "title": "WU_E_PT_SOAPCLIENT_INITIALIZE",
+    "shortDescription": "WUA SOAP client failed to initialize.",
+    "fullDescription": "0x80244005 means the SOAP client used by Windows Update could not initialize, often because of damaged WUA registration or missing DLLs.\n\nRe-register WUA components.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged WUA registration",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Update fails immediately on launch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-register WUA DLLs",
+        "instruction": "for %i in (atl.dll urlmon.dll mshtml.dll wuaueng.dll wuapi.dll) do regsvr32 /s %i.",
+        "tools": [
+          "regsvr32"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Standard reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244006",
+    "category": "update",
+    "code": "0x80244006",
+    "displayCode": "0x80244006",
+    "title": "WU_E_PT_SOAPCLIENT_GENERATE",
+    "shortDescription": "WUA SOAP client failed to generate request.",
+    "fullDescription": "0x80244006 occurs when the WUA cannot generate a SOAP request, typically because of invalid configuration or damaged registry settings under WindowsUpdate.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged WindowsUpdate registry settings",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Detection fails with 0x80244006"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset WindowsUpdate registry key",
+        "instruction": "Use Microsoft's Reset-WindowsUpdate.ps1.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Standard reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244009",
+    "category": "update",
+    "code": "0x80244009",
+    "displayCode": "0x80244009",
+    "title": "WU_E_PT_SOAPCLIENT_READ",
+    "shortDescription": "WUA SOAP client failed to read response.",
+    "fullDescription": "0x80244009 indicates the SOAP client could not read the server response (network truncation or proxy interference).\n\nCheck network reliability and proxy configuration.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Network instability",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proxy truncating responses",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Intermittent 0x80244009"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test with mobile hotspot",
+        "instruction": "Rule out network.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Bypass proxy",
+        "instruction": "Whitelist WU URLs.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024400d",
+    "category": "update",
+    "code": "0x8024400D",
+    "displayCode": "0x8024400D",
+    "title": "WU_E_PT_SOAP_CLIENT",
+    "shortDescription": "SOAP client error.",
+    "fullDescription": "0x8024400D is a generic SOAP client error from WUA. Resetting WU components and retrying usually clears it.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Transient SOAP error",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update fails with 0x8024400D"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Update Troubleshooter",
+        "instruction": "Settings > Troubleshoot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset components",
+        "instruction": "SoftwareDistribution and catroot2 reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024400e",
+    "category": "update",
+    "code": "0x8024400E",
+    "displayCode": "0x8024400E",
+    "title": "WU_E_PT_SOAP_SERVER",
+    "shortDescription": "SOAP server error.",
+    "fullDescription": "0x8024400E means the WSUS / Microsoft Update server returned a SOAP server-side error. Server logs reveal the cause.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "WSUS server-side error",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Bad request from client",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Updates fail with 0x8024400E"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check WSUS event logs",
+        "instruction": "Administrative Tools > Event Viewer on WSUS.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Restart WsusPool",
+        "instruction": "On WSUS server, recycle IIS app pool.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x8024400f",
+    "category": "update",
+    "code": "0x8024400F",
+    "displayCode": "0x8024400F",
+    "title": "WU_E_PT_WMI_ERROR",
+    "shortDescription": "WMI error in WUA.",
+    "fullDescription": "0x8024400F means the WUA encountered a WMI error while processing updates. Usually caused by a damaged WMI repository.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Damaged WMI repository",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "WUA logs WMI errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset WMI repository",
+        "instruction": "winmgmt /resetrepository (admin).",
+        "tools": [
+          "winmgmt"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Restart Windows Management Instrumentation service",
+        "instruction": ".",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244014",
+    "category": "update",
+    "code": "0x80244014",
+    "displayCode": "0x80244014",
+    "title": "WU_E_PT_REFRESH_CACHE_REQUIRED",
+    "shortDescription": "WUA must refresh its cache to continue.",
+    "fullDescription": "0x80244014 is a transient state \u2014 the agent recognized that its catalog cache is stale and needs refresh. Clearing SoftwareDistribution forces a fresh sync.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Stale WUA cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Detection stalls then errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Standard reset procedure.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Force detection",
+        "instruction": "wuauclt /resetauthorization /detectnow.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244015",
+    "category": "update",
+    "code": "0x80244015",
+    "displayCode": "0x80244015",
+    "title": "WU_E_PT_HTTP_STATUS_NOT_MAPPED",
+    "shortDescription": "Unmapped HTTP status code from update server.",
+    "fullDescription": "0x80244015 means the WUA received an HTTP status code it does not specifically map. Look at WindowsUpdate.log for the underlying status.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Unusual server response",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Updates fail with 0x80244015"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read WindowsUpdate.log",
+        "instruction": "Get-WindowsUpdateLog in PowerShell.",
+        "tools": [
+          "PowerShell"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset WU components",
+        "instruction": "Standard reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244016",
+    "category": "update",
+    "code": "0x80244016",
+    "displayCode": "0x80244016",
+    "title": "WU_E_PT_HTTP_STATUS_BAD_REQUEST",
+    "shortDescription": "HTTP 400 Bad Request from update server.",
+    "fullDescription": "0x80244016 maps to HTTP 400. The client sent a malformed request, often due to corrupted local catalogs.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted local catalog",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Update fails with 0x80244016"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset SoftwareDistribution",
+        "instruction": "Standard reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset catroot2",
+        "instruction": "net stop cryptsvc, rename, restart.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "windows-update-0x80244017",
+    "category": "update",
+    "code": "0x80244017",
+    "displayCode": "0x80244017",
+    "title": "WU_E_PT_HTTP_STATUS_DENIED",
+    "shortDescription": "HTTP 401 Unauthorized from update server.",
+    "fullDescription": "0x80244017 maps to HTTP 401. The client could not authenticate to the WSUS server, typically because of broken Kerberos or NTLM on the network path.",
+    "affectedVersions": [
+      "Windows 11",
+      "Windows 10",
+      "Windows 8.1",
+      "Windows 7"
+    ],
+    "causes": [
+      {
+        "cause": "Auth misconfig on WSUS",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Time skew breaking Kerberos",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "WSUS access fails with 0x80244017"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Sync time",
+        "instruction": "w32tm /resync /force.",
+        "tools": [
+          "w32tm"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Verify WSUS auth settings",
+        "instruction": "WSUS console > Server > Options.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
+    "relatedCodes": [],
+    "faq": []
   }
 ]
