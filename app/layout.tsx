@@ -62,6 +62,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Prefetch search index so first Ctrl+K / / keypress is instant. */}
+        <link rel="prefetch" href="/search-index.json" as="fetch" crossOrigin="anonymous" />
+        {/* DNS prefetch for when AdSense is enabled (no-op otherwise). */}
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://www.googletagservices.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-white text-gray-900 pb-14 md:pb-0">
         <Header />
         <main className="flex-1">{children}</main>

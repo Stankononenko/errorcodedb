@@ -111,13 +111,17 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
               <CausesSection causes={code.causes} />
 
               {/* Technician-grade content: freeze frame (OBD only) */}
-              <FreezeFrameData code={code} />
+              <div className="defer-render">
+                <FreezeFrameData code={code} />
+              </div>
 
               {/* 3. AFTER-INTRO — before fix steps */}
               <AdUnit position="after-intro" />
 
               {/* Which tools actually diagnose this code */}
-              <DiagnosticTools code={code} />
+              <div className="defer-render">
+                <DiagnosticTools code={code} />
+              </div>
 
               <FixStepsSection steps={code.fixSteps} codeDisplay={code.displayCode} />
 
@@ -129,13 +133,19 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
               <CostEstimate diy={code.estimatedCost.diy} professional={code.estimatedCost.professional} />
 
               {/* Regional cost breakdown — high-intent readers compare locales */}
-              <RegionalCost code={code} />
+              <div className="defer-render">
+                <RegionalCost code={code} />
+              </div>
 
               {/* DIY vs shop decision matrix */}
-              <DiyVsShopMatrix code={code} />
+              <div className="defer-render">
+                <DiyVsShopMatrix code={code} />
+              </div>
 
               {/* Common misdiagnoses — unique high-SEO-value content */}
-              <CommonMisdiagnoses code={code} />
+              <div className="defer-render">
+                <CommonMisdiagnoses code={code} />
+              </div>
 
               {/* 5. HIGH-INTENT — right after cost + decision content */}
               <AdUnit position="high-intent" />
@@ -155,16 +165,22 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
               {/* 6. MATCHED-CONTENT — Google's highest-RPM format */}
               <AdUnit position="matched-content" />
 
-              <RelatedCodes
-                codes={code.relatedCodes}
-                category={code.category}
-                brandSlug={code.brandSlug}
-                deviceTypeSlug={code.deviceTypeSlug}
-              />
+              <div className="defer-render">
+                <RelatedCodes
+                  codes={code.relatedCodes}
+                  category={code.category}
+                  brandSlug={code.brandSlug}
+                  deviceTypeSlug={code.deviceTypeSlug}
+                />
+              </div>
 
-              <FAQSection faqs={code.faq} />
+              <div className="defer-render">
+                <FAQSection faqs={code.faq} />
+              </div>
 
-              <Sources category={code.category} brand={code.brand} />
+              <div className="defer-render">
+                <Sources category={code.category} brand={code.brand} />
+              </div>
 
               {/* 7. BOTTOM-BANNER — last chance impression */}
               <AdUnit position="bottom-banner" />
