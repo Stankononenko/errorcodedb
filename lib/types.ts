@@ -178,7 +178,11 @@ export type ApplianceDeviceType =
   | "cable-modem"
   | "fiber-gateway"
   | "av-receiver"
-  | "streaming-device";
+  | "streaming-device"
+  | "stand-mixer"
+  | "smart-oven"
+  | "laptop"
+  | "phone";
 
 export interface ApplianceCause {
   cause: string;

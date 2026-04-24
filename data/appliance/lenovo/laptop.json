@@ -1,0 +1,1238 @@
+[
+  {
+    "id": "lenovo-laptop-0187",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "0187",
+    "displayCode": "0187",
+    "alternativeCodes": [],
+    "title": "EAIA data access error",
+    "shortDescription": "ThinkPad cannot read EAIA data from the security chip.",
+    "fullDescription": "Error 0187 appears on Lenovo ThinkPad laptops when the BIOS cannot access the EAIA (Embedded Asset ID Area) data stored in the security chip on the motherboard. This data includes the serial number, machine type, and UUID of the system.\n\nThe error commonly appears after a motherboard replacement, BIOS reflash with the wrong file, or corruption of the embedded controller firmware. The system may still boot but functionality like warranty validation and TPM may be impaired.",
+    "causes": [
+      {
+        "cause": "Motherboard was replaced and EAIA data not reprogrammed",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Corrupted BIOS or EC firmware",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failed security chip on motherboard",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "0187 error at POST",
+      "Missing serial in BIOS",
+      "Boot delay"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Press F1 to continue",
+        "instruction": "Press F1 to bypass and enter BIOS to verify if serial number and machine type are blank.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reflash BIOS",
+        "instruction": "Download the latest BIOS from Lenovo Support and reflash. Use the original machine-type matching package.",
+        "tools": [
+          "USB drive"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Reprogram EAIA via Lenovo service tools",
+        "instruction": "Use Lenovo Maintenance Diskette or LCFC tool to write back the serial, MTM, and UUID. Requires authorized service center access.",
+        "tools": [
+          "Lenovo service tool"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T440",
+      "ThinkPad T450",
+      "ThinkPad X1 Carbon",
+      "ThinkPad T480"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Always call an authorized Lenovo service center — EAIA reprogramming requires a service tool not available to consumers.",
+    "relatedCodes": [
+      "0190",
+      "0188"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad 0187 EAIA error fix",
+    "faq": [
+      {
+        "q": "Will my laptop still work?",
+        "a": "Yes, you can press F1 to continue, but warranty and TPM features may not work."
+      },
+      {
+        "q": "Can I fix this at home?",
+        "a": "No, EAIA programming requires Lenovo service software."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-0190",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "0190",
+    "displayCode": "0190",
+    "alternativeCodes": [],
+    "title": "Critical low battery error",
+    "shortDescription": "Battery charge is too low for the system to start safely.",
+    "fullDescription": "Error 0190 appears at POST on ThinkPad laptops when the main battery charge is below the threshold required for safe operation, typically under 5%. The BIOS halts boot to protect data integrity and prevent power loss during disk activity.\n\nIt can also signal a faulty battery that no longer reports correct charge levels, or a damaged charging circuit on the motherboard.",
+    "causes": [
+      {
+        "cause": "Battery deeply discharged",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed battery cell calibration",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Faulty AC adapter or charging port",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "0190 error at startup",
+      "System halts at POST",
+      "Battery icon shows 0%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect AC adapter",
+        "instruction": "Plug in the original Lenovo AC adapter and let it charge for at least 30 minutes before powering on.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reset battery",
+        "instruction": "If charging fails, remove battery (if removable), hold power button for 30 seconds, reinsert battery and try again.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reset battery gauge in BIOS",
+        "instruction": "Enter BIOS, go to Config > Power and run battery gauge reset to recalibrate the battery controller.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T-series",
+      "ThinkPad X-series",
+      "ThinkPad L-series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement battery (if calibration fails)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 120
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes - 4 hours",
+    "whenToCallPro": "If battery doesn't charge above 5% after 1 hour with a known-good adapter, the charging circuit may be damaged.",
+    "relatedCodes": [
+      "0187",
+      "Plug AC adapter"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad 0190 critical battery error fix",
+    "faq": [
+      {
+        "q": "Is the battery dead?",
+        "a": "Not necessarily — try charging for 30 minutes first."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-1802",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "1802",
+    "displayCode": "1802",
+    "alternativeCodes": [],
+    "title": "Unauthorized network card detected",
+    "shortDescription": "BIOS whitelist rejected installed Wi-Fi card.",
+    "fullDescription": "Error 1802 appears when the ThinkPad BIOS detects a Mini PCI / M.2 wireless card whose vendor ID is not on the approved whitelist. This was Lenovo's policy on older ThinkPads to ensure FCC compliance.\n\nThe message usually reads: '1802: Unauthorized network card is plugged in - Power off and remove the miniPCI network card.'",
+    "causes": [
+      {
+        "cause": "Aftermarket Wi-Fi card not on Lenovo whitelist",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose Wi-Fi card connection misreporting ID",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Boot halts with 1802 message",
+      "Cannot enter Windows"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat the Wi-Fi card",
+        "instruction": "Power off, remove battery, open the wireless service door, reseat the Mini PCI/M.2 card.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Replace with Lenovo OEM card",
+        "instruction": "Install a card that is on the official whitelist for your model — check the FRU number against Lenovo's parts list.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Flash a no-whitelist BIOS (advanced)",
+        "instruction": "On older ThinkPads, community-modified BIOS images remove the whitelist. Use at your own risk — voids warranty and may brick the system.",
+        "tools": [
+          "USB drive"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T-series (pre-2013)",
+      "ThinkPad X-series (pre-2013)"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Whitelisted Wi-Fi card",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 60
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-45 minutes",
+    "whenToCallPro": "If you are uncomfortable opening the laptop or flashing modified BIOS.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Lenovo ThinkPad 1802 unauthorized network card fix",
+    "faq": [
+      {
+        "q": "Why does Lenovo do this?",
+        "a": "FCC certification — Lenovo only certifies certain wireless modules per region."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-2100",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "2100",
+    "displayCode": "2100",
+    "alternativeCodes": [],
+    "title": "Detection error on HDD0",
+    "shortDescription": "BIOS cannot detect the primary hard drive.",
+    "fullDescription": "Error 2100 indicates the ThinkPad BIOS cannot communicate with the primary storage device. It commonly appears when the SATA cable is loose, the drive has failed, or the drive is incompatible with the BIOS storage mode (AHCI vs. RAID vs. Compatibility).\n\nIf the drive is detected intermittently, it usually points to a failing drive or worn cable connector.",
+    "causes": [
+      {
+        "cause": "Failed HDD or SSD",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose SATA/M.2 connection",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong SATA mode in BIOS",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Boot halts at POST",
+      "Drive missing in BIOS",
+      "Clicking sound from HDD"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat the storage drive",
+        "instruction": "Power off, remove battery, open the drive bay, and reseat the HDD/SSD/M.2 firmly.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Test in another machine",
+        "instruction": "Connect the drive to another computer via USB-SATA adapter. If undetected there too, drive has failed.",
+        "tools": [
+          "USB-SATA adapter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "Install a new SSD/HDD compatible with your model and reinstall Windows.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T-series",
+      "ThinkPad L-series",
+      "IdeaPad"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement SSD/HDD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 100,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-60 minutes",
+    "whenToCallPro": "If data recovery is needed from a failed drive.",
+    "relatedCodes": [
+      "2101"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad 2100 HDD detection error fix",
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "If the drive itself failed, possibly. Data recovery may be required."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-2101",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "2101",
+    "displayCode": "2101",
+    "alternativeCodes": [],
+    "title": "Detection error on SSD1 (M.2)",
+    "shortDescription": "BIOS cannot detect the secondary M.2 drive.",
+    "fullDescription": "Error 2101 indicates the secondary M.2 SSD slot (typically an NVMe cache or storage drive) cannot be detected at POST. Found on ThinkPads with dual storage configurations.",
+    "causes": [
+      {
+        "cause": "Failed M.2 drive",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose M.2 mounting",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "M.2 slot disabled in BIOS",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "2101 at boot",
+      "Missing secondary drive in OS"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat the M.2 SSD",
+        "instruction": "Power off, open back panel, remove and reinsert the M.2 module, secure the screw.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check BIOS settings",
+        "instruction": "Enter BIOS and ensure the M.2 slot is enabled and set to AHCI/NVMe mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace M.2 drive",
+        "instruction": "If still undetected, install a new compatible M.2 module.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T480",
+      "ThinkPad X1 Carbon",
+      "Legion 5"
+    ],
+    "partsNeeded": [
+      {
+        "part": "M.2 NVMe SSD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 200
+      },
+      "professional": {
+        "min": 120,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If after replacement the slot still doesn't work, motherboard service is required.",
+    "relatedCodes": [
+      "2100"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad 2101 M.2 detection error",
+    "faq": [
+      {
+        "q": "Can I just remove the M.2 and ignore the error?",
+        "a": "Yes, BIOS will skip detection if the slot is empty."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-plug-ac-adapter",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "PLUG-AC",
+    "displayCode": "Plug the AC adapter",
+    "alternativeCodes": [
+      "AC adapter not connected"
+    ],
+    "title": "Plug the AC adapter in",
+    "shortDescription": "ThinkPad refuses to charge or boot without a recognized adapter.",
+    "fullDescription": "This message appears when a ThinkPad either cannot detect the AC adapter at all, or detects an adapter whose wattage is too low for the system. ThinkPads use a 1-wire identification chip in the original Lenovo adapter to verify wattage and authenticity.\n\nGeneric or damaged adapters often trigger this warning. The system may still boot but will throttle CPU performance and refuse to charge.",
+    "causes": [
+      {
+        "cause": "Non-genuine or low-wattage adapter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged center pin in DC jack",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Damaged adapter cable / ID wire",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Plug AC adapter message at boot",
+      "Battery shows plugged in not charging",
+      "CPU throttled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use the original Lenovo adapter",
+        "instruction": "Replace with a genuine adapter of the wattage stamped on the laptop bottom (45W, 65W, 90W, 135W or 170W).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect the DC jack",
+        "instruction": "Check the round pin or USB-C port for bending or debris. Clean carefully with compressed air.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace the DC-in jack",
+        "instruction": "If the laptop only charges when the cable is held at a specific angle, the jack is failing and must be replaced.",
+        "tools": [
+          "Phillips screwdriver",
+          "Plastic spudger"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "All ThinkPad models",
+      "Some IdeaPad models"
+    ],
+    "partsNeeded": [
+      {
+        "part": "OEM Lenovo adapter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "DC jack assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 80
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-60 minutes",
+    "whenToCallPro": "If DC jack replacement requires motherboard removal.",
+    "relatedCodes": [
+      "0190"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad plug the AC adapter error fix",
+    "faq": [
+      {
+        "q": "Will USB-C PD adapters work?",
+        "a": "Only those that meet the rated wattage and support PD 3.0."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-fan-error",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "FAN-ERROR",
+    "displayCode": "Fan error",
+    "alternativeCodes": [],
+    "title": "Fan error",
+    "shortDescription": "BIOS detects fan failure or no rotation.",
+    "fullDescription": "ThinkPads halt boot with 'Fan error' when the cooling fan is not spinning at minimum RPM during POST. This protects the CPU from thermal damage. The system shuts down a few seconds after the message.\n\nCauses range from a clogged fan blocked by dust to a failed bearing or disconnected fan cable.",
+    "causes": [
+      {
+        "cause": "Dust blocking fan blades",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed fan bearing",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Disconnected fan header on motherboard",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Fan error at boot",
+      "Auto shutdown after POST",
+      "Loud noise before failure"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean the fan",
+        "instruction": "Use compressed air to blow out the heatsink fins and fan from the exhaust vent while holding the blades to prevent overspeed damage.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Open and inspect",
+        "instruction": "Remove the bottom cover, disconnect and remove the fan assembly, clean thoroughly, reapply thermal paste before reassembly.",
+        "tools": [
+          "Phillips screwdriver",
+          "Thermal paste",
+          "Isopropyl alcohol"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace fan/heatsink assembly",
+        "instruction": "Order the FRU-matching fan assembly from Lenovo or aftermarket and install.",
+        "tools": [
+          "Phillips screwdriver",
+          "Thermal paste"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "ThinkPad T-series",
+      "ThinkPad X-series",
+      "IdeaPad",
+      "Legion"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Fan/heatsink assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Thermal paste",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 60
+      },
+      "professional": {
+        "min": 90,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-60 minutes",
+    "whenToCallPro": "If you've never opened a laptop before — heatsink installation is delicate.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Lenovo ThinkPad fan error fix replace",
+    "faq": [
+      {
+        "q": "Can I bypass the check?",
+        "a": "No, doing so risks CPU damage from overheating."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-battery-error",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "BATTERY-ERROR",
+    "displayCode": "Battery error",
+    "alternativeCodes": [
+      "The system battery is too low"
+    ],
+    "title": "Battery error",
+    "shortDescription": "ThinkPad cannot communicate with battery controller.",
+    "fullDescription": "The 'Battery error' message indicates failure of the SMBus communication between the BIOS and the battery's smart controller. Modern ThinkPad batteries report serial number, cycles, design capacity, and current charge — if any of this fails to read, the system displays this error.\n\nIt frequently appears with aftermarket or counterfeit batteries that lack proper firmware.",
+    "causes": [
+      {
+        "cause": "Counterfeit/non-OEM battery",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed battery management chip",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dirty battery contacts",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Battery error at startup",
+      "Battery not detected in OS",
+      "Red X on battery icon"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean contacts",
+        "instruction": "Remove battery and clean contacts with isopropyl alcohol on a cotton swab.",
+        "tools": [
+          "Isopropyl alcohol",
+          "Cotton swab"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset battery gauge",
+        "instruction": "In BIOS, run battery gauge reset to recalibrate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 240
+      },
+      {
+        "step": 3,
+        "title": "Replace with OEM battery",
+        "instruction": "Order a genuine Lenovo battery matching your FRU number.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "All ThinkPad models",
+      "IdeaPad"
+    ],
+    "partsNeeded": [
+      {
+        "part": "OEM battery",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 150
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-60 minutes",
+    "whenToCallPro": "If internal battery requires opening the chassis (newer models).",
+    "relatedCodes": [
+      "0190"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad battery error fix",
+    "faq": [
+      {
+        "q": "Can I keep using on AC only?",
+        "a": "Yes, but the system may throttle CPU."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-hdd-error",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "HDD-ERROR",
+    "displayCode": "Hard Disk Error",
+    "alternativeCodes": [
+      "Hard drive error 1"
+    ],
+    "title": "Hard Disk Error",
+    "shortDescription": "S.M.A.R.T. predicts imminent drive failure.",
+    "fullDescription": "ThinkPads display 'Hard Disk Error' when the BIOS reads a S.M.A.R.T. failure prediction from the storage device. The drive may still work but is reporting reallocated sectors, read errors, or excessive bad blocks.\n\nBack up data immediately. The drive is likely to fail within days or weeks.",
+    "causes": [
+      {
+        "cause": "Drive nearing end of life",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bad sectors growing",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware corruption",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Hard Disk Error at boot",
+      "Slow performance",
+      "OS crashes / blue screens"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Backup immediately",
+        "instruction": "Boot to a Linux live USB or pull the drive externally and copy all important data right away.",
+        "tools": [
+          "External drive",
+          "USB stick"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Run S.M.A.R.T. diagnostics",
+        "instruction": "Use CrystalDiskInfo or the Lenovo Diagnostics tool to check exact error count.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace drive",
+        "instruction": "Install a new SSD and either restore your backup or do a clean Windows install.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 90
+      }
+    ],
+    "affectedModels": [
+      "All ThinkPad / IdeaPad models"
+    ],
+    "partsNeeded": [
+      {
+        "part": "New SSD or HDD",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If you need data recovery from a failing drive — DIY copying may make it worse.",
+    "relatedCodes": [
+      "2100"
+    ],
+    "videoSearchQuery": "Lenovo ThinkPad hard disk error fix replace SSD",
+    "faq": [
+      {
+        "q": "Can I keep using the drive?",
+        "a": "Not safely — full failure is imminent."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-thermal-shutdown",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "THERMAL",
+    "displayCode": "Thermal shutdown",
+    "alternativeCodes": [
+      "Overheating warning"
+    ],
+    "title": "Thermal shutdown",
+    "shortDescription": "Legion or ThinkPad shuts down to protect from overheating.",
+    "fullDescription": "Lenovo Legion gaming laptops and high-power ThinkPads abruptly shut down when CPU or GPU temperatures exceed 100°C. The most common causes are dried thermal paste, dust-clogged radiators, and ambient temperatures above 35°C.\n\nThis is not a coded error per se but a critical-temperature trip recorded in BIOS logs.",
+    "causes": [
+      {
+        "cause": "Dried thermal paste",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Dust-clogged heatsink fins",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed fan",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Sudden shutdown under load",
+      "Hot to the touch",
+      "Hot air not coming from vents"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compressed air clean",
+        "instruction": "Blow out the rear / side vents while holding the fan blades.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Repaste CPU/GPU",
+        "instruction": "Open the laptop, remove the heatsink, clean old paste with isopropyl alcohol, apply fresh thermal paste (or thermal pads where applicable) and reassemble.",
+        "tools": [
+          "Thermal paste",
+          "Phillips screwdriver",
+          "Isopropyl alcohol"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Undervolt CPU",
+        "instruction": "Use ThrottleStop or Intel XTU to apply a -100mV undervolt to lower thermals on Legion gaming laptops.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Legion 5",
+      "Legion 7",
+      "ThinkPad P-series"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Thermal paste",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-90 minutes",
+    "whenToCallPro": "If you're not comfortable with thermal paste application.",
+    "relatedCodes": [
+      "FAN-ERROR"
+    ],
+    "videoSearchQuery": "Lenovo Legion thermal shutdown overheating fix",
+    "faq": [
+      {
+        "q": "Is it dangerous?",
+        "a": "Repeated thermal shutdowns can degrade CPU/GPU silicon over time."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-ideapad-no-boot",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "NO-BOOT-DEVICE",
+    "displayCode": "No bootable device",
+    "alternativeCodes": [
+      "Default boot device missing"
+    ],
+    "title": "No bootable device",
+    "shortDescription": "BIOS cannot find an OS bootloader.",
+    "fullDescription": "Common on Lenovo IdeaPad after a Windows update, BIOS reset, or new SSD installation. The BIOS sees a drive but no valid EFI bootloader. Frequently caused by Legacy/UEFI mode mismatch or accidentally cleared boot entries.",
+    "causes": [
+      {
+        "cause": "Boot order or UEFI/Legacy mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted Windows bootloader",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed SSD",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Black screen with text",
+      "Cannot enter Windows",
+      "Boots into BIOS only"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check BIOS boot mode",
+        "instruction": "Enter BIOS (Fn+F2 or Novo button), set Boot Mode to UEFI and disable Secure Boot temporarily for testing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Repair Windows bootloader",
+        "instruction": "Boot from Windows install USB, choose Repair > Command Prompt, run bootrec /fixmbr, /fixboot, /scanos, /rebuildbcd.",
+        "tools": [
+          "Windows installer USB"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Reinstall Windows",
+        "instruction": "If repair fails, do a clean install on the SSD.",
+        "tools": [
+          "Windows installer USB"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "IdeaPad 3",
+      "IdeaPad 5",
+      "IdeaPad Slim",
+      "Yoga"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 80,
+        "max": 180
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "If important data needs to be recovered before reinstalling Windows.",
+    "relatedCodes": [
+      "2100"
+    ],
+    "videoSearchQuery": "Lenovo IdeaPad no bootable device fix",
+    "faq": [
+      {
+        "q": "Where is the Novo button?",
+        "a": "Small pinhole near power button or side; use a paperclip to press."
+      }
+    ]
+  },
+  {
+    "id": "lenovo-laptop-legion-gpu-not-detected",
+    "brand": "Lenovo",
+    "brandSlug": "lenovo",
+    "deviceType": "Laptop",
+    "deviceTypeSlug": "laptop",
+    "code": "GPU-NOT-DETECTED",
+    "displayCode": "NVIDIA GPU not detected",
+    "alternativeCodes": [
+      "Discrete GPU missing"
+    ],
+    "title": "Discrete NVIDIA GPU not detected",
+    "shortDescription": "Legion laptop only sees integrated graphics.",
+    "fullDescription": "Lenovo Legion gaming laptops use NVIDIA Optimus / Advanced Optimus to switch between integrated and discrete GPU. After a BIOS update or driver corruption, the discrete RTX/GTX GPU may disappear from Device Manager, leaving only iGPU. Games run poorly or refuse to launch.",
+    "causes": [
+      {
+        "cause": "Hybrid mode set incorrectly",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupted NVIDIA drivers",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed dGPU solder joints",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "GPU missing in Device Manager",
+      "Low FPS in games",
+      "External display not working"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Toggle GPU mode",
+        "instruction": "Open Lenovo Vantage or Legion Toolkit and switch GPU Working Mode to Hybrid Auto or Discrete.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean reinstall NVIDIA drivers",
+        "instruction": "Use DDU in Safe Mode to remove all NVIDIA drivers, then install latest from NVIDIA website.",
+        "tools": [
+          "DDU utility"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Service for dGPU failure",
+        "instruction": "If GPU still missing after clean reinstall, motherboard or dGPU may have failed solder joints — service required.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 0
+      }
+    ],
+    "affectedModels": [
+      "Legion 5 Pro",
+      "Legion 7",
+      "Legion Slim 7"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 20
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "5-60 minutes",
+    "whenToCallPro": "If GPU is still missing after driver and BIOS reset.",
+    "relatedCodes": [
+      "THERMAL"
+    ],
+    "videoSearchQuery": "Lenovo Legion NVIDIA GPU not detected fix",
+    "faq": [
+      {
+        "q": "Should I use DDU?",
+        "a": "Yes — it ensures the cleanest driver reinstall."
+      }
+    ]
+  }
+]

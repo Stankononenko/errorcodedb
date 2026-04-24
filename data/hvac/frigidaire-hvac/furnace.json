@@ -1,0 +1,324 @@
+[
+  {
+    "id": "frigidaire-hvac-furnace-1-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "1 Flash",
+    "displayCode": "1 Flash",
+    "isBlinkCode": true,
+    "title": "Standby - normal",
+    "shortDescription": "Healthy idle waiting for thermostat call.",
+    "fullDescription": "Frigidaire HVAC furnaces (FG7T*, FT4B series, made by Nordyne) use the standard Nordyne control board. A slow steady single flash means healthy standby. If furnace doesn't start, check thermostat, batteries, low-voltage wiring, or blown fuse on IFC.",
+    "safetyWarning": "Line voltage present at IFC even at idle.",
+    "causes": [
+      {"cause": "Healthy standby", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Thermostat issue", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Open fuse on IFC", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Single steady flash", "No response to thermostat"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify thermostat", "instruction": "Check 24 V at R-W with heat call.", "tools": ["multimeter"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Check IFC fuse", "instruction": "Replace if blown.", "tools": ["fuse"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 95, "max": 175}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If 24 V good but no response.",
+    "relatedCodes": ["frigidaire-hvac-furnace-2-flash"],
+    "faq": [
+      {"q": "Frigidaire HVAC vs appliance?", "a": "Same name, Nordyne licenses for HVAC."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-2-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "2 Flash",
+    "displayCode": "2 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure switch stuck closed",
+    "shortDescription": "Switch closed before inducer starts.",
+    "fullDescription": "Two flashes mean the IFC sees pressure switch closed before the inducer was commanded to start. Safety lockout.",
+    "safetyWarning": "Never bypass pressure switch.",
+    "causes": [
+      {"cause": "Stuck switch", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring shorted", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Two flashes", "Inducer never runs"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Disconnect.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Test switch", "instruction": "Should be OPEN at rest.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If switch tests good.",
+    "relatedCodes": ["frigidaire-hvac-furnace-3-flash"],
+    "faq": [
+      {"q": "Why stick?", "a": "Cycling and condensate corrosion."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-3-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "3 Flash",
+    "displayCode": "3 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure switch failed to close",
+    "shortDescription": "Inducer running, switch never closed.",
+    "fullDescription": "Three flashes typically mean clogged condensate trap, torn pressure hose, blocked vent, or weak inducer.",
+    "safetyWarning": "Do not bypass switch.",
+    "causes": [
+      {"cause": "Clogged condensate trap", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Cracked pressure hose", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Blocked vent", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Weak inducer", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Three flashes", "Inducer runs", "No ignition"],
+    "fixSteps": [
+      {"step": 1, "title": "Check vent", "instruction": "Inspect outdoor PVC.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clean trap", "instruction": "Flush with bleach solution.", "tools": ["bucket"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Inspect hose", "instruction": "Replace if cracked.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 180, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Inducer replacement.",
+    "relatedCodes": ["frigidaire-hvac-furnace-2-flash"],
+    "faq": [
+      {"q": "Clean trap how often?", "a": "Annually."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-4-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "4 Flash",
+    "displayCode": "4 Flash",
+    "isBlinkCode": true,
+    "title": "High limit open",
+    "shortDescription": "Overheated due to airflow restriction.",
+    "fullDescription": "Four flashes mean primary limit opened. Almost always restricted airflow - dirty filter, closed registers, slow blower.",
+    "safetyWarning": "Repeated trips can mean cracked HX - CO hazard.",
+    "causes": [
+      {"cause": "Dirty filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Closed registers", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed blower", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Cracked HX", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Four flashes", "Burner drops out"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "OEM-spec.", "tools": ["filter"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Open registers", "instruction": "All open and unblocked.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Measure temp rise", "instruction": "Within nameplate range.", "tools": ["thermometer"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Recurring trips on clean system.",
+    "relatedCodes": ["frigidaire-hvac-furnace-5-flash"],
+    "faq": [
+      {"q": "Replace limit?", "a": "No - fix airflow."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-5-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "5 Flash",
+    "displayCode": "5 Flash",
+    "isBlinkCode": true,
+    "title": "Roll-out switch tripped",
+    "shortDescription": "Flame roll-out detected.",
+    "fullDescription": "Five flashes indicate roll-out limit opened. Critical safety event with CO risk.",
+    "safetyWarning": "CO hazard - stop using and call tech.",
+    "causes": [
+      {"cause": "Blocked flue", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Cracked HX", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Five flashes", "Lockout", "Soot near burners"],
+    "fixSteps": [
+      {"step": 1, "title": "Stop using", "instruction": "Close gas valve.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Tech inspection", "instruction": "Borescope HX.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["frigidaire-hvac-furnace-4-flash"],
+    "faq": [
+      {"q": "Reset switch?", "a": "Never without finding cause."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-6-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "6 Flash",
+    "displayCode": "6 Flash",
+    "isBlinkCode": true,
+    "title": "Reverse polarity",
+    "shortDescription": "L/N swapped or no ground.",
+    "fullDescription": "Six flashes indicate polarity issue. Hire electrician.",
+    "safetyWarning": "Shock hazard.",
+    "causes": [
+      {"cause": "Wires reversed", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Missing ground", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Six flashes", "Burner drops on flame sense"],
+    "fixSteps": [
+      {"step": 1, "title": "Receptacle test", "instruction": "3-light tester.", "tools": ["receptacle tester"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Electrician fix", "instruction": "Licensed.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Panel work.",
+    "relatedCodes": ["frigidaire-hvac-furnace-7-flash"],
+    "faq": [
+      {"q": "Why polarity?", "a": "Flame sense uses ground for tiny rectified current."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-7-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "7 Flash",
+    "displayCode": "7 Flash",
+    "isBlinkCode": true,
+    "title": "Weak flame signal",
+    "shortDescription": "Flame current below threshold.",
+    "fullDescription": "Seven flashes mean burner lit but flame current too low. Clean flame sensor first.",
+    "safetyWarning": "Shut off gas/power before service.",
+    "causes": [
+      {"cause": "Oxidized sensor", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cracked porcelain", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Dirty burners", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Seven flashes", "Lights then drops"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean sensor", "instruction": "320-grit emery cloth.", "tools": ["emery cloth"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Test", "instruction": "Should read 2-6 microamps.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 120, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If cleaning doesn't fix.",
+    "relatedCodes": ["frigidaire-hvac-furnace-6-flash", "frigidaire-hvac-furnace-8-flash"],
+    "faq": [
+      {"q": "Steel wool?", "a": "No - leaves conductive fragments."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-8-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "8 Flash",
+    "displayCode": "8 Flash",
+    "isBlinkCode": true,
+    "title": "Ignition failure",
+    "shortDescription": "No flame after 3 trials.",
+    "fullDescription": "Eight flashes mean three full ignition trials failed. Hour lockout.",
+    "safetyWarning": "Smell gas? Leave the home.",
+    "causes": [
+      {"cause": "Cracked HSI", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Gas off", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Spider webs", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Eight flashes", "Igniter glows but no flame"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas", "instruction": "Confirm shutoff open.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Test HSI", "instruction": "40-90 ohms cold.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Clean burners", "instruction": "Vacuum.", "tools": ["vacuum"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 90}, "professional": {"min": 180, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Gas valve testing.",
+    "relatedCodes": ["frigidaire-hvac-furnace-7-flash"],
+    "faq": [
+      {"q": "HSI life?", "a": "5-7 years."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-9-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "9 Flash",
+    "displayCode": "9 Flash",
+    "isBlinkCode": true,
+    "title": "Phantom flame signal",
+    "shortDescription": "Flame detected with valve closed.",
+    "fullDescription": "Nine flashes - critical fault. Usually leaking gas valve.",
+    "safetyWarning": "Shut off gas immediately.",
+    "causes": [
+      {"cause": "Leaking gas valve", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed sensor (false positive)", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Nine flashes", "Latching lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Close gas", "instruction": "Immediately.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Tech diagnosis", "instruction": "Licensed only.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["frigidaire-hvac-furnace-8-flash"],
+    "faq": [
+      {"q": "Run anyway?", "a": "Absolutely not."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-furnace-10-flash",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "10 Flash",
+    "displayCode": "10 Flash",
+    "isBlinkCode": true,
+    "title": "Igniter / gas valve circuit fault",
+    "shortDescription": "Open or shorted output.",
+    "fullDescription": "Ten flashes mean an open or shorted output to the igniter or gas valve.",
+    "safetyWarning": "Shut off gas and power.",
+    "causes": [
+      {"cause": "Loose / melted spade", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Open HSI", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve coil", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Ten flashes", "No igniter glow OR no gas response"],
+    "fixSteps": [
+      {"step": 1, "title": "Power and gas off", "instruction": "Lockout.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Inspect spades", "instruction": "Replace burnt connectors.", "tools": ["wire crimps"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Test HSI", "instruction": "40-90 ohms cold.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 110}, "professional": {"min": 220, "max": 750}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "Gas valve replacement.",
+    "relatedCodes": ["frigidaire-hvac-furnace-8-flash"],
+    "faq": [
+      {"q": "Generic gas valve?", "a": "OEM or AGA-listed only."}
+    ]
+  }
+]

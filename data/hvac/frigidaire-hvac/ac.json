@@ -1,0 +1,331 @@
+[
+  {
+    "id": "frigidaire-hvac-ac-e1",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E1",
+    "displayCode": "E1",
+    "isBlinkCode": false,
+    "title": "Outdoor temperature sensor fault",
+    "shortDescription": "Ambient thermistor open or shorted.",
+    "fullDescription": "Frigidaire HVAC condensers (Nordyne-built) display E1 when the outdoor ambient thermistor is open, shorted, or wildly out of range. Variable-capacity logic falls back to default values.",
+    "safetyWarning": "240 VAC at contactor - lock out disconnect.",
+    "causes": [
+      {"cause": "Failed thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Damaged sensor lead", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E1 fault", "Reduced cooling capacity"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect power", "instruction": "Verify zero V.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Test sensor", "instruction": "10K NTC at 77 F.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Replace", "instruction": "Plug in new.", "tools": ["thermistor"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 60}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If new sensor still produces E1.",
+    "relatedCodes": ["frigidaire-hvac-ac-e2"],
+    "faq": [
+      {"q": "AC still works?", "a": "Yes, on backup logic."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e2",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E2",
+    "displayCode": "E2",
+    "isBlinkCode": false,
+    "title": "Coil sensor fault",
+    "shortDescription": "Outdoor coil thermistor open.",
+    "fullDescription": "E2 reports outdoor coil sensor open or shorted - blocks proper variable-capacity control.",
+    "safetyWarning": "240 VAC at contactor.",
+    "causes": [
+      {"cause": "Broken thermistor lead", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Sensor unclipped", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed sensor element", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E2 fault", "Compressor at fixed speed"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Verify zero V.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect mounting", "instruction": "Re-seat sensor.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Resistance test", "instruction": "Compare to chart.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 65}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If sensor good.",
+    "relatedCodes": ["frigidaire-hvac-ac-e1"],
+    "faq": [
+      {"q": "Where is sensor?", "a": "Clipped to coil U-bend."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e3",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E3",
+    "displayCode": "E3",
+    "isBlinkCode": false,
+    "title": "High pressure trip",
+    "shortDescription": "Discharge pressure exceeded cutout.",
+    "fullDescription": "E3 means high-pressure switch opened (~600 psi R-410A). Compressor stops.",
+    "safetyWarning": "EPA 608 required for refrigerant work.",
+    "causes": [
+      {"cause": "Dirty condenser coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed condenser fan", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Overcharge", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E3 fault", "Compressor stops shortly after start"],
+    "fixSteps": [
+      {"step": 1, "title": "Wash coil", "instruction": "Power off; rinse.", "tools": ["garden hose"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Verify fan", "instruction": "Fan runs with compressor.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Test capacitor", "instruction": "Discharge then measure.", "tools": ["capacitance meter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 220, "max": 1200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Refrigerant work.",
+    "relatedCodes": ["frigidaire-hvac-ac-e4"],
+    "faq": [
+      {"q": "Reset and run?", "a": "No - damages compressor."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e4",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E4",
+    "displayCode": "E4",
+    "isBlinkCode": false,
+    "title": "Low pressure",
+    "shortDescription": "Suction pressure below cutout.",
+    "fullDescription": "E4 indicates low-side pressure dropped. Most often refrigerant leak or low airflow over evaporator.",
+    "safetyWarning": "EPA 608 for refrigerant.",
+    "causes": [
+      {"cause": "Refrigerant leak", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Iced evaporator", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Closed service valve", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E4 fault", "Frost on suction line"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Thaw with blower-only.", "tools": ["filter"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Verify valves open", "instruction": "Both back-seated.", "tools": ["allen key"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Tech leak repair", "instruction": "Find, repair, evacuate, weigh.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "professional": {"min": 300, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always for refrigerant.",
+    "relatedCodes": ["frigidaire-hvac-ac-e3"],
+    "faq": [
+      {"q": "Top off?", "a": "EPA prohibits without leak repair."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e5",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E5",
+    "displayCode": "E5",
+    "isBlinkCode": false,
+    "title": "Compressor over-current",
+    "shortDescription": "Compressor exceeded safe current.",
+    "fullDescription": "E5 means current draw above threshold.",
+    "safetyWarning": "Capacitor lethal charge - discharge first.",
+    "causes": [
+      {"cause": "Failed run capacitor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Low line voltage", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Stiff compressor", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E5 fault", "Compressor hums"],
+    "fixSteps": [
+      {"step": 1, "title": "Test capacitor", "instruction": "Discharge then measure uF.", "tools": ["capacitance meter"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Verify line voltage", "instruction": "Above 207 V at start.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 3, "title": "Inspect contactor", "instruction": "Replace if pitted.", "tools": [], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 90}, "professional": {"min": 250, "max": 2800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Compressor work.",
+    "relatedCodes": ["frigidaire-hvac-ac-e3"],
+    "faq": [
+      {"q": "LRA?", "a": "4-7x running amps."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e6",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E6",
+    "displayCode": "E6",
+    "isBlinkCode": false,
+    "title": "Communication loss",
+    "shortDescription": "Indoor-outdoor comm bus dropped.",
+    "fullDescription": "E6 indicates loss of communication. Polarity, broken wire, or water in connector.",
+    "safetyWarning": "Short can blow transformer fuse.",
+    "causes": [
+      {"cause": "Polarity swapped", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Broken thermostat wire", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Water in whip", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E6 fault", "Default capacity"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify polarity", "instruction": "Both ends matching.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect whip", "instruction": "Water/corrosion.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Continuity test", "instruction": "End-to-end.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Cable replacement.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Run with E6?", "a": "Yes, on default."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e7",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E7",
+    "displayCode": "E7",
+    "isBlinkCode": false,
+    "title": "Indoor blower fault",
+    "shortDescription": "Blower not at commanded RPM.",
+    "fullDescription": "E7 means ECM blower off-target RPM. Cooling suspended to prevent freeze.",
+    "safetyWarning": "Blower may start abruptly.",
+    "causes": [
+      {"cause": "Clogged filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed ECM module", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Seized bearings", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["E7 fault", "Cooling stops"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Thaw coil.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Spin wheel", "instruction": "Free rotation check.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Check harness", "instruction": "Reseat connectors.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "professional": {"min": 250, "max": 1100}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "ECM replacement.",
+    "relatedCodes": ["frigidaire-hvac-ac-e4"],
+    "faq": [
+      {"q": "Filter freeze coil?", "a": "Yes - low airflow."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e8",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E8",
+    "displayCode": "E8",
+    "isBlinkCode": false,
+    "title": "Discharge over-temperature",
+    "shortDescription": "Discharge sensor exceeded threshold.",
+    "fullDescription": "E8 indicates discharge thermistor above ~270 F.",
+    "safetyWarning": "Allow line to cool 30 min.",
+    "causes": [
+      {"cause": "Low charge", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Dirty outdoor coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Restricted drier", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E8 fault", "Short cycles"],
+    "fixSteps": [
+      {"step": 1, "title": "Wash coil", "instruction": "Rinse from inside.", "tools": ["garden hose"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Test sensor", "instruction": "Resistance check.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Tech charge check", "instruction": "Subcool/superheat.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 250, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always for refrigerant.",
+    "relatedCodes": ["frigidaire-hvac-ac-e3"],
+    "faq": [
+      {"q": "Normal discharge temp?", "a": "150-200 F."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e9",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E9",
+    "displayCode": "E9",
+    "isBlinkCode": false,
+    "title": "Inverter fault",
+    "shortDescription": "Drive reported internal fault.",
+    "fullDescription": "E9 is generic inverter fault on iQ Drive Frigidaire HVAC condensers.",
+    "safetyWarning": "DC bus capacitors lethal for 5+ min.",
+    "causes": [
+      {"cause": "Drive heatsink dust", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed drive board", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E9 fault", "Compressor never starts"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off + 5 min", "instruction": "Verify zero V at DC bus.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Clean heatsink", "instruction": "Vacuum dust.", "tools": ["vacuum"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 3, "title": "Tech replacement", "instruction": "Sealed unit replaced.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 600, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["frigidaire-hvac-ac-e5"],
+    "faq": [
+      {"q": "Warranty?", "a": "10-year parts when registered."}
+    ]
+  },
+  {
+    "id": "frigidaire-hvac-ac-e10",
+    "brand": "Frigidaire HVAC",
+    "brandSlug": "frigidaire-hvac",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E10",
+    "displayCode": "E10",
+    "isBlinkCode": false,
+    "title": "Reversing valve fault (heat pump)",
+    "shortDescription": "Reversing valve failed to shift.",
+    "fullDescription": "E10 indicates valve did not shift between cooling and heating.",
+    "safetyWarning": "Body replacement requires recovery and brazing.",
+    "causes": [
+      {"cause": "Stuck slide", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Open coil", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Plugged pilot port", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E10 fault", "Wrong-temp air"],
+    "fixSteps": [
+      {"step": 1, "title": "Test coil", "instruction": "Ohm coil. Open = replace coil.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Force mode swap", "instruction": "Cycle thermostat.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Tech replacement", "instruction": "Body replacement.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 60}, "professional": {"min": 600, "max": 1800}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always for body.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Cold air on heat?", "a": "Valve didn't shift."}
+    ]
+  }
+]

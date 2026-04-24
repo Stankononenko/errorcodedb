@@ -1,0 +1,337 @@
+[
+  {
+    "id": "nordyne-furnace-1-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "1 Flash",
+    "displayCode": "1 Flash",
+    "isBlinkCode": true,
+    "title": "Normal standby - no faults",
+    "shortDescription": "Single LED flash means the integrated control board is healthy and waiting for a thermostat call.",
+    "fullDescription": "Nordyne (parent of Maytag, Frigidaire, Westinghouse, Tappan, Gibson and Philco HVAC) uses a common control board family. A slow, steady single flash on the diagnostic LED reports a healthy board waiting for a heat or cool call.\n\nIf the furnace will not start despite the 1-flash code, look upstream: thermostat, batteries, low-voltage wiring, the door safety switch, or a tripped 3 A fuse on the board.",
+    "safetyWarning": "Even at idle, line voltage is present at the control board terminals. Switch off the disconnect before opening the blower door.",
+    "causes": [
+      {"cause": "Healthy idle - no fault", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Thermostat not closing R-W (dead batteries, wiring)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Open door safety switch", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Slow steady single flash", "No response to thermostat", "Blower idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify thermostat call", "instruction": "Set thermostat 5 F above room temp; listen for click and look for 24 V at R-W.", "tools": ["multimeter"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Check door switch", "instruction": "Confirm the blower door is fully seated, depressing the safety switch.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 95, "max": 175}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If 24 V is at the board with W energized but the inducer never starts, have a tech load-test the board.",
+    "relatedCodes": ["nordyne-furnace-2-flash"],
+    "faq": [
+      {"q": "Same code as Maytag furnace?", "a": "Yes - Maytag/Westinghouse/Tappan furnaces share Nordyne boards and codes."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-2-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "2 Flash",
+    "displayCode": "2 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure switch closed when it should be open",
+    "shortDescription": "Inducer is off but pressure switch shows closed - stuck switch or wiring fault.",
+    "fullDescription": "Two flashes mean the IFC saw the pressure switch closed before the inducer was commanded to start. This is a critical safety check - a closed switch with no inducer running suggests a stuck switch or a jumper across the contacts.\n\nThe board will not allow ignition until the switch opens (de-energized state) at start of cycle.",
+    "safetyWarning": "Bypassing the pressure switch can let the burners light into a blocked flue, causing CO to spill into the home.",
+    "causes": [
+      {"cause": "Stuck pressure switch contacts", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Switch shorted in the harness", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Field-installed jumper still in place", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Two flashes", "No inducer activation", "No ignition attempt"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Disconnect at the service switch.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Test switch at rest", "instruction": "Disconnect leads; ohm the terminals. Should be OPEN (no continuity) at rest.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Replace if closed", "instruction": "If continuity reads, replace the switch with the OEM part number.", "tools": ["pressure switch"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If switch tests open but the code persists, have a tech inspect the IFC.",
+    "relatedCodes": ["nordyne-furnace-3-flash"],
+    "faq": [
+      {"q": "Why do switches stick?", "a": "Years of pressure cycling and condensate corrosion fuse contacts together."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-3-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "3 Flash",
+    "displayCode": "3 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure switch failed to close",
+    "shortDescription": "Inducer is running but the pressure switch never closed - venting, drain, or inducer issue.",
+    "fullDescription": "Three flashes mean the inducer started but the pressure switch did not close in time. The IFC will retry up to 3 times before locking out for an hour.\n\nOn 80% AFUE Nordyne furnaces, the most common causes are flue blockage, a torn pressure-switch hose, or a weak inducer motor. On 90%+ condensing models, a clogged condensate trap is the #1 cause - water backs up into the inducer housing and prevents draft.",
+    "safetyWarning": "Do not bypass the switch - flue blockage can spill CO into the home.",
+    "causes": [
+      {"cause": "Clogged condensate trap (90%+ models)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Cracked/disconnected pressure switch hose", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Blocked outdoor vent terminal", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Weak inducer motor bearings", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed pressure switch", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Three flashes", "Inducer runs but no ignition", "Possibly water in inducer"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect vent terminal", "instruction": "Look outside for snow, leaves, or insect screen blockage at the PVC vent.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clean condensate trap", "instruction": "Remove the trap, flush with warm water and bleach solution.", "tools": ["bucket"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Inspect hose", "instruction": "Pull the silicone hose at the inducer port and check for water, kinks, cracks.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 180, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Inducer replacement is best handled by a technician.",
+    "relatedCodes": ["nordyne-furnace-2-flash", "nordyne-furnace-4-flash"],
+    "faq": [
+      {"q": "How do I know if condensate is the issue?", "a": "Pull the silicone hose at the inducer - if water dribbles out, the trap is plugged."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-4-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "4 Flash",
+    "displayCode": "4 Flash",
+    "isBlinkCode": true,
+    "title": "Open high-temperature limit switch",
+    "shortDescription": "The primary limit opened due to overheating in the heat exchanger.",
+    "fullDescription": "Four flashes indicate the high-temperature limit safety switch on the heat exchanger has opened. Burners shut off, blower runs to cool the exchanger.\n\nRoot cause is restricted airflow 95% of the time: dirty filter, closed registers, undersized return, or failed blower. A repeated 4-flash code that returns after airflow correction may indicate a cracked heat exchanger.",
+    "safetyWarning": "Repeated limit trips on a clean system can indicate a cracked heat exchanger - a CO hazard requiring professional inspection.",
+    "causes": [
+      {"cause": "Dirty air filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Closed/blocked supply registers", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed blower or capacitor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Undersized return duct", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Cracked heat exchanger", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Four flashes", "Burner lights then drops out", "Blower keeps running"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Install clean OEM-spec filter.", "tools": ["filter"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Open registers", "instruction": "Verify all supply registers are fully open and unblocked.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Measure temp rise", "instruction": "Should be within nameplate range, typically 35-65 F.", "tools": ["thermometer"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated trips after airflow is restored.",
+    "relatedCodes": ["nordyne-furnace-5-flash"],
+    "faq": [
+      {"q": "Can I replace the limit switch?", "a": "Replacement won't fix the underlying airflow problem - the new switch will trip too."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-5-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "5 Flash",
+    "displayCode": "5 Flash",
+    "isBlinkCode": true,
+    "title": "Flame roll-out switch open",
+    "shortDescription": "The manual-reset roll-out switch tripped - flames or hot gas exited the burner box.",
+    "fullDescription": "Five flashes indicate the flame roll-out switch (mounted at the front of the burner box) opened due to flames or excess heat escaping forward. This is a serious safety event requiring professional diagnosis.\n\nCommon causes: blocked flue, cracked or rusted heat exchanger, failed inducer (no draft), or heavy soot buildup blocking the burner-to-exchanger path.",
+    "safetyWarning": "Flame roll-out indicates combustion gases are not flowing correctly through the heat exchanger and CO can enter the home. Stop using the furnace until inspected.",
+    "causes": [
+      {"cause": "Blocked flue / vent", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Cracked heat exchanger", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed inducer", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Soot buildup in primary HX", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Five flashes", "Lockout", "Smell of combustion in equipment room", "Soot near burners"],
+    "fixSteps": [
+      {"step": 1, "title": "Stop using furnace", "instruction": "Turn off gas at appliance shutoff. Verify CO alarms are working.", "tools": ["CO detector"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Schedule professional inspection", "instruction": "Heat exchanger must be inspected with borescope and combustion analyzer.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always - this is a CO hazard.",
+    "relatedCodes": ["nordyne-furnace-4-flash"],
+    "faq": [
+      {"q": "Can I just reset the switch?", "a": "Never reset without finding the cause - you risk fire or CO poisoning."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-6-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "6 Flash",
+    "displayCode": "6 Flash",
+    "isBlinkCode": true,
+    "title": "Reverse line voltage polarity",
+    "shortDescription": "Hot and neutral are swapped at the furnace, or chassis ground is missing.",
+    "fullDescription": "Six flashes indicate reversed L1/N polarity or absent ground on the 120 VAC supply. The flame sensing circuit needs proper polarity and ground to detect the small flame current.\n\nCorrect at the disconnect or service panel; do not bypass.",
+    "safetyWarning": "Reversed polarity can energize the chassis - shock hazard. Hire an electrician if you are unsure.",
+    "causes": [
+      {"cause": "Wires reversed at disconnect/panel", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Missing equipment ground", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Six flashes", "Burner lights then drops out on flame sense"],
+    "fixSteps": [
+      {"step": 1, "title": "Test with receptacle tester", "instruction": "Plug into outlet at the disconnect (if cord-and-plug furnace) - 3 lights tell you what's wrong.", "tools": ["receptacle tester"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Multimeter check", "instruction": "Hot-Neutral 120 V, Hot-Ground 120 V, Neutral-Ground ~0 V.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 3, "title": "Correct wiring", "instruction": "Hire electrician to swap conductors at the panel/disconnect.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Anytime panel-level wiring is involved.",
+    "relatedCodes": ["nordyne-furnace-7-flash"],
+    "faq": [
+      {"q": "Why does polarity matter?", "a": "Flame sense uses earth ground as the return path for a tiny rectified current."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-7-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "7 Flash",
+    "displayCode": "7 Flash",
+    "isBlinkCode": true,
+    "title": "Weak / lost flame signal",
+    "shortDescription": "Flame is established but flame current is below the 1.5 microamp minimum.",
+    "fullDescription": "Seven flashes mean the burner lit but the IFC didn't read enough flame current to confirm flame. After three trials it locks out.\n\n90% of fixes are simply cleaning the flame sensor rod with fine emery cloth or scotch pad. Other causes: cracked porcelain insulator, dirty burners, low gas pressure, missing ground.",
+    "safetyWarning": "Always shut off gas and power before pulling the burner assembly.",
+    "causes": [
+      {"cause": "Oxidized flame sensor rod", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cracked porcelain insulator", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Dirty burners / misalignment", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Poor ground / reverse polarity", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "Low gas pressure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Seven flashes", "Flame lights for 2-4 seconds then shuts off", "3 retries then lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Power and gas off", "instruction": "Disconnect electrical and close gas valve.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Clean flame sensor", "instruction": "Remove sensor (1 screw), polish rod with 320-grit emery cloth or non-abrasive scotch pad.", "tools": ["emery cloth"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Reinstall and test", "instruction": "Restore power/gas; flame current should read 2-6 microamps.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 120, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If cleaning and replacing the sensor doesn't fix the code.",
+    "relatedCodes": ["nordyne-furnace-6-flash", "nordyne-furnace-8-flash"],
+    "faq": [
+      {"q": "Can I use steel wool to clean it?", "a": "No - steel wool leaves conductive fragments. Use emery cloth or scotch pad."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-8-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "8 Flash",
+    "displayCode": "8 Flash",
+    "isBlinkCode": true,
+    "title": "Ignition failure - no flame",
+    "shortDescription": "Igniter fired and gas valve opened but no flame was detected.",
+    "fullDescription": "Eight flashes mean the IFC ran a complete ignition trial but never sensed flame. Three trials, then 1-hour lockout.\n\nMost frequent cause is a cracked hot-surface igniter, followed by spider webs in burner orifices, low gas pressure, or a closed manual gas valve.",
+    "safetyWarning": "If you smell gas during a failed ignition, leave the building and call the gas utility.",
+    "causes": [
+      {"cause": "Cracked / worn hot-surface igniter", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Closed manual gas valve / empty propane tank", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Spider webs / debris in burners", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Eight flashes", "Igniter glows but no flame", "Slight gas smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas supply", "instruction": "Confirm shutoff is open; verify other gas appliances run.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect igniter", "instruction": "Look for cracks or white powder. Cold resistance should be 40-90 ohms.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Clean burners", "instruction": "Vacuum and brush away spider webs and rust flakes.", "tools": ["vacuum"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 90}, "professional": {"min": 180, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Manifold pressure or gas valve testing.",
+    "relatedCodes": ["nordyne-furnace-7-flash"],
+    "faq": [
+      {"q": "How long do hot-surface igniters last?", "a": "Typically 5-7 years."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-9-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "9 Flash",
+    "displayCode": "9 Flash",
+    "isBlinkCode": true,
+    "title": "Failed flame sense after lockout",
+    "shortDescription": "Flame was sensed when it should not be present (gas valve closed) - latching fault.",
+    "fullDescription": "Nine flashes on Nordyne furnaces indicate the flame signal was detected when the gas valve was de-energized. This is a safety latch - it usually points to a stuck gas valve leaking gas, or a flame sensor reading a reflection or hot surface as flame.\n\nThis code requires power-cycling and full diagnosis before resuming service.",
+    "safetyWarning": "A leaking gas valve can release gas with no flame to consume it. Shut off gas immediately and call a tech.",
+    "causes": [
+      {"cause": "Leaking / stuck-open gas valve", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Failed flame sensor (false positive)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "IFC input fault", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Nine flashes", "Latched lockout", "Possible gas smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Shut off gas", "instruction": "Close manual gas valve immediately.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Call licensed HVAC tech", "instruction": "This is not a DIY-safe diagnosis.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["nordyne-furnace-7-flash", "nordyne-furnace-8-flash"],
+    "faq": [
+      {"q": "Can I bypass and run anyway?", "a": "Absolutely not - gas leak risk."}
+    ]
+  },
+  {
+    "id": "nordyne-furnace-10-flash",
+    "brand": "Nordyne",
+    "brandSlug": "nordyne",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "10 Flash",
+    "displayCode": "10 Flash",
+    "isBlinkCode": true,
+    "title": "Gas valve / igniter wiring fault",
+    "shortDescription": "IFC detected open or shorted output to the gas valve or hot-surface igniter.",
+    "fullDescription": "Ten flashes indicate the IFC measured an open or shorted output on either the gas valve coil drive or the hot-surface igniter circuit. The board protects itself with an hour lockout.\n\nMost commonly a melted spade terminal or a cracked igniter that has gone open. Less frequently the IFC's output triac itself has failed.",
+    "safetyWarning": "Shut off gas before disconnecting valve wires. Verify valve is fully closed before re-energizing.",
+    "causes": [
+      {"cause": "Melted/loose spade terminal", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Open hot-surface igniter", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve coil", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed IFC output triac", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Ten flashes", "No igniter glow OR no gas response"],
+    "fixSteps": [
+      {"step": 1, "title": "Power and gas off", "instruction": "Disconnect electrical service and close gas shutoff.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Inspect spade terminals", "instruction": "Check both gas valve and igniter spades for melting or corrosion. Replace burnt connectors.", "tools": ["wire crimps"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Test igniter resistance", "instruction": "40-90 ohms cold; open = replace.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 110}, "professional": {"min": 220, "max": 750}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "Gas valve replacement requires a licensed technician.",
+    "relatedCodes": ["nordyne-furnace-8-flash"],
+    "faq": [
+      {"q": "Can I substitute generic gas valves?", "a": "Use only the OEM or AGA-listed equivalent. Cross-brand valves may have wrong pressure regulator."}
+    ]
+  }
+]

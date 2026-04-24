@@ -1,0 +1,349 @@
+[
+  {
+    "id": "armstrong-ac-e1",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E1",
+    "displayCode": "E1",
+    "isBlinkCode": false,
+    "title": "Outdoor temperature sensor fault",
+    "shortDescription": "The condenser unit's ambient temperature sensor is open or out of range.",
+    "fullDescription": "On Armstrong Air variable-capacity (4SCU16LX/SLX) condensers, E1 indicates the outdoor temperature thermistor is open, shorted, or reads outside the -40 F to 150 F window. The control board substitutes a default value, which causes inefficient operation and may inhibit cooling at extreme outdoor temperatures.\n\nMost common causes are rodent damage to the sensor pigtail, water intrusion into the sensor connector, or a sensor that simply aged out. Replacement is a 15-minute job once the sensor is sourced.",
+    "safetyWarning": "Lock out the disconnect at the outdoor unit before opening the control panel - 240 VAC is present near the contactor.",
+    "causes": [
+      {"cause": "Failed outdoor ambient thermistor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded sensor connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Rodent-chewed sensor wire", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E1 on indoor display or fault LED", "Reduced cooling capacity", "Compressor cycles short"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect outdoor power", "instruction": "Pull the outdoor disconnect and verify zero volts before opening the panel.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Locate sensor", "instruction": "Find the small thermistor clipped to the outside of the coil with a 2-pin connector to the control board.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Measure resistance", "instruction": "Compare to chart - typical 10K NTC at 77 F. Open or very high reading = replace.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Replace sensor", "instruction": "Plug new sensor in, route away from sharp edges, restore power.", "tools": ["thermistor"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 60}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-45 minutes",
+    "whenToCallPro": "If the new sensor still produces E1, the control board input may be damaged.",
+    "relatedCodes": ["armstrong-ac-e2", "armstrong-ac-e3"],
+    "faq": [
+      {"q": "Will the AC still cool with E1?", "a": "Yes, but on default backup logic - efficiency and protection features are degraded."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e2",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E2",
+    "displayCode": "E2",
+    "isBlinkCode": false,
+    "title": "Coil temperature sensor fault",
+    "shortDescription": "Outdoor coil sensor open or out of range, blocking variable-speed control.",
+    "fullDescription": "E2 reports the outdoor coil thermistor as open, shorted, or wildly inconsistent with ambient. The communicating board uses this sensor to manage defrost timing on heat pumps and to set superheat targets on variable-speed compressors. With E2 active, the unit may run at fixed capacity or refuse to start.\n\nThe sensor is typically a 10K NTC clipped to a U-bend in the coil. Vibration over time can break the lead, especially near the strain relief.",
+    "safetyWarning": "240 VAC at contactor and capacitor, plus residual capacitor charge after disconnect. Discharge capacitor with a resistor before working near it.",
+    "causes": [
+      {"cause": "Broken thermistor lead at strain relief", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Sensor unclipped from coil", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed sensor element", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E2 fault", "Compressor at fixed speed", "Heat pump fails to defrost properly"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off + verify", "instruction": "Pull disconnect, confirm 0 V at contactor line side.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect sensor mounting", "instruction": "Verify the thermistor is firmly clipped to the coil tube. Re-seat if loose.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Continuity test", "instruction": "Disconnect sensor plug; ohm both leads. Open = replace.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 65}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If sensor checks good, control board input is suspect - tech replacement.",
+    "relatedCodes": ["armstrong-ac-e1"],
+    "faq": [
+      {"q": "Where is the coil sensor located?", "a": "On Armstrong communicating units, clipped to a return-bend on the lower section of the outdoor coil."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e3",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E3",
+    "displayCode": "E3",
+    "isBlinkCode": false,
+    "title": "High pressure switch trip",
+    "shortDescription": "The high-side refrigerant pressure exceeded the safety cutout (typically 600 psi R-410A).",
+    "fullDescription": "E3 indicates the manual or auto-reset high-pressure switch on the discharge line opened. On R-410A units this typically corresponds to roughly 600 psi. The compressor stops immediately to protect against rupture.\n\nLeading causes are dirty / blocked outdoor coil, failed condenser fan motor, restricted air path due to debris or shrubs, an overcharged system, or a stuck-shut TXV. Repeated E3 events should be diagnosed before resetting - a damaged compressor is the alternative.",
+    "safetyWarning": "High-pressure refrigerant can cause frostbite and eye injury. Refrigerant work requires EPA 608 certification.",
+    "causes": [
+      {"cause": "Dirty / blocked condenser coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed condenser fan motor or capacitor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Refrigerant overcharge", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Stuck-shut TXV / blocked liquid line", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Failed high-pressure switch", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E3 fault", "Compressor stops shortly after start", "Hot air not blowing through condenser"],
+    "fixSteps": [
+      {"step": 1, "title": "Wash condenser coil", "instruction": "Disconnect power, gently rinse coil from inside out with garden hose - no pressure washer.", "tools": ["garden hose"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Verify fan operation", "instruction": "On a cooling call, the condenser fan should run any time the compressor runs.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Test fan capacitor", "instruction": "After discharging, measure capacitor uF rating. Out of spec by >6% = replace.", "tools": ["capacitance meter"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 4, "title": "Pressure check", "instruction": "Have a tech gauge the system and verify subcool/superheat targets.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 220, "max": 1200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Refrigerant adjustment, TXV, and compressor work all require a licensed HVAC tech.",
+    "relatedCodes": ["armstrong-ac-e4"],
+    "faq": [
+      {"q": "Can I just keep resetting and running?", "a": "No - repeated trips can damage the compressor and indicate a real problem."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e4",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E4",
+    "displayCode": "E4",
+    "isBlinkCode": false,
+    "title": "Low pressure / loss of charge",
+    "shortDescription": "Suction pressure dropped below the cutout, indicating low refrigerant or restriction.",
+    "fullDescription": "E4 means the low-pressure switch opened, typically below 50 psi on R-410A. The IFC stops the compressor to prevent ingestion of liquid refrigerant or starvation damage.\n\nCommon causes: refrigerant leak (Schrader cap, evaporator coil, line set), severely dirty indoor coil or filter starving airflow over the evaporator, failed indoor blower, or operation at very low ambient (below 60 F) without low-ambient kit.",
+    "safetyWarning": "Refrigerant leaks displace oxygen in confined spaces and can produce toxic phosgene if exposed to flame. Ventilate and avoid flames.",
+    "causes": [
+      {"cause": "Refrigerant leak", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Dirty filter / iced evaporator", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed indoor blower", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Closed liquid line service valve", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["E4 fault", "Frost on suction line or coil", "Warm air from registers"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Install a clean filter and run blower-only to thaw any ice on the indoor coil (1-2 hours).", "tools": ["filter"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Verify service valves", "instruction": "Confirm both stem caps removed and valves are fully back-seated open.", "tools": ["allen key"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Leak search", "instruction": "Tech inspects with electronic detector or UV dye - pay attention to evaporator and Schrader cores.", "tools": [], "difficulty": "professional", "timeMinutes": 60},
+      {"step": 4, "title": "Recover, repair, weigh-in charge", "instruction": "Tech repairs leak, evacuates to 500 microns, and weighs in factory charge per nameplate.", "tools": [], "difficulty": "professional", "timeMinutes": 180}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 60}, "professional": {"min": 300, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Most repairs require a tech",
+    "whenToCallPro": "Anytime the cause is refrigerant-related.",
+    "relatedCodes": ["armstrong-ac-e3"],
+    "faq": [
+      {"q": "Is topping off charge a real fix?", "a": "No. EPA forbids it without leak repair, and the leak will return."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e5",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E5",
+    "displayCode": "E5",
+    "isBlinkCode": false,
+    "title": "Compressor over-current",
+    "shortDescription": "The inverter or contactor saw current draw above the compressor's safe limit.",
+    "fullDescription": "E5 indicates the compressor drew current above its rated locked-rotor or running threshold. On variable-capacity Armstrong Air units this is detected by the inverter; on single-stage units, by an external CT or thermal overload.\n\nMost common causes are a seized or stiff compressor (especially after a long off-season), failed run capacitor producing low torque, low line voltage, or refrigerant overcharge.",
+    "safetyWarning": "Repeated over-current trips can damage windings. Do not jumper the overload to keep the unit running.",
+    "causes": [
+      {"cause": "Failed run capacitor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Stiff or starting compressor", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Low line voltage / loose lug", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Refrigerant overcharge", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed compressor windings", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E5 fault", "Compressor hums but doesn't start", "Breaker tripping"],
+    "fixSteps": [
+      {"step": 1, "title": "Discharge and test capacitor", "instruction": "After power-off, short capacitor terminals through a resistor, then measure uF.", "tools": ["resistor", "capacitance meter"], "difficulty": "advanced", "timeMinutes": 15},
+      {"step": 2, "title": "Verify line voltage under load", "instruction": "Measure L1-L2 voltage during start attempt. Should stay above 207 VAC.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 3, "title": "Inspect lugs and contactor", "instruction": "Look for pitting and discoloration. Replace contactor if pitted.", "tools": ["nut driver"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 4, "title": "Hard-start kit (last resort)", "instruction": "If capacitor and voltage are good, a tech may add a hard-start kit to assist a tired compressor.", "tools": [], "difficulty": "professional", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 90}, "professional": {"min": 250, "max": 2800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Compressor replacement requires recovery, brazing, evacuation, and weigh-in charge.",
+    "relatedCodes": ["armstrong-ac-e3"],
+    "faq": [
+      {"q": "What does locked-rotor amperage mean?", "a": "The instantaneous current at startup. Compressors briefly draw 4-7x running amps."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e6",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E6",
+    "displayCode": "E6",
+    "isBlinkCode": false,
+    "title": "Communication loss between indoor and outdoor",
+    "shortDescription": "The communicating bus between the air handler/furnace and condenser dropped out.",
+    "fullDescription": "E6 appears on Armstrong Air communicating systems (Comfort Sync) when the i+, i-, R, and C bus fails to maintain valid handshake packets. The system reverts to non-communicating logic where possible.\n\nCauses: reversed i+ / i- wiring at one end, broken thermostat wire (rodents, lawn aeration), water in the buried whip, or a failed control board on either end.",
+    "safetyWarning": "Low-voltage but ensure the 24 VAC transformer fuse hasn't blown - shorted communication wires can blow it.",
+    "causes": [
+      {"cause": "i+ and i- swapped at outdoor unit", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Broken or shorted thermostat wire", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Water in outdoor whip / connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed comm IC on control board", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E6 fault", "System runs at default capacity", "Thermostat shows lost connection"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify wiring color", "instruction": "Confirm i+ to i+ and i- to i- (not swapped) at both indoor and outdoor terminals.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect outdoor connector", "instruction": "Open whip and check for water intrusion or corrosion.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Continuity test wires", "instruction": "Disconnect both ends; verify no shorts between conductors and full continuity end-to-end.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 40}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Replacing buried thermostat cable usually requires a tech with a fish tape.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Can I run the system with E6?", "a": "Yes, on default fixed-capacity logic, but you lose efficiency and dehumidification benefits."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e7",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E7",
+    "displayCode": "E7",
+    "isBlinkCode": false,
+    "title": "Indoor blower fault",
+    "shortDescription": "The indoor air handler reports the blower is not running at the commanded RPM.",
+    "fullDescription": "E7 in cooling mode means the outdoor unit got an OK to run but the indoor blower is not at the commanded RPM. ECM blowers report tach feedback to the control board; if the actual RPM is more than 200 RPM off target for 60 seconds, E7 sets and the cooling call is suspended to prevent coil freeze.\n\nCauses include a failed ECM module, a stuck or shorted blower wheel, dirty filter starving airflow, or a broken tach wire between the motor and control board.",
+    "safetyWarning": "Blower start may be sudden after fault clears. Keep hands clear of the blower wheel.",
+    "causes": [
+      {"cause": "Severely clogged filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed ECM module", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Seized blower bearings", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Damaged tach feedback wire", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["E7 fault", "Cooling stops while outdoor unit is OK", "Frozen indoor coil possible"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Install clean filter, allow any coil ice to thaw with blower-only operation.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Spin blower wheel by hand", "instruction": "Power off; the wheel should spin freely with minimal axial play.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Check motor harness", "instruction": "Verify all 5-pin connectors fully seated and look for chafed insulation.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 4, "title": "ECM swap", "instruction": "If wheel is free and harness intact, replace ECM module per service bulletin.", "tools": [], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "professional": {"min": 250, "max": 1100}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "ECM motor diagnosis and replacement is best done by a technician.",
+    "relatedCodes": ["armstrong-ac-e4"],
+    "faq": [
+      {"q": "Can a dirty filter actually freeze the coil?", "a": "Yes - low airflow drops coil temperature below freezing and ice forms within an hour."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e8",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E8",
+    "displayCode": "E8",
+    "isBlinkCode": false,
+    "title": "Discharge line over-temperature",
+    "shortDescription": "Compressor discharge temperature exceeded the safety threshold (typically 270 F).",
+    "fullDescription": "E8 indicates the discharge thermistor read above the safety setpoint. Sustained high discharge temperature breaks down compressor oil and damages the windings. The system shuts the compressor down for a 5-minute cool-off then retries.\n\nCauses: low refrigerant charge, restricted liquid line / drier, dirty indoor or outdoor coil, or a compressor with a damaged valve plate. On variable-capacity inverters the algorithm may also trip if outdoor temperature is extreme.",
+    "safetyWarning": "Refrigerant work requires EPA certification. Hot discharge line can cause severe burns - allow 30 minutes to cool.",
+    "causes": [
+      {"cause": "Low refrigerant charge", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Dirty outdoor coil", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Restricted liquid line / filter drier", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed discharge thermistor", "likelihood": "low", "fixDifficulty": "intermediate"},
+      {"cause": "Damaged compressor valves", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E8 fault", "Compressor stops after short run-time", "Discharge line very hot to touch"],
+    "fixSteps": [
+      {"step": 1, "title": "Wash outdoor coil", "instruction": "Power off; rinse coil from inside-out, gently.", "tools": ["garden hose"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Verify discharge sensor", "instruction": "Disconnect; resistance should match chart at room temp (typically 50K NTC).", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Have charge verified", "instruction": "Tech checks subcool/superheat and compares to nameplate.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 250, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Tech required for most causes",
+    "whenToCallPro": "Always for refrigerant or compressor work.",
+    "relatedCodes": ["armstrong-ac-e3", "armstrong-ac-e4"],
+    "faq": [
+      {"q": "How hot does discharge get?", "a": "Normal is 150-200 F. Above 250 F is dangerous and triggers E8."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e9",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E9",
+    "displayCode": "E9",
+    "isBlinkCode": false,
+    "title": "Inverter / drive board fault",
+    "shortDescription": "The variable-speed compressor drive reported an internal fault (IGBT, DC bus, or temperature).",
+    "fullDescription": "E9 is a generic inverter fault on Armstrong Air SLX and Comfort Sync units. The drive's protection circuits detected one of: IGBT over-temperature, DC bus over/undervoltage, output ground fault, or drive heatsink over-temp.\n\nThis is rarely a DIY fix. Drives are sealed assemblies replaced as a unit. Outside causes (poor airflow over the drive heatsink, loose lugs, failed line filter) should be ruled out before replacing.",
+    "safetyWarning": "DC bus capacitors hold lethal charge for 5+ minutes after disconnect. Verify zero volts before touching any power components.",
+    "causes": [
+      {"cause": "Drive heatsink dust / dirt blockage", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Loose lug or damaged line filter", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed inverter / drive board", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Compressor winding short to ground", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E9 fault", "Compressor never starts", "Sometimes accompanied by an audible click then silence"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off + wait 5 min", "instruction": "Pull disconnect, wait at least 5 minutes for DC bus to discharge, verify with multimeter.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Clean drive heatsink", "instruction": "Vacuum dust from heatsink fins and verify cooling fan operation.", "tools": ["vacuum"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 3, "title": "Inspect lugs", "instruction": "Torque-check all power lugs to spec. Burned lugs need replacement.", "tools": ["torque wrench"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 4, "title": "Drive replacement", "instruction": "If fault persists, drive assembly replacement by a tech.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 600, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "For any drive replacement, refrigerant adjustment, or compressor work.",
+    "relatedCodes": ["armstrong-ac-e5"],
+    "faq": [
+      {"q": "Are drives covered under warranty?", "a": "Most Armstrong Air variable-capacity units have 10-year parts warranty when registered."}
+    ]
+  },
+  {
+    "id": "armstrong-ac-e10",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "AC",
+    "deviceTypeSlug": "ac",
+    "code": "E10",
+    "displayCode": "E10",
+    "isBlinkCode": false,
+    "title": "Reversing valve fault (heat pump only)",
+    "shortDescription": "The reversing valve failed to shift between heating and cooling modes.",
+    "fullDescription": "On Armstrong Air heat pump variants, E10 indicates the system commanded a reversing valve change but the discharge / suction temperature pattern did not match expectations. The valve may be stuck mid-stroke, the solenoid coil may be open, or the pilot bleed port may be plugged.\n\nThis is a common code after extended idle in shoulder seasons; sometimes a single full cycle of cooling-then-heating frees a stuck valve.",
+    "safetyWarning": "Reversing valve replacement requires recovery and brazing - not a DIY repair.",
+    "causes": [
+      {"cause": "Stuck reversing valve slide", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Open solenoid coil", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Plugged pilot port (debris)", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed control output", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["E10 fault", "Heat pump runs but blows wrong-temperature air", "Buzzing solenoid with no shift"],
+    "fixSteps": [
+      {"step": 1, "title": "Test solenoid coil", "instruction": "Disconnect plug; ohm coil. Should be 30-200 ohms typical. Open = replace coil only.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 2, "title": "Force a mode swap", "instruction": "From thermostat, alternate between cooling and heating to attempt to free a slightly-stuck slide.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Tech replacement", "instruction": "If coil is good and slide is stuck, a tech recovers refrigerant and replaces the valve body.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 60}, "professional": {"min": 600, "max": 1800}},
+    "diyDifficulty": "professional",
+    "repairTime": "30 min - 4 hours",
+    "whenToCallPro": "For valve body replacement always.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Why does my heat pump blow cold in heating?", "a": "The reversing valve didn't shift - exactly what E10 catches."}
+    ]
+  }
+]

@@ -459,6 +459,10 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "fiber-gateway": { label: "Fiber Gateway", labelPlural: "Fiber Gateways" },
   "av-receiver": { label: "AV Receiver", labelPlural: "AV Receivers" },
   "streaming-device": { label: "Streaming Device", labelPlural: "Streaming Devices" },
+  "stand-mixer": { label: "Stand Mixer", labelPlural: "Stand Mixers" },
+  "smart-oven": { label: "Smart Oven", labelPlural: "Smart Ovens" },
+  laptop: { label: "Laptop", labelPlural: "Laptops" },
+  phone: { label: "Phone", labelPlural: "Phones" },
 };
 
 // ── HVAC Brands ──

@@ -1,0 +1,350 @@
+[
+  {
+    "id": "armstrong-furnace-1-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "1 Flash",
+    "displayCode": "1 Flash",
+    "isBlinkCode": true,
+    "title": "Normal operation / Standby",
+    "shortDescription": "Single LED flash indicates the control board is healthy and waiting for a thermostat call.",
+    "fullDescription": "Armstrong Air gas furnaces share the Lennox/Allied control board family and use the same diagnostic LED scheme. A single slow flash on the control board indicates the integrated furnace control (IFC) has power, has passed self-test and is in standby waiting for a thermostat heat or cool call.\n\nThis is informational only. If the furnace will not start despite the 1-flash code, the issue is upstream of the control board (thermostat, transformer, low-voltage wiring) rather than a fault inside the furnace itself.",
+    "safetyWarning": "Even in standby, 120 VAC is present at the control board and gas valve terminals. Switch off power at the disconnect before removing the blower door.",
+    "causes": [
+      {"cause": "Furnace is healthy and idle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Thermostat not calling for heat (broken wire, dead batteries)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Open low-voltage fuse on control board", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Slow steady single LED flash", "Furnace does not respond to thermostat", "Blower idle"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify thermostat call", "instruction": "Set thermostat 5 F above room temperature and listen for the click and 24 V transformer hum.", "tools": ["multimeter"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check R-W voltage", "instruction": "Measure 24 VAC between R and W on the control board. If absent, trace thermostat wiring.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Inspect 3 A control fuse", "instruction": "If R-W voltage is missing, check the automotive blade fuse on the IFC and replace if blown.", "tools": ["fuse"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 95, "max": 180}},
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If 24 V is present at W but no further codes appear after a heat call, have a technician load-test the IFC.",
+    "relatedCodes": ["armstrong-furnace-2-flash", "armstrong-furnace-3-flash"],
+    "faq": [
+      {"q": "Is 1 flash an error?", "a": "No, it is the normal idle indicator on Armstrong Air control boards."},
+      {"q": "Why won't the furnace start with 1 flash?", "a": "The fault is outside the furnace - usually thermostat, wiring, or a tripped fuse on the IFC."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-2-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "2 Flash",
+    "displayCode": "2 Flash",
+    "isBlinkCode": true,
+    "title": "External lockout / pressure switch stuck closed",
+    "shortDescription": "The pressure switch is closed before the inducer starts, indicating a stuck switch or wiring fault.",
+    "fullDescription": "Two flashes on an Armstrong Air gas furnace mean the IFC saw the pressure switch in the closed position before the inducer was energized. This is a safety lockout because a pressure switch should only close once the draft inducer pulls vacuum.\n\nCommon causes are a switch with stuck contacts, a short in the pressure switch wiring, or a previous installer who jumpered the switch and never removed the jumper. The furnace will refuse to ignite until the condition clears.",
+    "safetyWarning": "Never bypass or jumper a pressure switch. Doing so can allow ignition with a blocked flue and produce lethal CO inside the home.",
+    "causes": [
+      {"cause": "Pressure switch contacts welded closed", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring shorted to ground or jumpered", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "IFC pressure-switch sense circuit failed", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Two flashes repeating", "Inducer never starts", "No ignition attempt"],
+    "fixSteps": [
+      {"step": 1, "title": "Power down furnace", "instruction": "Turn off the service switch and wait 60 seconds.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Disconnect pressure switch leads", "instruction": "With power off, pull both spade terminals from the pressure switch.", "tools": ["nut driver"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Continuity test the switch at rest", "instruction": "With no vacuum applied, the switch should read OPEN. If it reads closed (continuity), replace the switch.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Inspect harness", "instruction": "Look for pinched or chafed wires between the IFC and switch.", "tools": ["flashlight"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 80}, "professional": {"min": 180, "max": 320}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the switch tests open at rest and wiring is intact, the IFC sense input is the likely failure - have a tech replace it.",
+    "relatedCodes": ["armstrong-furnace-3-flash", "armstrong-furnace-5-flash"],
+    "faq": [
+      {"q": "Can I jumper the pressure switch to test?", "a": "No. A bypassed switch can let the burners light into a blocked flue."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-3-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "3 Flash",
+    "displayCode": "3 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure switch stuck open",
+    "shortDescription": "Inducer is running but the pressure switch never closes - usually a venting or condensate drain issue.",
+    "fullDescription": "Three flashes mean the inducer motor energized but the pressure switch did not close within the trial-for-ignition window. On 90%+ condensing Armstrong models the most common root cause is a blocked condensate drain that fills the inducer housing with water.\n\nOn 80% AFUE units, look at flue blockage, a torn or kinked pressure-switch hose, a failed inducer motor that no longer pulls vacuum, or a switch with corroded contacts.",
+    "safetyWarning": "A 3-flash code can indicate flue blockage. Do NOT bypass the switch - flue gas containing CO could spill into the living space.",
+    "causes": [
+      {"cause": "Clogged condensate drain or trap (90%+ units)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Cracked or disconnected pressure switch hose", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Blocked flue / vent terminal (snow, nest)", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Weak inducer motor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed pressure switch", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Three flashes", "Inducer runs but no ignition", "Possible water visible in inducer housing"],
+    "fixSteps": [
+      {"step": 1, "title": "Check vent terminal", "instruction": "Inspect the outdoor PVC or metal vent for snow, leaves, or insect blockage.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clear condensate trap", "instruction": "Remove the condensate trap, flush with warm water and a 1:10 bleach solution to clear biofilm.", "tools": ["bucket"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Inspect pressure hose", "instruction": "Check that the silicone hose between switch and inducer port is supple, water-free, and connected.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Measure switch operation", "instruction": "With inducer running, jumper R-W and verify the switch closes (continuity). If not, replace.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 180, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If venting and condensate are clear and the switch tests good, an inducer assembly replacement requires a technician.",
+    "relatedCodes": ["armstrong-furnace-2-flash", "armstrong-furnace-4-flash"],
+    "faq": [
+      {"q": "How often should the condensate trap be cleaned?", "a": "Annually as part of fall start-up, more often if you have hard water or heavy AC use."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-4-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "4 Flash",
+    "displayCode": "4 Flash",
+    "isBlinkCode": true,
+    "title": "Primary limit switch open",
+    "shortDescription": "The high-temperature limit opened due to overheating in the heat exchanger area.",
+    "fullDescription": "Four flashes indicate the primary limit (high-temp safety switch mounted on the heat exchanger) has opened. The furnace will lock out for 1 hour, then retry.\n\nRoot causes are almost always restricted airflow: a clogged filter, closed supply registers, an undersized return, a failed or slow blower motor, or in rare cases a cracked heat exchanger creating a heat hot-spot. Repeated 4-flash events should never be ignored - they indicate the furnace is operating outside design temperature rise.",
+    "safetyWarning": "Repeated limit trips can indicate a cracked heat exchanger, which leaks CO. Have the heat exchanger inspected if the code recurs after airflow is corrected.",
+    "causes": [
+      {"cause": "Dirty / clogged air filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Closed or blocked supply registers", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed or slow blower motor / capacitor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Cracked heat exchanger", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Undersized return ductwork", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Four flashes", "Burner lights then shuts off", "Blower runs continuously to cool exchanger"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace air filter", "instruction": "Install a clean filter of the correct MERV rating and size.", "tools": ["filter"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Open all registers", "instruction": "Verify every supply register is fully open and unblocked by furniture or rugs.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Measure temperature rise", "instruction": "After 10 minutes of run time, measure supply minus return temperature. Should fall within nameplate range (typically 35-65 F).", "tools": ["thermometer"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 4, "title": "Test blower amperage", "instruction": "If rise is high, measure blower run amps and compare to FLA on the motor label. Replace capacitor or motor if low.", "tools": ["clamp meter"], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 15, "max": 80}, "professional": {"min": 200, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If temperature rise stays above nameplate after filter and register fixes, have a tech inspect the blower and heat exchanger.",
+    "relatedCodes": ["armstrong-furnace-7-flash"],
+    "faq": [
+      {"q": "Can I just replace the limit switch?", "a": "No - the switch is doing its job. Fix the airflow problem causing it to trip."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-5-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "5 Flash",
+    "displayCode": "5 Flash",
+    "isBlinkCode": true,
+    "title": "Roll-out switch open",
+    "shortDescription": "The flame roll-out switch tripped, indicating flames or hot gas escaping the burner box.",
+    "fullDescription": "Five flashes mean the manual-reset roll-out limit at the top of the burner box opened. This is a serious condition: it means flames or excessive heat exited the combustion chamber forward instead of going up through the heat exchanger.\n\nCauses include flue blockage backing combustion gases into the burner area, a cracked heat exchanger, a failed inducer, or a heavily soot-clogged primary heat exchanger. The switch must be reset manually after the root cause is fixed.",
+    "safetyWarning": "Flame roll-out can scorch wiring and produce CO. Do not reset the switch until a technician has verified the cause has been corrected.",
+    "causes": [
+      {"cause": "Blocked flue / vent termination", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Cracked or rusted heat exchanger", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed inducer motor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Soot buildup in burner / heat exchanger", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Five flashes", "Furnace locked out", "Possible smell of combustion in the equipment room", "Soot near burners"],
+    "fixSteps": [
+      {"step": 1, "title": "Stop using furnace", "instruction": "Turn off gas at the appliance shutoff and call a licensed HVAC tech.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Test CO levels", "instruction": "Verify CO alarms in the home are working. Open windows if symptoms (headache, nausea) are present.", "tools": ["CO detector"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Professional inspection", "instruction": "Tech must inspect heat exchanger with a borescope and combustion analyzer.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 250, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Professional service required",
+    "whenToCallPro": "Always - flame roll-out is a CO hazard and must be diagnosed by a licensed technician.",
+    "relatedCodes": ["armstrong-furnace-4-flash"],
+    "faq": [
+      {"q": "Can I just press the reset button?", "a": "No. Resetting without finding the cause can lead to fire or CO poisoning."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-6-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "6 Flash",
+    "displayCode": "6 Flash",
+    "isBlinkCode": true,
+    "title": "115 VAC polarity reversed / no ground",
+    "shortDescription": "Line and neutral are reversed at the furnace, or the equipment ground is missing.",
+    "fullDescription": "Six flashes indicate the IFC detected hot and neutral reversed on the 120 VAC supply, or there is no chassis ground. The flame sense circuit relies on a true earth ground and proper polarity to detect the micro-amp flame current.\n\nMost common after a non-electrician swapped the disconnect, reused a 2-prong cord on a relocated furnace, or after a service that disturbed the field wiring. The fault is upstream of the furnace and must be corrected at the disconnect or panel.",
+    "safetyWarning": "Reversed polarity is an electrical shock hazard - the chassis can become energized. Do not work on the unit until polarity is corrected by a qualified electrician.",
+    "causes": [
+      {"cause": "Hot / neutral reversed at disconnect or junction box", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Missing or broken equipment ground", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Mis-wired service switch", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Six flashes", "Furnace ignites then drops out on flame sense", "Possible static shock from chassis"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify with a plug tester", "instruction": "Use a 3-light receptacle tester at the furnace disconnect (if 120 V receptacle) to confirm reversed polarity.", "tools": ["receptacle tester"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Measure with multimeter", "instruction": "120 V should be hot-to-neutral and hot-to-ground; 0 V neutral-to-ground. Anything else is wrong.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 3, "title": "Correct wiring at panel/disconnect", "instruction": "Have a licensed electrician swap conductors so black=hot, white=neutral, green/bare=ground.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the issue is in the panel or branch circuit, hire a licensed electrician.",
+    "relatedCodes": ["armstrong-furnace-7-flash"],
+    "faq": [
+      {"q": "Why does polarity matter to a furnace?", "a": "Flame sensing uses earth ground as the return path for a tiny rectified current. Without correct polarity the flame won't be detected."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-7-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "7 Flash",
+    "displayCode": "7 Flash",
+    "isBlinkCode": true,
+    "title": "Flame sense weak or absent",
+    "shortDescription": "Burners light but the flame sense current is below the IFC threshold.",
+    "fullDescription": "Seven flashes mean ignition occurred but the IFC did not detect adequate flame current within the trial period (typically 4 seconds). The gas valve closes and the furnace retries up to 3 times before locking out for an hour.\n\nThe most common fix is cleaning the flame sense rod with fine emery cloth - oxide buildup is an excellent insulator and reduces the 1-6 microamp flame signal. Other causes are misaligned burners, weak gas pressure, or a failed flame sensor / IFC.",
+    "safetyWarning": "Always shut off gas at the appliance valve before pulling the burner assembly. Do not file the flame sensor with steel wool (leaves conductive fragments).",
+    "causes": [
+      {"cause": "Oxidized flame sensor rod", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cracked porcelain on sensor", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Burner misalignment / dirty burners", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas pressure or partial valve failure", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Poor ground (see code 6)", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Seven flashes", "Burner lights for 2-4 seconds then shuts off", "3 retries then lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Power and gas off", "instruction": "Cut power at the disconnect and close the gas shutoff before opening the burner box.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Remove the flame sensor", "instruction": "Single screw secures the sensor rod to the burner assembly.", "tools": ["nut driver"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Clean the rod", "instruction": "Polish with 320-grit emery cloth or a non-abrasive scotch pad. Wipe with a clean cloth - do not touch with bare fingers.", "tools": ["emery cloth"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 4, "title": "Reinstall and test", "instruction": "Restore gas/power, call for heat. A clean rod should produce 2-6 microamps of flame current.", "tools": ["multimeter (uA)"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 35}, "professional": {"min": 120, "max": 250}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If cleaning and replacing the sensor does not fix the code, gas pressure and IFC need a tech with a manometer.",
+    "relatedCodes": ["armstrong-furnace-6-flash", "armstrong-furnace-8-flash"],
+    "faq": [
+      {"q": "What flame current is normal?", "a": "Armstrong/Lennox spec is 1.5 microamps minimum, 2-6 microamps typical."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-8-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "8 Flash",
+    "displayCode": "8 Flash",
+    "isBlinkCode": true,
+    "title": "Ignition failure - no flame established",
+    "shortDescription": "Hot-surface igniter or spark fired, gas valve opened, but no flame was detected at all.",
+    "fullDescription": "Eight flashes mean the IFC ran a full ignition trial - inducer on, pressure switch closed, igniter energized, gas valve opened - but never sensed flame. After 3 trials the furnace locks out for one hour.\n\nThe most frequent root cause on Armstrong Air furnaces is a cracked silicon-nitride hot-surface igniter that fails to glow hot enough. Other causes are a closed gas shutoff, empty propane tank, failed gas valve, or burners blocked by debris/spider webs.",
+    "safetyWarning": "If you smell gas during a failed ignition, leave the building and call the gas utility. Repeated trials can pool unburned gas in the heat exchanger.",
+    "causes": [
+      {"cause": "Cracked or worn hot-surface igniter", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Gas valve shut or empty propane tank", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Spider webs in burner orifice", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Low gas pressure (utility issue)", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Eight flashes after 3 attempts", "Igniter glows but no flame", "Possible faint gas smell"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas supply", "instruction": "Confirm the gas shutoff at the furnace is open and other gas appliances (range, water heater) work.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect igniter", "instruction": "With power off, remove the igniter and inspect for hairline cracks or white powdery residue.", "tools": ["nut driver"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Test igniter resistance", "instruction": "Cold resistance should be 40-90 ohms. Open or very high reading = replace.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 4, "title": "Inspect burners", "instruction": "Look down each burner tube for spider webs or rust flakes. Vacuum and brush clean.", "tools": ["flashlight", "vacuum"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 90}, "professional": {"min": 180, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If gas pressure or valve are suspect, hire a tech with a manometer to verify manifold pressure.",
+    "relatedCodes": ["armstrong-furnace-7-flash"],
+    "faq": [
+      {"q": "How long do hot-surface igniters last?", "a": "Typically 5-7 years. Cycling on and off shortens life significantly."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-9-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "9 Flash",
+    "displayCode": "9 Flash",
+    "isBlinkCode": true,
+    "title": "Reverse / line voltage frequency error",
+    "shortDescription": "The IFC detected an out-of-range line voltage or frequency.",
+    "fullDescription": "Nine flashes indicate the supply voltage is outside the 90-130 VAC window or the 60 Hz line frequency is unstable. This is rare on utility power but common on undersized portable generators or failing UPS units.\n\nIt can also appear briefly during a brownout. If the code persists with the furnace plugged into a normal outlet, the IFC's input section may be damaged.",
+    "safetyWarning": "Do not run a gas furnace from a small generator without a true sine wave inverter - the flame sense circuit may misread a square-wave supply.",
+    "causes": [
+      {"cause": "Brownout / sagging utility voltage", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Undersized or non-pure-sine generator", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Loose service connection at panel", "likelihood": "low", "fixDifficulty": "advanced"},
+      {"cause": "Failed IFC input rectifier", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Nine flashes", "Furnace runs intermittently or restarts", "Lights flicker on the same circuit"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure voltage", "instruction": "Check L-N voltage at the furnace disconnect. Should read 114-126 VAC.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 10},
+      {"step": 2, "title": "Check generator spec", "instruction": "If on backup power, verify pure sine-wave output and adequate wattage (3500 W minimum for blower start).", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Call utility", "instruction": "If utility voltage is sagging, report low voltage to the electric provider.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 120, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If line voltage is correct and the code persists, the IFC needs replacement.",
+    "relatedCodes": ["armstrong-furnace-6-flash"],
+    "faq": [
+      {"q": "Will a UPS fix this?", "a": "Only an online double-conversion UPS will. Standby UPS units have a transfer gap that may trip the code."}
+    ]
+  },
+  {
+    "id": "armstrong-furnace-10-flash",
+    "brand": "Armstrong Air",
+    "brandSlug": "armstrong",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "10 Flash",
+    "displayCode": "10 Flash",
+    "isBlinkCode": true,
+    "title": "Gas valve / igniter circuit fault",
+    "shortDescription": "The IFC sensed a wiring or coil fault in the gas valve or hot-surface igniter circuit.",
+    "fullDescription": "Ten flashes indicate the IFC measured an open or shorted output on either the gas valve coil or the hot-surface igniter circuit. The board protects itself by locking out for one hour.\n\nMost commonly the cause is a disconnected gas-valve harness, a melted spade terminal, or a cracked igniter that has gone open-circuit. Less commonly, the IFC's output triac has failed.",
+    "safetyWarning": "Shut off gas before disconnecting any wires from the gas valve. Make sure the valve seats fully closed before re-energizing.",
+    "causes": [
+      {"cause": "Loose or burned gas valve spade connector", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Open hot-surface igniter", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve coil", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "IFC output triac failure", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Ten flashes", "No igniter glow OR no gas response", "Code clears briefly then returns"],
+    "fixSteps": [
+      {"step": 1, "title": "Power and gas off", "instruction": "Disconnect electrical service and close gas shutoff.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Check terminals", "instruction": "Inspect both gas valve spades and the igniter plug for melting or corrosion. Replace any burnt connectors.", "tools": ["wire crimps"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Test igniter resistance", "instruction": "Disconnect igniter and measure 40-90 ohms cold. Replace if open.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 4, "title": "Test gas valve coil", "instruction": "Measure each valve coil per service manual (typically 50-1500 ohms). Open coil = replace valve.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 110}, "professional": {"min": 220, "max": 750}},
+    "diyDifficulty": "advanced",
+    "repairTime": "45-90 minutes",
+    "whenToCallPro": "Gas valve replacement should be done by a licensed gas tech who can leak-check and verify manifold pressure.",
+    "relatedCodes": ["armstrong-furnace-8-flash"],
+    "faq": [
+      {"q": "Can I substitute a different gas valve?", "a": "Use only the OEM or AGA-listed equivalent. Cross-brand valves can mismatch coil voltage or pressure regulator."}
+    ]
+  }
+]
