@@ -27,6 +27,7 @@ import TrustBadge from "./TrustBadge";
 import Sources from "./Sources";
 import RecentView from "./RecentView";
 import SafetyBanner from "./SafetyBanner";
+import TLDR from "./TLDR";
 
 interface CodePageLayoutProps {
   code: UnifiedCode;
@@ -79,7 +80,9 @@ export default function CodePageLayout({ code, breadcrumbs, canonicalPath }: Cod
           </div>
         </div>
 
-        <div className="mt-4 space-y-8">
+        <div className="mt-4 space-y-6 sm:space-y-8">
+          <TLDR code={code} />
+
           <CodeHero code={code} />
 
           <TrustBadge />
