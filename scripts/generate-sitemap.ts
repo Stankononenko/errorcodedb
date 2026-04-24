@@ -96,6 +96,22 @@ function buildSitemap(): string {
     });
   }
 
+  // Car make hubs (/make/toyota, /make/ford, ...)
+  const CAR_MAKE_SLUGS = [
+    "toyota", "honda", "ford", "chevrolet", "bmw", "mercedes-benz",
+    "nissan", "hyundai", "kia", "volkswagen", "subaru", "jeep", "ram",
+    "gmc", "dodge", "mazda", "audi", "lexus", "acura", "buick",
+    "cadillac", "chrysler", "infiniti", "lincoln", "volvo", "porsche",
+    "land-rover", "mitsubishi", "tesla", "mini",
+  ];
+  for (const slug of CAR_MAKE_SLUGS) {
+    entries.push({
+      url: `${SITE_URL}/make/${slug}`,
+      priority: 0.85,
+      changefreq: "weekly",
+    });
+  }
+
   // Symptom entry pages (high-intent long-tail SEO)
   entries.push({ url: `${SITE_URL}/symptoms`, priority: 0.75, changefreq: "weekly" });
   const SYMPTOM_SLUGS = [
