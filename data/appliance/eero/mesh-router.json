@@ -1,0 +1,352 @@
+[
+  {
+    "id": "eero-mesh-router-red-led",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "RED_LED",
+    "displayCode": "Solid Red LED",
+    "alternativeCodes": ["Red Light"],
+    "title": "Eero showing solid red LED",
+    "shortDescription": "The Eero is not connected to the internet and shows a solid red status light.",
+    "fullDescription": "A solid red LED on an Eero device indicates the gateway unit has lost its WAN connection and cannot reach the internet. This affects the entire mesh network, and all downstream nodes will also go offline.\n\nCommon causes include a modem issue, an unplugged Ethernet cable, or an ISP outage. The Eero app will show the network as offline until connectivity is restored.",
+    "causes": [
+      {"cause": "ISP outage or service interruption", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Modem needs a reboot", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Loose or damaged Ethernet cable between modem and Eero", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Solid red LED on gateway Eero", "No internet on any device", "Eero app shows network offline"],
+    "fixSteps": [
+      {"step": 1, "title": "Check ISP status", "instruction": "Use cellular data to visit your ISP's outage page or call support to confirm the service is up.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Power-cycle modem and Eero", "instruction": "Unplug the modem for 60 seconds, plug it back in, wait until it's fully online, then power-cycle the Eero gateway.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Inspect Ethernet cable", "instruction": "Reseat the Ethernet cable between modem and Eero. Swap with a known-good cable if the red light persists.", "tools": ["Spare Ethernet cable"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Eero 6", "Eero Pro 6", "Eero 6+", "Eero Pro 6E"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Call your ISP if the modem will not come online after a reboot.",
+    "relatedCodes": ["eero-mesh-router-offline"],
+    "videoSearchQuery": "Eero solid red LED fix",
+    "faq": [
+      {"q": "Does a red LED mean the Eero is broken?", "a": "No. It almost always indicates a WAN/internet problem upstream, not a hardware failure."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-offline",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "OFFLINE",
+    "displayCode": "Eero Offline",
+    "alternativeCodes": [],
+    "title": "Eero node reported offline in app",
+    "shortDescription": "A secondary Eero node is unreachable from the gateway and shown offline.",
+    "fullDescription": "When the Eero app flags a node as offline, that unit is either unpowered, too far from the nearest mesh neighbor, or experiencing a firmware hang. The rest of the mesh will continue serving clients, but coverage in that node's area will drop.\n\nThe node's LED is typically off or blinking white when this happens.",
+    "causes": [
+      {"cause": "Node unplugged or on a dead outlet", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Node too far from nearest mesh peer", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Firmware hang requiring reboot", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["App shows node offline", "Dead zone in that room", "LED off on the unit"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify power", "instruction": "Confirm the Eero is plugged in and the outlet is live. Try another outlet.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Reboot the node", "instruction": "Unplug the Eero for 30 seconds, then plug it back in. Wait up to 2 minutes for it to rejoin the mesh.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Relocate closer", "instruction": "If the node still fails to join, move it closer to the gateway or another online Eero to re-pair, then relocate.", "tools": [], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "affectedModels": ["Eero 6", "Eero Pro 6", "Eero 6E"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If the node never rejoins after a factory reset, contact Eero support for replacement.",
+    "relatedCodes": ["eero-mesh-router-mesh-disconnected"],
+    "videoSearchQuery": "Eero node offline fix",
+    "faq": [
+      {"q": "How long should I wait for a node to come back online?", "a": "Give it 2-3 minutes after power-up. If it doesn't rejoin, reboot or relocate it."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-firmware-stuck",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "FW_UPDATE_STUCK",
+    "displayCode": "Firmware Update Stuck",
+    "alternativeCodes": [],
+    "title": "Eero firmware update hanging",
+    "shortDescription": "The firmware update does not complete and the network stays degraded.",
+    "fullDescription": "Eero automatically installs firmware overnight. Occasionally the update process stalls because a node is offline, has poor backhaul, or loses power mid-update.\n\nWhen stuck, the app may show 'Update pending' for days or nodes may reboot repeatedly.",
+    "causes": [
+      {"cause": "Weak backhaul between nodes", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Power interruption during update", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Server-side throttling for your region", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["App shows 'Update pending' persistently", "Nodes rebooting repeatedly", "Slow speeds during update window"],
+    "fixSteps": [
+      {"step": 1, "title": "Force update from app", "instruction": "Open Eero app > Settings > Software version > Check for update and tap Update.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Reboot the entire network", "instruction": "Power-cycle all Eeros at once, starting with the gateway. Wait 5 minutes before retrying update.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 3, "title": "Contact support", "instruction": "If update still won't complete after 24 hours, open a chat with Eero support from the app.", "tools": [], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Contact Eero support via the app if a manual update retry fails repeatedly.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Eero firmware update stuck",
+    "faq": [
+      {"q": "Can I skip an Eero firmware update?", "a": "No, Eero firmware updates are mandatory and installed automatically."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-mesh-disconnected",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "MESH_DISCONNECT",
+    "displayCode": "Mesh Node Disconnected",
+    "alternativeCodes": [],
+    "title": "Secondary Eero lost mesh backhaul",
+    "shortDescription": "A node can no longer reach the gateway over wireless or wired backhaul.",
+    "fullDescription": "Eero mesh nodes maintain a backhaul connection to the gateway either via Ethernet or wirelessly. If this link breaks due to distance, interference, or a bad cable, the node drops from the mesh.\n\nClients previously served by that node will roam to another Eero if one is in range.",
+    "causes": [
+      {"cause": "Node out of wireless range of any peer", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "2.4/5 GHz interference from neighbors", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Bad Ethernet cable on wired backhaul", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["App shows connection quality 'poor' or 'disconnected'", "Slow speeds near that node", "Client devices repeatedly dropping"],
+    "fixSteps": [
+      {"step": 1, "title": "Check placement", "instruction": "Aim for no more than 40 feet between nodes, with at most one wall in between.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Reboot the affected node", "instruction": "Power-cycle to force it to reselect the best backhaul.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Swap backhaul cable", "instruction": "For wired backhaul, test with a known-good Cat 5e or Cat 6 cable.", "tools": ["Ethernet cable"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Eero 6", "Eero Pro 6", "Eero 6E"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Hire an installer if you need to run Ethernet through walls for a wired backhaul.",
+    "relatedCodes": ["eero-mesh-router-offline"],
+    "videoSearchQuery": "Eero mesh disconnected backhaul fix",
+    "faq": [
+      {"q": "How do I check mesh link quality?", "a": "In the Eero app, tap the node and look at 'Connection to Eero' – it should say 'Good' or 'Excellent'."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-no-internet",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "NO_INTERNET",
+    "displayCode": "Cannot Connect to Internet",
+    "alternativeCodes": [],
+    "title": "Eero online but no internet for clients",
+    "shortDescription": "Clients connect to Wi-Fi but cannot reach the internet.",
+    "fullDescription": "The Eero LED is white and the mesh is healthy, but DNS or DHCP issues prevent clients from actually reaching sites. This often happens after ISP changes or when double-NAT is introduced by a modem-router combo.",
+    "causes": [
+      {"cause": "Double NAT with ISP gateway", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "DNS resolver failure", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "IP conflict after WAN change", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Connected Wi-Fi but no pages load", "App reports 'Connected' but DNS fails", "Works on some devices, not others"],
+    "fixSteps": [
+      {"step": 1, "title": "Bridge ISP modem", "instruction": "Put the ISP gateway into bridge mode so the Eero handles NAT. Contact ISP if bridge option isn't exposed.", "tools": [], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Change DNS", "instruction": "In Eero app > Network Settings > DNS, switch to Cloudflare (1.1.1.1) or Google (8.8.8.8).", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Restart everything", "instruction": "Power-cycle modem, then Eero. Allow each device to fully boot before powering the next.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 75, "max": 150}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Call your ISP for help putting the modem in bridge mode.",
+    "relatedCodes": ["eero-mesh-router-dns-issue"],
+    "videoSearchQuery": "Eero no internet double NAT fix",
+    "faq": [
+      {"q": "What is double NAT?", "a": "It's when two routers both perform NAT, causing port and connectivity issues. Bridging the ISP modem eliminates it."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-app-pairing-fail",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "PAIR_FAIL",
+    "displayCode": "App Pairing Failed",
+    "alternativeCodes": [],
+    "title": "Eero app cannot find or pair device",
+    "shortDescription": "During setup, the Eero app fails to detect the new unit.",
+    "fullDescription": "When adding a new Eero, the app uses Bluetooth to discover the device. Pairing fails if Bluetooth is off, the phone is too far, or the Eero's LED isn't flashing blue.",
+    "causes": [
+      {"cause": "Bluetooth disabled on phone", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Eero LED not in pairing state (flashing blue)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "App permissions missing (Location)", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["App says 'We couldn't find your Eero'", "Setup loops on detection screen", "LED is white or off instead of flashing blue"],
+    "fixSteps": [
+      {"step": 1, "title": "Enable Bluetooth and Location", "instruction": "Turn on Bluetooth and grant Location permission to the Eero app.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Reset the Eero", "instruction": "Hold the reset pinhole for 15 seconds until the LED flashes yellow, release, and wait for blue flashing.", "tools": ["Paperclip"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Move phone closer", "instruction": "Stay within 3 feet of the Eero during discovery.", "tools": [], "difficulty": "easy", "timeMinutes": 2}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed – contact Eero support if reset doesn't restore pairing.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Eero app pairing failed setup",
+    "faq": [
+      {"q": "Why does the Eero app need Location permission?", "a": "Android requires Location permission to use Bluetooth Low Energy scanning, which Eero setup relies on."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-dns-issue",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "DNS_ISSUE",
+    "displayCode": "DNS Resolution Failure",
+    "alternativeCodes": [],
+    "title": "Websites fail to resolve on Eero network",
+    "shortDescription": "Names don't resolve but raw IP pings may still work.",
+    "fullDescription": "DNS issues on Eero are usually caused by an unreachable upstream resolver or a misconfigured custom DNS. Eero Secure/DNS over HTTPS may also interfere if the upstream is blocked.",
+    "causes": [
+      {"cause": "Custom DNS unreachable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Eero Secure blocking category", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "ISP DNS outage", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Sites fail intermittently", "Ping by IP works, by name does not", "DNS timeouts in browser"],
+    "fixSteps": [
+      {"step": 1, "title": "Revert to automatic DNS", "instruction": "Eero app > Network Settings > DNS > Automatic.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Pause Eero Secure", "instruction": "Temporarily disable Eero Secure content filtering to rule it out.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Try public DNS", "instruction": "Set manual DNS to 1.1.1.1 and 9.9.9.9 and retest.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 50, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Call ISP if automatic DNS also fails – may indicate WAN-level problem.",
+    "relatedCodes": ["eero-mesh-router-no-internet"],
+    "videoSearchQuery": "Eero DNS problems fix",
+    "faq": [
+      {"q": "Does Eero support DoH?", "a": "Eero Secure subscribers can enable encrypted DNS resolution upstream."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-speed-limit",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "SPEED_LIMIT",
+    "displayCode": "Speed Limit Detected",
+    "alternativeCodes": [],
+    "title": "Eero throughput capped below subscribed speed",
+    "shortDescription": "Measured speeds are much lower than ISP plan.",
+    "fullDescription": "The Eero Internet Speed Test returns values well below your plan. Causes include using a non-gigabit Eero for a gigabit plan, a slow modem, or a client on 2.4 GHz only.",
+    "causes": [
+      {"cause": "Eero model maxes below ISP plan (e.g., Eero 6 ~500 Mbps)", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Modem downlink not provisioned for full speed", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Test client on 2.4 GHz or old Wi-Fi", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Speedtest caps near 500/900 Mbps", "Wired speeds lower than expected", "Some devices slower than others"],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm Eero model limits", "instruction": "Eero 6 WAN tops near 500 Mbps; use Eero Pro 6/6E or Eero Max 7 for multi-gig plans.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Test wired", "instruction": "Plug a laptop directly into the gateway Eero LAN port and run speedtest.", "tools": ["Ethernet cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Check client radio", "instruction": "Ensure test client supports 5 GHz or 6 GHz and is close to the Eero.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Eero 6", "Eero 6+", "Eero Pro 6"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Contact ISP if wired speed to modem is below plan.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Eero slow speed fix",
+    "faq": [
+      {"q": "Why does Eero 6 cap near 500 Mbps?", "a": "Its WAN port and CPU cannot sustain gigabit throughput – upgrade to Pro 6/6E or Max 7 for higher plans."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-overheat",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "OVERHEAT",
+    "displayCode": "Device Overheating",
+    "alternativeCodes": [],
+    "title": "Eero warm to touch and rebooting",
+    "shortDescription": "Device becomes hot and cycles itself to protect hardware.",
+    "fullDescription": "Eeros are fanless and rely on passive cooling. Placement in enclosed cabinets, direct sunlight, or stacking other electronics can push internal temperatures past safe limits, triggering unplanned reboots.",
+    "causes": [
+      {"cause": "Poor ventilation / enclosed shelf", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Direct sunlight exposure", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Faulty power adapter feeding wrong voltage", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Case very warm to touch", "Random reboots", "Sluggish Wi-Fi when hot"],
+    "fixSteps": [
+      {"step": 1, "title": "Relocate", "instruction": "Place Eero on an open surface with airflow on all sides.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Avoid stacking", "instruction": "Don't place anything on top of or immediately under the Eero.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Replace adapter if suspect", "instruction": "Use only the official Eero adapter; replace if damaged.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "Contact support if overheating persists in a ventilated location.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Eero overheating reboot fix",
+    "faq": [
+      {"q": "Is a warm Eero normal?", "a": "Mildly warm is normal; hot to touch plus reboots indicates thermal issue."}
+    ]
+  },
+  {
+    "id": "eero-mesh-router-factory-reset-fail",
+    "brand": "Eero",
+    "brandSlug": "eero",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "RESET_FAIL",
+    "displayCode": "Factory Reset Failed",
+    "alternativeCodes": [],
+    "title": "Eero not entering factory reset state",
+    "shortDescription": "Holding the reset button does not return the Eero to setup mode.",
+    "fullDescription": "A proper factory reset requires holding the reset button until the LED flashes red/yellow, then releasing. Short presses perform only a soft reboot. If the LED never enters pairing mode, the device may be tied to a previous account.",
+    "causes": [
+      {"cause": "Reset button not held long enough", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Device still linked to previous owner account", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Hardware fault in reset button", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["LED returns to white after release", "App can't detect Eero for setup", "Previous network config persists"],
+    "fixSteps": [
+      {"step": 1, "title": "Hard reset procedure", "instruction": "Hold reset for 15+ seconds until LED flashes red, then flashes blue. Release.", "tools": ["Paperclip"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Remove from previous account", "instruction": "If purchased used, ask previous owner to remove device from their Eero app.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
+      {"step": 3, "title": "Contact support", "instruction": "Eero support can unlock an orphaned device with proof of purchase.", "tools": [], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "affectedModels": ["All Eero models"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Contact Eero support for account-locked devices.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Eero factory reset not working",
+    "faq": [
+      {"q": "How long to hold reset?", "a": "15+ seconds for a full factory reset until LED flashes red."}
+    ]
+  }
+]

@@ -1,0 +1,284 @@
+[
+  {
+    "id": "ruud-furnace-33",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "33",
+    "displayCode": "33",
+    "isBlinkCode": false,
+    "title": "High Limit Switch Open",
+    "shortDescription": "Primary limit switch tripped due to plenum overheat.",
+    "fullDescription": "Ruud furnaces (built by Rheem) show a numeric code on the integrated module. Code 33 means the high limit has opened, shutting gas off to protect the heat exchanger.\n\nUsually airflow-related: dirty filter, restricted ducts, or failing blower.",
+    "safetyWarning": "Repeated overheating damages the heat exchanger, creating CO risk.",
+    "causes": [
+      {"cause": "Dirty filter", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Restricted duct or closed registers", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Blower capacitor weak", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Limit switch failed open", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Burners light briefly then stop", "Blower stays on"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace filter", "instruction": "Install fresh filter, open closed registers.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect blower", "instruction": "Listen for strain; test capacitor microfarads.", "tools": ["capacitor tester"], "difficulty": "advanced", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 60}, "professional": {"min": 180, "max": 600}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Blower or heat exchanger issues.",
+    "relatedCodes": ["57"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-13",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "13",
+    "displayCode": "13",
+    "isBlinkCode": false,
+    "title": "Flame Sense Out of Range",
+    "shortDescription": "Flame sensor current too low.",
+    "fullDescription": "Ruud's integrated furnace control wants at least 0.7 microamps of flame current. Below that throws code 13.\n\nClean sensor, check ground, check burner flame quality.",
+    "safetyWarning": "Weak flame sensing leads to lockouts and gas cycling.",
+    "causes": [
+      {"cause": "Oxidized flame sensor", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Poor chassis ground", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Lockouts every few cycles"],
+    "fixSteps": [
+      {"step": 1, "title": "Polish sensor", "instruction": "Remove, polish with fine emery, reinstall.", "tools": ["emery cloth", "nut driver"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20 minutes",
+    "whenToCallPro": "If cleaning doesn't resolve.",
+    "relatedCodes": ["57"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-57",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "57",
+    "displayCode": "57",
+    "isBlinkCode": false,
+    "title": "Lockout - Retries or Recycles",
+    "shortDescription": "Hard lockout after repeated ignition failures.",
+    "fullDescription": "Code 57 follows repeated 13-style failures. Unit is locked out and needs power cycle or will auto-reset after an hour.\n\nRoot cause typically flame sensor, weak igniter, or low gas pressure.",
+    "safetyWarning": "Do not bypass lockout.",
+    "causes": [
+      {"cause": "Flame sensor or igniter issue", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas pressure", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No heat after 3 attempts"],
+    "fixSteps": [
+      {"step": 1, "title": "Cycle power", "instruction": "Switch off at disconnect for 60 seconds.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Address root cause", "instruction": "See code 13 steps.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 80}, "professional": {"min": 180, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If gas pressure suspected.",
+    "relatedCodes": ["13"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-44",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "44",
+    "displayCode": "44",
+    "isBlinkCode": false,
+    "title": "Pressure Switch Stuck Closed",
+    "shortDescription": "Pressure switch closed before inducer started.",
+    "fullDescription": "Board saw the pressure switch already closed at the start of the cycle. Indicates a stuck switch or shorted wiring.",
+    "safetyWarning": "Never jumper a pressure switch.",
+    "causes": [
+      {"cause": "Pressure switch stuck closed", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Short in switch harness", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["No inducer start"],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch continuity", "instruction": "With inducer off, should read open. Replace if closed.", "tools": ["multimeter"], "difficulty": "advanced", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 180, "max": 350}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If switch tests good - board issue.",
+    "relatedCodes": ["43"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-43",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "43",
+    "displayCode": "43",
+    "isBlinkCode": false,
+    "title": "Pressure Switch Stuck Open",
+    "shortDescription": "Pressure switch did not close after inducer started.",
+    "fullDescription": "Inducer ran but board never saw switch close. Blocked vents, clogged condensate trap, cracked inducer wheel, or failed switch.",
+    "safetyWarning": "Blocked vents can spill combustion gases.",
+    "causes": [
+      {"cause": "Blocked vent / snow / debris", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Clogged condensate trap", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Weak inducer", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Inducer runs continuously, no ignition"],
+    "fixSteps": [
+      {"step": 1, "title": "Check vents outside", "instruction": "Clear any blockages.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Clean condensate trap", "instruction": "Flush with warm water.", "tools": [], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Inducer replacement.",
+    "relatedCodes": ["44"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-25",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "25",
+    "displayCode": "25",
+    "isBlinkCode": false,
+    "title": "Rollout Switch Tripped",
+    "shortDescription": "Flame rollout detected.",
+    "fullDescription": "Manual-reset rollout safeties opened. Indicates flame escaped burner compartment. Causes: cracked heat exchanger, blocked flue, weak draft.\n\nRequires professional combustion inspection.",
+    "safetyWarning": "Rollout is a serious fire and CO hazard. Do not reset without inspection.",
+    "causes": [
+      {"cause": "Blocked flue", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Cracked heat exchanger", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["No heat", "Soot or burn marks"],
+    "fixSteps": [
+      {"step": 1, "title": "Shut off, call pro", "instruction": "Turn off gas and power; schedule combustion inspection.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 300, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "Varies",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["43"],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-11",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "11",
+    "displayCode": "11",
+    "isBlinkCode": false,
+    "title": "No Call for Heat - Normal Standby",
+    "shortDescription": "Information code indicating normal standby.",
+    "fullDescription": "Not an error. The control is ready and waiting for a thermostat call. Useful diagnostic reference.",
+    "safetyWarning": "",
+    "causes": [
+      {"cause": "Normal operation", "likelihood": "high", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["No issue"],
+    "fixSteps": [
+      {"step": 1, "title": "None", "instruction": "No action needed.", "tools": [], "difficulty": "easy", "timeMinutes": 0}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "N/A",
+    "whenToCallPro": "",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-93",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "93",
+    "displayCode": "93",
+    "isBlinkCode": false,
+    "title": "Internal Board Fault",
+    "shortDescription": "Control board self-diagnostic failed.",
+    "fullDescription": "The IFC has detected an internal fault - usually microcontroller or flash memory error. Board replacement is required.",
+    "safetyWarning": "Disconnect 120V before handling control.",
+    "causes": [
+      {"cause": "Board failure", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Unit will not run"],
+    "fixSteps": [
+      {"step": 1, "title": "Replace IFC", "instruction": "Part must match model; pro installation recommended.", "tools": [], "difficulty": "professional", "timeMinutes": 90}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 400}, "professional": {"min": 500, "max": 1100}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-66",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "66",
+    "displayCode": "66",
+    "isBlinkCode": false,
+    "title": "Blower Motor Tap Missing",
+    "shortDescription": "Blower speed tap not connected correctly.",
+    "fullDescription": "Code 66 appears when the selected PSC blower speed tap has no signal. Usually a disconnected wire during service.",
+    "safetyWarning": "120V inside blower compartment.",
+    "causes": [
+      {"cause": "Disconnected blower tap", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["No airflow"],
+    "fixSteps": [
+      {"step": 1, "title": "Reconnect speed tap", "instruction": "Match high/med/low tap per wiring diagram.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 10}, "professional": {"min": 120, "max": 250}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20 minutes",
+    "whenToCallPro": "If unsure of wiring.",
+    "relatedCodes": [],
+    "faq": []
+  },
+  {
+    "id": "ruud-furnace-14",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Furnace",
+    "deviceTypeSlug": "furnace",
+    "code": "14",
+    "displayCode": "14",
+    "isBlinkCode": false,
+    "title": "Igniter Circuit Fault",
+    "shortDescription": "Igniter not energizing or drawing incorrect current.",
+    "fullDescription": "Board sees open circuit or no current draw when it commands the igniter. Usually a cracked HSI element.",
+    "safetyWarning": "Hot surface igniters are brittle ceramic and very hot.",
+    "causes": [
+      {"cause": "Cracked igniter", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Igniter never glows", "No ignition"],
+    "fixSteps": [
+      {"step": 1, "title": "Test igniter", "instruction": "Measure cold resistance; should be 40-90 ohms.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 180, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "If new igniter also fails - board issue.",
+    "relatedCodes": ["57"],
+    "faq": []
+  }
+]

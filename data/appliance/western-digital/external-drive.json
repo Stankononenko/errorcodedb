@@ -1,0 +1,387 @@
+[
+  {
+    "id": "western-digital-external-drive-not-recognized",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "NOT_RECOGNIZED",
+    "displayCode": "Disk Not Recognized",
+    "alternativeCodes": ["USB Device Not Recognized"],
+    "title": "WD drive not detected by computer",
+    "shortDescription": "The external drive doesn't appear in File Explorer or Finder.",
+    "fullDescription": "A WD My Book or My Passport that doesn't show up typically has a USB/power problem or a corrupted partition table. The LED may be solid, blinking, or off depending on cause.\n\nData loss is possible – do not initialize or format the drive without first attempting recovery.",
+    "causes": [
+      {"cause": "Faulty or low-power USB cable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Insufficient USB port power", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Corrupted partition table", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": ["Drive doesn't mount", "LED on but no drive letter", "'USB device not recognized' in Windows"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different cable and port", "instruction": "Use the original WD cable directly into a rear USB port (not a hub). For My Book, verify power adapter is connected.", "tools": ["Spare USB cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Check Disk Management", "instruction": "Open Disk Management (Windows) or Disk Utility (Mac). If the drive shows as 'Unknown' or 'Not Initialized', do NOT initialize – this erases the partition table.", "tools": [], "difficulty": "intermediate", "timeMinutes": 5},
+      {"step": 3, "title": "Run WD Drive Utilities SMART", "instruction": "Install WD Drive Utilities and run SMART diagnostic before any recovery attempts.", "tools": ["WD Drive Utilities"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport", "WD Elements"],
+    "partsNeeded": ["USB cable"],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Critical data on the drive: use a professional data recovery service before any fix attempts.",
+    "relatedCodes": ["western-digital-external-drive-io-error", "western-digital-external-drive-corruption"],
+    "videoSearchQuery": "WD drive not recognized fix",
+    "faq": [
+      {"q": "Should I initialize the disk?", "a": "No – this erases the partition table and risks data loss. Investigate first."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-io-error",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "IO_ERROR",
+    "displayCode": "I/O Error",
+    "alternativeCodes": ["Input/Output Error"],
+    "title": "I/O error reading or writing WD drive",
+    "shortDescription": "Reads or writes fail with I/O error messages.",
+    "fullDescription": "I/O errors on a WD drive indicate the OS cannot reliably read or write sectors. This can be cable, controller, or failing media. Data may be at risk – copy what you can immediately.",
+    "causes": [
+      {"cause": "Bad or weak USB cable/port", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Developing bad sectors", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "USB controller bridge failing", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["'The request failed due to a fatal device hardware error'", "Copies hang and fail", "Clicking or beeping noise"],
+    "fixSteps": [
+      {"step": 1, "title": "Copy data now", "instruction": "Back up any accessible data to another drive before troubleshooting further.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "SMART check", "instruction": "Run WD Drive Utilities > Diagnose > Quick Drive Test and SMART status.", "tools": ["WD Drive Utilities"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "CHKDSK / First Aid", "instruction": "Windows: chkdsk X: /f. Mac: Disk Utility First Aid. Only if SMART is passing.", "tools": [], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport", "WD Elements"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 500, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If clicking, beeping, or rapid sector loss – stop and call a data recovery service.",
+    "relatedCodes": ["western-digital-external-drive-smart-failure"],
+    "videoSearchQuery": "WD external drive I/O error fix",
+    "faq": [
+      {"q": "Is chkdsk safe?", "a": "Only on drives passing SMART – on failing drives chkdsk can accelerate damage."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-smart-failure",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "SMART_FAIL",
+    "displayCode": "SMART Failure Imminent",
+    "alternativeCodes": [],
+    "title": "WD drive reporting imminent SMART failure",
+    "shortDescription": "SMART indicates the drive is close to failure.",
+    "fullDescription": "SMART failure warnings mean attributes like reallocated sectors, pending sectors, or seek errors have exceeded thresholds. Drive should be considered failing – back up immediately.\n\nDo not run intensive write tests; stick to reads.",
+    "causes": [
+      {"cause": "Reallocated sector count exceeding threshold", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Drive age / MTBF reached", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Mechanical damage (drop)", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["WD Drive Utilities SMART warning", "Slow file access", "Occasional read errors"],
+    "fixSteps": [
+      {"step": 1, "title": "Immediate backup", "instruction": "Copy critical files to another drive before the SMART situation worsens.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 120},
+      {"step": 2, "title": "Replace drive", "instruction": "SMART-failing drives cannot be reliably repaired – plan replacement.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 3, "title": "Return under warranty", "instruction": "Use WD warranty status portal to RMA if in-warranty.", "tools": [], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": ["Replacement drive"],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "professional": {"min": 500, "max": 2000}},
+    "diyDifficulty": "easy",
+    "repairTime": "2-4 hours for backup",
+    "whenToCallPro": "If data is critical and the drive is too degraded to finish a full backup, consult a recovery pro.",
+    "relatedCodes": ["western-digital-external-drive-io-error"],
+    "videoSearchQuery": "WD SMART failure warning",
+    "faq": [
+      {"q": "Can I keep using a SMART-failing drive?", "a": "Not safely – back up and replace."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-write-protect",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "WRITE_PROTECT",
+    "displayCode": "Write Protection Active",
+    "alternativeCodes": [],
+    "title": "WD drive stuck in read-only mode",
+    "shortDescription": "Writes fail with 'disk is write-protected'.",
+    "fullDescription": "Write protection on a WD external drive is usually caused by filesystem errors, NTFS 'dirty bit', or the drive entering a fail-safe read-only state after detecting issues.",
+    "causes": [
+      {"cause": "NTFS 'dirty bit' set", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Drive in read-only fail-safe", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Mac: NTFS-only mounted read-only", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["'Disk is write protected'", "Cannot delete files", "Read works, write fails"],
+    "fixSteps": [
+      {"step": 1, "title": "Check dirty bit (Windows)", "instruction": "Run 'fsutil dirty query X:'. If dirty, run chkdsk X: /f to clear.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Check SMART", "instruction": "If drive went read-only as self-protection, SMART likely shows failures.", "tools": ["WD Drive Utilities"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Mac NTFS write", "instruction": "Install NTFS-3G or similar driver if using on macOS.", "tools": ["NTFS driver"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 20}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If drive self-locks to read-only due to SMART, call data recovery.",
+    "relatedCodes": ["western-digital-external-drive-smart-failure"],
+    "videoSearchQuery": "WD drive write protected fix",
+    "faq": [
+      {"q": "Is write protection reversible?", "a": "Usually yes if caused by a dirty bit; not if the drive is self-protecting."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-usb-power",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "USB_POWER",
+    "displayCode": "Insufficient USB Power",
+    "alternativeCodes": [],
+    "title": "My Passport spinning up and down on USB",
+    "shortDescription": "Drive repeatedly powers up/down due to low USB power.",
+    "fullDescription": "Bus-powered WD drives need a full 900 mA USB 3.0 port. Front-panel ports, hubs without external power, or long cables may under-supply current.",
+    "causes": [
+      {"cause": "Port below 900 mA rating", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Long or thin USB cable", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Unpowered USB hub", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Drive clicks on and off", "Repeatedly disconnects during transfer", "Activity LED flickers"],
+    "fixSteps": [
+      {"step": 1, "title": "Rear motherboard port", "instruction": "Plug directly into rear USB 3.0/3.1 port.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Short OEM cable", "instruction": "Use the short cable shipped with the drive.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Y-cable or powered hub", "instruction": "For older laptops, use a dual-head Y-cable or powered hub.", "tools": ["Y-cable"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["WD My Passport", "WD Elements Portable"],
+    "partsNeeded": ["USB Y-cable"],
+    "estimatedCost": {"diy": {"min": 10, "max": 30}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "WD My Passport USB power fix",
+    "faq": [
+      {"q": "Does USB-C give more power?", "a": "Yes, modern USB-C ports deliver more current and are usually sufficient."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-format-error",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "FORMAT_ERROR",
+    "displayCode": "Format Error",
+    "alternativeCodes": [],
+    "title": "You need to format the disk before you can use it",
+    "shortDescription": "Windows prompts to format an otherwise good drive.",
+    "fullDescription": "This prompt appears when the partition table is damaged, encryption keys are unavailable, or filesystem metadata is corrupt. Do NOT format if your data matters – format is destructive.",
+    "causes": [
+      {"cause": "Corrupted MBR/GPT", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "WD Security encryption – wrong unlock", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "File system damage", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["Format prompt on connect", "Drive shows as RAW in Disk Management", "Cannot access files"],
+    "fixSteps": [
+      {"step": 1, "title": "Do not format", "instruction": "Cancel any format dialog to preserve data.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Unlock if encrypted", "instruction": "If WD Security was enabled, open WD Drive Utilities and unlock with password.", "tools": ["WD Security"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Run recovery software", "instruction": "Use TestDisk or WD Data Recovery service to rebuild partition.", "tools": ["TestDisk"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "Data recovery service for critical data – DIY fix may fail and worsen damage.",
+    "relatedCodes": ["western-digital-external-drive-corruption"],
+    "videoSearchQuery": "WD drive needs format fix",
+    "faq": [
+      {"q": "Will format recover the drive?", "a": "It recovers usability but erases all data."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-corruption",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "CORRUPTION",
+    "displayCode": "Corruption Detected",
+    "alternativeCodes": [],
+    "title": "File corruption on WD external drive",
+    "shortDescription": "Files open with errors, CRC failures, or mismatched sizes.",
+    "fullDescription": "Corruption on WD drives appears as CRC errors, zero-byte files, or unexpected file system damage. Could be bad sectors, power loss during write, or cable issues.",
+    "causes": [
+      {"cause": "Unsafe ejection / power loss during write", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Developing bad sectors", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failing USB bridge", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["CRC errors opening files", "Unexpected zero-byte files", "Chkdsk reports filesystem damage"],
+    "fixSteps": [
+      {"step": 1, "title": "Back up healthy files", "instruction": "Before repair, copy what opens to another drive.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "Run chkdsk/First Aid", "instruction": "chkdsk X: /f on Windows, Disk Utility First Aid on Mac.", "tools": [], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 3, "title": "SMART surface check", "instruction": "If SMART fails, plan replacement – corruption will return.", "tools": ["WD Drive Utilities"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "Clicking sounds, rapid sector growth – call pro.",
+    "relatedCodes": ["western-digital-external-drive-io-error"],
+    "videoSearchQuery": "WD drive corruption repair",
+    "faq": [
+      {"q": "Always safely eject?", "a": "Yes – prevents write corruption especially on Windows."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-file-system-damaged",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "FS_DAMAGED",
+    "displayCode": "File System Damaged",
+    "alternativeCodes": [],
+    "title": "File system on WD drive damaged or RAW",
+    "shortDescription": "Drive shown as RAW or damaged by OS.",
+    "fullDescription": "The partition exists but filesystem structures (MFT/catalog) are corrupt. Files are inaccessible until repaired with a filesystem tool or rescued with recovery software.",
+    "causes": [
+      {"cause": "Power outage during metadata write", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Bad sectors hitting MFT", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Malware/ransomware", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Drive shows RAW in Disk Management", "'File or directory is corrupted' errors", "0 bytes free / used reported"],
+    "fixSteps": [
+      {"step": 1, "title": "Image first", "instruction": "Make a sector-by-sector image (ddrescue) before repair attempts.", "tools": ["ddrescue"], "difficulty": "advanced", "timeMinutes": 180},
+      {"step": 2, "title": "Run TestDisk", "instruction": "Use TestDisk to rebuild partition table and boot sector.", "tools": ["TestDisk"], "difficulty": "advanced", "timeMinutes": 90},
+      {"step": 3, "title": "Recover files", "instruction": "PhotoRec or R-Studio against the image to extract files.", "tools": ["PhotoRec"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": ["Spare drive for imaging"],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "professional": {"min": 500, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "whenToCallPro": "Critical data – go straight to a data recovery service.",
+    "relatedCodes": ["western-digital-external-drive-corruption"],
+    "videoSearchQuery": "WD drive RAW file system fix",
+    "faq": [
+      {"q": "Is a RAW drive dead?", "a": "No – files often recoverable but do not format."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-slow-transfer",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "SLOW_TRANSFER",
+    "displayCode": "Slow Transfer Speed",
+    "alternativeCodes": [],
+    "title": "WD drive transfers much slower than expected",
+    "shortDescription": "Transfers capped at USB 2.0 speeds or lower.",
+    "fullDescription": "A USB 3.0 WD drive connected via a USB 2.0 cable or port falls to ~35 MB/s. Enabled WD Security encryption also adds minor overhead on older drives.",
+    "causes": [
+      {"cause": "Connected to USB 2.0 port", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "USB 2.0 cable (non-spec)", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Many small files", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Transfers under 40 MB/s", "Blue USB icon absent", "Windows warns 'connected to slower USB'"],
+    "fixSteps": [
+      {"step": 1, "title": "Use USB 3.0 port", "instruction": "Plug into blue/teal or USB-C port labeled SS.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Genuine USB 3.0 cable", "instruction": "Use OEM cable; avoid cheap knockoffs.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Archive small files", "instruction": "Zip/tar groups of small files before transferring.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": ["USB 3.0 cable"],
+    "estimatedCost": {"diy": {"min": 10, "max": 25}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": ["western-digital-external-drive-usb-power"],
+    "videoSearchQuery": "WD external drive slow transfer fix",
+    "faq": [
+      {"q": "Why so slow with small files?", "a": "Per-file overhead dominates; archiving reduces it."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-encryption-locked",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "ENCRYPTED_LOCK",
+    "displayCode": "WD Security Locked",
+    "alternativeCodes": [],
+    "title": "WD drive locked by WD Security",
+    "shortDescription": "Drive mounts as virtual CD requiring password unlock.",
+    "fullDescription": "Drives with WD Security enabled boot into a locked mode showing only a virtual CD with the unlock utility. Without the password, data is effectively unrecoverable due to hardware AES.",
+    "causes": [
+      {"cause": "WD Security enabled with password", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Forgotten password", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Unlock app missing/outdated", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Virtual CD titled 'WD Unlocker'", "Data partition not accessible", "Drive works only after unlock"],
+    "fixSteps": [
+      {"step": 1, "title": "Install WD Security", "instruction": "Download latest WD Security / WD Drive Utilities.", "tools": ["WD Security"], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Enter password", "instruction": "Unlock drive, check 'Remember' for auto-unlock on that PC.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Reset (data loss)", "instruction": "If password lost, WD Drive Utilities can factory-reset the drive – erases all data.", "tools": ["WD Drive Utilities"], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 3000}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Professional recovery rarely helps with hardware AES – data is typically unrecoverable without password.",
+    "relatedCodes": [],
+    "videoSearchQuery": "WD security locked unlock",
+    "faq": [
+      {"q": "Can WD recover my password?", "a": "No – WD cannot recover or bypass the encryption password."}
+    ]
+  },
+  {
+    "id": "western-digital-external-drive-noisy-clicking",
+    "brand": "Western Digital",
+    "brandSlug": "western-digital",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "CLICKING",
+    "displayCode": "Clicking or Beeping Noise",
+    "alternativeCodes": ["Click of Death"],
+    "title": "WD drive clicking or beeping",
+    "shortDescription": "Physical click indicates mechanical failure.",
+    "fullDescription": "Clicking/beeping indicates head or spindle mechanical problems. The drive is failing – stop using it and contact a data recovery specialist immediately. Every power-on may worsen the situation.",
+    "causes": [
+      {"cause": "Stuck or damaged read/write heads", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Spindle motor seized", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Insufficient USB power (beeping)", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Clicking pattern repeats", "High-pitched beep on power-up", "Drive never mounts"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off immediately", "instruction": "Do not keep powering up a clicking drive.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Try Y-cable (beeping only)", "instruction": "For beeping from low power, Y-cable or powered hub may help.", "tools": ["Y-cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Data recovery service", "instruction": "For clicking, contact a certified cleanroom data recovery service.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedModels": ["WD My Book", "WD My Passport"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 10, "max": 30}, "professional": {"min": 700, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Days (professional recovery)",
+    "whenToCallPro": "Immediately on any clicking sound.",
+    "relatedCodes": ["western-digital-external-drive-smart-failure"],
+    "videoSearchQuery": "WD drive clicking fix",
+    "faq": [
+      {"q": "Can I open the drive?", "a": "Never – heads require a cleanroom to service."}
+    ]
+  }
+]

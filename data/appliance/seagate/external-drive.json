@@ -1,0 +1,352 @@
+[
+  {
+    "id": "seagate-external-drive-not-recognized",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "NOT_RECOGNIZED",
+    "displayCode": "Disk Not Recognized",
+    "alternativeCodes": [],
+    "title": "Seagate Backup Plus not detected",
+    "shortDescription": "Drive doesn't appear on computer.",
+    "fullDescription": "Seagate external drives may fail to enumerate due to cable, power, or USB bridge controller issues. Don't initialize if it shows unknown – data loss risk.",
+    "causes": [
+      {"cause": "Faulty USB cable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Underpowered USB port", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "USB bridge controller failing", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["LED on but no drive letter", "Windows: 'USB device not recognized'", "Mac: no disk on desktop"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap cable and port", "instruction": "Use original cable, plug directly into rear USB 3.0.", "tools": ["Spare USB cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "SeaTools test", "instruction": "Install Seagate SeaTools and run Short Drive Self Test.", "tools": ["SeaTools"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Try on second computer", "instruction": "Rule out the host PC before blaming the drive.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch", "Seagate Expansion"],
+    "partsNeeded": ["USB cable"],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Seagate Rescue data recovery service for valuable data.",
+    "relatedCodes": ["seagate-external-drive-io-error"],
+    "videoSearchQuery": "Seagate drive not recognized fix",
+    "faq": [
+      {"q": "What is Seagate Rescue?", "a": "Seagate's in-house data recovery plan, sometimes included with drives."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-io-error",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "IO_ERROR",
+    "displayCode": "I/O Error",
+    "alternativeCodes": [],
+    "title": "Seagate drive reports I/O errors",
+    "shortDescription": "Read/write operations fail intermittently.",
+    "fullDescription": "I/O errors during reads or writes indicate possible bad sectors, cable issues, or bridge firmware hangs. Back up data before troubleshooting further.",
+    "causes": [
+      {"cause": "Bad sectors developing", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Cable/port issue", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Bridge firmware bug", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["'Fatal device hardware error'", "Long hangs copying", "Partial file transfers"],
+    "fixSteps": [
+      {"step": 1, "title": "Back up now", "instruction": "Copy accessible data to a safe drive.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "SeaTools diagnostics", "instruction": "Run Short and Long Generic tests; check SMART.", "tools": ["SeaTools"], "difficulty": "intermediate", "timeMinutes": 120},
+      {"step": 3, "title": "chkdsk cautiously", "instruction": "Only if SMART shows green – run chkdsk X: /f.", "tools": [], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 500, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "Clicking or rapid bad sector growth.",
+    "relatedCodes": ["seagate-external-drive-smart-failure"],
+    "videoSearchQuery": "Seagate I/O error fix",
+    "faq": [
+      {"q": "SeaTools free?", "a": "Yes, free download from Seagate."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-smart-failure",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "SMART_FAIL",
+    "displayCode": "SMART Failure Imminent",
+    "alternativeCodes": [],
+    "title": "Seagate drive warns of imminent SMART failure",
+    "shortDescription": "SMART thresholds exceeded – drive failing.",
+    "fullDescription": "Seagate SeaTools or the OS SMART layer has flagged attributes indicating imminent drive failure. Back up immediately and replace the drive.",
+    "causes": [
+      {"cause": "Reallocated sector count exceeded", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Mechanical wear", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Drop/impact damage", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["'SMART Status: BAD'", "SeaTools warns failure imminent", "Slow performance"],
+    "fixSteps": [
+      {"step": 1, "title": "Immediate backup", "instruction": "Copy everything critical off the drive ASAP.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 120},
+      {"step": 2, "title": "Check warranty", "instruction": "Use Seagate warranty checker and start RMA.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Replace drive", "instruction": "Do not continue using for new data.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch", "Seagate Expansion"],
+    "partsNeeded": ["Replacement drive"],
+    "estimatedCost": {"diy": {"min": 60, "max": 200}, "professional": {"min": 500, "max": 2000}},
+    "diyDifficulty": "easy",
+    "repairTime": "Hours for backup",
+    "whenToCallPro": "If can't back up fully before failure.",
+    "relatedCodes": ["seagate-external-drive-io-error"],
+    "videoSearchQuery": "Seagate SMART failure warning",
+    "faq": [
+      {"q": "SMART warning = dead?", "a": "Not yet – back up now before it is."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-write-protect",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "WRITE_PROTECT",
+    "displayCode": "Write Protected",
+    "alternativeCodes": [],
+    "title": "Seagate drive stuck read-only",
+    "shortDescription": "Can read but not write to the drive.",
+    "fullDescription": "Seagate drives can become read-only due to filesystem dirty bit, improper ejection, or hardware self-protection when SMART errors accumulate.",
+    "causes": [
+      {"cause": "NTFS dirty bit", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Seagate Toolkit read-only mode", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "macOS NTFS default", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Can't delete or modify files", "Write errors", "Read access fine"],
+    "fixSteps": [
+      {"step": 1, "title": "Clear dirty bit", "instruction": "Windows: fsutil dirty query X:; if dirty, chkdsk X: /f.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Format as exFAT", "instruction": "If cross-platform, reformat to exFAT for read/write on both OSes.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 3, "title": "Check SMART", "instruction": "If drive self-locked due to SMART, back up and replace.", "tools": ["SeaTools"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Only if drive is self-locking due to hardware failure.",
+    "relatedCodes": ["seagate-external-drive-smart-failure"],
+    "videoSearchQuery": "Seagate drive write protected fix",
+    "faq": [
+      {"q": "exFAT safe for both OS?", "a": "Yes – read/write on Windows and macOS."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-usb-power",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "USB_POWER",
+    "displayCode": "Insufficient USB Power",
+    "alternativeCodes": [],
+    "title": "Seagate drive clicking on and off",
+    "shortDescription": "Drive cycles power due to low USB current.",
+    "fullDescription": "Bus-powered Seagate drives need a full-power USB 3.0 port. Hubs or older laptops may under-supply.",
+    "causes": [
+      {"cause": "USB hub without power", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Weak USB 2.0 port", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Long/thin cable", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Click on, click off repeatedly", "Random disconnects", "LED flicker"],
+    "fixSteps": [
+      {"step": 1, "title": "Direct USB 3.0", "instruction": "Connect to rear blue USB 3.0 port.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Short OEM cable", "instruction": "Use the original short Seagate cable.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 3, "title": "Y-cable", "instruction": "Use dual-head USB Y-cable for additional power.", "tools": ["Y-cable"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch", "Seagate Expansion"],
+    "partsNeeded": ["USB Y-cable"],
+    "estimatedCost": {"diy": {"min": 10, "max": 30}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Seagate USB power fix",
+    "faq": [
+      {"q": "Y-cables safe?", "a": "Yes with genuine USB cables."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-format-error",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "FORMAT_ERROR",
+    "displayCode": "Format Error",
+    "alternativeCodes": [],
+    "title": "Windows prompts to format Seagate drive",
+    "shortDescription": "Drive shows up as RAW and prompts format.",
+    "fullDescription": "Corrupted partition or filesystem metadata triggers format prompt. DO NOT format if your files matter – format erases data.",
+    "causes": [
+      {"cause": "Corrupted partition table", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "File system damage", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Bridge encryption mismatch", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["'Need to format disk'", "Drive RAW in Disk Management", "Inaccessible data"],
+    "fixSteps": [
+      {"step": 1, "title": "Cancel format", "instruction": "Don't format; close the dialog.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Recovery software", "instruction": "TestDisk or Seagate Rescue to recover the partition.", "tools": ["TestDisk"], "difficulty": "advanced", "timeMinutes": 120},
+      {"step": 3, "title": "Professional recovery", "instruction": "If DIY fails, Seagate Rescue or a data recovery firm.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "Seagate Rescue or pro recovery for critical data.",
+    "relatedCodes": ["seagate-external-drive-corruption"],
+    "videoSearchQuery": "Seagate drive format prompt fix",
+    "faq": [
+      {"q": "Does format recover drive?", "a": "Yes but erases data."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-corruption",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "CORRUPTION",
+    "displayCode": "File Corruption Detected",
+    "alternativeCodes": [],
+    "title": "Corrupted files on Seagate drive",
+    "shortDescription": "Files open with errors or are partially damaged.",
+    "fullDescription": "Corruption from bad sectors, unsafe eject, or controller faults. Back up quickly, then repair.",
+    "causes": [
+      {"cause": "Unsafe disconnect", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Developing bad sectors", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "USB bridge glitch", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["CRC errors", "Zero-byte files", "Chkdsk finds damage"],
+    "fixSteps": [
+      {"step": 1, "title": "Copy good files", "instruction": "Back up readable files first.", "tools": ["Spare drive"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "chkdsk / First Aid", "instruction": "Windows chkdsk X: /f or macOS First Aid.", "tools": [], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 3, "title": "SeaTools surface test", "instruction": "Long Generic test to map bad sectors.", "tools": ["SeaTools"], "difficulty": "intermediate", "timeMinutes": 120}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 300, "max": 1500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "Clicking or rapid corruption growth.",
+    "relatedCodes": ["seagate-external-drive-io-error"],
+    "videoSearchQuery": "Seagate corruption repair",
+    "faq": [
+      {"q": "How to prevent?", "a": "Always safely eject and keep good cables."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-fs-damaged",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "FS_DAMAGED",
+    "displayCode": "File System Damaged",
+    "alternativeCodes": [],
+    "title": "Seagate file system damaged",
+    "shortDescription": "Drive shown as RAW / damaged by OS.",
+    "fullDescription": "Filesystem metadata corruption leaves files intact but inaccessible. Image before repair and use recovery tools.",
+    "causes": [
+      {"cause": "Power loss during metadata write", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Bad sectors on MFT", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Malware damage", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["RAW in Disk Management", "0 bytes reported", "'Directory structure corrupted'"],
+    "fixSteps": [
+      {"step": 1, "title": "Image drive", "instruction": "ddrescue image to working drive before any repair.", "tools": ["ddrescue"], "difficulty": "advanced", "timeMinutes": 180},
+      {"step": 2, "title": "TestDisk", "instruction": "Rebuild partition + boot sector.", "tools": ["TestDisk"], "difficulty": "advanced", "timeMinutes": 90},
+      {"step": 3, "title": "PhotoRec", "instruction": "Carve files from image.", "tools": ["PhotoRec"], "difficulty": "advanced", "timeMinutes": 120}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": ["Spare drive for imaging"],
+    "estimatedCost": {"diy": {"min": 50, "max": 200}, "professional": {"min": 500, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "whenToCallPro": "Critical data – Seagate Rescue or recovery firm.",
+    "relatedCodes": ["seagate-external-drive-corruption"],
+    "videoSearchQuery": "Seagate file system damaged fix",
+    "faq": [
+      {"q": "Is RAW fatal?", "a": "Usually recoverable, don't format."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-slow-transfer",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "SLOW_TRANSFER",
+    "displayCode": "Slow Transfer Speed",
+    "alternativeCodes": [],
+    "title": "Slow transfers on Seagate drive",
+    "shortDescription": "Transfers much slower than expected.",
+    "fullDescription": "USB 2.0 connection, poor cable, or small file overhead commonly responsible. Seagate SMR models also slow dramatically on sustained writes.",
+    "causes": [
+      {"cause": "USB 2.0 port/cable", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "SMR drive sustained write slowdown", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Indexing or AV scan", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Cap at 35 MB/s", "Slows after 50 GB sustained write", "High disk queue length"],
+    "fixSteps": [
+      {"step": 1, "title": "USB 3.0 port", "instruction": "Blue port + USB 3.0 cable.", "tools": [], "difficulty": "easy", "timeMinutes": 2},
+      {"step": 2, "title": "Disable AV scan", "instruction": "Exclude the drive from real-time scans.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Smaller chunks", "instruction": "For SMR slowdowns, pause between large batches.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": ["USB 3.0 cable"],
+    "estimatedCost": {"diy": {"min": 0, "max": 25}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Seagate slow transfer fix",
+    "faq": [
+      {"q": "What is SMR?", "a": "Shingled Magnetic Recording – dense but slower on sustained writes."}
+    ]
+  },
+  {
+    "id": "seagate-external-drive-clicking",
+    "brand": "Seagate",
+    "brandSlug": "seagate",
+    "deviceType": "External Drive",
+    "deviceTypeSlug": "external-drive",
+    "code": "CLICKING",
+    "displayCode": "Clicking Noise",
+    "alternativeCodes": ["Click of Death"],
+    "title": "Seagate drive clicking or beeping",
+    "shortDescription": "Mechanical clicking indicates failure.",
+    "fullDescription": "Clicks mean the heads can't find servo tracks. Stop using the drive immediately – powering on may worsen damage.",
+    "causes": [
+      {"cause": "Head stuck or damaged", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Spindle motor issue", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Low USB power (beeping)", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Repeating click every few seconds", "High-pitched beep", "Drive never mounts"],
+    "fixSteps": [
+      {"step": 1, "title": "Power off", "instruction": "Disconnect immediately.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
+      {"step": 2, "title": "Rule out power", "instruction": "If beeping only, try Y-cable.", "tools": ["Y-cable"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Recovery service", "instruction": "Seagate Rescue or cleanroom data recovery.", "tools": [], "difficulty": "professional", "timeMinutes": 60}
+    ],
+    "affectedModels": ["Seagate Backup Plus", "Seagate One Touch"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 10, "max": 30}, "professional": {"min": 700, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "Days (professional)",
+    "whenToCallPro": "Immediately on any clicking.",
+    "relatedCodes": ["seagate-external-drive-smart-failure"],
+    "videoSearchQuery": "Seagate drive clicking fix",
+    "faq": [
+      {"q": "Should I freeze it?", "a": "No – myth; risks moisture damage."}
+    ]
+  }
+]

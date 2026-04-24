@@ -1,0 +1,914 @@
+[
+  {
+    "id": "ubiquiti-enterprise-router-adoption-failed",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "ADOPTION_FAILED",
+    "displayCode": "Device Adoption Failed",
+    "alternativeCodes": [],
+    "title": "UniFi device won't adopt to Dream Machine",
+    "shortDescription": "A UniFi access point or switch cannot be taken over by the controller.",
+    "fullDescription": "Adoption brings a UniFi device under the management of a controller (UDM / UniFi Network application). Adoption fails when the device can't reach the inform URL, is still linked to a previous controller, or has a firmware mismatch.\n\nThe UniFi UI typically shows 'Adoption Failed' or 'Managed by Other'.",
+    "causes": [
+      {
+        "cause": "Device still adopted by prior controller",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Inform URL or DNS unreachable",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Major firmware mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Adoption Failed' banner",
+      "Device stuck in 'Pending Adoption'",
+      "'Managed by Other' status"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Factory reset device",
+        "instruction": "Hold the reset pin for 10 seconds until LEDs flash. Device will reappear as 'Pending Adoption'.",
+        "tools": [
+          "Paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "SSH forget",
+        "instruction": "SSH to device as 'ubnt' (default pw 'ubnt'), run 'set-default' to wipe prior controller lock.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Upgrade firmware first",
+        "instruction": "SSH run 'upgrade <URL>' to match controller's expected version before adopting.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "UniFi Dream Machine",
+      "UDM Pro",
+      "UDM SE",
+      "Dream Router"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Hire a UniFi integrator for multi-site controller migration.",
+    "relatedCodes": [
+      "ubiquiti-enterprise-router-discovery-failed"
+    ],
+    "videoSearchQuery": "UniFi adoption failed fix",
+    "faq": [
+      {
+        "q": "What is the default SSH password?",
+        "a": "ubnt/ubnt for un-adopted devices; current controller credentials after adoption."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-fw-upgrade-pending",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "FW_UPGRADE_PENDING",
+    "displayCode": "Firmware Upgrade Pending",
+    "alternativeCodes": [],
+    "title": "UDM firmware upgrade stuck pending",
+    "shortDescription": "Firmware upgrade is downloaded but never applies.",
+    "fullDescription": "The Dream Machine queues upgrades but sometimes fails to install due to low free storage, an in-progress backup, or a hung UniFi OS service. The UI shows 'Pending' indefinitely.",
+    "causes": [
+      {
+        "cause": "Low free space on UDM",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Hung UniFi OS service",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Download interrupted",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Pending' status in controller",
+      "Upgrade progress bar stuck",
+      "Services listed as 'Updating'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot UDM",
+        "instruction": "UniFi OS > Console > Restart, or power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Manual upgrade",
+        "instruction": "Upload firmware file via UniFi OS > Console > Update > Manual install.",
+        "tools": [
+          "Firmware file"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SSH upgrade",
+        "instruction": "SSH to UDM and run 'ubnt-systool fwupdate <url>' for specific firmware URL.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Call a UniFi pro for production networks to avoid downtime.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM firmware upgrade pending fix",
+    "faq": [
+      {
+        "q": "Can I roll back firmware?",
+        "a": "Yes via manual install, but configs may not restore cleanly across major versions."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-discovery-failed",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "DISCOVERY_FAILED",
+    "displayCode": "Device Discovery Failed",
+    "alternativeCodes": [],
+    "title": "UniFi device not appearing in controller",
+    "shortDescription": "Devices don't show up in the 'Pending Adoption' list.",
+    "fullDescription": "Discovery uses L2 broadcast and DNS unifi.local by default. VLAN separation, broadcast-blocking switches, or missing DHCP option 43 will prevent discovery.",
+    "causes": [
+      {
+        "cause": "Device on different VLAN/subnet",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broadcast blocked on switch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "No DHCP option 43 for L3 discovery",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Device powers up but never lists",
+      "LED is white / steady",
+      "Previously-adopted device missing after move"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Put device on mgmt subnet",
+        "instruction": "Temporarily connect to same VLAN as UDM.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Set inform URL",
+        "instruction": "SSH to device: 'set-inform http://<controller-ip>:8080/inform'.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Add DHCP option 43",
+        "instruction": "Configure DHCP option 43 hex with controller IP for cross-subnet discovery.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE",
+      "Cloud Gateway"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Hire a network engineer for L3-discovery setups.",
+    "relatedCodes": [
+      "ubiquiti-enterprise-router-adoption-failed"
+    ],
+    "videoSearchQuery": "UniFi discovery failed fix",
+    "faq": [
+      {
+        "q": "What protocol is discovery?",
+        "a": "L2 broadcast UDP 10001; DHCP option 43 for L3 fallback."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-ssh-access-issue",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "SSH_ACCESS",
+    "displayCode": "SSH Access Issue",
+    "alternativeCodes": [],
+    "title": "Cannot SSH into UDM or managed device",
+    "shortDescription": "SSH refuses login or is disabled.",
+    "fullDescription": "SSH on UniFi needs a Device Authentication credential set in UniFi OS. On newer UDM firmware root SSH is locked, and you must use 'root' user with password from OS > Advanced > SSH.",
+    "causes": [
+      {
+        "cause": "Device Auth credentials not set",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "SSH disabled in site settings",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall rule blocking 22/tcp",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Permission denied (publickey,password)'",
+      "Connection refused",
+      "Auth loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Enable SSH and set creds",
+        "instruction": "UniFi OS > Console > Advanced > SSH > enable and set username/password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Use correct account",
+        "instruction": "On UDM, SSH with 'root' and the SSH password, not your UniFi UI password.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check firewall",
+        "instruction": "Ensure WAN rule isn't blocking mgmt SSH; prefer LAN-only access.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Engage UniFi partner for key-based auth or MFA setups.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM SSH access fix",
+    "faq": [
+      {
+        "q": "Does UDM support SSH keys?",
+        "a": "Yes, add keys in UniFi OS Advanced > SSH."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-wan-down",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "WAN_DOWN",
+    "displayCode": "WAN Interface Down",
+    "alternativeCodes": [],
+    "title": "UDM WAN has no link or no IP",
+    "shortDescription": "Primary WAN interface is down or fails to obtain an IP.",
+    "fullDescription": "If the UDM can't acquire a WAN IP, all internal clients lose internet. Commonly caused by wrong WAN mode (DHCP/PPPoE), bad SFP+, or an ISP MAC binding.",
+    "causes": [
+      {
+        "cause": "Wrong WAN mode configured",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "ISP MAC binding to previous router",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bad SFP+ / cable",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "WAN interface shows 'Disconnected'",
+      "No IP assigned",
+      "Internet outage"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify WAN mode",
+        "instruction": "Settings > Internet > WAN and set DHCP or PPPoE per ISP.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Clone MAC",
+        "instruction": "If ISP is binding MAC, enable 'Clone MAC' or request reprovision.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Swap cable/SFP",
+        "instruction": "Try a known-good Ethernet/SFP+ to rule out hardware.",
+        "tools": [
+          "Ethernet cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "ISP for MAC reprovision; pro for fiber/SFP+ issues.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM WAN down fix",
+    "faq": [
+      {
+        "q": "How do I clone MAC?",
+        "a": "Settings > Internet > WAN > MAC Address > Clone."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-high-cpu",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "HIGH_CPU",
+    "displayCode": "High CPU Usage",
+    "alternativeCodes": [],
+    "title": "UDM CPU pegged near 100%",
+    "shortDescription": "Controller and routing slow due to CPU saturation.",
+    "fullDescription": "Heavy DPI, IDS/IPS, and many VPN tunnels can saturate UDM CPU, degrading throughput. Smart Queues + IDS on a gigabit line often exceeds base UDM limits.",
+    "causes": [
+      {
+        "cause": "IDS/IPS at full throughput",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Many VPN tunnels / heavy clients",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bug in specific firmware",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Speed lower than plan",
+      "UI laggy",
+      "Alerts about CPU > 90%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable IDS/IPS temporarily",
+        "instruction": "Settings > Security > Threat Management.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Limit Smart Queues",
+        "instruction": "Set Smart Queues to realistic throughput matching CPU capacity.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Upgrade hardware",
+        "instruction": "Move to UDM Pro / SE for gigabit+ with IDS.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 120
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 600
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Network pro for hardware upgrade and migration.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM high CPU fix",
+    "faq": [
+      {
+        "q": "Does IDS cap speed?",
+        "a": "Yes – approx 850 Mbps on UDM Pro with IDS on."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-vpn-fail",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "VPN_FAIL",
+    "displayCode": "VPN Connection Failed",
+    "alternativeCodes": [],
+    "title": "Site-to-site or client VPN won't connect",
+    "shortDescription": "Users can't establish VPN tunnels through UDM.",
+    "fullDescription": "VPN failures are often port-forwarding, mismatched pre-shared keys, or dynamic DNS not resolving. WireGuard (Teleport) issues are usually identity-related.",
+    "causes": [
+      {
+        "cause": "Pre-shared key mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Dynamic DNS not updating",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "ISP blocks incoming IKE/ESP",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "'VPN connection failed' in client",
+      "Tunnel flapping up/down",
+      "Event log auth failures"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify PSK",
+        "instruction": "Confirm identical PSK on both sides, regenerate if unsure.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check DDNS",
+        "instruction": "Settings > Internet > Dynamic DNS – test resolve from external network.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test port open",
+        "instruction": "Confirm UDP 500/4500 forwarded and ISP not CG-NAT.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Network pro for CG-NAT workarounds and site-to-site troubleshooting.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM VPN failed fix",
+    "faq": [
+      {
+        "q": "Does UDM support WireGuard?",
+        "a": "Yes via Teleport and WireGuard VPN server in UniFi Network 7+."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-controller-unreachable",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "CTRL_UNREACHABLE",
+    "displayCode": "Controller Unreachable",
+    "alternativeCodes": [],
+    "title": "UniFi UI can't reach controller",
+    "shortDescription": "UniFi OS web UI times out or remote cloud access fails.",
+    "fullDescription": "Controller unreachable can be local (service crashed) or remote (ui.com portal cannot reach device). Checking local LAN first isolates the cause.",
+    "causes": [
+      {
+        "cause": "UniFi OS service crash",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Remote access disabled",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Ubiquiti cloud outage",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "ui.com shows device offline",
+      "Local IP times out",
+      "Adoption breaks"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try local IP first",
+        "instruction": "https://<udm-lan-ip> to rule out remote issue.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Reboot UDM",
+        "instruction": "Reboot from UniFi OS or power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check status.ui.com",
+        "instruction": "Verify Ubiquiti cloud services are healthy.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Pro for persistent controller crashes or DB corruption.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi controller unreachable fix",
+    "faq": [
+      {
+        "q": "Can I skip ui.com?",
+        "a": "Yes – local IP access works without the cloud."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-poe-overload",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "POE_OVERLOAD",
+    "displayCode": "PoE Budget Exceeded",
+    "alternativeCodes": [],
+    "title": "UDM Pro/SE PoE budget exceeded",
+    "shortDescription": "Some PoE ports turn off due to over-budget",
+    "fullDescription": "UDM SE provides PoE on all 8 LAN ports with a budget of 180W. Overloading triggers a shutdown of the lowest priority ports.",
+    "causes": [
+      {
+        "cause": "Total PoE draw exceeds budget",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Faulty device drawing over spec",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Incorrect PoE mode",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Port shows 'Overload' in UI",
+      "AP reboots randomly",
+      "Alert in UniFi"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Sum PoE wattage",
+        "instruction": "Check each connected AP/camera and add wattage; stay under 180W.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Offload to PoE switch",
+        "instruction": "Move some PoE devices to a dedicated PoE switch.",
+        "tools": [
+          "PoE switch"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Set correct PoE mode",
+        "instruction": "UniFi > Ports > select > PoE mode (auto, 24V, 48V).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [
+      {
+        "part": "PoE switch",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Low-voltage installer for structured cabling upgrades.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM SE PoE overload fix",
+    "faq": [
+      {
+        "q": "What's UDM SE PoE budget?",
+        "a": "180W total across 8 ports."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-enterprise-router-backup-restore-fail",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "BACKUP_RESTORE_FAIL",
+    "displayCode": "Backup Restore Failed",
+    "alternativeCodes": [],
+    "title": "UDM config restore doesn't complete",
+    "shortDescription": "Restoring a backup to UDM fails or rolls back.",
+    "fullDescription": "Restore errors out when the backup was made on a newer UniFi version than the target, or when hardware model differs. Restoring from UDM Pro backup onto UDM base won't work.",
+    "causes": [
+      {
+        "cause": "Backup from newer firmware",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Different hardware model",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupted backup file",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Restore fails at verification step",
+      "Device reboots to factory",
+      "Partial config applied"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Match firmware",
+        "instruction": "Upgrade target UDM to the same version as backup source before restore.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Use same model",
+        "instruction": "Restore to identical model; cross-model migration requires manual export of settings.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Redownload backup",
+        "instruction": "If file corrupt, fetch fresh backup from UI > System > Backups.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "UDM",
+      "UDM Pro",
+      "UDM SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "UniFi partner for cross-model migration.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM backup restore failed",
+    "faq": [
+      {
+        "q": "Can I restore UDM backup to UDM Pro?",
+        "a": "Not directly; you need manual settings migration."
+      }
+    ]
+  }
+]

@@ -150,7 +150,20 @@ export type ApplianceDeviceType =
   | "rv-water-heater"
   | "rv-furnace"
   | "marine-electronics"
-  | "trolling-motor";
+  | "trolling-motor"
+  | "action-camera"
+  | "cinema-camera"
+  | "microphone"
+  | "audio-interface"
+  | "mesh-router"
+  | "enterprise-router"
+  | "external-drive"
+  | "ssd-drive"
+  | "hair-tool"
+  | "electric-shaver"
+  | "water-flosser"
+  | "electric-toothbrush"
+  | "massage-device";
 
 export interface ApplianceCause {
   cause: string;
