@@ -86,6 +86,16 @@ function buildSitemap(): string {
     });
   }
 
+  // Guides (pillar content)
+  entries.push({ url: `${SITE_URL}/guides`, priority: 0.7, changefreq: "monthly" });
+  for (const slug of ["obd-ii-explained", "diy-vs-mechanic", "reading-check-engine-codes"]) {
+    entries.push({
+      url: `${SITE_URL}/guides/${slug}`,
+      priority: 0.8,
+      changefreq: "monthly",
+    });
+  }
+
   // High-traffic OBD codes — bump priority so Google crawls first.
   // These are the ones that actually drive search volume.
   const POPULAR_OBD = new Set([
