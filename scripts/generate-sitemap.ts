@@ -71,6 +71,20 @@ function buildSitemap(): string {
   entries.push({ url: `${SITE_URL}/terms`, priority: 0.2, changefreq: "monthly" });
   entries.push({ url: `${SITE_URL}/disclaimer`, priority: 0.2, changefreq: "monthly" });
   entries.push({ url: `${SITE_URL}/contact`, priority: 0.3, changefreq: "monthly" });
+  entries.push({ url: `${SITE_URL}/editorial-policy`, priority: 0.5, changefreq: "monthly" });
+  entries.push({ url: `${SITE_URL}/corrections`, priority: 0.3, changefreq: "weekly" });
+  entries.push({ url: `${SITE_URL}/search`, priority: 0.7, changefreq: "weekly" });
+  entries.push({ url: `${SITE_URL}/saved`, priority: 0.3, changefreq: "monthly" });
+
+  // OBD-II range hub pages (pillar pages for SEO)
+  const OBD_RANGES = ["p0xxx", "p1xxx", "p2xxx", "p3xxx", "bxxxx", "cxxxx", "uxxxx"];
+  for (const slug of OBD_RANGES) {
+    entries.push({
+      url: `${SITE_URL}/obd2/range/${slug}`,
+      priority: 0.85,
+      changefreq: "weekly",
+    });
+  }
 
   // High-traffic OBD codes — bump priority so Google crawls first.
   // These are the ones that actually drive search volume.

@@ -62,6 +62,34 @@ export default function OBD2IndexPage() {
           ))}
         </div>
 
+        {/* Browse by range — hub pages for SEO */}
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Browse by code range</h2>
+          <p className="text-sm text-gray-600 mb-4">
+            Each range is a dedicated hub with background on what those codes cover.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {[
+              { slug: "p0xxx", label: "P0XXX", desc: "Generic powertrain" },
+              { slug: "p1xxx", label: "P1XXX", desc: "Manufacturer-specific" },
+              { slug: "p2xxx", label: "P2XXX", desc: "Advanced emissions" },
+              { slug: "p3xxx", label: "P3XXX", desc: "Hybrid / EV / AFM" },
+              { slug: "bxxxx", label: "BXXXX", desc: "Body (airbag, BCM)" },
+              { slug: "cxxxx", label: "CXXXX", desc: "Chassis (ABS, TPMS)" },
+              { slug: "uxxxx", label: "UXXXX", desc: "Network (CAN bus)" },
+            ].map((r) => (
+              <Link
+                key={r.slug}
+                href={`/obd2/range/${r.slug}`}
+                className="block bg-white border border-gray-200 rounded-lg p-4 hover:border-brand-primary hover:bg-blue-50 transition-colors"
+              >
+                <div className="font-mono font-bold text-brand-primary">{r.label}</div>
+                <div className="mt-0.5 text-xs text-gray-600">{r.desc}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-10">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">All OBD-II Codes</h2>
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
