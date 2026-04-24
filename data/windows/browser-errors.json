@@ -15832,5 +15832,2437 @@
         "a": "Only if profile corruption or a bad extension is the cause. Test a fresh profile first before reinstalling."
       }
     ]
+  },
+  {
+    "id": "windows-browser-err-http2-ping-failed",
+    "category": "browser",
+    "code": "ERR_HTTP2_PING_FAILED",
+    "displayCode": "ERR_HTTP2_PING_FAILED",
+    "title": "HTTP/2 ping failed",
+    "shortDescription": "HTTP/2 connection ping timeout caused Chrome to abort.",
+    "fullDescription": "Chrome reports ERR_HTTP2_PING_FAILED when the browser's HTTP/2 keep-alive ping receives no response in the expected window. The connection is dropped to avoid stale traffic.\n\nUsually the network changed (Wi-Fi to mobile), or a corporate proxy disrupted long-lived connections.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Network change",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proxy/firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Server timeout",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "ERR_HTTP2_PING_FAILED on reload",
+      "Pages partially load then fail"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Refresh page",
+        "instruction": "Press F5 to reload.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable IPv6",
+        "instruction": "Network adapter \u2192 Properties \u2192 uncheck IPv6.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable QUIC/HTTP3",
+        "instruction": "chrome://flags \u2192 Experimental QUIC protocol \u2192 Disabled.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If persistent across networks, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why HTTP/2 ping?",
+        "a": "Keeps idle connections alive."
+      },
+      {
+        "q": "Affect other sites?",
+        "a": "Usually intermittent."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-socks-connection-failed",
+    "category": "browser",
+    "code": "ERR_SOCKS_CONNECTION_FAILED",
+    "displayCode": "ERR_SOCKS_CONNECTION_FAILED",
+    "title": "SOCKS proxy connection failed",
+    "shortDescription": "Chrome could not connect through configured SOCKS proxy.",
+    "fullDescription": "ERR_SOCKS_CONNECTION_FAILED appears when Windows or Chrome is configured to use a SOCKS proxy that is unreachable or refusing connections.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Proxy server down",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong proxy address",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN client conflict",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "All sites fail",
+      "ERR_SOCKS_CONNECTION_FAILED"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check proxy settings",
+        "instruction": "Settings \u2192 Network & Internet \u2192 Proxy.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Disable proxy",
+        "instruction": "Toggle off automatic and manual proxy.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Restart VPN",
+        "instruction": "Reconnect or uninstall VPN client.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If managed by IT, contact admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Where set?",
+        "a": "Windows proxy settings or Chrome flag."
+      },
+      {
+        "q": "VPN cause?",
+        "a": "Yes commonly."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-timed-out-backoff",
+    "category": "browser",
+    "code": "ERR_TIMED_OUT_BACKOFF",
+    "displayCode": "ERR_TIMED_OUT_BACKOFF",
+    "title": "Timed out backoff",
+    "shortDescription": "Repeated failed attempts triggered backoff timeout.",
+    "fullDescription": "Chrome may show ERR_TIMED_OUT_BACKOFF when the same site has failed several times in succession; Chrome backs off to avoid hammering a misbehaving server.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DNS failure",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Local firewall block",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Repeated failures to one site"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait 5 minutes",
+        "instruction": "Allow backoff to clear.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Flush DNS",
+        "instruction": "ipconfig /flushdns in cmd.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Try mobile network",
+        "instruction": "Verify if site is reachable from cellular.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If only this site, contact site admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Affects other sites?",
+        "a": "No."
+      },
+      {
+        "q": "Will fix itself?",
+        "a": "Yes after backoff."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http-response-too-big",
+    "category": "browser",
+    "code": "ERR_HTTP_RESPONSE_TOO_BIG",
+    "displayCode": "ERR_HTTP_RESPONSE_TOO_BIG",
+    "title": "HTTP response too big",
+    "shortDescription": "Server response exceeded size limit.",
+    "fullDescription": "Chrome aborts when response headers/body exceed the browser's configured limit. Common with broken APIs returning massive HTML.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server bug",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Misconfigured app",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cache corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Specific page fails",
+      "ERR_HTTP_RESPONSE_TOO_BIG"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear cache",
+        "instruction": "Ctrl+Shift+Del \u2192 cached files.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Try incognito",
+        "instruction": "Test in private window.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Contact site admin",
+        "instruction": "Report large response issue.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If site repeatedly broken, escalate to webmaster.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Limit?",
+        "a": "Around 20MB headers in Chrome."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "Limited."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-incomplete-chunked-encoding",
+    "category": "browser",
+    "code": "ERR_INCOMPLETE_CHUNKED_ENCODING",
+    "displayCode": "ERR_INCOMPLETE_CHUNKED_ENCODING",
+    "title": "Incomplete chunked encoding",
+    "shortDescription": "Server closed chunked HTTP response prematurely.",
+    "fullDescription": "ERR_INCOMPLETE_CHUNKED_ENCODING fires when Chrome receives an HTTP/1.1 chunked response that does not end correctly, often due to server crash or broken proxy.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server crash",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus inspecting traffic",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broken proxy",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Page partially loads",
+      "Console errors"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable antivirus HTTPS scanning",
+        "instruction": "Set AV to not scan SSL.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try other browser",
+        "instruction": "Verify reproducibility.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Clear cache",
+        "instruction": "Ctrl+Shift+Del.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If site-wide, contact admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Common cause?",
+        "a": "AV inspecting HTTPS."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "Disable HTTPS scan in AV."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-spdy-protocol-error",
+    "category": "browser",
+    "code": "ERR_SPDY_PROTOCOL_ERROR",
+    "displayCode": "ERR_SPDY_PROTOCOL_ERROR",
+    "title": "SPDY protocol error",
+    "shortDescription": "SPDY/HTTP2 protocol layer reported error.",
+    "fullDescription": "Chrome reports this when an HTTP/2 (formerly SPDY) frame fails parsing or violates protocol. Usually a server bug or proxy interference.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Misconfigured server",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus interception",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Proxy bug",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Random sites fail",
+      "ERR_SPDY_PROTOCOL_ERROR"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable QUIC/HTTP3",
+        "instruction": "chrome://flags.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable AV HTTPS scan",
+        "instruction": "Stop antivirus from injecting.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Update Chrome",
+        "instruction": "Settings \u2192 About Chrome.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If pattern is one site, report to webmaster.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "SPDY still around?",
+        "a": "Replaced by HTTP/2."
+      },
+      {
+        "q": "AV cause?",
+        "a": "Common."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http2-frame-size-error",
+    "category": "browser",
+    "code": "ERR_HTTP2_FRAME_SIZE_ERROR",
+    "displayCode": "ERR_HTTP2_FRAME_SIZE_ERROR",
+    "title": "HTTP/2 frame size error",
+    "shortDescription": "HTTP/2 frame exceeded maximum size.",
+    "fullDescription": "ERR_HTTP2_FRAME_SIZE_ERROR fires when an HTTP/2 frame exceeds the negotiated max frame size. Usually a server-side bug.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server bug",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Misconfigured CDN",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Antivirus interception",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific site fails consistently"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try incognito",
+        "instruction": "Verify reproducibility.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Update Chrome",
+        "instruction": "Settings \u2192 About Chrome.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Disable extensions",
+        "instruction": "Chrome menu \u2192 More tools \u2192 Extensions.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If repeatable, contact site admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Server fix?",
+        "a": "Yes \u2014 adjust max frame setting."
+      },
+      {
+        "q": "Affect other sites?",
+        "a": "Usually no."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-cert-validity-too-long",
+    "category": "browser",
+    "code": "ERR_CERT_VALIDITY_TOO_LONG",
+    "displayCode": "ERR_CERT_VALIDITY_TOO_LONG",
+    "title": "Certificate validity too long",
+    "shortDescription": "Certificate validity period exceeds Chrome's max.",
+    "fullDescription": "Chrome rejects certificates issued for longer than the max allowed period. Modern Chrome enforces ~398 day max.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Long-lived cert",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Self-signed cert with long expiry",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "NET::ERR_CERT_VALIDITY_TOO_LONG warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bypass for internal",
+        "instruction": "If trusted internal site, use Advanced \u2192 Proceed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Issue new cert",
+        "instruction": "Site admin issues 398-day cert.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Use Edge legacy",
+        "instruction": "Some browsers allow longer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If client/work site, ask admin to issue compliant cert.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why 398 days?",
+        "a": "Industry standard for browsers."
+      },
+      {
+        "q": "Bypass safe?",
+        "a": "Only for trusted internal."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-cert-name-constraint-violation",
+    "category": "browser",
+    "code": "ERR_CERT_NAME_CONSTRAINT_VIOLATION",
+    "displayCode": "ERR_CERT_NAME_CONSTRAINT_VIOLATION",
+    "title": "Certificate name constraint violation",
+    "shortDescription": "Certificate violates name constraints in chain.",
+    "fullDescription": "Chrome flags certificates that violate name constraints set by an issuing CA.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Wrong intermediate",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cert misconfig",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cert error",
+      "ERR_CERT_NAME_CONSTRAINT_VIOLATION"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact admin",
+        "instruction": "Site admin reissues cert.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Try other browser",
+        "instruction": "Verify scope.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Always escalate to site admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Self-fix?",
+        "a": "No, server-side."
+      },
+      {
+        "q": "Common?",
+        "a": "Mostly enterprise PKI."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http2-flow-control-error",
+    "category": "browser",
+    "code": "ERR_HTTP2_FLOW_CONTROL_ERROR",
+    "displayCode": "ERR_HTTP2_FLOW_CONTROL_ERROR",
+    "title": "HTTP/2 flow control error",
+    "shortDescription": "HTTP/2 flow control window violated.",
+    "fullDescription": "Server or proxy violated HTTP/2 flow control rules, causing Chrome to abort.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server bug",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Reverse proxy mis-set",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Antivirus injection",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Random connection drops"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable AV HTTPS scan",
+        "instruction": "Disable HTTPS in AV.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update Chrome",
+        "instruction": "Settings \u2192 About Chrome.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Try incognito",
+        "instruction": "Verify reproducibility.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If repeating, contact site admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Server side?",
+        "a": "Mostly."
+      },
+      {
+        "q": "Workaround?",
+        "a": "Disable HTTP/2 if possible."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-network-changed-v2",
+    "category": "browser",
+    "code": "ERR_NETWORK_CHANGED_v2",
+    "displayCode": "ERR_NETWORK_CHANGED_v2",
+    "title": "Network configuration changed",
+    "shortDescription": "Network adapter state changed mid-request.",
+    "fullDescription": "Chrome aborts when the network adapter changes IP, gateway, or DNS during a request, common when Wi-Fi switches networks.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Wi-Fi roam",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VPN connect",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Adapter reset",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Mid-page errors",
+      "Reload fixes it"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload page",
+        "instruction": "Press F5.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Forget unstable network",
+        "instruction": "Remove flaky Wi-Fi networks.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Update adapter driver",
+        "instruction": "Device Manager \u2192 Network adapters.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If frequent, replace router or NIC.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Common after VPN?",
+        "a": "Yes."
+      },
+      {
+        "q": "Reload always works?",
+        "a": "Usually."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-cert-invalid",
+    "category": "browser",
+    "code": "ERR_CERT_INVALID",
+    "displayCode": "ERR_CERT_INVALID",
+    "title": "Certificate invalid",
+    "shortDescription": "Certificate is invalid for unspecified reason.",
+    "fullDescription": "Generic certificate error when no specific sub-error applies; certificate may be malformed.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Malformed cert",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong system date",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Self-signed",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "NET::ERR_CERT_INVALID",
+      "Cert warning page"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check date",
+        "instruction": "Set system clock correctly.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Try other browser",
+        "instruction": "Verify scope.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Contact admin",
+        "instruction": "Site admin reissues cert.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If a public site, escalate to webmaster.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Self-signed?",
+        "a": "Often the cause."
+      },
+      {
+        "q": "Bypass?",
+        "a": "Use Advanced \u2192 Proceed for trusted sites."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-tls-client-auth-signature-failed",
+    "category": "browser",
+    "code": "ERR_TLS_CLIENT_AUTH_SIGNATURE_FAILED",
+    "displayCode": "ERR_TLS_CLIENT_AUTH_SIGNATURE_FAILED",
+    "title": "TLS client auth signature failed",
+    "shortDescription": "Client certificate signature failed during TLS auth.",
+    "fullDescription": "Chrome failed to sign the TLS handshake using the configured client certificate.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Smart card unavailable",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong client cert",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Driver issue",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "mTLS site fails to load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reinsert smart card",
+        "instruction": "Remove and reinsert smart card.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Reinstall cert",
+        "instruction": "Reimport client certificate.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Update smart card driver",
+        "instruction": "Vendor driver update.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Smart card cause?",
+        "a": "Often."
+      },
+      {
+        "q": "Common in enterprise?",
+        "a": "Yes."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http2-goaway-received",
+    "category": "browser",
+    "code": "ERR_HTTP2_GOAWAY_RECEIVED",
+    "displayCode": "ERR_HTTP2_GOAWAY_RECEIVED",
+    "title": "HTTP/2 GOAWAY received",
+    "shortDescription": "Server sent HTTP/2 GOAWAY frame.",
+    "fullDescription": "ERR_HTTP2_GOAWAY_RECEIVED indicates the server told Chrome to disconnect via a GOAWAY frame, often during server restart.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server restart",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Load balancer drain",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server bug",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Reload often fixes it"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload page",
+        "instruction": "Press F5.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Wait 1 minute",
+        "instruction": "Allow server cycle to complete.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If persistent, contact site admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Self-fix?",
+        "a": "Reload."
+      },
+      {
+        "q": "Common?",
+        "a": "During deployments."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-bad-ssl-client-auth-cert-v2",
+    "category": "browser",
+    "code": "ERR_BAD_SSL_CLIENT_AUTH_CERT_v2",
+    "displayCode": "ERR_BAD_SSL_CLIENT_AUTH_CERT_v2",
+    "title": "Bad SSL client auth cert (v2)",
+    "shortDescription": "Selected client certificate rejected by server.",
+    "fullDescription": "Server refused the client certificate Chrome sent during mTLS handshake.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Wrong cert chosen",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Expired cert",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cert revoked",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "mTLS site fails",
+      "Cert chooser appears repeatedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Choose correct cert",
+        "instruction": "Pick the right client cert in dialog.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Renew expired cert",
+        "instruction": "Reissue client cert.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Verify revocation",
+        "instruction": "Check if cert was revoked.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Multiple certs?",
+        "a": "Pick the correct one."
+      },
+      {
+        "q": "Renew?",
+        "a": "If expired."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-ssl-obsolete-version",
+    "category": "browser",
+    "code": "ERR_SSL_OBSOLETE_VERSION",
+    "displayCode": "ERR_SSL_OBSOLETE_VERSION",
+    "title": "SSL obsolete version",
+    "shortDescription": "Server uses obsolete SSL/TLS version.",
+    "fullDescription": "Chrome refuses to connect to servers using TLS 1.0 or 1.1, which are deprecated.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Site uses TLS 1.0/1.1",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Old appliance/IoT",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cert warning",
+      "TLS version error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bypass for internal",
+        "instruction": "Use Advanced \u2192 Proceed for trusted internal sites.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Upgrade server",
+        "instruction": "Site admin upgrades to TLS 1.2+.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Use legacy browser",
+        "instruction": "If needed, use older browser for legacy device.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If a router/IoT, ask admin to update firmware.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why deprecated?",
+        "a": "TLS 1.0/1.1 have known weaknesses."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "No \u2014 site must update."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-connection-aborted",
+    "category": "browser",
+    "code": "ERR_CONNECTION_ABORTED",
+    "displayCode": "ERR_CONNECTION_ABORTED",
+    "title": "Connection aborted",
+    "shortDescription": "Connection aborted by client or server.",
+    "fullDescription": "ERR_CONNECTION_ABORTED fires when one side of the TCP connection closed unexpectedly mid-transfer.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server crash",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Local firewall",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network glitch",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Random failures",
+      "Reload may fix"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload page",
+        "instruction": "Press F5.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable VPN",
+        "instruction": "Test without VPN.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Restart router",
+        "instruction": "Reboot router.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If consistent, escalate to network admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Reload helps?",
+        "a": "Usually yes."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Network instability."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-dns-malformed-response",
+    "category": "browser",
+    "code": "ERR_DNS_MALFORMED_RESPONSE",
+    "displayCode": "ERR_DNS_MALFORMED_RESPONSE",
+    "title": "Malformed DNS response",
+    "shortDescription": "DNS response could not be parsed.",
+    "fullDescription": "ERR_DNS_MALFORMED_RESPONSE indicates the configured DNS resolver returned a response Chrome could not parse.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "DNS server bug",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Captive portal",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "ISP filter",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "DNS errors on multiple sites"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Switch DNS",
+        "instruction": "Use 1.1.1.1 or 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Restart router",
+        "instruction": "Reboot router.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable IPv6",
+        "instruction": "Network properties \u2192 uncheck IPv6.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If only your ISP, contact them.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Switching helps?",
+        "a": "Yes often."
+      },
+      {
+        "q": "Captive portal?",
+        "a": "Possible at hotels."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-blocked-by-administrator",
+    "category": "browser",
+    "code": "ERR_BLOCKED_BY_ADMINISTRATOR",
+    "displayCode": "ERR_BLOCKED_BY_ADMINISTRATOR",
+    "title": "Blocked by administrator",
+    "shortDescription": "Page blocked by admin policy.",
+    "fullDescription": "ERR_BLOCKED_BY_ADMINISTRATOR appears when Chrome group policy or enterprise settings block the URL.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Group policy",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Family safety filter",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Antivirus",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific URL blocked"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact IT",
+        "instruction": "Ask IT to whitelist site if needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check Family Safety",
+        "instruction": "Disable Family Safety filter.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check AV",
+        "instruction": "Disable AV web filter.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Bypass?",
+        "a": "No without admin."
+      },
+      {
+        "q": "Personal device?",
+        "a": "Check Family Safety."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http-response-headers-multiple-location",
+    "category": "browser",
+    "code": "ERR_HTTP_RESPONSE_HEADERS_MULTIPLE_LOCATION",
+    "displayCode": "ERR_HTTP_RESPONSE_HEADERS_MULTIPLE_LOCATION",
+    "title": "Multiple Location headers",
+    "shortDescription": "Server sent multiple Location headers.",
+    "fullDescription": "Chrome rejects HTTP responses with more than one Location header, which is ambiguous for redirects.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server misconfig",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Reverse proxy bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific site redirect fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact admin",
+        "instruction": "Site admin fixes server config.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Try other browser",
+        "instruction": "Verify scope.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Site admin must fix.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Self-fix?",
+        "a": "No \u2014 server-side."
+      },
+      {
+        "q": "Common?",
+        "a": "Rare."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-tls-handshake-failed",
+    "category": "browser",
+    "code": "ERR_TLS_HANDSHAKE_FAILED",
+    "displayCode": "ERR_TLS_HANDSHAKE_FAILED",
+    "title": "TLS handshake failed",
+    "shortDescription": "Generic TLS handshake failure.",
+    "fullDescription": "Chrome reports TLS handshake failure for unspecific reasons during initial SSL connection.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Cipher mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Cert chain broken",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "MITM detected",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "TLS error on connect"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify clock",
+        "instruction": "Check system time.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Disable AV HTTPS scan",
+        "instruction": "Disable AV HTTPS interception.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Update Chrome",
+        "instruction": "Latest Chrome version.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise MITM proxy, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Cipher cause?",
+        "a": "Common with old OSes."
+      },
+      {
+        "q": "Time matter?",
+        "a": "Yes \u2014 must be correct."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-blocked-by-private-network-access-checks",
+    "category": "browser",
+    "code": "ERR_BLOCKED_BY_PRIVATE_NETWORK_ACCESS_CHECKS",
+    "displayCode": "ERR_BLOCKED_BY_PRIVATE_NETWORK_ACCESS_CHECKS",
+    "title": "Blocked by private network access",
+    "shortDescription": "Public site tried to fetch private network resource.",
+    "fullDescription": "Chrome blocks public sites from making requests to private/local addresses unless preflight succeeds.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Public->private fetch",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Local dev",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "IoT device",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "IoT panel partially loads"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use direct LAN",
+        "instruction": "Access local device by IP from local network.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Update device firmware",
+        "instruction": "IoT device gets PNA preflight support.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Bypass via flag",
+        "instruction": "chrome://flags Private Network Access.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If IoT vendor, request firmware update.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why blocked?",
+        "a": "CSRF protection."
+      },
+      {
+        "q": "Workaround?",
+        "a": "Direct LAN access."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-invalid-auth-credentials",
+    "category": "browser",
+    "code": "ERR_INVALID_AUTH_CREDENTIALS",
+    "displayCode": "ERR_INVALID_AUTH_CREDENTIALS",
+    "title": "Invalid auth credentials",
+    "shortDescription": "Invalid credentials provided for authentication.",
+    "fullDescription": "Chrome could not authenticate using the supplied credentials, often after expired Windows password.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Expired password",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong username",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "NTLM/Kerberos issue",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Auth prompt repeats"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-enter creds",
+        "instruction": "Type credentials again carefully.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Lock/unlock workstation",
+        "instruction": "Refresh Kerberos ticket.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Reset password",
+        "instruction": "Update Windows password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise, contact IT for Kerberos.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "NTLM still used?",
+        "a": "Yes in legacy AD."
+      },
+      {
+        "q": "Auto-login?",
+        "a": "Configured by IT."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-ftp-failed",
+    "category": "browser",
+    "code": "ERR_FTP_FAILED",
+    "displayCode": "ERR_FTP_FAILED",
+    "title": "FTP failed",
+    "shortDescription": "FTP connection failed.",
+    "fullDescription": "ERR_FTP_FAILED fires when Chrome's deprecated FTP support fails. Modern Chrome no longer supports FTP.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Chrome dropped FTP",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server unreachable",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "ftp:// URL fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use FTP client",
+        "instruction": "Install FileZilla.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Use Edge legacy",
+        "instruction": "If FTP needed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Use Windows File Explorer",
+        "instruction": "Type ftp:// in address bar.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "FTP is deprecated in browsers.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why removed?",
+        "a": "Insecure, low usage."
+      },
+      {
+        "q": "Alternative?",
+        "a": "SFTP via FileZilla."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-pac-script-failed",
+    "category": "browser",
+    "code": "ERR_PAC_SCRIPT_FAILED",
+    "displayCode": "ERR_PAC_SCRIPT_FAILED",
+    "title": "PAC script failed",
+    "shortDescription": "Proxy auto-config script failed to execute.",
+    "fullDescription": "ERR_PAC_SCRIPT_FAILED fires when the PAC (proxy auto-config) script fails to load or execute.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "PAC URL unreachable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PAC script bug",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network not connected",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "All sites fail",
+      "PAC error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable PAC",
+        "instruction": "Settings \u2192 Network \u2192 Proxy \u2192 off.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Re-enter PAC URL",
+        "instruction": "Verify URL is correct.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Contact IT",
+        "instruction": "Verify PAC server accessible.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "PAC purpose?",
+        "a": "Auto-detects proxy per URL."
+      },
+      {
+        "q": "Disable safe?",
+        "a": "If at home, yes."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http-1-1-required",
+    "category": "browser",
+    "code": "ERR_HTTP_1_1_REQUIRED",
+    "displayCode": "ERR_HTTP_1_1_REQUIRED",
+    "title": "HTTP/1.1 required",
+    "shortDescription": "Server requires HTTP/1.1 specifically.",
+    "fullDescription": "Server explicitly required HTTP/1.1 but Chrome attempted HTTP/2.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server config",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Old appliance",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific site error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Contact admin",
+        "instruction": "Site admin enables HTTP/2.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Use other browser",
+        "instruction": "Verify scope.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Site admin must update.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why?",
+        "a": "Server insists on HTTP/1.1."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "No."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-http2-compression-error",
+    "category": "browser",
+    "code": "ERR_HTTP2_COMPRESSION_ERROR",
+    "displayCode": "ERR_HTTP2_COMPRESSION_ERROR",
+    "title": "HTTP/2 compression error",
+    "shortDescription": "HPACK compression error in HTTP/2 stream.",
+    "fullDescription": "Chrome could not decompress HTTP/2 headers using HPACK; usually a server bug.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Server HPACK bug",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Proxy interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Specific site fails",
+      "Reload sometimes works"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reload",
+        "instruction": "Press F5.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Update Chrome",
+        "instruction": "Latest Chrome.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Contact admin",
+        "instruction": "Site admin updates server.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Site admin if persistent.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "HPACK?",
+        "a": "HTTP/2 header compression."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "Limited."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-disallowed-url-scheme",
+    "category": "browser",
+    "code": "ERR_DISALLOWED_URL_SCHEME",
+    "displayCode": "ERR_DISALLOWED_URL_SCHEME",
+    "title": "Disallowed URL scheme",
+    "shortDescription": "URL scheme is not allowed in browser.",
+    "fullDescription": "Chrome refuses to navigate to URLs with unsupported or disabled schemes (e.g. file:// from web contexts).",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "file:// from web",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Custom scheme",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Policy",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Link click does nothing",
+      "Disallowed URL scheme"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use http(s)://",
+        "instruction": "Use proper web URL.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Local file?",
+        "instruction": "Open file directly with File Explorer.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Contact IT",
+        "instruction": "If policy blocks, escalate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If enterprise policy, contact IT.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why blocked?",
+        "a": "Security."
+      },
+      {
+        "q": "Bypass?",
+        "a": "Not without admin."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-unknown-url-scheme",
+    "category": "browser",
+    "code": "ERR_UNKNOWN_URL_SCHEME",
+    "displayCode": "ERR_UNKNOWN_URL_SCHEME",
+    "title": "Unknown URL scheme",
+    "shortDescription": "URL scheme is not registered.",
+    "fullDescription": "Chrome cannot handle the URL scheme because no application is registered for it.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Missing app",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Custom protocol",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong link",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Link does nothing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Install app",
+        "instruction": "Install app for that protocol (e.g. Slack, Zoom).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update default app",
+        "instruction": "Set Windows default app for protocol.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Verify URL",
+        "instruction": "Check URL scheme is correct.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "If app required, install it.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Examples?",
+        "a": "slack://, zoommtg://."
+      },
+      {
+        "q": "Self-fix?",
+        "a": "Install app."
+      }
+    ]
+  },
+  {
+    "id": "windows-browser-err-tls-version-not-supported",
+    "category": "browser",
+    "code": "ERR_TLS_VERSION_NOT_SUPPORTED",
+    "displayCode": "ERR_TLS_VERSION_NOT_SUPPORTED",
+    "title": "TLS version not supported",
+    "shortDescription": "Server's TLS version unsupported by Chrome.",
+    "fullDescription": "Chrome cannot negotiate TLS version with server because the version is below Chrome's minimum.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Site uses TLS 1.0/1.1",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Misconfigured server",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "TLS version error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Use Edge legacy",
+        "instruction": "If trusted internal site.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Bypass for internal",
+        "instruction": "Advanced \u2192 Proceed.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Contact admin",
+        "instruction": "Site admin upgrades TLS.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 50,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Always escalate to admin.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Min TLS in Chrome?",
+        "a": "TLS 1.2."
+      },
+      {
+        "q": "Bypass?",
+        "a": "Internal only."
+      }
+    ]
   }
 ]

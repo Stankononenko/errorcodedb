@@ -1,0 +1,1127 @@
+[
+  {
+    "id": "cisco-enterprise-router-status-amber",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "STATUS-AMBER",
+    "displayCode": "STATUS LED Amber",
+    "alternativeCodes": [
+      "SYS LED Amber"
+    ],
+    "title": "Catalyst SYS LED amber - POST or hardware fault",
+    "shortDescription": "The chassis SYS LED is solid amber, indicating power-on self-test failure or hardware error.",
+    "fullDescription": "On Catalyst 9200/9300/9500 series switches and ISR/ASR routers, a steady amber SYS LED means the device detected a hardware fault during POST or runtime. Common triggers include power supply failure, fan tray failure, or a stack member that failed to boot.\n\nConnect via console (9600 8N1) and run 'show environment all' and 'show post' to identify the failed component. If the LED is blinking amber, the system is still booting or recovering and should be allowed to finish before troubleshooting.\n\nMost field-replaceable units (PSU, fan tray, SFPs) can be hot-swapped. A persistent amber after replacement usually indicates a supervisor or motherboard failure requiring TAC RMA.",
+    "causes": [
+      {
+        "cause": "Power supply or fan tray failure",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed POST diagnostics on a line card",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Overheating - blocked airflow",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty SFP/SFP+ transceiver",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Solid amber SYS LED",
+      "Beeping from PSU bay",
+      "Stack member missing from 'show switch'",
+      "High inlet temperature warnings"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Connect console",
+        "instruction": "Plug a console cable into the RJ45/USB console port and open a terminal at 9600 8N1.",
+        "tools": [
+          "console cable",
+          "laptop"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check environment",
+        "instruction": "Run 'show environment all' and 'show post' to locate the failing FRU.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reseat or replace FRU",
+        "instruction": "Power down, reseat the indicated PSU, fan tray, or line card. Replace if reseat does not clear the fault.",
+        "tools": [
+          "ESD strap"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Open TAC case if persistent",
+        "instruction": "If amber persists after FRU replacement, collect 'show tech-support' and open a TAC RMA case.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9200",
+      "Catalyst 9300",
+      "Catalyst 9500",
+      "ISR 4000",
+      "ASR 1000"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 800
+      },
+      "professional": {
+        "min": 200,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Call Cisco TAC if SmartNet covered or persistent supervisor faults appear.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco Catalyst SYS LED amber troubleshoot",
+    "faq": [
+      {
+        "q": "Is blinking amber the same as solid?",
+        "a": "No - blinking amber means the system is booting or running diagnostics; wait 5 minutes before troubleshooting."
+      },
+      {
+        "q": "Can I hot-swap the PSU?",
+        "a": "Yes on dual-PSU models. Single-PSU chassis require shutdown."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-meraki-orange",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "MERAKI-ORANGE",
+    "displayCode": "Meraki LED Solid Orange",
+    "alternativeCodes": [
+      "Dashboard Unreachable"
+    ],
+    "title": "Meraki MX/MR solid orange - cannot reach dashboard",
+    "shortDescription": "Meraki device LED is solid orange, indicating the device cannot reach the Meraki cloud dashboard.",
+    "fullDescription": "Meraki MX security appliances and MR access points use a single status LED. Solid orange means the device booted but cannot establish a connection to the Meraki cloud (dashboard.meraki.com). The device falls back to its last known config but cannot receive updates.\n\nMost cases are upstream WAN problems: no DHCP, blocked outbound HTTPS to Meraki cloud, or DNS resolution failures. Meraki devices need outbound TCP 443/7734/9350-9354 to *.meraki.com and NTP UDP 123.\n\nIf WAN is healthy but the LED stays orange, the device may be claimed to a different organization or have a corrupt firmware. A 30-second factory reset (paperclip in reset hole) restores defaults.",
+    "causes": [
+      {
+        "cause": "Upstream WAN/DHCP failure",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firewall blocking outbound HTTPS to Meraki cloud",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DNS cannot resolve dashboard.meraki.com",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Device claimed to wrong organization",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Solid orange status LED",
+      "Device offline in Meraki dashboard",
+      "Clients connect but no internet",
+      "Old configuration in effect"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify WAN",
+        "instruction": "Connect a laptop to the WAN port and confirm DHCP/internet works.",
+        "tools": [
+          "laptop",
+          "ethernet cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Test cloud reachability",
+        "instruction": "From a device on the same WAN, browse to https://dashboard.meraki.com - should load.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Open required ports",
+        "instruction": "Whitelist outbound TCP 443, 7734, 9350-9354 and UDP 123 to *.meraki.com on upstream firewall.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Factory reset if needed",
+        "instruction": "Hold reset button 30 seconds with paperclip. Re-claim in dashboard.",
+        "tools": [
+          "paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Meraki MX64",
+      "MX67",
+      "MX84",
+      "MX100",
+      "MR33",
+      "MR46",
+      "MR55"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Call Meraki support if device shows orange after factory reset and confirmed WAN connectivity.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Meraki MX solid orange LED fix",
+    "faq": [
+      {
+        "q": "Will my network keep working?",
+        "a": "Yes - the device runs on its last config but won't get updates."
+      },
+      {
+        "q": "What ports does Meraki need?",
+        "a": "Outbound TCP 443, 7734, 9350-9354 and UDP 123 (NTP) to *.meraki.com."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-rommon-mode",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "ROMMON",
+    "displayCode": "rommon 1>",
+    "alternativeCodes": [
+      "switch:"
+    ],
+    "title": "Router stuck in ROMMON prompt",
+    "shortDescription": "Device boots into ROMMON instead of IOS, indicating IOS image is missing or corrupt.",
+    "fullDescription": "The 'rommon 1>' prompt appears when an IOS/IOS-XE router cannot find a valid boot image. On Catalyst switches the equivalent is the 'switch:' prompt. Causes include a deleted bootflash image, corrupt config-register (0x0 forces ROMMON), or failed firmware upgrade.\n\nFrom ROMMON you can list bootflash with 'dir bootflash:', set the image with 'BOOT=bootflash:image.bin', and boot manually with 'boot'. If no image exists, use 'tftpdnld' to recover via TFTP server on the management port.\n\nAfter recovery, set 'config-register 0x2102' from IOS exec mode and save - this prevents the device from dropping into ROMMON on reboot.",
+    "causes": [
+      {
+        "cause": "Missing or corrupt IOS image on bootflash",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Config-register set to 0x0",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed/interrupted firmware upgrade",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Bootflash hardware failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "rommon 1> or switch: prompt on console",
+      "Device does not pass boot",
+      "No data plane forwarding",
+      "BOOT variable empty"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "List bootflash",
+        "instruction": "At rommon prompt run 'dir bootflash:' and identify a valid .bin image.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Boot manually",
+        "instruction": "Run 'boot bootflash:cXXXX-universalk9.SPA.bin' to load IOS.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "TFTP recovery if no image",
+        "instruction": "Set IP_ADDRESS, TFTP_SERVER, TFTP_FILE then run 'tftpdnld' from management port.",
+        "tools": [
+          "TFTP server",
+          "ethernet cable"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Fix config-register",
+        "instruction": "From IOS exec: 'config-register 0x2102', then 'write memory' and reload.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "ISR 4321",
+      "ISR 4431",
+      "ASR 1001-X",
+      "Catalyst 9300",
+      "Catalyst 3850"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Engage TAC if TFTP recovery fails or bootflash shows read errors.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco rommon mode recovery TFTP",
+    "faq": [
+      {
+        "q": "What is the correct config-register?",
+        "a": "0x2102 for normal boot. 0x2142 ignores startup-config (used for password recovery)."
+      },
+      {
+        "q": "Do I need a special TFTP server?",
+        "a": "Any TFTP server works - tftpd64 on Windows or in.tftpd on Linux."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-stack-mismatch",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "V-MISMATCH",
+    "displayCode": "Version Mismatch",
+    "alternativeCodes": [
+      "VM mode"
+    ],
+    "title": "Stack member in version-mismatch mode",
+    "shortDescription": "A new stack member is running a different IOS version than the active and is in V-Mismatch state.",
+    "fullDescription": "When a Catalyst 9300/3850 stack adds a member with a different IOS-XE version, the new switch enters Version-Mismatch (V-M) mode. It does not forward traffic but joins the stack control plane.\n\nRun 'show switch' to see members in 'V-Mismatch' state. Use 'software auto-upgrade enable' in global config so the active automatically pushes its image to mismatched members. Alternatively, manually run 'request platform software package install switch all file flash:image.bin auto-copy'.\n\nThe member reloads automatically once the image installs. Total upgrade typically takes 10-15 minutes per switch.",
+    "causes": [
+      {
+        "cause": "New switch added with factory IOS version",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Auto-upgrade disabled in stack config",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient flash space for new image",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Mixed install vs bundle boot mode",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "'V-Mismatch' in show switch output",
+      "Stack port LEDs green but no forwarding on member",
+      "Syslog: %STACKMGR-6-SWITCH_ADDED with mismatch warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify mismatch",
+        "instruction": "Run 'show switch' and 'show version' on each member to confirm version difference.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Enable auto-upgrade",
+        "instruction": "Configure 'software auto-upgrade enable' in global config.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Trigger install",
+        "instruction": "Run 'request platform software package install switch all file flash:packages.conf auto-copy' from active.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Verify stack",
+        "instruction": "After auto-reload, confirm 'show switch' shows all members 'Ready'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9300",
+      "Catalyst 9300L",
+      "Catalyst 3850",
+      "Catalyst 3650"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Engage TAC if auto-upgrade fails or stack splits during upgrade.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco Catalyst stack version mismatch fix",
+    "faq": [
+      {
+        "q": "Will the stack keep forwarding during upgrade?",
+        "a": "Yes - active and ready members forward traffic; only the V-Mismatch member is offline."
+      },
+      {
+        "q": "Can I downgrade instead?",
+        "a": "Yes but downgrading the active is disruptive - upgrading the new member is preferred."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-fan-fail",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "FAN-3-FAN_FAILED",
+    "displayCode": "%FAN-3-FAN_FAILED",
+    "alternativeCodes": [
+      "FAN_LED_AMBER"
+    ],
+    "title": "Fan tray failure on Catalyst chassis",
+    "shortDescription": "Syslog reports a failed fan and chassis temperature is rising.",
+    "fullDescription": "The %FAN-3-FAN_FAILED syslog message indicates one or more fans in the fan tray have stopped or are spinning below the minimum RPM threshold. The FAN LED on the front panel turns amber. If multiple fans fail, thermal protection will shut down line cards or the entire chassis after 3 minutes.\n\nFan trays are field-replaceable on Catalyst 9400/9500/9600 and most ISR/ASR routers. They can be hot-swapped within a 60-second window without losing forwarding. After replacement the syslog clears and 'show environment fan' reports OK.\n\nIf the new fan tray also fails, the issue may be in the chassis fan controller or backplane and requires RMA.",
+    "causes": [
+      {
+        "cause": "Fan motor failure from age or dust",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Fan tray not seated properly",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Backplane fan connector issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "FAN LED amber",
+      "Reduced fan noise",
+      "Rising inlet temperature",
+      "%FAN-3-FAN_FAILED syslog",
+      "Possible thermal shutdown imminent"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm fault",
+        "instruction": "Run 'show environment fan' and 'show environment temperature' to confirm fan and current temps.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Hot-swap fan tray",
+        "instruction": "Loosen captive screws, slide out failed tray, slide in replacement within 60 seconds.",
+        "tools": [
+          "Phillips screwdriver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Verify clear",
+        "instruction": "Wait 30 seconds then run 'show environment fan' - all fans should report OK.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Clean intake filter",
+        "instruction": "Vacuum or replace intake filter to prevent recurrence.",
+        "tools": [
+          "vacuum"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9400",
+      "Catalyst 9500",
+      "Catalyst 9600",
+      "Catalyst 6800",
+      "ASR 9000"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement fan tray (model-specific FAN= SKU)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 1500
+      },
+      "professional": {
+        "min": 400,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Replacement fan tray also fails - chassis backplane may need RMA.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco Catalyst fan tray replacement",
+    "faq": [
+      {
+        "q": "How long can the chassis run with a failed fan?",
+        "a": "Typically 3-5 minutes before thermal shutdown - replace ASAP."
+      },
+      {
+        "q": "Is fan tray hot-swappable?",
+        "a": "Yes within a 60-second window; longer outages trigger thermal protection."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-ospf-flap",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "OSPF-5-ADJCHG",
+    "displayCode": "%OSPF-5-ADJCHG",
+    "alternativeCodes": [
+      "Neighbor Down"
+    ],
+    "title": "OSPF adjacency flapping",
+    "shortDescription": "OSPF neighbor repeatedly transitions between FULL and DOWN states.",
+    "fullDescription": "The %OSPF-5-ADJCHG syslog reports neighbor state changes. Frequent FULL -> DOWN transitions indicate adjacency instability, usually due to layer-1/2 issues, MTU mismatch, or hello/dead timer mismatch.\n\nCheck 'show ip ospf neighbor' and 'show ip ospf interface' for hello/dead intervals on both ends - they must match exactly. MTU mismatches manifest as adjacency stuck in EXSTART/EXCHANGE before dropping. Use 'ip ospf mtu-ignore' as a workaround but fix the underlying MTU.\n\nLayer-1 errors (CRC, runts, drops) on the transit interface also cause flaps - inspect 'show interfaces' counters and replace cabling or SFPs as needed.",
+    "causes": [
+      {
+        "cause": "MTU mismatch between neighbors",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Layer-1 errors (bad cable/SFP)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hello/dead timer mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Authentication mismatch",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "CPU exhaustion on either router",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Repeated %OSPF-5-ADJCHG syslog",
+      "Adjacency cycles FULL->INIT->DOWN",
+      "Routing convergence delays",
+      "Packet loss on routes via affected neighbor"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check neighbor state",
+        "instruction": "Run 'show ip ospf neighbor' and 'show ip ospf interface <intf>' on both routers.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Verify MTU",
+        "instruction": "Compare 'show interface | inc MTU' on both ends - mismatch causes EXSTART hangs.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Inspect L1 errors",
+        "instruction": "Run 'show interfaces <intf>' and look for CRC, input errors, drops; replace cable/SFP if non-zero.",
+        "tools": [
+          "spare cable",
+          "spare SFP"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Match timers",
+        "instruction": "Set matching 'ip ospf hello-interval' and 'ip ospf dead-interval' on both interfaces.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "ISR 4000",
+      "ASR 1000",
+      "Catalyst 9500",
+      "Nexus 9000"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Engage TAC if flaps continue after L1 and config verification.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco OSPF adjacency flap troubleshooting",
+    "faq": [
+      {
+        "q": "How do I know if MTU is the cause?",
+        "a": "Adjacency hangs in EXSTART or EXCHANGE then resets - classic MTU mismatch signature."
+      },
+      {
+        "q": "Is mtu-ignore safe?",
+        "a": "It hides the problem but may cause black holes for large packets - fix MTU instead."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-poe-power-deny",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "ILPOWER-5-POWER_DENIED",
+    "displayCode": "%ILPOWER-5-POWER_DENIED",
+    "alternativeCodes": [
+      "PoE budget exceeded"
+    ],
+    "title": "PoE budget exceeded - power denied to port",
+    "shortDescription": "A PoE port refused to power a connected device because the chassis power budget is full.",
+    "fullDescription": "Catalyst PoE switches allocate power from a finite budget set by the installed PSU. When demand exceeds budget, new powered devices are denied with %ILPOWER-5-POWER_DENIED. The port LED shows amber instead of green.\n\nRun 'show power inline' to see allocated vs available watts. Options: install a higher-wattage PSU (or second PSU for redundancy), reduce per-port allocation with 'power inline auto max <mW>', or set port priority so critical devices keep power.\n\nOn 9300-PWR series, upgrading from 715W to 1100W PSU adds ~385W of usable PoE budget.",
+    "causes": [
+      {
+        "cause": "Sum of connected PD demand exceeds PSU budget",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Single PSU on dual-PSU model halves budget",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong/legacy PD class detection",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Phone/AP/camera not powering up",
+      "Port LED amber",
+      "%ILPOWER-5-POWER_DENIED in syslog",
+      "'show power inline' shows 0W on the port"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check budget",
+        "instruction": "Run 'show power inline' to see total/used/available watts.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Add or upgrade PSU",
+        "instruction": "Install second PSU or upgrade to higher wattage to expand budget.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Cap per-port power",
+        "instruction": "Use 'power inline auto max <mW>' to limit allocations and free budget.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Set priorities",
+        "instruction": "Use 'power inline port priority high' on critical PDs so they keep power if budget tightens.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9200-PWR",
+      "Catalyst 9300-PWR",
+      "Catalyst 3850-PWR",
+      "Meraki MS225-P"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Higher-wattage Cisco PSU (e.g. PWR-C1-1100WAC)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 400,
+        "max": 1200
+      },
+      "professional": {
+        "min": 600,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If a higher PSU is unavailable for the platform, professional design review may be needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco ILPOWER POWER_DENIED fix",
+    "faq": [
+      {
+        "q": "Can I run two PSUs in load-share mode?",
+        "a": "Yes - 'power supply autoLC' enables combined budget instead of redundancy."
+      },
+      {
+        "q": "What's the difference between 802.3af, at, bt?",
+        "a": "af = 15.4W, at = 30W, bt = 60-90W per port - the PD negotiates its class."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-license-eval",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "SMART-3-EVAL_EXPIRED",
+    "displayCode": "%SMART_LIC-3-EVAL_EXPIRED",
+    "alternativeCodes": [
+      "Out of Compliance"
+    ],
+    "title": "Smart Licensing evaluation expired",
+    "shortDescription": "The 90-day Smart Licensing evaluation has expired and the device is enforced or out of compliance.",
+    "fullDescription": "Catalyst 9000 and IOS-XE devices use Cisco Smart Licensing. After 90 days without registration to a Smart Account, evaluation expires and the device enters Out-of-Compliance (or Enforced on 17.3.2+). Some features (HSEC, advanced routing) may stop working.\n\nRegister via direct internet, on-prem CSSM (Smart Software Manager On-Prem), or CSLU (Cisco Smart Licensing Utility). Generate a token in https://software.cisco.com, then on the device run 'license smart trust idtoken <token> all'.\n\nFor air-gapped networks, use Specific License Reservation (SLR) - generate a request code, redeem it on CSSM, and install the authorization code with 'license smart reservation install <auth>'.",
+    "causes": [
+      {
+        "cause": "Device never registered to a Smart Account",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Expired ID token",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Device cannot reach tools.cisco.com or CSSM",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Insufficient licenses in Smart Account",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "%SMART_LIC-3-EVAL_EXPIRED syslog",
+      "'show license summary' shows EVAL EXPIRED",
+      "Premium features disabled or warned",
+      "Banner on login about non-compliance"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Generate token",
+        "instruction": "In Smart Software Manager (software.cisco.com) generate an instance token for your virtual account.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Verify connectivity",
+        "instruction": "Confirm device can reach tools.cisco.com:443 (or CSSM On-Prem URL).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Register device",
+        "instruction": "Run 'license smart trust idtoken <token> all' from privileged exec.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Verify status",
+        "instruction": "Run 'show license status' - should show 'AUTHORIZED' or 'IN COMPLIANCE'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9300",
+      "Catalyst 9500",
+      "Catalyst 9600",
+      "ISR 4000",
+      "ASR 1000"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "Smart Account access issues - engage Cisco licensing TAC.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco Smart Licensing register IOS-XE",
+    "faq": [
+      {
+        "q": "Will the device stop forwarding when EVAL expires?",
+        "a": "On most platforms no - but enforced features (HSEC, AppX) get disabled."
+      },
+      {
+        "q": "Can I use offline licensing?",
+        "a": "Yes - Specific License Reservation (SLR) for air-gapped networks."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-storm-control",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "PM-4-ERR_DISABLE",
+    "displayCode": "%PM-4-ERR_DISABLE: storm-control",
+    "alternativeCodes": [
+      "err-disabled storm-control"
+    ],
+    "title": "Port err-disabled by storm-control",
+    "shortDescription": "An interface entered err-disabled state because broadcast/multicast/unicast traffic exceeded the configured storm-control threshold.",
+    "fullDescription": "Storm control monitors per-port broadcast, multicast, or unknown-unicast rates. When the configured threshold is exceeded, the port is shut down (err-disabled) to protect the switch fabric. Common triggers: a network loop, a faulty NIC flooding broadcasts, or a misbehaving IoT device.\n\nIdentify the port with 'show interfaces status err-disabled'. The cause column shows 'storm-control'. Recover with 'shutdown' / 'no shutdown' or enable 'errdisable recovery cause storm-control' for automatic recovery after 300 seconds.\n\nAddress the root cause - sniff with 'monitor session' or check 'show storm-control' counters before the port flaps again.",
+    "causes": [
+      {
+        "cause": "Layer-2 loop on connected segment",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broken NIC sending continuous broadcasts",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Threshold set too aggressively",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Multicast flood from misconfigured app",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Port LED off after brief amber",
+      "%PM-4-ERR_DISABLE in syslog",
+      "'show interfaces status' shows 'err-disabled'",
+      "Connected device offline"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify port and cause",
+        "instruction": "Run 'show interfaces status err-disabled' and 'show errdisable recovery'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect traffic",
+        "instruction": "Check 'show storm-control <intf>' for which traffic type tripped and at what rate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Locate loop or bad device",
+        "instruction": "Check spanning-tree topology, disconnect suspect device, look at broadcast counters.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Recover port",
+        "instruction": "On the interface: 'shutdown' then 'no shutdown'. Optionally enable auto-recovery.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9200",
+      "Catalyst 9300",
+      "Catalyst 3850",
+      "Meraki MS"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Repeated storms across multiple ports may indicate a design issue requiring a network architect review.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco storm-control err-disable recover",
+    "faq": [
+      {
+        "q": "Is auto-recovery safe?",
+        "a": "Yes when combined with fixing root cause - prevents 3 AM truck rolls but can mask loops."
+      },
+      {
+        "q": "What threshold should I use?",
+        "a": "1-5% broadcast level is typical; tune based on baseline traffic measurements."
+      }
+    ]
+  },
+  {
+    "id": "cisco-enterprise-router-bpdu-guard",
+    "brand": "Cisco",
+    "brandSlug": "cisco",
+    "deviceType": "Enterprise Router",
+    "deviceTypeSlug": "enterprise-router",
+    "code": "SPANTREE-2-BLOCK_BPDUGUARD",
+    "displayCode": "%SPANTREE-2-BLOCK_BPDUGUARD",
+    "alternativeCodes": [
+      "err-disabled bpduguard"
+    ],
+    "title": "PortFast port shut by BPDU Guard",
+    "shortDescription": "An access port configured with BPDU Guard received a BPDU and was err-disabled to prevent a loop.",
+    "fullDescription": "BPDU Guard protects PortFast-enabled access ports from accidental switch connections. If any BPDU arrives on such a port, the switch immediately err-disables it. Common cause: a user plugging a small unmanaged switch or an unauthorized switch into a wall jack.\n\nThe error appears as %SPANTREE-2-BLOCK_BPDUGUARD in syslog and the port shows 'err-disabled' with cause 'bpduguard'. Recover with shut/no shut after removing the offending device, or enable 'errdisable recovery cause bpduguard'.\n\nIf the connected device is legitimate (e.g., a known managed switch), reconfigure the port without 'spanning-tree portfast' and 'spanning-tree bpduguard enable'.",
+    "causes": [
+      {
+        "cause": "User plugged unauthorized switch into access port",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "PortFast misconfigured on uplink to another switch",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Endpoint NIC sending malformed frames seen as BPDUs",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "%SPANTREE-2-BLOCK_BPDUGUARD syslog",
+      "Port err-disabled cause 'bpduguard'",
+      "Single user or office offline",
+      "Recently moved equipment"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify port",
+        "instruction": "Run 'show interfaces status err-disabled' and locate cause 'bpduguard'.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Investigate physical",
+        "instruction": "Walk to the wall jack or check cable map - look for a small unmanaged switch.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Remove offender or reconfigure",
+        "instruction": "Remove the unauthorized switch, or if legitimate, remove portfast/bpduguard from interface config.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Recover port",
+        "instruction": "On the interface: 'shutdown' then 'no shutdown' to bring it back up.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "Catalyst 9200",
+      "Catalyst 9300",
+      "Catalyst 2960-X",
+      "Meraki MS"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If repeated BPDU Guard trips occur across many ports, conduct an L2 design audit.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cisco BPDU Guard err-disable fix",
+    "faq": [
+      {
+        "q": "Is BPDU Guard the same as Root Guard?",
+        "a": "No - BPDU Guard shuts the port on any BPDU; Root Guard only blocks superior BPDUs."
+      },
+      {
+        "q": "Should I disable BPDU Guard?",
+        "a": "No - it's a key loop-prevention feature. Address the root cause instead."
+      }
+    ]
+  }
+]

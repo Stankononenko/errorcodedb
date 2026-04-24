@@ -378,6 +378,17 @@ export const APPLIANCE_BRANDS = [
   { name: "Bose Headphones", slug: "bose-headphones", country: "USA" },
   { name: "AirPods", slug: "airpods", country: "USA" },
   { name: "Jabra", slug: "jabra", country: "Denmark" },
+  // ── Networking / IT ──
+  { name: "Cisco", slug: "cisco", country: "USA" },
+  { name: "Ubiquiti", slug: "ubiquiti", country: "USA" },
+  { name: "eero", slug: "eero", country: "USA" },
+  { name: "Google Nest Wifi", slug: "google-nest-wifi", country: "USA" },
+  { name: "Synology", slug: "synology", country: "Taiwan" },
+  { name: "QNAP", slug: "qnap", country: "Taiwan" },
+  { name: "Western Digital", slug: "western-digital", country: "USA" },
+  { name: "Seagate", slug: "seagate", country: "USA" },
+  { name: "Arris", slug: "arris", country: "USA" },
+  { name: "Motorola Modem", slug: "motorola-modem", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<

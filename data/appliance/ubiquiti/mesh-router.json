@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "ubiquiti-mesh-router-isolating",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "ISOLATING",
+    "displayCode": "Status: Isolating",
+    "alternativeCodes": [
+      "Isolated"
+    ],
+    "title": "UniFi access point isolated from controller",
+    "shortDescription": "AP shows 'Isolating' or 'Isolated' status in UniFi controller because it cannot reach a wired uplink with active controller communication.",
+    "fullDescription": "When a UniFi mesh AP is wired but the controller stops hearing from it, status flips to 'Isolating' for ~3 minutes then 'Isolated'. The AP keeps serving Wi-Fi clients on its last config but cannot be managed.\n\nMost common cause: a layer-2 issue between the AP and controller - VLAN mismatch, blocked inform port (TCP 8080), or upstream switch problem. Check that AP and controller are in the same management VLAN, or that the AP has the correct inform URL via DHCP option 43.\n\nIf the issue persists after L2 verification, factory-reset the AP (hold reset 10 seconds) and re-adopt.",
+    "causes": [
+      {
+        "cause": "Upstream switch port down or VLAN misassigned",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Controller unreachable on TCP 8080",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DHCP option 43 missing or wrong",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "PoE injector or port failure",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "AP listed as 'Isolating' or 'Isolated' in controller",
+      "Wi-Fi still works but cannot push config",
+      "AP not visible in topology",
+      "Status LED steady white"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify uplink",
+        "instruction": "Confirm switch port is up, correct VLAN, and PoE is delivering 802.3af/at.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Test controller reach",
+        "instruction": "From AP subnet, telnet/curl controller IP on TCP 8080 - must connect.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "SSH inform URL",
+        "instruction": "SSH to AP (default ubnt/ubnt or admin password) and run 'set-inform http://<controller>:8080/inform'.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Factory reset if stuck",
+        "instruction": "Hold reset button 10s until LED flashes - re-adopt in controller.",
+        "tools": [
+          "paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "U6-Pro",
+      "U6-LR",
+      "UAP-AC-Pro",
+      "UAP-AC-LR",
+      "U6-Mesh",
+      "UDM-Pro"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Engage UI support if AP cannot adopt after factory reset and confirmed L2 reachability.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi AP isolating fix adopt",
+    "faq": [
+      {
+        "q": "Will Wi-Fi keep working?",
+        "a": "Yes on last applied config; only management is lost."
+      },
+      {
+        "q": "What's the default SSH password?",
+        "a": "ubnt/ubnt on factory; otherwise the value set in controller Site settings."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-adopt-failed",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "ADOPT-FAILED",
+    "displayCode": "Adoption Failed",
+    "alternativeCodes": [
+      "Managed by Other"
+    ],
+    "title": "UniFi device adoption fails",
+    "shortDescription": "Controller shows 'Adoption failed' or device stuck in 'Managed by Other' state.",
+    "fullDescription": "Adoption failure typically means the AP/switch was previously claimed by a different controller and still trusts those credentials. The fix is a factory reset followed by 'set-inform' to the new controller.\n\nFor cloud-keyed devices managed by a UniFi Cloud Key or UDM, the device may also be locked to the cloud account. Remove it from the previous site/cloud account first, then factory reset.\n\nFirmware mismatch can also cause failure - controller may need a manual firmware upgrade for new devices. Use 'upgrade <URL>' over SSH if the controller cannot push automatically.",
+    "causes": [
+      {
+        "cause": "Device previously adopted to another controller",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware too old for current controller version",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DNS cannot resolve fw-download.ubnt.com",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Bad SSH credentials in Site settings",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "'Adoption failed' shown after clicking Adopt",
+      "Device cycles back to 'Pending Adoption'",
+      "'Managed by Other' label",
+      "Provisioning stuck at 0%"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Forget elsewhere",
+        "instruction": "If managed by another controller/cloud, remove the device from that site first.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Factory reset",
+        "instruction": "Hold reset 10 seconds until LED flashes amber/blue.",
+        "tools": [
+          "paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Manual inform",
+        "instruction": "SSH ubnt/ubnt and run 'set-inform http://<controller>:8080/inform' - run twice if needed.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Manual firmware",
+        "instruction": "If still failing, run 'upgrade <firmware URL>' on the device, then reboot and re-adopt.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "UAP-AC-Pro",
+      "U6-LR",
+      "U6-Pro",
+      "USW-24",
+      "UDM-SE"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If device fails to adopt across multiple controllers and resets, RMA via Ubiquiti.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi adoption failed managed by other fix",
+    "faq": [
+      {
+        "q": "What does 'Managed by Other' mean?",
+        "a": "Device thinks another controller owns it - factory reset clears this."
+      },
+      {
+        "q": "Do I need internet to adopt?",
+        "a": "Helpful for firmware downloads, not strictly required if firmware is current."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-led-blue-flashing",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "LED-FLASH-BLUE",
+    "displayCode": "LED Flashing Blue",
+    "alternativeCodes": [
+      "Provisioning"
+    ],
+    "title": "UniFi LED flashing blue - provisioning",
+    "shortDescription": "AP LED flashes blue indicating it is currently being provisioned by the controller.",
+    "fullDescription": "Flashing blue on a UniFi AP means the device is downloading and applying configuration from the controller. The state should normally last 1-3 minutes after adoption or after a config change.\n\nIf it persists longer than 5 minutes, provisioning is stuck. Common causes: failed firmware download (DNS or HTTP issue), low storage on the AP, or controller version mismatch. Check the controller event log for 'provisioning' messages.\n\nForce-provision by selecting the AP in controller and clicking 'Force provision'. If still stuck, factory reset and re-adopt.",
+    "causes": [
+      {
+        "cause": "Normal provisioning - wait 3 minutes",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware download failing (DNS/HTTP)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Controller-AP version incompatibility",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrupt config or partial flash",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Blue LED flashing >5 minutes",
+      "AP stuck at 'Provisioning' in controller",
+      "No SSIDs broadcast",
+      "Event log shows repeated provision attempts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait 5 minutes",
+        "instruction": "Provisioning is often slow on first adoption - wait before troubleshooting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check event log",
+        "instruction": "In controller, view AP event log for provision errors or firmware download failures.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Force provision",
+        "instruction": "Click 'Force provision' in AP settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Reset and re-adopt",
+        "instruction": "Hold reset 10s, factory reset, then adopt again.",
+        "tools": [
+          "paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "U6-Pro",
+      "U6-LR",
+      "U6-Mesh",
+      "UAP-AC-Pro",
+      "UAP-AC-LR"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 75,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "Persistent provisioning loop after factory reset suggests AP hardware fault.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi AP stuck provisioning blue LED",
+    "faq": [
+      {
+        "q": "Should I unplug during provisioning?",
+        "a": "No - power loss during firmware flash can brick the AP."
+      },
+      {
+        "q": "How long is normal?",
+        "a": "1-3 minutes for config-only, up to 8 minutes if firmware updates."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-disconnected",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "DISCONNECTED",
+    "displayCode": "Status: Disconnected",
+    "alternativeCodes": [
+      "Offline"
+    ],
+    "title": "UniFi device offline / disconnected",
+    "shortDescription": "Device shows 'Disconnected' in controller and is unreachable on the network.",
+    "fullDescription": "A 'Disconnected' UniFi device has lost both controller communication and likely network connectivity. Differs from 'Isolated' where wired link still exists. Most likely cause is a power or PoE issue, or a failed cable run.\n\nCheck the upstream switch for link state on the AP's port. If the port is down, swap cable, check PoE injector, or move to a known-good port. UniFi APs need 802.3af (15W) or 802.3at (30W) for U6-Pro/Enterprise models.\n\nIf link is up but device still disconnected, try connecting a laptop to the same port to test L1/L2.",
+    "causes": [
+      {
+        "cause": "PoE injector failed or wrong wattage",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Cable run damaged or unplugged",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Upstream switch port down/disabled",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "AP hardware failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "'Disconnected' status",
+      "AP LED off",
+      "No link light on switch port",
+      "Wi-Fi SSIDs missing in area"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect AP LED",
+        "instruction": "If LED is off, suspect power. If steady amber, suspect upgrade in progress.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Test PoE injector",
+        "instruction": "Swap injector or plug AP into a PoE switch port to confirm power delivery.",
+        "tools": [
+          "spare PoE injector"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace cable",
+        "instruction": "Test patch cables both at AP and at switch. Use a known-good Cat5e+.",
+        "tools": [
+          "spare ethernet cable"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Test on different port",
+        "instruction": "Move AP to a different known-good PoE port to rule out switch port failure.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "U6-Pro",
+      "U6-LR",
+      "UAP-AC-Pro",
+      "U6-Mesh",
+      "UAP-AC-LR"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement PoE injector if applicable",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "If cable run is in-wall and damaged, hire a low-voltage tech for re-pull.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi AP disconnected offline troubleshoot",
+    "faq": [
+      {
+        "q": "How can I tell if PoE is working?",
+        "a": "AP LED comes on within 10 seconds of plug-in if PoE is delivering."
+      },
+      {
+        "q": "Is passive PoE OK?",
+        "a": "Only on legacy UAP models - modern AP6/Enterprise need 802.3af/at."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-airtime-high",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "AIRTIME-HIGH",
+    "displayCode": "High Channel Utilization",
+    "alternativeCodes": [
+      "Channel Busy"
+    ],
+    "title": "Wi-Fi channel utilization above 80%",
+    "shortDescription": "UniFi controller flags the AP as having high channel utilization, indicating RF congestion.",
+    "fullDescription": "Channel utilization above 80% means the airtime is mostly busy - either by your own clients, neighboring networks, or non-Wi-Fi interference. Throughput drops sharply and clients experience lag.\n\nIn UniFi controller, look at AP > RF Environment to see noise floor and overlapping APs. Switch to a less-used channel (DFS channels on 5 GHz often help), reduce 2.4 GHz radio to 20 MHz width, or enable Minimum RSSI to kick weak clients to closer APs.\n\nFor dense deployments, reduce TX power and add more APs rather than boosting power - dense low-power is the modern best practice.",
+    "causes": [
+      {
+        "cause": "Too many clients on a single AP/channel",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Neighboring AP on same channel",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Non-Wi-Fi interference (microwave, BT)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wide 2.4 GHz channel (40 MHz)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "High channel utilization gauge in dashboard",
+      "Slow speeds on Wi-Fi only",
+      "Wired clients fine",
+      "Frequent client disconnects/reconnects"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Survey RF",
+        "instruction": "Open AP > RF Environment scan to view nearby SSIDs and channel usage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Pick clear channel",
+        "instruction": "Set 2.4 GHz to 1, 6, or 11 (20 MHz wide). Set 5 GHz to a lightly used channel including DFS.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Adjust TX power",
+        "instruction": "Set TX power to Medium or Custom to reduce co-channel interference.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Add APs if dense",
+        "instruction": "If >30 clients per AP, add another AP and let band steering balance load.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "U6-Pro",
+      "U6-LR",
+      "U6-Enterprise",
+      "UAP-AC-Pro",
+      "U6-Mesh"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 200
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If a wireless site survey is needed, hire a CWNA-certified consultant.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi high channel utilization fix",
+    "faq": [
+      {
+        "q": "Should I use 80 MHz on 5 GHz?",
+        "a": "In dense areas use 40 MHz - wider channels collide with more neighbors."
+      },
+      {
+        "q": "What is band steering?",
+        "a": "Pushes dual-band clients to 5 GHz to free 2.4 GHz."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-dpi-stuck",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "UDM-DPI",
+    "displayCode": "DPI processing 100%",
+    "alternativeCodes": [
+      "High CPU"
+    ],
+    "title": "UDM/UXG high CPU from DPI",
+    "shortDescription": "Dream Machine or UXG runs hot with CPU pinned at 100% caused by Deep Packet Inspection.",
+    "fullDescription": "UDM-Pro, UDM-SE, and UXG gateways run DPI to populate the Traffic Identification dashboard and IPS/IDS. On gigabit+ connections this can saturate the CPU, especially when IDS/IPS is in IDS mode without hardware offload.\n\nSymptoms: WAN throughput drops below ISP speed, controller becomes sluggish, syslog shows softirq/CPU warnings. Mitigation: disable Restrict Access for the IDS/IPS, switch to 'Standard Detection' instead of 'Sensitive', or disable DPI altogether.\n\nUDM-SE and UDM-Pro Max have hardware offload that mostly avoids this; older UDM-Pro hits the wall around 800 Mbps with full IPS.",
+    "causes": [
+      {
+        "cause": "IDS/IPS Sensitive mode on gigabit WAN",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "DPI enabled with many concurrent flows",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Broken hardware offload after firmware bug",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Speed test below ISP rate",
+      "UDM CPU 95%+",
+      "Web UI slow to load",
+      "DPI dashboard takes >30s to refresh"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check CPU graph",
+        "instruction": "In controller > Insights > UDM/UXG, view CPU history.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Lower IPS sensitivity",
+        "instruction": "Settings > Internet > Threat Management - set to Standard or Disable.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Disable DPI",
+        "instruction": "Settings > Internet > Network Scanners > toggle off Deep Packet Inspection.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 4,
+        "title": "Test throughput",
+        "instruction": "Run speed test wired - throughput should rise to ISP rate.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "UDM-Pro",
+      "UDM-SE",
+      "UDM Base",
+      "UXG-Lite",
+      "UXG-Pro"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "If WAN underperforms with all features off, suspect hardware fault and contact UI support.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UDM Pro slow speeds IPS DPI fix",
+    "faq": [
+      {
+        "q": "Will disabling IPS reduce security?",
+        "a": "Yes - IPS detects attacks in flight. Tradeoff with throughput on lower-end UDMs."
+      },
+      {
+        "q": "Does UDM-SE have this issue?",
+        "a": "Less so - it has more CPU and better offload than original UDM-Pro."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-mesh-poor",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "MESH-WEAK",
+    "displayCode": "Wireless Uplink Weak",
+    "alternativeCodes": [
+      "Mesh Quality Poor"
+    ],
+    "title": "UniFi mesh AP wireless uplink weak/unstable",
+    "shortDescription": "Wirelessly uplinked AP shows weak signal, low TX rate, or frequent disconnects from its parent.",
+    "fullDescription": "U6-Mesh, AC-M, and other wirelessly-uplinked APs show 'Quality: Poor' or low signal % when their backhaul to the parent AP is weak. Throughput halves with each mesh hop, so weak backhaul means very poor client experience.\n\nMove the mesh AP within 30 ft of the parent with line-of-sight, or use the controller's RF Environment to ensure backhaul uses 5 GHz with at least -65 dBm RSSI. If a wired drop is possible, switch to wired uplink - mesh is a last resort.\n\nIn controller, set 'Wireless Uplink' priority to a specific known-good parent AP rather than auto-select to prevent flapping.",
+    "causes": [
+      {
+        "cause": "Mesh AP too far from parent",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Walls/obstacles blocking 5 GHz signal",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Auto-uplink picks weakest parent",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "RF interference on backhaul channel",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Quality: Poor' on AP detail",
+      "TX/RX rate <100 Mbps",
+      "Clients disconnect every few minutes",
+      "Controller shows mesh icon yellow/red"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check link quality",
+        "instruction": "AP detail > Uplink shows signal dBm and TX rate to parent.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Reposition",
+        "instruction": "Move mesh AP closer (line of sight) to parent until signal is better than -65 dBm.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Force best parent",
+        "instruction": "In AP settings > Wireless Uplink, manually select the strongest parent.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Add wired uplink",
+        "instruction": "Run an ethernet drop and disable wireless uplink for stability.",
+        "tools": [
+          "ethernet cable"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "U6-Mesh",
+      "UAP-AC-M",
+      "UAP-AC-M-Pro",
+      "U6-Extender"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If wired drops are needed in finished walls, hire a low-voltage installer.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi mesh wireless uplink weak fix",
+    "faq": [
+      {
+        "q": "How much throughput do I lose on mesh?",
+        "a": "Roughly 50% per hop on shared backhaul."
+      },
+      {
+        "q": "Can mesh APs daisy-chain?",
+        "a": "Yes but each hop halves bandwidth - keep to one hop."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-tx-retries",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "TX-RETRY-HIGH",
+    "displayCode": "TX Retries High",
+    "alternativeCodes": [
+      "Wi-Fi Retransmits"
+    ],
+    "title": "High Wi-Fi TX retry rate",
+    "shortDescription": "Controller flags excessive transmit retries on AP radio - indicates poor RF or interference.",
+    "fullDescription": "TX retries are 802.11 retransmissions caused by lost or corrupted frames. A healthy network should sit below 5%; over 15% indicates serious RF problems or struggling clients.\n\nCommon culprits: weak/marginal client signal at edge of cell, hidden node interference, microwave/BT/Zigbee on 2.4 GHz, or driver bugs in old IoT clients. UniFi's RF Environment and Insights view show retry % per radio.\n\nFixes: increase AP density to bring all clients within -65 dBm, set Minimum RSSI to disconnect weak clients, separate IoT to 2.4 GHz only network, and disable lower legacy data rates (1/2/5.5 Mbps).",
+    "causes": [
+      {
+        "cause": "Clients at edge of cell coverage",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Co-channel interference from neighbors",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Old/buggy client drivers",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Non-Wi-Fi interference (BT/microwave)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Retry % >15% in Insights",
+      "Slow speed despite good signal bars",
+      "Voice/video stutter",
+      "Clients near walls slower than near AP"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Find offenders",
+        "instruction": "Insights > Radios shows retry % per radio. Click into top offenders.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Set Min RSSI",
+        "instruction": "WiFi network advanced settings > set Minimum RSSI to -75 dBm.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Disable low rates",
+        "instruction": "Disable 802.11b legacy rates (1/2/5.5/11) to push slow IoT off 2.4 GHz.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Add APs as needed",
+        "instruction": "Walk site to map dead zones; add APs to keep all clients above -65 dBm.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "U6-Pro",
+      "U6-LR",
+      "U6-Enterprise",
+      "UAP-AC-Pro"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 250
+      },
+      "professional": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Site survey by a CWNA professional if retries persist after RF tuning.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi high TX retries fix Wi-Fi",
+    "faq": [
+      {
+        "q": "Is some retry normal?",
+        "a": "Yes - under 5% is fine. Over 15% degrades performance."
+      },
+      {
+        "q": "Will Min RSSI break clients?",
+        "a": "Only weak ones get kicked - they roam to closer APs."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-poe-fault",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "POE-FAULT",
+    "displayCode": "PoE Fault",
+    "alternativeCodes": [
+      "Overcurrent"
+    ],
+    "title": "UniFi switch reports PoE fault on port",
+    "shortDescription": "Controller marks a switch port with 'PoE Fault' and refuses to power the connected device.",
+    "fullDescription": "UniFi PoE switches (USW-Lite-PoE, USW-24-PoE, USW-Pro-Max) detect overcurrent, short, or invalid PD signature and disable PoE on the port. The connected AP/camera doesn't power up. Common triggers: damaged ethernet cable shorting pairs, faulty PD, or exceeding the switch's PoE budget.\n\nIn controller > switch ports, the affected port shows red PoE icon. Cycle PoE off/on, and if the fault recurs, swap the cable. Try the suspect device on a different port to isolate cable vs. device.\n\nFor passive 24V mode (legacy UAP), make sure the port is configured 24V passive in port profile - feeding 802.3af to a passive-only AP can damage it.",
+    "causes": [
+      {
+        "cause": "Damaged or pinched ethernet cable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty PD drawing too much current",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Port budget exceeded on switch",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wrong PoE mode (24V passive vs af/at)",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Red PoE icon in controller",
+      "Connected AP/camera unpowered",
+      "'PoE fault' alert in event log",
+      "Port LED off or flashing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cycle port PoE",
+        "instruction": "Toggle PoE off then on for the port from controller.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Test cable",
+        "instruction": "Replace patch cable; if the run is in-wall, test with cable tester.",
+        "tools": [
+          "spare cable",
+          "cable tester"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Test PD",
+        "instruction": "Plug a known-good PD into the same port - if it works, the original PD is bad.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Verify PoE mode",
+        "instruction": "Port profile > PoE - select Auto (af/at) or 24V Passive matching device requirement.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "USW-24-PoE",
+      "USW-Pro-24-PoE",
+      "USW-Lite-16-PoE",
+      "USW-Enterprise-24-PoE"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement cable if damaged",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 75,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 minutes",
+    "whenToCallPro": "If multiple ports show faults simultaneously, suspect switch hardware - RMA via UI.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi switch PoE fault fix",
+    "faq": [
+      {
+        "q": "Can a fault damage the switch?",
+        "a": "Protection circuits prevent damage by disabling the port - that's the fault."
+      },
+      {
+        "q": "What's 24V passive used for?",
+        "a": "Legacy UAP-AC-Lite/LR and InWall models that don't support 802.3af."
+      }
+    ]
+  },
+  {
+    "id": "ubiquiti-mesh-router-cloud-key-down",
+    "brand": "Ubiquiti",
+    "brandSlug": "ubiquiti",
+    "deviceType": "Mesh Router",
+    "deviceTypeSlug": "mesh-router",
+    "code": "CK-UNREACH",
+    "displayCode": "Cloud Key Unreachable",
+    "alternativeCodes": [
+      "Controller Offline"
+    ],
+    "title": "UniFi Cloud Key/Controller unreachable",
+    "shortDescription": "Browser cannot load the UniFi controller and remote login times out.",
+    "fullDescription": "When a Cloud Key Gen2/Plus or self-hosted UniFi controller becomes unreachable, all APs continue serving Wi-Fi but cannot be managed. Most causes are software (full disk from camera footage on Gen2+) or power (failed PoE/12V).\n\nFor Cloud Key Gen2 with G3 camera storage, a full disk freezes services - SSH in (root/ubnt) and check 'df -h'. Clear oldest recordings via Protect UI or 'rm' in /srv/UNIFI-VIDEO. For self-hosted (Linux), restart the unifi service: 'systemctl restart unifi'.\n\nIf hardware is unresponsive, hold reset on Cloud Key for 10 seconds for soft reset (config preserved) or 30 seconds for full factory reset.",
+    "causes": [
+      {
+        "cause": "Disk full on Cloud Key Gen2 (Protect storage)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Java/Mongo service crashed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Power loss to Cloud Key",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed eMMC on aging Cloud Key",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Web UI times out",
+      "Cloud Key LCD off or blank",
+      "APs still serving Wi-Fi but unmanaged",
+      "Mobile app shows controller offline"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check power",
+        "instruction": "Verify PoE/12V power LED on Cloud Key. Power-cycle if dark.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "SSH and check disk",
+        "instruction": "SSH root@<CK IP> (default root/ubnt) and run 'df -h'. Clear /srv/UNIFI-VIDEO if full.",
+        "tools": [
+          "SSH client"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Restart services",
+        "instruction": "Run 'systemctl restart unifi' (and 'unifi-protect' if applicable).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 4,
+        "title": "Soft reset",
+        "instruction": "If still down, hold reset 10s for soft reset preserving config.",
+        "tools": [
+          "paperclip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Cloud Key Gen2",
+      "Cloud Key Gen2 Plus",
+      "UNVR",
+      "UNVR-Pro",
+      "Self-hosted UniFi controller"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Suspect hardware fault if soft reset leaves device unresponsive.",
+    "relatedCodes": [],
+    "videoSearchQuery": "UniFi Cloud Key unreachable fix",
+    "faq": [
+      {
+        "q": "Will my Wi-Fi stop working?",
+        "a": "No - APs run last config; only management is impacted."
+      },
+      {
+        "q": "How do I back up the controller?",
+        "a": "Settings > System > Backup - download regularly to restore after hardware loss."
+      }
+    ]
+  }
+]
