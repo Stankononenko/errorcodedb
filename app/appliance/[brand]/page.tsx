@@ -5,7 +5,7 @@ import { getApplianceCodes } from "@/lib/data-loader";
 import { APPLIANCE_BRANDS, APPLIANCE_DEVICE_TYPES } from "@/lib/constants";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd, getCanonicalUrl } from "@/lib/seo-helpers";
+import { buildBreadcrumbJsonLd, getCanonicalUrl, buildOgMetadata } from "@/lib/seo-helpers";
 import { SITE_URL } from "@/lib/constants";
 import { ApplianceDeviceType } from "@/lib/types";
 
@@ -24,10 +24,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const brandInfo = APPLIANCE_BRANDS.find((b) => b.slug === brandSlug);
   if (!brandInfo) return { title: "Brand Not Found" };
 
+  const title = `${brandInfo.name} Error Codes — All Appliances`;
+  const description = `Complete list of ${brandInfo.name} error codes for washers, dryers, dishwashers, refrigerators, and more. Step-by-step fix guides.`;
   return {
-    title: `${brandInfo.name} Error Codes — All Appliances`,
-    description: `Complete list of ${brandInfo.name} error codes for washers, dryers, dishwashers, refrigerators, and more. Step-by-step fix guides.`,
+    title,
+    description,
     alternates: { canonical: getCanonicalUrl(`/appliance/${brandSlug}`) },
+    ...buildOgMetadata(title, description, "appliance"),
   };
 }
 

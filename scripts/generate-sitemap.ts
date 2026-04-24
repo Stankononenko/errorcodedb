@@ -112,6 +112,20 @@ function buildSitemap(): string {
     });
   }
 
+  // Appliance device-type hubs (/appliance/by-device-type/washer etc.)
+  const allAppliance = getAllApplianceCodes();
+  const deviceTypes = new Set<string>();
+  for (const c of allAppliance) {
+    deviceTypes.add(c.deviceTypeSlug);
+  }
+  for (const type of deviceTypes) {
+    entries.push({
+      url: `${SITE_URL}/appliance/by-device-type/${type}`,
+      priority: 0.8,
+      changefreq: "weekly",
+    });
+  }
+
   // Symptom entry pages (high-intent long-tail SEO)
   entries.push({ url: `${SITE_URL}/symptoms`, priority: 0.75, changefreq: "weekly" });
   const SYMPTOM_SLUGS = [

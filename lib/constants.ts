@@ -314,6 +314,10 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "smart-plug": { label: "Smart Plug", labelPlural: "Smart Plugs" },
   "solar-inverter": { label: "Solar Inverter", labelPlural: "Solar Inverters" },
   "marine-engine": { label: "Marine Engine", labelPlural: "Marine Engines" },
+  "heavy-truck": { label: "Heavy Truck", labelPlural: "Heavy Trucks" },
+  "diesel-engine": { label: "Diesel Engine", labelPlural: "Diesel Engines" },
+  "e-bike": { label: "E-Bike", labelPlural: "E-Bikes" },
+  "e-scooter": { label: "E-Scooter", labelPlural: "E-Scooters" },
 };
 
 // ── HVAC Brands ──

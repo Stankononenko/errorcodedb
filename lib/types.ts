@@ -125,7 +125,11 @@ export type ApplianceDeviceType =
   | "smart-lock"
   | "smart-plug"
   | "solar-inverter"
-  | "marine-engine";
+  | "marine-engine"
+  | "heavy-truck"
+  | "diesel-engine"
+  | "e-bike"
+  | "e-scooter";
 
 export interface ApplianceCause {
   cause: string;
