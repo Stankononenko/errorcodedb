@@ -1,0 +1,331 @@
+[
+  {
+    "id": "milwaukee-battery-pack-bms01",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-01",
+    "displayCode": "BMS-01",
+    "alternativeCodes": ["cell imbalance"],
+    "title": "Cell Imbalance Detected",
+    "shortDescription": "One or more cells in the M18 pack have drifted outside the acceptable voltage window.",
+    "fullDescription": "M18 Redlithium High Output packs use 5S or 10S cell configurations. The internal BMS monitors each series group and flags BMS-01 when the spread between the highest and lowest cell exceeds ~150 mV. Imbalance develops from uneven cell aging or a single weak cell pulling the pack down during discharge.\n\nThe Super Charger includes a balance charge mode that can partially recover small imbalances; larger spreads indicate a failed cell that requires warranty replacement.",
+    "causes": [
+      {"cause": "Uneven cell aging", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Single failed cell (internal short)", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Deep discharge from long storage at empty", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Pack won't fully charge", "Runtime noticeably reduced", "Fuel gauge drops quickly under load", "Super Charger shows balance fault"],
+    "fixSteps": [
+      {"step": 1, "title": "Attempt rebalance", "instruction": "Leave pack on the Milwaukee Super Charger overnight — its balance cycle may recover small spreads.", "tools": ["Super Charger"], "difficulty": "easy", "timeMinutes": 480},
+      {"step": 2, "title": "Warranty claim", "instruction": "If imbalance persists, submit an RMA through Milwaukee support — 5-year battery warranty covers replacement.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Milwaukee M18 HO 6.0Ah", "M18 HO 8.0Ah 48-11-1880", "M18 Forge 6.0Ah", "M18 HO 12.0Ah"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "warranty exchange",
+    "whenToCallPro": "Do not open the pack — cells pose a fire risk. Use Milwaukee warranty.",
+    "relatedCodes": ["BMS-02", "BMS-05"],
+    "videoSearchQuery": "Milwaukee battery cell imbalance recovery",
+    "faq": [
+      {"q": "Can I replace single cells?", "a": "No — cells are spot-welded and require proper BMS programming. Warranty replace."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms02",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-02",
+    "displayCode": "BMS-02",
+    "alternativeCodes": [],
+    "title": "Overcharge Protection Triggered",
+    "shortDescription": "Cell voltage exceeded safe upper limit during charge.",
+    "fullDescription": "Each series group is limited to 4.20 V per cell. BMS-02 indicates a cell reached 4.25+ V during charge — the BMS cut off charging immediately. Persistent BMS-02 reflects cell damage and requires pack replacement.",
+    "causes": [
+      {"cause": "Degraded cell with reduced capacity", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Faulty charger over-supplying", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Pack never completes charge", "Charger shows fault during last 10%", "Pack runtime falls off rapidly"],
+    "fixSteps": [
+      {"step": 1, "title": "Try another charger", "instruction": "Verify on a second known-good Milwaukee charger.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Warranty replace", "instruction": "Submit warranty claim.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Milwaukee M18 Redlithium packs, any capacity"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "warranty exchange",
+    "whenToCallPro": "Always — never attempt to open a lithium pack.",
+    "relatedCodes": ["BMS-01"],
+    "videoSearchQuery": "Milwaukee battery overcharge fault",
+    "faq": [
+      {"q": "Is overcharge dangerous?", "a": "Yes — BMS prevents thermal runaway. Don't defeat it."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms03",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-03",
+    "displayCode": "BMS-03",
+    "alternativeCodes": [],
+    "title": "Over-Discharge Protection",
+    "shortDescription": "Cell voltage fell below 2.5 V under load — pack locked out.",
+    "fullDescription": "If pack voltage falls below 2.5 V per cell the BMS disables discharge permanently to prevent copper dissolution in the anodes. Recovery requires the Milwaukee Super Charger's revive mode — but some over-discharged packs never recover full capacity.",
+    "causes": [
+      {"cause": "Long storage at empty", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "High-load surge deeper than BMS could interrupt", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Pack reads 0 V", "No LED on fuel gauge", "Charger rejects with flash"],
+    "fixSteps": [
+      {"step": 1, "title": "Super Charger revive", "instruction": "Place pack on M18 Super Charger (48-59-1808) — it attempts low-current trickle to revive.", "tools": ["Super Charger"], "difficulty": "easy", "timeMinutes": 120},
+      {"step": 2, "title": "Warranty", "instruction": "If revival fails, submit warranty claim.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["M18 packs left discharged >6 months"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "2 hours + warranty",
+    "whenToCallPro": "Always via Milwaukee support.",
+    "relatedCodes": ["BMS-01"],
+    "videoSearchQuery": "Milwaukee battery dead revive super charger",
+    "faq": [
+      {"q": "Can I trickle charge with a universal charger?", "a": "Never — this is how packs catch fire. Milwaukee charger only."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms04",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-04",
+    "displayCode": "BMS-04",
+    "alternativeCodes": ["over-temp"],
+    "title": "Over-Temperature During Discharge",
+    "shortDescription": "Pack internal temperature exceeded safe limit.",
+    "fullDescription": "M18 HO packs trip above ~70 °C cell temperature. Common during sustained high-current work (chainsaw, leaf blower, circular saw) on hot days. Pack locks out until it cools below ~50 °C.",
+    "causes": [
+      {"cause": "Sustained high-current use", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Left in hot vehicle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Restricted airflow in tool housing", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Tool cuts out", "Pack feels hot", "Resumes after cooling"],
+    "fixSteps": [
+      {"step": 1, "title": "Let cool", "instruction": "Rest pack in shade 20-30 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Rotate packs", "instruction": "Use 2-3 packs in rotation for heavy tools.", "tools": [], "difficulty": "easy", "timeMinutes": 2}
+    ],
+    "affectedModels": ["M18 HO 6.0Ah during chainsaw/blower use"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "Only if over-temp trips happen at low load.",
+    "relatedCodes": ["BMS-08"],
+    "videoSearchQuery": "Milwaukee battery overheating",
+    "faq": [
+      {"q": "Can I force a cold pack?", "a": "Don't — letting it cool naturally is fastest and safest."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms05",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-05",
+    "displayCode": "BMS-05",
+    "alternativeCodes": ["cell short"],
+    "title": "Cell Short-Circuit Fault",
+    "shortDescription": "Internal cell short detected — pack permanently disabled.",
+    "fullDescription": "BMS-05 is the most serious pack fault — an internal cell has shorted. The BMS permanently disables the pack to prevent thermal runaway. Do not attempt to use, charge, or open this pack — bring to a Milwaukee service center or hazardous waste recycling.",
+    "causes": [
+      {"cause": "Internal dendrite growth (aged pack)", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Physical damage / drop from height", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Manufacturing defect", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Pack completely dead", "Possible warmth without load", "Smells of electrolyte", "Bulging housing"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate pack", "instruction": "Place in a metal container away from combustibles.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Contact Milwaukee", "instruction": "Milwaukee provides shipping materials for warranty return.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Any M18 pack after drop or internal failure"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "professional",
+    "repairTime": "warranty",
+    "whenToCallPro": "Always — fire hazard.",
+    "relatedCodes": ["BMS-01", "BMS-02"],
+    "videoSearchQuery": "Milwaukee battery cell short damaged",
+    "faq": [
+      {"q": "Can I dispose in trash?", "a": "Never — use Call2Recycle drop-off or Milwaukee service center."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms06",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-06",
+    "displayCode": "BMS-06",
+    "alternativeCodes": ["comm-fail"],
+    "title": "BMS Communication Fault",
+    "shortDescription": "Tool/charger cannot read BMS data.",
+    "fullDescription": "The data pin between pack and tool/charger carries SOC, temperature and fault data. BMS-06 flags when this stream is interrupted. Usually a dirty contact or bent pin.",
+    "causes": [
+      {"cause": "Dirty terminal contacts", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Bent data pin", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed BMS chip", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Tool shows E04 on attach", "Charger shows generic fault"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean terminals", "instruction": "Wipe pack and tool terminals with contact cleaner.", "tools": ["contact cleaner"], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect pins", "instruction": "Look for bent pins in pack terminal block.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 5}
+    ],
+    "affectedModels": ["Any M18 pack"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "Warranty if cleaning fails.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Milwaukee battery communication fault",
+    "faq": [
+      {"q": "Can I re-program the BMS?", "a": "No — the BMS is sealed and not re-programmable."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms07",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-07",
+    "displayCode": "BMS-07",
+    "alternativeCodes": ["over-current"],
+    "title": "Over-Current Protection",
+    "shortDescription": "Pack drew more current than its rating allows.",
+    "fullDescription": "HO/Forge packs are rated for 1000+ A peak; older XC2.0 packs much less. Using an XC2.0 pack on a table saw (2736) or large circular saw trips BMS-07. Use an HO or Forge pack for high-draw tools.",
+    "causes": [
+      {"cause": "Undersized pack on heavy tool", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Seized motor drawing stall current", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Pack cuts out instantly under load", "Tool arming but not running"],
+    "fixSteps": [
+      {"step": 1, "title": "Use larger pack", "instruction": "Fit an HO 6.0Ah or Forge pack for high-draw tools.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+    ],
+    "affectedModels": ["M18 CP1.5, XC2.0 on heavy tools"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "1 minute",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": ["BMS-04"],
+    "videoSearchQuery": "Milwaukee battery over current HO pack",
+    "faq": [
+      {"q": "Which pack for table saw?", "a": "Forge 12Ah or HO 8Ah/12Ah for sustained rips."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms08",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-08",
+    "displayCode": "BMS-08",
+    "alternativeCodes": [],
+    "title": "Cold Temperature Lockout",
+    "shortDescription": "Pack temperature below 0 °C — charging blocked to protect cells.",
+    "fullDescription": "Lithium cells plate metallic lithium when charged below freezing, causing permanent capacity loss and safety risk. BMS-08 locks charging until pack reaches 0 °C.\n\nTool use (discharge) is permitted but capacity is reduced in cold.",
+    "causes": [
+      {"cause": "Pack stored in freezing conditions", "likelihood": "high", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Charger shows fault on cold pack", "Cleared after warming indoors"],
+    "fixSteps": [
+      {"step": 1, "title": "Warm pack", "instruction": "Bring pack indoors for 30+ minutes before charging.", "tools": [], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "affectedModels": ["All M18 packs"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Milwaukee battery cold charge winter",
+    "faq": [
+      {"q": "Can I use pack in cold?", "a": "Yes, but charge warm."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms09",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-09",
+    "displayCode": "BMS-09",
+    "alternativeCodes": [],
+    "title": "Pack Identification Failure",
+    "shortDescription": "Tool cannot recognize pack as authentic Milwaukee.",
+    "fullDescription": "Third-party 'replacement' M18 batteries often fail authentication. BMS-09 means the data signature does not match Milwaukee's expected pack profile. Use genuine Milwaukee packs only.",
+    "causes": [
+      {"cause": "Aftermarket/counterfeit pack", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Damaged authentication chip", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["Tool flashes rejection on attach", "Works with genuine pack"],
+    "fixSteps": [
+      {"step": 1, "title": "Use genuine Milwaukee pack", "instruction": "Aftermarket packs may damage tools and void warranty.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+    ],
+    "affectedModels": ["Newer M18 Fuel tools reject non-OEM packs"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "1 minute",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": ["BMS-06"],
+    "videoSearchQuery": "Milwaukee aftermarket battery not recognized",
+    "faq": [
+      {"q": "Will third-party packs work?", "a": "Some do, but risk tool damage, fire, and voided warranty."}
+    ]
+  },
+  {
+    "id": "milwaukee-battery-pack-bms10",
+    "brand": "Milwaukee",
+    "brandSlug": "milwaukee",
+    "deviceType": "Battery Pack",
+    "deviceTypeSlug": "battery-pack",
+    "code": "BMS-10",
+    "displayCode": "BMS-10",
+    "alternativeCodes": [],
+    "title": "Hot Charge Lockout",
+    "shortDescription": "Pack too hot to charge safely.",
+    "fullDescription": "Charging lithium above ~45 °C accelerates aging. BMS-10 blocks charge until pack cools below threshold. Commonly seen when pulling a pack off a heavy tool and immediately placing on charger.",
+    "causes": [
+      {"cause": "Pack hot from heavy use", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Pack in hot vehicle", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["Charger idle light blinks", "Resumes when pack cools"],
+    "fixSteps": [
+      {"step": 1, "title": "Cool pack", "instruction": "Rest pack in shade 15-20 min before charging.", "tools": [], "difficulty": "easy", "timeMinutes": 20}
+    ],
+    "affectedModels": ["Any M18 pack after heavy use"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "diyDifficulty": "easy",
+    "repairTime": "20 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": ["BMS-04"],
+    "videoSearchQuery": "Milwaukee pack too hot to charge",
+    "faq": [
+      {"q": "Does Super Charger cool the pack?", "a": "Yes — includes active cooling fan to allow faster charge safely."}
+    ]
+  }
+]

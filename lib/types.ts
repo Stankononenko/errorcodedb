@@ -129,7 +129,17 @@ export type ApplianceDeviceType =
   | "heavy-truck"
   | "diesel-engine"
   | "e-bike"
-  | "e-scooter";
+  | "e-scooter"
+  | "battery-pack"
+  | "commercial-refrigeration"
+  | "commercial-dishwasher"
+  | "commercial-oven"
+  | "commercial-coffee"
+  | "commercial-blender"
+  | "soft-serve-machine"
+  | "smart-thermostat"
+  | "wearable"
+  | "smart-hub";
 
 export interface ApplianceCause {
   cause: string;

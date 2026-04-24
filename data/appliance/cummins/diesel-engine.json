@@ -1,0 +1,729 @@
+[
+  {
+    "id": "cummins-diesel-engine-spn-111-fmi-12",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 111 FMI 12",
+    "displayCode": "SPN 111 FMI 12",
+    "alternativeCodes": ["Cummins Fault 111"],
+    "title": "ECM Critical Internal Failure",
+    "shortDescription": "Cummins ECM has a critical internal fault — reflash or replacement required.",
+    "fullDescription": "Cummins SPN 111 FMI 12 (Fault Code 111 on classic display) indicates the Cummins engine control module has detected a critical internal failure. Applies across ISB, ISC, ISL, ISX platforms.\n\nCauses: voltage spike damage (jump-starting reversed, welding without disconnect), lightning, end-of-life, water intrusion. The ECM may still start the engine but will run in a limp/default mode.\n\nDiagnosis is dealer-level. Cummins INSITE can attempt a reflash. If unsuccessful, replacement is required — ECM costs $1,500-$3,000 plus labor and programming.",
+    "causes": [
+      {"cause": "Voltage spike / reverse polarity jump", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Welding without battery disconnect", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Water intrusion", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Module end-of-life", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Multiple random codes",
+      "Reduced power",
+      "Hard start or no start",
+      "Parameter loss"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check power/ground", "instruction": "Confirm ECM power > 12.4V at rest. Inspect all grounds for tightness and corrosion.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 2, "title": "Reflash at dealer", "instruction": "Cummins dealer with INSITE attempts ECM reflash with current calibration.", "tools": ["Cummins INSITE"], "difficulty": "professional", "timeMinutes": 120},
+      {"step": 3, "title": "Replace ECM", "instruction": "If reflash fails, replace ECM and program with VIN, parameters, fuel map.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["ISB 6.7", "ISC 8.3", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 400, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SPN 628 FMI 12", "SPN 630 FMI 12"],
+    "videoSearchQuery": "Cummins fault code 111 ECM internal failure reflash",
+    "faq": [
+      {"q": "Disconnect batteries for welding?", "a": "Always — welding induces voltage spikes that fry ECMs."},
+      {"q": "Can I buy used ECM?", "a": "Must be programmed by Cummins with correct cal and injector trims."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-234-fmi-0",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 234 FMI 0",
+    "displayCode": "SPN 234 FMI 0",
+    "alternativeCodes": ["Cummins Fault 234"],
+    "title": "Engine Crankshaft Speed High (Overspeed)",
+    "shortDescription": "Crankshaft RPM exceeded maximum — overrev event or sensor error.",
+    "fullDescription": "Cummins Fault 234 indicates engine RPM exceeded the maximum allowable — typically 2300-2400 RPM depending on the ISX/ISL configuration. Common during aggressive downshifts or downhill overrun in manual transmissions.\n\nA single event from downshifting is not serious but should be noted. Repeated events may indicate a runaway risk — oil-fed runaway from turbo seal failure or crankcase oil ingestion is a catastrophic concern.\n\nEmergency runaway shutdown: block air intake with jacket or heavy floor mat. Diesel needs air to run.",
+    "causes": [
+      {"cause": "Aggressive downshift overrun", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Oil-fed runaway (turbo seal)", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Speed sensor noise", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Red lamp",
+      "Engine protection derate",
+      "High RPM event in history"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Review event", "instruction": "Pull freeze frame via INSITE — confirms if RPM spike matched coast/downshift or unexplained acceleration.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 20},
+      {"step": 2, "title": "Turbo/CCV check", "instruction": "Inspect turbo shaft play and CCV breather for oil mist. Indicates oil ingestion risk.", "tools": [], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Sensor check", "instruction": "If no oil issue, inspect crank sensor and tone wheel for damage.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "professional": {"min": 200, "max": 15000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Variable",
+    "whenToCallPro": "If runaway risk.",
+    "relatedCodes": ["SPN 190 FMI 0", "SPN 637 FMI 8"],
+    "videoSearchQuery": "Cummins fault 234 overspeed diagnose",
+    "faq": [
+      {"q": "How to stop runaway?", "a": "Block intake. Diesel has no spark — cutting air stops combustion."},
+      {"q": "One-time is OK?", "a": "Usually if clearly a downshift event — monitor for repeats."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-637-fmi-8",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 637 FMI 8",
+    "displayCode": "SPN 637 FMI 8",
+    "alternativeCodes": ["Cummins Fault 115"],
+    "title": "Engine Timing Reference Signal Error",
+    "shortDescription": "Crank/cam timing correlation error — sensor or tone wheel fault.",
+    "fullDescription": "Cummins fault 637 indicates the ECM detects a timing error between crank and cam signals. FMI 8 = abnormal frequency/pattern.\n\nCauses: failed cam or crank sensor, damaged tone wheel teeth, or metal debris on sensor tip. On ISX/X15, also commonly caused by timing gear wear at high mileage.\n\nEngine may start but run rough or not start at all. Diagnose both sensors and verify tone wheel integrity before condemning internal components.",
+    "causes": [
+      {"cause": "Failed crank or cam position sensor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Metal debris on sensor tip", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Damaged tone wheel teeth", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Worn timing gears (high mileage)", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Hard start or no start",
+      "Rough run",
+      "Severe derate",
+      "Intermittent stall"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Clean sensors", "instruction": "Remove crank and cam sensors. Wipe metallic debris. Re-install with correct torque.", "tools": ["Hand tools"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 2, "title": "Scope test", "instruction": "With scope, check signal pattern of both sensors during cranking.", "tools": ["Oscilloscope"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Replace sensor or inspect tone wheel", "instruction": "If sensor replacement doesn't clear, dealer inspects tone wheel for damage.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["ISB 6.7", "ISC 8.3", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "professional": {"min": 400, "max": 5000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "whenToCallPro": "If tone wheel damaged.",
+    "relatedCodes": ["SPN 723 FMI 8", "SPN 190 FMI 8"],
+    "videoSearchQuery": "Cummins ISX fault 115 cam crank timing SPN 637",
+    "faq": [
+      {"q": "Can I start with just crank sensor?", "a": "Some Cummins strategies start on crank alone — rough idle but runs."},
+      {"q": "Metal on sensor normal?", "a": "Some is expected — clean at each service."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-1378-fmi-31",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 1378 FMI 31",
+    "displayCode": "SPN 1378 FMI 31",
+    "alternativeCodes": ["Cummins Fault 649"],
+    "title": "Oil Change Interval Expired",
+    "shortDescription": "Service reminder — engine oil and filter due for change.",
+    "fullDescription": "Cummins SPN 1378 is a service reminder when the algorithm-based oil change interval has been reached. Based on fuel burn, idle hours, and operational severity factors. Not a fault, but a maintenance prompt.\n\nFailing to service causes oil degradation — acids, particulates, and fuel dilution accelerate bearing wear. Skipped services shorten Cummins engine life substantially.\n\nReset interval via INSITE or dealer after service.",
+    "causes": [
+      {"cause": "Service interval reached", "likelihood": "high", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Amber wrench lamp",
+      "Dash service indicator"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Change oil and filter", "instruction": "Drain and replace oil with correct spec (CK-4 15W-40 typical for ISX). Replace full-flow and bypass filters.", "tools": ["Filter wrench", "Oil pan"], "difficulty": "easy", "timeMinutes": 60},
+      {"step": 2, "title": "Reset interval", "instruction": "With INSITE, reset oil change interval counter. Dash reminder clears.", "tools": ["Cummins INSITE"], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "affectedModels": ["ISB 6.7", "ISC 8.3", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "easy",
+    "repairTime": "1 hour",
+    "whenToCallPro": "If INSITE not available for reset.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Cummins oil change reset SPN 1378 fault 649",
+    "faq": [
+      {"q": "Can I ignore it?", "a": "Eventually triggers power derate — service on time."},
+      {"q": "DIY oil change OK?", "a": "Yes — dispose used oil properly."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-2556-fmi-7",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 2556 FMI 7",
+    "displayCode": "SPN 2556 FMI 7",
+    "alternativeCodes": ["Cummins Fault 2555"],
+    "title": "VGT Turbo Actuator Stuck",
+    "shortDescription": "Variable geometry turbo actuator not moving — stuck with soot or mechanical failure.",
+    "fullDescription": "SPN 2556 FMI 7 on Cummins ISX/X15 engines indicates the VGT actuator is not moving to commanded position. Most common cause: carbon buildup around the vane linkage. Running ISX under light load accumulates carbon rapidly.\n\nHolset VGT actuators (smart, electronic) on ISX can also fail electronically. Calibration via INSITE sometimes frees lightly stuck vanes. Severe cases need turbo removal for solvent soak or replacement.\n\nNew ISX VGT turbo is $3,500-$5,500. Actuator alone is ~$1,500 if separately available.",
+    "causes": [
+      {"cause": "Carbon seizure of vanes", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Failed smart actuator electronics", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Broken unison ring", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Severe power loss",
+      "No/low boost",
+      "CEL",
+      "Black smoke or white smoke"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Calibration attempt", "instruction": "Run VGT calibration in INSITE — cycles actuator several times, may free light carbon.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 2, "title": "Turbo service", "instruction": "Remove turbo, soak cold side in solvent, work vanes free by hand. Reassemble and recalibrate.", "tools": ["Solvent", "Hand tools"], "difficulty": "advanced", "timeMinutes": 360},
+      {"step": 3, "title": "Replace turbo", "instruction": "If vanes cannot be freed, replace VGT assembly. Recalibrate via INSITE.", "tools": [], "difficulty": "advanced", "timeMinutes": 300}
+    ],
+    "affectedModels": ["ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 200, "max": 5500}, "professional": {"min": 1500, "max": 7000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "5-10 hours",
+    "whenToCallPro": "Dealer or diesel specialist.",
+    "relatedCodes": ["SPN 641 FMI 7", "SPN 102 FMI 18"],
+    "videoSearchQuery": "Cummins ISX VGT stuck SPN 2556 Holset clean",
+    "faq": [
+      {"q": "VGT calibration help?", "a": "Yes — first step, often frees light carbon."},
+      {"q": "Prevent carbon?", "a": "Avoid long idle, run highway miles weekly."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-4335-fmi-18",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 4335 FMI 18",
+    "displayCode": "SPN 4335 FMI 18",
+    "alternativeCodes": ["Cummins Fault 3815"],
+    "title": "Aftertreatment NOx Bank 1 Low",
+    "shortDescription": "Bank 1 (inlet) NOx reading lower than expected.",
+    "fullDescription": "SPN 4335 FMI 18 on Cummins X15/ISX monitors inlet (engine-out) NOx. FMI 18 = data valid but below expected. Often means inlet NOx sensor is drifting low with age, or EGR is flowing more than expected (stuck open).\n\nDrifting NOx sensors are #1 cause. Replace in pairs with outlet sensor for matched aging. Clear code and perform drive cycle to learn new sensor.",
+    "causes": [
+      {"cause": "Drifting inlet NOx sensor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "EGR stuck open", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Exhaust leak before sensor", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "CEL",
+      "SCR efficiency codes",
+      "Possible inducement"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Check EGR", "instruction": "Command EGR 0% via INSITE at idle. If flow still suspected, pull EGR valve and inspect.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 2, "title": "Inspect exhaust seals", "instruction": "Check V-band clamps upstream of inlet NOx sensor for leaks.", "tools": [], "difficulty": "advanced", "timeMinutes": 30},
+      {"step": 3, "title": "Replace NOx sensor", "instruction": "Swap inlet (and outlet for matched pair) NOx sensor.", "tools": ["22mm NOx socket"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 300, "max": 1800}, "professional": {"min": 600, "max": 3000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If EGR replacement needed.",
+    "relatedCodes": ["SPN 3216 FMI 20", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Cummins X15 SPN 4335 inlet NOx sensor",
+    "faq": [
+      {"q": "Replace both sensors?", "a": "Yes — match aging prevents chasing SCR codes."},
+      {"q": "Check EGR first?", "a": "Only if secondary symptoms suggest — otherwise sensor age is most common."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-4355-fmi-18",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 4355 FMI 18",
+    "displayCode": "SPN 4355 FMI 18",
+    "alternativeCodes": ["Cummins Fault 3816"],
+    "title": "Aftertreatment NOx Bank 2 (Outlet) Low",
+    "shortDescription": "Outlet NOx reading lower than model expects — sensor or SCR issue.",
+    "fullDescription": "SPN 4355 FMI 18 on Cummins X15/ISX represents outlet (post-SCR) NOx lower than expected based on model. Could be normal if SCR is working well, but combined with low inlet reading, both sensors may be drifting.\n\nDiagnose: if inlet is normal but outlet reads zero at all conditions, outlet sensor is drifted low. Replace with OEM Cummins sensor — $700-$900.\n\nSCR catalyst replacement is rare cause — only if sensors both check out and catalyst is damaged.",
+    "causes": [
+      {"cause": "Drifting outlet NOx sensor", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Sensor tip coked", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "SCR overperforming (rare)", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "CEL",
+      "SCR efficiency codes possible",
+      "Inducement if paired with SPN 4364"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Compare sensors", "instruction": "With INSITE, monitor both NOx sensors at steady highway cruise. Outlet near 0 consistently = drift.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 2, "title": "Replace outlet NOx", "instruction": "Cool engine. 22mm NOx socket. Anti-seize on threads only, never on sensing tip.", "tools": ["22mm socket", "Anti-seize"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 500, "max": 1200}, "professional": {"min": 700, "max": 2000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If SCR damage suspected.",
+    "relatedCodes": ["SPN 3226 FMI 18", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Cummins X15 outlet NOx SPN 4355 replace",
+    "faq": [
+      {"q": "Match sensor brands?", "a": "OEM Cummins preferred for compatibility."},
+      {"q": "Anti-seize on tip?", "a": "NEVER — poisons zirconia cell."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-5246-fmi-31",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 5246 FMI 31",
+    "displayCode": "SPN 5246 FMI 31",
+    "alternativeCodes": ["Cummins Fault 3712"],
+    "title": "Aftertreatment SCR Inducement Active",
+    "shortDescription": "EPA inducement in progress — fix root cause before 5 mph derate.",
+    "fullDescription": "Cummins SPN 5246 FMI 31 indicates the SCR inducement counter is active — a primary fault (DEF empty, quality, NOx, dosing, etc.) has not been resolved. EPA-mandated derate cascade will engage.\n\nCompanion code only — find and fix the root cause. Common primaries: SPN 3610 (DEF empty), SPN 3364 (DEF quality), SPN 4364 (SCR efficiency), SPN 4094 (DEF pressure).\n\nInducement resets automatically after primary clears + drive cycle.",
+    "causes": [
+      {"cause": "Unresolved DEF empty / quality", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Unresolved SCR efficiency", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "Unresolved NOx sensor fault", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Inducement countdown",
+      "Amber or red CEL",
+      "Progressive power reduction"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all codes", "instruction": "INSITE full code pull to identify primary SCR fault.", "tools": ["Cummins INSITE"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Fix primary", "instruction": "Address per primary SPN procedure (DEF refill, flush, sensor replace, etc.).", "tools": [], "difficulty": "advanced", "timeMinutes": 180},
+      {"step": 3, "title": "Drive cycle reset", "instruction": "After fix, drive cycle normalizes inducement. Dealer can force reset if needed.", "tools": ["Cummins INSITE"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 2000}, "professional": {"min": 400, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "Variable",
+    "whenToCallPro": "Usually.",
+    "relatedCodes": ["SPN 3610 FMI 0", "SPN 4364 FMI 18"],
+    "videoSearchQuery": "Cummins X15 SPN 5246 inducement reset",
+    "faq": [
+      {"q": "Reset without fix?", "a": "Returns immediately — fix root first."},
+      {"q": "How much time before 5 mph?", "a": "Typically 20-40 hours of operation with primary fault."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-97-fmi-0",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 97 FMI 0",
+    "displayCode": "SPN 97 FMI 0",
+    "alternativeCodes": ["Cummins Fault 418", "PID 97"],
+    "title": "Water in Fuel — Severe",
+    "shortDescription": "Water detected in fuel/water separator — drain immediately to prevent injector damage.",
+    "fullDescription": "Cummins fault 418 / SPN 97 FMI 0 indicates a significant amount of water has accumulated in the fuel/water separator. Continued operation risks destroying high-pressure common rail injectors (30,000+ PSI operating pressure) — repair cost $5,000+.\n\nISB, ISL, ISX platforms all use a primary fuel/water separator with a drain valve. Open drain, collect water until pure diesel flows. Modern ISX filter housings have a priming pump to restore flow.\n\nIf water keeps coming back, tank contamination is likely — may need fuel polishing or tank pumpout.",
+    "causes": [
+      {"cause": "Water accumulated in separator", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Contaminated fuel supply", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed tank cap seal (rainwater entry)", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "Water in fuel dash indicator",
+      "Red lamp possible",
+      "Rough run",
+      "Hard start"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Drain separator", "instruction": "Open drain at bottom of separator bowl into a clear container. Close when pure diesel flows.", "tools": ["Drain pan"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Prime and test", "instruction": "Use priming pump. Start engine, clear code with INSITE or reset.", "tools": ["Cummins INSITE"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 3, "title": "Investigate if repeats", "instruction": "If water returns quickly, test tank fuel sample and check cap seal.", "tools": [], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "affectedModels": ["ISB 6.7", "ISC 8.3", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "professional": {"min": 150, "max": 800}},
+    "diyDifficulty": "easy",
+    "repairTime": "15 min - 1 hour",
+    "whenToCallPro": "If tank polishing needed.",
+    "relatedCodes": ["SPN 97 FMI 5", "SPN 157 FMI 4"],
+    "videoSearchQuery": "Cummins water in fuel drain SPN 97 fault 418",
+    "faq": [
+      {"q": "Damage to injectors?", "a": "30,000 PSI water pulse = $5,000+ injector failure. Drain now."},
+      {"q": "Water separator interval?", "a": "Drain at every fuel filter change, weekly in humid climates."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-157-fmi-4",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 157 FMI 4",
+    "displayCode": "SPN 157 FMI 4",
+    "alternativeCodes": ["Cummins Fault 449"],
+    "title": "Fuel Rail Pressure Below Expected",
+    "shortDescription": "Common rail fuel pressure low — supply, pump, or sensor fault.",
+    "fullDescription": "Cummins SPN 157 FMI 4 / Fault 449 on ISX/X15/ISL indicates common rail pressure is below what the ECM commands. Rail operates at 25,000-32,000 PSI during peak injection.\n\nSAFETY: Common rail fuel at this pressure can inject through skin invisibly, causing serious injection injuries. Wait 10+ minutes after shutdown before any rail work. Never loosen fittings with engine running.\n\nCheck supply pressure (SPN 94) first — starving supply is cheap to fix. Then sensor. Then pump ($3,500-$5,000).",
+    "causes": [
+      {"cause": "Plugged fuel filter / low supply", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed rail pressure sensor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Failed high-pressure pump", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Leaking injector (back-leaking)", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Power derate",
+      "Hard start",
+      "Rough idle",
+      "Stalling"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Change fuel filters", "instruction": "Replace primary and secondary filters. Prime system.", "tools": ["Filter wrench"], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 2, "title": "Measure supply pressure", "instruction": "Mechanical gauge at HPFP inlet — should be 60-90 PSI. Below = lift pump or filter issue.", "tools": ["Pressure gauge"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Return flow test / HPFP", "instruction": "Dealer — return flow at each injector. HPFP replacement if out of spec.", "tools": [], "difficulty": "professional", "timeMinutes": 480}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 100, "max": 500}, "professional": {"min": 400, "max": 7500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-10 hours",
+    "whenToCallPro": "If HPFP suspected.",
+    "relatedCodes": ["SPN 94 FMI 18", "SPN 157 FMI 3"],
+    "videoSearchQuery": "Cummins ISX fault 449 rail pressure SPN 157",
+    "faq": [
+      {"q": "Skin injection real?", "a": "Yes, amputation risk. Wait times and PPE essential."},
+      {"q": "Cheap first?", "a": "Fuel filters $50 always precede $5,000 HPFP diagnosis."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-110-fmi-16",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 110 FMI 16",
+    "displayCode": "SPN 110 FMI 16",
+    "alternativeCodes": ["Cummins Fault 146"],
+    "title": "Coolant Temp High — Moderate",
+    "shortDescription": "Coolant temperature above normal — power derate engaged.",
+    "fullDescription": "Cummins fault 146 / SPN 110 FMI 16 indicates coolant temp between warning and shutdown thresholds. ECM derates power to protect engine from head gasket failure.\n\nCheck coolant level, radiator fins, fan clutch. ISX/X15 have heavy thermal load — cooling system must be clean.\n\nOvertemp ISX easily costs $15,000+ in internal damage if ignored.",
+    "causes": [
+      {"cause": "Plugged radiator/CAC fins", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Low coolant", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed fan clutch", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Stuck thermostat", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Head gasket / EGR cooler leak", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": [
+      "Red STOP lamp",
+      "Gauge in red",
+      "Power derate",
+      "Steam possible"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Safe cooldown", "instruction": "Idle 2-3 min, shut down, wait 30+ min before opening cap.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Inspect and top off", "instruction": "Check level, rinse fins, inspect for external leaks.", "tools": ["Garden hose"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 3, "title": "Fan and combustion test", "instruction": "Command fan via INSITE. Combustion gas test if coolant disappears internally.", "tools": ["Cummins INSITE", "Block tester"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "affectedModels": ["ISB 6.7", "ISC 8.3", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "professional": {"min": 300, "max": 15000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "30 min - 2 days",
+    "whenToCallPro": "If head gasket / internal leak.",
+    "relatedCodes": ["SPN 110 FMI 0", "SPN 111 FMI 1"],
+    "videoSearchQuery": "Cummins ISX overheat SPN 110 fault 146",
+    "faq": [
+      {"q": "Head gasket cost?", "a": "ISX head gasket job $6,000-$15,000."},
+      {"q": "Fan clutch test?", "a": "Should audibly lock above 210°F — or use INSITE to command."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-3251-fmi-0",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 3251 FMI 0",
+    "displayCode": "SPN 3251 FMI 0",
+    "alternativeCodes": ["Cummins Fault 1921"],
+    "title": "DPF Pressure Very High — Service Required",
+    "shortDescription": "DPF delta pressure at severe threshold — cannot regen, dealer service needed.",
+    "fullDescription": "Cummins fault 1921 indicates the DPF differential pressure is at the severe threshold — regen cannot safely complete. 5 mph derate active.\n\nRequires dealer forced regen via INSITE or DPF removal for off-vehicle thermal/pneumatic cleaning. Ash load from oil burn may also mandate service cleaning every 200,000-300,000 miles.\n\nReplacement DPF $4,500+ if substrate cracked from prior thermal event.",
+    "causes": [
+      {"cause": "Soot exceeded normal regen threshold", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Heavy ash loading", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Cracked DPF substrate", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "DP sensor or tubes blocked", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "5 mph derate",
+      "Red STOP lamp",
+      "DPF lamp solid"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Tow to dealer", "instruction": "5 mph derate too slow for road travel — tow to Cummins dealer.", "tools": [], "difficulty": "professional", "timeMinutes": 60},
+      {"step": 2, "title": "Forced regen or clean", "instruction": "Dealer attempts INSITE forced regen. If fails, DPF removed for thermal service.", "tools": [], "difficulty": "professional", "timeMinutes": 360},
+      {"step": 3, "title": "Replace if substrate damaged", "instruction": "New DPF assembly if substrate cracked.", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 600, "max": 7000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "whenToCallPro": "Always.",
+    "relatedCodes": ["SPN 3251 FMI 2", "SPN 3719 FMI 15"],
+    "videoSearchQuery": "Cummins fault 1921 DPF severe forced regen",
+    "faq": [
+      {"q": "Prevent?", "a": "Regular highway miles, scheduled DPF cleaning intervals."},
+      {"q": "Aftermarket DPF?", "a": "Use EPA-approved replacements — illegal if not certified."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-3610-fmi-18",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 3610 FMI 18",
+    "displayCode": "SPN 3610 FMI 18",
+    "alternativeCodes": ["Cummins Fault 3547"],
+    "title": "DEF Tank Level Low Warning",
+    "shortDescription": "DEF tank approaching empty — refill soon.",
+    "fullDescription": "Cummins SPN 3610 FMI 18 is the first-level low DEF warning on ISX/X15 and ISB/ISL trucks. Amber lamp illuminates, no derate yet — driver has time to refill before inducement.\n\nTopping off with API-certified DEF at any truck stop resolves the code. Ignoring progresses through warning levels to the 5 mph limp-home.\n\nMonitor tank cap — loose cap lets rain in, contaminating DEF.",
+    "causes": [
+      {"cause": "Low DEF level", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "DEF consumption higher than fill schedule", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": [
+      "DEF gauge low",
+      "Amber DEF warning",
+      "No derate"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Refill DEF", "instruction": "Add API-certified DEF to 50%+ tank. Code clears on next drive cycle.", "tools": ["DEF jug"], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 10, "max": 50}, "professional": {"min": 30, "max": 100}},
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "N/A — simple refill.",
+    "relatedCodes": ["SPN 3610 FMI 0", "SPN 1761 FMI 1"],
+    "videoSearchQuery": "Cummins DEF low warning SPN 3610",
+    "faq": [
+      {"q": "How much DEF per tank?", "a": "ISX uses ~2-3% of diesel gallons in DEF."},
+      {"q": "Any DEF brand OK?", "a": "API-certified only — look for API Diesel Exhaust Fluid mark."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-3719-fmi-16",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 3719 FMI 16",
+    "displayCode": "SPN 3719 FMI 16",
+    "alternativeCodes": ["Cummins Fault 1922"],
+    "title": "DPF Soot High — Active Regen Needed",
+    "shortDescription": "Soot above moderate threshold — complete regen required now.",
+    "fullDescription": "Cummins SPN 3719 FMI 16 / fault 1922 indicates DPF soot load in the moderate warning range. Stationary or parked regen should clear it. If allowed to escalate, 5 mph derate follows.\n\nOn Cummins ISX/X15 with PACCAR or Kenworth/Peterbilt chassis, parked regen is initiated from dash switch. 30-45 minutes in a safe open area.\n\nFrequent regen needs indicate duty cycle issue or failing dosing system.",
+    "causes": [
+      {"cause": "Short-haul / idle duty cycle", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Incomplete active regens", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Dosing system underperforming", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "DPF lamp flashing",
+      "Amber CEL",
+      "Power reduction"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Parked regen", "instruction": "Safe location, brake set, neutral, initiate regen. 30-45 min.", "tools": [], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 2, "title": "Highway drive", "instruction": "Follow with 30+ min highway cruise to establish passive regen.", "tools": [], "difficulty": "easy", "timeMinutes": 45}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 150, "max": 500}},
+    "diyDifficulty": "easy",
+    "repairTime": "45 min - 2 hours",
+    "whenToCallPro": "If regen won't initiate.",
+    "relatedCodes": ["SPN 3251 FMI 2", "SPN 3719 FMI 15"],
+    "videoSearchQuery": "Cummins parked regen SPN 3719 FMI 16",
+    "faq": [
+      {"q": "Can I interrupt regen?", "a": "Best not — restarts from beginning."},
+      {"q": "Exhaust dangerous?", "a": "Over 1100°F — no combustibles nearby."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-4364-fmi-17",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 4364 FMI 17",
+    "displayCode": "SPN 4364 FMI 17",
+    "alternativeCodes": ["Cummins Fault 3714"],
+    "title": "SCR Conversion Efficiency Low",
+    "shortDescription": "SCR converting below EPA threshold — early warning before derate.",
+    "fullDescription": "Cummins SPN 4364 FMI 17 on ISX/X15 indicates NOx conversion across the SCR catalyst is below expected — least severe. Repair now before FMI 18 (derate) follows.\n\nTroubleshoot in order: NOx sensors (most common), DEF dosing rate, DEF quality, exhaust leaks, catalyst condition.\n\nNOx sensor kits (both inlet + outlet) are the fastest-fix starting point for 4364 codes.",
+    "causes": [
+      {"cause": "Drifting NOx sensors", "likelihood": "high", "fixDifficulty": "advanced"},
+      {"cause": "DEF dosing low", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "DEF quality poor", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Exhaust leak at SCR inlet/outlet", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Amber CEL",
+      "Possible inducement warning"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Read NOx live", "instruction": "Steady cruise monitor both NOx — unrealistic low outlet or equal inlet/outlet = sensor issue.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 2, "title": "Replace NOx sensors (pair)", "instruction": "Matched pair replacement reduces chasing.", "tools": ["22mm NOx socket"], "difficulty": "advanced", "timeMinutes": 90},
+      {"step": 3, "title": "Check dosing", "instruction": "Dosing test via INSITE. Low flow = filter or doser issue.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 60}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 400, "max": 1800}, "professional": {"min": 800, "max": 8000}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "whenToCallPro": "If catalyst damaged.",
+    "relatedCodes": ["SPN 4364 FMI 18", "SPN 5246 FMI 15"],
+    "videoSearchQuery": "Cummins X15 SPN 4364 FMI 17 SCR efficiency",
+    "faq": [
+      {"q": "OEM or aftermarket NOx?", "a": "OEM Cummins for best compatibility."},
+      {"q": "Fix before derate?", "a": "Yes — FMI 17 is warning, FMI 18 starts inducement."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-5246-fmi-15",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 5246 FMI 15",
+    "displayCode": "SPN 5246 FMI 15",
+    "alternativeCodes": ["Cummins Fault 1673", "Ammonia Slip"],
+    "title": "Ammonia Slip / SCR Over-Dosing",
+    "shortDescription": "Excess ammonia slipping past SCR — overdose or low catalyst activity.",
+    "fullDescription": "On some Cummins ISX/X15 configurations, SPN 5246 FMI 15 indicates ammonia slip detected at outlet — SCR dosing rate exceeds catalyst ability to convert, so unreacted ammonia (from DEF breakdown) passes through.\n\nCauses: aged SCR catalyst losing activity, doser over-spraying (stuck), or catalyst face crystallized from past over-dosing.\n\nDealer-level SCR efficiency diagnosis usually required.",
+    "causes": [
+      {"cause": "Aged SCR catalyst", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Doser over-injecting", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Catalyst face crystallization", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "CEL",
+      "Ammonia odor at tailpipe",
+      "SCR efficiency codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Doser test", "instruction": "Run dosing test via INSITE. Measure ml/min and compare to spec.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 45},
+      {"step": 2, "title": "SCR thermal service", "instruction": "Dealer thermal bake removes urea crystals from catalyst face.", "tools": [], "difficulty": "professional", "timeMinutes": 240},
+      {"step": 3, "title": "SCR replacement", "instruction": "If catalyst permanently degraded, replacement $6,000+.", "tools": [], "difficulty": "professional", "timeMinutes": 480}
+    ],
+    "affectedModels": ["ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 0, "max": 500}, "professional": {"min": 500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "whenToCallPro": "Usually.",
+    "relatedCodes": ["SPN 4364 FMI 18", "SPN 5394 FMI 7"],
+    "videoSearchQuery": "Cummins X15 ammonia slip SPN 5246 SCR",
+    "faq": [
+      {"q": "Ammonia smell normal?", "a": "Never — indicates SCR or doser issue."},
+      {"q": "Replace doser vs catalyst?", "a": "Diagnose first — doser is cheaper to rule out."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-94-fmi-18",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 94 FMI 18",
+    "displayCode": "SPN 94 FMI 18",
+    "alternativeCodes": ["Cummins Fault 559"],
+    "title": "Fuel Delivery Pressure Low",
+    "shortDescription": "Low-side fuel supply pressure below spec — filter, lift pump, or suction air leak.",
+    "fullDescription": "Cummins SPN 94 FMI 18 / Fault 559 indicates low-pressure fuel supply to the HPFP is below spec (typically 50-80 PSI). Low supply starves HPFP, causes cavitation, risks HPFP metal contamination of the rail ($7,000+ failure).\n\nMost common: plugged secondary filter. Change filters, prime, retest. If pressure still low, suspect lift pump or suction-side air leak.\n\nCummins Fleetguard filters recommended for correct micron rating and efficiency.",
+    "causes": [
+      {"cause": "Plugged fuel filters", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Weak lift pump", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Suction air leak", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Clogged tank pickup", "likelihood": "low", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Hard start",
+      "Power derate",
+      "Rough idle",
+      "CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Change filters", "instruction": "Primary + secondary Fleetguard filters. Prime system.", "tools": ["Filter wrench"], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 2, "title": "Measure pressure", "instruction": "Mechanical gauge at HPFP inlet — 50-80 PSI expected.", "tools": ["Pressure gauge"], "difficulty": "advanced", "timeMinutes": 60},
+      {"step": 3, "title": "Clear bubble test", "instruction": "Clear hose inline — bubbles indicate suction leak.", "tools": ["Clear hose"], "difficulty": "advanced", "timeMinutes": 45}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "professional": {"min": 200, "max": 2000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 min - 3 hours",
+    "whenToCallPro": "If lift pump needs replacement.",
+    "relatedCodes": ["SPN 94 FMI 17", "SPN 157 FMI 4"],
+    "videoSearchQuery": "Cummins ISX fault 559 low fuel pressure SPN 94",
+    "faq": [
+      {"q": "OEM filters only?", "a": "Fleetguard highly recommended — wrong micron = injector damage."},
+      {"q": "Prevent HPFP failure?", "a": "Supply pressure in spec + clean fuel = long HPFP life."}
+    ]
+  },
+  {
+    "id": "cummins-diesel-engine-spn-102-fmi-18",
+    "brand": "Cummins",
+    "brandSlug": "cummins",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN 102 FMI 18",
+    "displayCode": "SPN 102 FMI 18",
+    "alternativeCodes": ["Cummins Fault 2449"],
+    "title": "Boost Pressure Low",
+    "shortDescription": "Charge air pressure below commanded — leak, VGT, or CAC fault.",
+    "fullDescription": "Cummins SPN 102 FMI 18 / Fault 2449 on ISX/X15 indicates intake boost is below commanded value. Most commonly a CAC (charge air cooler) leak — boot or clamp.\n\nSmoke-test charge air system first. Any leak drops boost and fuel economy. VGT soot fouling is next most common. On high-mileage ISX, consider VGT service at 500,000+ miles.",
+    "causes": [
+      {"cause": "CAC boot/clamp loose", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "CAC end tank crack", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "VGT sooted/stuck", "likelihood": "medium", "fixDifficulty": "advanced"},
+      {"cause": "Boost sensor failure", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": [
+      "Power loss",
+      "Black smoke under load",
+      "Fuel economy drop",
+      "CEL"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Smoke test", "instruction": "Pressurize CAC system, watch for leaks.", "tools": ["Smoke machine"], "difficulty": "intermediate", "timeMinutes": 60},
+      {"step": 2, "title": "Repair leak", "instruction": "Tighten clamps, replace boots or CAC.", "tools": ["Torque wrench"], "difficulty": "intermediate", "timeMinutes": 120},
+      {"step": 3, "title": "VGT test", "instruction": "INSITE command 0-100%, watch response. Service if sticking.", "tools": ["Cummins INSITE"], "difficulty": "advanced", "timeMinutes": 90}
+    ],
+    "affectedModels": ["ISB 6.7", "ISL 9", "ISX 15", "X15"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 50, "max": 700}, "professional": {"min": 300, "max": 5000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-6 hours",
+    "whenToCallPro": "If VGT replacement required.",
+    "relatedCodes": ["SPN 102 FMI 17", "SPN 2556 FMI 7"],
+    "videoSearchQuery": "Cummins ISX boost leak SPN 102 fault 2449",
+    "faq": [
+      {"q": "Smoke or soap test?", "a": "Smoke catches tiny leaks soap misses."},
+      {"q": "CAC common failure?", "a": "End tank splits at 500,000+ miles on ISX trucks."}
+    ]
+  }
+]

@@ -594,5 +594,47 @@
       {"q": "Can I ignore it?", "a": "No — escalates to 5 mph derate within a few drive cycles."},
       {"q": "How often should I get DPF ashed?", "a": "Every ~200,000-300,000 miles or when ash load reaches service threshold."}
     ]
+  },
+  {
+    "id": "freightliner-heavy-truck-spn-168-fmi-18",
+    "brand": "Freightliner",
+    "brandSlug": "freightliner",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "SPN 168 FMI 18",
+    "displayCode": "SPN 168 FMI 18",
+    "alternativeCodes": ["SPN168/FMI18"],
+    "title": "Battery Voltage Low While Running",
+    "shortDescription": "System voltage low — alternator, belt, or battery bank issue.",
+    "fullDescription": "Freightliner Cascadia system voltage below threshold while running. Weak belt, dead battery in the bank, corroded terminals, or failed alternator.\n\nLow voltage cascades into false codes across J1939 modules. Load-test each battery — one weak battery drags the bank.\n\nNever jump-start reversed polarity — ECM damage $3,500+.",
+    "causes": [
+      {"cause": "Loose/worn alternator belt", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Dead battery in 4-battery bank", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Corroded terminals", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Failed alternator", "likelihood": "medium", "fixDifficulty": "advanced"}
+    ],
+    "symptoms": [
+      "Low voltage warning",
+      "Dim lights",
+      "Slow crank",
+      "Cascading module codes"
+    ],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect belt and terminals", "instruction": "Clean/tighten battery terminals. Check belt for glaze or cracks.", "tools": ["Wire brush"], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Load test batteries", "instruction": "Individual load test. Replace failures.", "tools": ["Load tester"], "difficulty": "easy", "timeMinutes": 45},
+      {"step": 3, "title": "Alternator output test", "instruction": "Running voltage should be 13.8-14.4V. Replace alternator if low.", "tools": ["DMM"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "affectedModels": ["Cascadia", "M2 106", "M2 112", "Columbia", "Coronado"],
+    "partsNeeded": [],
+    "estimatedCost": {"diy": {"min": 100, "max": 1000}, "professional": {"min": 300, "max": 2000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 3 hours",
+    "whenToCallPro": "If alternator needs replacement.",
+    "relatedCodes": ["SPN 168 FMI 17", "SPN 639 FMI 14"],
+    "videoSearchQuery": "Freightliner Cascadia SPN 168 low voltage alternator",
+    "faq": [
+      {"q": "One battery or all?", "a": "Best to replace all in bank to keep age matched."},
+      {"q": "Why modules go wild?", "a": "Low voltage confuses CAN and sensor signals."}
+    ]
   }
 ]

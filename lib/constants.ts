@@ -213,6 +213,46 @@ export const APPLIANCE_BRANDS = [
   // ── Pool Equipment ──
   { name: "Pentair", slug: "pentair", country: "USA" },
   { name: "Hayward", slug: "hayward", country: "USA" },
+  // ── Commercial Trucks / Diesel ──
+  { name: "Freightliner", slug: "freightliner", country: "USA" },
+  { name: "Kenworth", slug: "kenworth", country: "USA" },
+  { name: "Peterbilt", slug: "peterbilt", country: "USA" },
+  { name: "Mack Trucks", slug: "mack", country: "USA" },
+  { name: "Volvo Trucks", slug: "volvo-truck", country: "Sweden" },
+  { name: "Cummins", slug: "cummins", country: "USA" },
+  { name: "Detroit Diesel", slug: "detroit-diesel", country: "USA" },
+  // ── Micromobility ──
+  { name: "Bosch eBike", slug: "bosch-ebike", country: "Germany" },
+  { name: "Shimano STEPS", slug: "shimano-steps", country: "Japan" },
+  { name: "Brose", slug: "brose", country: "Germany" },
+  { name: "Yamaha PW", slug: "yamaha-pw", country: "Japan" },
+  { name: "Segway-Ninebot", slug: "segway-ninebot", country: "China" },
+  { name: "Xiaomi Scooter", slug: "xiaomi-scooter", country: "China" },
+  { name: "Unagi", slug: "unagi", country: "USA" },
+  // ── Commercial Kitchen ──
+  { name: "True Refrigeration", slug: "true-refrigeration", country: "USA" },
+  { name: "Hobart", slug: "hobart", country: "USA" },
+  { name: "Vulcan", slug: "vulcan", country: "USA" },
+  { name: "Traulsen", slug: "traulsen", country: "USA" },
+  { name: "BUNN", slug: "bunn", country: "USA" },
+  { name: "Waring", slug: "waring", country: "USA" },
+  { name: "Taylor", slug: "taylor", country: "USA" },
+  // ── Smart Home / Wearables ──
+  { name: "Ecobee", slug: "ecobee", country: "Canada" },
+  { name: "Nest Thermostat", slug: "nest-thermostat", country: "USA" },
+  { name: "Honeywell Home", slug: "honeywell-home", country: "USA" },
+  { name: "Apple Watch", slug: "apple-watch", country: "USA" },
+  { name: "Garmin", slug: "garmin", country: "USA" },
+  { name: "Fitbit", slug: "fitbit", country: "USA" },
+  { name: "Oura", slug: "oura", country: "Finland" },
+  { name: "SmartThings", slug: "smartthings", country: "South Korea" },
+  { name: "Wyze", slug: "wyze", country: "USA" },
+  { name: "Arlo", slug: "arlo", country: "USA" },
+  // ── Outdoor Power Tools (new) ──
+  { name: "Milwaukee", slug: "milwaukee", country: "USA" },
+  { name: "RIDGID", slug: "ridgid", country: "USA" },
+  { name: "Honda Power Equipment", slug: "honda-power", country: "Japan" },
+  { name: "Kubota", slug: "kubota", country: "Japan" },
   // ── Motorcycles ──
   { name: "Harley-Davidson", slug: "harley-davidson", country: "USA" },
   { name: "Honda Motorcycle", slug: "honda-moto", country: "Japan" },
@@ -318,6 +358,16 @@ export const APPLIANCE_DEVICE_TYPES: Record<
   "diesel-engine": { label: "Diesel Engine", labelPlural: "Diesel Engines" },
   "e-bike": { label: "E-Bike", labelPlural: "E-Bikes" },
   "e-scooter": { label: "E-Scooter", labelPlural: "E-Scooters" },
+  "battery-pack": { label: "Battery Pack", labelPlural: "Battery Packs" },
+  "commercial-refrigeration": { label: "Commercial Refrigeration", labelPlural: "Commercial Refrigeration" },
+  "commercial-dishwasher": { label: "Commercial Dishwasher", labelPlural: "Commercial Dishwashers" },
+  "commercial-oven": { label: "Commercial Oven", labelPlural: "Commercial Ovens" },
+  "commercial-coffee": { label: "Commercial Coffee Machine", labelPlural: "Commercial Coffee Machines" },
+  "commercial-blender": { label: "Commercial Blender", labelPlural: "Commercial Blenders" },
+  "soft-serve-machine": { label: "Soft-Serve Machine", labelPlural: "Soft-Serve Machines" },
+  "smart-thermostat": { label: "Smart Thermostat", labelPlural: "Smart Thermostats" },
+  wearable: { label: "Wearable", labelPlural: "Wearables" },
+  "smart-hub": { label: "Smart Hub", labelPlural: "Smart Hubs" },
 };
 
 // ── HVAC Brands ──

@@ -1,0 +1,1197 @@
+[
+  {
+    "id": "ecobee-smart-thermostat-no-power",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "NO POWER",
+    "displayCode": "No Power / Blank Screen",
+    "alternativeCodes": [
+      "Blank Display"
+    ],
+    "title": "Ecobee thermostat has no power or blank screen",
+    "shortDescription": "Thermostat display is blank or unresponsive due to missing 24V power from the C-wire or PEK.",
+    "fullDescription": "Ecobee thermostats require continuous 24VAC power delivered via the C (common) wire or through the Power Extender Kit (PEK) when no C-wire is available. A blank screen typically indicates the thermostat is not receiving the ~24V it needs to operate.\n\nCommon root causes include a tripped furnace door safety switch, blown 3A fuse on the HVAC control board, disconnected C-wire, or an incorrectly installed PEK. Some installations use only Rh/Rc/W/Y/G and the unit briefly operates on power stealing before failing.\n\nResolving this requires verifying HVAC power, checking the low-voltage fuse, and confirming wiring terminations at both the thermostat and the air handler.",
+    "causes": [
+      {
+        "cause": "Blown 3A fuse on HVAC control board",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Furnace door safety switch open",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose or disconnected C-wire",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Incorrectly installed PEK at air handler",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed 24V transformer",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Blank display",
+      "Thermostat will not boot",
+      "Unit reboots repeatedly",
+      "HVAC not responding"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check furnace door switch",
+        "instruction": "Ensure the furnace access panel is fully seated — the safety switch cuts power when open.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Inspect 3A fuse",
+        "instruction": "Turn off HVAC power and check the blade-style 3A fuse on the control board. Replace if blown.",
+        "tools": [
+          "screwdriver",
+          "replacement 3A fuse"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Verify C-wire",
+        "instruction": "Confirm the C-wire is landed on C at both the thermostat base and the control board.",
+        "tools": [
+          "screwdriver",
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Measure voltage",
+        "instruction": "Measure 24VAC between Rc and C at the thermostat base. If absent, trace back to transformer.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "SmartThermostat with Voice Control",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [
+      {
+        "part": "3A blade fuse",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "PEK (Power Extender Kit)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-45 minutes",
+    "whenToCallPro": "Call an HVAC technician if the transformer has failed, voltage is absent at the control board, or wiring is unfamiliar.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee thermostat blank screen no power fix",
+    "faq": [
+      {
+        "q": "Can I run Ecobee without a C-wire?",
+        "a": "Yes — use the included Power Extender Kit (PEK) at the air handler."
+      },
+      {
+        "q": "Why does my Ecobee keep rebooting?",
+        "a": "Usually insufficient power — install a C-wire or PEK."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-hvac-idle",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "HVAC IDLE",
+    "displayCode": "HVAC Idle (Stuck)",
+    "alternativeCodes": [
+      "System Idle"
+    ],
+    "title": "Ecobee stuck in HVAC Idle and will not call for heat/cool",
+    "shortDescription": "Thermostat shows HVAC Idle even when setpoint demands heating or cooling.",
+    "fullDescription": "The HVAC Idle status indicates Ecobee is not currently calling for any equipment. If it remains idle when there is a legitimate demand, the cause is often a misconfigured equipment profile, a minimum compressor off-time timer, or a Home/Away schedule suppressing activity.\n\nEcobee enforces a 5-minute compressor protection delay after each cycle. Smart Recovery, Vacation mode, or an extreme outdoor temperature limit on auxiliary heat can also keep the unit idle.\n\nReview Equipment settings, thresholds, and active schedules before concluding the thermostat is faulty.",
+    "causes": [
+      {
+        "cause": "Compressor minimum off-time still active",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incorrect equipment configuration (heat pump vs conventional)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Vacation or Away schedule active",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Auxiliary heat outdoor temp limit",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "System reads Idle despite demand",
+      "No airflow from vents",
+      "Temperature drifting"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait compressor delay",
+        "instruction": "Wait 5-10 minutes for compressor protection delay to clear.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Check schedule/mode",
+        "instruction": "Verify mode is Heat/Cool/Auto and no Vacation event is active.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Review equipment settings",
+        "instruction": "In Installation Settings, confirm equipment type matches your HVAC (heat pump, gas, dual fuel).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If equipment configuration is unclear or HVAC still does not respond after correct settings, contact an HVAC pro.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee HVAC idle not turning on fix",
+    "faq": [
+      {
+        "q": "Why won't Ecobee turn on my AC?",
+        "a": "Check compressor delay, mode, and equipment configuration."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-calibration",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "CALIBRATING",
+    "displayCode": "Calibrating",
+    "alternativeCodes": [
+      "Calibration"
+    ],
+    "title": "Ecobee stuck on Calibrating screen",
+    "shortDescription": "Thermostat shows 'Calibrating' for longer than 20 minutes during initial setup or after reboot.",
+    "fullDescription": "Ecobee runs a brief calibration after power cycles to measure room temperature accurately. Normal calibration completes within a few minutes. If the screen shows Calibrating for 20+ minutes, the thermostat is likely stuck because of insufficient power or a firmware glitch.\n\nPower-stealing without a C-wire is the most common cause — the thermostat boots but cannot complete initialization. A factory reset and power verification usually clears the state.\n\nIf the problem persists after a C-wire/PEK install, open a ticket with Ecobee support.",
+    "causes": [
+      {
+        "cause": "Insufficient power (no C-wire / no PEK)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Firmware hang during first-boot",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Internal temperature sensor fault",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Screen says Calibrating",
+      "Unit never reaches home screen",
+      "Heat/cool won't run"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait 20 minutes",
+        "instruction": "Allow full calibration time before troubleshooting.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Pull and reseat thermostat",
+        "instruction": "Remove the thermostat from its base for 30 seconds, then reattach to trigger a cold boot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Verify C-wire/PEK",
+        "instruction": "Install a C-wire or Power Extender Kit if not already present.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced",
+      "SmartThermostat"
+    ],
+    "partsNeeded": [
+      {
+        "part": "PEK",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-45 minutes",
+    "whenToCallPro": "If calibration persists after a proven C-wire connection, contact Ecobee support for warranty replacement.",
+    "relatedCodes": [
+      "ecobee-smart-thermostat-no-power"
+    ],
+    "videoSearchQuery": "Ecobee stuck calibrating fix",
+    "faq": [
+      {
+        "q": "How long does Ecobee calibrate?",
+        "a": "Usually 2-5 minutes. Over 20 minutes indicates a problem."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-equipment-not-running",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "EQUIPMENT NOT RUNNING",
+    "displayCode": "Equipment Not Running",
+    "alternativeCodes": [],
+    "title": "Ecobee reports Equipment Not Running alert",
+    "shortDescription": "Thermostat detects it is calling for heat/cool but temperature is not changing as expected.",
+    "fullDescription": "Ecobee monitors whether the indoor temperature responds when equipment is called. If temperature does not move within an expected window, it raises an Equipment Not Running alert via the app.\n\nThis usually points to a real HVAC issue: tripped breaker, low refrigerant, clogged filter, condensate overflow float switch, or frozen evaporator coil. It can also be a false alarm during mild weather or when a door/window is open.\n\nInspect the HVAC equipment directly before assuming a thermostat problem.",
+    "causes": [
+      {
+        "cause": "Tripped HVAC breaker or furnace switch",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Clogged air filter / frozen coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Low refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Condensate float switch tripped",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "App notification",
+      "House not reaching setpoint",
+      "Long runtime without progress"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check breaker",
+        "instruction": "Reset the HVAC breaker and furnace switch.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Replace filter",
+        "instruction": "Install a clean air filter; let any frozen coil thaw for 4 hours.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Empty condensate line",
+        "instruction": "Clear clogged condensate drain; reset float switch.",
+        "tools": [
+          "wet/dry vac"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Air filter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 50
+      },
+      "professional": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "Refrigerant issues, compressor failures, and repeated condensate overflow require an HVAC professional.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee equipment not running alert fix",
+    "faq": [
+      {
+        "q": "Can I dismiss the alert?",
+        "a": "Yes, but verify the HVAC is actually working first."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-wifi-disconnected",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "WIFI DISCONNECTED",
+    "displayCode": "Wi-Fi Disconnected",
+    "alternativeCodes": [
+      "No Internet"
+    ],
+    "title": "Ecobee lost Wi-Fi connection",
+    "shortDescription": "Thermostat shows a disconnected Wi-Fi icon and cannot reach the Ecobee cloud.",
+    "fullDescription": "Ecobee thermostats use 2.4GHz Wi-Fi for cloud connectivity. A Wi-Fi drop prevents remote control, schedules continue to run locally using the last-synced program. Common causes include router reboots, SSID or password changes, 5GHz-only networks, or weak signal at the thermostat location.\n\nIf multiple devices dropped at once, the issue is usually the router. If only Ecobee is affected, re-enter credentials from the thermostat's Wi-Fi settings menu.\n\nEcobee does not support captive portals (hotel Wi-Fi) or WPA3-only networks.",
+    "causes": [
+      {
+        "cause": "Router restart or firmware update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wi-Fi password changed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Weak 2.4GHz signal at thermostat",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Network set to WPA3-only",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No Wi-Fi icon",
+      "App shows thermostat offline",
+      "Remote control fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Restart router",
+        "instruction": "Power cycle your router and wait 2 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reconnect Wi-Fi",
+        "instruction": "On thermostat: Settings > Wi-Fi > select network > enter password.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Switch security mode",
+        "instruction": "Set router to WPA2 or WPA2/WPA3 mixed mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced",
+      "SmartThermostat"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "If Wi-Fi cannot be re-established after router and credential checks, contact Ecobee support.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee wifi disconnected reconnect",
+    "faq": [
+      {
+        "q": "Does Ecobee work on 5GHz?",
+        "a": "No — 2.4GHz only."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-sensor-pairing",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "SENSOR PAIRING",
+    "displayCode": "SmartSensor Not Pairing",
+    "alternativeCodes": [
+      "Sensor Offline"
+    ],
+    "title": "Ecobee SmartSensor will not pair or drops offline",
+    "shortDescription": "Room sensor fails to pair with thermostat or repeatedly shows as offline.",
+    "fullDescription": "Ecobee SmartSensors use a proprietary 915MHz mesh and pair via the thermostat's Sensors menu. Pairing issues are usually caused by a dead coin cell, the tab still present in new sensors, or distance beyond ~45 ft from the thermostat.\n\nSensors that pair and then drop offline generally need a fresh CR2032 battery. Metal shelves, refrigerators, and concrete walls can also block signal.\n\nRemove and re-add the sensor from the thermostat if it remains stuck in an unpaired state.",
+    "causes": [
+      {
+        "cause": "Battery pull-tab still in place",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dead CR2032 battery",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Sensor out of range",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware stuck on sensor",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Sensor not found during pairing",
+      "Sensor shows offline",
+      "No temperature reading"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull tab or replace battery",
+        "instruction": "Remove the plastic pull-tab or install a fresh CR2032.",
+        "tools": [
+          "CR2032 battery"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Re-pair sensor",
+        "instruction": "On thermostat: Main Menu > Sensors > Add Sensor; place sensor within 3 ft during pairing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Relocate sensor",
+        "instruction": "Move sensor closer to thermostat or remove metallic obstructions.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Ecobee SmartSensor",
+      "Ecobee Room Sensor (legacy)"
+    ],
+    "partsNeeded": [
+      {
+        "part": "CR2032 battery",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Rarely required. Contact Ecobee support if a new sensor fails to pair with a fresh battery.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee smart sensor not pairing fix",
+    "faq": [
+      {
+        "q": "What battery does SmartSensor use?",
+        "a": "CR2032 coin cell."
+      },
+      {
+        "q": "How many sensors can I pair?",
+        "a": "Up to 32 on a Premium/Enhanced, 32 on SmartThermostat."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-temperature-off",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "TEMP OFFSET",
+    "displayCode": "Temperature Reading Off",
+    "alternativeCodes": [
+      "Incorrect Temperature"
+    ],
+    "title": "Ecobee temperature reading is inaccurate",
+    "shortDescription": "Displayed room temperature differs from reality by several degrees.",
+    "fullDescription": "Ecobee includes a built-in temperature sensor plus any paired SmartSensors. Inaccuracy is typically caused by the thermostat being mounted on an exterior wall, near a heat source, in direct sunlight, or with air leaking from the wall behind it.\n\nEcobee provides a Temperature Correction setting (-9 to +9 F) under Installation Settings > Thresholds. This should be used only after confirming the physical environment is appropriate.\n\nIf SmartSensors report inaccurate values, replace the CR2032 and confirm the sensor isn't in sun or near electronics.",
+    "causes": [
+      {
+        "cause": "Thermostat in sunlight or near heat source",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Air leak from wall behind thermostat",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Needs temperature correction offset",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty internal sensor",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Reading off by 3-5°F",
+      "Room feels warmer/cooler than displayed"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check mounting location",
+        "instruction": "Move away from sunlight, lamps, TVs, or vents.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Seal wall opening",
+        "instruction": "Stuff insulation into the low-voltage hole behind the thermostat base.",
+        "tools": [
+          "insulation"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Apply correction",
+        "instruction": "Main Menu > Settings > Installation Settings > Thresholds > Temperature Correction.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 10
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If offset of more than 5°F is needed after sealing the wall, request warranty service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee temperature reading wrong fix",
+    "faq": [
+      {
+        "q": "How much offset can I apply?",
+        "a": "Plus or minus 9°F."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-humidity-sensor",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "HUMIDITY SENSOR",
+    "displayCode": "Humidity Sensor Fault",
+    "alternativeCodes": [],
+    "title": "Ecobee humidity reading missing or stuck",
+    "shortDescription": "Thermostat reports implausible humidity (0%, 100%) or no reading.",
+    "fullDescription": "Ecobee's internal humidity sensor can drift after long exposure to high humidity or dust. Readings of 0% or 100% generally mean the sensor has saturated or the ADC has failed.\n\nSoft remedies include a thermostat reboot, firmware update, and applying a humidity correction under Installation Settings. Persistent 0/100% values usually require warranty replacement because the sensor is soldered to the main board.\n\nHumidifier/dehumidifier output can still run if you configure humidity control with a SmartSensor or external source.",
+    "causes": [
+      {
+        "cause": "Sensor saturated after long high humidity",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed onboard humidity IC",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Humidity shows 0% or 100%",
+      "Humidifier won't run",
+      "No dehumidify demand"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reboot thermostat",
+        "instruction": "Pull from base for 30s and reattach.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Update firmware",
+        "instruction": "Main Menu > About > Check for Update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Contact warranty",
+        "instruction": "If reading persists, file a claim with Ecobee (3-5 year warranty).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 280
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-30 minutes",
+    "whenToCallPro": "Humidity IC failures require Ecobee warranty replacement.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee humidity sensor stuck 0 100 fix",
+    "faq": [
+      {
+        "q": "Is humidity sensor replaceable?",
+        "a": "No — it's soldered to the main board; request a replacement unit."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-air-quality",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "AIR QUALITY",
+    "displayCode": "Air Quality Monitor Fault",
+    "alternativeCodes": [
+      "VOC Error"
+    ],
+    "title": "Ecobee Premium air quality monitor not reporting",
+    "shortDescription": "VOC, CO2, or PM sensor reads error or provides no data (Ecobee Premium only).",
+    "fullDescription": "Ecobee Premium ships with an indoor air quality (IAQ) monitor that tracks VOC, CO2-eq, and particulate matter. The sensor requires a 24-hour burn-in period after install. If after 24h it still shows no data or an error, confirm firmware is current and reboot.\n\nCleaning products, new paint, or nearby stoves can saturate the VOC sensor for hours. This is normal and readings recover once the air clears.\n\nHardware failure of the IAQ module requires warranty service.",
+    "causes": [
+      {
+        "cause": "Initial 24-hour burn-in incomplete",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "VOC saturation from cleaning/paint",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Firmware bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "IAQ module hardware failure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Air quality tile blank",
+      "Error on IAQ card",
+      "VOC pinned high"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait 24h",
+        "instruction": "Allow full burn-in period.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1440
+      },
+      {
+        "step": 2,
+        "title": "Ventilate room",
+        "instruction": "Open windows 30 min to flush VOC saturation.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Update + reboot",
+        "instruction": "Install latest firmware and pull/reseat thermostat.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ecobee Premium"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 280
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes - 24 hours",
+    "whenToCallPro": "Persistent errors after burn-in and firmware update need Ecobee warranty.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee Premium air quality not working fix",
+    "faq": [
+      {
+        "q": "Does Ecobee Enhanced have air quality?",
+        "a": "No — Premium only."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-software-update",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "UPDATE FAILED",
+    "displayCode": "Software Update Failed",
+    "alternativeCodes": [
+      "FW Update Error"
+    ],
+    "title": "Ecobee firmware update fails or hangs",
+    "shortDescription": "Thermostat cannot complete an OTA firmware update.",
+    "fullDescription": "Ecobee pushes firmware updates automatically during overnight windows. Failures generally trace to Wi-Fi instability, limited power, or server-side issues at Ecobee.\n\nLet the thermostat retry for 24 hours — most failures resolve without action. If it's still stuck, force an update from Main Menu > About > Check for Update, then reboot.\n\nThermostats on power-stealing without a C-wire sometimes cannot hold connection long enough to complete the download.",
+    "causes": [
+      {
+        "cause": "Weak Wi-Fi during download",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Insufficient power",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Ecobee server outage",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Update restarts repeatedly",
+      "Stuck on update screen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Let it retry overnight",
+        "instruction": "Ecobee automatically re-attempts updates in low-use hours.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 720
+      },
+      {
+        "step": 2,
+        "title": "Force update",
+        "instruction": "Main Menu > About > Check for Update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check Ecobee status",
+        "instruction": "Visit status.ecobee.com to confirm no outage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "All Ecobee Wi-Fi models"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes - 24 hours",
+    "whenToCallPro": "If bricked by a failed update, contact Ecobee support.",
+    "relatedCodes": [
+      "ecobee-smart-thermostat-wifi-disconnected"
+    ],
+    "videoSearchQuery": "Ecobee firmware update stuck fix",
+    "faq": [
+      {
+        "q": "Can I skip updates?",
+        "a": "No — Ecobee requires current firmware."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-reversing-valve",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "O/B REVERSED",
+    "displayCode": "Heat Pump O/B Reversed",
+    "alternativeCodes": [],
+    "title": "Ecobee heat pump blowing cold in heat mode",
+    "shortDescription": "Reversing valve O/B polarity configured incorrectly for the heat pump.",
+    "fullDescription": "Heat pumps use an O or B reversing valve signal to select heating or cooling. If configured wrong, cooling runs when you call for heat and vice-versa. Most modern heat pumps use O (energize on cool); older Rheem/Ruud systems use B (energize on heat).\n\nChange this in Installation Settings > Equipment > Reversing Valve. Do not change wiring — only the thermostat setting.\n\nWrong configuration does not damage equipment but will never satisfy setpoint.",
+    "causes": [
+      {
+        "cause": "O vs B set incorrectly in Installation Settings",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cold air when heating",
+      "Warm air when cooling",
+      "House never reaches setpoint"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Open Equipment Settings",
+        "instruction": "Main Menu > Settings > Installation Settings > Equipment > Heat Pump > Reversing Valve.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Toggle O/B",
+        "instruction": "Switch between O (energize on cool) and B (energize on heat).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Test cycle",
+        "instruction": "Call for heat, confirm warm supply air; then call for cool.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-20 minutes",
+    "whenToCallPro": "Only if unsure which type your system uses — consult HVAC installer.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee heat pump reversing valve O B fix",
+    "faq": [
+      {
+        "q": "Which is default?",
+        "a": "O — used by most modern heat pumps."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-smart-thermostat-aux-heat-running",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Smart Thermostat",
+    "deviceTypeSlug": "smart-thermostat",
+    "code": "AUX HEAT",
+    "displayCode": "Auxiliary Heat Running Excessively",
+    "alternativeCodes": [
+      "Emergency Heat Alert"
+    ],
+    "title": "Ecobee runs auxiliary heat too often",
+    "shortDescription": "Aux/strip heat is activating in conditions that should allow the heat pump alone.",
+    "fullDescription": "Ecobee calls auxiliary heat when the heat pump cannot meet demand. Excessive aux use drives up electric bills. Common triggers: aggressive setpoint recovery, incorrect compressor-to-aux differential, low outdoor temperature balance point, or actual heat pump underperformance.\n\nReview Smart Recovery behavior and adjust 'Compressor to Aux Temp Delta' under Thresholds. For dual-fuel setups, confirm balance point temperature matches your climate.\n\nPersistent aux use with correct settings indicates a refrigerant or defrost issue.",
+    "causes": [
+      {
+        "cause": "Setpoint recovery too aggressive",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Low compressor-to-aux delta",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Heat pump low on refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Defrost issue",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Aux Heat indicator frequently on",
+      "High electricity bills",
+      "Heat pump rarely runs alone"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Increase aux delta",
+        "instruction": "Set 'Compressor to Aux Temp Delta' to 2-3°F.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable smart recovery",
+        "instruction": "Turn off Smart Recovery to prevent preheating spikes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Set outdoor temp sensor",
+        "instruction": "Link weather station and set lockouts for aux heat.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Ecobee3 Lite",
+      "Ecobee4",
+      "Ecobee Premium",
+      "Ecobee Enhanced"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "whenToCallPro": "If aux stays on with correct thresholds, have HVAC check refrigerant and defrost.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Ecobee auxiliary heat running too much fix",
+    "faq": [
+      {
+        "q": "Is aux heat bad?",
+        "a": "No, but excessive use is costly."
+      }
+    ]
+  }
+]
