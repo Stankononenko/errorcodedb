@@ -475,6 +475,17 @@ export const APPLIANCE_BRANDS = [
   { name: "Kubota", slug: "kubota", country: "Japan" },
   { name: "Yanmar", slug: "yanmar", country: "Japan" },
   { name: "Massey Ferguson", slug: "massey-ferguson", country: "USA" },
+  // ── Personal Care / Medical ──
+  { name: "Dyson Hair", slug: "dyson-hair", country: "UK" },
+  { name: "BaByliss", slug: "babyliss", country: "France" },
+  { name: "ghd", slug: "ghd", country: "UK" },
+  { name: "Braun Shaver", slug: "braun-shaver", country: "Germany" },
+  { name: "Philips Shaver", slug: "philips-shaver", country: "Netherlands" },
+  { name: "Philips CPAP", slug: "philips-cpap", country: "Netherlands" },
+  { name: "Panasonic Shaver", slug: "panasonic-shaver", country: "Japan" },
+  { name: "Conair", slug: "conair", country: "USA" },
+  { name: "Remington", slug: "remington", country: "USA" },
+  { name: "Withings", slug: "withings", country: "France" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
