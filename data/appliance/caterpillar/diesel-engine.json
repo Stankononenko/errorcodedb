@@ -1,0 +1,1227 @@
+[
+  {
+    "id": "caterpillar-diesel-engine-spn-3361-fmi-5",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-3361-FMI-5",
+    "displayCode": "SPN 3361 FMI 5",
+    "alternativeCodes": [
+      "E1923",
+      "CID 3361 FMI 5"
+    ],
+    "title": "DEF Dosing Unit Open Circuit",
+    "shortDescription": "ECM has detected an open circuit in the diesel exhaust fluid (DEF) dosing valve injector circuit.",
+    "fullDescription": "The Caterpillar ECM monitors current draw on the DEF dosing valve solenoid. When current is below threshold, it logs SPN 3361 FMI 5 indicating an electrical open. Engine will derate after extended fault duration to protect aftertreatment.\n\nCommon on C7, C9, C13 and C15 ACERT/SCR engines. Failure to clear within 50 hours triggers a 25 percent torque derate per EPA regulations.",
+    "causes": [
+      {
+        "cause": "Failed DEF dosing valve solenoid",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged dosing unit harness or chafed wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corroded or unseated dosing unit connector",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Open circuit in ECM driver",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Engine derate after warning",
+      "DEF light on dash",
+      "No DEF spray heard during regen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read active and inactive faults",
+        "instruction": "Connect Cat ET or heavy-truck scan tool, capture freeze frame for SPN 3361.",
+        "tools": [
+          "Cat ET diagnostic software",
+          "Heavy-truck OBD scanner"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Inspect dosing unit connector",
+        "instruction": "Disconnect harness at DEF dosing valve, check for green corrosion, bent pins, water intrusion. Clean with electrical contact cleaner.",
+        "tools": [
+          "Contact cleaner",
+          "Pick set"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Measure dosing valve resistance",
+        "instruction": "With key off, measure across solenoid pins. Spec is 10-14 ohms at 20C. Open or out-of-spec means replace dosing valve.",
+        "tools": [
+          "Digital multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace DEF dosing valve",
+        "instruction": "Drain DEF lines, unbolt dosing valve from SCR inlet, install new unit with new gasket, torque to 8 Nm.",
+        "tools": [
+          "Metric socket set",
+          "Torque wrench"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 5,
+        "title": "Force regen and clear codes",
+        "instruction": "Run parked regen via Cat ET, monitor DEF dosing actual vs commanded, clear inactive faults.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15",
+      "CT13",
+      "CT15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DEF dosing valve assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Dosing valve gasket",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 250,
+        "max": 700
+      },
+      "professional": {
+        "min": 800,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "If derate is active and you lack Cat ET, take to a certified Cat dealer to avoid permanent 5 mph limp mode.",
+    "relatedCodes": [
+      "SPN-4334-FMI-1",
+      "SPN-1761-FMI-17"
+    ],
+    "videoSearchQuery": "Caterpillar SPN 3361 DEF dosing valve replacement",
+    "faq": [
+      {
+        "q": "Will my truck derate?",
+        "a": "Yes, after 50 hours of an active fault EPA mandates a 25 percent torque derate, then 5 mph limp."
+      },
+      {
+        "q": "Can I just clear the code?",
+        "a": "No, the ECM will reset it within minutes if the underlying open circuit is not repaired."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-4334-fmi-1",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-4334-FMI-1",
+    "displayCode": "SPN 4334 FMI 1",
+    "alternativeCodes": [
+      "E1925"
+    ],
+    "title": "DEF Pump Pressure Low",
+    "shortDescription": "DEF supply module is unable to build commanded pressure.",
+    "fullDescription": "Caterpillar SCR aftertreatment requires roughly 9 bar of DEF rail pressure. SPN 4334 FMI 1 sets when measured pressure stays below the lower threshold during build-up.\n\nUsually caused by a clogged DEF filter, frozen lines, contaminated DEF, or a worn pump diaphragm in the supply module.",
+    "causes": [
+      {
+        "cause": "Clogged DEF main filter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Crystallized or contaminated DEF",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Worn DEF pump diaphragm",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Air leak on suction line",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Yellow DEF lamp",
+      "Engine derate",
+      "Audible DEF pump cycling continuously",
+      "DEF quality fault"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test DEF concentration",
+        "instruction": "Use refractometer, must read 32.5 percent urea. If off, drain and refill with fresh DEF.",
+        "tools": [
+          "DEF refractometer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Replace DEF main filter",
+        "instruction": "Locate filter on supply module, unscrew cap, install new filter element and O-ring.",
+        "tools": [
+          "DEF filter socket"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Run pressure build-up test",
+        "instruction": "Use Cat ET DEF system test, watch pressure climb to 9 bar in under 60 seconds.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace DEF supply module if pressure low",
+        "instruction": "Drain tank, disconnect lines, swap pump module, prime system.",
+        "tools": [
+          "Metric socket set",
+          "DEF-safe drain pan"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 180
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DEF main filter kit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "DEF supply module",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 1400
+      },
+      "professional": {
+        "min": 400,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "Pump module replacement requires Cat ET to commission and prime properly.",
+    "relatedCodes": [
+      "SPN-3361-FMI-5",
+      "SPN-1761-FMI-17"
+    ],
+    "videoSearchQuery": "Caterpillar DEF pump pressure low SPN 4334",
+    "faq": [
+      {
+        "q": "Can old DEF cause this?",
+        "a": "Yes. DEF older than 12 months or stored above 30C breaks down and clogs filters."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-1761-fmi-17",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-1761-FMI-17",
+    "displayCode": "SPN 1761 FMI 17",
+    "alternativeCodes": [],
+    "title": "DEF Tank Level Low",
+    "shortDescription": "Diesel exhaust fluid level has dropped below the warning threshold.",
+    "fullDescription": "FMI 17 indicates data valid but below normal, least severe. Cat trucks warn at 10 percent, 5 percent, then derate at empty.\n\nTop off the DEF tank with ISO 22241 fluid only. Do not use water or contaminated DEF.",
+    "causes": [
+      {
+        "cause": "DEF tank low or empty",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty DEF level sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Frozen DEF in tank header",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DEF gauge low",
+      "Yellow then red DEF lamp",
+      "Speed limit warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Refill DEF",
+        "instruction": "Add ISO 22241 DEF until tank reads above 50 percent.",
+        "tools": [
+          "DEF jug"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify level reads correctly",
+        "instruction": "Cycle key, watch dash gauge. If level still reads low, sensor or header unit is faulty.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace DEF header unit if needed",
+        "instruction": "Drain tank, remove level sender from top of tank, install new unit and seal.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 90
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DEF fluid",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "DEF header sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 350
+      },
+      "professional": {
+        "min": 150,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-90 min",
+    "whenToCallPro": "Only if level sensor replacement fails to clear the code.",
+    "relatedCodes": [
+      "SPN-3361-FMI-5"
+    ],
+    "videoSearchQuery": "Caterpillar DEF tank level low SPN 1761",
+    "faq": [
+      {
+        "q": "What DEF should I use?",
+        "a": "Any ISO 22241-compliant 32.5 percent urea solution."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-5246-fmi-0",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-5246-FMI-0",
+    "displayCode": "SPN 5246 FMI 0",
+    "alternativeCodes": [],
+    "title": "Aftertreatment SCR System Severe Derate",
+    "shortDescription": "SCR system has reached the most severe inducement, vehicle limited to 5 mph.",
+    "fullDescription": "SPN 5246 FMI 0 is the EPA-mandated final inducement when an SCR fault is ignored long enough. The engine speed is limited to idle and vehicle to 5 mph until the underlying fault is repaired and a forced regen is completed.\n\nThis is always preceded by another SCR fault (NOx sensor, DEF quality, dosing pressure). Fix the root cause first.",
+    "causes": [
+      {
+        "cause": "Unresolved upstream SCR fault",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Tampering with DEF system",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "DEF quality out of spec for >50 hours",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "5 mph speed limit",
+      "Red engine lamp",
+      "Cannot leave idle without limp"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Diagnose root SCR fault",
+        "instruction": "Pull all active and inactive aftertreatment codes with Cat ET, repair upstream cause first.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      },
+      {
+        "step": 2,
+        "title": "Repair source fault",
+        "instruction": "Replace failed sensor, dosing valve, or correct DEF quality.",
+        "tools": [
+          "Heavy-truck tool kit"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      },
+      {
+        "step": 3,
+        "title": "Run forced regen",
+        "instruction": "Use Cat ET to command parked regen, then key cycle. Inducement clears after successful regen and clean drive cycle.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-8 hours",
+    "whenToCallPro": "Always. Final inducement requires dealer-level diagnostics and EPA compliance procedure.",
+    "relatedCodes": [
+      "SPN-3361-FMI-5",
+      "SPN-4334-FMI-1",
+      "SPN-1761-FMI-17"
+    ],
+    "videoSearchQuery": "Caterpillar SPN 5246 FMI 0 5 mph derate",
+    "faq": [
+      {
+        "q": "Can I drive home?",
+        "a": "No. The truck is limited to 5 mph and must be repaired or towed."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-3251-fmi-0",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-3251-FMI-0",
+    "displayCode": "SPN 3251 FMI 0",
+    "alternativeCodes": [],
+    "title": "DPF Differential Pressure High",
+    "shortDescription": "Pressure drop across the diesel particulate filter is above the upper threshold.",
+    "fullDescription": "The differential pressure sensor measures soot loading on the DPF. When delta-P exceeds limits, the ECM sets SPN 3251 FMI 0 and demands a regen.\n\nIf passive and active regens fail, the filter is overloaded and may need a forced parked regen or removal for ash cleaning.",
+    "causes": [
+      {
+        "cause": "Excessive soot loading from short trips or idling",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed regen attempts due to other faults",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Ash-loaded DPF needs cleaning service",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Faulty differential pressure sensor or plugged hoses",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "DPF lamp on",
+      "Reduced power",
+      "Active regen requested",
+      "Black smoke"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify DP sensor with Cat ET",
+        "instruction": "At idle, delta-P should read under 1 kPa. If pegged or zero with engine off, sensor or hose is faulty.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Inspect and clear DP sensor lines",
+        "instruction": "Remove silicone hoses, blow out with compressed air. Replace if cracked.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Perform parked regen",
+        "instruction": "Run forced regen via Cat ET, exhaust temp must reach 600C for 30 minutes.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Send DPF for ash cleaning",
+        "instruction": "If regen fails to lower delta-P, remove DPF and send to ash cleaning service or replace.",
+        "tools": [
+          "DPF service tools"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DPF gaskets",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "DP sensor hose kit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 400,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "whenToCallPro": "If forced regen fails, DPF removal and bake/cleaning is a dealer or specialist job.",
+    "relatedCodes": [
+      "SPN-3719-FMI-0",
+      "SPN-3936-FMI-2"
+    ],
+    "videoSearchQuery": "Caterpillar SPN 3251 DPF differential pressure",
+    "faq": [
+      {
+        "q": "How often should I regen?",
+        "a": "Most highway-driven trucks regen passively. If you idle a lot, force a manual regen weekly."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-3719-fmi-0",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-3719-FMI-0",
+    "displayCode": "SPN 3719 FMI 0",
+    "alternativeCodes": [],
+    "title": "DPF Soot Load Very High",
+    "shortDescription": "Calculated soot load exceeds maximum, immediate parked regen required.",
+    "fullDescription": "When soot estimation crosses the upper alarm, Cat sets SPN 3719 FMI 0 and lights the high soot lamp. If the operator does not initiate a parked regen, the engine will derate, then enter limp.\n\nDriving the truck under load on the highway is sometimes enough to clear it, but a parked regen is the recommended fix.",
+    "causes": [
+      {
+        "cause": "Repeated regen suppression by operator",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Excessive low-load idling",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Faulty fuel injector causing rich mixture",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failed turbo causing high EGTs",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Soot lamp solid",
+      "Power reduction warning",
+      "Regen request flashing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Initiate parked regen",
+        "instruction": "Park, set brake, neutral, hold regen switch. Cycle takes 30-60 minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Diagnose if regen fails",
+        "instruction": "Connect Cat ET, check EGT inlet/outlet, fuel system pressure, doser injector.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Repair upstream fault",
+        "instruction": "Replace fuel doser, leaking injector, or failed turbo as indicated.",
+        "tools": [
+          "Heavy-truck tool kit"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 250,
+        "max": 3000
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 min - 4 hours",
+    "whenToCallPro": "Only if a parked regen does not bring soot load down.",
+    "relatedCodes": [
+      "SPN-3251-FMI-0"
+    ],
+    "videoSearchQuery": "Caterpillar SPN 3719 high soot regen",
+    "faq": [
+      {
+        "q": "Will it hurt the engine to drive?",
+        "a": "Continuing to suppress regens can melt the DPF substrate, a $4000+ part."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-102-fmi-3",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-102-FMI-3",
+    "displayCode": "SPN 102 FMI 3",
+    "alternativeCodes": [
+      "E0361"
+    ],
+    "title": "Boost Pressure Sensor Voltage High",
+    "shortDescription": "Manifold absolute pressure (boost) sensor signal is above expected range.",
+    "fullDescription": "Cat ECM expects the boost sensor signal to fall within 0.5-4.5V. FMI 3 indicates an above-normal voltage, usually from an open ground or a shorted-to-power signal wire.\n\nThe ECM substitutes a default boost value and the engine runs in low-power limp.",
+    "causes": [
+      {
+        "cause": "Failed boost pressure sensor",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Shorted-to-power signal wire",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Open sensor ground",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Low power",
+      "Black smoke",
+      "MIL on",
+      "No turbo response"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect sensor connector",
+        "instruction": "Check for oil contamination from blow-by, clean with electrical cleaner.",
+        "tools": [
+          "Contact cleaner"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Voltage test",
+        "instruction": "With key on, signal pin should be 0.5V. Reads 5V means short to power; replace sensor.",
+        "tools": [
+          "Digital multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace boost sensor",
+        "instruction": "Located on intake manifold. Unbolt, install new sensor with O-ring, torque to 8 Nm.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Boost pressure sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 250
+      },
+      "professional": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Wiring damage diagnosis is faster with a dealer scan tool harness break-out box.",
+    "relatedCodes": [
+      "SPN-105-FMI-3"
+    ],
+    "videoSearchQuery": "Caterpillar boost sensor replacement SPN 102",
+    "faq": [
+      {
+        "q": "Is the sensor at the intake?",
+        "a": "Yes, threaded into the intake manifold near the EGR valve."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-651-fmi-5",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-651-FMI-5",
+    "displayCode": "SPN 651 FMI 5",
+    "alternativeCodes": [],
+    "title": "Cylinder 1 Injector Open Circuit",
+    "shortDescription": "Open circuit detected in the cylinder 1 fuel injector solenoid.",
+    "fullDescription": "Each Cat HEUI or common-rail injector has its own driver in the ECM. FMI 5 is current below normal, indicating the injector solenoid winding is open or the harness has broken.\n\nThe affected cylinder is dropped, causing rough idle and a power loss roughly proportional to the cylinder count.",
+    "causes": [
+      {
+        "cause": "Failed injector solenoid",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Damaged valve cover harness",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Loose injector connector under valve cover",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Misfire on cylinder 1",
+      "Rough idle",
+      "White smoke",
+      "Reduced power"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run cylinder cut-out test",
+        "instruction": "Use Cat ET cylinder cutout to verify cylinder 1 is not contributing.",
+        "tools": [
+          "Cat ET"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Pull valve cover",
+        "instruction": "Remove rocker cover, inspect injector harness pass-through and connector for oil/damage.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Test injector resistance",
+        "instruction": "Spec is 0.3-0.5 ohms. Open reading confirms internal failure.",
+        "tools": [
+          "Digital multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace injector and reprogram trim code",
+        "instruction": "Install new injector with new O-rings, torque hold-down, enter 12-digit trim code into Cat ET.",
+        "tools": [
+          "Cat ET",
+          "Torque wrench"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 120
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Fuel injector",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Injector O-ring kit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Valve cover gasket",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 400,
+        "max": 1200
+      },
+      "professional": {
+        "min": 1000,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-5 hours",
+    "whenToCallPro": "Trim code programming and torque-to-yield procedures benefit from dealer-grade tools.",
+    "relatedCodes": [
+      "SPN-652-FMI-5",
+      "SPN-653-FMI-5"
+    ],
+    "videoSearchQuery": "Caterpillar C15 injector replacement SPN 651",
+    "faq": [
+      {
+        "q": "Do I have to enter a trim code?",
+        "a": "Yes, otherwise the new injector will not deliver accurate fuel quantity."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-94-fmi-1",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-94-FMI-1",
+    "displayCode": "SPN 94 FMI 1",
+    "alternativeCodes": [],
+    "title": "Fuel Delivery Pressure Low",
+    "shortDescription": "Fuel transfer pump is not maintaining minimum supply pressure to the high-pressure pump.",
+    "fullDescription": "Cat C-series engines need 35-65 psi of low-pressure fuel feed. SPN 94 FMI 1 indicates pressure dropped below minimum, often from a clogged primary filter, failing transfer pump, or air leak on the suction side.\n\nLow supply pressure starves the HEUI/common-rail pump and causes hard start, low power, and stalling.",
+    "causes": [
+      {
+        "cause": "Plugged fuel filter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Air leak on suction line",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Worn transfer pump",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Restricted fuel tank pickup",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Hard start",
+      "Low power",
+      "Stalling under load",
+      "Air in fuel"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace primary and secondary filters",
+        "instruction": "Drain water separator, install new elements, prime system.",
+        "tools": [
+          "Filter wrench"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Test supply pressure",
+        "instruction": "Tap a gauge into the test port, expect 35-65 psi at idle.",
+        "tools": [
+          "Fuel pressure gauge"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Inspect for air leaks",
+        "instruction": "Pressurize suction side to 5 psi, look for bubbles in clear section or use smoke tester.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace transfer pump",
+        "instruction": "Bolt-on unit on side of high-pressure pump or block. Use new gasket.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 90
+      }
+    ],
+    "affectedModels": [
+      "C7",
+      "C9",
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Primary fuel filter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Secondary fuel filter",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Transfer pump",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 600
+      },
+      "professional": {
+        "min": 250,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "whenToCallPro": "If the high-pressure pump shows wear from running starved, dealer service needed.",
+    "relatedCodes": [
+      "SPN-157-FMI-1"
+    ],
+    "videoSearchQuery": "Caterpillar fuel pressure low SPN 94",
+    "faq": [
+      {
+        "q": "Could it be the tank?",
+        "a": "Yes, plugged tank pickup screen or kinked supply hose will starve the pump."
+      }
+    ]
+  },
+  {
+    "id": "caterpillar-diesel-engine-spn-411-fmi-3",
+    "brand": "Caterpillar",
+    "brandSlug": "caterpillar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "SPN-411-FMI-3",
+    "displayCode": "SPN 411 FMI 3",
+    "alternativeCodes": [],
+    "title": "EGR Differential Pressure Sensor High",
+    "shortDescription": "EGR delta-P sensor signal voltage is above the upper limit.",
+    "fullDescription": "Cat C13/C15 engines use a delta-P sensor across an EGR orifice to compute mass flow. FMI 3 means voltage above normal, typically from a plugged sensor port or shorted signal wire.\n\nWith bad EGR feedback, the ECM disables EGR, causing high NOx and a regulatory fault.",
+    "causes": [
+      {
+        "cause": "Carbon-plugged sensor port tubes",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed delta-P sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Short to power on signal wire",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "EGR fault",
+      "Increased NOx",
+      "Slight power loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Remove and clean sensor lines",
+        "instruction": "Pull the steel tubes from EGR cooler, clean carbon with brake cleaner and wire.",
+        "tools": [
+          "Wire brush",
+          "Brake cleaner"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Voltage check sensor",
+        "instruction": "Reference voltage 5V, signal at engine off should be ~2.5V. Replace if pegged high.",
+        "tools": [
+          "Digital multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace EGR delta-P sensor",
+        "instruction": "Unbolt sensor, install new with new O-rings.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "C13",
+      "C15"
+    ],
+    "partsNeeded": [
+      {
+        "part": "EGR delta-P sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "EGR sensor tube kit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 300,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If carbon plugging is severe enough that EGR cooler needs cleaning.",
+    "relatedCodes": [
+      "SPN-2791-FMI-7"
+    ],
+    "videoSearchQuery": "Caterpillar EGR delta P sensor SPN 411",
+    "faq": [
+      {
+        "q": "Will the engine run?",
+        "a": "Yes, the ECM substitutes a value but emissions are out of spec."
+      }
+    ]
+  }
+]

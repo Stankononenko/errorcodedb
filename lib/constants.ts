@@ -454,6 +454,27 @@ export const APPLIANCE_BRANDS = [
   { name: "Winterhalter", slug: "winterhalter", country: "Germany" },
   { name: "Jackson", slug: "jackson", country: "USA" },
   { name: "Champion", slug: "champion", country: "USA" },
+  // ── Small kitchen ──
+  { name: "Blendtec", slug: "blendtec", country: "USA" },
+  { name: "GE Cafe", slug: "ge-cafe", country: "USA" },
+  { name: "Cosori", slug: "cosori", country: "USA" },
+  { name: "Levoit", slug: "levoit", country: "USA" },
+  { name: "Ankarsrum", slug: "ankarsrum", country: "Sweden" },
+  { name: "Bonavita", slug: "bonavita", country: "USA" },
+  { name: "Technivorm", slug: "technivorm", country: "Netherlands" },
+  { name: "Severin", slug: "severin", country: "Germany" },
+  { name: "Krups", slug: "krups", country: "France" },
+  // ── Diesel & Heavy Truck ──
+  { name: "Caterpillar", slug: "caterpillar", country: "USA" },
+  { name: "PACCAR", slug: "paccar", country: "USA" },
+  { name: "Duramax", slug: "duramax", country: "USA" },
+  { name: "Power Stroke", slug: "powerstroke", country: "USA" },
+  { name: "Ram Cummins", slug: "ram-cummins", country: "USA" },
+  { name: "John Deere Tractor", slug: "john-deere-tractor", country: "USA" },
+  { name: "Case IH", slug: "case-ih", country: "USA" },
+  { name: "Kubota", slug: "kubota", country: "Japan" },
+  { name: "Yanmar", slug: "yanmar", country: "Japan" },
+  { name: "Massey Ferguson", slug: "massey-ferguson", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<

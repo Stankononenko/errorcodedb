@@ -1,0 +1,1283 @@
+[
+  {
+    "id": "paccar-diesel-engine-p1c4d",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P1C4D",
+    "displayCode": "P1C4D / SPN 5394 FMI 7",
+    "alternativeCodes": [
+      "SPN-5394-FMI-7"
+    ],
+    "title": "DEF Dosing Valve Mechanical Fault",
+    "shortDescription": "DEF dosing valve is not responding to commanded flow, ECM detects mechanical failure.",
+    "fullDescription": "PACCAR MX-13 and MX-11 SCR systems use a Bosch dosing module. When commanded DEF flow does not produce expected pressure drop in the rail, the ECM logs P1C4D / SPN 5394 FMI 7.\n\nUsually crystallized DEF inside the doser tip or a stuck plunger. Triggers escalating inducement: yellow lamp, derate, and ultimately 5 mph speed limit.",
+    "causes": [
+      {
+        "cause": "Crystallized DEF in dosing valve tip",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Stuck dosing valve plunger",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed dosing valve heater",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Yellow DEF lamp",
+      "Engine derate",
+      "Audible doser not clicking"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run DEF dosing test in DAVIE4",
+        "instruction": "Use PACCAR DAVIE4 to command dosing, observe pressure drop and audible click.",
+        "tools": [
+          "PACCAR DAVIE4 software",
+          "Heavy-truck OBD scanner"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Remove and inspect dosing valve",
+        "instruction": "Unbolt from SCR inlet, clean crystallized DEF with warm water, inspect tip.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace dosing valve assembly",
+        "instruction": "Install new Bosch dosing module with new gasket, torque to 10 Nm.",
+        "tools": [
+          "Torque wrench"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Reset adaptations",
+        "instruction": "Use DAVIE4 to reset SCR adaptations and force regen.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DEF dosing valve assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Dosing valve gasket",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 350,
+        "max": 900
+      },
+      "professional": {
+        "min": 700,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-3 hours",
+    "whenToCallPro": "DAVIE4 is required to reset adaptations after replacement.",
+    "relatedCodes": [
+      "P207F",
+      "P20EE"
+    ],
+    "videoSearchQuery": "PACCAR MX-13 P1C4D dosing valve fix",
+    "faq": [
+      {
+        "q": "Will warm water actually clean it?",
+        "a": "Yes, urea is water-soluble. Soak the doser tip in 50C water for 15 minutes."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p20ee",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P20EE",
+    "displayCode": "P20EE / SPN 4364 FMI 18",
+    "alternativeCodes": [
+      "SPN-4364-FMI-18"
+    ],
+    "title": "SCR NOx Catalyst Efficiency Below Threshold",
+    "shortDescription": "Outlet NOx sensor reports too much NOx leaving the SCR catalyst.",
+    "fullDescription": "ECM compares inlet vs outlet NOx readings. P20EE sets when conversion efficiency drops below the EPA threshold (typically 70 percent).\n\nRoot causes range from out-of-spec DEF, failed NOx sensors, sulfated catalyst, or excessive exhaust leaks before the outlet sensor.",
+    "causes": [
+      {
+        "cause": "Failed outlet NOx sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed inlet NOx sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Contaminated DEF (water, fuel)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Sulfated SCR catalyst",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Exhaust leak before outlet sensor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Yellow MIL",
+      "Derate at 50 hours",
+      "Final 5 mph inducement at 100 hours"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify DEF quality",
+        "instruction": "Use refractometer, must read 32.5 percent urea.",
+        "tools": [
+          "DEF refractometer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Inspect for exhaust leaks",
+        "instruction": "Check V-band clamps and gaskets between turbo and SCR outlet.",
+        "tools": [
+          "Inspection mirror"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Replace NOx sensors",
+        "instruction": "Replace outlet first, retest. If still failing, replace inlet. Use 22 mm NOx socket.",
+        "tools": [
+          "NOx sensor socket"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Run SCR efficiency test",
+        "instruction": "Use DAVIE4 to run efficiency test after parked regen.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "NOx sensor (outlet)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "NOx sensor (inlet)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Exhaust V-band gaskets",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 400,
+        "max": 1500
+      },
+      "professional": {
+        "min": 900,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "2-4 hours",
+    "whenToCallPro": "If NOx sensors and DEF quality are good, catalyst replacement is a dealer job.",
+    "relatedCodes": [
+      "P1C4D",
+      "P207F"
+    ],
+    "videoSearchQuery": "PACCAR MX-13 P20EE NOx sensor replacement",
+    "faq": [
+      {
+        "q": "Which sensor first?",
+        "a": "Outlet NOx sensor fails 3x more often than inlet on MX engines."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p207f",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P207F",
+    "displayCode": "P207F / SPN 4094 FMI 1",
+    "alternativeCodes": [
+      "SPN-4094-FMI-1"
+    ],
+    "title": "DEF Quality Performance",
+    "shortDescription": "Reductant quality below required performance level.",
+    "fullDescription": "Set when SCR cannot achieve target NOx reduction with normal dosing. The ECM concludes DEF is contaminated or diluted.\n\nLong derate timeline: warning, then 25 percent torque reduction, then 5 mph speed limit per EPA inducement schedule.",
+    "causes": [
+      {
+        "cause": "DEF diluted with water",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Off-spec DEF (non ISO 22241)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "DEF tank contamination from prior fill",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Yellow DEF lamp",
+      "MIL",
+      "Derate warning"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test DEF with refractometer",
+        "instruction": "Should read 32.5 percent urea. Off means drain and refill.",
+        "tools": [
+          "Refractometer"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Drain DEF tank",
+        "instruction": "Remove drain plug or pump out, dispose properly.",
+        "tools": [
+          "DEF drain pan",
+          "Hand pump"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Refill with fresh ISO 22241 DEF",
+        "instruction": "Use only API-certified DEF, fill to full.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Clear codes and run regen",
+        "instruction": "Clear with DAVIE4, run drive cycle to confirm.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DEF fluid (ISO 22241)",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 150
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "whenToCallPro": "If quality remains flagged after a clean refill, NOx sensor or catalyst diagnosis needed.",
+    "relatedCodes": [
+      "P20EE"
+    ],
+    "videoSearchQuery": "PACCAR P207F DEF quality fix",
+    "faq": [
+      {
+        "q": "Did someone put water in?",
+        "a": "Common cause. Always refill from sealed jugs or trusted bulk dispensers."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p2459",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P2459",
+    "displayCode": "P2459 / SPN 3719 FMI 0",
+    "alternativeCodes": [
+      "SPN-3719-FMI-0"
+    ],
+    "title": "DPF Regeneration Frequency Excessive",
+    "shortDescription": "Active regenerations are occurring more often than expected.",
+    "fullDescription": "MX engines log frequency of active regens. P2459 sets when regens occur too close together, indicating excess soot production from poor combustion or short-trip duty.\n\nPossible upstream causes: leaking injector, charge air leak, EGR sticking open, fuel doser dripping.",
+    "causes": [
+      {
+        "cause": "Leaking fuel injector",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Charge air cooler leak",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EGR valve stuck open",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Short-trip duty cycle",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Frequent regens",
+      "MIL on",
+      "Black smoke",
+      "High fuel use"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pressure-test charge air system",
+        "instruction": "Pressurize to 25 psi, listen for hisses or use soapy water.",
+        "tools": [
+          "Charge air pressure tester"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      },
+      {
+        "step": 2,
+        "title": "Run injector return flow test",
+        "instruction": "Use DAVIE4 to balance test cylinders. Remove and bench-test high-return injectors.",
+        "tools": [
+          "DAVIE4",
+          "Injector test bench"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 90
+      },
+      {
+        "step": 3,
+        "title": "Inspect EGR valve operation",
+        "instruction": "Command EGR open/close in DAVIE4, verify smooth motion.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace failed component",
+        "instruction": "Replace leaking injector, EGR valve, or charge cooler as identified.",
+        "tools": [
+          "Heavy-truck tool kit"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Fuel injector",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "EGR valve",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Charge air cooler",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 2500
+      },
+      "professional": {
+        "min": 600,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "3-8 hours",
+    "whenToCallPro": "Injector diagnosis requires bench equipment and trim coding.",
+    "relatedCodes": [
+      "P1C4D"
+    ],
+    "videoSearchQuery": "PACCAR MX P2459 frequent regens",
+    "faq": [
+      {
+        "q": "Is short-haul a real cause?",
+        "a": "Yes. Engines below 60 mph for hours rarely passive-regen and rely on actives."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p0299",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P0299",
+    "displayCode": "P0299 / SPN 1692 FMI 18",
+    "alternativeCodes": [
+      "SPN-1692-FMI-18"
+    ],
+    "title": "Turbocharger Underboost",
+    "shortDescription": "Boost pressure is below commanded value.",
+    "fullDescription": "MX-13 uses a VGT turbo with electronic actuator. P0299 sets when measured boost falls short of demand. Could be sticking VGT vanes from soot, leaking charge air pipes, or actuator failure.\n\nResults in low power, smoke, and missed regen targets.",
+    "causes": [
+      {
+        "cause": "Sooted VGT vanes stuck",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Charge air leak (boots, cooler)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed VGT actuator",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Cracked exhaust manifold",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Low power",
+      "Black smoke",
+      "Surging",
+      "Failed regen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pressure test charge air",
+        "instruction": "Confirm no hose leaks under 25 psi.",
+        "tools": [
+          "Charge air tester"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      },
+      {
+        "step": 2,
+        "title": "Run VGT calibration",
+        "instruction": "DAVIE4 VGT actuator test, watch sweep duty 0-100 percent.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Free or replace VGT",
+        "instruction": "Soot-stuck vanes may free with regen and BG-244, otherwise turbo replacement.",
+        "tools": [
+          "Heavy-truck tool kit"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 480
+      },
+      {
+        "step": 4,
+        "title": "Replace VGT actuator",
+        "instruction": "If turbo body OK but actuator dead, swap actuator and recalibrate.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 180
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "VGT actuator",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Turbocharger assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Charge air boots",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 4500
+      },
+      "professional": {
+        "min": 600,
+        "max": 7500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-12 hours",
+    "whenToCallPro": "Turbo replacement on MX-13 is a dealer-level job, oil supply lines and gaskets are critical.",
+    "relatedCodes": [
+      "P0234"
+    ],
+    "videoSearchQuery": "PACCAR MX P0299 underboost VGT fix",
+    "faq": [
+      {
+        "q": "Will running the engine hard help?",
+        "a": "An Italian tune-up sometimes frees soot-stuck vanes, but only if the actuator works."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p0087",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P0087",
+    "displayCode": "P0087 / SPN 157 FMI 1",
+    "alternativeCodes": [
+      "SPN-157-FMI-1"
+    ],
+    "title": "Fuel Rail Pressure Too Low",
+    "shortDescription": "High-pressure fuel rail cannot reach commanded pressure.",
+    "fullDescription": "Common rail pressure must hit 1800-2400 bar on MX engines. P0087 sets when actual lags target by more than 15 percent.\n\nUsually caused by plugged filters, failing high-pressure pump, leaking injectors returning excess fuel, or bad rail pressure sensor.",
+    "causes": [
+      {
+        "cause": "Plugged fuel filters",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Leaking injectors (high return)",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failed high-pressure pump",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Faulty rail pressure sensor",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Hard start",
+      "Low power",
+      "Stalling",
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace fuel filters and prime",
+        "instruction": "New primary + secondary, prime via hand pump.",
+        "tools": [
+          "Filter wrench"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Run leak-back test on injectors",
+        "instruction": "Cap returns, measure with graduated cylinders during cranking.",
+        "tools": [
+          "Leak-off test kit"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Test rail pressure with DAVIE4",
+        "instruction": "Crank and observe actual pressure; below 250 bar at crank means pump or sensor issue.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 4,
+        "title": "Replace HP pump if confirmed",
+        "instruction": "Drain, remove, install new pump with new gasket and torque spec.",
+        "tools": [
+          "Torque wrench"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Fuel filters",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "High-pressure pump",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "Rail pressure sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 3000
+      },
+      "professional": {
+        "min": 300,
+        "max": 5500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-6 hours",
+    "whenToCallPro": "HP pump removal requires special pulley puller and TDC alignment.",
+    "relatedCodes": [
+      "P0088",
+      "P0093"
+    ],
+    "videoSearchQuery": "PACCAR MX P0087 low rail pressure",
+    "faq": [
+      {
+        "q": "Could it be water in fuel?",
+        "a": "Yes. Drain water separator first, water can damage HP pump in minutes."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p0401",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P0401",
+    "displayCode": "P0401 / SPN 2791 FMI 7",
+    "alternativeCodes": [
+      "SPN-2791-FMI-7"
+    ],
+    "title": "EGR Insufficient Flow",
+    "shortDescription": "EGR system cannot achieve commanded flow.",
+    "fullDescription": "MX engines monitor commanded vs actual EGR mass flow. P0401 sets when actual is too low for too long. Causes include carbon-clogged EGR valve, plugged cooler, or stuck actuator.\n\nLeads to high NOx emissions and potential SCR fault.",
+    "causes": [
+      {
+        "cause": "Carbon-plugged EGR valve",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Plugged EGR cooler core",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Failed EGR actuator motor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "P20EE follow-on",
+      "Slight power loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command EGR test in DAVIE4",
+        "instruction": "Sweep 0-100 percent, watch position vs commanded.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Remove and clean EGR valve",
+        "instruction": "Unbolt, soak in carb cleaner, scrub carbon from butterfly.",
+        "tools": [
+          "Carburetor cleaner"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 90
+      },
+      {
+        "step": 3,
+        "title": "Inspect EGR cooler",
+        "instruction": "Look through ports for soot blockage. Replace if heavily plugged.",
+        "tools": [
+          "Inspection scope"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 4,
+        "title": "Replace EGR cooler if blocked",
+        "instruction": "Major coolant drain and removal job.",
+        "tools": [
+          "Heavy-truck tool kit"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 360
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "EGR valve",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "EGR cooler",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "EGR gaskets",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 2500
+      },
+      "professional": {
+        "min": 500,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-8 hours",
+    "whenToCallPro": "EGR cooler replacement requires coolant fill, vacuum bleed.",
+    "relatedCodes": [
+      "P20EE"
+    ],
+    "videoSearchQuery": "PACCAR MX P0401 EGR cleaning",
+    "faq": [
+      {
+        "q": "Can I block off the EGR?",
+        "a": "No, this is illegal in the US/Canada and triggers more faults."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p2002",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P2002",
+    "displayCode": "P2002 / SPN 3251 FMI 0",
+    "alternativeCodes": [
+      "SPN-3251-FMI-0"
+    ],
+    "title": "DPF Efficiency Below Threshold",
+    "shortDescription": "Diesel particulate filter is not capturing particulates as expected.",
+    "fullDescription": "MX engines use delta-P and PM sensor data to validate DPF integrity. P2002 sets when the filter appears to be passing too much soot - cracked substrate, melted from over-temp regen, or removed.\n\nReplacement of the DPF is typical, after confirming with a back-pressure test.",
+    "causes": [
+      {
+        "cause": "Cracked or melted DPF substrate",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "DPF removed/gutted",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed delta-P sensor",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Visible smoke",
+      "Possible derate"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify with delta-P test",
+        "instruction": "DAVIE4 reads near-zero delta-P at high RPM means failed filter.",
+        "tools": [
+          "DAVIE4"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Inspect DPF visually",
+        "instruction": "Remove, look into face cells for cracks, melt holes, or missing substrate.",
+        "tools": [
+          "Flashlight",
+          "Borescope"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace DPF assembly",
+        "instruction": "Install OEM DPF, new gaskets and clamps, reset DPF service in DAVIE4.",
+        "tools": [
+          "DAVIE4",
+          "Heavy-truck tools"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "DPF assembly",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "DPF gasket kit",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "V-band clamps",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 2500,
+        "max": 6500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "whenToCallPro": "DPF replacement is dealer-level due to programming and EPA compliance.",
+    "relatedCodes": [
+      "P2459"
+    ],
+    "videoSearchQuery": "PACCAR MX P2002 DPF replacement",
+    "faq": [
+      {
+        "q": "Can I clean it instead?",
+        "a": "Cracked filters cannot be cleaned, only replaced."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p0101",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P0101",
+    "displayCode": "P0101 / SPN 132 FMI 2",
+    "alternativeCodes": [
+      "SPN-132-FMI-2"
+    ],
+    "title": "Mass Air Flow Sensor Range/Performance",
+    "shortDescription": "MAF sensor reading is implausible compared to other engine inputs.",
+    "fullDescription": "MX-13 cross-checks MAF against MAP and turbo speed. P0101 sets when readings disagree.\n\nDirty hot-wire element, soot contamination from CCV mist, or unmetered air leaks are the typical causes.",
+    "causes": [
+      {
+        "cause": "Dirty MAF hot-wire element",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Unmetered air leak after MAF",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Plugged crankcase breather contaminating MAF",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Hesitation",
+      "Smoke",
+      "Failed regen"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect air filter housing",
+        "instruction": "Check for oil mist downstream of CCV.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Clean MAF sensor",
+        "instruction": "Remove, spray with MAF-safe cleaner only, air dry.",
+        "tools": [
+          "MAF cleaner"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace MAF sensor",
+        "instruction": "If cleaning does not resolve, install new sensor.",
+        "tools": [
+          "Metric socket set"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      },
+      {
+        "step": 4,
+        "title": "Inspect CCV",
+        "instruction": "Replace plugged crankcase breather element to stop oil contamination.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "MAF sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      {
+        "part": "CCV element",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 400
+      },
+      "professional": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Rare, this is a DIY-friendly fault.",
+    "relatedCodes": [
+      "P0299"
+    ],
+    "videoSearchQuery": "PACCAR MX P0101 MAF cleaning",
+    "faq": [
+      {
+        "q": "Is MAF cleaner OK?",
+        "a": "Yes, but only MAF-specific spray; brake cleaner damages the hot-wire."
+      }
+    ]
+  },
+  {
+    "id": "paccar-diesel-engine-p0420-paccar",
+    "brand": "PACCAR",
+    "brandSlug": "paccar",
+    "deviceType": "Diesel Engine",
+    "deviceTypeSlug": "diesel-engine",
+    "code": "P040C",
+    "displayCode": "P040C / SPN 411 FMI 4",
+    "alternativeCodes": [
+      "SPN-411-FMI-4"
+    ],
+    "title": "EGR Temperature Sensor Low Voltage",
+    "shortDescription": "EGR temperature sensor signal is shorted low.",
+    "fullDescription": "EGR temp sensor monitors gas temp entering the intake. FMI 4 voltage below normal indicates a short to ground or open ground.\n\nECM substitutes default and may disable EGR, leading to additional emission codes.",
+    "causes": [
+      {
+        "cause": "Failed EGR temp sensor",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged sensor harness",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corroded connector",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "EGR disabled message",
+      "Slight power loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect connector",
+        "instruction": "Disconnect, inspect for corrosion or pin push-out.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Resistance check sensor",
+        "instruction": "Compare to spec at known temperature, NTC type.",
+        "tools": [
+          "Digital multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Unscrew from EGR cooler outlet, install new with anti-seize.",
+        "tools": [
+          "Sensor socket"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 20
+      }
+    ],
+    "affectedModels": [
+      "MX-13",
+      "MX-11"
+    ],
+    "partsNeeded": [
+      {
+        "part": "EGR temperature sensor",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 60,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-45 min",
+    "whenToCallPro": "Only if harness damage extends into the engine bay loom.",
+    "relatedCodes": [
+      "P0401"
+    ],
+    "videoSearchQuery": "PACCAR MX P040C EGR temp sensor",
+    "faq": [
+      {
+        "q": "Will the truck still run?",
+        "a": "Yes, but EGR is disabled and emissions go out of spec."
+      }
+    ]
+  }
+]
