@@ -410,6 +410,28 @@ export const APPLIANCE_BRANDS = [
   { name: "Beko", slug: "beko", country: "Turkey" },
   { name: "Asko", slug: "asko", country: "Sweden" },
   { name: "Zanussi", slug: "zanussi", country: "Italy" },
+  // ── Budget / Mid-tier ──
+  { name: "Haier", slug: "haier", country: "China" },
+  { name: "Hisense Appliance", slug: "hisense-appliance", country: "China" },
+  { name: "Midea", slug: "midea", country: "China" },
+  { name: "Galanz", slug: "galanz", country: "China" },
+  { name: "Danby", slug: "danby", country: "Canada" },
+  { name: "Avanti", slug: "avanti", country: "USA" },
+  { name: "Magic Chef", slug: "magic-chef", country: "USA" },
+  { name: "Euro-Pro", slug: "euro-pro", country: "Canada" },
+  { name: "Cuisinart", slug: "cuisinart", country: "USA" },
+  { name: "Breville", slug: "breville", country: "Australia" },
+  // ── Power Tools ──
+  { name: "Hart", slug: "hart", country: "USA" },
+  { name: "Bosch Tools", slug: "bosch-tools", country: "Germany" },
+  { name: "Festool", slug: "festool", country: "Germany" },
+  { name: "Metabo", slug: "metabo", country: "Germany" },
+  { name: "Hilti", slug: "hilti", country: "Liechtenstein" },
+  { name: "Echo Tools", slug: "echo-tools", country: "Japan" },
+  { name: "Kobalt", slug: "kobalt", country: "USA" },
+  { name: "Skil", slug: "skil", country: "USA" },
+  { name: "Porter-Cable", slug: "porter-cable", country: "USA" },
+  { name: "Black & Decker", slug: "black-decker", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
