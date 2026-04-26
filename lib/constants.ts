@@ -432,6 +432,28 @@ export const APPLIANCE_BRANDS = [
   { name: "Skil", slug: "skil", country: "USA" },
   { name: "Porter-Cable", slug: "porter-cable", country: "USA" },
   { name: "Black & Decker", slug: "black-decker", country: "USA" },
+  // ── Motorcycles & Marine ──
+  { name: "KTM", slug: "ktm", country: "Austria" },
+  { name: "Triumph", slug: "triumph", country: "UK" },
+  { name: "Suzuki Moto", slug: "suzuki-moto", country: "Japan" },
+  { name: "Kawasaki Moto", slug: "kawasaki-moto", country: "Japan" },
+  { name: "Polaris", slug: "polaris", country: "USA" },
+  { name: "Indian Motorcycle", slug: "indian-motorcycle", country: "USA" },
+  { name: "Aprilia", slug: "aprilia", country: "Italy" },
+  { name: "Sea Ray", slug: "sea-ray", country: "USA" },
+  { name: "MerCruiser", slug: "mercruiser", country: "USA" },
+  { name: "Volvo Penta", slug: "volvo-penta", country: "Sweden" },
+  // ── More Commercial ──
+  { name: "Rational", slug: "rational", country: "Germany" },
+  { name: "Alto-Shaam", slug: "alto-shaam", country: "USA" },
+  { name: "Wells", slug: "wells", country: "USA" },
+  { name: "Garland", slug: "garland", country: "USA" },
+  { name: "Imperial", slug: "imperial", country: "USA" },
+  { name: "Southbend", slug: "southbend", country: "USA" },
+  { name: "APW Wyott", slug: "apw-wyott", country: "USA" },
+  { name: "Winterhalter", slug: "winterhalter", country: "Germany" },
+  { name: "Jackson", slug: "jackson", country: "USA" },
+  { name: "Champion", slug: "champion", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
