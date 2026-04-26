@@ -1,0 +1,829 @@
+[
+  {
+    "id": "lifx-smart-bulb-wifi-pairing-failed",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "WIFI-PAIRING-FAILED",
+    "displayCode": "WiFi Pairing Failed",
+    "alternativeCodes": [
+      "Setup Failed"
+    ],
+    "title": "LIFX bulb cannot connect to home WiFi",
+    "shortDescription": "Setup completes but bulb fails to join the home WiFi network.",
+    "fullDescription": "LIFX bulbs run their own WiFi setup AP. During setup, your phone connects to the bulb's AP, you enter your home WiFi credentials, and the bulb attempts to join. Failures usually come from 5GHz-only networks (LIFX is 2.4GHz only), special characters in the password, or WPA3 mode.\n\nSplit-band networks where 2.4 and 5GHz share an SSID often work. Mesh routers with band-steering can confuse the bulb during the moment it tries to switch.",
+    "causes": [
+      {
+        "cause": "Network is 5GHz-only or WPA3-only",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Password contains unsupported characters",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Phone dropped LIFX AP mid-setup",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Router MAC filter blocking new device",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "App says 'failed to connect to your network'",
+      "Bulb returns to slow pulsing white after setup",
+      "Bulb visible briefly then disappears from app"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm 2.4GHz",
+        "instruction": "Ensure your WiFi has a 2.4GHz band enabled and is using WPA2-PSK (not WPA3).",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable mobile data",
+        "instruction": "Turn off cellular data on your phone before starting setup so it does not jump off the LIFX AP.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 3,
+        "title": "Factory reset bulb",
+        "instruction": "Cycle wall power 5 times (on 2s / off 2s). Bulb will cycle colors confirming reset.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 4,
+        "title": "Try simpler password",
+        "instruction": "Temporarily set router password to a simple alphanumeric to rule out character issues.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "LIFX A19",
+      "LIFX Color 1000",
+      "LIFX Mini",
+      "LIFX Beam",
+      "LIFX Z"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Only for complex enterprise networks.",
+    "relatedCodes": [
+      "lifx-smart-bulb-cloud-offline"
+    ],
+    "videoSearchQuery": "LIFX bulb wifi setup failed",
+    "faq": [
+      {
+        "q": "Does LIFX support 5GHz?",
+        "a": "No. All current LIFX bulbs are 2.4GHz only."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-cloud-offline",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "CLOUD-OFFLINE",
+    "displayCode": "Cloud Offline",
+    "alternativeCodes": [],
+    "title": "Bulb works locally but cloud features fail",
+    "shortDescription": "App control works at home but Alexa/Google/away-from-home does not.",
+    "fullDescription": "LIFX bulbs maintain a persistent connection to the LIFX cloud (cloud.lifx.com). When this fails, scheduled effects, voice control, and out-of-home control fail while LAN control still works.\n\nThis is usually DNS, ISP routing, or LIFX cloud outage.",
+    "causes": [
+      {
+        "cause": "DNS or ISP blocking cloud.lifx.com",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "LIFX cloud outage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bulb stuck in old state",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Cloud icon grayed out in LIFX app",
+      "Alexa: 'device is not responding'",
+      "Schedules do not run when away"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check status page",
+        "instruction": "Visit https://status.lifx.com to verify outages.",
+        "tools": [
+          "Web browser"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Reboot bulb",
+        "instruction": "Cycle wall power once and wait two minutes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Reauth voice assistant",
+        "instruction": "In Alexa or Google Home app, disable then re-enable the LIFX skill.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Rarely needed.",
+    "relatedCodes": [
+      "lifx-smart-bulb-wifi-pairing-failed"
+    ],
+    "videoSearchQuery": "LIFX cloud offline alexa not working",
+    "faq": [
+      {
+        "q": "Can I use LIFX without cloud?",
+        "a": "Yes, locally via the LIFX LAN protocol or HomeKit on supported models."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-flashing-amber",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "AMBER-FLASH",
+    "displayCode": "Slow Amber Flash",
+    "alternativeCodes": [
+      "Setup Mode"
+    ],
+    "title": "Bulb pulsing amber/orange after setup",
+    "shortDescription": "Bulb is in setup mode and not joined to WiFi.",
+    "fullDescription": "A slow amber pulse indicates the bulb is in factory/setup state and broadcasting its setup AP. This is normal on first power-on, but if it persists after setup, your credentials never saved.\n\nReturn to LIFX app > Add Light to retry.",
+    "causes": [
+      {
+        "cause": "Setup not completed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong WiFi password entered",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Slow amber/orange pulse",
+      "Bulb visible as LIFX_xxxx access point"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run setup",
+        "instruction": "Open LIFX app > Add Light. Follow on-screen instructions to join 2.4GHz WiFi.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Verify password",
+        "instruction": "Type WiFi password into a notes app first to confirm characters before re-running setup.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not applicable.",
+    "relatedCodes": [
+      "lifx-smart-bulb-wifi-pairing-failed"
+    ],
+    "videoSearchQuery": "LIFX bulb amber flashing setup",
+    "faq": [
+      {
+        "q": "Is amber flash a fault?",
+        "a": "No, it means the bulb is awaiting setup."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-flashing-red",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "RED-FLASH",
+    "displayCode": "Red Flash",
+    "alternativeCodes": [
+      "Firmware Recovery Mode"
+    ],
+    "title": "Bulb flashing red, in firmware recovery mode",
+    "shortDescription": "Bulb pulses red because firmware update was interrupted.",
+    "fullDescription": "If a firmware update is interrupted (power loss, app crash), LIFX bulbs enter a red-flash recovery mode. The LIFX app should detect them automatically and offer to repair the firmware over the air.\n\nIf the app does not detect, factory-reset the bulb with five power cycles.",
+    "causes": [
+      {
+        "cause": "Interrupted firmware update",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corrupt firmware image",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Slow red pulse",
+      "Bulb does not respond to app commands",
+      "Repair prompt in LIFX app"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Open LIFX app",
+        "instruction": "The app should auto-detect the bulb in recovery mode and offer to reflash firmware. Follow prompts.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Manual reset",
+        "instruction": "Cycle wall power 5 times (on 2s / off 2s). Bulb returns to setup mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Replace under warranty if recovery fails.",
+    "relatedCodes": [],
+    "videoSearchQuery": "LIFX bulb red flashing recovery",
+    "faq": [
+      {
+        "q": "Will I lose my settings?",
+        "a": "Yes, after factory reset all customizations are gone."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-app-not-finding",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "APP-NOT-FINDING",
+    "displayCode": "App Cannot Find Bulb",
+    "alternativeCodes": [],
+    "title": "Connected bulb does not appear in LIFX app",
+    "shortDescription": "Bulb is online but not visible in the app.",
+    "fullDescription": "If the bulb is online (white light) but not visible in the LIFX app, your phone may be on a different network segment or the LIFX app cache is stale.\n\nLIFX uses UDP discovery on port 56700; this is broken by client isolation, VPNs, and many guest networks.",
+    "causes": [
+      {
+        "cause": "Phone on guest network or VPN",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Client isolation enabled on router",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "App cache corrupted",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Bulb works in Alexa but not LIFX app",
+      "Refresh in app does not detect bulb",
+      "Bulb visible from another phone"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disable VPN",
+        "instruction": "Turn off any VPN and switch off mobile data.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Same network",
+        "instruction": "Connect phone to same SSID and band as bulb (2.4GHz).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Reinstall LIFX app",
+        "instruction": "Delete and reinstall LIFX app, sign in again.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Not normally needed.",
+    "relatedCodes": [
+      "lifx-smart-bulb-wifi-pairing-failed"
+    ],
+    "videoSearchQuery": "LIFX app not finding bulb",
+    "faq": [
+      {
+        "q": "Why does Alexa work but LIFX app does not?",
+        "a": "Alexa uses cloud control; LIFX app prefers local LAN."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-overheat",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "OVERHEAT",
+    "displayCode": "Thermal Throttle",
+    "alternativeCodes": [],
+    "title": "Bulb dims itself due to overheating",
+    "shortDescription": "Bulb reduces brightness automatically when too hot.",
+    "fullDescription": "LIFX bulbs include a thermal sensor and reduce brightness when internal temperature exceeds safe limits. Common in fully enclosed fixtures or when wattage rating is exceeded.\n\nThe bulb is functioning correctly; the fixture or environment is the problem.",
+    "causes": [
+      {
+        "cause": "Enclosed fixture without ventilation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "High ambient temperature",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Brightness drops after 10-30 minutes",
+      "Bulb hot to touch when off",
+      "Color changes look muted"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check fixture rating",
+        "instruction": "Verify fixture is rated for the bulb wattage and is open or vented.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Move bulb",
+        "instruction": "Try the bulb in an open fixture to confirm thermal throttling.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "LIFX A19",
+      "LIFX Color 1000",
+      "LIFX BR30"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 100,
+        "max": 250
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "If you need to replace an enclosed fixture.",
+    "relatedCodes": [],
+    "videoSearchQuery": "LIFX bulb dimming overheating",
+    "faq": [
+      {
+        "q": "Will overheating damage the bulb?",
+        "a": "Repeated overheating shortens lifespan even with throttling."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-homekit-issues",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "HOMEKIT-FAILED",
+    "displayCode": "HomeKit Pairing Failed",
+    "alternativeCodes": [],
+    "title": "Bulb does not appear in Apple Home",
+    "shortDescription": "HomeKit pairing fails or bulb shows as unresponsive in Home app.",
+    "fullDescription": "LIFX HomeKit pairing requires a HomeKit code from the box or LIFX app. If the bulb was previously paired to another HomeKit home, it must be reset before re-pairing.\n\nThe LIFX app provides a 'Reset HomeKit' option per bulb.",
+    "causes": [
+      {
+        "cause": "Bulb already paired to old Home",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Home Hub offline",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "iOS HomeKit database corrupt",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "'Accessory not found' in Home app",
+      "QR code not accepted",
+      "Bulb shows 'no response' in Home"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset HomeKit",
+        "instruction": "LIFX app > select bulb > Settings > Reset HomeKit. Then re-add via Home app.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check Home Hub",
+        "instruction": "Confirm an Apple TV, HomePod, or iPad is online as Home Hub.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "LIFX HomeKit-enabled bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-10 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "LIFX HomeKit pairing failed",
+    "faq": [
+      {
+        "q": "Do all LIFX bulbs support HomeKit?",
+        "a": "Most do; check the box for the HomeKit logo."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-color-banding",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "BANDING",
+    "displayCode": "Color Banding",
+    "alternativeCodes": [],
+    "title": "Visible bands or zones on LIFX Z/Beam strip",
+    "shortDescription": "Sections of the LED strip show wrong color or are dark.",
+    "fullDescription": "LIFX Z and Beam are zone-addressable. If a zone is dark or wrong color, a connector may be loose, the strip may be cut at the wrong spot, or the controller has remapped zones after a reset.\n\nReseat all connectors and re-run zone setup in the app.",
+    "causes": [
+      {
+        "cause": "Loose strip-to-strip connector",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Strip cut at wrong location",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Zone configuration lost",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Random dark sections",
+      "One zone permanently wrong color",
+      "All zones offset by one position"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat connectors",
+        "instruction": "Power off, unplug each connector, blow out dust, reconnect firmly.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-detect zones",
+        "instruction": "LIFX app > strip settings > Detect zones.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "LIFX Z",
+      "LIFX Beam"
+    ],
+    "partsNeeded": [
+      {
+        "part": "Replacement connector",
+        "partNumber": "",
+        "estimatedCost": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not normally needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "LIFX Z strip dead zone fix",
+    "faq": [
+      {
+        "q": "Can I extend a LIFX Z strip?",
+        "a": "Yes, up to 10 meters with extension kits."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-not-found-after-reboot",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "OFFLINE-AFTER-REBOOT",
+    "displayCode": "Offline After Power Loss",
+    "alternativeCodes": [],
+    "title": "Bulb offline after power outage",
+    "shortDescription": "After a power outage, bulb fails to rejoin WiFi.",
+    "fullDescription": "Some routers come back online slowly after an outage and assign new IP ranges. LIFX bulbs occasionally fail to renew DHCP and stay offline.\n\nA quick power cycle of the bulb after the router has fully booted resolves it.",
+    "causes": [
+      {
+        "cause": "DHCP not yet ready when bulb booted",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "WiFi SSID changed",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Bulb dim or off after outage",
+      "Multiple bulbs offline simultaneously",
+      "App says 'offline'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait for router",
+        "instruction": "After power restoration, wait 5 minutes for router to fully boot.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Cycle bulb",
+        "instruction": "Toggle wall switch off 10 seconds, on. Bulb rejoins network.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [],
+    "videoSearchQuery": "LIFX bulb offline after power outage",
+    "faq": [
+      {
+        "q": "Should I assign a static DHCP lease?",
+        "a": "Yes, a reservation in your router improves reliability."
+      }
+    ]
+  },
+  {
+    "id": "lifx-smart-bulb-effects-stutter",
+    "brand": "LIFX",
+    "brandSlug": "lifx",
+    "deviceType": "Smart Bulb",
+    "deviceTypeSlug": "smart-bulb",
+    "code": "EFFECTS-STUTTER",
+    "displayCode": "Effects Stutter",
+    "alternativeCodes": [],
+    "title": "Animations or effects look choppy",
+    "shortDescription": "Spooky/Color Cycle effects skip or freeze briefly.",
+    "fullDescription": "LIFX effects run on the bulb itself but rely on stable WiFi for sync across multiple bulbs. Stutter usually points to weak WiFi RSSI or contention with other 2.4GHz devices.\n\nMoving the access point closer or switching the bulb to a less congested AP fixes most cases.",
+    "causes": [
+      {
+        "cause": "Weak WiFi signal at bulb",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "2.4GHz channel congested",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Effects skip frames",
+      "Multiple bulbs out of sync",
+      "Effects pause for 1-2 seconds"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check signal",
+        "instruction": "LIFX app > bulb > diagnostics. RSSI better than -65 dBm preferred.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Set 2.4GHz channel",
+        "instruction": "Set router 2.4GHz to channel 1, 6, or 11 with no auto-switching.",
+        "tools": [
+          "Web browser"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "All LIFX bulbs"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "10-20 minutes",
+    "whenToCallPro": "Network installer if WiFi coverage is fundamentally insufficient.",
+    "relatedCodes": [
+      "lifx-smart-bulb-app-not-finding"
+    ],
+    "videoSearchQuery": "LIFX effects stutter wifi",
+    "faq": [
+      {
+        "q": "Do effects need cloud?",
+        "a": "No, they run on-bulb but multi-bulb sync uses LAN."
+      }
+    ]
+  }
+]

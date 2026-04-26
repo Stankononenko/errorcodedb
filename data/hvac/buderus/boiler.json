@@ -1,0 +1,323 @@
+[
+  {
+    "id": "buderus-boiler-2p",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "2P",
+    "displayCode": "2P",
+    "isBlinkCode": false,
+    "title": "Low System Pressure",
+    "shortDescription": "Hydronic loop pressure has fallen below the minimum threshold.",
+    "fullDescription": "Buderus Logamatic GB142 and SSB units display 2P when the integrated pressure transducer reads below ~7 psi (0.5 bar). The boiler will not fire to protect the heat exchanger.\n\nLow pressure on a sealed system points to either a leak, a waterlogged expansion tank, or normal early-life venting of dissolved gases. Refill via the manual fill valve to 12-15 psi cold and observe.",
+    "safetyWarning": "Do not over-pressurize; the relief valve will discharge above 30 psi.",
+    "causes": [
+      {"cause": "Slow leak in piping or radiator vent", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Waterlogged expansion tank", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Air vented out after install", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["2P on display", "No heat", "Pressure gauge below 1 bar"],
+    "fixSteps": [
+      {"step": 1, "title": "Refill to spec", "instruction": "Open the fill valve until the gauge reads 12-15 psi (0.8-1 bar) cold.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect for leaks", "instruction": "Check radiator vents, circulator flanges, relief valve discharge.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 3, "title": "Test expansion tank", "instruction": "Tap the tank; a hollow sound is good, dull/heavy is waterlogged.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If pressure drops repeatedly within days — there is a leak that needs locating.",
+    "relatedCodes": ["3P"],
+    "faq": [
+      {"q": "How often should I add water?", "a": "Almost never on a sealed system — repeated refills mean a leak."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-3p",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "3P",
+    "displayCode": "3P",
+    "isBlinkCode": false,
+    "title": "High System Pressure",
+    "shortDescription": "Loop pressure is above the maximum allowed.",
+    "fullDescription": "3P appears when the pressure transducer reads above ~30 psi (2.5 bar). Most often this is a failed pressure-reducing/auto-fill valve that is letting house water continuously feed the loop, or a waterlogged expansion tank that cannot accept thermal expansion.",
+    "safetyWarning": "Excessive pressure will trigger relief-valve discharge — keep clear of hot water.",
+    "causes": [
+      {"cause": "Stuck-open auto-fill valve", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Waterlogged expansion tank", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Closed off-tank isolation valve", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["3P on display", "Relief valve dripping", "Gauge above 2 bar"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate auto-fill", "instruction": "Close the cold-feed valve to the boiler temporarily.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Bleed to 1 bar", "instruction": "Open a low-point drain to reduce pressure to 12-15 psi.", "tools": ["bucket"], "difficulty": "intermediate", "timeMinutes": 15},
+      {"step": 3, "title": "Tank check", "instruction": "Verify expansion-tank air precharge with a gauge while system is depressurized.", "tools": ["tire gauge"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If the auto-fill or expansion tank needs replacement.",
+    "relatedCodes": ["2P"],
+    "faq": [
+      {"q": "Why does pressure climb only when hot?", "a": "Classic waterlogged expansion tank symptom."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-4y",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "4Y",
+    "displayCode": "4Y",
+    "isBlinkCode": false,
+    "title": "Supply Sensor Open",
+    "shortDescription": "Boiler outlet temperature sensor is open-circuit.",
+    "fullDescription": "4Y means the supply (heat-exchanger outlet) NTC reads open. The control disables firing because it cannot enforce limit protection.\n\nMost often a connector worked loose during service or the sensor cable was pinched when the cover was reinstalled.",
+    "safetyWarning": "Power off before disconnecting sensor leads.",
+    "causes": [
+      {"cause": "Loose connector at control", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed NTC sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["4Y on display", "Boiler will not fire"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Power off; reseat the supply sensor harness at the BC10/BC25.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace sensor", "instruction": "Ohm at room temp; should be near 12kΩ on Buderus NTC. Replace if open.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 90}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Sensor well replacement requires draining the boiler.",
+    "relatedCodes": ["6Y"],
+    "faq": [
+      {"q": "Generic NTC ok?", "a": "Use the OEM Buderus part to match the temperature curve."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-6a",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "6A",
+    "displayCode": "6A",
+    "isBlinkCode": false,
+    "title": "Ignition Failure",
+    "shortDescription": "Burner failed to establish flame after ignition retries.",
+    "fullDescription": "6A is the Buderus ignition lockout. After three failed ignition attempts the GB142/SSB locks out and waits for manual reset. Causes mirror other condensing boilers: low gas, fouled electrode, blocked condensate, or a failed gas valve.",
+    "safetyWarning": "If you smell gas evacuate and call your gas emergency line.",
+    "causes": [
+      {"cause": "Closed manual gas valve", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Dirty/cracked electrode", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Plugged condensate trap", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed gas valve", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["6A on display", "Three click-attempts then silence"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas", "instruction": "Confirm gas is on at the boiler valve.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset", "instruction": "Press Reset and observe ignition.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Clean electrode", "instruction": "If recurring, clean and gap the ignition assembly.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Gas valve or pressure work requires a licensed gas tech.",
+    "relatedCodes": ["6L", "6C"],
+    "faq": [
+      {"q": "How many resets are okay?", "a": "Two; if it returns the third time, stop."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-6c",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "6C",
+    "displayCode": "6C",
+    "isBlinkCode": false,
+    "title": "Flame Lost During Run",
+    "shortDescription": "Established flame disappeared during a heat call.",
+    "fullDescription": "6C is logged when the unit ignites successfully but loses flame during the burn. Common reasons are a failing flame rod losing rectification, momentary low gas pressure, or condensate blocking the flue.",
+    "safetyWarning": "Repeated mid-run flame loss can produce unburned gas — investigate before resetting again.",
+    "causes": [
+      {"cause": "Sooted/oxidized flame rod", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas supply pressure", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Condensate flooding flue", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["6C on display", "Heating starts then quits"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean flame rod", "instruction": "Power off, pull and lightly polish the flame rod.", "tools": ["emery cloth"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Inspect flue", "instruction": "Walk the vent looking for sags pooling condensate.", "tools": [], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Gas-pressure verification or vent rework.",
+    "relatedCodes": ["6A"],
+    "faq": [
+      {"q": "Can a thermostat cause this?", "a": "No — 6C is purely a flame-supervision event."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-6l",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "6L",
+    "displayCode": "6L",
+    "isBlinkCode": false,
+    "title": "Gas Valve Drive Fault",
+    "shortDescription": "Internal gas-valve circuit feedback mismatch.",
+    "fullDescription": "6L is a safety lockout from the control's gas-valve supervision circuit. Possible causes are a shorted gas valve coil, a damaged harness, or a failed control board.",
+    "safetyWarning": "Treat as a serious gas-valve fault and isolate gas.",
+    "causes": [
+      {"cause": "Shorted gas valve coil", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed control board", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["6L on display", "Hard lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate gas", "instruction": "Close the manual gas valve on the boiler inlet.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Schedule service", "instruction": "Have a tech ohm the gas valve coil and inspect the board.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-180 minutes",
+    "whenToCallPro": "Always — this is gas-valve supervision lockout.",
+    "relatedCodes": ["6A"],
+    "faq": [
+      {"q": "Can a power surge cause this?", "a": "Yes; surges damage the FETs that drive the gas valve coil."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-9b",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "9B",
+    "displayCode": "9B",
+    "isBlinkCode": false,
+    "title": "Pressure Switch / APS Open",
+    "shortDescription": "Air pressure switch did not close after fan start.",
+    "fullDescription": "9B indicates the inducer ran up to speed but the air-proving switch never closed. Either the fan is not actually moving air or the switch/hose is faulty.",
+    "safetyWarning": "Do not bypass — this protects against vent obstruction and CO spillage.",
+    "causes": [
+      {"cause": "Blocked exhaust/intake", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Damaged silicone hose", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed combustion blower", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["9B on display", "Fan runs, no ignition"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect terminations", "instruction": "Clear any blockage; verify in winter for ice/snow.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Test hose", "instruction": "Inspect the pressure-switch hose for cracks or condensate.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "Blower or pressure switch replacement.",
+    "relatedCodes": ["A1"],
+    "faq": [
+      {"q": "Does this mean carbon monoxide?", "a": "Not directly — the switch prevented operation. Always have a working CO alarm."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-9h",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "9H",
+    "displayCode": "9H",
+    "isBlinkCode": false,
+    "title": "High Limit Trip",
+    "shortDescription": "Boiler exceeded supply temperature limit.",
+    "fullDescription": "9H means the manual or auto high limit opened. Hydronic causes: air-bound HX, dead pump, closed isolation valve. The control will lock out until reset.",
+    "safetyWarning": "Investigate the flow problem before resetting.",
+    "causes": [
+      {"cause": "Air in heat exchanger", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed circulator", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Isolation valve closed", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["9H on display", "Pipes very hot at boiler"],
+    "fixSteps": [
+      {"step": 1, "title": "Bleed", "instruction": "Vent the boiler and high points of the loop.", "tools": ["bleed key"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Verify flow", "instruction": "Touch supply piping during a call — should warm quickly with circulator on.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Pump replacement or persistent recurrence.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Why right after a power outage?", "a": "Air enters the system; bleed thoroughly."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-a1",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "A1",
+    "displayCode": "A1",
+    "isBlinkCode": false,
+    "title": "Fan Feedback Out of Range",
+    "shortDescription": "Combustion blower RPM does not match command.",
+    "fullDescription": "A1 is reported when the fan tach signal and the PWM command disagree by more than the allowed tolerance. Worn brushes, debris fouling, or a bad PWM cable are usual.",
+    "safetyWarning": "Disconnect line voltage at the cabinet before fan work.",
+    "causes": [
+      {"cause": "Debris in impeller", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Bad PWM/tach cable", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Worn fan motor", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["A1 on display", "No or weak fan sound"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect impeller", "instruction": "Power off, remove inlet, vacuum any debris.", "tools": ["screwdriver", "vacuum"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Reseat cables", "instruction": "Reseat the fan harness on both ends.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 400, "max": 1200}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "If blower replacement is required.",
+    "relatedCodes": ["9B"],
+    "faq": [
+      {"q": "What is the typical fan life?", "a": "8-12 years on the GB142/SSB."}
+    ]
+  },
+  {
+    "id": "buderus-boiler-cy",
+    "brand": "Buderus",
+    "brandSlug": "buderus",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "CY",
+    "displayCode": "CY",
+    "isBlinkCode": false,
+    "title": "Frost Protection Active",
+    "shortDescription": "Boiler entered freeze-protection mode.",
+    "fullDescription": "Not strictly an error — CY is an informational code shown when the GB142/SSB has activated its built-in frost protection. The boiler runs the pump and may briefly fire to keep the heat exchanger above 5 °C.\n\nHomeowners frequently report this in summer when an unconditioned mechanical room cools quickly overnight.",
+    "safetyWarning": "Not a safety event — but ensure the boiler has gas and electricity available year-round.",
+    "causes": [
+      {"cause": "Mechanical room temperature near freezing", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Outdoor reset configured very low", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["CY shown on display", "Pump runs intermittently"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify room temperature", "instruction": "If the boiler room is below 50 °F, add heat or insulation.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Confirm settings", "instruction": "Check that frost-protect parameters match installer guide.", "tools": [], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 100, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If you cannot find a setting causing nuisance display.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Should I disable frost protect?", "a": "No — it prevents freeze damage to the boiler."}
+    ]
+  }
+]

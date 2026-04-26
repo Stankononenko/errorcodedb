@@ -1,0 +1,320 @@
+[
+  {
+    "id": "lochinvar-boiler-f01",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F01",
+    "displayCode": "F01",
+    "isBlinkCode": false,
+    "title": "Ignition Lockout (Knight)",
+    "shortDescription": "Knight or WHB failed to prove flame and locked out.",
+    "fullDescription": "F01 on Lochinvar Knight, WHB and Knight Wall-Mount boilers indicates ignition lockout after three failed trials. Causes include closed gas valve, low LP supply, electrode wear, or condensate-flooded burner.\n\nThe SMART System control will prompt the operator to press Reset. If the code returns, escalate to a service tech rather than repeatedly resetting.",
+    "safetyWarning": "Gas appliance — if you smell gas, evacuate and call your gas emergency line.",
+    "causes": [
+      {"cause": "Closed manual gas valve", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Worn ignition electrode", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Plugged condensate trap", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Defective gas valve", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["F01 on SMART display", "No heat", "Three click attempts then quiet"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify gas", "instruction": "Confirm gas valve at the boiler is open.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset", "instruction": "Press Reset on the SMART panel.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Inspect electrode", "instruction": "Power off, remove electrode, clean and gap (typ. 1/8 in).", "tools": ["wrench", "emery cloth"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Gas pressure verification — manometer required.",
+    "relatedCodes": ["F02", "F09"],
+    "faq": [
+      {"q": "How many resets are okay?", "a": "Two; if it returns again call a tech."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f02",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F02",
+    "displayCode": "F02",
+    "isBlinkCode": false,
+    "title": "Flame Sensed Out of Sequence",
+    "shortDescription": "Flame seen when gas valve should be closed.",
+    "fullDescription": "F02 is logged when ionization is detected outside the valid burn window. Possibilities include a stuck gas valve or a flame-rod insulation breakdown.",
+    "safetyWarning": "Treat as serious — possible gas-valve fault.",
+    "causes": [
+      {"cause": "Stuck gas valve", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Shorted ionization rod or harness", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F02 on display", "Hard lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Cycle service switch and observe.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect ionization rod", "instruction": "Look for chafed insulation or damp porcelain.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 300, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Gas valve replacement is pro-only.",
+    "relatedCodes": ["F01"],
+    "faq": [
+      {"q": "Is it safe to keep running?", "a": "No — fix before relying on heat."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f03",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F03",
+    "displayCode": "F03",
+    "isBlinkCode": false,
+    "title": "Air-Pressure Switch Stuck Closed",
+    "shortDescription": "APS already closed before the inducer started.",
+    "fullDescription": "F03 indicates the air-pressure switch is welded or stuck closed. The control sees the switch closed when the inducer is off and refuses to start as a safety.",
+    "safetyWarning": "Do not bypass the APS.",
+    "causes": [
+      {"cause": "Pressure switch welded contacts", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Wiring shorted", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F03 on display", "Boiler will not start"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect wiring", "instruction": "Check the APS leads for shorts to chassis.", "tools": [], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Replace switch", "instruction": "Swap the APS with the OEM Lochinvar part.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 250, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If wiring damage is hidden in the harness.",
+    "relatedCodes": ["F04"],
+    "faq": [
+      {"q": "Common in installs near pools?", "a": "Yes — chlorine corrodes APS contacts."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f04",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F04",
+    "displayCode": "F04",
+    "isBlinkCode": false,
+    "title": "Air-Pressure Switch Stuck Open",
+    "shortDescription": "APS did not close when fan ramped up.",
+    "fullDescription": "F04 means the inducer is running but the air-proving switch never closed. Either the blower is not actually moving air, the hose is split, or the switch has failed open.",
+    "safetyWarning": "Vent obstruction risks CO spillage; do not bypass switch.",
+    "causes": [
+      {"cause": "Blocked vent termination", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cracked hose", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed APS", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed blower", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["F04 on display", "Inducer runs"],
+    "fixSteps": [
+      {"step": 1, "title": "Check terminations", "instruction": "Clear any obstruction; verify in winter for ice.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Inspect hose", "instruction": "Look for cracks or condensate in the silicone tube.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "Blower replacement.",
+    "relatedCodes": ["F03"],
+    "faq": [
+      {"q": "Where do I get the OEM hose?", "a": "Lochinvar offers hose kits — buy genuine."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f05",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F05",
+    "displayCode": "F05",
+    "isBlinkCode": false,
+    "title": "High Limit Open",
+    "shortDescription": "Manual-reset high limit tripped.",
+    "fullDescription": "F05 is a high-limit lockout. Like F.02 on Vitodens, it points to a flow problem, scaled HX, or sensor fault.",
+    "safetyWarning": "Do not bypass the high limit.",
+    "causes": [
+      {"cause": "Air in HX", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed circulator", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Closed isolation valve", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["F05 on display", "Hot pipes at boiler"],
+    "fixSteps": [
+      {"step": 1, "title": "Bleed", "instruction": "Bleed boiler and zones.", "tools": ["bleed key"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Verify circulator", "instruction": "Confirm the system pump is running.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Circulator replacement.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Recurring after summer?", "a": "Air comes out of solution after cooling; bleed and refill."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f06",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F06",
+    "displayCode": "F06",
+    "isBlinkCode": false,
+    "title": "LWCO / Low Pressure",
+    "shortDescription": "Low water cutoff has opened.",
+    "fullDescription": "F06 means the LWCO probe or pressure transducer has indicated insufficient water. Refill to 12 psi cold and look for leaks.",
+    "safetyWarning": "Never bypass the LWCO.",
+    "causes": [
+      {"cause": "System leak", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed PRV/auto-fill", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Probe scaled", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F06 on display", "Pressure gauge near zero"],
+    "fixSteps": [
+      {"step": 1, "title": "Refill", "instruction": "Bring system to 12 psi cold.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Inspect for leaks", "instruction": "Walk the system for staining.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "easy",
+    "repairTime": "20-90 minutes",
+    "whenToCallPro": "If leak is hidden or LWCO replacement is needed.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Pressure drops only when running?", "a": "Often a relief valve weeping — check the discharge."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f09",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F09",
+    "displayCode": "F09",
+    "isBlinkCode": false,
+    "title": "Outlet Sensor Fault",
+    "shortDescription": "Boiler outlet NTC out of range.",
+    "fullDescription": "F09 means the supply temperature sensor is open or shorted. The boiler will not fire without it.",
+    "safetyWarning": "Power off before sensor work.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed NTC", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F09 on display", "No firing"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Power off, reseat sensor harness.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "Replace sensor with OEM if open.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "Sensor well requires draining HX.",
+    "relatedCodes": ["F10"],
+    "faq": [
+      {"q": "Use generic NTC?", "a": "Use OEM only — temperature curve must match."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f10",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F10",
+    "displayCode": "F10",
+    "isBlinkCode": false,
+    "title": "Inlet Sensor Fault",
+    "shortDescription": "Return-water NTC out of range.",
+    "fullDescription": "F10 covers the inlet/return sensor. Boiler relies on it for delta-T computation and HX protection.",
+    "safetyWarning": "Power off before sensor work.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed NTC", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F10 on display"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat", "instruction": "Reseat connector.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "Replace with OEM sensor.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Draining and refilling.",
+    "relatedCodes": ["F09"],
+    "faq": [
+      {"q": "Boiler will not run?", "a": "Correct — both sensors are mandatory."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f13",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F13",
+    "displayCode": "F13",
+    "isBlinkCode": false,
+    "title": "Flue Sensor Fault",
+    "shortDescription": "Flue temperature sensor out of range.",
+    "fullDescription": "F13 covers the flue NTC. Lochinvar uses this to limit firing rate to keep PVC vents safe.",
+    "safetyWarning": "Do not bypass — required for flue protection.",
+    "causes": [
+      {"cause": "Failed flue NTC", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["F13 on display"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Reseat the flue sensor harness.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "Swap with the OEM sensor.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 150}, "professional": {"min": 250, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If gasket reset is required.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Heating affected?", "a": "Yes, boiler will not run."}
+    ]
+  },
+  {
+    "id": "lochinvar-boiler-f15",
+    "brand": "Lochinvar",
+    "brandSlug": "lochinvar",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F15",
+    "displayCode": "F15",
+    "isBlinkCode": false,
+    "title": "Blower Speed Fault",
+    "shortDescription": "Combustion blower RPM does not match command.",
+    "fullDescription": "F15 occurs when the SMART control sees the fan tach feedback fall outside tolerance from the PWM command. Causes are debris in impeller, bad PWM cable, or aged fan motor.",
+    "safetyWarning": "Disconnect line voltage before fan work.",
+    "causes": [
+      {"cause": "Debris in impeller", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Aged fan motor", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Bad PWM/tach cable", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F15 on display", "Fan sound abnormal"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect impeller", "instruction": "Power off, vacuum any debris.", "tools": ["vacuum"], "difficulty": "intermediate", "timeMinutes": 30},
+      {"step": 2, "title": "Reseat cables", "instruction": "Reseat fan harness.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 400, "max": 1300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Blower replacement.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Fan life?", "a": "Typically 8-12 years on Knight units."}
+    ]
+  }
+]

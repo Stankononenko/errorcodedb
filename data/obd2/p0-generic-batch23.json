@@ -1,0 +1,780 @@
+[
+  {
+    "code": "P0A0F",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Engine Failed To Start",
+    "shortDescription": "Hybrid powertrain failed to crank or start the internal combustion engine.",
+    "fullDescription": "P0A0F sets when the hybrid control module commands the ICE to start (typically via the motor/generator MG1) but RPM and combustion are not confirmed within the calibrated time window. The vehicle may continue in EV mode if HV battery is sufficient, or it may go into a reduced-power 'limp home' state.\n\nCommon root causes include a weak HV battery (cannot supply cranking current to MG1), a fault in the inverter/converter assembly, low fuel pressure, ignition system failure, or an MG1 resolver/position-sensor fault. On Toyota/Lexus hybrids this DTC very frequently appears alongside misfire codes when one or more spark plugs or coils have failed.\n\nDiagnosis requires a hybrid-capable scan tool to view MG1/MG2 RPM data, HV battery state-of-charge, and inverter current draw during a start attempt.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may strand the driver. HV system inspection requires high-voltage safety procedures (insulated gloves, service plug removal).",
+    "causes": [
+      {"cause": "Weak or failing HV battery pack", "likelihood": "high"},
+      {"cause": "Failed ignition coil or spark plug", "likelihood": "high"},
+      {"cause": "Low fuel pressure or failed fuel pump", "likelihood": "medium"},
+      {"cause": "MG1 resolver fault", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL on", "Master warning triangle", "Engine cranks but no start", "Reduced power / limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan all modules", "instruction": "Pull DTCs from PCM, hybrid control, battery ECU, and skid control with hybrid-capable scan tool.", "tools": ["Hybrid OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Check HV battery health", "instruction": "View block voltages and internal resistance. Replace pack or weak module if delta exceeds spec.", "tools": ["Hybrid OBD-II scanner", "Insulated gloves Class 0"], "difficulty": "professional"},
+      {"step": 3, "title": "Inspect ignition and fuel", "instruction": "Test coils, plugs, and fuel pressure. Address any companion misfire DTCs first.", "tools": ["Spark tester", "Fuel pressure gauge"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 600}, "mechanic": {"min": 400, "max": 4500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "2-8 hours",
+    "relatedCodes": ["P0A80", "P3000"],
+    "faq": [{"q": "Is it safe to drive?", "a": "No. Tow to a hybrid-qualified shop; HV system service requires PPE and training."}]
+  },
+  {
+    "code": "P0A1A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Generator Control Module",
+    "shortDescription": "Internal fault detected in the generator (MG1) control module.",
+    "fullDescription": "P0A1A indicates the inverter/generator control module has detected an internal logic, supply, or power-stage fault. The hybrid system will typically force the vehicle into a fail-safe mode, disabling generator function which prevents engine cranking and high-voltage charging of the traction battery.\n\nFailures are often caused by IGBT module breakdown inside the inverter assembly, coolant intrusion, or loss of low-voltage supply to the gate-drive board.\n\nReplacement of the inverter assembly typically follows confirmation that LV power, ground, and CAN are good.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may shut down unexpectedly. HV inverter contains lethal voltage even after key off until capacitors discharge.",
+    "causes": [
+      {"cause": "Failed inverter IGBT module", "likelihood": "high"},
+      {"cause": "Coolant leak into inverter", "likelihood": "medium"},
+      {"cause": "Low-voltage supply fault to inverter", "likelihood": "low"}
+    ],
+    "symptoms": ["Red triangle warning", "Vehicle in limp mode", "Cannot start ICE", "Loss of regen braking"],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm LV supply", "instruction": "Verify 12V power and ground at inverter LV connector with key on.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Check inverter coolant", "instruction": "Inspect dedicated inverter cooling loop level and pump operation.", "tools": ["Visual inspection"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace inverter assembly", "instruction": "Follow OEM HV-safe service procedure: remove service plug, wait capacitor discharge, then swap inverter.", "tools": ["Insulated tools", "Class 0 gloves", "Megohmmeter"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A1B", "P0A1C", "P0A78"],
+    "faq": [{"q": "Can I DIY this?", "a": "No. HV inverter replacement requires certified PPE and procedures."}]
+  },
+  {
+    "code": "P0A1B",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Control Module",
+    "shortDescription": "Internal fault in drive motor (MG2) control module.",
+    "fullDescription": "P0A1B sets when the inverter section that drives the traction motor (MG2) reports an internal fault. The vehicle will lose propulsion or enter severely reduced-power mode because MG2 is the primary drive motor on most planetary-split hybrids.\n\nLike P0A1A, this is usually an inverter-side failure (IGBT, gate driver, current sensor) and not typically a wiring fault.",
+    "severity": "high",
+    "safetyImpact": "Sudden loss of drive propulsion possible.",
+    "causes": [
+      {"cause": "Inverter MG2 power-stage failure", "likelihood": "high"},
+      {"cause": "Current sensor fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "No drive / limp mode", "Loss of regen"],
+    "fixSteps": [
+      {"step": 1, "title": "Scan freeze frame", "instruction": "Capture conditions; check for companion P0A78/P0A7A.", "tools": ["Hybrid scan tool"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inverter replacement", "instruction": "OEM HV procedure required.", "tools": ["Class 0 gloves", "Insulated tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A1A", "P0A78"],
+    "faq": [{"q": "Reset and drive?", "a": "Will return immediately; system must be repaired."}]
+  },
+  {
+    "code": "P0A1C",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Motor Electronics Coolant Pump Control Circuit",
+    "shortDescription": "Open or short detected in the inverter coolant pump control circuit.",
+    "fullDescription": "P0A1C indicates the hybrid control module cannot drive the dedicated electric coolant pump used to cool the inverter and drive motors. Without flow, the inverter will overheat and derate within minutes of operation.\n\nMost frequent on Toyota Prius generations 2-4 where the inverter pump (Aisin) fails. Also caused by blown fuse, broken pigtail, or seized pump motor.",
+    "severity": "high",
+    "safetyImpact": "Inverter overheat can cause sudden power loss.",
+    "causes": [
+      {"cause": "Failed inverter coolant pump", "likelihood": "high"},
+      {"cause": "Blown HEV pump fuse", "likelihood": "medium"},
+      {"cause": "Open wiring to pump", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Red triangle", "Reduced power after short driving", "Fan running constantly"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse", "instruction": "Verify HV/inverter pump fuse (often labeled WTR PMP or HEV).", "tools": ["DMM"], "difficulty": "easy"},
+      {"step": 2, "title": "Power test pump", "instruction": "Apply 12V directly to pump to confirm operation.", "tools": ["Jumper wires"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace pump", "instruction": "Drain inverter loop, swap pump, refill and bleed using scan-tool routine.", "tools": ["Drain pan", "Hybrid scan tool"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 250}, "mechanic": {"min": 300, "max": 700}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0A93", "P0A94"],
+    "faq": [{"q": "Common fix?", "a": "Inverter coolant pump replacement; common Prius failure."}]
+  },
+  {
+    "code": "P0A1D",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Powertrain Control Module Internal",
+    "shortDescription": "Internal hybrid powertrain control module fault detected.",
+    "fullDescription": "P0A1D sets when the master hybrid control module fails internal self-tests (RAM/ROM/processor). The fault is in the module itself, not in sensors or wiring.\n\nUnlikely to be a wiring issue. Software flash or module replacement (with programming) is generally required.",
+    "severity": "high",
+    "safetyImpact": "Loss of hybrid powertrain function.",
+    "causes": [
+      {"cause": "Failed hybrid control module", "likelihood": "high"},
+      {"cause": "Corrupted firmware", "likelihood": "low"}
+    ],
+    "symptoms": ["No start", "Red triangle", "Multiple HV system DTCs"],
+    "fixSteps": [
+      {"step": 1, "title": "Check for TSBs", "instruction": "Search OEM bulletins for reflash availability.", "tools": ["OEM service portal"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace and program", "instruction": "Install new module, perform OEM key/immobilizer init.", "tools": ["OEM scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1200, "max": 3500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Reflash possible?", "a": "Sometimes; check OEM bulletin."}]
+  },
+  {
+    "code": "P0A1E",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Energy Control Module",
+    "shortDescription": "Internal fault in the HV battery energy control module.",
+    "fullDescription": "P0A1E indicates the battery ECU has failed an internal self-check. This module monitors block voltages, current, temperature, and SOC for the traction battery.\n\nWhen lost, the hybrid control module cannot trust battery data and disables HV operation.",
+    "severity": "high",
+    "safetyImpact": "HV system disabled; loss of propulsion possible.",
+    "causes": [
+      {"cause": "Failed battery ECU", "likelihood": "high"},
+      {"cause": "Corroded ECU connector", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "No HV", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Open battery service cover, inspect ECU connector for corrosion.", "tools": ["Class 0 gloves"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace ECU", "instruction": "Swap battery ECU; perform initialization.", "tools": ["OEM scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0A80"],
+    "faq": [{"q": "Will jumping LV help?", "a": "No, this is HV battery management."}]
+  },
+  {
+    "code": "P0A1F",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Energy Control Module Performance",
+    "shortDescription": "Battery energy control module is reporting implausible data.",
+    "fullDescription": "P0A1F is set when the battery ECU outputs values that conflict with other sensor inputs (for example, claiming high SOC while actual current draw is low or vice versa). The hybrid control rejects the battery ECU output and stores this DTC.\n\nMost commonly caused by current sensor zero-point drift, contaminated ECU, or end-of-life battery pack imbalance.",
+    "severity": "medium",
+    "safetyImpact": "Possible reduced power; HV may shut down.",
+    "causes": [
+      {"cause": "Current sensor calibration drift", "likelihood": "high"},
+      {"cause": "Battery pack imbalance", "likelihood": "medium"},
+      {"cause": "Failed battery ECU", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "Erratic SOC display"],
+    "fixSteps": [
+      {"step": 1, "title": "Run battery health test", "instruction": "Use OEM scan tool to capture block voltages and current sensor zero offset.", "tools": ["OEM scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Recalibrate / replace", "instruction": "Reset zero-point if procedure exists; otherwise replace ECU or pack.", "tools": ["OEM scan tool"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 200, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-4 hours",
+    "relatedCodes": ["P0A1E", "P0A80"],
+    "faq": [{"q": "Just reset?", "a": "Will return; underlying drift must be corrected."}]
+  },
+  {
+    "code": "P0A25",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Boost Converter Module",
+    "shortDescription": "Internal fault in the boost (step-up) converter.",
+    "fullDescription": "P0A25 sets when the DC-DC step-up (boost) converter that raises HV battery voltage to motor-bus voltage (typically 500-650V) reports an internal fault. Without boost, drive motor torque is severely limited.\n\nUsually fails as part of inverter assembly on Toyota/Ford hybrids; on Honda IMA, may be a discrete unit.",
+    "severity": "high",
+    "safetyImpact": "Severe loss of drive power.",
+    "causes": [
+      {"cause": "Failed boost IGBT", "likelihood": "high"},
+      {"cause": "Boost reactor (inductor) failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "Red triangle", "Slow acceleration"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect inverter coolant", "instruction": "Confirm cooling system functional.", "tools": ["Visual"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace converter", "instruction": "Inverter/converter assembly replacement under HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A26", "P0A27"],
+    "faq": [{"q": "Same as inverter?", "a": "Often integrated in the same assembly."}]
+  },
+  {
+    "code": "P0A26",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Boost Converter Module Performance",
+    "shortDescription": "Boost converter output not within expected range.",
+    "fullDescription": "P0A26 sets when the boosted bus voltage doesn't match the commanded value under load. Could be a feedback sensor issue or actual converter underperformance.\n\nDiagnose with hybrid scan tool comparing commanded vs actual VL (low) and VH (high) voltages.",
+    "severity": "high",
+    "safetyImpact": "Reduced motor torque.",
+    "causes": [
+      {"cause": "Boost converter degradation", "likelihood": "high"},
+      {"cause": "Bus voltage sensor drift", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power", "MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Compare commanded vs actual", "instruction": "Capture bus voltage data under load.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace inverter", "instruction": "If converter underperforming, swap assembly.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A25", "P0A27"],
+    "faq": [{"q": "Common?", "a": "Less common than P0A25 / P0A1A."}]
+  },
+  {
+    "code": "P0A27",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Boost Converter Module Voltage High",
+    "shortDescription": "Boost converter output voltage above maximum threshold.",
+    "fullDescription": "P0A27 sets when the high-side bus voltage exceeds safe limits. The hybrid control immediately disables the boost stage to prevent capacitor or motor insulation damage.\n\nCauses include sensor offset, runaway IGBT switching, or regen-event overshoot due to failed clamp.",
+    "severity": "high",
+    "safetyImpact": "Risk of insulation breakdown.",
+    "causes": [
+      {"cause": "Voltage sensor fault", "likelihood": "high"},
+      {"cause": "Failed converter switching", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "Loss of drive"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Cannot service in field; replace assembly.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A28"],
+    "faq": [{"q": "Drive home?", "a": "No, tow."}]
+  },
+  {
+    "code": "P0A28",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Boost Converter Module Voltage Low",
+    "shortDescription": "Boost converter output voltage below minimum threshold.",
+    "fullDescription": "P0A28 sets when the high bus voltage drops below the level needed to drive MG1/MG2 effectively. Usually indicates a converter switching failure, blown HV fuse internal to the inverter, or open boost reactor.\n\nResult is severe power reduction or no-drive.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion.",
+    "causes": [
+      {"cause": "Open boost reactor", "likelihood": "medium"},
+      {"cause": "Internal HV fuse blown", "likelihood": "medium"},
+      {"cause": "Failed converter IGBT", "likelihood": "high"}
+    ],
+    "symptoms": ["No drive", "Red triangle"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Replacement under HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A27"],
+    "faq": [{"q": "Reset works?", "a": "No."}]
+  },
+  {
+    "code": "P0A29",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Boost Converter Temperature Sensor Circuit",
+    "shortDescription": "Open or short in the boost converter temperature sensor circuit.",
+    "fullDescription": "P0A29 indicates the temperature sensor monitoring the boost converter has an out-of-range signal. Without temperature data, the hybrid control derates power as a safety measure.\n\nThe sensor is typically internal to the inverter assembly, so repair often requires inverter replacement.",
+    "severity": "medium",
+    "safetyImpact": "Power derate; thermal protection compromised.",
+    "causes": [
+      {"cause": "Failed internal temp sensor", "likelihood": "high"}
+    ],
+    "symptoms": ["MIL", "Reduced power under load"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Sensor not serviceable separately on most platforms.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Can sensor be replaced separately?", "a": "Typically no."}]
+  },
+  {
+    "code": "P0A30",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Cooling Fan 1 Control Circuit",
+    "shortDescription": "Open or short detected in HV battery cooling fan control circuit.",
+    "fullDescription": "P0A30 indicates the battery ECU cannot drive the HV battery pack cooling fan. NiMH and Li-ion packs require active airflow to keep cells in their optimum temperature window. A failed fan will eventually cause thermal derate or a more serious battery fault.\n\nVery common on older Prius/Camry hybrids where the rear cabin air intake gets clogged with debris and the fan motor seizes.",
+    "severity": "medium",
+    "safetyImpact": "Battery overheating possible; long-term damage.",
+    "causes": [
+      {"cause": "Failed fan motor", "likelihood": "high"},
+      {"cause": "Clogged intake (dust/debris)", "likelihood": "high"},
+      {"cause": "Open fan harness", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Battery temp warnings", "Reduced regen"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect intake", "instruction": "Remove rear seat trim, check intake screen and fan blades for debris/pet hair.", "tools": ["Hand tools", "Vacuum"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Test fan", "instruction": "Apply 12V to fan; replace if dead.", "tools": ["Jumper", "DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0A31", "P0A32"],
+    "faq": [{"q": "Cleaning fix?", "a": "Often yes; clean intake first before replacing fan."}]
+  },
+  {
+    "code": "P0A31",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Cooling Fan 1 Control Circuit Low",
+    "shortDescription": "Battery cooling fan circuit voltage low.",
+    "fullDescription": "P0A31 indicates the fan control line is shorted to ground or stuck low. The fan may run continuously or not at all depending on circuit topology.\n\nUsually a chafed harness or shorted fan motor.",
+    "severity": "medium",
+    "safetyImpact": "Battery thermal management compromised.",
+    "causes": [
+      {"cause": "Wiring shorted to ground", "likelihood": "high"},
+      {"cause": "Failed fan motor (internal short)", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Resistance test fan", "instruction": "Disconnect fan, measure motor resistance.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Look for chafing along seat rail.", "tools": ["Visual"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0A30", "P0A32"],
+    "faq": [{"q": "Drive ok?", "a": "Short trips ok; fix soon."}]
+  },
+  {
+    "code": "P0A32",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Cooling Fan 1 Control Circuit High",
+    "shortDescription": "Battery cooling fan control circuit voltage high.",
+    "fullDescription": "P0A32 sets when the fan control line is open or shorted to power. ECU detects the line not pulling low when commanded.\n\nUsually open wire or unplugged fan connector.",
+    "severity": "medium",
+    "safetyImpact": "Loss of battery cooling.",
+    "causes": [
+      {"cause": "Open wiring", "likelihood": "high"},
+      {"cause": "Unplugged fan", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Verify fan plugged in.", "tools": ["Visual"], "difficulty": "easy"},
+      {"step": 2, "title": "Continuity check", "instruction": "Test wire from battery ECU to fan.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0A30", "P0A31"],
+    "faq": [{"q": "Quick fix?", "a": "Often a reseated connector."}]
+  },
+  {
+    "code": "P0A38",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Inverter Temperature Sensor Circuit",
+    "shortDescription": "Open or short in MG2 inverter temperature sensor.",
+    "fullDescription": "P0A38 indicates the MG2 inverter temperature sensor is reporting out-of-range. Without thermal data, the system derates motor power preemptively.\n\nSensor typically internal to inverter; replacement of full assembly often required.",
+    "severity": "medium",
+    "safetyImpact": "Thermal protection compromised.",
+    "causes": [{"cause": "Failed internal temp sensor", "likelihood": "high"}],
+    "symptoms": ["MIL", "Reduced power"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Sensor integrated.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "External sensor?", "a": "No, internal."}]
+  },
+  {
+    "code": "P0A40",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Position Sensor Circuit",
+    "shortDescription": "MG2 resolver position sensor circuit fault.",
+    "fullDescription": "P0A40 indicates the resolver (rotary position sensor) for the drive motor MG2 has a circuit fault. The hybrid control needs accurate rotor position to commutate the AC motor; without it, no torque can be produced.\n\nResolvers rarely fail outright; usually wiring or connector at the motor housing.",
+    "severity": "high",
+    "safetyImpact": "Loss of drive.",
+    "causes": [
+      {"cause": "Connector contamination", "likelihood": "high"},
+      {"cause": "Damaged resolver wiring", "likelihood": "medium"},
+      {"cause": "Failed resolver", "likelihood": "low"}
+    ],
+    "symptoms": ["No drive", "Red triangle"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Check resolver connector at transaxle for moisture/corrosion.", "tools": ["Visual"], "difficulty": "advanced"},
+      {"step": 2, "title": "Resistance test", "instruction": "Verify resolver coils per OEM spec.", "tools": ["DMM"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-8 hours",
+    "relatedCodes": ["P0A41", "P0A42"],
+    "faq": [{"q": "Driveable?", "a": "No."}]
+  },
+  {
+    "code": "P0A60",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Phase U Current",
+    "shortDescription": "Drive motor MG2 phase U current out of range.",
+    "fullDescription": "P0A60 indicates the U-phase current measurement for MG2 is abnormal. Could be a current sensor failure or actual motor winding problem.\n\nCommonly accompanied by P0A61 (phase V) or P0A62 (phase W) if it's a sensor common to all phases.",
+    "severity": "high",
+    "safetyImpact": "Loss of motor torque control.",
+    "causes": [
+      {"cause": "Current sensor fault", "likelihood": "high"},
+      {"cause": "Motor winding short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Loss of drive"],
+    "fixSteps": [
+      {"step": 1, "title": "Insulation test motor", "instruction": "Megger phase-to-ground.", "tools": ["Megohmmeter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace inverter or motor", "instruction": "Per test result.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A61", "P0A62"],
+    "faq": [{"q": "Motor or inverter?", "a": "Megger test distinguishes."}]
+  },
+  {
+    "code": "P0A61",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Phase V Current",
+    "shortDescription": "Drive motor MG2 phase V current out of range.",
+    "fullDescription": "P0A61 indicates the V-phase current sensor or measurement for drive motor MG2 is reporting an implausible value. Like P0A60, requires distinguishing sensor vs winding fault.\n\nDiagnosis flow identical to P0A60.",
+    "severity": "high",
+    "safetyImpact": "Loss of motor torque control.",
+    "causes": [
+      {"cause": "Current sensor fault", "likelihood": "high"},
+      {"cause": "Motor winding short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Loss of drive"],
+    "fixSteps": [
+      {"step": 1, "title": "Insulation test", "instruction": "Megger.", "tools": ["Megohmmeter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace assembly", "instruction": "Inverter or motor.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A60", "P0A62"],
+    "faq": [{"q": "Common?", "a": "Less than P0A60."}]
+  },
+  {
+    "code": "P0A62",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Phase W Current",
+    "shortDescription": "Drive motor MG2 phase W current out of range.",
+    "fullDescription": "P0A62 indicates the W-phase current measurement is out of range. Companion DTC to P0A60/P0A61.\n\nIf all three set together, the high-side current sensor or shunt is the most likely culprit.",
+    "severity": "high",
+    "safetyImpact": "Loss of motor torque control.",
+    "causes": [
+      {"cause": "Current sensor fault", "likelihood": "high"},
+      {"cause": "Motor winding short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Loss of drive"],
+    "fixSteps": [
+      {"step": 1, "title": "Megger test", "instruction": "Insulation test phase-to-ground.", "tools": ["Megohmmeter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace per result", "instruction": "Motor or inverter.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A60", "P0A61"],
+    "faq": [{"q": "All three set?", "a": "Suggests sensor block fault."}]
+  },
+  {
+    "code": "P0A6F",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Phase U-V-W Performance",
+    "shortDescription": "Generic motor phase performance fault.",
+    "fullDescription": "P0A6F is a summary code set when the inverter cannot maintain commanded torque due to phase-related anomalies that don't match a single sensor DTC.\n\nUsually accompanies more specific phase codes; address those first.",
+    "severity": "high",
+    "safetyImpact": "Loss of drive.",
+    "causes": [
+      {"cause": "Inverter switching fault", "likelihood": "high"}
+    ],
+    "symptoms": ["No drive"],
+    "fixSteps": [{"step": 1, "title": "Address companion DTCs", "instruction": "Fix specific phase codes first.", "tools": ["Hybrid scan tool"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A60", "P0A61", "P0A62"],
+    "faq": [{"q": "Standalone fix?", "a": "Rarely; chase specific phase codes."}]
+  },
+  {
+    "code": "P0A80",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Replace Hybrid Battery Pack",
+    "shortDescription": "HV battery deterioration; pack replacement required.",
+    "fullDescription": "P0A80 is the canonical 'your hybrid battery is worn out' code. The battery ECU has detected one or more cell modules outside acceptable internal-resistance or capacity limits. SOC will swing wildly and the system will run the ICE far more often than designed.\n\nOptions: replace full pack (OEM, costly), replace individual weak modules (requires diagnostic to identify the bad cells), or install a refurbished/aftermarket pack with warranty.\n\nVery common on Toyota Prius gen 2/3 (2004-2015) at 150-200k miles.",
+    "severity": "medium",
+    "safetyImpact": "Reduced fuel economy and performance; not immediately unsafe.",
+    "causes": [
+      {"cause": "Aged HV battery cells", "likelihood": "high"},
+      {"cause": "Single weak module", "likelihood": "high"},
+      {"cause": "Imbalance from prolonged storage", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Red triangle", "Erratic SOC bars", "Poor MPG", "ICE running constantly"],
+    "fixSteps": [
+      {"step": 1, "title": "Battery diagnostic", "instruction": "Use OEM or hybrid-specialty tool to capture per-block voltage and internal resistance.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Module or pack replacement", "instruction": "Replace identified weak modules with matched-capacity units, or install refurbished pack.", "tools": ["Class 0 gloves", "Hybrid scan tool"], "difficulty": "professional"},
+      {"step": 3, "title": "Reset and learn", "instruction": "Clear codes; drive cycle to confirm SOC stability.", "tools": ["Scan tool"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 1500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P0A7F", "P0A81", "P3000"],
+    "faq": [{"q": "How long can I drive with this?", "a": "Will continue functioning but with poor MPG; replace within months to avoid stranding."}]
+  },
+  {
+    "code": "P0A81",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Cooling Fan 2",
+    "shortDescription": "Secondary battery pack cooling fan circuit fault.",
+    "fullDescription": "P0A81 indicates a fault on the second cooling fan used in larger HV battery packs (some Lexus/Highlander hybrids).\n\nDiagnosis follows the same flow as P0A30: clean intake, verify power, replace fan if seized.",
+    "severity": "medium",
+    "safetyImpact": "Battery thermal management compromised.",
+    "causes": [
+      {"cause": "Failed fan motor", "likelihood": "high"},
+      {"cause": "Blown fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify fuse and connector", "instruction": "Check power supply.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace fan", "instruction": "If dead.", "tools": ["Hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": ["P0A30"],
+    "faq": [{"q": "All hybrids have two fans?", "a": "No, larger packs only."}]
+  },
+  {
+    "code": "P0A8E",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Voltage Sense A Circuit",
+    "shortDescription": "Open or short in HV battery voltage-sense wire.",
+    "fullDescription": "P0A8E indicates the battery ECU cannot read one of its block voltage sense wires. These run from each cell-module tap to the ECU board.\n\nFrequent failure mode is a single broken or corroded sense wire inside the pack.",
+    "severity": "medium",
+    "safetyImpact": "Cell imbalance possible if undetected.",
+    "causes": [
+      {"cause": "Broken sense wire", "likelihood": "high"},
+      {"cause": "Failed sense board", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Erratic SOC"],
+    "fixSteps": [
+      {"step": 1, "title": "Open battery pack", "instruction": "HV-safe procedure; locate the open sense wire by ECU pinout.", "tools": ["Class 0 gloves"], "difficulty": "professional"},
+      {"step": 2, "title": "Repair or replace harness", "instruction": "Splice or replace ribbon harness.", "tools": ["Soldering kit"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 600, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0A80"],
+    "faq": [{"q": "Same as bad battery?", "a": "No, but ignored leads to imbalance."}]
+  },
+  {
+    "code": "P0A90",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor A Performance",
+    "shortDescription": "Drive motor MG2 not delivering commanded torque.",
+    "fullDescription": "P0A90 sets when the actual MG2 output torque (calculated from current and back-EMF) doesn't match commanded value over a sustained window. Could be motor winding partial-short, magnet weakening (rare), or inverter calibration drift.\n\nDiagnosis is involved; OEM scan-tool data and bench tests usually required.",
+    "severity": "high",
+    "safetyImpact": "Reduced acceleration.",
+    "causes": [
+      {"cause": "Motor winding partial short", "likelihood": "medium"},
+      {"cause": "Inverter calibration drift", "likelihood": "medium"},
+      {"cause": "Demagnetized rotor (after overheat)", "likelihood": "low"}
+    ],
+    "symptoms": ["Reduced power", "MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Capture data", "instruction": "Compare commanded vs measured torque under load.", "tools": ["OEM scan tool"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace assembly", "instruction": "Motor or inverter as indicated.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A91"],
+    "faq": [{"q": "Cause of demag?", "a": "Usually prior overheating; pack ages all parts together."}]
+  },
+  {
+    "code": "P0A93",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Inverter A Cooling System Performance",
+    "shortDescription": "Inverter cooling system not maintaining target temperature.",
+    "fullDescription": "P0A93 sets when the inverter coolant temperature rises faster or higher than expected for the load condition. Indicates marginal cooling: weak pump, low coolant level, or air pocket in the loop.\n\nVery common after pump replacement if not bled correctly.",
+    "severity": "high",
+    "safetyImpact": "Inverter overheat / power derate.",
+    "causes": [
+      {"cause": "Weak inverter coolant pump", "likelihood": "high"},
+      {"cause": "Low coolant / air in loop", "likelihood": "high"},
+      {"cause": "Failed thermostat or radiator blockage", "likelihood": "medium"}
+    ],
+    "symptoms": ["Reduced power after extended driving", "MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Top up coolant", "instruction": "Inverter loop is separate from engine; use spec coolant.", "tools": ["Coolant"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Bleed loop", "instruction": "Run scan-tool bleed routine or follow OEM bleed procedure.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 3, "title": "Test pump flow", "instruction": "Pinch return hose to feel flow; replace pump if weak.", "tools": ["Visual"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 300}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0A1C", "P0A94"],
+    "faq": [{"q": "Engine coolant ok?", "a": "Different loop; this is dedicated inverter cooling."}]
+  },
+  {
+    "code": "P0A94",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "DC/DC Converter Performance",
+    "shortDescription": "Auxiliary 14V DC-DC converter not maintaining output.",
+    "fullDescription": "P0A94 sets when the DC-DC converter (steps HV down to ~14V to charge the 12V auxiliary battery and run accessories) is underperforming. Symptoms include 12V battery going flat, accessories cutting out at idle, and eventually no-start.\n\nThe DC-DC is part of the inverter assembly on most hybrids.",
+    "severity": "high",
+    "safetyImpact": "Sudden loss of accessories possible.",
+    "causes": [
+      {"cause": "Failed DC-DC converter section", "likelihood": "high"},
+      {"cause": "Aged 12V auxiliary battery (false trip)", "likelihood": "medium"}
+    ],
+    "symptoms": ["12V battery low warning", "Accessories cutting out", "No ready light"],
+    "fixSteps": [
+      {"step": 1, "title": "Test 12V battery", "instruction": "Load test; replace if below 12V resting.", "tools": ["Battery tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Measure DC-DC output", "instruction": "Should be 13.5-14.5V at terminals with vehicle Ready.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace inverter", "instruction": "If output low, inverter assembly replacement.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 300}, "mechanic": {"min": 200, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-10 hours",
+    "relatedCodes": ["P0A1A"],
+    "faq": [{"q": "Just replace 12V battery?", "a": "Try first; if DC-DC fails to recharge, deeper repair needed."}]
+  },
+  {
+    "code": "P0A9C",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Temperature Sensor A Circuit",
+    "shortDescription": "Open or short in HV battery temperature sensor.",
+    "fullDescription": "P0A9C sets when one of the multiple temperature sensors inside the HV battery pack is reporting out-of-range. Without good thermal data, the battery ECU cannot manage cooling fan and SOC limits.\n\nSensors are typically thermistors mounted to specific cell modules.",
+    "severity": "medium",
+    "safetyImpact": "Battery thermal management compromised.",
+    "causes": [
+      {"cause": "Failed thermistor", "likelihood": "high"},
+      {"cause": "Open sensor wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify sensor", "instruction": "Per OEM pinout in battery ECU.", "tools": ["Hybrid scan tool"], "difficulty": "professional"},
+      {"step": 2, "title": "Test resistance", "instruction": "Check thermistor at known temperature.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace sensor", "instruction": "HV-safe procedure to access pack interior.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [],
+    "faq": [{"q": "Pack replace?", "a": "Usually just sensor."}]
+  },
+  {
+    "code": "P0AC0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery System Voltage High",
+    "shortDescription": "HV battery pack voltage exceeds upper limit.",
+    "fullDescription": "P0AC0 sets when total pack voltage rises above the calibrated maximum. Often happens during heavy regenerative braking if a pack module is not accepting charge properly, causing the rest of the pack to over-shoot.\n\nIf paired with P0A80, replace pack/modules.",
+    "severity": "high",
+    "safetyImpact": "Risk of cell damage.",
+    "causes": [
+      {"cause": "Battery module imbalance", "likelihood": "high"},
+      {"cause": "Voltage sensor offset", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "Reduced regen"],
+    "fixSteps": [
+      {"step": 1, "title": "Block voltage scan", "instruction": "Find weakest/strongest module.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Module replacement", "instruction": "Address imbalance.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 800}, "mechanic": {"min": 800, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0A80", "P0AC1"],
+    "faq": [{"q": "Drive ok?", "a": "Limp mode only; don't ignore."}]
+  },
+  {
+    "code": "P0AC1",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery System Voltage Low",
+    "shortDescription": "HV battery pack voltage below lower limit.",
+    "fullDescription": "P0AC1 sets when total pack voltage drops below safe minimum during high-current discharge. Indicates one or more very weak modules.\n\nUsually accompanies P0A80 and signals end-of-life pack.",
+    "severity": "high",
+    "safetyImpact": "Loss of propulsion possible.",
+    "causes": [
+      {"cause": "Severely degraded module(s)", "likelihood": "high"},
+      {"cause": "Pack imbalance", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "Reduced power", "Erratic SOC"],
+    "fixSteps": [
+      {"step": 1, "title": "Block voltage scan", "instruction": "Identify weak modules.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace pack/modules", "instruction": "OEM or refurb.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 1500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P0A80", "P0AC0"],
+    "faq": [{"q": "Charging help?", "a": "External charging not standard on hybrids; pack must be repaired."}]
+  }
+]

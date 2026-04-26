@@ -1,0 +1,318 @@
+[
+  {
+    "id": "viessmann-boiler-f02",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.02",
+    "displayCode": "F.02",
+    "isBlinkCode": false,
+    "title": "Safety Shutdown / Heat Exchanger Overheat",
+    "shortDescription": "Vitodens supply temperature exceeded the safety limit.",
+    "fullDescription": "F.02 on Vitodens 100/200 means the supply STB or temperature limiter has tripped. Causes are loss of flow (failed circulator, air lock, closed isolation valve), excessive scale on the heat exchanger, or a failed temperature sensor reading high.\n\nThe boiler stays in lockout until the technician resets the panel.",
+    "safetyWarning": "Do not bypass the STB; over-temp protects against catastrophic HX failure.",
+    "causes": [
+      {"cause": "Air-locked heat exchanger", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed circulator", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Scaled heat exchanger", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Defective supply NTC", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F.02 on display", "Manual reset required"],
+    "fixSteps": [
+      {"step": 1, "title": "Bleed", "instruction": "Vent the boiler and high points; verify pressure 1-1.5 bar.", "tools": ["bleed key"], "difficulty": "intermediate", "timeMinutes": 20},
+      {"step": 2, "title": "Check pump", "instruction": "Confirm pump runs and supply piping warms during a heat call.", "tools": [], "difficulty": "easy", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 1000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-180 minutes",
+    "whenToCallPro": "Heat exchanger descale and pump replacement.",
+    "relatedCodes": ["F.04", "F.05"],
+    "faq": [
+      {"q": "Can hard water cause this?", "a": "Yes — scale buildup is the leading cause on aged Vitodens 100s."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f04",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.04",
+    "displayCode": "F.04",
+    "isBlinkCode": false,
+    "title": "No Flame Signal",
+    "shortDescription": "Burner did not establish flame after ignition retries.",
+    "fullDescription": "F.04 is the Vitodens ignition lockout. After failed retries the unit holds in fault until reset. Typical causes: closed gas valve, contaminated electrode, low gas pressure, or LP outage.\n\nReset by holding the reset button for ~3 seconds and watching one ignition cycle.",
+    "safetyWarning": "If you smell gas, evacuate and call your gas emergency line.",
+    "causes": [
+      {"cause": "Closed manual gas valve", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Dirty/cracked ionization probe", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas pressure", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed gas valve", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["F.04 on display", "Three click attempts then quiet"],
+    "fixSteps": [
+      {"step": 1, "title": "Confirm gas", "instruction": "Verify shutoff valve at the boiler is open.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Reset", "instruction": "Hold the reset button until the display clears.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 3, "title": "Clean ionization probe", "instruction": "Power off, remove the probe, lightly polish, gap to spec.", "tools": ["wrench", "emery cloth"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Gas pressure or valve work needs a Vitodens-trained tech.",
+    "relatedCodes": ["F.07"],
+    "faq": [
+      {"q": "Does Vitodens have a flame-rod separate from spark?", "a": "Yes — the ionization probe is separate from the spark electrode."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f05",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.05",
+    "displayCode": "F.05",
+    "isBlinkCode": false,
+    "title": "Exhaust Sensor Fault",
+    "shortDescription": "Flue gas thermistor open or shorted.",
+    "fullDescription": "F.05 indicates the flue temperature sensor is out of range. The Vitodens uses this sensor to limit firing rate when stack temperature climbs above safe limits for the polypropylene vent.\n\nCommon failures are connector corrosion or sensor probe failure after years in condensate.",
+    "safetyWarning": "Do not bypass — flue over-temperature can damage plastic vent.",
+    "causes": [
+      {"cause": "Failed flue NTC", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["F.05 on display", "Boiler will not fire"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Pull and reseat the flue sensor harness.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "Swap with the OEM Viessmann sensor.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 120}, "professional": {"min": 250, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If the sensor seal must be reset on the flue collector.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Will boiler still heat?", "a": "No — the flue sensor is required for safe operation."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f07",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.07",
+    "displayCode": "F.07",
+    "isBlinkCode": false,
+    "title": "Ionization / Flame Loss During Run",
+    "shortDescription": "Flame went out unexpectedly during a heating cycle.",
+    "fullDescription": "F.07 occurs when an established flame is lost during a burn. Look for an oxidized ionization probe, condensate ingress on the burner, or low gas supply pressure under load.",
+    "safetyWarning": "Investigate before pushing reset multiple times.",
+    "causes": [
+      {"cause": "Oxidized ionization probe", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas pressure under load", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Condensate flooding burner", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F.07 on display", "Heat for short period then off"],
+    "fixSteps": [
+      {"step": 1, "title": "Polish probe", "instruction": "Power off, lightly polish ionization probe with emery cloth.", "tools": ["wrench", "emery cloth"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Combustion analyzer check is recommended after F.07 events.",
+    "relatedCodes": ["F.04"],
+    "faq": [
+      {"q": "Why oxidation?", "a": "High humidity and minerals build up on the ionization rod over time."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f09",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.09",
+    "displayCode": "F.09",
+    "isBlinkCode": false,
+    "title": "Outdoor Sensor Fault",
+    "shortDescription": "Outdoor reset sensor open or short.",
+    "fullDescription": "F.09 is informational; the Vitodens cannot read the outdoor sensor and reverts to the highest defined setpoint.\n\nCheck the wiring run and the sensor itself (typical 10K NTC).",
+    "safetyWarning": "No safety issue — comfort/efficiency only.",
+    "causes": [
+      {"cause": "Damaged sensor wire", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed sensor", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["F.09 displayed", "House overshoots in mild weather"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect run", "instruction": "Walk the cable and look for chew marks or breaks.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Replace sensor", "instruction": "Swap with the OEM Viessmann outdoor sensor.", "tools": ["screwdriver"], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Only if access requires a ladder you are not comfortable with.",
+    "relatedCodes": [],
+    "faq": [
+      {"q": "Will heat work?", "a": "Yes, but at fixed setpoint."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f10",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.10",
+    "displayCode": "F.10",
+    "isBlinkCode": false,
+    "title": "Outdoor Sensor Short Circuit",
+    "shortDescription": "Outdoor sensor reads short-circuit.",
+    "fullDescription": "F.10 differs from F.09 in that the sensor circuit is shorted (resistance near zero). Diagnosis is the same — check wiring, replace sensor.",
+    "safetyWarning": "No safety issue.",
+    "causes": [
+      {"cause": "Pinched wire creating short", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Internal sensor short", "likelihood": "medium", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["F.10 on display"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect wiring", "instruction": "Look for crushed/chewed cable.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Replace sensor", "instruction": "Swap with the OEM unit.", "tools": ["screwdriver"], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 150, "max": 300}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "If wire path is inaccessible.",
+    "relatedCodes": ["F.09"],
+    "faq": [
+      {"q": "Is the heating affected?", "a": "Operates at fixed setpoint until repaired."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f11",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.11",
+    "displayCode": "F.11",
+    "isBlinkCode": false,
+    "title": "Boiler Sensor Open Circuit",
+    "shortDescription": "Supply temperature sensor reads open.",
+    "fullDescription": "F.11 indicates the main supply NTC has failed open. The boiler will not fire.",
+    "safetyWarning": "Power off before disconnecting any sensor.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F.11 on display", "No firing"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat", "instruction": "Reseat the supply sensor connector.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "Replace the OEM NTC if open.", "tools": ["multimeter", "wrench"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If the well is part of the heat exchanger and requires draining.",
+    "relatedCodes": ["F.12"],
+    "faq": [
+      {"q": "OEM only?", "a": "Yes — Viessmann uses a specific NTC curve; do not substitute."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f12",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.12",
+    "displayCode": "F.12",
+    "isBlinkCode": false,
+    "title": "Boiler Sensor Short Circuit",
+    "shortDescription": "Supply temperature sensor reads short.",
+    "fullDescription": "F.12 mirrors F.11 but for a shorted sensor (resistance ≈ 0). Same diagnostic flow.",
+    "safetyWarning": "Power off before disconnecting the sensor.",
+    "causes": [
+      {"cause": "Pinched harness", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Failed sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F.12 on display"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect harness", "instruction": "Look for pinch or burn marks.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Replace", "instruction": "Replace the sensor with OEM.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If draining is required.",
+    "relatedCodes": ["F.11"],
+    "faq": [
+      {"q": "Same NTC as F.11?", "a": "Yes — different failure mode, same part."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f20",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.20",
+    "displayCode": "F.20",
+    "isBlinkCode": false,
+    "title": "Safety Shutdown / Internal Communication",
+    "shortDescription": "Communication loss between boiler control and safety chip.",
+    "fullDescription": "F.20 is reported when the supervisory safety microcontroller stops responding to the main control. This is rarely a field-fixable issue; the control PCB usually requires replacement.",
+    "safetyWarning": "Disconnect power before opening the cabinet.",
+    "causes": [
+      {"cause": "Failed control PCB", "likelihood": "high", "fixDifficulty": "professional"},
+      {"cause": "Power surge damage", "likelihood": "medium", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["F.20 on display", "No response"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Cycle breaker for 2 minutes.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Schedule service", "instruction": "Have a Viessmann tech replace the control board.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 600, "max": 1700}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-180 minutes",
+    "whenToCallPro": "Always for control board work.",
+    "relatedCodes": ["F.22"],
+    "faq": [
+      {"q": "Can I source the board myself?", "a": "Boards may be brand-locked; let the tech procure."}
+    ]
+  },
+  {
+    "id": "viessmann-boiler-f22",
+    "brand": "Viessmann",
+    "brandSlug": "viessmann",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "F.22",
+    "displayCode": "F.22",
+    "isBlinkCode": false,
+    "title": "Dry Fire / Low Water",
+    "shortDescription": "Boiler ran without water flow or below minimum pressure.",
+    "fullDescription": "F.22 is reported when the supply temperature rises faster than possible with adequate flow, indicating dry-fire conditions. The Vitodens locks out and requires verification of system fill and pump function.",
+    "safetyWarning": "Do not bypass; dry firing destroys the heat exchanger.",
+    "causes": [
+      {"cause": "Loss of system pressure", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed pump", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Air-bound HX", "likelihood": "high", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["F.22 on display", "Pressure low or pump silent"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify pressure", "instruction": "Refill to 1.0-1.5 bar cold.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Bleed", "instruction": "Vent boiler and high points.", "tools": ["bleed key"], "difficulty": "intermediate", "timeMinutes": 20}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "If pump replacement or HX inspection is required.",
+    "relatedCodes": ["F.02"],
+    "faq": [
+      {"q": "Can dry-fire damage the HX?", "a": "Yes — even a few seconds can warp the aluminum."}
+    ]
+  }
+]

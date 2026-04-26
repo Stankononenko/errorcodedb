@@ -1,0 +1,751 @@
+[
+  {
+    "code": "P0B00",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Module Performance",
+    "shortDescription": "HV battery module reports degraded performance.",
+    "fullDescription": "P0B00 indicates a single battery module within the HV pack is failing to maintain capacity or voltage in line with neighbors. The battery ECU watches inter-module spread and flags any outlier.\n\nReplace the bad module, balance pack, and clear codes.",
+    "severity": "medium",
+    "safetyImpact": "Reduced range/MPG; can lead to pack imbalance fault.",
+    "causes": [
+      {"cause": "Aged cell module", "likelihood": "high"},
+      {"cause": "Loose busbar", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Erratic SOC"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify weak module", "instruction": "Per-block voltage scan with hybrid tool.", "tools": ["Hybrid scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace module", "instruction": "HV-safe procedure; torque busbars to spec.", "tools": ["Class 0 gloves", "Torque wrench"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 600}, "mechanic": {"min": 600, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0A80", "P0B01"],
+    "faq": [{"q": "Match new modules?", "a": "Use capacity-matched modules; avoid mixing wildly different ages."}]
+  },
+  {
+    "code": "P0B01",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Module Voltage Sense Circuit",
+    "shortDescription": "Module voltage sense wire open or shorted.",
+    "fullDescription": "P0B01 sets when one of the per-module voltage taps cannot be read by the battery ECU. Without all taps, balancing and SOC estimation fail.\n\nUsually a corroded sense terminal or broken pigtail inside the pack.",
+    "severity": "medium",
+    "safetyImpact": "Cell imbalance possible.",
+    "causes": [
+      {"cause": "Corroded sense terminal", "likelihood": "high"},
+      {"cause": "Broken sense wire", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Open pack", "instruction": "HV-safe procedure; locate failed sense via ECU pinout.", "tools": ["Class 0 gloves"], "difficulty": "professional"},
+      {"step": 2, "title": "Repair harness", "instruction": "Clean and reterminate or splice.", "tools": ["Crimper", "DMM"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 2000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0A8E"],
+    "faq": [{"q": "Skip and drive?", "a": "Will trigger pack imbalance fault eventually."}]
+  },
+  {
+    "code": "P0B23",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Module Temperature Sensor Circuit Range",
+    "shortDescription": "Module temperature sensor reading out of plausible range.",
+    "fullDescription": "P0B23 sets when one of the in-pack thermistors gives a reading inconsistent with neighbors (e.g., -40C while others read 25C). Usually indicates an open thermistor or broken wire.\n\nReplace sensor inside the pack.",
+    "severity": "medium",
+    "safetyImpact": "Localized overheating undetected.",
+    "causes": [
+      {"cause": "Open thermistor", "likelihood": "high"},
+      {"cause": "Broken sensor wire", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Identify sensor", "instruction": "Per OEM pinout.", "tools": ["Hybrid scan tool"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace thermistor", "instruction": "HV-safe pack access.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0A9C"],
+    "faq": [{"q": "Pack replace?", "a": "Usually just sensor."}]
+  },
+  {
+    "code": "P0B3A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Voltage Sense B Circuit",
+    "shortDescription": "Secondary HV battery voltage sense circuit fault.",
+    "fullDescription": "P0B3A indicates the secondary or redundant voltage sense channel on the HV battery has lost signal. Often present on packs with multiple ECU sense boards.\n\nDiagnosis flow same as P0A8E.",
+    "severity": "medium",
+    "safetyImpact": "Loss of voltage redundancy.",
+    "causes": [
+      {"cause": "Failed sense board", "likelihood": "high"},
+      {"cause": "Broken sense ribbon", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [{"step": 1, "title": "Open pack and inspect", "instruction": "Trace failed channel.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 2500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": ["P0A8E"],
+    "faq": [{"q": "Drive ok?", "a": "Short term yes; correct soon."}]
+  },
+  {
+    "code": "P0B41",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Air Temperature Sensor B Circuit Range",
+    "shortDescription": "Battery pack inlet air temperature sensor implausible.",
+    "fullDescription": "P0B41 sets when the inlet (cabin) air temperature sensor for the battery cooling system reports a value out of range. The battery ECU uses this to set fan speed.\n\nSensor sits in the air intake duct, usually accessible behind rear seat trim.",
+    "severity": "low",
+    "safetyImpact": "Cooling control may not optimize.",
+    "causes": [
+      {"cause": "Failed thermistor", "likelihood": "high"},
+      {"cause": "Open wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Locate sensor", "instruction": "Behind rear seat in intake duct.", "tools": ["Hand tools"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Bolt-in sensor.", "tools": ["Hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 100}, "mechanic": {"min": 100, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "DIY?", "a": "Yes, no HV exposure for this sensor."}]
+  },
+  {
+    "code": "P0B7D",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Voltage System Isolation Sense Circuit",
+    "shortDescription": "Battery isolation sense circuit fault.",
+    "fullDescription": "P0B7D sets when the isolation monitoring circuit (which checks HV bus to chassis insulation) cannot complete its self-test. This is a safety-critical circuit.\n\nDo not bypass; HV system must remain electrically isolated from chassis.",
+    "severity": "high",
+    "safetyImpact": "Loss of HV isolation monitoring; potential shock hazard.",
+    "causes": [
+      {"cause": "Failed isolation monitor", "likelihood": "high"},
+      {"cause": "Wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "HV disabled"],
+    "fixSteps": [{"step": 1, "title": "Megger HV bus", "instruction": "Verify actual isolation; replace monitor if circuit faulty but isolation good.", "tools": ["Megohmmeter", "Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 600, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0AA6"],
+    "faq": [{"q": "Drive?", "a": "No; possible shock hazard."}]
+  },
+  {
+    "code": "P0B97",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Coolant Pump A Control Circuit",
+    "shortDescription": "Open or short in HV battery coolant pump control circuit.",
+    "fullDescription": "P0B97 indicates the battery ECU cannot control the dedicated coolant pump for liquid-cooled HV batteries (Tesla, Bolt, modern PHEVs).\n\nUnlike older NiMH air-cooled packs, Li-ion packs require active liquid cooling. Pump failure leads to derate quickly.",
+    "severity": "high",
+    "safetyImpact": "Battery thermal management lost; charging disabled.",
+    "causes": [
+      {"cause": "Failed coolant pump", "likelihood": "high"},
+      {"cause": "Blown pump fuse", "likelihood": "medium"},
+      {"cause": "Open control wire", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging disabled", "Reduced power", "Cooling fault warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Check fuse", "instruction": "Battery cooling pump fuse.", "tools": ["DMM"], "difficulty": "easy"},
+      {"step": 2, "title": "Bench test pump", "instruction": "Apply 12V (some PWM pumps need driver).", "tools": ["Bench supply"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace pump", "instruction": "Drain loop, replace, refill, bleed.", "tools": ["Hand tools", "Coolant"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 100, "max": 400}, "mechanic": {"min": 300, "max": 900}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0B98"],
+    "faq": [{"q": "Charge while broken?", "a": "Vehicle will refuse to charge."}]
+  },
+  {
+    "code": "P0B98",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Coolant Pump A Control Circuit Performance",
+    "shortDescription": "Battery coolant pump not flowing as commanded.",
+    "fullDescription": "P0B98 sets when the pump runs but flow or pressure feedback is below threshold. Air in loop, partial blockage, or weakening pump are common.\n\nPerform full bleed before condemning pump.",
+    "severity": "high",
+    "safetyImpact": "Battery cooling marginal.",
+    "causes": [
+      {"cause": "Air in coolant loop", "likelihood": "high"},
+      {"cause": "Weak pump", "likelihood": "medium"},
+      {"cause": "Clogged cooling channel", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "Charging slow", "Battery hot warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Bleed coolant loop", "instruction": "Use OEM bleed routine via scan tool.", "tools": ["OEM scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace pump", "instruction": "If still weak.", "tools": ["Hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 400}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0B97"],
+    "faq": [{"q": "Top up only?", "a": "Often sufficient if loop got air."}]
+  },
+  {
+    "code": "P0BA0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Positive Contactor Circuit",
+    "shortDescription": "HV positive contactor circuit fault.",
+    "fullDescription": "P0BA0 indicates the high-voltage positive contactor (the relay that connects the HV battery to the rest of the system) has a circuit fault. Could be the contactor coil open/shorted, weld detection fault, or driver circuit problem.\n\nContactor faults are safety-critical — a welded contactor leaves HV bus energized after key off.",
+    "severity": "high",
+    "safetyImpact": "HV may remain energized after shutdown; serious shock risk.",
+    "causes": [
+      {"cause": "Failed contactor coil", "likelihood": "medium"},
+      {"cause": "Welded contacts", "likelihood": "medium"},
+      {"cause": "Driver circuit failure", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "No HV ready", "Charging fault"],
+    "fixSteps": [
+      {"step": 1, "title": "HV-safe inspection", "instruction": "Remove service plug, wait per OEM, verify zero volts.", "tools": ["Class 0 gloves", "HV meter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace contactor", "instruction": "Internal to battery pack typically.", "tools": ["Insulated tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0BA1"],
+    "faq": [{"q": "DIY safe?", "a": "Absolutely not."}]
+  },
+  {
+    "code": "P0BA1",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Positive Contactor Circuit Stuck Closed",
+    "shortDescription": "HV positive contactor welded/stuck closed.",
+    "fullDescription": "P0BA1 is the explicit DTC for a positive contactor that has welded shut. This is the worst-case contactor failure — HV bus cannot be de-energized normally.\n\nVehicle must be towed by a hybrid-trained shop. Contactor replacement under strict HV-safe procedure.",
+    "severity": "high",
+    "safetyImpact": "HV bus cannot be safely disconnected; severe shock hazard.",
+    "causes": [{"cause": "Contactor welded from over-current event", "likelihood": "high"}],
+    "symptoms": ["Red triangle", "HV system warnings", "Possible no-shutdown"],
+    "fixSteps": [{"step": 1, "title": "Tow to HV-qualified shop", "instruction": "Do not service in field.", "tools": [], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1000, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-8 hours",
+    "relatedCodes": ["P0BA0"],
+    "faq": [{"q": "Why does it weld?", "a": "Excessive current under fault, e.g., short circuit."}]
+  },
+  {
+    "code": "P0BBA",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Negative Contactor Circuit",
+    "shortDescription": "HV negative contactor circuit fault.",
+    "fullDescription": "P0BBA indicates the HV negative-side contactor has a circuit fault. Both positive and negative contactors must operate together to fully isolate the pack.\n\nDiagnosis and repair flow identical to P0BA0.",
+    "severity": "high",
+    "safetyImpact": "HV isolation compromised.",
+    "causes": [
+      {"cause": "Failed contactor coil", "likelihood": "medium"},
+      {"cause": "Welded contacts", "likelihood": "medium"}
+    ],
+    "symptoms": ["No ready", "Charging disabled"],
+    "fixSteps": [{"step": 1, "title": "Replace contactor", "instruction": "HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0BA0"],
+    "faq": [{"q": "Symmetric to BA0?", "a": "Yes, just opposite polarity."}]
+  },
+  {
+    "code": "P0BC0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pre-charge Contactor Circuit",
+    "shortDescription": "HV pre-charge contactor circuit fault.",
+    "fullDescription": "P0BC0 indicates the pre-charge contactor (which charges the inverter capacitors through a resistor before main contactor closes) has a circuit fault. Without pre-charge, closing the main contactor causes a damaging inrush current.\n\nThe vehicle will refuse to enter Ready state.",
+    "severity": "high",
+    "safetyImpact": "Vehicle won't start; potential damage to main contactor if bypassed.",
+    "causes": [
+      {"cause": "Failed pre-charge resistor", "likelihood": "high"},
+      {"cause": "Failed pre-charge contactor", "likelihood": "medium"}
+    ],
+    "symptoms": ["No ready", "MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Test pre-charge components", "instruction": "Inside battery box; HV-safe procedure.", "tools": ["Class 0 gloves", "DMM"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace assembly", "instruction": "Resistor or contactor.", "tools": ["Insulated tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0BA0"],
+    "faq": [{"q": "Why pre-charge?", "a": "Limits inrush current to inverter caps; saves main contactor life."}]
+  },
+  {
+    "code": "P0BCB",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Current Sensor Circuit Range",
+    "shortDescription": "Pack current sensor reading implausible.",
+    "fullDescription": "P0BCB sets when the HV battery current sensor (Hall-effect or shunt-based) reports a value the ECU rejects: stuck at zero, drifted offset, or differing from inferred current.\n\nWithout accurate current data, SOC drifts and safety limits cannot be enforced.",
+    "severity": "medium",
+    "safetyImpact": "SOC unreliable; possible derate.",
+    "causes": [
+      {"cause": "Hall sensor zero-point drift", "likelihood": "high"},
+      {"cause": "Failed current sensor", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Erratic SOC"],
+    "fixSteps": [
+      {"step": 1, "title": "Zero-point reset", "instruction": "If procedure exists.", "tools": ["OEM scan tool"], "difficulty": "advanced"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Inside battery pack.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 400, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hours",
+    "relatedCodes": ["P0A1F"],
+    "faq": [{"q": "Reset only?", "a": "Try first; if drifts again, replace."}]
+  },
+  {
+    "code": "P0BD0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Module 1 Over Temperature",
+    "shortDescription": "Module 1 temperature above safe limit.",
+    "fullDescription": "P0BD0 sets when battery module 1 exceeds maximum allowed temperature. The ECU will derate power and may disable HV operation.\n\nCheck cooling system first (fan/pump, intake clean), then for module-internal short.",
+    "severity": "high",
+    "safetyImpact": "Risk of thermal runaway.",
+    "causes": [
+      {"cause": "Cooling system underperforming", "likelihood": "high"},
+      {"cause": "Failed module (internal short)", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "Reduced power", "Battery hot warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify cooling", "instruction": "Fan, pump, coolant level.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 2, "title": "Module replacement", "instruction": "If module internally damaged.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 800}, "mechanic": {"min": 500, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": ["P0A30", "P0BD1"],
+    "faq": [{"q": "Park outside?", "a": "Allow to cool; tow if hot warnings persist."}]
+  },
+  {
+    "code": "P0BFD",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Deterioration",
+    "shortDescription": "Overall battery pack capacity below threshold.",
+    "fullDescription": "P0BFD is a generic 'pack deterioration' code similar to P0A80 used by some manufacturers. Indicates measured capacity is below acceptable level for vehicle operation.\n\nResolution is pack/module replacement.",
+    "severity": "medium",
+    "safetyImpact": "Reduced range/MPG.",
+    "causes": [
+      {"cause": "Aged pack", "likelihood": "high"}
+    ],
+    "symptoms": ["MIL", "Poor MPG", "Erratic SOC"],
+    "fixSteps": [{"step": 1, "title": "Diagnose and replace", "instruction": "Battery health scan, then module/pack replacement.", "tools": ["Hybrid scan tool", "Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 200, "max": 1500}, "mechanic": {"min": 1500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P0A80"],
+    "faq": [{"q": "Same as P0A80?", "a": "Effectively yes; some OEMs use P0BFD."}]
+  },
+  {
+    "code": "P0C00",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Inverter Performance",
+    "shortDescription": "Secondary drive motor (MG1) inverter underperforming.",
+    "fullDescription": "P0C00 sets when the inverter section driving the secondary motor/generator (MG1, used to start the engine and act as generator) cannot deliver commanded performance.\n\nUsually integrated with main inverter; full assembly replacement common.",
+    "severity": "high",
+    "safetyImpact": "ICE start may fail; charging compromised.",
+    "causes": [
+      {"cause": "Inverter MG1 power-stage degradation", "likelihood": "high"}
+    ],
+    "symptoms": ["No ICE start", "Reduced power"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A1A"],
+    "faq": [{"q": "Drive in EV?", "a": "Possibly until SOC depletes, then stranded."}]
+  },
+  {
+    "code": "P0C10",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Position Sensor Circuit",
+    "shortDescription": "MG1 resolver circuit fault.",
+    "fullDescription": "P0C10 indicates the resolver position sensor for MG1 has a circuit fault. Without rotor position, MG1 cannot start the ICE or generate electricity.\n\nDiagnosis flow identical to P0A40.",
+    "severity": "high",
+    "safetyImpact": "ICE cannot start.",
+    "causes": [
+      {"cause": "Connector contamination", "likelihood": "high"},
+      {"cause": "Damaged wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["No start", "Red triangle"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Resolver connector at transaxle.", "tools": ["Visual"], "difficulty": "advanced"},
+      {"step": 2, "title": "Resistance test", "instruction": "Per OEM spec.", "tools": ["DMM"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 5000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-8 hours",
+    "relatedCodes": ["P0A40"],
+    "faq": [{"q": "Drive?", "a": "No."}]
+  },
+  {
+    "code": "P0C2A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Phase U Current",
+    "shortDescription": "MG1 phase U current out of range.",
+    "fullDescription": "P0C2A is the MG1 (generator motor) equivalent of P0A60 — phase U current implausible. Diagnosis flow identical: megger motor windings, replace inverter or motor as indicated.\n\nMore common after coolant leak into inverter.",
+    "severity": "high",
+    "safetyImpact": "Loss of generator function.",
+    "causes": [
+      {"cause": "Current sensor fault", "likelihood": "high"},
+      {"cause": "MG1 winding short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "No ICE start"],
+    "fixSteps": [
+      {"step": 1, "title": "Megger MG1", "instruction": "Insulation test.", "tools": ["Megohmmeter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace per result", "instruction": "Motor or inverter.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A60"],
+    "faq": [{"q": "MG1 vs MG2?", "a": "MG1 starts engine and generates; MG2 drives wheels."}]
+  },
+  {
+    "code": "P0C2B",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Phase V Current",
+    "shortDescription": "MG1 phase V current out of range.",
+    "fullDescription": "P0C2B is the MG1 phase V analog to P0A61. Same diagnosis: distinguish current sensor vs winding fault via megger test.",
+    "severity": "high",
+    "safetyImpact": "Loss of generator function.",
+    "causes": [
+      {"cause": "Current sensor fault", "likelihood": "high"},
+      {"cause": "MG1 winding short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "No ICE start"],
+    "fixSteps": [
+      {"step": 1, "title": "Megger MG1", "instruction": "Insulation test.", "tools": ["Megohmmeter"], "difficulty": "professional"},
+      {"step": 2, "title": "Replace per result", "instruction": "Motor or inverter.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "6-12 hours",
+    "relatedCodes": ["P0A61", "P0C2A"],
+    "faq": [{"q": "Common?", "a": "Less than P0C2A."}]
+  },
+  {
+    "code": "P0C2C",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Phase W Current",
+    "shortDescription": "MG1 phase W current out of range.",
+    "fullDescription": "P0C2C is the third-phase analog. If all three set together (P0C2A/B/C), the high-side current sensor or shunt is the prime suspect.\n\nReplace inverter assembly under HV-safe procedure.",
+    "severity": "high",
+    "safetyImpact": "Loss of generator function.",
+    "causes": [
+      {"cause": "Current sensor block fault", "likelihood": "high"},
+      {"cause": "MG1 winding fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "No ICE start"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Sensor inside.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6500}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0C2A", "P0C2B"],
+    "faq": [{"q": "Three at once?", "a": "Common sensor block fault."}]
+  },
+  {
+    "code": "P0C50",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Generator Speed Sensor Circuit",
+    "shortDescription": "MG1 speed signal lost.",
+    "fullDescription": "P0C50 sets when the speed feedback from MG1 is missing or implausible. Speed is calculated from resolver; this DTC may set alongside P0C10.\n\nResolve resolver/wiring fault first.",
+    "severity": "high",
+    "safetyImpact": "ICE cannot start.",
+    "causes": [
+      {"cause": "Resolver fault", "likelihood": "high"},
+      {"cause": "Wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["No start"],
+    "fixSteps": [{"step": 1, "title": "Address P0C10 first", "instruction": "Same root cause.", "tools": ["DMM"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "2-6 hours",
+    "relatedCodes": ["P0C10"],
+    "faq": [{"q": "Standalone?", "a": "Rarely."}]
+  },
+  {
+    "code": "P0C73",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pack Charger Communication",
+    "shortDescription": "Loss of communication with on-board charger.",
+    "fullDescription": "P0C73 sets when the hybrid control or battery ECU loses CAN communication with the on-board charger module. Vehicle cannot perform AC charging until restored.\n\nCheck CAN wiring and charger LV power first.",
+    "severity": "medium",
+    "safetyImpact": "Cannot AC charge; vehicle still drivable on hybrid mode.",
+    "causes": [
+      {"cause": "CAN wiring fault", "likelihood": "high"},
+      {"cause": "Charger LV power loss", "likelihood": "medium"},
+      {"cause": "Failed charger module", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging not available", "Service charging system message"],
+    "fixSteps": [
+      {"step": 1, "title": "Check CAN", "instruction": "Verify CAN-H/L resistance and signal at charger.", "tools": ["Oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "LV supply", "instruction": "Check fuse and ground.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace charger", "instruction": "If module dead.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 100}, "mechanic": {"min": 200, "max": 4000}},
+    "diyDifficulty": "professional",
+    "repairTime": "1-6 hours",
+    "relatedCodes": ["U0293"],
+    "faq": [{"q": "Drive home?", "a": "Yes; just no charging until fixed."}]
+  },
+  {
+    "code": "P0C75",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Charger AC Input Voltage Performance",
+    "shortDescription": "AC input voltage out of acceptable range during charging.",
+    "fullDescription": "P0C75 sets when the on-board charger detects AC line voltage outside the spec window (typically 85-265 VAC). Could be a faulty EVSE, dirty utility power, or input sense circuit fault inside the charger.\n\nTry a different EVSE/outlet first.",
+    "severity": "low",
+    "safetyImpact": "Charging halted; not a safety issue if charger correctly stopped.",
+    "causes": [
+      {"cause": "Faulty EVSE / outlet", "likelihood": "high"},
+      {"cause": "Charger input sense fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging fault message", "Won't charge"],
+    "fixSteps": [
+      {"step": 1, "title": "Try different EVSE", "instruction": "Confirm charging works elsewhere.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Test outlet", "instruction": "Verify line voltage with DMM.", "tools": ["DMM"], "difficulty": "easy"},
+      {"step": 3, "title": "Replace charger", "instruction": "If issue follows vehicle.", "tools": ["Class 0 gloves"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 100, "max": 4000}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-360 minutes",
+    "relatedCodes": ["P0C73"],
+    "faq": [{"q": "EVSE swap?", "a": "First step; rules out external problem."}]
+  },
+  {
+    "code": "P0C78",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Charging System Voltage Low",
+    "shortDescription": "Charger DC output voltage to HV battery below threshold.",
+    "fullDescription": "P0C78 sets when the on-board charger's DC output voltage falls below what's needed to charge the HV battery. May indicate a failing charger module, blown HV fuse inside the charger, or extreme line sag.\n\nTypically requires charger replacement.",
+    "severity": "medium",
+    "safetyImpact": "Cannot charge.",
+    "causes": [
+      {"cause": "Failed charger module", "likelihood": "high"},
+      {"cause": "Internal HV fuse blown", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charging fault", "Slow / no charge"],
+    "fixSteps": [{"step": 1, "title": "Replace charger", "instruction": "HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 1500, "max": 4500}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0C75"],
+    "faq": [{"q": "Just a fuse?", "a": "Sometimes; fuse usually internal to module."}]
+  },
+  {
+    "code": "P0CA1",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Charging Connector Lock Circuit",
+    "shortDescription": "Charging port lock actuator circuit fault.",
+    "fullDescription": "P0CA1 sets when the charge port lock solenoid (which keeps the EVSE plug locked during charging for safety) circuit is open or shorted. Vehicle may refuse to start charging or refuse to release plug.\n\nUsually a failed lock solenoid or wiring at charge port.",
+    "severity": "low",
+    "safetyImpact": "Plug may not lock during charging (theft risk) or refuse to release.",
+    "causes": [
+      {"cause": "Failed lock solenoid", "likelihood": "high"},
+      {"cause": "Connector damage at port", "likelihood": "medium"}
+    ],
+    "symptoms": ["Charge port lock not working", "Cannot remove plug"],
+    "fixSteps": [
+      {"step": 1, "title": "Manual release", "instruction": "Use OEM emergency release cable to free stuck plug.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Test solenoid", "instruction": "Apply 12V at connector.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace assembly", "instruction": "Charge port lock unit.", "tools": ["Hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Stuck plug?", "a": "Use emergency release pull cord (in trunk usually)."}]
+  },
+  {
+    "code": "P0CB7",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Hybrid Battery Pre-charge Resistor Circuit Range",
+    "shortDescription": "Pre-charge resistor value out of expected range.",
+    "fullDescription": "P0CB7 sets when the resistance measured during pre-charge sequence indicates the resistor has drifted or opened. The hybrid control aborts pre-charge to protect the inverter caps and main contactor.\n\nReplace pre-charge resistor (often part of contactor pack).",
+    "severity": "high",
+    "safetyImpact": "Cannot enable HV; vehicle won't start.",
+    "causes": [
+      {"cause": "Open pre-charge resistor", "likelihood": "high"},
+      {"cause": "Resistor value drift", "likelihood": "medium"}
+    ],
+    "symptoms": ["No ready", "MIL"],
+    "fixSteps": [{"step": 1, "title": "Replace contactor pack", "instruction": "Resistor usually integrated; HV-safe procedure.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 800, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": ["P0BC0"],
+    "faq": [{"q": "Drive at all?", "a": "No."}]
+  },
+  {
+    "code": "P0CC6",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Battery Energy Control Module Isolation Sense High",
+    "shortDescription": "HV bus to chassis isolation resistance below limit.",
+    "fullDescription": "P0CC6 sets when the isolation monitor measures HV-to-chassis insulation resistance below the safety threshold (typically 100 ohm/V or 500 ohm/V depending on standard). This is a CRITICAL safety code: an HV leak path exists.\n\nDo not drive. Tow to qualified shop. Common causes: water intrusion (charger, motor, AC compressor), pinched HV cable, failed component insulation.",
+    "severity": "high",
+    "safetyImpact": "Active HV leakage to chassis; severe shock hazard.",
+    "causes": [
+      {"cause": "Water in HV component", "likelihood": "high"},
+      {"cause": "Damaged HV cable insulation", "likelihood": "medium"},
+      {"cause": "Failed motor or charger insulation", "likelihood": "medium"}
+    ],
+    "symptoms": ["Red triangle", "HV disabled", "Service warning"],
+    "fixSteps": [
+      {"step": 1, "title": "Tow only", "instruction": "Do not drive or open service plug without PPE.", "tools": [], "difficulty": "professional"},
+      {"step": 2, "title": "Megger each HV component", "instruction": "Isolate failing leg by disconnecting one component at a time.", "tools": ["Megohmmeter", "Class 0 gloves"], "difficulty": "professional"},
+      {"step": 3, "title": "Repair or replace", "instruction": "Replace failed component (cable, charger, motor).", "tools": ["Insulated tools"], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 500, "max": 8000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-12 hours",
+    "relatedCodes": ["P0B7D", "P0AA6"],
+    "faq": [{"q": "Drive carefully?", "a": "Absolutely not. Tow."}]
+  },
+  {
+    "code": "P0CCD",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Auxiliary Coolant Pump A Stuck Off",
+    "shortDescription": "Auxiliary EV coolant pump not running when commanded.",
+    "fullDescription": "P0CCD sets when the auxiliary cooling pump (used for battery, motor, or inverter loop on EVs and PHEVs) fails to run despite command. Pump may be seized, fuse blown, or driver circuit failed.\n\nDiagnosis: 12V test pump, check fuse, verify CAN command from ECU.",
+    "severity": "high",
+    "safetyImpact": "Component overheat possible.",
+    "causes": [
+      {"cause": "Seized pump", "likelihood": "high"},
+      {"cause": "Blown fuse", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Overheat warnings"],
+    "fixSteps": [
+      {"step": 1, "title": "Bench test pump", "instruction": "Apply 12V; replace if dead.", "tools": ["Bench supply"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace pump", "instruction": "Drain, swap, refill, bleed.", "tools": ["Hand tools"], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 80, "max": 400}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": ["P0A1C", "P0B97"],
+    "faq": [{"q": "Same as P0A1C?", "a": "Similar; varies by vehicle architecture."}]
+  },
+  {
+    "code": "P0CDC",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Drive Motor B Inverter Voltage Sensor Performance",
+    "shortDescription": "MG1 inverter bus voltage sensor reading drifted.",
+    "fullDescription": "P0CDC sets when the bus voltage sensor on the MG1 side of the inverter reports values inconsistent with the MG2 side. Indicates sensor drift or board fault.\n\nReplace inverter assembly typically.",
+    "severity": "medium",
+    "safetyImpact": "Possible loss of HV operation.",
+    "causes": [{"cause": "Inverter sensor board fault", "likelihood": "high"}],
+    "symptoms": ["MIL", "Reduced power"],
+    "fixSteps": [{"step": 1, "title": "Replace inverter", "instruction": "Sensor not serviceable.", "tools": ["Class 0 gloves"], "difficulty": "professional"}],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "mechanic": {"min": 2500, "max": 6000}},
+    "diyDifficulty": "professional",
+    "repairTime": "4-10 hours",
+    "relatedCodes": ["P0A1A"],
+    "faq": [{"q": "Recalibrate?", "a": "Not field-serviceable."}]
+  },
+  {
+    "code": "P0CFB",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid/EV",
+    "title": "Charging System Charge Port Door Circuit",
+    "shortDescription": "Charge port door actuator or sensor circuit fault.",
+    "fullDescription": "P0CFB sets when the charge port door (motorized on some EVs) reports a circuit fault. Door may not open on driver request, or door-open sensor is stuck.\n\nFix is typically port door actuator replacement or wiring repair.",
+    "severity": "low",
+    "safetyImpact": "Charging access compromised; not a HV safety issue.",
+    "causes": [
+      {"cause": "Failed door actuator motor", "likelihood": "high"},
+      {"cause": "Open switch wiring", "likelihood": "medium"}
+    ],
+    "symptoms": ["Door won't open", "Manual release needed", "MIL"],
+    "fixSteps": [
+      {"step": 1, "title": "Manual release", "instruction": "Use OEM emergency release in trunk.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace actuator", "instruction": "Door motor swap.", "tools": ["Hand tools"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 250}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0CA1"],
+    "faq": [{"q": "Drive ok?", "a": "Yes; fix when convenient."}]
+  }
+]

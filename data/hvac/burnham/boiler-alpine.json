@@ -1,0 +1,302 @@
+[
+  {
+    "id": "burnham-boiler-1-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "1 Flash",
+    "displayCode": "1 Flash",
+    "isBlinkCode": true,
+    "title": "Ignition Lockout (Alpine/MPO)",
+    "shortDescription": "The Burnham Alpine or MPO ignition control failed to prove flame and locked out after retries.",
+    "fullDescription": "On Burnham Alpine condensing boilers and MPO oil-fired units the diagnostic LED flashes once per cycle to indicate ignition lockout. After three failed trials the control will not retry until the reset is pressed.\n\nCauses range from a fouled spark electrode to a low gas-supply pressure event. Cracks in the porcelain insulator are a recurring problem on older Alpine V1 units.",
+    "safetyWarning": "Gas appliance — if you smell gas, evacuate and call your gas utility emergency line.",
+    "causes": [
+      {"cause": "Dirty or cracked ignition electrode", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Low gas supply pressure", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed flame-sense rod", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Defective ignition module", "likelihood": "low", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["1 LED flash repeatedly", "No heat", "Audible ignition clicks then silence"],
+    "fixSteps": [
+      {"step": 1, "title": "Reset and observe", "instruction": "Press Reset; watch and listen for the ignition trial.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Clean electrode", "instruction": "Power off, remove and clean the spark/flame rod. Inspect porcelain for cracks.", "tools": ["wrench", "emery cloth"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-90 minutes",
+    "whenToCallPro": "Gas pressure verification needs a manometer and licensed gas tech.",
+    "relatedCodes": ["2 Flash"],
+    "faq": [{"q": "Is it safe to keep resetting?", "a": "No — a few resets are fine, but unburned gas and lockout chasing should be left to a professional."}]
+  },
+  {
+    "id": "burnham-boiler-2-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "2 Flash",
+    "displayCode": "2 Flash",
+    "isBlinkCode": true,
+    "title": "Pressure Switch Stuck Open",
+    "shortDescription": "The vent/air pressure switch did not close at start of cycle.",
+    "fullDescription": "Two LED flashes on Alpine and ESC indicate the air-proving switch did not close. The control sees this as a blocked vent or a failed inducer.\n\nFrozen condensate at the termination, a kinked vent hose, or a blower running below speed are typical culprits.",
+    "safetyWarning": "Never bypass the pressure switch — that protection prevents CO spillage.",
+    "causes": [
+      {"cause": "Blocked vent termination (snow/ice)", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Cracked or pinched pressure-switch hose", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed inducer / combustion blower", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Defective pressure switch", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["2 LED flashes", "Inducer runs, no ignition"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect terminations", "instruction": "Clear snow, leaves, nests from intake/exhaust outlets.", "tools": ["flashlight"], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Check hose", "instruction": "Pull the silicone tube off the switch and blow through it to confirm patency.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-90 minutes",
+    "whenToCallPro": "If the inducer or pressure switch needs replacement.",
+    "relatedCodes": ["1 Flash"],
+    "faq": [{"q": "Can I just bypass the switch?", "a": "Absolutely not; you remove a code-required CO safety."}]
+  },
+  {
+    "id": "burnham-boiler-3-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "3 Flash",
+    "displayCode": "3 Flash",
+    "isBlinkCode": true,
+    "title": "High Limit Open",
+    "shortDescription": "Manual-reset high-limit aquastat opened.",
+    "fullDescription": "Three LED flashes mean the manual-reset high-limit tripped. On steam boilers (ESC, Independence) it usually accompanies a low-water condition; on hot-water units it points to circulator or zone-valve failure.\n\nBefore resetting, verify water level (steam) or pressure (hydronic) and that the pump is moving water.",
+    "safetyWarning": "Investigate before pressing reset; repeated trips signal a real over-temp event.",
+    "causes": [
+      {"cause": "Failed circulator", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Closed isolation valve", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Air-locked heat exchanger", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Defective high-limit aquastat", "likelihood": "low", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["3 LED flashes", "Boiler very hot to the touch"],
+    "fixSteps": [
+      {"step": 1, "title": "Let it cool", "instruction": "Allow the boiler to drop below 140 °F before resetting.", "tools": [], "difficulty": "easy", "timeMinutes": 30},
+      {"step": 2, "title": "Inspect circulator", "instruction": "Confirm the pump runs and the supply piping warms during a call.", "tools": [], "difficulty": "intermediate", "timeMinutes": 15}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 250, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Aquastat or circulator replacement is best left to a hydronic tech.",
+    "relatedCodes": [],
+    "faq": [{"q": "Why does it trip after a power outage?", "a": "Air enters the system and stalls the pump; bleed and refill."}]
+  },
+  {
+    "id": "burnham-boiler-4-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "4 Flash",
+    "displayCode": "4 Flash",
+    "isBlinkCode": true,
+    "title": "Low Water Cutoff",
+    "shortDescription": "LWCO has opened — water level is too low.",
+    "fullDescription": "Four flashes indicate the low-water cutoff is calling for water. On steam units this means the boiler needs water added or auto-feed is failing; on hot-water systems it means make-up pressure has been lost.\n\nDo not bypass — running dry will warp or crack the cast-iron sections.",
+    "safetyWarning": "Never short across the LWCO terminals; you remove a critical safety.",
+    "causes": [
+      {"cause": "System leak", "likelihood": "high", "fixDifficulty": "intermediate"},
+      {"cause": "Auto-feeder failed", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "LWCO probe scaled (steam)", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["4 LED flashes", "Sight glass empty (steam)"],
+    "fixSteps": [
+      {"step": 1, "title": "Top off water", "instruction": "Open the manual feed valve to bring level back to the normal mark, then close.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Hunt the leak", "instruction": "Check radiators, vents, and piping for staining.", "tools": [], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 30}, "professional": {"min": 200, "max": 700}},
+    "diyDifficulty": "easy",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If the LWCO needs replacement or the leak is hidden.",
+    "relatedCodes": [],
+    "faq": [{"q": "How often should I flush the LWCO?", "a": "Weekly during heating season for float-type LWCOs."}]
+  },
+  {
+    "id": "burnham-boiler-5-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "5 Flash",
+    "displayCode": "5 Flash",
+    "isBlinkCode": true,
+    "title": "Flame Sensed Out of Sequence",
+    "shortDescription": "Control sees flame when gas should be off.",
+    "fullDescription": "Five flashes alert the operator that the flame-sense circuit reports flame outside the valid burn window. Treat as a possibly stuck gas valve or shorted flame rod.",
+    "safetyWarning": "If gas odor is present, treat as a gas-leak emergency.",
+    "causes": [
+      {"cause": "Stuck gas valve", "likelihood": "low", "fixDifficulty": "professional"},
+      {"cause": "Flame-rod insulation breakdown", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Wet ignition assembly", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["5 LED flashes", "Hard lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Cycle the service switch and observe.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Inspect ignition assembly", "instruction": "Look for cracked porcelain, water staining, or shorted leads.", "tools": ["screwdriver"], "difficulty": "intermediate", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 300, "max": 900}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "whenToCallPro": "Suspected stuck gas valve must be diagnosed by a licensed gas tech.",
+    "relatedCodes": ["1 Flash"],
+    "faq": [{"q": "Can damp basement air cause this?", "a": "Yes — moisture intrusion is a common Alpine issue near sump pumps."}]
+  },
+  {
+    "id": "burnham-boiler-6-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "6 Flash",
+    "displayCode": "6 Flash",
+    "isBlinkCode": true,
+    "title": "Outdoor Sensor Open",
+    "shortDescription": "Outdoor reset sensor is missing or failed.",
+    "fullDescription": "When outdoor reset is enabled, the Alpine control monitors a 10K NTC mounted outdoors. Six flashes mean the sensor reads open or shorted; the boiler reverts to a fixed setpoint.",
+    "safetyWarning": "No safety hazard — comfort impact only.",
+    "causes": [
+      {"cause": "Sensor wire chewed by rodents", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed NTC sensor", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Loose terminal at control", "likelihood": "low", "fixDifficulty": "easy"}
+    ],
+    "symptoms": ["6 LED flashes", "Boiler runs at fixed high-limit setpoint"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect sensor wiring", "instruction": "Walk the run from outdoor sensor to boiler; look for breaks.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
+      {"step": 2, "title": "Replace sensor", "instruction": "Swap with the OEM Burnham 102058-01 (or equivalent 10K NTC).", "tools": ["screwdriver"], "difficulty": "easy", "timeMinutes": 30}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 150, "max": 350}},
+    "diyDifficulty": "easy",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Only if you cannot reach the sensor location safely.",
+    "relatedCodes": [],
+    "faq": [{"q": "Will heat still work?", "a": "Yes — the boiler defaults to fixed setpoint; bills may rise."}]
+  },
+  {
+    "id": "burnham-boiler-7-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "7 Flash",
+    "displayCode": "7 Flash",
+    "isBlinkCode": true,
+    "title": "Supply Sensor Fault",
+    "shortDescription": "Boiler supply NTC out of range.",
+    "fullDescription": "Seven flashes indicate the supply temperature sensor (S1) is open or shorted. The control disables firing because it cannot enforce high-limit protection.",
+    "safetyWarning": "Power off before disconnecting any sensor leads.",
+    "causes": [
+      {"cause": "Loose Molex at the control", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed NTC sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["7 LED flashes", "Boiler will not fire"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat connector", "instruction": "Unplug and replug the supply sensor at the board.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace if open", "instruction": "Ohm the sensor; replace if it does not read ~10kΩ at room temperature.", "tools": ["multimeter"], "difficulty": "intermediate", "timeMinutes": 45}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 60}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-60 minutes",
+    "whenToCallPro": "If the sensor well requires draining the boiler.",
+    "relatedCodes": ["8 Flash"],
+    "faq": [{"q": "Are sensors hot-swappable?", "a": "No — always shut off power and let the boiler cool."}]
+  },
+  {
+    "id": "burnham-boiler-8-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "8 Flash",
+    "displayCode": "8 Flash",
+    "isBlinkCode": true,
+    "title": "Return Sensor Fault",
+    "shortDescription": "Return-water NTC sensor out of range.",
+    "fullDescription": "The return sensor lets the control protect the heat exchanger from thermal shock and modulate firing. Eight flashes mean the sensor or harness is faulty.",
+    "safetyWarning": "Disconnect line voltage before sensor work.",
+    "causes": [
+      {"cause": "Loose connector", "likelihood": "high", "fixDifficulty": "easy"},
+      {"cause": "Failed NTC sensor", "likelihood": "medium", "fixDifficulty": "intermediate"}
+    ],
+    "symptoms": ["8 LED flashes", "Reduced or no firing"],
+    "fixSteps": [
+      {"step": 1, "title": "Reseat", "instruction": "Power off, reseat the return sensor harness.", "tools": [], "difficulty": "easy", "timeMinutes": 10},
+      {"step": 2, "title": "Replace", "instruction": "If still faulty, replace with the OEM sensor and refill the loop.", "tools": ["wrench"], "difficulty": "intermediate", "timeMinutes": 60}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 80}, "professional": {"min": 200, "max": 450}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "If draining and refilling is outside your comfort.",
+    "relatedCodes": ["7 Flash"],
+    "faq": [{"q": "Will the boiler run while it's faulted?", "a": "No — return sensor is mandatory for safe operation."}]
+  },
+  {
+    "id": "burnham-boiler-9-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "9 Flash",
+    "displayCode": "9 Flash",
+    "isBlinkCode": true,
+    "title": "Internal Control Error",
+    "shortDescription": "Self-test on the ignition control failed.",
+    "fullDescription": "Nine flashes is a generic internal-control failure. The board fails the boot self-check and refuses to operate. Surge events and water intrusion are common causes; sustained recurrence means replacement.",
+    "safetyWarning": "Disconnect power at the breaker before opening the cabinet.",
+    "causes": [
+      {"cause": "Power surge", "likelihood": "medium", "fixDifficulty": "easy"},
+      {"cause": "Moisture in cabinet", "likelihood": "medium", "fixDifficulty": "intermediate"},
+      {"cause": "Failed control board", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["9 LED flashes", "No response to thermostat"],
+    "fixSteps": [
+      {"step": 1, "title": "Power cycle", "instruction": "Off at the breaker for 2 minutes, then on.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Schedule replacement", "instruction": "If recurring, the board must be replaced and re-commissioned.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 1500}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-180 minutes",
+    "whenToCallPro": "Always for control-board replacement.",
+    "relatedCodes": [],
+    "faq": [{"q": "Worth a surge protector?", "a": "Yes — adds years to control-board life."}]
+  },
+  {
+    "id": "burnham-boiler-10-flash",
+    "brand": "Burnham",
+    "brandSlug": "burnham",
+    "deviceType": "Boiler",
+    "deviceTypeSlug": "boiler",
+    "code": "10 Flash",
+    "displayCode": "10 Flash",
+    "isBlinkCode": true,
+    "title": "Gas Valve Relay Fault",
+    "shortDescription": "Control detected an internal gas-valve drive-circuit fault.",
+    "fullDescription": "Ten flashes indicates a gas-valve relay or driver circuit failure. The board cannot guarantee safe gas-valve closure and locks out.\n\nCould be a shorted gas valve coil, a stuck relay, or a board-level FET failure.",
+    "safetyWarning": "Treat as a serious safety event — call a professional and isolate the boiler gas supply.",
+    "causes": [
+      {"cause": "Shorted gas valve coil", "likelihood": "medium", "fixDifficulty": "professional"},
+      {"cause": "Failed control board relay/FET", "likelihood": "high", "fixDifficulty": "professional"}
+    ],
+    "symptoms": ["10 LED flashes", "Hard lockout"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate gas", "instruction": "Close the manual gas shutoff at the boiler.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
+      {"step": 2, "title": "Call a tech", "instruction": "Schedule a licensed gas tech to diagnose with a meter.", "tools": [], "difficulty": "professional", "timeMinutes": 120}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 500, "max": 1600}},
+    "diyDifficulty": "professional",
+    "repairTime": "60-180 minutes",
+    "whenToCallPro": "Always — internal gas-valve drive faults are pro-only.",
+    "relatedCodes": ["9 Flash"],
+    "faq": [{"q": "Can I clear it and try again?", "a": "Do not — this code suggests the boiler cannot safely shut gas off."}]
+  }
+]

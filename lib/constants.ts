@@ -389,6 +389,17 @@ export const APPLIANCE_BRANDS = [
   { name: "Seagate", slug: "seagate", country: "USA" },
   { name: "Arris", slug: "arris", country: "USA" },
   { name: "Motorola Modem", slug: "motorola-modem", country: "USA" },
+  // ── Smart Home / IoT ──
+  { name: "Philips Hue", slug: "philips-hue", country: "Netherlands" },
+  { name: "LIFX", slug: "lifx", country: "USA" },
+  { name: "Govee", slug: "govee", country: "China" },
+  { name: "Wyze", slug: "wyze", country: "USA" },
+  { name: "Blink", slug: "blink", country: "USA" },
+  { name: "Arlo", slug: "arlo", country: "USA" },
+  { name: "myQ", slug: "myq", country: "USA" },
+  { name: "Chamberlain", slug: "chamberlain", country: "USA" },
+  { name: "LiftMaster", slug: "liftmaster", country: "USA" },
+  { name: "Genie", slug: "genie", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
@@ -565,6 +576,14 @@ export const HVAC_BRANDS = [
   { name: "Aire-Flo", slug: "aire-flo" },
   { name: "Concord", slug: "concord" },
   { name: "State Water Heater", slug: "state-water" },
+  { name: "Buderus", slug: "buderus" },
+  { name: "Viessmann", slug: "viessmann" },
+  { name: "Lochinvar", slug: "lochinvar" },
+  { name: "Triangle Tube", slug: "triangle-tube" },
+  { name: "HTP", slug: "htp" },
+  { name: "Baxi", slug: "baxi" },
+  { name: "Vaillant", slug: "vaillant" },
+  { name: "Worcester Bosch", slug: "worcester-bosch" },
 ] as const;
 
 export const HVAC_DEVICE_TYPES: Record<HVACDeviceType, { label: string; labelPlural: string }> = {
