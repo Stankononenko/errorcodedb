@@ -486,6 +486,11 @@ export const APPLIANCE_BRANDS = [
   { name: "Conair", slug: "conair", country: "USA" },
   { name: "Remington", slug: "remington", country: "USA" },
   { name: "Withings", slug: "withings", country: "France" },
+  // ── Streaming + Commercial Refrig ──
+  { name: "Roku Streaming", slug: "roku-streaming", country: "USA" },
+  { name: "Amazon Fire TV", slug: "amazon-fire-tv", country: "USA" },
+  { name: "True Manufacturing", slug: "true-mfg", country: "USA" },
+  { name: "Traulsen", slug: "traulsen", country: "USA" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<

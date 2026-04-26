@@ -1,0 +1,2718 @@
+[
+  {
+    "code": "P0234-v4",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Overboost Condition",
+    "shortDescription": "Boost pressure exceeds the commanded ceiling.",
+    "fullDescription": "P0234 sets when the ECM detects boost pressure exceeding the maximum allowable threshold versus the commanded value. The control strategy aborts further boost and may force limp mode.\n\nCauses range from a stuck wastegate to a failed boost-control solenoid or a misreporting MAP sensor. Mechanical damage to internals can occur if ignored.",
+    "severity": "high",
+    "safetyImpact": "Possible engine damage if boost runs unchecked; reduce throttle and address promptly.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Limp mode",
+      "Whistle / surge",
+      "Power loss after spike"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P0235-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Boost Sensor A Circuit",
+    "shortDescription": "Boost-pressure sensor A circuit malfunction.",
+    "fullDescription": "P0235 indicates a general fault on the boost-pressure sensor A circuit - signal out of range or implausible compared to other inputs.\n\nMost commonly the sensor itself or its wiring is at fault, but ECM faults can occur. Boost trims default to safe values.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; safe to drive briefly to a shop.",
+    "causes": [
+      {
+        "cause": "Failed boost sensor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged signal wire",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Connector corrosion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Reduced power",
+      "Erratic boost gauge",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Probe sensor signal",
+        "instruction": "Backprobe at idle and snap-throttle.",
+        "tools": [
+          "DMM",
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect wiring",
+        "instruction": "Check for chafe at turbo heat shield.",
+        "tools": [
+          "Visual"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Install OE-quality replacement.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will the car run?",
+        "a": "Yes, but in a derate."
+      },
+      {
+        "q": "Reset after repair?",
+        "a": "Clear DTCs and verify under load."
+      }
+    ]
+  },
+  {
+    "code": "P0236-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Boost Sensor A Range/Performance",
+    "shortDescription": "Boost sensor A reading is implausible vs other inputs.",
+    "fullDescription": "P0236 sets when sensor A reports values that don't agree with MAF, BARO, or commanded duty during stable conditions.\n\nA contaminated MAP/boost sensor or kinked reference line is typical. Boost control may be conservative until cleared.",
+    "severity": "medium",
+    "safetyImpact": "Power may be reduced; not immediately unsafe.",
+    "causes": [
+      {
+        "cause": "Plugged reference line",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Drifted sensor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Vacuum leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring resistance",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Inconsistent power",
+      "Cold-start surge"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compare PIDs",
+        "instruction": "Log MAP, BARO, MAF together.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean port and line",
+        "instruction": "Clear oil/soot from sensor port.",
+        "tools": [
+          "Sensor-safe cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OE part.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Common cause?",
+        "a": "Oil residue from PCV path."
+      },
+      {
+        "q": "Will idle be rough?",
+        "a": "Mild surge possible."
+      }
+    ]
+  },
+  {
+    "code": "P0237-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Boost Sensor A Circuit Low",
+    "shortDescription": "Boost sensor A signal voltage below expected minimum.",
+    "fullDescription": "P0237 means the boost-sensor signal is sitting at or below its low limit, suggesting an open, short to ground, or failed sensor.\n\nThe ECM treats output as default and limits boost. Repair the wiring or sensor to restore performance.",
+    "severity": "medium",
+    "safetyImpact": "Limp mode likely.",
+    "causes": [
+      {
+        "cause": "Sensor short to ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open 5V reference",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check 5V reference",
+        "instruction": "Verify with KOEO at sensor.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect harness",
+        "instruction": "Look for chafe and short.",
+        "tools": [
+          "Visual"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Confirm signal returns to 0.5-4.5V.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why default?",
+        "a": "ECM substitutes a safe value."
+      },
+      {
+        "q": "Erase before driving?",
+        "a": "Yes, then verify with PID log."
+      }
+    ]
+  },
+  {
+    "code": "P0238-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Boost Sensor A Circuit High",
+    "shortDescription": "Boost-pressure sensor signal above expected maximum.",
+    "fullDescription": "P0238 sets when the boost-sensor signal is stuck at the upper rail, indicating a short to voltage or open ground.\n\nThe ECM disables turbo control to protect the engine. Ground integrity and 5V reference are the first checks.",
+    "severity": "medium",
+    "safetyImpact": "Limp mode and reduced power; not directly unsafe.",
+    "causes": [
+      {
+        "cause": "Short to 5V/12V",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Connector water intrusion",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Limp mode",
+      "Loss of power"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check ground integrity",
+        "instruction": "Measure ground at sensor.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Probe signal",
+        "instruction": "Should drop with key on.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Verify range after install.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Could ECM be at fault?",
+        "a": "Rare - check wiring first."
+      },
+      {
+        "q": "Will MIL clear itself?",
+        "a": "Only after repair and drive cycle."
+      }
+    ]
+  },
+  {
+    "code": "P0299-v4",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbocharger Underboost Condition",
+    "shortDescription": "Boost pressure consistently below commanded.",
+    "fullDescription": "P0299 indicates the commanded boost is not being achieved - typical causes are charge-air leaks, a stuck-open wastegate, or a worn turbo.\n\nThis is one of the most common turbo codes and often shows up alongside boost-leak symptoms like a hissing intake.",
+    "severity": "medium",
+    "safetyImpact": "Reduced acceleration; not unsafe but address before towing.",
+    "causes": [
+      {
+        "cause": "Charge-pipe leak / split coupler",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck open",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Worn turbo bearings",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Boost solenoid not commanding",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Restricted CAT/DPF",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Sluggish acceleration",
+      "Black smoke (diesel)",
+      "Whistle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Most common fix?",
+        "a": "Replacing a split charge-pipe coupler."
+      },
+      {
+        "q": "DPF related?",
+        "a": "On diesels yes - check exhaust restriction."
+      }
+    ]
+  },
+  {
+    "code": "P02CB",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 1 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 1.",
+    "fullDescription": "P02CB indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02CC",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 2 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 2.",
+    "fullDescription": "P02CC indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02CD",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 3 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 3.",
+    "fullDescription": "P02CD indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02CE",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 4 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 4.",
+    "fullDescription": "P02CE indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02CF",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 5 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 5.",
+    "fullDescription": "P02CF indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02D0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 6 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 6.",
+    "fullDescription": "P02D0 indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02D1",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 7 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 7.",
+    "fullDescription": "P02D1 indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02D2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger / Diesel",
+    "title": "Cyl 8 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 8.",
+    "fullDescription": "P02D2 indicates a serial-bus or supply-side fault between the ECM and the glow-plug control module on the listed cylinder. This blocks cold-start preheat for that cylinder.\n\nDiagnosis focuses on module power, ground, and CAN/LIN traffic. A failed glow-plug module is the most common cause.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start expected; engine still runs once warm.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring / CAN fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed glow plug",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL",
+      "White smoke when cold"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify module power",
+        "instruction": "Check fused supply at module.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Read CAN traffic",
+        "instruction": "Use scope or scan tool.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace module / glow plug",
+        "instruction": "Per service manual.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Diesel only?",
+        "a": "Yes - this code only applies to compression-ignition engines."
+      },
+      {
+        "q": "Drive while cold?",
+        "a": "It will start hard - address before winter."
+      }
+    ]
+  },
+  {
+    "code": "P02D3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Cyl 9 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 9.",
+    "fullDescription": "P02D3 sets when the ECM cannot reach the cylinder-9 glow-plug controller. Mostly seen on V8 / V10 diesels.\n\nCheck wiring loom routing across the rocker cover area where heat damage is common.",
+    "severity": "medium",
+    "safetyImpact": "Cold start handicapped; warm engine unaffected.",
+    "causes": [
+      {
+        "cause": "Glow plug module failed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Heat-damaged wiring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module power supply fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Hard cold start",
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test module supply",
+        "instruction": "Verify B+ and ground.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect harness",
+        "instruction": "Look for melted insulation.",
+        "tools": [
+          "Visual"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace module",
+        "instruction": "OE part recommended.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will engine run?",
+        "a": "Yes once warm."
+      },
+      {
+        "q": "Common in summer?",
+        "a": "Less symptom but still active."
+      }
+    ]
+  },
+  {
+    "code": "P02D4",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Cyl 10 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 10.",
+    "fullDescription": "P02D4 occurs when communications with the cylinder-10 glow-plug driver fail. Wiring and module faults dominate.\n\nVerify CAN/LIN integrity to the module and inspect connector for moisture.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold start; otherwise drivable.",
+    "causes": [
+      {
+        "cause": "Glow plug module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Connector water",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Hard cold start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pinpoint with scan tool",
+        "instruction": "Read module status PIDs.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace module",
+        "instruction": "Reflash if required.",
+        "tools": [
+          "Programmer"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 950
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Reflash needed?",
+        "a": "Often yes on modern diesels."
+      }
+    ]
+  },
+  {
+    "code": "P02D5",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Cyl 11 Glow Plug Module Comm Lost",
+    "shortDescription": "Loss of glow-plug module communication for cylinder 11.",
+    "fullDescription": "P02D5 covers cylinder-11 glow-plug driver communication loss. Found on heavy-duty V12 diesels.\n\nDiagnosis matches other PXXX glow-plug codes - module power, ground, and bus integrity.",
+    "severity": "medium",
+    "safetyImpact": "Cold-start handicap.",
+    "causes": [
+      {
+        "cause": "Module fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Hard cold start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Module check",
+        "instruction": "Power, ground, CAN.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace as needed",
+        "instruction": "OE module.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 950
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Heavy-duty only?",
+        "a": "Mostly."
+      }
+    ]
+  },
+  {
+    "code": "P0045-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbo/Super Boost Control A Circuit/Open",
+    "shortDescription": "Turbocharger control circuit fault: open.",
+    "fullDescription": "P0045 indicates a fault in the turbo/supercharger boost-control actuator circuit (open). The ECM cannot achieve commanded boost and forces a default mode.\n\nLook at solenoid wiring, actuator integrity, and overlapping codes for boost sensor or wastegate position.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; turbine overspeed can damage the turbo.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P0046-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbo/Super Boost Control A Range/Performance",
+    "shortDescription": "Turbocharger control circuit fault: range / performance.",
+    "fullDescription": "P0046 indicates a fault in the turbo/supercharger boost-control actuator circuit (range / performance). The ECM cannot achieve commanded boost and forces a default mode.\n\nLook at solenoid wiring, actuator integrity, and overlapping codes for boost sensor or wastegate position.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; turbine overspeed can damage the turbo.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P0047",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbo/Super Boost Control A Circuit Low",
+    "shortDescription": "Turbocharger control circuit fault: low voltage.",
+    "fullDescription": "P0047 indicates a fault in the turbo/supercharger boost-control actuator circuit (low voltage). The ECM cannot achieve commanded boost and forces a default mode.\n\nLook at solenoid wiring, actuator integrity, and overlapping codes for boost sensor or wastegate position.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; turbine overspeed can damage the turbo.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P0048",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbo/Super Boost Control A Circuit High",
+    "shortDescription": "Turbocharger control circuit fault: high voltage.",
+    "fullDescription": "P0048 indicates a fault in the turbo/supercharger boost-control actuator circuit (high voltage). The ECM cannot achieve commanded boost and forces a default mode.\n\nLook at solenoid wiring, actuator integrity, and overlapping codes for boost sensor or wastegate position.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; turbine overspeed can damage the turbo.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P0049-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Turbo/Super Charger Turbine Overspeed",
+    "shortDescription": "Turbocharger control circuit fault: turbine overspeed.",
+    "fullDescription": "P0049 indicates a fault in the turbo/supercharger boost-control actuator circuit (turbine overspeed). The ECM cannot achieve commanded boost and forces a default mode.\n\nLook at solenoid wiring, actuator integrity, and overlapping codes for boost sensor or wastegate position.",
+    "severity": "high",
+    "safetyImpact": "Reduced power; turbine overspeed can damage the turbo.",
+    "causes": [
+      {
+        "cause": "Boost control solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wastegate stuck or leaking",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Boost pressure sensor fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum / charge pipe leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or connector damage",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Power loss",
+      "Limp mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P02E0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intake Air Diverter Position Sensor Circuit",
+    "shortDescription": "Diverter / blow-off valve position sensor circuit fault.",
+    "fullDescription": "P02E0 indicates a circuit fault on the intake air diverter (blow-off / recirculation) valve position sensor. The ECM relies on this signal to manage transient boost spikes.\n\nA fault can produce both over- and under-boost conditions and surge during gear changes.",
+    "severity": "medium",
+    "safetyImpact": "Surge between shifts; not unsafe.",
+    "causes": [
+      {
+        "cause": "Diverter sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Compressor surge",
+      "Hesitation between shifts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Safe to drive?",
+        "a": "Limp-mode is likely; repair before forcing engine to compensate."
+      },
+      {
+        "q": "Will it damage the turbo?",
+        "a": "Yes - prolonged uncontrolled boost or constant overrun stresses bearings."
+      }
+    ]
+  },
+  {
+    "code": "P02D6",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intercooler Bypass Valve Position Sensor Circuit",
+    "shortDescription": "Intercooler bypass valve position sensor: circuit malfunction.",
+    "fullDescription": "P02D6 sets when the intercooler bypass valve position feedback is faulty (circuit malfunction). With imprecise feedback, the ECM cannot manage the bypass during light-load operation.\n\nFuel economy and cold-start emissions can suffer until corrected.",
+    "severity": "low",
+    "safetyImpact": "Mild driveability/economy loss only.",
+    "causes": [
+      {
+        "cause": "Bypass valve sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slight power dip",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will it harm engine?",
+        "a": "No, but emissions can fail."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Sensor connector corrosion."
+      }
+    ]
+  },
+  {
+    "code": "P02D7",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intercooler Bypass Valve Position Sensor Range/Performance",
+    "shortDescription": "Intercooler bypass valve position sensor: range / performance.",
+    "fullDescription": "P02D7 sets when the intercooler bypass valve position feedback is faulty (range / performance). With imprecise feedback, the ECM cannot manage the bypass during light-load operation.\n\nFuel economy and cold-start emissions can suffer until corrected.",
+    "severity": "low",
+    "safetyImpact": "Mild driveability/economy loss only.",
+    "causes": [
+      {
+        "cause": "Bypass valve sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slight power dip",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will it harm engine?",
+        "a": "No, but emissions can fail."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Sensor connector corrosion."
+      }
+    ]
+  },
+  {
+    "code": "P02D8",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intercooler Bypass Valve Position Sensor Circuit Low",
+    "shortDescription": "Intercooler bypass valve position sensor: circuit low.",
+    "fullDescription": "P02D8 sets when the intercooler bypass valve position feedback is faulty (circuit low). With imprecise feedback, the ECM cannot manage the bypass during light-load operation.\n\nFuel economy and cold-start emissions can suffer until corrected.",
+    "severity": "low",
+    "safetyImpact": "Mild driveability/economy loss only.",
+    "causes": [
+      {
+        "cause": "Bypass valve sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slight power dip",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will it harm engine?",
+        "a": "No, but emissions can fail."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Sensor connector corrosion."
+      }
+    ]
+  },
+  {
+    "code": "P02D9",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intercooler Bypass Valve Position Sensor Circuit High",
+    "shortDescription": "Intercooler bypass valve position sensor: circuit high.",
+    "fullDescription": "P02D9 sets when the intercooler bypass valve position feedback is faulty (circuit high). With imprecise feedback, the ECM cannot manage the bypass during light-load operation.\n\nFuel economy and cold-start emissions can suffer until corrected.",
+    "severity": "low",
+    "safetyImpact": "Mild driveability/economy loss only.",
+    "causes": [
+      {
+        "cause": "Bypass valve sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slight power dip",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will it harm engine?",
+        "a": "No, but emissions can fail."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Sensor connector corrosion."
+      }
+    ]
+  },
+  {
+    "code": "P02DA",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intercooler Bypass Valve Position Sensor Circuit Intermittent",
+    "shortDescription": "Intercooler bypass valve position sensor: intermittent.",
+    "fullDescription": "P02DA sets when the intercooler bypass valve position feedback is faulty (intermittent). With imprecise feedback, the ECM cannot manage the bypass during light-load operation.\n\nFuel economy and cold-start emissions can suffer until corrected.",
+    "severity": "low",
+    "safetyImpact": "Mild driveability/economy loss only.",
+    "causes": [
+      {
+        "cause": "Bypass valve sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck valve",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slight power dip",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will it harm engine?",
+        "a": "No, but emissions can fail."
+      },
+      {
+        "q": "Common cause?",
+        "a": "Sensor connector corrosion."
+      }
+    ]
+  },
+  {
+    "code": "P02E1",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intake Air Diverter Valve Control Circuit",
+    "shortDescription": "Intake air diverter valve: control circuit malfunction.",
+    "fullDescription": "P02E1 indicates the intake air diverter (recirculation) valve is reporting control circuit malfunction. The ECM uses this valve to manage compressor pressure during throttle release.\n\nLeft uncorrected, the result is compressor surge or persistent over/underboost during shifts.",
+    "severity": "medium",
+    "safetyImpact": "Surge can damage turbo bearings over time.",
+    "causes": [
+      {
+        "cause": "Diverter valve solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Mechanical valve seizure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Compressor flutter / surge",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Aftermarket BOV?",
+        "a": "Many cause this code if non-OE."
+      },
+      {
+        "q": "Drive briefly?",
+        "a": "Yes but avoid hard shifts."
+      }
+    ]
+  },
+  {
+    "code": "P02E2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Turbocharger",
+    "title": "Intake Air Diverter Valve Control Circuit Low",
+    "shortDescription": "Intake air diverter valve: control circuit low.",
+    "fullDescription": "P02E2 indicates the intake air diverter (recirculation) valve is reporting control circuit low. The ECM uses this valve to manage compressor pressure during throttle release.\n\nLeft uncorrected, the result is compressor surge or persistent over/underboost during shifts.",
+    "severity": "medium",
+    "safetyImpact": "Surge can damage turbo bearings over time.",
+    "causes": [
+      {
+        "cause": "Diverter valve solenoid fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Mechanical valve seizure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Compressor flutter / surge",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze-frame data",
+        "instruction": "Capture boost commanded vs actual at fault.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test charge pipes",
+        "instruction": "Pressurize intake to find leaks.",
+        "tools": [
+          "Smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test boost solenoid and wastegate",
+        "instruction": "Bench-test solenoid resistance and verify wastegate moves freely.",
+        "tools": [
+          "DMM",
+          "Vacuum pump"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace faulty component",
+        "instruction": "Solenoid, sensor, or actuator as indicated.",
+        "tools": [
+          "Sockets"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Aftermarket BOV?",
+        "a": "Many cause this code if non-OE."
+      },
+      {
+        "q": "Drive briefly?",
+        "a": "Yes but avoid hard shifts."
+      }
+    ]
+  }
+]
