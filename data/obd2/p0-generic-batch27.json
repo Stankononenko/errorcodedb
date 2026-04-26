@@ -1,0 +1,2623 @@
+[
+  {
+    "code": "P0421-v2x",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Catalyst Efficiency",
+    "title": "Warm Up Catalyst Efficiency Below Threshold (Bank 1)",
+    "shortDescription": "Warm-up catalyst on Bank 1 not heating fast enough to reduce cold-start emissions.",
+    "fullDescription": "P0421 indicates the close-coupled warm-up catalyst on Bank 1 is below efficiency threshold during the cold-start light-off monitor. The PCM uses upstream and downstream O2 sensor activity to score the catalyst's ability to oxidize HC during the first 60 seconds.\n\nA failing warm-up cat raises cold-start hydrocarbons sharply and is a common cause of IM-240 cold-start failures even when the rear cat looks fine.",
+    "severity": "medium",
+    "safetyImpact": "Increased emissions; long-term catalyst damage if root cause is engine misfire.",
+    "causes": [
+      {
+        "cause": "Aged or contaminated warm-up catalyst",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Exhaust leak ahead of upstream O2",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Engine running rich during warm-up",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Faulty O2 sensors",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Failed cold-start emissions",
+      "Slight rough running until warm"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check fuel trims at idle",
+        "instruction": "Confirm STFT/LTFT within \u00b110% before condemning catalyst.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect exhaust for leaks",
+        "instruction": "Check manifold gasket and pipe joints upstream of O2 sensor.",
+        "tools": [
+          "Flashlight",
+          "Stethoscope"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace warm-up catalyst",
+        "instruction": "If fueling is correct and exhaust sealed, replace the catalyst.",
+        "tools": [
+          "Hand tools",
+          "Penetrating oil"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 600,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "P0420",
+      "P0430"
+    ],
+    "faq": [
+      {
+        "q": "Will a tune fix this?",
+        "a": "No, the catalyst is monitored by the PCM regardless of tune."
+      },
+      {
+        "q": "Is the warm-up cat the same as the main cat?",
+        "a": "No, it's a smaller close-coupled unit between the manifold and main cat."
+      }
+    ]
+  },
+  {
+    "code": "P0431-v2x",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Catalyst Efficiency",
+    "title": "Warm Up Catalyst Efficiency Below Threshold (Bank 2)",
+    "shortDescription": "Warm-up catalyst on Bank 2 not heating fast enough during cold start.",
+    "fullDescription": "P0431 mirrors P0421 but for Bank 2 on V-engines. The dedicated warm-up catalyst near the Bank 2 manifold is failing the cold-start light-off test.\n\nOn many V6/V8 vehicles both warm-up cats live in the exhaust manifolds and are integrated, so replacement requires the manifold assembly.",
+    "severity": "medium",
+    "safetyImpact": "Increased cold-start emissions.",
+    "causes": [
+      {
+        "cause": "Aged Bank 2 warm-up catalyst",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Exhaust leak Bank 2",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Bank 2 fuel control fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Failed emissions"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Bank 2 fuel trims",
+        "instruction": "Long-term trims should be within \u00b110%.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect Bank 2 manifold",
+        "instruction": "Check for cracks and gasket leaks.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace Bank 2 warm-up cat",
+        "instruction": "Often integrated with the manifold.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 150,
+        "max": 800
+      },
+      "mechanic": {
+        "min": 700,
+        "max": 2200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0430",
+      "P0421"
+    ],
+    "faq": [
+      {
+        "q": "Same fix as P0421?",
+        "a": "Yes but on the opposite cylinder bank."
+      }
+    ]
+  },
+  {
+    "code": "P204F",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Emissions",
+    "title": "Reductant System Performance",
+    "shortDescription": "DEF system overall performance below threshold; SCR not reducing NOx adequately.",
+    "fullDescription": "P204F is a high-level SCR/reductant performance code that sets when the downstream NOx sensor reports insufficient NOx conversion despite the dosing system commanding DEF injection. It rolls up many possible underlying issues: dosing quantity, mixing, catalyst condition, or sensor accuracy.\n\nThe ECM enters a derate countdown (often 200 mi / 55 mph / no-restart depending on tier), so this code must be diagnosed promptly.",
+    "severity": "high",
+    "safetyImpact": "Vehicle will derate and may refuse restart; emissions out of compliance.",
+    "causes": [
+      {
+        "cause": "Contaminated or wrong-quality DEF (water, off-spec)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed SCR catalyst",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Faulty NOx sensors (upstream or downstream)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Dosing injector clogged",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Exhaust leak between turbo and SCR",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF/SCR warning lamp",
+      "Reduced power",
+      "Speed limiter active",
+      "No-restart countdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read live NOx sensor data",
+        "instruction": "Compare upstream vs downstream NOx ppm; conversion should exceed 80% at temp.",
+        "tools": [
+          "OBD-II scanner with diesel coverage"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Test DEF quality",
+        "instruction": "Use refractometer; urea should be 32.5% \u00b10.5%.",
+        "tools": [
+          "DEF refractometer"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Inspect dosing spray pattern",
+        "instruction": "Activate dosing test; expect even cone with no dribble.",
+        "tools": [
+          "Scanner with bidirectional control"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Replace SCR catalyst if conversion low",
+        "instruction": "After ruling out sensors and dosing.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-8 hours",
+    "relatedCodes": [
+      "P207F",
+      "P20EE",
+      "P2BAD"
+    ],
+    "faq": [
+      {
+        "q": "Why is my truck about to derate?",
+        "a": "Heavy-duty emissions regs require a stepped derate when SCR fails to keep NOx in spec."
+      },
+      {
+        "q": "Can I just clear the code?",
+        "a": "It will return as soon as the dosing monitor runs again at temperature."
+      }
+    ]
+  },
+  {
+    "code": "P207F-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Emissions",
+    "title": "Reductant Quality Performance \u2014 Quality Below Threshold",
+    "shortDescription": "DEF concentration is out of the 32.5% urea spec window.",
+    "fullDescription": "This variant of the reductant quality fault is set specifically when the quality sensor (or NOx-conversion-derived quality model) determines the urea concentration is too far from 32.5%. Common causes are watered-down DEF, expired DEF that has decomposed, or accidental refill with washer fluid or diesel.\n\nUnlike P207F base code, this variant focuses on concentration rather than presence.",
+    "severity": "high",
+    "safetyImpact": "Derate sequence active; emissions noncompliant.",
+    "causes": [
+      {
+        "cause": "Watered-down or counterfeit DEF",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Expired DEF (concentration drift)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wrong fluid added to DEF tank",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "DEF quality sensor fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "DEF lamp",
+      "Reduced power countdown",
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test DEF with refractometer",
+        "instruction": "Should read 32.5% urea.",
+        "tools": [
+          "DEF refractometer"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Drain and refill with fresh DEF",
+        "instruction": "From a sealed certified container.",
+        "tools": [
+          "Pump",
+          "DEF jug"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Reset adaptation after refill",
+        "instruction": "Run forced regen / quality re-learn.",
+        "tools": [
+          "OBD-II scanner"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P204F",
+      "P20E8"
+    ],
+    "faq": [
+      {
+        "q": "How do I know if my DEF is bad?",
+        "a": "Refractometer reading outside 32.0-33.0% urea or yellow tint indicates contamination."
+      }
+    ]
+  },
+  {
+    "code": "P2002-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "DPF",
+    "title": "Diesel Particulate Filter Efficiency Below Threshold (Bank 1) \u2014 Soot Loading Model",
+    "shortDescription": "DPF soot loading model and pressure feedback indicate the filter no longer captures particulates.",
+    "fullDescription": "This P2002 variant focuses on the soot-loading model output: the ECM's calculated PM efficiency derived from differential pressure, exhaust flow, and ash mass. When the model concludes the substrate is cracked, melted or no longer trapping, this code is set.\n\nA real efficiency failure differs from a regen-fault chain (P2463/P2459); here the filter physically can't trap soot regardless of pressure.",
+    "severity": "high",
+    "safetyImpact": "Excessive PM emissions; possible derate.",
+    "causes": [
+      {
+        "cause": "Cracked or melted DPF substrate (post-runaway regen)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "DPF removed/gutted (illegal)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed differential pressure sensor reading low",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM calibration outdated",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible derate",
+      "No visible smoke",
+      "Failed PM emissions test"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read DPF soot/ash grams",
+        "instruction": "Soot stuck near 0 with high flow indicates substrate failure.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Inspect DPF outlet for soot leakage",
+        "instruction": "Black soot at the tailpipe after long highway run is diagnostic.",
+        "tools": [
+          "White rag"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace DPF assembly",
+        "instruction": "Replace if substrate is compromised; not a cleanable condition.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 1500,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "P2463",
+      "P2459",
+      "P244A"
+    ],
+    "faq": [
+      {
+        "q": "Can a clogged DPF cause this?",
+        "a": "No \u2014 clogged sets pressure-side codes; this code means the filter has lost its trapping ability."
+      }
+    ]
+  },
+  {
+    "code": "P2081",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Intermittent Bank 1 Sensor 1",
+    "shortDescription": "EGT sensor 1 Bank 1 reading is dropping in/out intermittently.",
+    "fullDescription": "P2081 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2082",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Bank 2 Sensor 1",
+    "shortDescription": "EGT sensor 1 Bank 2 has a circuit fault.",
+    "fullDescription": "P2082 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2083",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 2 Sensor 1",
+    "shortDescription": "EGT sensor 1 Bank 2 reading does not match modeled exhaust temperature.",
+    "fullDescription": "P2083 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2085",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Intermittent Bank 2 Sensor 1",
+    "shortDescription": "EGT sensor 1 Bank 2 dropping in/out.",
+    "fullDescription": "P2085 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2086",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Bank 1 Sensor 2",
+    "shortDescription": "EGT sensor 2 Bank 1 has a circuit fault.",
+    "fullDescription": "P2086 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2087",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 1 Sensor 2",
+    "shortDescription": "EGT sensor 2 Bank 1 reading implausible vs model.",
+    "fullDescription": "P2087 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2091",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Low Bank 1 Sensor 3",
+    "shortDescription": "EGT sensor 3 (post-DPF) Bank 1 reading too low.",
+    "fullDescription": "P2091 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2092",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit High Bank 1 Sensor 3",
+    "shortDescription": "EGT sensor 3 (post-DPF) Bank 1 reading too high.",
+    "fullDescription": "P2092 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2093",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 1 Sensor 3",
+    "shortDescription": "Post-DPF EGT sensor reading does not track DPF outlet model.",
+    "fullDescription": "P2093 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2094",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Bank 2 Sensor 2",
+    "shortDescription": "EGT sensor 2 Bank 2 has a circuit fault.",
+    "fullDescription": "P2094 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2095",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGT Sensor",
+    "title": "Exhaust Gas Temperature Sensor Circuit Range/Performance Bank 2 Sensor 2",
+    "shortDescription": "EGT sensor 2 Bank 2 implausible reading.",
+    "fullDescription": "P2095 sets when the ECM detects an electrical or rationality fault on the indicated exhaust gas temperature sensor. EGT sensors are critical inputs for DPF regen control, turbo overtemp protection, and SCR catalyst dosing strategy.\n\nA wrong EGT reading either prevents regen from initiating or, worse, can trigger an over-temperature regen that damages the DPF substrate.",
+    "severity": "medium",
+    "safetyImpact": "Regen may not run; possible thermal damage if temperature is misread upward.",
+    "causes": [
+      {
+        "cause": "EGT sensor open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Connector contaminated with soot/oil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring chafed against exhaust",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM signal input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF regen disabled",
+      "Possible derate",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare to other EGT sensors at idle; should agree within 30 \u00b0C.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "EGT thermistors typically 200 \u03a9\u201310 k\u03a9 depending on type and temp.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Use OEM-spec sensor; threadlock per spec.",
+        "tools": [
+          "EGT sensor socket",
+          "Anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [
+      "P0544",
+      "P2080",
+      "P2084"
+    ],
+    "faq": [
+      {
+        "q": "Can I clean an EGT sensor?",
+        "a": "Wiping soot off the tip can help but a failed thermistor must be replaced."
+      }
+    ]
+  },
+  {
+    "code": "P2460",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "DPF",
+    "title": "DPF Differential Pressure Sensor Circuit Intermittent",
+    "shortDescription": "DPF differential pressure sensor signal dropping in and out.",
+    "fullDescription": "P2460 is part of the DPF differential pressure monitor family. The DP sensor measures the pressure drop across the particulate filter and feeds the soot loading model. Faulty readings cause regens to be skipped, repeated, or incorrectly aborted.\n\nMost frequent root cause is plugged or damaged hoses to the sensor \u2014 soot and water freeze into the small lines.",
+    "severity": "medium",
+    "safetyImpact": "Regen disabled or runs at wrong time; long-term DPF damage possible.",
+    "causes": [
+      {
+        "cause": "Plugged/cracked DP sensor hoses",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed DP sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring/connector corrosion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Heavily ash-loaded DPF skewing pressure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF lamp",
+      "Frequent active regens",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect DP sensor hoses",
+        "instruction": "Remove and blow through; replace if cracked or sooted shut.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Compare scan-tool DP reading",
+        "instruction": "At idle should be near 0 kPa; under load up to 3-15 kPa depending on load.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace DP sensor",
+        "instruction": "Use OEM part; resets often required.",
+        "tools": [
+          "Hand tools",
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "relatedCodes": [
+      "P2452",
+      "P2453",
+      "P2454"
+    ],
+    "faq": [
+      {
+        "q": "Are the hoses really that fragile?",
+        "a": "Yes \u2014 they get brittle from heat and clog with soot/condensate; they are the #1 cause of DPF DP codes."
+      }
+    ]
+  },
+  {
+    "code": "P2461",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "DPF",
+    "title": "DPF Differential Pressure Sensor Range/Performance",
+    "shortDescription": "DPF DP sensor reading is implausible vs flow model.",
+    "fullDescription": "P2461 is part of the DPF differential pressure monitor family. The DP sensor measures the pressure drop across the particulate filter and feeds the soot loading model. Faulty readings cause regens to be skipped, repeated, or incorrectly aborted.\n\nMost frequent root cause is plugged or damaged hoses to the sensor \u2014 soot and water freeze into the small lines.",
+    "severity": "medium",
+    "safetyImpact": "Regen disabled or runs at wrong time; long-term DPF damage possible.",
+    "causes": [
+      {
+        "cause": "Plugged/cracked DP sensor hoses",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed DP sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring/connector corrosion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Heavily ash-loaded DPF skewing pressure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF lamp",
+      "Frequent active regens",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect DP sensor hoses",
+        "instruction": "Remove and blow through; replace if cracked or sooted shut.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Compare scan-tool DP reading",
+        "instruction": "At idle should be near 0 kPa; under load up to 3-15 kPa depending on load.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace DP sensor",
+        "instruction": "Use OEM part; resets often required.",
+        "tools": [
+          "Hand tools",
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "relatedCodes": [
+      "P2452",
+      "P2453",
+      "P2454"
+    ],
+    "faq": [
+      {
+        "q": "Are the hoses really that fragile?",
+        "a": "Yes \u2014 they get brittle from heat and clog with soot/condensate; they are the #1 cause of DPF DP codes."
+      }
+    ]
+  },
+  {
+    "code": "P2462",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "DPF",
+    "title": "DPF Differential Pressure Too Low During Regeneration",
+    "shortDescription": "DPF DP did not rise as expected during loading or did not drop as expected during regen.",
+    "fullDescription": "P2462 is part of the DPF differential pressure monitor family. The DP sensor measures the pressure drop across the particulate filter and feeds the soot loading model. Faulty readings cause regens to be skipped, repeated, or incorrectly aborted.\n\nMost frequent root cause is plugged or damaged hoses to the sensor \u2014 soot and water freeze into the small lines.",
+    "severity": "medium",
+    "safetyImpact": "Regen disabled or runs at wrong time; long-term DPF damage possible.",
+    "causes": [
+      {
+        "cause": "Plugged/cracked DP sensor hoses",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed DP sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring/connector corrosion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Heavily ash-loaded DPF skewing pressure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DPF lamp",
+      "Frequent active regens",
+      "Reduced fuel economy"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect DP sensor hoses",
+        "instruction": "Remove and blow through; replace if cracked or sooted shut.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Compare scan-tool DP reading",
+        "instruction": "At idle should be near 0 kPa; under load up to 3-15 kPa depending on load.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace DP sensor",
+        "instruction": "Use OEM part; resets often required.",
+        "tools": [
+          "Hand tools",
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "relatedCodes": [
+      "P2452",
+      "P2453",
+      "P2454"
+    ],
+    "faq": [
+      {
+        "q": "Are the hoses really that fragile?",
+        "a": "Yes \u2014 they get brittle from heat and clog with soot/condensate; they are the #1 cause of DPF DP codes."
+      }
+    ]
+  },
+  {
+    "code": "P226A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crankcase Pressure Sensor",
+    "title": "Crankcase Pressure Too High",
+    "shortDescription": "Engine crankcase pressure exceeds limits indicating PCV/blowby fault.",
+    "fullDescription": "P226A relates to the crankcase pressure circuit on modern diesel and turbo gasoline engines. The crankcase pressure sensor is part of the active CCV (crankcase ventilation) system and helps the ECM diagnose PCV failures and excessive blowby that compromises emissions.\n\nA persistent fault here can mask real engine wear or, conversely, falsely flag a healthy engine.",
+    "severity": "high",
+    "safetyImpact": "Possible oil leaks pushed past seals; long-term engine damage from elevated blowby.",
+    "causes": [
+      {
+        "cause": "Failed PCV valve or system",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Excessive blowby (worn rings)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Plugged crankcase breather",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed crankcase pressure sensor",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Oil leaks",
+      "Oil consumption",
+      "White smoke at startup"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify sensor reading",
+        "instruction": "Pressure should be slightly negative or near 0 at idle.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check PCV system",
+        "instruction": "Inspect hoses and CCV separator for blockage or collapse.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or PCV unit",
+        "instruction": "Address the root mechanical cause first.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is high crankcase pressure serious?",
+        "a": "Yes \u2014 sustained elevated pressure pushes oil past seals and can be a sign of worn rings."
+      }
+    ]
+  },
+  {
+    "code": "P226B",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crankcase Pressure Sensor",
+    "title": "Crankcase Pressure Too Low",
+    "shortDescription": "Crankcase pressure unexpectedly low; possible vacuum draw on the case.",
+    "fullDescription": "P226B relates to the crankcase pressure circuit on modern diesel and turbo gasoline engines. The crankcase pressure sensor is part of the active CCV (crankcase ventilation) system and helps the ECM diagnose PCV failures and excessive blowby that compromises emissions.\n\nA persistent fault here can mask real engine wear or, conversely, falsely flag a healthy engine.",
+    "severity": "medium",
+    "safetyImpact": "Oil seal damage from sustained vacuum.",
+    "causes": [
+      {
+        "cause": "Stuck-open PCV valve",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Improper aftermarket catch can plumbing",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed pressure sensor",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible whistle",
+      "Oil weeping at seals"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify sensor reading",
+        "instruction": "Pressure should be slightly negative or near 0 at idle.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check PCV system",
+        "instruction": "Inspect hoses and CCV separator for blockage or collapse.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or PCV unit",
+        "instruction": "Address the root mechanical cause first.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is high crankcase pressure serious?",
+        "a": "Yes \u2014 sustained elevated pressure pushes oil past seals and can be a sign of worn rings."
+      }
+    ]
+  },
+  {
+    "code": "P226C",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crankcase Pressure Sensor",
+    "title": "Crankcase Pressure Sensor Range/Performance",
+    "shortDescription": "Crankcase pressure sensor reading does not track engine load.",
+    "fullDescription": "P226C relates to the crankcase pressure circuit on modern diesel and turbo gasoline engines. The crankcase pressure sensor is part of the active CCV (crankcase ventilation) system and helps the ECM diagnose PCV failures and excessive blowby that compromises emissions.\n\nA persistent fault here can mask real engine wear or, conversely, falsely flag a healthy engine.",
+    "severity": "low",
+    "safetyImpact": "None directly.",
+    "causes": [
+      {
+        "cause": "Sensor port plugged with oil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring connector issue",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify sensor reading",
+        "instruction": "Pressure should be slightly negative or near 0 at idle.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check PCV system",
+        "instruction": "Inspect hoses and CCV separator for blockage or collapse.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or PCV unit",
+        "instruction": "Address the root mechanical cause first.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is high crankcase pressure serious?",
+        "a": "Yes \u2014 sustained elevated pressure pushes oil past seals and can be a sign of worn rings."
+      }
+    ]
+  },
+  {
+    "code": "P226D",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crankcase Pressure Sensor",
+    "title": "Crankcase Pressure Sensor Circuit Low",
+    "shortDescription": "Sensor signal voltage below threshold.",
+    "fullDescription": "P226D relates to the crankcase pressure circuit on modern diesel and turbo gasoline engines. The crankcase pressure sensor is part of the active CCV (crankcase ventilation) system and helps the ECM diagnose PCV failures and excessive blowby that compromises emissions.\n\nA persistent fault here can mask real engine wear or, conversely, falsely flag a healthy engine.",
+    "severity": "low",
+    "safetyImpact": "None directly.",
+    "causes": [
+      {
+        "cause": "Open or short to ground in signal wire",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor failure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify sensor reading",
+        "instruction": "Pressure should be slightly negative or near 0 at idle.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check PCV system",
+        "instruction": "Inspect hoses and CCV separator for blockage or collapse.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or PCV unit",
+        "instruction": "Address the root mechanical cause first.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is high crankcase pressure serious?",
+        "a": "Yes \u2014 sustained elevated pressure pushes oil past seals and can be a sign of worn rings."
+      }
+    ]
+  },
+  {
+    "code": "P226E",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Crankcase Pressure Sensor",
+    "title": "Crankcase Pressure Sensor Circuit High",
+    "shortDescription": "Sensor signal voltage above threshold.",
+    "fullDescription": "P226E relates to the crankcase pressure circuit on modern diesel and turbo gasoline engines. The crankcase pressure sensor is part of the active CCV (crankcase ventilation) system and helps the ECM diagnose PCV failures and excessive blowby that compromises emissions.\n\nA persistent fault here can mask real engine wear or, conversely, falsely flag a healthy engine.",
+    "severity": "low",
+    "safetyImpact": "None directly.",
+    "causes": [
+      {
+        "cause": "Short to voltage",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open ground",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Sensor failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify sensor reading",
+        "instruction": "Pressure should be slightly negative or near 0 at idle.",
+        "tools": [
+          "Scanner",
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check PCV system",
+        "instruction": "Inspect hoses and CCV separator for blockage or collapse.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or PCV unit",
+        "instruction": "Address the root mechanical cause first.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is high crankcase pressure serious?",
+        "a": "Yes \u2014 sustained elevated pressure pushes oil past seals and can be a sign of worn rings."
+      }
+    ]
+  },
+  {
+    "code": "P2BAB",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "NOx Torque Limit",
+    "title": "NOx Exceedence \u2014 Reagent Consumption Too Low",
+    "shortDescription": "Reagent (DEF) consumption rate is below model expectations indicating dosing or storage fault.",
+    "fullDescription": "P2BAB is part of the heavy-duty / EU emissions enforcement suite that triggers torque/speed limits when NOx control fails. These codes implement the regulatory inducement strategy: warnings, then 25% torque cut, then 5 mph crawl, then no-restart.\n\nDiagnosis must address the underlying SCR fault \u2014 clearing the code without fixing the dosing or sensor issue does nothing because the inducement re-arms within minutes.",
+    "severity": "high",
+    "safetyImpact": "Vehicle inducement active \u2014 torque cut or low-speed limp; eventual no-start.",
+    "causes": [
+      {
+        "cause": "DEF dosing system fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "NOx sensor drift or failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "SCR catalyst aged out",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Tampering / delete attempt detected",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp",
+      "Torque limit",
+      "Speed limit",
+      "Inducement countdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull full freeze frame",
+        "instruction": "Identify dosing rate, NOx delta, SCR temperature at fault.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Run dosing test",
+        "instruction": "Bidirectional command of dosing pump and verify spray.",
+        "tools": [
+          "Scanner with HD coverage"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace failed component and reset inducement",
+        "instruction": "Per OEM repair-verification procedure.",
+        "tools": [
+          "OEM tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-10 hours",
+    "relatedCodes": [
+      "P204F",
+      "P207F"
+    ],
+    "faq": [
+      {
+        "q": "Why does my truck slow to 5 mph?",
+        "a": "Federal and EU regs mandate inducement when NOx control fails \u2014 this is a regulated derate, not a fault response."
+      }
+    ]
+  },
+  {
+    "code": "P2BAC",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "NOx Torque Limit",
+    "title": "NOx Exceedence \u2014 Insufficient Reagent",
+    "shortDescription": "DEF level/availability insufficient to meet NOx target.",
+    "fullDescription": "P2BAC is part of the heavy-duty / EU emissions enforcement suite that triggers torque/speed limits when NOx control fails. These codes implement the regulatory inducement strategy: warnings, then 25% torque cut, then 5 mph crawl, then no-restart.\n\nDiagnosis must address the underlying SCR fault \u2014 clearing the code without fixing the dosing or sensor issue does nothing because the inducement re-arms within minutes.",
+    "severity": "high",
+    "safetyImpact": "Vehicle inducement active \u2014 torque cut or low-speed limp; eventual no-start.",
+    "causes": [
+      {
+        "cause": "DEF dosing system fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "NOx sensor drift or failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "SCR catalyst aged out",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Tampering / delete attempt detected",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp",
+      "Torque limit",
+      "Speed limit",
+      "Inducement countdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull full freeze frame",
+        "instruction": "Identify dosing rate, NOx delta, SCR temperature at fault.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Run dosing test",
+        "instruction": "Bidirectional command of dosing pump and verify spray.",
+        "tools": [
+          "Scanner with HD coverage"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace failed component and reset inducement",
+        "instruction": "Per OEM repair-verification procedure.",
+        "tools": [
+          "OEM tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-10 hours",
+    "relatedCodes": [
+      "P204F",
+      "P207F"
+    ],
+    "faq": [
+      {
+        "q": "Why does my truck slow to 5 mph?",
+        "a": "Federal and EU regs mandate inducement when NOx control fails \u2014 this is a regulated derate, not a fault response."
+      }
+    ]
+  },
+  {
+    "code": "P2BAD",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "NOx Torque Limit",
+    "title": "NOx Exceedence \u2014 Deviation of Sensor Signals",
+    "shortDescription": "Upstream and downstream NOx sensor signals do not correlate.",
+    "fullDescription": "P2BAD is part of the heavy-duty / EU emissions enforcement suite that triggers torque/speed limits when NOx control fails. These codes implement the regulatory inducement strategy: warnings, then 25% torque cut, then 5 mph crawl, then no-restart.\n\nDiagnosis must address the underlying SCR fault \u2014 clearing the code without fixing the dosing or sensor issue does nothing because the inducement re-arms within minutes.",
+    "severity": "high",
+    "safetyImpact": "Vehicle inducement active \u2014 torque cut or low-speed limp; eventual no-start.",
+    "causes": [
+      {
+        "cause": "DEF dosing system fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "NOx sensor drift or failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "SCR catalyst aged out",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Tampering / delete attempt detected",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp",
+      "Torque limit",
+      "Speed limit",
+      "Inducement countdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull full freeze frame",
+        "instruction": "Identify dosing rate, NOx delta, SCR temperature at fault.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Run dosing test",
+        "instruction": "Bidirectional command of dosing pump and verify spray.",
+        "tools": [
+          "Scanner with HD coverage"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace failed component and reset inducement",
+        "instruction": "Per OEM repair-verification procedure.",
+        "tools": [
+          "OEM tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-10 hours",
+    "relatedCodes": [
+      "P204F",
+      "P207F"
+    ],
+    "faq": [
+      {
+        "q": "Why does my truck slow to 5 mph?",
+        "a": "Federal and EU regs mandate inducement when NOx control fails \u2014 this is a regulated derate, not a fault response."
+      }
+    ]
+  },
+  {
+    "code": "P2BB0",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "NOx Torque Limit",
+    "title": "NOx Mass Emission Exceeded \u2014 Insufficient Reagent",
+    "shortDescription": "Cumulative NOx mass past SCR exceeds Tier 4 / Euro VI limit.",
+    "fullDescription": "P2BB0 is part of the heavy-duty / EU emissions enforcement suite that triggers torque/speed limits when NOx control fails. These codes implement the regulatory inducement strategy: warnings, then 25% torque cut, then 5 mph crawl, then no-restart.\n\nDiagnosis must address the underlying SCR fault \u2014 clearing the code without fixing the dosing or sensor issue does nothing because the inducement re-arms within minutes.",
+    "severity": "high",
+    "safetyImpact": "Vehicle inducement active \u2014 torque cut or low-speed limp; eventual no-start.",
+    "causes": [
+      {
+        "cause": "DEF dosing system fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "NOx sensor drift or failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "SCR catalyst aged out",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Tampering / delete attempt detected",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp",
+      "Torque limit",
+      "Speed limit",
+      "Inducement countdown"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pull full freeze frame",
+        "instruction": "Identify dosing rate, NOx delta, SCR temperature at fault.",
+        "tools": [
+          "Diesel scanner"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Run dosing test",
+        "instruction": "Bidirectional command of dosing pump and verify spray.",
+        "tools": [
+          "Scanner with HD coverage"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace failed component and reset inducement",
+        "instruction": "Per OEM repair-verification procedure.",
+        "tools": [
+          "OEM tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-10 hours",
+    "relatedCodes": [
+      "P204F",
+      "P207F"
+    ],
+    "faq": [
+      {
+        "q": "Why does my truck slow to 5 mph?",
+        "a": "Federal and EU regs mandate inducement when NOx control fails \u2014 this is a regulated derate, not a fault response."
+      }
+    ]
+  },
+  {
+    "code": "P3056",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Emissions",
+    "title": "Reductant Pump Pressure Sensor Circuit Range/Performance",
+    "shortDescription": "DEF pump pressure does not match commanded value.",
+    "fullDescription": "P3056 relates to the DEF storage and delivery hardware. In sub-freezing climates the tank and lines must be heated above 12\u00b0C for dosing to start. A heater fault doesn't immediately stop dosing in warm weather but causes morning cold-start failures and eventually inducement.\n\nMost heater faults are open elements after long service or salt-corroded harness connections at the tank module.",
+    "severity": "medium",
+    "safetyImpact": "Possible no-dose at cold start leading to inducement after extended cold operation.",
+    "causes": [
+      {
+        "cause": "Open heater element",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded tank harness connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed coolant control valve (some systems)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp in cold weather",
+      "Slow defrost of DEF system"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify heater current draw",
+        "instruction": "Compare against spec (typically 5-10 A).",
+        "tools": [
+          "DMM with clamp"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Inspect tank module connector",
+        "instruction": "Salt corrosion is endemic on these connectors.",
+        "tools": [
+          "Connector cleaner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace heater or tank header",
+        "instruction": "Often sold only as a header assembly.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P204F",
+      "P3055",
+      "P3060"
+    ],
+    "faq": [
+      {
+        "q": "Why does this only act up in winter?",
+        "a": "The heaters only run when DEF is below ~12\u00b0C; the fault is invisible in warm weather."
+      }
+    ]
+  },
+  {
+    "code": "P3057",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Emissions",
+    "title": "Reductant Pressure Build-Up Time Too Long",
+    "shortDescription": "DEF system takes too long to reach operating pressure at startup.",
+    "fullDescription": "P3057 relates to the DEF storage and delivery hardware. In sub-freezing climates the tank and lines must be heated above 12\u00b0C for dosing to start. A heater fault doesn't immediately stop dosing in warm weather but causes morning cold-start failures and eventually inducement.\n\nMost heater faults are open elements after long service or salt-corroded harness connections at the tank module.",
+    "severity": "medium",
+    "safetyImpact": "Possible no-dose at cold start leading to inducement after extended cold operation.",
+    "causes": [
+      {
+        "cause": "Open heater element",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded tank harness connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed coolant control valve (some systems)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DEF lamp in cold weather",
+      "Slow defrost of DEF system"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify heater current draw",
+        "instruction": "Compare against spec (typically 5-10 A).",
+        "tools": [
+          "DMM with clamp"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Inspect tank module connector",
+        "instruction": "Salt corrosion is endemic on these connectors.",
+        "tools": [
+          "Connector cleaner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace heater or tank header",
+        "instruction": "Often sold only as a header assembly.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P204F",
+      "P3055",
+      "P3060"
+    ],
+    "faq": [
+      {
+        "q": "Why does this only act up in winter?",
+        "a": "The heaters only run when DEF is below ~12\u00b0C; the fault is invisible in warm weather."
+      }
+    ]
+  }
+]

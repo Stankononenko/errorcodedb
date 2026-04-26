@@ -1,0 +1,2512 @@
+[
+  {
+    "code": "P0466",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Purge Flow Sensor Circuit Range/Performance",
+    "shortDescription": "EVAP purge flow sensor reading inconsistent with commanded purge.",
+    "fullDescription": "P0466 sets when the dedicated purge flow sensor (used on some larger displacement engines) does not track commanded purge duty cycle. The PCM relies on this sensor to confirm the canister is being properly evacuated.\n\nWithout valid purge flow data the EVAP monitor cannot complete and the OBD readiness flag will not set.",
+    "severity": "low",
+    "safetyImpact": "None directly; emissions readiness affected.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck purge valve",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Failed I/M readiness"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compare commanded vs measured purge",
+        "instruction": "Use scanner data on monitor run.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check sensor signal",
+        "instruction": "0.5-4.5 V across flow range.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "If wiring good.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [
+      "P0441",
+      "P0443"
+    ],
+    "faq": [
+      {
+        "q": "Where is this sensor?",
+        "a": "In the purge line between the canister and intake on equipped vehicles."
+      }
+    ]
+  },
+  {
+    "code": "P0467",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Purge Flow Sensor Circuit Low Input",
+    "shortDescription": "Purge flow sensor signal below minimum.",
+    "fullDescription": "P0467 sets when the purge flow sensor signal stays below the lower threshold under conditions that should produce flow. Either there is no flow (mechanical) or the sensor reads low (electrical).\n\nDistinguishing the two requires watching the signal during a commanded purge cycle.",
+    "severity": "low",
+    "safetyImpact": "None.",
+    "causes": [
+      {
+        "cause": "Open signal wire",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor internal failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck-closed purge valve",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Backprobe signal wire",
+        "instruction": "Should rise during purge.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check 5 V reference",
+        "instruction": "Confirm ref voltage at sensor.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor or repair wire",
+        "instruction": "Per fault found.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45 minutes",
+    "relatedCodes": [
+      "P0466"
+    ],
+    "faq": [
+      {
+        "q": "Is purge flow same as MAF?",
+        "a": "No \u2014 separate sensor specifically for canister purge volume."
+      }
+    ]
+  },
+  {
+    "code": "P0483",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling Fan",
+    "title": "Cooling Fan Rationality Check Failure",
+    "shortDescription": "Cooling fan response does not match command across operating range.",
+    "fullDescription": "P0483 is part of the cooling fan circuit monitor family. Modern PWM-controlled fans report speed feedback to the PCM; deviation from command sets these codes.\n\nWith a fan fault the PCM may default to commanded full-on, sometimes leading to a fan that runs constantly even with the engine cold.",
+    "severity": "medium",
+    "safetyImpact": "Possible overheating risk if fan stuck off; battery drain if stuck on.",
+    "causes": [
+      {
+        "cause": "Failed fan motor or PWM module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring/connector fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Fan blade contact / mechanical bind",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Engine overheating risk",
+      "Fan running with engine off",
+      "AC performance loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command fan with scanner",
+        "instruction": "Verify response across speed range.",
+        "tools": [
+          "Bidirectional scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check fan module / relay",
+        "instruction": "Test PWM signal and battery feed.",
+        "tools": [
+          "DMM",
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace fan assembly",
+        "instruction": "Most modern fans sold as motor+module unit.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0481",
+      "P0482"
+    ],
+    "faq": [
+      {
+        "q": "Can I run without the fan briefly?",
+        "a": "In cold weather highway driving yes; in stop-and-go traffic the engine will overheat fast."
+      }
+    ]
+  },
+  {
+    "code": "P0484",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling Fan",
+    "title": "Cooling Fan Circuit Over Current",
+    "shortDescription": "Cooling fan circuit drawing more current than spec.",
+    "fullDescription": "P0484 is part of the cooling fan circuit monitor family. Modern PWM-controlled fans report speed feedback to the PCM; deviation from command sets these codes.\n\nWith a fan fault the PCM may default to commanded full-on, sometimes leading to a fan that runs constantly even with the engine cold.",
+    "severity": "medium",
+    "safetyImpact": "Possible overheating risk if fan stuck off; battery drain if stuck on.",
+    "causes": [
+      {
+        "cause": "Failed fan motor or PWM module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring/connector fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Fan blade contact / mechanical bind",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Engine overheating risk",
+      "Fan running with engine off",
+      "AC performance loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command fan with scanner",
+        "instruction": "Verify response across speed range.",
+        "tools": [
+          "Bidirectional scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check fan module / relay",
+        "instruction": "Test PWM signal and battery feed.",
+        "tools": [
+          "DMM",
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace fan assembly",
+        "instruction": "Most modern fans sold as motor+module unit.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0481",
+      "P0482"
+    ],
+    "faq": [
+      {
+        "q": "Can I run without the fan briefly?",
+        "a": "In cold weather highway driving yes; in stop-and-go traffic the engine will overheat fast."
+      }
+    ]
+  },
+  {
+    "code": "P0494",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling Fan",
+    "title": "Fan Speed Low",
+    "shortDescription": "Cooling fan running below commanded speed.",
+    "fullDescription": "P0494 is part of the cooling fan circuit monitor family. Modern PWM-controlled fans report speed feedback to the PCM; deviation from command sets these codes.\n\nWith a fan fault the PCM may default to commanded full-on, sometimes leading to a fan that runs constantly even with the engine cold.",
+    "severity": "medium",
+    "safetyImpact": "Possible overheating risk if fan stuck off; battery drain if stuck on.",
+    "causes": [
+      {
+        "cause": "Failed fan motor or PWM module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring/connector fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Fan blade contact / mechanical bind",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Engine overheating risk",
+      "Fan running with engine off",
+      "AC performance loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command fan with scanner",
+        "instruction": "Verify response across speed range.",
+        "tools": [
+          "Bidirectional scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check fan module / relay",
+        "instruction": "Test PWM signal and battery feed.",
+        "tools": [
+          "DMM",
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace fan assembly",
+        "instruction": "Most modern fans sold as motor+module unit.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0481",
+      "P0482"
+    ],
+    "faq": [
+      {
+        "q": "Can I run without the fan briefly?",
+        "a": "In cold weather highway driving yes; in stop-and-go traffic the engine will overheat fast."
+      }
+    ]
+  },
+  {
+    "code": "P0495",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling Fan",
+    "title": "Fan Speed High",
+    "shortDescription": "Cooling fan running above commanded speed or stuck on high.",
+    "fullDescription": "P0495 is part of the cooling fan circuit monitor family. Modern PWM-controlled fans report speed feedback to the PCM; deviation from command sets these codes.\n\nWith a fan fault the PCM may default to commanded full-on, sometimes leading to a fan that runs constantly even with the engine cold.",
+    "severity": "medium",
+    "safetyImpact": "Possible overheating risk if fan stuck off; battery drain if stuck on.",
+    "causes": [
+      {
+        "cause": "Failed fan motor or PWM module",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring/connector fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Fan blade contact / mechanical bind",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Engine overheating risk",
+      "Fan running with engine off",
+      "AC performance loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command fan with scanner",
+        "instruction": "Verify response across speed range.",
+        "tools": [
+          "Bidirectional scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check fan module / relay",
+        "instruction": "Test PWM signal and battery feed.",
+        "tools": [
+          "DMM",
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace fan assembly",
+        "instruction": "Most modern fans sold as motor+module unit.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0481",
+      "P0482"
+    ],
+    "faq": [
+      {
+        "q": "Can I run without the fan briefly?",
+        "a": "In cold weather highway driving yes; in stop-and-go traffic the engine will overheat fast."
+      }
+    ]
+  },
+  {
+    "code": "P0512",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Starter",
+    "title": "Starter Request Circuit",
+    "shortDescription": "Starter request signal from BCM/ignition is invalid.",
+    "fullDescription": "P0512 indicates the PCM did not see the expected starter request from the ignition switch / BCM during a crank attempt, or saw it during conditions when it should not have been present (such as while running).\n\nOn push-button vehicles this often points to a BCM-PCM communication issue rather than a switch fault.",
+    "severity": "medium",
+    "safetyImpact": "Possible no-crank condition.",
+    "causes": [
+      {
+        "cause": "Failed ignition switch",
+        "likelihood": "high"
+      },
+      {
+        "cause": "BCM communication fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring open/short on start request line",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No-crank or extended crank",
+      "Intermittent start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read BCM start-request status",
+        "instruction": "Should toggle when key turned to START.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check switch continuity",
+        "instruction": "Continuity in START position.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Repair wiring or replace switch",
+        "instruction": "Per fault found.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why no-start with this code?",
+        "a": "The PCM disables fueling until it sees a valid start request."
+      }
+    ]
+  },
+  {
+    "code": "P0514",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Battery System",
+    "title": "Battery Temperature Sensor Circuit Range/Performance",
+    "shortDescription": "Battery temperature sensor reading implausible vs ambient.",
+    "fullDescription": "P0514 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0515",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Battery System",
+    "title": "Battery Temperature Sensor Circuit",
+    "shortDescription": "Battery temperature sensor circuit fault.",
+    "fullDescription": "P0515 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0516",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Battery System",
+    "title": "Battery Temperature Sensor Circuit Low",
+    "shortDescription": "Battery temperature sensor signal below minimum.",
+    "fullDescription": "P0516 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0517",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Battery System",
+    "title": "Battery Temperature Sensor Circuit High",
+    "shortDescription": "Battery temperature sensor signal above maximum.",
+    "fullDescription": "P0517 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0518",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Control",
+    "title": "Idle Air Control Circuit Intermittent",
+    "shortDescription": "IAC valve circuit signal dropping in/out.",
+    "fullDescription": "P0518 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0519",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Control",
+    "title": "Idle Air Control System Performance",
+    "shortDescription": "IAC valve cannot maintain target idle RPM.",
+    "fullDescription": "P0519 affects either the smart-charging system (battery temp sensor enables temperature-compensated voltage) or the idle air control loop on older throttle-body equipped engines. Battery temperature codes are common with ECMs that no longer support legacy sensor; idle codes typically reflect carbon buildup or motor wear.",
+    "severity": "low",
+    "safetyImpact": "Idle stalls possible; charging system slightly less optimal.",
+    "causes": [
+      {
+        "cause": "Failed sensor or motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup (idle codes)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Rough idle (idle codes)",
+      "Battery wear (charging codes)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check sensor/motor circuit",
+        "instruction": "Resistance and signal voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Clean throttle body (idle codes)",
+        "instruction": "Carbon removal often resolves idle codes.",
+        "tools": [
+          "Throttle cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor/motor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Battery temp sensor \u2014 where is it?",
+        "a": "Typically on or near the battery in the engine bay or trunk."
+      }
+    ]
+  },
+  {
+    "code": "P0541",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Intake Heater",
+    "title": "Intake Air Heater 'A' Circuit Low",
+    "shortDescription": "Diesel intake air heater control signal stuck low.",
+    "fullDescription": "P0541 affects the intake grid heater used on diesels for cold starting. The heater is a high-current resistive grid in the intake manifold that warms inducted air below ~5\u00b0C.\n\nA stuck-on heater drains the battery quickly; a stuck-off heater causes hard cold starts and white-smoke in cold weather.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold starts; potential battery drain.",
+    "causes": [
+      {
+        "cause": "Failed heater relay",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open heater grid",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded high-current connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Hard cold start",
+      "White smoke at cold start",
+      "Wait-to-start lamp behavior"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check heater current draw",
+        "instruction": "Should pull 100-200 A briefly during preheat.",
+        "tools": [
+          "Clamp ammeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Test relay",
+        "instruction": "Confirm contacts close on command.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace relay or grid",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Are intake heaters and glow plugs the same?",
+        "a": "No \u2014 heaters warm intake air; glow plugs heat the combustion chamber."
+      }
+    ]
+  },
+  {
+    "code": "P0542",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Intake Heater",
+    "title": "Intake Air Heater 'A' Circuit High",
+    "shortDescription": "Diesel intake air heater control signal stuck high.",
+    "fullDescription": "P0542 affects the intake grid heater used on diesels for cold starting. The heater is a high-current resistive grid in the intake manifold that warms inducted air below ~5\u00b0C.\n\nA stuck-on heater drains the battery quickly; a stuck-off heater causes hard cold starts and white-smoke in cold weather.",
+    "severity": "medium",
+    "safetyImpact": "Hard cold starts; potential battery drain.",
+    "causes": [
+      {
+        "cause": "Failed heater relay",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open heater grid",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded high-current connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "ECM driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Hard cold start",
+      "White smoke at cold start",
+      "Wait-to-start lamp behavior"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check heater current draw",
+        "instruction": "Should pull 100-200 A briefly during preheat.",
+        "tools": [
+          "Clamp ammeter"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Test relay",
+        "instruction": "Confirm contacts close on command.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace relay or grid",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Are intake heaters and glow plugs the same?",
+        "a": "No \u2014 heaters warm intake air; glow plugs heat the combustion chamber."
+      }
+    ]
+  },
+  {
+    "code": "P0551",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Power Steering",
+    "title": "Power Steering Pressure Sensor Circuit Range/Performance",
+    "shortDescription": "PS pressure sensor reading does not track steering input.",
+    "fullDescription": "P0551 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "low",
+    "safetyImpact": "Possible idle dip with PS load if engine cannot compensate.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0552",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Power Steering",
+    "title": "Power Steering Pressure Sensor Circuit Low Input",
+    "shortDescription": "PS pressure sensor signal below minimum.",
+    "fullDescription": "P0552 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "low",
+    "safetyImpact": "Possible idle dip with PS load if engine cannot compensate.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0553",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Power Steering",
+    "title": "Power Steering Pressure Sensor Circuit High Input",
+    "shortDescription": "PS pressure sensor signal above maximum.",
+    "fullDescription": "P0553 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "low",
+    "safetyImpact": "Possible idle dip with PS load if engine cannot compensate.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0555",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Pressure Sensor Circuit",
+    "shortDescription": "Brake booster vacuum/pressure sensor circuit fault.",
+    "fullDescription": "P0555 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "medium",
+    "safetyImpact": "Hard pedal possible if booster vacuum is actually low.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0556",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Pressure Sensor Circuit Range/Performance",
+    "shortDescription": "Brake booster sensor reading does not match expected vacuum.",
+    "fullDescription": "P0556 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "medium",
+    "safetyImpact": "Hard pedal possible if booster vacuum is actually low.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0557",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Pressure Sensor Circuit Low Input",
+    "shortDescription": "Brake booster sensor signal below minimum.",
+    "fullDescription": "P0557 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "medium",
+    "safetyImpact": "Hard pedal possible if booster vacuum is actually low.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0558",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Pressure Sensor Circuit High Input",
+    "shortDescription": "Brake booster sensor signal above maximum.",
+    "fullDescription": "P0558 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "medium",
+    "safetyImpact": "Hard pedal possible if booster vacuum is actually low.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0559",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Brake Booster",
+    "title": "Brake Booster Pressure Sensor Performance",
+    "shortDescription": "Brake booster vacuum drops faster than expected after key off.",
+    "fullDescription": "P0559 reflects a sensor input the PCM uses for engine load compensation (PS) or for brake booster vacuum monitoring on engines that don't run continuous high vacuum (turbo, hybrid, start-stop).\n\nOn equipped vehicles this code can be why start-stop won't activate or why the engine briefly runs to refill brake vacuum.",
+    "severity": "medium",
+    "safetyImpact": "Hard pedal possible if booster vacuum is actually low.",
+    "causes": [
+      {
+        "cause": "Sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Hose/seal leak (booster)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM input failure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Possible engine restart at stop (booster codes)",
+      "PS-related idle issue"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read sensor live data",
+        "instruction": "Compare against expected pressure.",
+        "tools": [
+          "Scanner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Check vacuum integrity (booster)",
+        "instruction": "Booster should hold vacuum after engine off.",
+        "tools": [
+          "Vacuum gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1 hour",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this affect start-stop?",
+        "a": "Without valid booster vacuum data the system disables auto-stop for safety."
+      }
+    ]
+  },
+  {
+    "code": "P0609",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Module Internal",
+    "title": "Vehicle Speed Output Circuit",
+    "shortDescription": "Vehicle speed output signal from PCM to other modules is faulty.",
+    "fullDescription": "P0609 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0613",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Module Internal",
+    "title": "TCM Processor",
+    "shortDescription": "Transmission control module internal processor fault.",
+    "fullDescription": "P0613 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0614",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Module Internal",
+    "title": "ECM/TCM Incompatible",
+    "shortDescription": "ECM and TCM software/calibration mismatch.",
+    "fullDescription": "P0614 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0619",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Module Internal",
+    "title": "Alternative Fuel Control Module KAM Error",
+    "shortDescription": "Alt-fuel module keep-alive memory checksum error.",
+    "fullDescription": "P0619 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0621-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging",
+    "title": "Generator Lamp 'L' Control Circuit",
+    "shortDescription": "Charging lamp control circuit fault.",
+    "fullDescription": "P0621 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0622-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging",
+    "title": "Generator Field 'F' Control Circuit",
+    "shortDescription": "Generator field control circuit fault.",
+    "fullDescription": "P0622 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  },
+  {
+    "code": "P0623",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Charging",
+    "title": "Generator Lamp Control Circuit",
+    "shortDescription": "Generator warning lamp circuit fault.",
+    "fullDescription": "P0623 affects either internal PCM/TCM operation or the smart-charging communication between PCM and alternator. Modern alternators use PWM field control commanded by the PCM rather than a self-regulating internal regulator.\n\nA fault here can cause overcharging, undercharging, or simply prevent the charge lamp from working as a warning.",
+    "severity": "medium",
+    "safetyImpact": "Possible battery damage from over/undercharge.",
+    "causes": [
+      {
+        "cause": "Wiring fault between PCM and alternator",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed alternator regulator",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "PCM driver failure",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Module configuration mismatch (programming codes)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge lamp behavior abnormal",
+      "Battery voltage out of range"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure battery voltage running",
+        "instruction": "Should be 13.8-14.7 V at idle.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope field control signal",
+        "instruction": "PWM duty cycle should respond to load.",
+        "tools": [
+          "Scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace alternator or repair wiring",
+        "instruction": "Per fault.",
+        "tools": [
+          "Hand tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does my battery die overnight?",
+        "a": "If field is stuck on the alternator can backdrive and drain the battery; if stuck off the battery never recharges."
+      }
+    ]
+  }
+]
