@@ -1,0 +1,808 @@
+[
+  {
+    "code": "P0044",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor Heater",
+    "title": "HO2S Heater Control Circuit High (Bank 1 Sensor 3)",
+    "shortDescription": "Oxygen sensor heater control circuit reads high voltage for Bank 1 Sensor 3.",
+    "fullDescription": "P0044 sets when the PCM sees the heater control circuit for the third oxygen sensor on Bank 1 stuck high (open driver or short to B+). Bank 1 Sensor 3 is typically a downstream sensor in vehicles with multiple post-catalyst sensors.\n\nUntil the sensor reaches operating temperature, fueling decisions for that bank may be biased and the catalyst monitor will not run.",
+    "severity": "low",
+    "safetyImpact": "None directly; fuel economy and emissions affected.",
+    "causes": [
+      {"cause": "Open heater element in O2 sensor", "likelihood": "high"},
+      {"cause": "Wiring open between PCM and sensor", "likelihood": "medium"},
+      {"cause": "PCM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "Slight fuel economy loss", "Failed emissions test"],
+    "fixSteps": [
+      {"step": 1, "title": "Probe heater control wire", "instruction": "Backprobe the heater control wire at the sensor; should pulse to ground with key on.", "tools": ["DMM", "OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "If the heater is open and wiring is good, replace the O2 sensor.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0043", "P0049"],
+    "faq": [{"q": "Skip post-cat sensors?", "a": "No; required for catalyst efficiency monitor."}]
+  },
+  {
+    "code": "P0049",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor Heater",
+    "title": "HO2S Heater Resistance (Bank 1 Sensor 3)",
+    "shortDescription": "Bank 1 Sensor 3 oxygen sensor heater resistance out of range.",
+    "fullDescription": "P0049 indicates the calculated heater resistance for Bank 1 Sensor 3 is outside the expected window (typically 2-15 ohms cold, ramping with temperature). Aging sensors and harness corrosion are common causes.",
+    "severity": "low",
+    "safetyImpact": "Emissions monitor incomplete.",
+    "causes": [
+      {"cause": "Aged O2 sensor", "likelihood": "high"},
+      {"cause": "Harness resistance from corrosion", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Readiness monitor incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure heater resistance cold", "instruction": "Compare to spec at room temperature.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Replace if outside spec.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0044"],
+    "faq": [{"q": "Universal sensor OK?", "a": "Stick with OEM-style for accurate heater curve."}]
+  },
+  {
+    "code": "P0055",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "O2 Sensor Heater",
+    "title": "HO2S Heater Resistance (Bank 1 Sensor 3)",
+    "shortDescription": "Heater resistance out of spec for Bank 1 Sensor 3.",
+    "fullDescription": "P0055 is the resistance-based variant for Bank 1 Sensor 3 heater. The PCM applies a brief pulse and infers heater health from current draw. Aged elements draw too little; shorted ones too much.",
+    "severity": "low",
+    "safetyImpact": "Emissions monitor incomplete.",
+    "causes": [
+      {"cause": "Aged heater element", "likelihood": "high"},
+      {"cause": "Wiring high resistance", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Catalyst monitor incomplete"],
+    "fixSteps": [
+      {"step": 1, "title": "Measure cold resistance", "instruction": "DMM across heater pins per OEM spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "Replace if not within spec.", "tools": ["O2 sensor socket"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 150, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0044", "P0049"],
+    "faq": [{"q": "Anti-seize on threads?", "a": "Most modern sensors come pre-coated; do not add more to the tip."}]
+  },
+  {
+    "code": "P0046-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Forced Induction",
+    "title": "Turbocharger Boost Control Circuit Performance (Variant)",
+    "shortDescription": "Wastegate or VGT actuator response not tracking command.",
+    "fullDescription": "P0046 (variant) sets when commanded vs actual boost solenoid duty cycle or VGT vane position fall outside the expected dynamic envelope. Common on diesel VGT systems where soot fouls vanes.\n\nThis collision suffix variant covers cases where the OEM uses the same code differently from generic P0046 already in the catalog.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; possible limp mode.",
+    "causes": [
+      {"cause": "VGT vanes sticking with soot", "likelihood": "high"},
+      {"cause": "Boost control solenoid worn", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Reduced power", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Actuator self-test", "instruction": "Use scan tool to cycle VGT actuator full sweep.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Clean or replace VGT", "instruction": "Soot soak or replace if vanes are stuck.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 600}, "mechanic": {"min": 400, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "120-360 minutes",
+    "relatedCodes": ["P0045", "P0047"],
+    "faq": [{"q": "Italian tune-up?", "a": "Sustained highway driving may free mild soot accumulation."}]
+  },
+  {
+    "code": "P0047-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Forced Induction",
+    "title": "Turbocharger Boost Control Solenoid Circuit Low (Variant)",
+    "shortDescription": "Boost control solenoid driver reads low.",
+    "fullDescription": "P0047 (variant) sets when the boost control solenoid driver circuit reads ground when it should be off, indicating a short to ground or stuck-on driver. The PCM disables boost as a safety measure.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power.",
+    "causes": [
+      {"cause": "Solenoid wiring shorted to ground", "likelihood": "high"},
+      {"cause": "Solenoid coil shorted internally", "likelihood": "medium"},
+      {"cause": "PCM driver failure", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "No boost", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect solenoid", "instruction": "If P0047 changes to P0048, solenoid is shorted.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Look for chafing against turbo or exhaust.", "tools": [], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace solenoid", "instruction": "Replace if coil resistance out of spec.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-120 minutes",
+    "relatedCodes": ["P0046", "P0048"],
+    "faq": [{"q": "Permanently disable boost?", "a": "Not recommended; engine performance and fueling depend on it."}]
+  },
+  {
+    "code": "P0149",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Diesel Fuel Timing",
+    "title": "Fuel Timing Error",
+    "shortDescription": "Diesel fuel injection timing deviates from commanded.",
+    "fullDescription": "P0149 is set when the PCM compares commanded fuel injection timing to crank/cam-derived actual timing and finds the spread outside specification. On older diesels with a cam-driven pump, this often points to a worn timing advance mechanism. On common-rail systems, it can indicate injector synchronization issues.\n\nDriveability is degraded; emissions rise sharply.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; high emissions; possible limp mode.",
+    "causes": [
+      {"cause": "Worn injection pump timing advance", "likelihood": "high"},
+      {"cause": "Crank or cam sensor signal noise", "likelihood": "medium"},
+      {"cause": "Injector deposits affecting timing", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Black smoke", "Reduced power", "Hard start"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify crank/cam sync", "instruction": "Scope crank and cam signals; check correlation.", "tools": ["Oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect injection pump", "instruction": "Check timing advance per OEM procedure.", "tools": [], "difficulty": "advanced"},
+      {"step": 3, "title": "Service or replace pump", "instruction": "Refurbish or replace as required.", "tools": [], "difficulty": "professional"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 300}, "mechanic": {"min": 400, "max": 3000}},
+    "diyDifficulty": "professional",
+    "repairTime": "120-480 minutes",
+    "relatedCodes": ["P0148", "P0216"],
+    "faq": [{"q": "Fuel additives help?", "a": "Cetane improver may mask but not fix mechanical timing issues."}]
+  },
+  {
+    "code": "P0209-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 9 Injector Circuit (Variant)",
+    "shortDescription": "Injector circuit fault on cylinder 9.",
+    "fullDescription": "P0209 (variant) sets on V10/V12 engines when the cylinder 9 injector driver detects an open or shorted load. Cause is typically a failed injector coil or harness damage from heat near the exhaust manifold.\n\nThis variant covers OEM-specific implementations where misfire and contribution thresholds differ from the catalog primary entry.",
+    "severity": "medium",
+    "safetyImpact": "Misfire; possible catalyst damage from raw fuel.",
+    "causes": [
+      {"cause": "Injector coil open", "likelihood": "high"},
+      {"cause": "Injector wiring damage", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Rough idle", "Misfire", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap injector", "instruction": "Move cyl 9 injector to a known good cylinder; see if code follows.", "tools": [], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace if injector is at fault", "instruction": "Replace, prime fuel system.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 50, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0208", "P0210"],
+    "faq": [{"q": "All injectors at once?", "a": "Often wise on high-mileage engines if one has failed."}]
+  },
+  {
+    "code": "P0291-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 11 Injector Circuit Low (Variant)",
+    "shortDescription": "Cyl 11 injector driver reads low.",
+    "fullDescription": "P0291 (variant) sets when the cylinder 11 injector driver sees a short to ground or stuck-on condition. PCM disables that injector to prevent damage. V12 engines and some industrial-derived powerplants are susceptible.",
+    "severity": "medium",
+    "safetyImpact": "Misfire on cyl 11.",
+    "causes": [
+      {"cause": "Wiring shorted to ground", "likelihood": "high"},
+      {"cause": "Injector coil internal short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Rough idle", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect injector", "instruction": "If code changes to P0292, injector is shorted.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair wiring or replace injector", "instruction": "As indicated.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0292", "P0293"],
+    "faq": [{"q": "Coil pack diagnosis similar?", "a": "Yes for V12 with COP coils."}]
+  },
+  {
+    "code": "P0292-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 11 Injector Circuit High (Variant)",
+    "shortDescription": "Cyl 11 injector driver reads high.",
+    "fullDescription": "P0292 (variant) is set when the injector driver sees an open circuit or short to B+ on cylinder 11. Often points to a broken connector or harness pull-out near the valve cover.",
+    "severity": "medium",
+    "safetyImpact": "Misfire.",
+    "causes": [
+      {"cause": "Open wiring", "likelihood": "high"},
+      {"cause": "Connector unplugged", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Misfire on cyl 11"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect connector", "instruction": "Check for backed-out terminal.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Continuity test", "instruction": "Verify each leg from PCM to injector.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace as needed", "instruction": "Repair harness or swap injector.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0291", "P0293"],
+    "faq": [{"q": "Coil too?", "a": "Diagnose injector and coil separately; symptoms overlap."}]
+  },
+  {
+    "code": "P0293-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 12 Injector Circuit (Variant)",
+    "shortDescription": "Cyl 12 injector circuit fault.",
+    "fullDescription": "P0293 (variant) covers a generic cyl 12 injector circuit fault that the OEM does not split into low/high variants. Commonly seen on V12 luxury engines.",
+    "severity": "medium",
+    "safetyImpact": "Misfire.",
+    "causes": [
+      {"cause": "Injector or wiring fault", "likelihood": "high"}
+    ],
+    "symptoms": ["MIL", "Rough running"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify circuit", "instruction": "DMM continuity from PCM to injector.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair", "instruction": "Replace damaged component.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0291", "P0292"],
+    "faq": [{"q": "Run on 11?", "a": "PCM may disable cyl 12; expect rough idle."}]
+  },
+  {
+    "code": "P0294-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 12 Injector Circuit Low (Variant)",
+    "shortDescription": "Cyl 12 injector driver reads low.",
+    "fullDescription": "P0294 (variant) sets when the cyl 12 injector driver sees a short to ground or stuck-on. Commonly resolved by injector replacement after harness inspection.",
+    "severity": "medium",
+    "safetyImpact": "Misfire on cyl 12.",
+    "causes": [
+      {"cause": "Wiring short to ground", "likelihood": "high"},
+      {"cause": "Internal injector short", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Misfire"],
+    "fixSteps": [
+      {"step": 1, "title": "Isolate", "instruction": "Disconnect injector; if code changes to high, injector is shorted.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Repair", "instruction": "Wiring or injector.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0293"],
+    "faq": [{"q": "Permanent damage?", "a": "Unlikely if caught quickly; runaway fuel only with stuck-open injector."}]
+  },
+  {
+    "code": "P0295",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder 12 Injector Circuit High",
+    "shortDescription": "Cyl 12 injector driver reads high (open).",
+    "fullDescription": "P0295 sets when the PCM reports an open circuit on the cylinder 12 injector driver. Most commonly an unplugged injector connector or broken harness wire.",
+    "severity": "medium",
+    "safetyImpact": "Cyl 12 inactive; raw air pumped through cylinder.",
+    "causes": [
+      {"cause": "Open wiring or connector", "likelihood": "high"},
+      {"cause": "Open injector coil", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Misfire on cyl 12"],
+    "fixSteps": [
+      {"step": 1, "title": "Connector check", "instruction": "Reseat and inspect for corrosion.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Coil resistance", "instruction": "Measure injector coil per spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace as required", "instruction": "Wiring or injector.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 200, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0294"],
+    "faq": [{"q": "Drive home?", "a": "Short distance OK; long drives risk catalyst damage."}]
+  },
+  {
+    "code": "P0296",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel Injectors",
+    "title": "Cylinder Range/Performance",
+    "shortDescription": "One cylinder contribution outside expected range.",
+    "fullDescription": "P0296 (range/performance) sets when relative cylinder contribution analysis (often crank-speed-based) shows one cylinder consistently producing less torque than its peers without specific misfire counts. Common cause is a mechanical issue (low compression, leaking valve) or a partially clogged injector.",
+    "severity": "medium",
+    "safetyImpact": "Reduced power; rough running.",
+    "causes": [
+      {"cause": "Low compression on a cylinder", "likelihood": "high"},
+      {"cause": "Partially clogged injector", "likelihood": "medium"},
+      {"cause": "Vacuum leak local to one runner", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Rough idle", "Reduced power"],
+    "fixSteps": [
+      {"step": 1, "title": "Cylinder contribution test", "instruction": "Use scan tool live data to identify weak cylinder.", "tools": ["OBD-II scanner"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Compression test", "instruction": "Verify mechanical integrity.", "tools": ["Compression tester"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Address root cause", "instruction": "Clean injectors, rebuild head, or repair vacuum leak.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 400}, "mechanic": {"min": 200, "max": 2500}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-480 minutes",
+    "relatedCodes": ["P0300"],
+    "faq": [{"q": "Different from P030x?", "a": "Yes; P030x reacts to specific misfire counts. P0296 is contribution-based."}]
+  },
+  {
+    "code": "P0297",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Vehicle Dynamics",
+    "title": "Vehicle Overspeed Condition",
+    "shortDescription": "Vehicle exceeded a manufacturer-defined overspeed threshold.",
+    "fullDescription": "P0297 logs an overspeed event when the vehicle exceeds a programmed maximum speed (often 110-130 mph or limited by tire rating). Many fleet vehicles, light trucks with restricted tires, and EVs use this as a fleet-management or warranty-protection feature.\n\nThe code may auto-clear or remain in history depending on OEM.",
+    "severity": "info",
+    "safetyImpact": "None inherent; informational/legal.",
+    "causes": [
+      {"cause": "Vehicle driven over set limit", "likelihood": "high"},
+      {"cause": "VSS calibration error after tire change", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL or stored history only", "Fleet alert"],
+    "fixSteps": [
+      {"step": 1, "title": "Verify tire size", "instruction": "Confirm tires match calibration; recalibrate if changed.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Clear code", "instruction": "Clear if benign.", "tools": ["OBD-II scanner"], "difficulty": "easy"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 0, "max": 150}},
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Affect insurance?", "a": "Some commercial fleets pull this code; consumer use rarely matters."}]
+  },
+  {
+    "code": "P0298",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Engine Lubrication",
+    "title": "Engine Oil Over Temperature Condition",
+    "shortDescription": "Oil temperature exceeded threshold.",
+    "fullDescription": "P0298 sets when measured engine oil temperature exceeds the safe limit (typically 140-150 C / 285-300 F). Triggers include towing in hot weather, low oil level, restricted oil cooler, or failing thermostat.\n\nProlonged operation under this condition accelerates oil degradation and bearing wear.",
+    "severity": "high",
+    "safetyImpact": "Risk of engine damage if ignored.",
+    "causes": [
+      {"cause": "Low oil level", "likelihood": "high"},
+      {"cause": "Restricted oil cooler", "likelihood": "medium"},
+      {"cause": "Failed oil thermostat", "likelihood": "medium"},
+      {"cause": "Heavy load / towing", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Oil temp gauge high", "Reduced power", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Check oil level and condition", "instruction": "Top off if low; replace if degraded.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect oil cooler", "instruction": "Clean cooler fins and verify coolant flow.", "tools": [], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace thermostat if stuck", "instruction": "Test oil thermostat operation.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 150, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-180 minutes",
+    "relatedCodes": ["P0196"],
+    "faq": [{"q": "Synthetic oil help?", "a": "Higher-spec synthetic tolerates heat better but does not fix root cause."}]
+  },
+  {
+    "code": "P0384-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug B Circuit High (Variant)",
+    "shortDescription": "Glow plug control circuit B reads high.",
+    "fullDescription": "P0384 (variant) sets when the glow plug controller detects an open or high-side fault on the B-circuit (typically cylinders 4-6 on inline-6 diesels or one bank on V8 diesels). Cold-start performance and emissions during warm-up are degraded.",
+    "severity": "low",
+    "safetyImpact": "Hard cold start; white smoke; possible NOx spike.",
+    "causes": [
+      {"cause": "Open glow plug", "likelihood": "high"},
+      {"cause": "Open wiring or relay contact", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Hard cold start", "White smoke at start"],
+    "fixSteps": [
+      {"step": 1, "title": "Resistance test each plug", "instruction": "Plugs typically 0.5-2 ohm; open is bad.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace bad plugs", "instruction": "Replace as a set per bank.", "tools": ["Glow plug socket", "Penetrating oil"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 200}, "mechanic": {"min": 200, "max": 700}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-240 minutes",
+    "relatedCodes": ["P0383", "P0385"],
+    "faq": [{"q": "Replace one or all?", "a": "Replace as a set; mismatched age causes uneven warm-up."}]
+  },
+  {
+    "code": "P0386-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug Module Communication (Variant)",
+    "shortDescription": "Glow plug control module not communicating.",
+    "fullDescription": "P0386 (variant) sets when the dedicated glow plug control module is unreachable on the LIN or local bus from the engine ECU. Often a 12V supply or ground fault to the module.",
+    "severity": "low",
+    "safetyImpact": "Hard cold start.",
+    "causes": [
+      {"cause": "Module 12V/ground lost", "likelihood": "high"},
+      {"cause": "Bus wiring fault", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Wait-to-start lamp behavior abnormal"],
+    "fixSteps": [
+      {"step": 1, "title": "Check module power", "instruction": "12V at module pin per OEM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Bus continuity", "instruction": "Verify LIN line from ECU to module.", "tools": ["DMM"], "difficulty": "advanced"},
+      {"step": 3, "title": "Replace module", "instruction": "If supply and bus OK.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 300}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0385"],
+    "faq": [{"q": "Drive without?", "a": "In warm weather usually fine; cold weather risks no-start."}]
+  },
+  {
+    "code": "P0387-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug Bus Voltage Low (Variant)",
+    "shortDescription": "Glow plug bus voltage below threshold.",
+    "fullDescription": "P0387 (variant) sets when the glow plug bus voltage drops below the threshold during heat cycle. Most often a weak battery, marginal alternator, or high resistance in the supply path.",
+    "severity": "low",
+    "safetyImpact": "Hard cold start.",
+    "causes": [
+      {"cause": "Weak battery", "likelihood": "high"},
+      {"cause": "Corroded battery terminals", "likelihood": "medium"},
+      {"cause": "High-resistance fusible link", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Slow start in cold weather"],
+    "fixSteps": [
+      {"step": 1, "title": "Battery load test", "instruction": "Verify CCA meets spec.", "tools": ["Battery tester"], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect supply", "instruction": "Voltage drop test on glow plug supply.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Repair as needed", "instruction": "Battery, cables, or fusible link.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 250}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0388"],
+    "faq": [{"q": "Two batteries?", "a": "Many diesels have two; both must be healthy."}]
+  },
+  {
+    "code": "P0388-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug Bus Voltage High (Variant)",
+    "shortDescription": "Glow plug bus voltage above threshold.",
+    "fullDescription": "P0388 (variant) sets when measured glow plug bus voltage exceeds spec, indicating a stuck-on relay or shorted control circuit forcing voltage to the bus when it should be off.",
+    "severity": "medium",
+    "safetyImpact": "Risk of overheating glow plugs.",
+    "causes": [
+      {"cause": "Glow plug relay welded", "likelihood": "high"},
+      {"cause": "Control wiring short to B+", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Glow plugs hot when not commanded", "Burned plugs"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect relay control", "instruction": "If bus stays hot, relay is welded.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace relay", "instruction": "Replace the glow plug relay or controller.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0387"],
+    "faq": [{"q": "Will it drain battery?", "a": "Yes; disconnect glow plug relay until repaired."}]
+  },
+  {
+    "code": "P0389-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Glow Plug System",
+    "title": "Glow Plug Bus Voltage Intermittent (Variant)",
+    "shortDescription": "Glow plug bus voltage drops intermittently.",
+    "fullDescription": "P0389 (variant) sets on intermittent dropouts of the glow plug bus voltage. Vibration-induced relay contact bounce or a marginal connector are typical causes.",
+    "severity": "low",
+    "safetyImpact": "Inconsistent cold starts.",
+    "causes": [
+      {"cause": "Loose relay socket", "likelihood": "high"},
+      {"cause": "Corroded busbar", "likelihood": "medium"}
+    ],
+    "symptoms": ["Intermittent MIL", "Variable start time"],
+    "fixSteps": [
+      {"step": 1, "title": "Wiggle test", "instruction": "Tap relay and connectors with engine cold.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Replace marginal parts", "instruction": "Relay, connector, or busbar.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 20, "max": 150}, "mechanic": {"min": 100, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0387"],
+    "faq": [{"q": "Affect highway?", "a": "Glow plug system is mostly idle once warm."}]
+  },
+  {
+    "code": "P0501-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Vehicle Speed Sensor",
+    "title": "Vehicle Speed Sensor A Range/Performance (Variant)",
+    "shortDescription": "VSS A signal does not match expected range under driving conditions.",
+    "fullDescription": "P0501 (variant) sets when the speed reported by the primary VSS does not align with cross-checks (transmission output speed, ABS wheel speed, GPS-derived). Typical causes include reluctor ring damage, magnetic debris on the sensor, and harness intermittents.",
+    "severity": "medium",
+    "safetyImpact": "Speedometer error; cruise control/limiter may disable.",
+    "causes": [
+      {"cause": "Damaged reluctor", "likelihood": "high"},
+      {"cause": "Sensor air gap wrong", "likelihood": "medium"},
+      {"cause": "Harness intermittent", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Speedometer erratic", "Cruise control disabled"],
+    "fixSteps": [
+      {"step": 1, "title": "Inspect sensor", "instruction": "Remove and check for metal debris.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Measure air gap", "instruction": "Per OEM spec.", "tools": ["Feeler gauge"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace sensor or reluctor", "instruction": "Replace damaged components.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 150}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0500", "P0502"],
+    "faq": [{"q": "ABS code follows?", "a": "Often yes if shared signals."}]
+  },
+  {
+    "code": "P0502-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Vehicle Speed Sensor",
+    "title": "VSS A Circuit Low Input (Variant)",
+    "shortDescription": "VSS A signal stays at low or 0 mph reading.",
+    "fullDescription": "P0502 (variant) sets when the primary VSS reports zero or near-zero speed while other inputs (engine load, transmission speed) indicate the vehicle is moving. Indicates open circuit, missing reluctor, or sensor failure.",
+    "severity": "medium",
+    "safetyImpact": "Speedometer reads 0; cruise/limiter disabled.",
+    "causes": [
+      {"cause": "Open sensor or wiring", "likelihood": "high"},
+      {"cause": "Missing reluctor teeth", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Speedometer at 0", "Hard shifting"],
+    "fixSteps": [
+      {"step": 1, "title": "Check sensor wiring", "instruction": "Continuity from sensor to PCM.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "If wiring intact.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 150}, "mechanic": {"min": 150, "max": 500}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0500", "P0501"],
+    "faq": [{"q": "Will it shift?", "a": "Limp shift schedule; harsh feel possible."}]
+  },
+  {
+    "code": "P0503-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Vehicle Speed Sensor",
+    "title": "VSS A Intermittent/Erratic/High (Variant)",
+    "shortDescription": "VSS A signal intermittent or noisy.",
+    "fullDescription": "P0503 (variant) sets on intermittent or excessively noisy VSS A signal. Causes include damaged reluctor, marginal sensor air gap, EMI from aftermarket equipment, or harness damage.",
+    "severity": "medium",
+    "safetyImpact": "Speedometer jumps; cruise drops out.",
+    "causes": [
+      {"cause": "Reluctor damage", "likelihood": "high"},
+      {"cause": "EMI from aftermarket wiring", "likelihood": "medium"},
+      {"cause": "Harness chafing", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Erratic speedometer", "Random ABS or TCS warnings"],
+    "fixSteps": [
+      {"step": 1, "title": "Scope the signal", "instruction": "Capture VSS waveform under driving.", "tools": ["Oscilloscope"], "difficulty": "advanced"},
+      {"step": 2, "title": "Inspect reluctor", "instruction": "Remove sensor and visually check teeth.", "tools": [], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace as needed", "instruction": "Sensor or wiring repair.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 25, "max": 200}, "mechanic": {"min": 150, "max": 600}},
+    "diyDifficulty": "advanced",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": ["P0501"],
+    "faq": [{"q": "Tire chains cause this?", "a": "Possibly, if reluctor is damaged by debris on chains."}]
+  },
+  {
+    "code": "P0505-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Idle Air Control",
+    "title": "Idle Air Control Malfunction (Variant)",
+    "shortDescription": "Idle speed cannot be maintained at target.",
+    "fullDescription": "P0505 (variant) sets when the PCM cannot hold idle near the target. On older cars with IAC valves this often means a stuck valve; on drive-by-wire this means throttle plate carbon buildup or a failing throttle body.",
+    "severity": "low",
+    "safetyImpact": "Stalling; high or low idle.",
+    "causes": [
+      {"cause": "Carbon buildup on throttle plate", "likelihood": "high"},
+      {"cause": "Vacuum leak", "likelihood": "medium"},
+      {"cause": "Failed IAC valve", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "High/low idle", "Stalling at stops"],
+    "fixSteps": [
+      {"step": 1, "title": "Clean throttle body", "instruction": "Use throttle body cleaner; perform relearn after.", "tools": ["Throttle cleaner", "OBD-II scanner"], "difficulty": "easy"},
+      {"step": 2, "title": "Smoke test for vacuum leaks", "instruction": "Detect any leaks in intake system.", "tools": ["Smoke machine"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace IAC or throttle body", "instruction": "If cleaning does not resolve.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 10, "max": 250}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0506", "P0507"],
+    "faq": [{"q": "Need relearn?", "a": "Yes; most modern cars require idle/throttle relearn after cleaning."}]
+  },
+  {
+    "code": "P0689",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Power Relay",
+    "title": "ECM Power Relay Sense Circuit Low",
+    "shortDescription": "Main relay sense feedback to ECM reads low.",
+    "fullDescription": "P0689 sets when the ECM cannot detect proper voltage on its main-relay output sense input even though the relay should be closed. Causes include welded relay open, blown main fuse, or sense wire fault.\n\nFrequently appears alongside intermittent no-start conditions where the ECM loses power briefly and resets.",
+    "severity": "high",
+    "safetyImpact": "No-start or intermittent stalls.",
+    "causes": [
+      {"cause": "Failing main relay", "likelihood": "high"},
+      {"cause": "Blown main fuse", "likelihood": "medium"},
+      {"cause": "Sense wiring open", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Intermittent no-start", "Stalling"],
+    "fixSteps": [
+      {"step": 1, "title": "Swap main relay", "instruction": "Try a known-good identical relay.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Check fuses", "instruction": "Verify ECM main and battery fuses.", "tools": [], "difficulty": "easy"},
+      {"step": 3, "title": "Trace sense wire", "instruction": "Continuity from ECM to relay output.", "tools": ["DMM"], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0686", "P0687", "P0688"],
+    "faq": [{"q": "Why intermittent?", "a": "Relay contacts pit and arc; warm operation makes it worse."}]
+  },
+  {
+    "code": "P0686-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Power Relay",
+    "title": "ECM/PCM Power Relay Control Circuit Low (Variant)",
+    "shortDescription": "ECM main relay control wire reads low when off.",
+    "fullDescription": "P0686 (variant) sets when the ECM observes its own relay control output stuck low (i.e., commanded off but pulled to ground externally). Typically a wiring short or stuck relay coil.",
+    "severity": "medium",
+    "safetyImpact": "Possible no-start.",
+    "causes": [
+      {"cause": "Wiring shorted to ground", "likelihood": "high"},
+      {"cause": "Relay coil shorted", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Intermittent stalling"],
+    "fixSteps": [
+      {"step": 1, "title": "Disconnect relay", "instruction": "If P0686 changes to P0687, relay coil is shorted.", "tools": [], "difficulty": "easy"},
+      {"step": 2, "title": "Inspect harness", "instruction": "Look for chafing.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 80}, "mechanic": {"min": 100, "max": 400}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0687", "P0689"],
+    "faq": [{"q": "Same as P0689?", "a": "Different side: control vs sense. Both can coexist."}]
+  },
+  {
+    "code": "P0687-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Power Relay",
+    "title": "ECM/PCM Power Relay Control Circuit High (Variant)",
+    "shortDescription": "ECM main relay control wire reads high when commanded on.",
+    "fullDescription": "P0687 (variant) sets when the ECM cannot pull its relay control low (open coil or open wire). Frequently a failed relay or open trace inside the ECM.",
+    "severity": "medium",
+    "safetyImpact": "No-start condition.",
+    "causes": [
+      {"cause": "Open relay coil", "likelihood": "high"},
+      {"cause": "Open control wire", "likelihood": "medium"},
+      {"cause": "ECM driver failed", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "No-start", "Power loss"],
+    "fixSteps": [
+      {"step": 1, "title": "Check coil resistance", "instruction": "Measure relay coil per spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Continuity to ECM", "instruction": "Verify control wire integrity.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 3, "title": "Replace relay or repair wire", "instruction": "ECM replacement is last resort.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 5, "max": 80}, "mechanic": {"min": 100, "max": 600}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": ["P0686", "P0689"],
+    "faq": [{"q": "Replace ECM?", "a": "Rare; verify simpler causes first."}]
+  },
+  {
+    "code": "P0688-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "ECM Power Relay",
+    "title": "ECM/PCM Power Relay Sense Circuit Open (Variant)",
+    "shortDescription": "ECM cannot read its relay output state.",
+    "fullDescription": "P0688 (variant) is set when the relay output sense input to the ECM is open. ECM can still command but cannot confirm relay closure, so it sets the code as a precaution.",
+    "severity": "medium",
+    "safetyImpact": "Possible no-start; diagnostic ambiguity.",
+    "causes": [
+      {"cause": "Open sense wiring", "likelihood": "high"},
+      {"cause": "Backed-out terminal at ECM", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Stored after key cycle"],
+    "fixSteps": [
+      {"step": 1, "title": "Test sense wire", "instruction": "Continuity check.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Reseat connector", "instruction": "Inspect ECM connector for backed-out pins.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 0, "max": 50}, "mechanic": {"min": 80, "max": 300}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": ["P0689"],
+    "faq": [{"q": "Drive while waiting on parts?", "a": "Yes if intermittent; expect possible stalls."}]
+  },
+  {
+    "code": "P0790-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Normal/Performance Switch Circuit Malfunction (Variant)",
+    "shortDescription": "Transmission mode-select switch circuit fault.",
+    "fullDescription": "P0790 (variant) sets when the TCM cannot read a valid signal from the Normal/Performance (or similar Eco/Sport) switch. Driver-selected shift maps will revert to default.",
+    "severity": "low",
+    "safetyImpact": "Mode select inoperative.",
+    "causes": [
+      {"cause": "Broken switch contacts", "likelihood": "high"},
+      {"cause": "Wiring open between switch and TCM", "likelihood": "medium"}
+    ],
+    "symptoms": ["MIL", "Sport mode unavailable"],
+    "fixSteps": [
+      {"step": 1, "title": "Test switch", "instruction": "Continuity through positions.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace switch", "instruction": "If contacts intermittent.", "tools": [], "difficulty": "intermediate"}
+    ],
+    "estimatedCost": {"diy": {"min": 30, "max": 200}, "mechanic": {"min": 100, "max": 350}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [],
+    "faq": [{"q": "Affect transmission life?", "a": "No; default map is safe."}]
+  },
+  {
+    "code": "P0793-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Transmission",
+    "title": "Intermediate Shaft Speed Sensor No Signal (Variant)",
+    "shortDescription": "TCM not seeing intermediate shaft speed sensor signal.",
+    "fullDescription": "P0793 (variant) sets when the TCM expects a signal from the intermediate shaft sensor (used for ratio monitoring on stepped automatics) but sees none. Common cause is a failed sensor or chipped reluctor.\n\nWithout this signal, the TCM cannot verify gear ratios and may default to limp.",
+    "severity": "medium",
+    "safetyImpact": "Limp transmission; limited ratios.",
+    "causes": [
+      {"cause": "Failed intermediate shaft sensor", "likelihood": "high"},
+      {"cause": "Wiring open", "likelihood": "medium"},
+      {"cause": "Damaged reluctor inside transmission", "likelihood": "low"}
+    ],
+    "symptoms": ["MIL", "Harsh shifting", "Limp mode"],
+    "fixSteps": [
+      {"step": 1, "title": "Check sensor wiring", "instruction": "Continuity and resistance per spec.", "tools": ["DMM"], "difficulty": "intermediate"},
+      {"step": 2, "title": "Replace sensor", "instruction": "External sensors are simple; internal require pan drop.", "tools": [], "difficulty": "intermediate"},
+      {"step": 3, "title": "Inspect reluctor", "instruction": "Last resort if wiring and sensor are good.", "tools": [], "difficulty": "advanced"}
+    ],
+    "estimatedCost": {"diy": {"min": 40, "max": 250}, "mechanic": {"min": 200, "max": 800}},
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-240 minutes",
+    "relatedCodes": ["P0792", "P0794"],
+    "faq": [{"q": "Drive in limp?", "a": "Short distances OK; long limp driving causes wear."}]
+  }
+]

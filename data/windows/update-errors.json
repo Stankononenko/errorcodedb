@@ -4865,7 +4865,7 @@
     "displayCode": "0x80071A91",
     "title": "Windows Update Error - Transaction Not Active",
     "shortDescription": "A transactional file system operation failed because the transaction is no longer active.",
-    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity \u2014 if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
+    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity — if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5015,7 +5015,7 @@
       {
         "step": 1,
         "title": "Run DISM RestoreHealth",
-        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete \u2014 it may take 15-30 minutes.",
+        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete — it may take 15-30 minutes.",
         "tools": [
           "Command Prompt",
           "DISM"
@@ -5202,7 +5202,7 @@
     "displayCode": "0x80072F8F",
     "title": "Windows Update Error - SSL Certificate Validation Failed",
     "shortDescription": "Windows Update could not validate the SSL certificate from the update server.",
-    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock \u2014 if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
+    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock — if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5260,7 +5260,7 @@
       {
         "step": 3,
         "title": "Check for SSL-intercepting software",
-        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites \u2014 the issuer should be a Microsoft or DigiCert CA, not your proxy.",
+        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites — the issuer should be a Microsoft or DigiCert CA, not your proxy.",
         "tools": [
           "Browser",
           "Network Settings"
@@ -5534,7 +5534,7 @@
     "displayCode": "0x800F0984",
     "title": "Windows Update Error - Applicable Update Not Found",
     "shortDescription": "Windows Update could not find an applicable update package for this system configuration.",
-    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state \u2014 some components have been updated while others have not \u2014 making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
+    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state — some components have been updated while others have not — making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -6296,7 +6296,7 @@
       },
       {
         "q": "Can I force install an update that says not applicable?",
-        "a": "No. The applicability check exists for good reason \u2014 installing an incompatible update can cause system instability or failure. Always use the matching update version."
+        "a": "No. The applicability check exists for good reason — installing an incompatible update can cause system instability or failure. Always use the matching update version."
       }
     ]
   },
@@ -11297,7 +11297,7 @@
       },
       {
         "q": "Does disabling VPN help?",
-        "a": "Often yes \u2014 VPN filter drivers can disrupt BITS."
+        "a": "Often yes — VPN filter drivers can disrupt BITS."
       },
       {
         "q": "Can I restart just BITS?",
@@ -11537,7 +11537,7 @@
       },
       {
         "q": "Is a reset enough?",
-        "a": "Often not \u2014 credentials or certs must be addressed."
+        "a": "Often not — credentials or certs must be addressed."
       }
     ]
   },
@@ -11648,7 +11648,7 @@
     "faq": [
       {
         "q": "Can GPO cause this?",
-        "a": "Yes \u2014 WSUS-managed devices with strict policies often hit 0x80200005."
+        "a": "Yes — WSUS-managed devices with strict policies often hit 0x80200005."
       },
       {
         "q": "Should I disable AV permanently?",
@@ -11892,7 +11892,7 @@
       },
       {
         "q": "Will VPN help?",
-        "a": "Usually it makes things worse \u2014 disable for updates."
+        "a": "Usually it makes things worse — disable for updates."
       }
     ]
   },
@@ -11903,7 +11903,7 @@
     "displayCode": "0x80200015",
     "title": "BITS Insufficient Resources",
     "shortDescription": "BITS ran out of resources (typically disk space or memory).",
-    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources \u2014 most often disk space. Feature updates commonly need 20+ GB free.",
+    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources — most often disk space. Feature updates commonly need 20+ GB free.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -12010,7 +12010,7 @@
       },
       {
         "q": "Can I skip feature updates?",
-        "a": "For a time, yes \u2014 but security updates still apply."
+        "a": "For a time, yes — but security updates still apply."
       }
     ]
   },
@@ -12170,7 +12170,7 @@
       {
         "step": 1,
         "title": "Check optional updates",
-        "instruction": "Settings > Windows Update > Advanced options > Optional updates \u2014 review and accept any pending EULAs.",
+        "instruction": "Settings > Windows Update > Advanced options > Optional updates — review and accept any pending EULAs.",
         "tools": [
           "Settings"
         ],
@@ -12243,7 +12243,7 @@
       },
       {
         "q": "Will Catalog install work?",
-        "a": "Usually yes \u2014 direct MSU install bypasses the EULA workflow."
+        "a": "Usually yes — direct MSU install bypasses the EULA workflow."
       },
       {
         "q": "Is EULA acceptance reversible?",
@@ -12368,7 +12368,7 @@
       },
       {
         "q": "Will a Windows version mismatch cause it?",
-        "a": "Yes \u2014 very old clients may not parse newer WSUS metadata."
+        "a": "Yes — very old clients may not parse newer WSUS metadata."
       }
     ]
   },
@@ -12600,7 +12600,7 @@
     "faq": [
       {
         "q": "What is SSU?",
-        "a": "Servicing Stack Update \u2014 maintains the install engine that processes other updates."
+        "a": "Servicing Stack Update — maintains the install engine that processes other updates."
       },
       {
         "q": "Will reregistering DLLs help?",
@@ -12660,7 +12660,7 @@
       {
         "step": 2,
         "title": "Check GPO",
-        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update \u2014 set to Not Configured.",
+        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update — set to Not Configured.",
         "tools": [
           "Group Policy Editor"
         ],
@@ -12690,7 +12690,7 @@
       {
         "step": 5,
         "title": "Re-enable WU service",
-        "instruction": "Services.msc \u2014 set Windows Update to Automatic and start.",
+        "instruction": "Services.msc — set Windows Update to Automatic and start.",
         "tools": [
           "Services.msc"
         ],
@@ -12718,7 +12718,7 @@
     "faq": [
       {
         "q": "Can malware disable WU?",
-        "a": "Yes \u2014 many malware families disable WU to block remediation."
+        "a": "Yes — many malware families disable WU to block remediation."
       },
       {
         "q": "Is removing the reg key safe?",
@@ -13422,7 +13422,7 @@
       },
       {
         "q": "Is deleting pending.xml safe?",
-        "a": "Risky \u2014 only do it after DISM fails."
+        "a": "Risky — only do it after DISM fails."
       },
       {
         "q": "Will SFC fix it?",
@@ -13648,7 +13648,7 @@
     "faq": [
       {
         "q": "What is CBS?",
-        "a": "Component-Based Servicing \u2014 the engine installing updates."
+        "a": "Component-Based Servicing — the engine installing updates."
       },
       {
         "q": "Will DISM source help?",
@@ -13667,7 +13667,7 @@
     "displayCode": "0x80242011",
     "title": "Handler Post-Reboot Initialization Not Required",
     "shortDescription": "The update handler reported that post-reboot initialization was not required.",
-    "fullDescription": "0x80242011 is often informational \u2014 the handler determined no post-reboot work was needed. It can appear as a false failure.",
+    "fullDescription": "0x80242011 is often informational — the handler determined no post-reboot work was needed. It can appear as a false failure.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -13762,7 +13762,7 @@
     "faq": [
       {
         "q": "Is this a real error?",
-        "a": "Often not \u2014 confirm the KB is installed before troubleshooting."
+        "a": "Often not — confirm the KB is installed before troubleshooting."
       },
       {
         "q": "Does it repeat?",
@@ -13877,11 +13877,11 @@
     "faq": [
       {
         "q": "Does RevertPendingActions delete work?",
-        "a": "It undoes pending servicing operations \u2014 use with care."
+        "a": "It undoes pending servicing operations — use with care."
       },
       {
         "q": "Is a reboot really enough?",
-        "a": "Often yes \u2014 let Windows finish its post-reboot work."
+        "a": "Often yes — let Windows finish its post-reboot work."
       },
       {
         "q": "Will a repair install fix it?",
@@ -14001,7 +14001,7 @@
       },
       {
         "q": "Can I download fresh?",
-        "a": "Yes \u2014 a WU reset does exactly that."
+        "a": "Yes — a WU reset does exactly that."
       },
       {
         "q": "Is disk at fault?",
@@ -14162,7 +14162,7 @@
       {
         "step": 1,
         "title": "Start services",
-        "instruction": "services.msc \u2014 start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
+        "instruction": "services.msc — start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
         "tools": [
           "Services.msc"
         ],
@@ -14234,7 +14234,7 @@
       },
       {
         "q": "Are policies common?",
-        "a": "On domain PCs yes \u2014 check with IT."
+        "a": "On domain PCs yes — check with IT."
       },
       {
         "q": "Is manual start enough?",
@@ -14458,7 +14458,7 @@
     "faq": [
       {
         "q": "Is DataStore critical?",
-        "a": "Yes \u2014 it tracks update history and state."
+        "a": "Yes — it tracks update history and state."
       },
       {
         "q": "Does deletion cause data loss?",
@@ -14688,7 +14688,7 @@
     "faq": [
       {
         "q": "Can I bypass?",
-        "a": "Not recommended \u2014 the block exists because a known issue can cause data loss or crashes."
+        "a": "Not recommended — the block exists because a known issue can cause data loss or crashes."
       }
     ]
   },
@@ -14699,7 +14699,7 @@
     "displayCode": "0x8024A224",
     "title": "Windows 11 Deferred for Hardware Not Ready",
     "shortDescription": "Upgrade deferred because hardware reports not ready.",
-    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet \u2014 often reflecting firmware or driver updates needed before proceeding.",
+    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet — often reflecting firmware or driver updates needed before proceeding.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -15227,7 +15227,7 @@
     "faq": [
       {
         "q": "Wire helps?",
-        "a": "Yes \u2014 wired Ethernet often cures flaky OTA downloads."
+        "a": "Yes — wired Ethernet often cures flaky OTA downloads."
       }
     ]
   },
@@ -15346,7 +15346,7 @@
     "displayCode": "0x80244020",
     "title": "WU Client Not Allowed Methods",
     "shortDescription": "Windows Update client used an HTTP method the server doesn't allow.",
-    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method \u2014 typically outdated WSUS or a proxy stripping headers.",
+    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method — typically outdated WSUS or a proxy stripping headers.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15663,7 +15663,7 @@
     "displayCode": "0x80070079",
     "title": "Semaphore Timeout During Update",
     "shortDescription": "Network semaphore timeout while transferring update content.",
-    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout \u2014 commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
+    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout — commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15759,7 +15759,7 @@
     "faq": [
       {
         "q": "Retry helps?",
-        "a": "Usually yes \u2014 transient. If persistent, switch to a wired connection."
+        "a": "Usually yes — transient. If persistent, switch to a wired connection."
       }
     ]
   },
@@ -16207,7 +16207,7 @@
     "displayCode": "0x800F0988",
     "title": "CBS_E_INSTALLERS_FAILED_VALIDATION",
     "shortDescription": "CBS rejected an update because an installer failed validation.",
-    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution \u2014 often a corrupted download.",
+    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution — often a corrupted download.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16303,7 +16303,7 @@
     "faq": [
       {
         "q": "Re-download?",
-        "a": "Yes \u2014 delete SoftwareDistribution\\Download and retry."
+        "a": "Yes — delete SoftwareDistribution\\Download and retry."
       }
     ]
   },
@@ -16743,7 +16743,7 @@
     "displayCode": "0x80248011",
     "title": "DataStore Read Failure",
     "shortDescription": "Windows Update could not read its DataStore.edb.",
-    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted \u2014 rename SoftwareDistribution\\DataStore to force rebuild.",
+    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted — rename SoftwareDistribution\\DataStore to force rebuild.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16850,7 +16850,7 @@
     "displayCode": "0x80248030",
     "title": "DataStore Table Missing",
     "shortDescription": "WU DataStore is missing expected tables.",
-    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables \u2014 typically from partial corruption.",
+    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables — typically from partial corruption.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16941,7 +16941,7 @@
     "faq": [
       {
         "q": "Same fix?",
-        "a": "Yes \u2014 rebuild DataStore by renaming SoftwareDistribution."
+        "a": "Yes — rebuild DataStore by renaming SoftwareDistribution."
       }
     ]
   },
@@ -17146,7 +17146,7 @@
     "faq": [
       {
         "q": "Use external drive?",
-        "a": "Yes \u2014 Windows Setup can use a USB drive as scratch space."
+        "a": "Yes — Windows Setup can use a USB drive as scratch space."
       }
     ]
   },
@@ -17478,7 +17478,7 @@
     "displayCode": "0x8024A215",
     "title": "Feature Update Postponed",
     "shortDescription": "Feature update postponed by update policy or deadline.",
-    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed \u2014 either by user snooze, active hours, or policy.",
+    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed — either by user snooze, active hours, or policy.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17583,7 +17583,7 @@
     "displayCode": "0xC1900223",
     "title": "Feature Update Download Issue",
     "shortDescription": "Feature update content couldn't be downloaded.",
-    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download \u2014 network or DO issue.",
+    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download — network or DO issue.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17677,7 +17677,7 @@
     "faq": [
       {
         "q": "Retry later?",
-        "a": "Yes \u2014 CDN blips are common; try again after a few hours."
+        "a": "Yes — CDN blips are common; try again after a few hours."
       }
     ]
   },
@@ -18542,7 +18542,7 @@
     "displayCode": "0xC1900101-0x4000D",
     "title": "Safe OS SECOND_BOOT Rollback",
     "shortDescription": "Rollback during the SECOND_BOOT phase from the Safe OS environment.",
-    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry \u2014 MOSETUP rolls back to the prior build.",
+    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry — MOSETUP rolls back to the prior build.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -21545,7 +21545,7 @@
       {
         "step": 2,
         "title": "Clear PendingFileRenameOperations",
-        "instruction": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager \u2014 delete the value (advanced).",
+        "instruction": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager — delete the value (advanced).",
         "tools": [
           "Registry Editor"
         ],
@@ -21614,7 +21614,7 @@
       {
         "step": 1,
         "title": "Run chkdsk",
-        "instruction": "chkdsk C: /f /r \u2014 schedule on next reboot.",
+        "instruction": "chkdsk C: /f /r — schedule on next reboot.",
         "tools": [
           "chkdsk"
         ],
@@ -21869,7 +21869,7 @@
     "displayCode": "0x800F0824",
     "title": "PSFX_E_MATCHING_COMPONENT_NOT_FOUND",
     "shortDescription": "CBS could not find a component required by an update package.",
-    "fullDescription": "0x800F0824 is similar to 0x800F0247 \u2014 CBS needs a component that is not present in the store. The fix is the same: refresh the store via RestoreHealth or in-place upgrade.\n\nThis often appears after partial uninstalls of language packs or features.",
+    "fullDescription": "0x800F0824 is similar to 0x800F0247 — CBS needs a component that is not present in the store. The fix is the same: refresh the store via RestoreHealth or in-place upgrade.\n\nThis often appears after partial uninstalls of language packs or features.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -23105,7 +23105,7 @@
     "displayCode": "0x80244014",
     "title": "WU_E_PT_REFRESH_CACHE_REQUIRED",
     "shortDescription": "WUA must refresh its cache to continue.",
-    "fullDescription": "0x80244014 is a transient state \u2014 the agent recognized that its catalog cache is stale and needs refresh. Clearing SoftwareDistribution forces a fresh sync.",
+    "fullDescription": "0x80244014 is a transient state — the agent recognized that its catalog cache is stale and needs refresh. Clearing SoftwareDistribution forces a fresh sync.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -23338,5 +23338,2765 @@
     "whenToCallPro": "If standard troubleshooting and dump analysis fail to identify the cause, a technician can dig deeper into logs.",
     "relatedCodes": [],
     "faq": []
+  },
+  {
+    "id": "update-0x80070424",
+    "category": "update",
+    "code": "0x80070424",
+    "displayCode": "0x80070424",
+    "title": "Windows Update Service Missing (ERROR_SERVICE_DOES_NOT_EXIST)",
+    "shortDescription": "The Windows Update or BITS service is missing or not registered.",
+    "fullDescription": "Error 0x80070424 means a critical service (wuauserv, BITS, or cryptsvc) is missing or unregistered, often after malware cleanup or a botched update. Re-registering the services and running DISM resolves it.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070424",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800f0900",
+    "category": "update",
+    "code": "0x800F0900",
+    "displayCode": "0x800F0900",
+    "title": "Component Store Corruption (CBS_E_XML_PARSER_FAILURE)",
+    "shortDescription": "Windows Update failed because the component store XML manifest is corrupted.",
+    "fullDescription": "0x800F0900 indicates manifest corruption inside WinSxS. DISM with /RestoreHealth or an in-place upgrade is typically required.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x800F0900",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900107",
+    "category": "update",
+    "code": "0xC1900107",
+    "displayCode": "0xC1900107",
+    "title": "Cleanup Operation Pending From Previous Upgrade",
+    "shortDescription": "A previous feature upgrade left files that must be cleaned up before another upgrade can run.",
+    "fullDescription": "Error 0xC1900107 means Windows still has files from a prior upgrade attempt. Run Disk Cleanup with 'Clean up system files' and select 'Previous Windows installation(s)' and 'Temporary Windows installation files', then reboot.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xC1900107",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900208-v2",
+    "category": "update",
+    "code": "0xC1900208",
+    "displayCode": "0xC1900208",
+    "title": "Incompatible App Blocking Upgrade (0xC1900208)",
+    "shortDescription": "An installed application is incompatible with the target Windows version.",
+    "fullDescription": "Error 0xC1900208 is a hard block from Setup: an application or driver is known incompatible. The compatibility report names the offender; uninstall it and rerun setup.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xC1900208",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900223-v2",
+    "category": "update",
+    "code": "0xC1900223",
+    "displayCode": "0xC1900223",
+    "title": "Failed to Download Update Payload (0xC1900223)",
+    "shortDescription": "Windows Update could not download a feature update package from the CDN.",
+    "fullDescription": "0xC1900223 indicates a download failure, typically network related. Disable VPN, check DNS, retry on a different network, or use the Windows 10/11 Installation Assistant.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xC1900223",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc1900401",
+    "category": "update",
+    "code": "0xC1900401",
+    "displayCode": "0xC1900401",
+    "title": "No Applicable Update Found (0xC1900401)",
+    "shortDescription": "Windows Update could not find an applicable update for this device.",
+    "fullDescription": "0xC1900401 means the update agent did not receive an applicable payload. The device may already be on the latest build or be on a deferred channel. Check feature update deferral and try the Update Assistant.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xC1900401",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024402f",
+    "category": "update",
+    "code": "0x8024402F",
+    "displayCode": "0x8024402F",
+    "title": "External Cab Processing Failed",
+    "shortDescription": "Windows Update could not process an external CAB file, often due to a network proxy stripping content.",
+    "fullDescription": "0x8024402F (WU_E_PT_ECP_PROCESSING_FAILED) typically appears when a proxy or firewall (Web filtering, SSL inspection) modifies update traffic. Bypass SSL inspection for windowsupdate.microsoft.com and *.update.microsoft.com.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x8024402F",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024500c",
+    "category": "update",
+    "code": "0x8024500C",
+    "displayCode": "0x8024500C",
+    "title": "Windows Update Disabled by Policy",
+    "shortDescription": "Windows Update is disabled by Group Policy or MDM (CSP) on this device.",
+    "fullDescription": "0x8024500C indicates a policy is blocking the update. Inspect Computer Configuration > Administrative Templates > Windows Components > Windows Update, or your MDM, and remove restrictive policies.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x8024500C",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80240020",
+    "category": "update",
+    "code": "0x80240020",
+    "displayCode": "0x80240020",
+    "title": "Update Requires User Interaction",
+    "shortDescription": "The update cannot install in the current logon state and is waiting for user interaction.",
+    "fullDescription": "0x80240020 (WU_E_NO_INTERACTIVE_USER) means Windows Update needs an interactive logon. Sign in to the device and trigger Windows Update again.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80240020",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80240438",
+    "category": "update",
+    "code": "0x80240438",
+    "displayCode": "0x80240438",
+    "title": "Connection to Update Service Failed",
+    "shortDescription": "Windows Update could not establish a connection to the configured update service (WSUS or Microsoft Update).",
+    "fullDescription": "0x80240438 indicates the WUA could not reach the configured server. Verify WSUS URLs, certificate trust, and proxy bypass list, then run wuauclt /resetauthorization /detectnow or USOClient StartScan.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80240438",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x800705b4",
+    "category": "update",
+    "code": "0x800705B4",
+    "displayCode": "0x800705B4",
+    "title": "Operation Timed Out (ERROR_TIMEOUT)",
+    "shortDescription": "A Windows Update operation timed out, commonly during driver or definition installation.",
+    "fullDescription": "0x800705B4 means an update step exceeded its time limit, often due to slow disks, antivirus interference, or pending services. Disable third-party AV, run the troubleshooter, and clear the SoftwareDistribution folder.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x800705B4",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070652",
+    "category": "update",
+    "code": "0x80070652",
+    "displayCode": "0x80070652",
+    "title": "Another Installation in Progress (ERROR_INSTALL_ALREADY_RUNNING)",
+    "shortDescription": "Another MSI/Windows Installer operation is already running, blocking the update.",
+    "fullDescription": "Error 0x80070652 occurs when the Windows Installer service is busy. Wait for the running install to finish, reboot to clear stuck installers, then retry the update.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070652",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80246008-v2",
+    "category": "update",
+    "code": "0x80246008",
+    "displayCode": "0x80246008",
+    "title": "BITS Job Cancelled or Suspended",
+    "shortDescription": "The Background Intelligent Transfer Service job for the update was cancelled or suspended.",
+    "fullDescription": "0x80246008 (WU_E_DM_FAILTOCONNECT) shows BITS could not transfer the update payload. Restart BITS, ensure metered-connection is off, and verify firewall rules for delivery optimization.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80246008",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80246007-v2",
+    "category": "update",
+    "code": "0x80246007",
+    "displayCode": "0x80246007",
+    "title": "Update Has Not Been Downloaded",
+    "shortDescription": "Windows Update tried to install an update that has not finished downloading.",
+    "fullDescription": "0x80246007 indicates an attempt to install an update before its payload finished downloading. Run the troubleshooter, clear the SoftwareDistribution folder, and retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80246007",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xd0000034",
+    "category": "update",
+    "code": "0xD0000034",
+    "displayCode": "0xD0000034",
+    "title": "Update Disk Out of Space",
+    "shortDescription": "Windows Update ran out of disk space while staging or installing an update.",
+    "fullDescription": "0xD0000034 means insufficient free space on the system drive or System Reserved partition. Free up space (Disk Cleanup, remove temp files), or extend the System Reserved partition.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xD0000034",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xd000034a",
+    "category": "update",
+    "code": "0xD000034A",
+    "displayCode": "0xD000034A",
+    "title": "Update Operation Aborted",
+    "shortDescription": "An update operation was aborted by the system, often due to power loss or forced shutdown.",
+    "fullDescription": "0xD000034A appears when Windows Update was interrupted unexpectedly. Reboot, run the troubleshooter, and retry with the device on AC power.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xD000034A",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0xc0000022",
+    "category": "update",
+    "code": "0xC0000022",
+    "displayCode": "0xC0000022",
+    "title": "Access Violation During Update Installation",
+    "shortDescription": "An update component encountered STATUS_ACCESS_DENIED while writing to a protected location.",
+    "fullDescription": "0xC0000022 during update installation usually points to permission damage on Windows or Program Files folders. Take ownership of the affected folder and reset permissions, then retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0xC0000022",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80092004",
+    "category": "update",
+    "code": "0x80092004",
+    "displayCode": "0x80092004",
+    "title": "Cryptography Object Not Found (CRYPT_E_NOT_FOUND)",
+    "shortDescription": "A required certificate or signing object was not found while validating the update.",
+    "fullDescription": "0x80092004 occurs when Windows cannot validate the update's signature, often due to missing servicing stack updates. Install the latest Servicing Stack Update (SSU) manually, then retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80092004",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80244016",
+    "category": "update",
+    "code": "0x80244016",
+    "displayCode": "0x80244016",
+    "title": "HTTP 400 From Update Server (WU_E_PT_HTTP_STATUS_BAD_REQUEST)",
+    "shortDescription": "The update server returned HTTP 400 Bad Request to the WUA.",
+    "fullDescription": "0x80244016 indicates a malformed request between the client and WSUS/Microsoft Update. Reset the WU components and re-register WSUS using wuauclt /resetauthorization.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80244016",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80244fff-v2",
+    "category": "update",
+    "code": "0x80244FFF",
+    "displayCode": "0x80244FFF",
+    "title": "Unknown WUA HTTP Error",
+    "shortDescription": "The Windows Update agent received an unknown error from the HTTP layer.",
+    "fullDescription": "0x80244FFF is a catch-all for unidentified HTTP failures during Windows Update. Reset network components, switch DNS, and retry from a different network if possible.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80244FFF",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80072ee2",
+    "category": "update",
+    "code": "0x80072EE2",
+    "displayCode": "0x80072EE2",
+    "title": "Update Connection Timed Out",
+    "shortDescription": "The connection to Windows Update timed out (WININET ERROR_INTERNET_TIMEOUT).",
+    "fullDescription": "0x80072EE2 typically points to firewall or proxy interference. Whitelist the windowsupdate.com domains, reset Winsock (netsh winsock reset), and retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80072EE2",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80244010",
+    "category": "update",
+    "code": "0x80244010",
+    "displayCode": "0x80244010",
+    "title": "Exceeded Maximum Server Round Trips",
+    "shortDescription": "The Windows Update client exceeded the allowed number of server round trips during scan.",
+    "fullDescription": "0x80244010 happens when WSUS has too many pending updates for the client to process in one scan. Run the troubleshooter, decline superseded updates on WSUS, or run the scan multiple times.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80244010",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run the Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update > Run.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Open elevated Command Prompt and run: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && ren C:\\Windows\\System32\\catroot2 catroot2.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "In elevated Command Prompt run: sfc /scannow then DISM /Online /Cleanup-Image /RestoreHealth, reboot, and retry the update.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated resets and DISM repair fail, or if you suspect WSUS/Group Policy issues in a managed environment, escalate to IT support.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data fixing this?",
+        "a": "No. The standard Windows Update repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool instead?",
+        "a": "Yes, an in-place upgrade with the Media Creation Tool is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070003-v2",
+    "category": "update",
+    "code": "0x80070003",
+    "displayCode": "0x80070003",
+    "title": "Path Not Found During Update",
+    "shortDescription": "Windows Update could not find a required path while staging files.",
+    "fullDescription": "0x80070003 (ERROR_PATH_NOT_FOUND) usually means the SoftwareDistribution folder is corrupt or the System Reserved partition has issues. Reset Update components and run DISM.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070003",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070020",
+    "category": "update",
+    "code": "0x80070020",
+    "displayCode": "0x80070020",
+    "title": "File In Use During Update",
+    "shortDescription": "A file required by Windows Update is locked by another process.",
+    "fullDescription": "0x80070020 (ERROR_SHARING_VIOLATION) means another app or service has a file open. Reboot to release locks, disable AV temporarily, and retry.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070020",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80070643-v2",
+    "category": "update",
+    "code": "0x80070643",
+    "displayCode": "0x80070643",
+    "title": "Update Installation Failure",
+    "shortDescription": "A general MSI/installer failure stopped the update.",
+    "fullDescription": "0x80070643 is a generic installer error. Reset WU components, install the latest SSU, and retry. For .NET-related updates, repair .NET via the Microsoft repair tool.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80070643",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8024401c",
+    "category": "update",
+    "code": "0x8024401C",
+    "displayCode": "0x8024401C",
+    "title": "WUA HTTP 408 Timeout",
+    "shortDescription": "The update server returned HTTP 408 Request Timeout.",
+    "fullDescription": "0x8024401C means the WUA's request timed out at the server. Check network latency to the WSUS server and increase IIS timeouts if managed.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x8024401C",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x8007000d-v2",
+    "category": "update",
+    "code": "0x8007000D",
+    "displayCode": "0x8007000D",
+    "title": "Update Data Invalid",
+    "shortDescription": "An update file or registry entry contains invalid data.",
+    "fullDescription": "0x8007000D (ERROR_INVALID_DATA) commonly accompanies corrupt SoftwareDistribution contents. Reset Update components and reinstall the SSU.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x8007000D",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80246002",
+    "category": "update",
+    "code": "0x80246002",
+    "displayCode": "0x80246002",
+    "title": "BITS Unable To Pause Job",
+    "shortDescription": "The Background Intelligent Transfer Service could not pause the update job.",
+    "fullDescription": "0x80246002 indicates BITS state corruption. Restart BITS, clear %ALLUSERSPROFILE%\\Microsoft\\Network\\Downloader contents, and retry the update.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80246002",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair do not resolve the failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Can I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80244019",
+    "category": "update",
+    "code": "0x80244019",
+    "displayCode": "0x80244019",
+    "title": "WUA HTTP 404 Not Found",
+    "shortDescription": "The update server returned HTTP 404 for the requested resource.",
+    "fullDescription": "Error 0x80244019 during Windows Update. The update server returned HTTP 404 for the requested resource. Reset Update components, run DISM, and try installing the latest Servicing Stack Update before retrying the cumulative update.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80244019",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "update-0x80072efd",
+    "category": "update",
+    "code": "0x80072EFD",
+    "displayCode": "0x80072EFD",
+    "title": "WININET Cannot Connect",
+    "shortDescription": "WININET could not connect to the update server.",
+    "fullDescription": "Error 0x80072EFD during Windows Update. WININET could not connect to the update server. Reset Update components, run DISM, and try installing the latest Servicing Stack Update before retrying the cumulative update.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Corrupted Windows Update components or cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Network, proxy, or firewall interference",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Damaged system files or component store",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Windows Update fails with error 0x80072EFD",
+      "Update repeatedly downloads but fails to install",
+      "Failure logged in CBS.log or WindowsUpdate.log"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Run Windows Update Troubleshooter",
+        "instruction": "Settings > System > Troubleshoot > Other troubleshooters > Windows Update.",
+        "tools": [
+          "Windows Settings"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset Windows Update components",
+        "instruction": "Elevated Command Prompt: net stop wuauserv && net stop bits && ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old && net start wuauserv && net start bits",
+        "tools": [
+          "Command Prompt"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Run SFC and DISM",
+        "instruction": "sfc /scannow, then DISM /Online /Cleanup-Image /RestoreHealth, then reboot.",
+        "tools": [
+          "SFC",
+          "DISM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 40
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 50,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 minutes",
+    "whenToCallPro": "If repeated component resets and DISM repair fail.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will I lose data?",
+        "a": "No, the standard repair steps do not affect personal files."
+      },
+      {
+        "q": "Should I use the Media Creation Tool?",
+        "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
   }
 ]

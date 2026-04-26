@@ -1,0 +1,2130 @@
+[
+  {
+    "code": "P0D00",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Control Module Requested MIL Illumination",
+    "shortDescription": "On-board charger module has commanded the MIL on due to an internal fault.",
+    "fullDescription": "P0D00 is set when the On-Board Charger (OBC) control module reports a fault severe enough to require MIL illumination. The OBC handles AC-to-DC conversion to charge the high-voltage traction battery from a Level 1 or Level 2 EVSE.\n\nThis is an umbrella code; subordinate P0Dxx codes typically accompany it and pinpoint the specific failure (input voltage, output voltage, isolation, communication, etc.).\n\nPull all stored codes from the OBC, hybrid control module, and battery ECU before any repair to avoid replacing the wrong module.",
+    "severity": "high",
+    "safetyImpact": "Vehicle may refuse to charge; reduced range. High-voltage faults are inherently dangerous and require trained service.",
+    "causes": [
+      {
+        "cause": "Internal OBC fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "HV interlock open",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Subordinate P0Dxx fault not yet repaired",
+        "likelihood": "high"
+      }
+    ],
+    "symptoms": [
+      "MIL illuminated",
+      "Vehicle will not charge",
+      "Reduced range warning",
+      "Service Electric System message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Scan all modules",
+        "instruction": "Use a hybrid-capable scan tool to read all stored codes from OBC, HCM, BECM. Address subordinate codes first.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Inspect HV interlock loop",
+        "instruction": "Verify all orange HV connectors are seated and service disconnect lever is engaged.",
+        "tools": [
+          "Class 0 gloves",
+          "DMM"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 3,
+        "title": "Replace OBC if isolated",
+        "instruction": "If subordinate codes are cleared and P0D00 persists, replace the on-board charger and program per OEM procedure.",
+        "tools": [
+          "OEM scan tool",
+          "Torque wrench"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-6 hours",
+    "relatedCodes": [
+      "P0D01",
+      "P0D02",
+      "P0A0F"
+    ],
+    "faq": [
+      {
+        "q": "Can I keep driving?",
+        "a": "Yes for a hybrid until pack depletes; for a BEV you cannot recharge until repaired."
+      }
+    ]
+  },
+  {
+    "code": "P0D01",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Control Module General Fault",
+    "shortDescription": "On-board charger reports a non-specific internal fault.",
+    "fullDescription": "P0D01 indicates the OBC has run a self-test and detected an internal anomaly that does not map to a more specific code. Common triggers include MCU watchdog resets, gate-driver fault flags, and bus voltage transients during plug-in.\n\nIntermittent P0D01 events are often caused by poor EVSE quality (unstable AC supply, ground loops). Persistent P0D01 usually means the OBC needs replacement.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled. Possible HV system isolation event.",
+    "causes": [
+      {
+        "cause": "OBC internal failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Poor EVSE / dirty AC supply",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Loose ground bonding",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge fault on dash",
+      "EVSE clicks but no current flows"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try a different EVSE",
+        "instruction": "Plug into a known-good Level 2 unit on a separate circuit to rule out supply-side issues.",
+        "tools": [
+          "Spare EVSE"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check AC supply quality",
+        "instruction": "Verify line voltage, ground continuity, and absence of GFCI nuisance trips.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace OBC",
+        "instruction": "If supply is clean and code persists, replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "mechanic": {
+        "min": 700,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D00",
+      "P0D02"
+    ],
+    "faq": [
+      {
+        "q": "DC fast charging affected?",
+        "a": "Often not; DCFC bypasses the OBC. Test to confirm OBC vs charge-port wiring."
+      }
+    ]
+  },
+  {
+    "code": "P0D02",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Control Module Internal Performance",
+    "shortDescription": "OBC efficiency or output performance below expected threshold.",
+    "fullDescription": "P0D02 sets when measured OBC output power is significantly below commanded value, or efficiency is below spec. Typically indicates aging power semiconductors, dried thermal interface material, or partial gate-driver failure.\n\nThe vehicle may still charge but at a reduced rate, and the OBC may run hotter than normal.",
+    "severity": "medium",
+    "safetyImpact": "Slow charging; potential thermal stress on OBC.",
+    "causes": [
+      {
+        "cause": "Degraded IGBT/SiC switches",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Dried thermal paste / coolant flow loss",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge slower than usual",
+      "OBC hot to touch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify coolant flow",
+        "instruction": "Confirm the HV coolant pump runs during charging and the OBC loop is bled.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "If thermal management is OK, replace the charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D00",
+      "P0D01"
+    ],
+    "faq": [
+      {
+        "q": "Software fix?",
+        "a": "Some OEMs issue OBC firmware updates that improve performance; check for TSBs first."
+      }
+    ]
+  },
+  {
+    "code": "P0D03",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Out of Range",
+    "shortDescription": "OBC sees AC input voltage above or below expected range.",
+    "fullDescription": "P0D03 indicates the OBC measured AC line voltage outside its acceptable window (typically 85-265 VAC for global chargers). Causes include bad EVSE, poor outlet wiring, undervoltage events, or shared circuits with heavy loads.\n\nThis code rarely indicates an OBC failure; investigate the supply side first.",
+    "severity": "medium",
+    "safetyImpact": "Charging stops. No mobility loss for hybrids.",
+    "causes": [
+      {
+        "cause": "Low/high AC supply voltage",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Faulty EVSE",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "OBC input sense circuit fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL during charging",
+      "Charging stops mid-session",
+      "EVSE error code"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure outlet voltage",
+        "instruction": "Verify 120V/240V at the outlet under load with a DMM.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Try alternate circuit",
+        "instruction": "Plug into a different breaker known to be in good condition.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace EVSE",
+        "instruction": "If supply is OK, swap the charging cable.",
+        "tools": [],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0D04",
+      "P0D08"
+    ],
+    "faq": [
+      {
+        "q": "Generator OK to charge?",
+        "a": "Only with a clean sine-wave inverter generator and proper grounding."
+      }
+    ]
+  },
+  {
+    "code": "P0D04",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Sensor Circuit",
+    "shortDescription": "AC input voltage sensor circuit fault.",
+    "fullDescription": "P0D04 sets when the OBC's internal AC input voltage sense circuit fails plausibility checks (e.g., reads 0 V while current is flowing, or reads non-zero with no AC connected). Indicates an internal sensor or analog front-end fault.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "OBC internal sense circuit fault",
+        "likelihood": "high"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charging will not initiate"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify with second EVSE",
+        "instruction": "Confirm fault is OBC-side by trying a known good EVSE.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Sense circuit is internal and not field-serviceable.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D03"
+    ],
+    "faq": [
+      {
+        "q": "Reset by disconnecting battery?",
+        "a": "12V reset may temporarily clear but code returns once charging is attempted."
+      }
+    ]
+  },
+  {
+    "code": "P0D05",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Sensor Circuit Low",
+    "shortDescription": "AC input voltage sensor reads abnormally low.",
+    "fullDescription": "P0D05 indicates the input voltage sense circuit is reading a value lower than physically possible given charging activity. Usually a shorted sensing resistor or open trace on the OBC analog board.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "Shorted sense resistor in OBC",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open analog trace",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm fault",
+        "instruction": "Read live data; expected value is 0V before plug-in, line voltage during charging.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Internal repair impractical.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D04",
+      "P0D06"
+    ],
+    "faq": [
+      {
+        "q": "Software calibration?",
+        "a": "No; this is a hardware sensor failure."
+      }
+    ]
+  },
+  {
+    "code": "P0D06",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Sensor Circuit High",
+    "shortDescription": "AC input voltage sensor reads abnormally high.",
+    "fullDescription": "P0D06 sets when the input voltage sensing reports a value above the physically reasonable maximum. Often indicates a shorted reference rail or sensor IC failure inside the OBC.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "Sensor IC failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open ground reference",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging",
+      "Charge fault on dash"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm with scan tool",
+        "instruction": "Compare measured input voltage in live data versus actual outlet voltage.",
+        "tools": [
+          "DMM",
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Replace charger; sensor is internal.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D04",
+      "P0D05"
+    ],
+    "faq": [
+      {
+        "q": "Affect 12V system?",
+        "a": "No; isolated to OBC analog front-end."
+      }
+    ]
+  },
+  {
+    "code": "P0D07",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Sensor Circuit Intermittent",
+    "shortDescription": "Intermittent fault in AC input voltage sensing.",
+    "fullDescription": "P0D07 is set on intermittent dropouts of the input voltage sense signal. Usually due to cold-solder joints, marginal sensor IC, or vibration-induced contact issues inside the OBC.",
+    "severity": "low",
+    "safetyImpact": "Occasional charge interruptions.",
+    "causes": [
+      {
+        "cause": "Cold-solder joint inside OBC",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Marginal sensor IC",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Occasional MIL",
+      "Charge sessions occasionally fail"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Capture freeze frame",
+        "instruction": "Note ambient temperature and SOC at fault.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Intermittent OBC analog faults are not field-serviceable.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D04"
+    ],
+    "faq": [
+      {
+        "q": "TSB available?",
+        "a": "Several OEMs have TSBs for early OBC PCBs; check by VIN."
+      }
+    ]
+  },
+  {
+    "code": "P0D08",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Above Maximum",
+    "shortDescription": "AC line voltage exceeds OBC safe maximum.",
+    "fullDescription": "P0D08 sets when measured AC supply voltage is above the OBC's safe operating maximum (typically 265 VAC). Most common cause is mis-wired 240V outlet wired with two hots from different phases of a 480V supply, or a generator producing overvoltage.\n\nDo not continue to charge until the supply is corrected; sustained overvoltage can damage the OBC.",
+    "severity": "high",
+    "safetyImpact": "Risk of OBC damage and fire if uncorrected.",
+    "causes": [
+      {
+        "cause": "Mis-wired EVSE outlet",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Overvoltage on grid",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charging stops immediately on plug-in",
+      "EVSE shows fault"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure outlet voltage",
+        "instruction": "Confirm L1-L2 is ~240 VAC and L1-N / L2-N are ~120 VAC.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Have electrician correct wiring",
+        "instruction": "Outlet must be on a proper single-phase 240V circuit.",
+        "tools": [],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": [
+      "P0D03"
+    ],
+    "faq": [
+      {
+        "q": "Did it damage my OBC?",
+        "a": "Possibly. Have OBC checked if charging does not resume after wiring fix."
+      }
+    ]
+  },
+  {
+    "code": "P0D09",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Voltage Below Minimum",
+    "shortDescription": "AC line voltage below OBC operational minimum.",
+    "fullDescription": "P0D09 indicates measured AC supply voltage is below the minimum required by the OBC (often 85 VAC). Causes include long extension cords, brownouts, undersized circuits, and shared loads.",
+    "severity": "low",
+    "safetyImpact": "Charging will not start; no mobility loss for hybrids.",
+    "causes": [
+      {
+        "cause": "Voltage drop on long extension cord",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Brownout or weak grid",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Shared circuit overload",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charging will not start",
+      "EVSE undervoltage error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Eliminate extension cord",
+        "instruction": "Plug Level 1 EVSE directly into a wall outlet.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Reduce shared loads",
+        "instruction": "Ensure no other appliances on the same circuit.",
+        "tools": [],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 0,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10-30 minutes",
+    "relatedCodes": [
+      "P0D03"
+    ],
+    "faq": [
+      {
+        "q": "Use a voltage booster?",
+        "a": "Not recommended; install a proper circuit instead."
+      }
+    ]
+  },
+  {
+    "code": "P0D0A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Current Out of Range",
+    "shortDescription": "AC input current outside expected envelope.",
+    "fullDescription": "P0D0A sets when the OBC measures input current that does not match commanded current (e.g., commands 16 A but measures 8 A or 25 A). Indicates either an internal current-sensor fault or an unexpected supply impedance.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "OBC current sensor fault",
+        "likelihood": "high"
+      },
+      {
+        "cause": "EVSE reporting incorrect pilot duty cycle",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge slower than commanded or fault"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try alternate EVSE",
+        "instruction": "Rule out EVSE pilot signal issues.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "If problem follows the car, replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D0B"
+    ],
+    "faq": [
+      {
+        "q": "Pilot signal issue?",
+        "a": "An oscilloscope on the J1772 pilot can confirm EVSE behavior."
+      }
+    ]
+  },
+  {
+    "code": "P0D0B",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Input Current Sensor Circuit",
+    "shortDescription": "AC input current sensor circuit fault.",
+    "fullDescription": "P0D0B is set on circuit-level fault in the input current sensor (usually a Hall-effect device on the AC input lines). The OBC cannot measure or limit input current safely without it and refuses to charge.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled (safety inhibit).",
+    "causes": [
+      {
+        "cause": "Hall sensor failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor wiring open/short",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read live data",
+        "instruction": "Verify input current PID is implausible (stuck at 0 or rail).",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Sensor is internal to charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D0A"
+    ],
+    "faq": [
+      {
+        "q": "Any way to defeat the inhibit?",
+        "a": "No, and you should not; uncontrolled current can start a fire."
+      }
+    ]
+  },
+  {
+    "code": "P0D10",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Output Voltage Out of Range",
+    "shortDescription": "OBC HV output voltage outside expected window.",
+    "fullDescription": "P0D10 sets when DC output voltage from the OBC is outside the expected range relative to commanded value and HV battery voltage. Could be OBC power-stage fault or HV contactor / battery-side issue.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled. May indicate HV pack fault.",
+    "causes": [
+      {
+        "cause": "OBC output stage failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open HV contactor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "HV pack fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Service Electric System message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify contactor closure",
+        "instruction": "Confirm HV contactors close on charge request.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Measure HV bus",
+        "instruction": "With proper PPE, verify pack voltage matches BECM report.",
+        "tools": [
+          "Class 0 gloves",
+          "HV-rated DMM"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 3,
+        "title": "Replace OBC",
+        "instruction": "If pack and contactors are healthy, replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-6 hours",
+    "relatedCodes": [
+      "P0D11",
+      "P0D12"
+    ],
+    "faq": [
+      {
+        "q": "Can I drive?",
+        "a": "PHEVs can run on engine; BEVs cannot recharge."
+      }
+    ]
+  },
+  {
+    "code": "P0D11",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Output Voltage Sensor Circuit Low",
+    "shortDescription": "OBC output voltage sensor reads abnormally low.",
+    "fullDescription": "P0D11 sets when the DC output voltage sense circuit reports an implausibly low value. Indicates internal sensor or analog front-end fault.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "Output sense resistor short",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sensor IC failure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm fault",
+        "instruction": "Compare OBC output PID to BECM voltage at charge initiation.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Internal sensor; replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D10",
+      "P0D12"
+    ],
+    "faq": [
+      {
+        "q": "Pack damage?",
+        "a": "Unlikely; OBC inhibits before output reaches pack."
+      }
+    ]
+  },
+  {
+    "code": "P0D12",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Output Voltage Sensor Circuit High",
+    "shortDescription": "OBC output voltage sensor reads abnormally high.",
+    "fullDescription": "P0D12 sets on implausibly high readings from the DC output voltage sensor. Either a broken reference path or a true overvoltage event detected. Either way, the OBC inhibits charging until cleared.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "Sensor IC failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "True overvoltage event (regulator fault)",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect freeze frame",
+        "instruction": "If overvoltage was real, BECM should show corresponding event.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Replace charger and verify with controlled charge cycle.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D10",
+      "P0D11"
+    ],
+    "faq": [
+      {
+        "q": "Will pack be replaced?",
+        "a": "Only if BECM logged actual cell overvoltage events."
+      }
+    ]
+  },
+  {
+    "code": "P0D14",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Output Current Out of Range",
+    "shortDescription": "OBC DC output current outside expected envelope.",
+    "fullDescription": "P0D14 indicates OBC output current does not match commanded value. Can result from OBC power-stage limitation, thermal derating not reported, or output sensor drift.",
+    "severity": "medium",
+    "safetyImpact": "Slow charging or charge inhibit.",
+    "causes": [
+      {
+        "cause": "OBC power-stage degradation",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Output current sensor drift",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge slower than expected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify thermal headroom",
+        "instruction": "Confirm OBC coolant flow and ambient temps.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "If thermal management is OK, replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D15"
+    ],
+    "faq": [
+      {
+        "q": "Firmware update?",
+        "a": "Some OEMs update OBC current limits via reflash; check TSBs."
+      }
+    ]
+  },
+  {
+    "code": "P0D15",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Output Current Sensor Circuit",
+    "shortDescription": "DC output current sensor circuit fault.",
+    "fullDescription": "P0D15 sets when the OBC's DC output current sensor fails plausibility checks. Without this measurement, the OBC cannot regulate charging current safely.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "Hall sensor failure",
+        "likelihood": "high"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read PIDs",
+        "instruction": "Confirm output current is stuck or implausible.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D14"
+    ],
+    "faq": [
+      {
+        "q": "Pack-side current sensor too?",
+        "a": "BECM has its own; both must agree for charging to proceed."
+      }
+    ]
+  },
+  {
+    "code": "P0D20",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Internal Temperature Sensor Circuit",
+    "shortDescription": "OBC internal temperature sensor fault.",
+    "fullDescription": "P0D20 sets when the OBC's internal NTC temperature sensor (typically mounted to the heatsink) reports out-of-range or open/short values. Without this signal, the OBC cannot thermal-derate and inhibits charging as a safety measure.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "NTC open or shorted",
+        "likelihood": "high"
+      },
+      {
+        "cause": "PCB trace fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging",
+      "Charger overtemp warning false-positive"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check temp PID",
+        "instruction": "Compare OBC reported temp to ambient at cold start.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Internal sensor.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D21"
+    ],
+    "faq": [
+      {
+        "q": "Will it overheat?",
+        "a": "OBC inhibits charging precisely to prevent that."
+      }
+    ]
+  },
+  {
+    "code": "P0D21",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Over Temperature",
+    "shortDescription": "OBC heatsink temperature exceeded thermal limit.",
+    "fullDescription": "P0D21 sets when OBC heatsink temperature exceeds the safe limit, often during sustained Level 2 charging in hot conditions or with degraded cooling. The OBC will derate or stop charging until temperature drops.",
+    "severity": "medium",
+    "safetyImpact": "Charging derated or stopped.",
+    "causes": [
+      {
+        "cause": "HV coolant pump not running",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Coolant low or air-locked",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Clogged radiator",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charging slows or stops in hot weather",
+      "Coolant fan running aggressively"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check coolant level",
+        "instruction": "Verify HV coolant reservoir is at MAX.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Bleed cooling loop",
+        "instruction": "Run dealer-procedure bleed; air pockets are common.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test pump and radiator",
+        "instruction": "Verify pump runs on charge and radiator is unobstructed.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 100
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": [
+      "P0D20"
+    ],
+    "faq": [
+      {
+        "q": "Reduce to Level 1?",
+        "a": "Level 1 charging produces less heat and may complete without faulting."
+      }
+    ]
+  },
+  {
+    "code": "P0D22",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Cooling System Performance",
+    "shortDescription": "OBC cooling system performance below threshold.",
+    "fullDescription": "P0D22 sets when expected coolant temperature drop across the OBC is not observed during charging. Indicates pump weak, low flow, or temperature sensor mismatch.",
+    "severity": "medium",
+    "safetyImpact": "OBC may overheat under load.",
+    "causes": [
+      {
+        "cause": "Weak HV coolant pump",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Restricted coolant loop",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Slow charging",
+      "Eventual P0D21"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pump test",
+        "instruction": "Command pump on with bidirectional control; verify flow.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Replace pump if weak",
+        "instruction": "Replace HV coolant pump and bleed system.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-150 minutes",
+    "relatedCodes": [
+      "P0D21"
+    ],
+    "faq": [
+      {
+        "q": "Same coolant as engine?",
+        "a": "Usually a separate low-conductivity loop; do not mix."
+      }
+    ]
+  },
+  {
+    "code": "P0D24",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Communication Lost",
+    "shortDescription": "Communication with OBC lost on HS-CAN.",
+    "fullDescription": "P0D24 sets when other modules can no longer communicate with the OBC over the high-voltage / hybrid CAN bus. Often a wake-up issue, lost 12V supply, or terminator fault rather than an OBC failure.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "OBC 12V supply lost",
+        "likelihood": "high"
+      },
+      {
+        "cause": "CAN wiring open",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "OBC internal failure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "U-codes set",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check 12V to OBC",
+        "instruction": "Verify fuse and 12V supply at OBC connector.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "CAN integrity test",
+        "instruction": "Measure 60 ohms between CAN H/L with key off.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace OBC if isolated",
+        "instruction": "If supply and bus are healthy, replace charger.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 50
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "60-300 minutes",
+    "relatedCodes": [
+      "U0293"
+    ],
+    "faq": [
+      {
+        "q": "Often paired with U-codes?",
+        "a": "Yes, U0293 typically accompanies P0D24."
+      }
+    ]
+  },
+  {
+    "code": "P0D28",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Charge Port Lock Actuator Circuit",
+    "shortDescription": "Charge port lock actuator circuit fault.",
+    "fullDescription": "P0D28 sets when the charge-port locking solenoid circuit is open or shorted. Without functioning lock, the OBC refuses to charge to prevent unplugging under load (which could cause arcing).",
+    "severity": "medium",
+    "safetyImpact": "Charging inhibited.",
+    "causes": [
+      {
+        "cause": "Lock actuator failure",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Wiring to actuator open/short",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Plug not retained in port",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test actuator",
+        "instruction": "Bidirectional command lock/unlock with scan tool.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect harness",
+        "instruction": "Check for damage near charge port.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace actuator",
+        "instruction": "Often integrated with charge-port assembly.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": [
+      "P0D29"
+    ],
+    "faq": [
+      {
+        "q": "Manual release?",
+        "a": "Most EVs have a mechanical emergency release in the trunk or near port."
+      }
+    ]
+  },
+  {
+    "code": "P0D29",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Charge Port Lock Actuator Position Implausible",
+    "shortDescription": "Charge port lock did not reach commanded position.",
+    "fullDescription": "P0D29 sets when the lock actuator is commanded to engage or disengage but the position feedback sensor disagrees. Often a debris-jammed lock pin or a worn return spring.",
+    "severity": "low",
+    "safetyImpact": "Charging may be inhibited.",
+    "causes": [
+      {
+        "cause": "Debris in lock mechanism",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Worn lock spring",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charge port lock cycling repeatedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clean charge port",
+        "instruction": "Remove debris; inspect lock pin freedom.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Replace charge port assembly",
+        "instruction": "If pin is worn, replace the assembly.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 350
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-120 minutes",
+    "relatedCodes": [
+      "P0D28"
+    ],
+    "faq": [
+      {
+        "q": "Can ice cause this?",
+        "a": "Yes; warm the port and retry before replacing parts."
+      }
+    ]
+  },
+  {
+    "code": "P0D2A",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Charge Port Pilot (Control Pilot) Circuit",
+    "shortDescription": "J1772/CCS Control Pilot signal fault.",
+    "fullDescription": "P0D2A sets when the OBC cannot properly read the EVSE Control Pilot signal (a 1 kHz PWM on pin 5 of J1772 or analogous on CCS/Type 2). Causes include damaged port pin, water ingress, or OBC pilot interface failure.",
+    "severity": "medium",
+    "safetyImpact": "Charging will not initiate.",
+    "causes": [
+      {
+        "cause": "Charge port pin damage/corrosion",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Water in connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "OBC pilot interface failure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging",
+      "EVSE indicates car not detected"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect port pins",
+        "instruction": "Look for bent, burned, or corroded pins.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Test pilot with adapter",
+        "instruction": "Use J1772 break-out tool or scope to confirm pilot signal at port.",
+        "tools": [
+          "Oscilloscope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace port or OBC",
+        "instruction": "Most often the port assembly; OBC last resort.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "60-240 minutes",
+    "relatedCodes": [
+      "P0D2B"
+    ],
+    "faq": [
+      {
+        "q": "Adapter to test?",
+        "a": "J1772 pilot break-out testers are widely available."
+      }
+    ]
+  },
+  {
+    "code": "P0D2B",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Charge Port Proximity Pilot Circuit",
+    "shortDescription": "J1772/CCS Proximity Pilot signal fault.",
+    "fullDescription": "P0D2B sets when the proximity pilot signal (used by the car to detect that a connector is plugged in and read connector current capacity) is missing or out of range. The car will not enable charging without proximity confirmation.",
+    "severity": "medium",
+    "safetyImpact": "Charging will not initiate.",
+    "causes": [
+      {
+        "cause": "Bent/corroded proximity pin",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged EVSE plug",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Car does not detect plug",
+      "No charging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Try second plug",
+        "instruction": "Confirm fault is on the car side using a different EVSE.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect proximity pin",
+        "instruction": "Look for bent or burned proximity pin in port.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Replace charge port",
+        "instruction": "Replace assembly if pin is damaged.",
+        "tools": [],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "60-180 minutes",
+    "relatedCodes": [
+      "P0D2A"
+    ],
+    "faq": [
+      {
+        "q": "Tesla NACS?",
+        "a": "Tesla cars use proprietary signaling; refer to NACS-specific equivalents."
+      }
+    ]
+  },
+  {
+    "code": "P0D30",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV DC Fast Charge Contactor Stuck Closed",
+    "shortDescription": "DCFC contactor welded or stuck closed.",
+    "fullDescription": "P0D30 sets when the DC fast-charge contactor is commanded open but voltage feedback shows it remains closed. This is a serious safety condition because the HV bus could remain energized through the charge port.\n\nVehicle will refuse to drive or charge until the contactor is replaced.",
+    "severity": "high",
+    "safetyImpact": "Severe. HV exposure risk if charge port were unlocked. Requires immediate professional service.",
+    "causes": [
+      {
+        "cause": "Contactor contact welded from inrush",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Contactor coil shorted closed",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Service Electric System message",
+      "Car refuses ready mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Tow to dealer",
+        "instruction": "Do not attempt DIY; HV exposure risk.",
+        "tools": [],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Replace contactor and inspect bus",
+        "instruction": "Often requires PDU/junction-box service.",
+        "tools": [
+          "OEM scan tool",
+          "Class 0 gloves"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 1000,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "3-8 hours",
+    "relatedCodes": [
+      "P0D31",
+      "P0AC0"
+    ],
+    "faq": [
+      {
+        "q": "Why so dangerous?",
+        "a": "A stuck contactor leaves HV present where it should not be."
+      }
+    ]
+  },
+  {
+    "code": "P0D31",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV DC Fast Charge Contactor Stuck Open",
+    "shortDescription": "DCFC contactor will not close on command.",
+    "fullDescription": "P0D31 sets when the DC fast-charge contactor is commanded closed but feedback shows it remains open. The car will refuse DC fast charging; AC charging via OBC may still work.",
+    "severity": "medium",
+    "safetyImpact": "DC fast charging unavailable.",
+    "causes": [
+      {
+        "cause": "Contactor coil open",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Driver circuit failure in BECM/PDU",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "DCFC fails immediately on plug-in"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check coil resistance",
+        "instruction": "Per OEM spec at the BECM connector.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace contactor",
+        "instruction": "Inside HV junction box; HV-safe procedure.",
+        "tools": [
+          "Class 0 gloves"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 3500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "3-6 hours",
+    "relatedCodes": [
+      "P0D30"
+    ],
+    "faq": [
+      {
+        "q": "Use AC instead?",
+        "a": "Yes if you have a Level 2 EVSE; trip planning will need adjustment."
+      }
+    ]
+  },
+  {
+    "code": "P0D40",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Isolation Fault",
+    "shortDescription": "OBC detects loss of HV-to-chassis isolation.",
+    "fullDescription": "P0D40 sets when the OBC's isolation monitor detects a leakage path between the HV bus and chassis ground above the safety threshold (typically 100-500 ohm/V). Possible causes range from moisture ingress to component-level insulation failure.\n\nThis is a safety-critical fault; the OBC will inhibit charging and may trigger ready-mode inhibit.",
+    "severity": "high",
+    "safetyImpact": "Severe. Possible HV exposure to chassis. Service immediately.",
+    "causes": [
+      {
+        "cause": "Moisture in OBC or HV harness",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged HV cable insulation",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failing component insulation (motor, AC compressor)",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Service Electric System message",
+      "Charging disabled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read isolation resistance",
+        "instruction": "Use OEM scan tool to read live isolation values from BECM.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Sectionalize HV components",
+        "instruction": "Isolate each HV component to find leaking source.",
+        "tools": [
+          "Megger",
+          "Class 0 gloves"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 3,
+        "title": "Replace faulty component",
+        "instruction": "Often AC compressor, OBC, or harness.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 500,
+        "max": 5000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "3-10 hours",
+    "relatedCodes": [
+      "P0AA6",
+      "P0D41"
+    ],
+    "faq": [
+      {
+        "q": "Drive home first?",
+        "a": "Do not. Tow to a qualified hybrid service shop."
+      }
+    ]
+  },
+  {
+    "code": "P0D41",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Isolation Sensor Circuit",
+    "shortDescription": "Isolation sensor circuit fault inside OBC.",
+    "fullDescription": "P0D41 sets when the isolation monitoring circuit itself returns implausible values. The OBC cannot trust isolation measurements and conservatively inhibits charging.",
+    "severity": "high",
+    "safetyImpact": "Charging disabled until verified.",
+    "causes": [
+      {
+        "cause": "Isolation sense circuit fault",
+        "likelihood": "high"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "Charging disabled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze frame",
+        "instruction": "Confirm sensor reading is implausible.",
+        "tools": [
+          "Hybrid scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Replace OBC",
+        "instruction": "Sensor is internal.",
+        "tools": [
+          "OEM scan tool"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 800,
+        "max": 4000
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0D40"
+    ],
+    "faq": [
+      {
+        "q": "Difference from P0D40?",
+        "a": "P0D40 is real leakage; P0D41 is the sensor itself failing."
+      }
+    ]
+  },
+  {
+    "code": "P0D50",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Hybrid Charging System",
+    "title": "Hybrid/EV Battery Charger Calibration Not Programmed",
+    "shortDescription": "OBC calibration data missing or invalid.",
+    "fullDescription": "P0D50 sets when the OBC powers up and finds no valid calibration in EEPROM. Common after replacement without programming, after a failed reflash, or after EEPROM corruption.\n\nCar will refuse to charge until OBC is programmed with VIN-specific calibration.",
+    "severity": "medium",
+    "safetyImpact": "Charging disabled.",
+    "causes": [
+      {
+        "cause": "OBC replaced but not programmed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed reflash",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "EEPROM corruption",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL",
+      "No charging",
+      "OBC reports as not configured"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Program OBC",
+        "instruction": "Use OEM scan tool with current calibration file matching VIN.",
+        "tools": [
+          "OEM scan tool",
+          "Subscription"
+        ],
+        "difficulty": "professional"
+      },
+      {
+        "step": 2,
+        "title": "Re-attempt reflash",
+        "instruction": "If reflash failed, retry with stable 12V and ignition on.",
+        "tools": [
+          "OEM scan tool",
+          "Battery support"
+        ],
+        "difficulty": "professional"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "60-120 minutes",
+    "relatedCodes": [
+      "P0D00"
+    ],
+    "faq": [
+      {
+        "q": "Aftermarket scan tool?",
+        "a": "OBC programming usually requires OEM tooling."
+      }
+    ]
+  }
+]
