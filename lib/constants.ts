@@ -400,6 +400,16 @@ export const APPLIANCE_BRANDS = [
   { name: "Chamberlain", slug: "chamberlain", country: "USA" },
   { name: "LiftMaster", slug: "liftmaster", country: "USA" },
   { name: "Genie", slug: "genie", country: "USA" },
+  // ── More European/Premium ──
+  { name: "Jenn-Air", slug: "jenn-air", country: "USA" },
+  { name: "Dacor", slug: "dacor", country: "USA" },
+  { name: "Gaggenau", slug: "gaggenau", country: "Germany" },
+  { name: "Fisher & Paykel", slug: "fisher-paykel", country: "New Zealand" },
+  { name: "Hotpoint", slug: "hotpoint", country: "UK" },
+  { name: "Indesit", slug: "indesit", country: "Italy" },
+  { name: "Beko", slug: "beko", country: "Turkey" },
+  { name: "Asko", slug: "asko", country: "Sweden" },
+  { name: "Zanussi", slug: "zanussi", country: "Italy" },
 ] as const;
 
 export const APPLIANCE_DEVICE_TYPES: Record<
