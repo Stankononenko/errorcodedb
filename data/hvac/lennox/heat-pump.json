@@ -2887,5 +2887,842 @@
         "a": "If the unit is not heating or cooling at all, treat it as urgent. If it self-recovers, schedule service soon to prevent recurrence."
       }
     ]
+  },
+  {
+    "id": "lennox-heat-pump-e500",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E500",
+    "displayCode": "E500",
+    "isBlinkCode": false,
+    "title": "E500 \u2014 Compressor RPS Sensor Open",
+    "shortDescription": "Compressor refrigerant pressure sensor reads outside valid range.",
+    "fullDescription": "Lennox iComfort communicating heat pumps use a 0-680 psi pressure transducer on the suction side. E500 fires when the signal is below 0.4V or above 4.6V \u2014 implying open circuit or short.",
+    "causes": [
+      {
+        "cause": "Sensor cable unplugged at compressor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed pressure transducer",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Damaged Schrader port at transducer",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No modulation",
+      "iComfort shows '!RPS sensor' alert",
+      "Reverts to single-stage operation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat plug",
+        "instruction": "Three-wire Molex at compressor \u2014 push until clicks.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Check 5VDC supply",
+        "instruction": "Red wire should read 5VDC to common with breaker on.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace transducer",
+        "instruction": "Lennox 100269-04; install with EPA refrigerant recovery if Schrader does not seal.",
+        "tools": [
+          "adjustable wrench"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 35,
+        "max": 80
+      },
+      "professional": {
+        "min": 240,
+        "max": 480
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 min",
+    "whenToCallPro": "Refrigerant recovery required for transducer replacement.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will unit still cool?",
+        "a": "Yes \u2014 runs in single-stage backup until repaired."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e600",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E600",
+    "displayCode": "E600",
+    "isBlinkCode": false,
+    "title": "E600 \u2014 Demand-Defrost Algorithm Failure",
+    "shortDescription": "Defrost cycle initiated but coil did not clear within max time.",
+    "fullDescription": "E600 occurs when Lennox demand-defrost runs for max time (10 min) and outdoor coil sensor never reached 50F termination temperature. Likely cause: low charge, failed reversing valve, or blocked coil.",
+    "causes": [
+      {
+        "cause": "Low refrigerant charge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Reversing valve not shifting",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Severely iced/blocked outdoor coil",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Coil sensor not strapped",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Outdoor coil remains iced after defrost",
+      "Auxiliary heat runs constantly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Manual defrost",
+        "instruction": "Shut off, let coil thaw 1 hour, restart and observe.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Reversing valve test",
+        "instruction": "Listen for 'whoosh' on defrost initiation \u2014 silence = stuck valve.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Charge verification",
+        "instruction": "Tech to weigh charge against nameplate using subcool method.",
+        "tools": [
+          "scale",
+          "manifold"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Subcool/superheat measurement requires EPA certification.",
+    "relatedCodes": [
+      "lennox-heat-pump-e200"
+    ],
+    "faq": [
+      {
+        "q": "Should I run emergency heat?",
+        "a": "Yes \u2014 until repaired, set to EM HEAT to avoid further coil damage."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e601",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E601",
+    "displayCode": "E601",
+    "isBlinkCode": false,
+    "title": "E601 \u2014 Reversing Valve Sense Mismatch",
+    "shortDescription": "Liquid and suction sensor temperatures inconsistent with commanded mode.",
+    "fullDescription": "E601 means after reversing valve command, the sensor pair did not swap their temperature pattern. Commonly indicates valve slug stuck mid-position or sensors wired to wrong line.",
+    "causes": [
+      {
+        "cause": "Stuck reversing valve slug",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Liquid/suction sensors swapped",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed reversing valve solenoid",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cooling produces heat (or vice versa)",
+      "Lukewarm output"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify wire colors",
+        "instruction": "Liquid sensor (typically yellow) on liquid line; suction (blue) on suction.",
+        "tools": [
+          "flashlight"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Tap valve body",
+        "instruction": "During call, lightly strike valve with mallet to free slug.",
+        "tools": [
+          "mallet"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace valve",
+        "instruction": "Brazing required.",
+        "tools": [
+          "torch"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 450,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Reversing valve replacement requires brazing and refrigerant recovery.",
+    "relatedCodes": [
+      "lennox-heat-pump-e500"
+    ],
+    "faq": [
+      {
+        "q": "How long does the valve last?",
+        "a": "15-20 years typical. Failures before that often due to debris in system."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e624",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E624",
+    "displayCode": "E624",
+    "isBlinkCode": false,
+    "title": "E624 \u2014 Compressor Hard Lockout",
+    "shortDescription": "Three identical compressor faults within 1 hour \u2014 locked out.",
+    "fullDescription": "Lennox iComfort locks out the compressor after 3 strikes of the same fault (e.g., low pressure, high pressure) within 60 minutes. Manual reset at thermostat is required.",
+    "causes": [
+      {
+        "cause": "Underlying cause not resolved",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wiring intermittent at compressor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cooling/heating off",
+      "iComfort shows 'System Locked' message"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify root fault",
+        "instruction": "Scroll through history on iComfort installer menu.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset",
+        "instruction": "Hold MENU > Service > Reset Lockout.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 3,
+        "title": "Address root",
+        "instruction": "Lockout returns until underlying issue fixed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 0
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 130,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "Variable",
+    "whenToCallPro": "Repeated lockouts in 24h require professional diagnosis.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I just keep resetting?",
+        "a": "No \u2014 repeated resets without diagnosis can damage compressor."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e700",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E700",
+    "displayCode": "E700",
+    "isBlinkCode": false,
+    "title": "E700 \u2014 Outdoor Fan ECM Communication Loss",
+    "shortDescription": "Communicating ECM outdoor fan motor not responding to drive board.",
+    "fullDescription": "Lennox uses ECM outdoor fans on iComfort heat pumps. E700 fires when the motor controller stops reporting RPM/torque to the main board within 5 seconds of a call.",
+    "causes": [
+      {
+        "cause": "Loose 5-pin motor harness",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed ECM module",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Bearing seizure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Outdoor fan not running",
+      "Pressure faults secondary"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat 5-pin",
+        "instruction": "Disconnect breaker, unplug and reseat motor harness.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Spin test",
+        "instruction": "By hand, motor should spin freely with no grinding.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Module replacement",
+        "instruction": "Lennox motors have replaceable ECM module - P/N varies.",
+        "tools": [
+          "torx"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 300,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-2 hr",
+    "whenToCallPro": "Module replacement requires anti-static handling.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I use a PSC fan instead?",
+        "a": "No \u2014 communicating system requires ECM with feedback."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e705",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E705",
+    "displayCode": "E705",
+    "isBlinkCode": false,
+    "title": "E705 \u2014 Outdoor Fan ECM Overtorque",
+    "shortDescription": "ECM fan reported torque exceeded limit \u2014 likely obstruction.",
+    "fullDescription": "E705 fires when the ECM outdoor fan reports torque above safe threshold for 30 seconds. Causes: ice on blade, debris (leaves) jammed in fan, or bearing damage.",
+    "causes": [
+      {
+        "cause": "Leaves/debris in fan",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Ice on blade in winter",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bearing wear",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Loud fan noise",
+      "Vibration",
+      "Fault repeats every cycle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "De-energize",
+        "instruction": "Cut breaker before any access to fan blade.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clear debris",
+        "instruction": "Open top grille; remove leaves/twigs.",
+        "tools": [
+          "gloves"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Inspect bearings",
+        "instruction": "Spin by hand - should be smooth, no wobble.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15-30 min",
+    "whenToCallPro": "If bearing wobble felt, motor replacement needed.",
+    "relatedCodes": [
+      "lennox-heat-pump-e700"
+    ],
+    "faq": [
+      {
+        "q": "Does this damage the motor?",
+        "a": "Repeated overtorque shortens bearing life - clear obstruction quickly."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e710",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E710",
+    "displayCode": "E710",
+    "isBlinkCode": false,
+    "title": "E710 \u2014 Compressor Inverter Drive Overcurrent",
+    "shortDescription": "Inverter compressor drive measured current above limit.",
+    "fullDescription": "On Lennox SL25XPV variable-capacity heat pumps, E710 is reported by the inverter drive when compressor current exceeds rated max. Causes include locked rotor, low voltage start, or refrigerant flood-back.",
+    "causes": [
+      {
+        "cause": "Compressor flooded with liquid refrigerant",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Crankcase heater open",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Compressor mechanical bind",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Compressor will not start or trips quickly",
+      "Three-strike lockout typical"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify crankcase heater",
+        "instruction": "Should be warm to touch after 24h power-on.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Allow heat soak",
+        "instruction": "Power on with compressor disabled for 8 hours, then attempt restart.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 480
+      },
+      {
+        "step": 3,
+        "title": "Drive replacement",
+        "instruction": "If trips after heat soak, drive or compressor likely damaged.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 400,
+        "max": 2200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1+ day (heat soak)",
+    "whenToCallPro": "Inverter drive replacement requires Lennox-trained tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "What is heat soak?",
+        "a": "Warming the compressor crankcase to boil off liquid refrigerant before starting."
+      }
+    ],
+    "safetyWarning": "Inverter drives store 600VDC bus voltage for several minutes after power-off."
+  },
+  {
+    "id": "lennox-heat-pump-e720",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E720",
+    "displayCode": "E720",
+    "isBlinkCode": false,
+    "title": "E720 \u2014 Outdoor Ambient Sensor Open",
+    "shortDescription": "Outdoor temperature sensor not reading.",
+    "fullDescription": "E720 means the outdoor ambient sensor (used for balance-point control with auxiliary heat) is open or shorted. The system reverts to a default 35F balance point.",
+    "causes": [
+      {
+        "cause": "Damaged sensor wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Auxiliary heat runs at higher temperatures",
+      "Increased electric bill"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Locate sensor",
+        "instruction": "Mounted on outdoor cabinet, shielded from sun.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Resistance test",
+        "instruction": "10k at 25C, ~32k at 0C.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "P/N 10R03 typical.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 35
+      },
+      "professional": {
+        "min": 140,
+        "max": 240
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "If wiring routed through inaccessible conduit.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will the system run?",
+        "a": "Yes, but with higher electric resistance heat usage."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e801",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E801",
+    "displayCode": "E801",
+    "isBlinkCode": false,
+    "title": "E801 \u2014 iComfort Communication Loss to Outdoor",
+    "shortDescription": "Indoor thermostat lost RSBus communication with outdoor unit.",
+    "fullDescription": "E801 fires when the iComfort thermostat cannot reach the outdoor unit on the 4-wire RSBus communicating cable for more than 60 seconds.",
+    "causes": [
+      {
+        "cause": "Loose connection at iHarmony / outdoor lug",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wire run too long without repeater",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed RSBus chip on outdoor board",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Comm icon shows X on iComfort",
+      "Manual control unavailable"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat both ends",
+        "instruction": "Power off both ends, reseat all 4 wires (R/i+/i-/C) at indoor and outdoor.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify polarity",
+        "instruction": "i+ to i+, i- to i- \u2014 common installation error.",
+        "tools": [
+          "voltmeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check 24V at outdoor",
+        "instruction": "R-C should show 24VAC at outdoor terminal block.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 160,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Long wire runs may need shielded cable or repeater.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I use thermostat wire for this?",
+        "a": "Lennox specifies their RSBus cable; standard 18/4 thermostat works for short runs."
+      }
+    ]
+  },
+  {
+    "id": "lennox-heat-pump-e901",
+    "brand": "Lennox",
+    "brandSlug": "lennox",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "E901",
+    "displayCode": "E901",
+    "isBlinkCode": false,
+    "title": "E901 \u2014 Defrost Sensor Drift",
+    "shortDescription": "Defrost sensor reads inconsistent values vs. ambient.",
+    "fullDescription": "E901 is a soft warning: defrost coil sensor reading is suspicious (e.g., reads warmer than ambient when unit is off). Often indicates loose strap on coil or sensor wire damage.",
+    "causes": [
+      {
+        "cause": "Sensor strap loose / fell off",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Sensor in direct sunlight",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Drifting thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Defrost cycles at wrong times",
+      "Slight efficiency loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect strap",
+        "instruction": "Sensor should be firmly clipped to a clean copper return bend on bottom of coil.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Re-strap",
+        "instruction": "Apply thermal paste, secure with metal clip; tuck wire away from sun.",
+        "tools": [
+          "thermal paste"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Replace if drifted",
+        "instruction": "If still flagging, swap thermistor.",
+        "tools": [
+          "clip"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 5,
+        "max": 20
+      },
+      "professional": {
+        "min": 120,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 min",
+    "whenToCallPro": "Repeated drift after restrapping suggests sensor failure.",
+    "relatedCodes": [
+      "lennox-heat-pump-e600"
+    ],
+    "faq": [
+      {
+        "q": "How critical is this?",
+        "a": "Soft warning \u2014 system runs, but defrost timing degrades."
+      }
+    ]
   }
 ]

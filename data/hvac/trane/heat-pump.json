@@ -1735,7 +1735,7 @@
       {
         "step": 2,
         "title": "Test Continuity",
-        "instruction": "Measure resistance — should be in 10kΩ range.",
+        "instruction": "Measure resistance \u2014 should be in 10k\u03a9 range.",
         "tools": [
           "multimeter"
         ],
@@ -1787,7 +1787,7 @@
     "isBlinkCode": false,
     "title": "Outdoor Coil Sensor Shorted",
     "shortDescription": "Outdoor coil thermistor reads short.",
-    "fullDescription": "211.10 is the shorted version of the coil sensor fault — resistance reads near zero.",
+    "fullDescription": "211.10 is the shorted version of the coil sensor fault \u2014 resistance reads near zero.",
     "causes": [
       {
         "cause": "Pinched sensor wire",
@@ -1897,7 +1897,7 @@
       {
         "step": 2,
         "title": "Replace Transducer",
-        "instruction": "Schrader-style — quick swap with minimal refrigerant loss.",
+        "instruction": "Schrader-style \u2014 quick swap with minimal refrigerant loss.",
         "tools": [
           "transducer"
         ],
@@ -1917,7 +1917,7 @@
     },
     "diyDifficulty": "professional",
     "repairTime": "30-60 minutes",
-    "whenToCallPro": "Always — Schrader removal still requires care.",
+    "whenToCallPro": "Always \u2014 Schrader removal still requires care.",
     "relatedCodes": [
       "trane-heat-pump-89-00"
     ],
@@ -1927,7 +1927,7 @@
         "a": "A few oz at most when removing Schrader-style transducers."
       }
     ],
-    "safetyWarning": "Pressurized refrigerant — eye protection mandatory."
+    "safetyWarning": "Pressurized refrigerant \u2014 eye protection mandatory."
   },
   {
     "id": "trane-heat-pump-215-00",
@@ -1940,7 +1940,7 @@
     "isBlinkCode": false,
     "title": "EXV Position Error",
     "shortDescription": "Electronic expansion valve out of step.",
-    "fullDescription": "215.00 is reported when the EXV motor steps don't track the commanded position — usually a stalled valve or driver fault.",
+    "fullDescription": "215.00 is reported when the EXV motor steps don't track the commanded position \u2014 usually a stalled valve or driver fault.",
     "causes": [
       {
         "cause": "EXV stuck on debris",
@@ -1975,7 +1975,7 @@
       {
         "step": 2,
         "title": "Test Coil",
-        "instruction": "Measure EXV coil windings (typically ~50Ω).",
+        "instruction": "Measure EXV coil windings (typically ~50\u03a9).",
         "tools": [
           "multimeter"
         ],
@@ -2006,14 +2006,14 @@
     },
     "diyDifficulty": "professional",
     "repairTime": "5 min to 4 hours",
-    "whenToCallPro": "Always — EXV replacement is a sealed-system repair.",
+    "whenToCallPro": "Always \u2014 EXV replacement is a sealed-system repair.",
     "relatedCodes": [
       "trane-heat-pump-89-00"
     ],
     "faq": [
       {
         "q": "Can it self-clear?",
-        "a": "Sometimes — power cycle re-homes the valve and resolves transient issues."
+        "a": "Sometimes \u2014 power cycle re-homes the valve and resolves transient issues."
       }
     ]
   },
@@ -2360,7 +2360,7 @@
     "faq": [
       {
         "q": "Will I have heat?",
-        "a": "Aux electric heat will engage during defrost — bills go up."
+        "a": "Aux electric heat will engage during defrost \u2014 bills go up."
       }
     ]
   },
@@ -2509,14 +2509,811 @@
     },
     "diyDifficulty": "professional",
     "repairTime": "30 min to 8 hours",
-    "whenToCallPro": "Always — mismatched systems must be matched per OEM tables.",
+    "whenToCallPro": "Always \u2014 mismatched systems must be matched per OEM tables.",
     "relatedCodes": [
       "trane-heat-pump-89-00"
     ],
     "faq": [
       {
         "q": "Can I run a mismatch?",
-        "a": "Only if Trane published a match — otherwise warranty void and efficiency suffers."
+        "a": "Only if Trane published a match \u2014 otherwise warranty void and efficiency suffers."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-130-00",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "130.00",
+    "displayCode": "130.00",
+    "isBlinkCode": false,
+    "title": "130.00 \u2014 Outdoor Fan Failure",
+    "shortDescription": "Outdoor fan motor not running during compressor call.",
+    "fullDescription": "Trane CleanEffects/XV20i diagnostic 130.00 indicates the outdoor fan ECM is not producing tach feedback within 30 seconds of compressor start. Without airflow, high-pressure trip will follow shortly.",
+    "causes": [
+      {
+        "cause": "Failed ECM motor",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose 5-pin harness",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Capacitor failure (legacy PSC variant)",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Compressor running but no fan",
+      "Quick high-pressure trip"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Confirm visually",
+        "instruction": "Open top grille, fan should spin during compressor call.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reseat motor plug",
+        "instruction": "5-pin Molex at motor.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace ECM",
+        "instruction": "Trane MOT18811.",
+        "tools": [
+          "torx"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 320,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-2 hr",
+    "whenToCallPro": "ECM replacement requires programming via service tool.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will the system run?",
+        "a": "No \u2014 compressor will trip on high pressure within 1 minute."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-131-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "131.10",
+    "displayCode": "131.10",
+    "isBlinkCode": false,
+    "title": "131.10 \u2014 Outdoor Fan Locked Rotor",
+    "shortDescription": "ECM reported locked rotor condition.",
+    "fullDescription": "Code 131.10 fires when the ECM outdoor fan attempts start but cannot turn \u2014 most often due to ice or debris in the blade path.",
+    "causes": [
+      {
+        "cause": "Ice on fan blade",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Leaves jammed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed bearing",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Fan does not start",
+      "Brief hum then silence"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power off",
+        "instruction": "Breaker off, lock out.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clear blades",
+        "instruction": "Remove debris; thaw ice with warm (not boiling) water.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Free spin test",
+        "instruction": "By hand, no resistance acceptable.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 min",
+    "whenToCallPro": "If bearings damaged, motor replacement needed.",
+    "relatedCodes": [
+      "trane-heat-pump-130-00"
+    ],
+    "faq": [
+      {
+        "q": "How does ice get on a heat pump fan?",
+        "a": "Failed defrost cycle - water from melt re-froze. Address defrost issue too."
+      }
+    ],
+    "safetyWarning": "Cut power before clearing \u2014 fan may suddenly free and start."
+  },
+  {
+    "id": "trane-heat-pump-180-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "180.10",
+    "displayCode": "180.10",
+    "isBlinkCode": false,
+    "title": "180.10 \u2014 Compressor Discharge Temperature High",
+    "shortDescription": "Compressor discharge thermistor exceeded 250F.",
+    "fullDescription": "180.10 protects the compressor: discharge gas temp above 250F indicates low charge, dirty filter, or failed TXV. Compressor stops until temp drops below 200F.",
+    "causes": [
+      {
+        "cause": "Refrigerant undercharge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed TXV",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Restricted indoor airflow",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Short cycling",
+      "Hot smell from outdoor unit",
+      "Reduced capacity"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Filter check",
+        "instruction": "Replace; verify all registers open.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Subcool measurement",
+        "instruction": "Tech verify charge per nameplate.",
+        "tools": [
+          "manifold"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "TXV diagnosis",
+        "instruction": "If subcool normal but superheat high, TXV stuck closed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 250,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Refrigerant work requires EPA certification.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I add refrigerant?",
+        "a": "Only EPA-licensed techs may handle refrigerants."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-198-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "198.10",
+    "displayCode": "198.10",
+    "isBlinkCode": false,
+    "title": "198.10 \u2014 Compressor Crankcase Heater Open",
+    "shortDescription": "Crankcase heater current draw zero when expected.",
+    "fullDescription": "Trane variable-speed XV20i monitors crankcase heater current. 198.10 indicates open heater circuit \u2014 risk of compressor flood-back on next cold start.",
+    "causes": [
+      {
+        "cause": "Burnt heater element",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broken heater wire",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed relay on board",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Cold start failures",
+      "Inverter overcurrent (E710)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Continuity test",
+        "instruction": "Heater should ohm 50-200 ohms.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Replace heater",
+        "instruction": "Belly band heater wraps compressor.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Verify relay",
+        "instruction": "If new heater also doesn't draw, relay on board failed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 90
+      },
+      "professional": {
+        "min": 200,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hr",
+    "whenToCallPro": "Relay failures require board replacement.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why does this matter?",
+        "a": "Without crankcase heat, refrigerant collects in compressor sump as liquid - damages on next start."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-212-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "212.10",
+    "displayCode": "212.10",
+    "isBlinkCode": false,
+    "title": "212.10 \u2014 Liquid Line Solenoid Valve Failure",
+    "shortDescription": "Solenoid not energizing or stuck.",
+    "fullDescription": "On Trane heat pumps with liquid-line shutoff solenoid, 212.10 means solenoid commanded but coil current incorrect. Could be open coil, failed driver, or stuck plunger.",
+    "causes": [
+      {
+        "cause": "Open solenoid coil",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Stuck plunger (debris)",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Compressor pumps down repeatedly",
+      "Long start delays"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Coil resistance",
+        "instruction": "Should read 200-400 ohms across coil.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Replace coil",
+        "instruction": "Slides off stem - inexpensive.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Valve body service",
+        "instruction": "If stuck, recovery + replacement needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 35,
+        "max": 80
+      },
+      "professional": {
+        "min": 250,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Valve body replacement requires brazing.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Do all heat pumps have this?",
+        "a": "No - only systems with pump-down or dual-fuel hybrid setups."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-260-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "260.10",
+    "displayCode": "260.10",
+    "isBlinkCode": false,
+    "title": "260.10 \u2014 Charge Loss Detected (Algorithm)",
+    "shortDescription": "Performance algorithm detected charge below 80% of nameplate.",
+    "fullDescription": "Trane CommunicaTRANE units calculate charge from delta-T, pressure, and current readings. 260.10 fires when sustained data suggests low charge before pressure switches trip.",
+    "causes": [
+      {
+        "cause": "Slow refrigerant leak",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Sensor calibration drift",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Long runtime",
+      "Reduced capacity",
+      "Higher utility bill"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Visual inspection",
+        "instruction": "Check Schraders, service ports, evap connections for oil.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Electronic leak detection",
+        "instruction": "Tech to sweep system.",
+        "tools": [
+          "leak detector"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Repair and recharge",
+        "instruction": "Per nameplate.",
+        "tools": [
+          "scale"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 350,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "2-4 hr",
+    "whenToCallPro": "Charge work always requires certified tech.",
+    "relatedCodes": [
+      "trane-heat-pump-180-10"
+    ],
+    "faq": [
+      {
+        "q": "How quickly will it fail completely?",
+        "a": "Depends on leak rate - days to months."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-310-00",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "310.00",
+    "displayCode": "310.00",
+    "isBlinkCode": false,
+    "title": "310.00 \u2014 Outdoor Coil Sensor Drift",
+    "shortDescription": "Outdoor coil sensor reading drifts vs. ambient.",
+    "fullDescription": "310.00 is a soft fault \u2014 outdoor coil sensor reading inconsistent with ambient. Most often a strap that came loose or sensor in direct sunlight.",
+    "causes": [
+      {
+        "cause": "Sensor strap loose",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Suboptimal defrost timing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-strap sensor",
+        "instruction": "Coil clip on lower return bend, away from sun.",
+        "tools": [
+          "clip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Replace if needed",
+        "instruction": "Trane SEN01184.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 130,
+        "max": 240
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 min",
+    "whenToCallPro": "If wires routed inside cabinet badly, defer to tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Critical?",
+        "a": "Soft warning - system runs, defrost timing affected."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-410-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "410.10",
+    "displayCode": "410.10",
+    "isBlinkCode": false,
+    "title": "410.10 \u2014 Outdoor Air Sensor Failure",
+    "shortDescription": "Outdoor ambient sensor open or shorted.",
+    "fullDescription": "410.10 means the outdoor air thermistor used for balance point and demand defrost is reading invalid. System reverts to fixed time/temp defrost and disables economizer logic.",
+    "causes": [
+      {
+        "cause": "Damaged sensor wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Aux heat runs at higher temps",
+      "Reduced efficiency"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect mounting",
+        "instruction": "On outdoor cabinet, shielded from sun.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "10k at 25C nominal.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "SEN01187.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 30
+      },
+      "professional": {
+        "min": 140,
+        "max": 240
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "Internal cabinet routing may need tech.",
+    "relatedCodes": [
+      "trane-heat-pump-310-00"
+    ],
+    "faq": [
+      {
+        "q": "Will the system still run?",
+        "a": "Yes - with reduced efficiency."
+      }
+    ]
+  },
+  {
+    "id": "trane-heat-pump-420-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "420.10",
+    "displayCode": "420.10",
+    "isBlinkCode": false,
+    "title": "420.10 \u2014 Variable Speed Drive Bus Capacitor Aging",
+    "shortDescription": "DC bus ripple voltage exceeded threshold \u2014 capacitors aging.",
+    "fullDescription": "Inverter drives in Trane XV20i monitor DC bus capacitor health by ripple voltage. 420.10 is a predictive warning: capacitors at end-of-life within ~6 months. Drive still works but should be scheduled for replacement.",
+    "causes": [
+      {
+        "cause": "Normal cap aging at >10 yr",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Heat damage from poor ventilation",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No immediate symptoms",
+      "May progress to 420.20 (drive failure)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Schedule service",
+        "instruction": "Drive replacement is planned, not emergency.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 0
+      },
+      {
+        "step": 2,
+        "title": "Improve ventilation",
+        "instruction": "Clear vents around drive housing if blocked.",
+        "tools": [
+          "vacuum"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Drive swap",
+        "instruction": "Trane CTL01023 typical.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 650,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "Schedule 4 hr",
+    "whenToCallPro": "Drive replacement requires Trane training and re-pairing.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I keep using it?",
+        "a": "Yes, for several months - but plan replacement."
+      }
+    ],
+    "safetyWarning": "DC bus stays charged 5+ minutes after power off."
+  },
+  {
+    "id": "trane-heat-pump-520-10",
+    "brand": "Trane",
+    "brandSlug": "trane",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "520.10",
+    "displayCode": "520.10",
+    "isBlinkCode": false,
+    "title": "520.10 \u2014 Indoor Communication Lost",
+    "shortDescription": "Variable-speed outdoor unit lost RS-485 to indoor air handler.",
+    "fullDescription": "520.10 fires when the outdoor inverter board loses comm with the indoor variable-speed blower. Without comm, both units fall back to default fixed-speed operation.",
+    "causes": [
+      {
+        "cause": "Loose comm wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EMI from line voltage proximity",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed indoor board",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Loss of staging",
+      "Comfort variations",
+      "Increased noise"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat comm wires",
+        "instruction": "i+/i- terminals at both indoor and outdoor.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify routing",
+        "instruction": "6 inch separation from line voltage cables.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Power cycle",
+        "instruction": "60-second breaker cycle to reset both boards.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 180,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Board replacement requires Trane service tool.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I use generic thermostat wire?",
+        "a": "Short runs OK \u2014 long runs require shielded twisted pair per Trane spec."
       }
     ]
   }

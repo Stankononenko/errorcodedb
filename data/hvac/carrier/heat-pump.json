@@ -3217,5 +3217,895 @@
         "a": "If the unit is not heating or cooling at all, treat it as urgent. If it self-recovers, schedule service soon to prevent recurrence."
       }
     ]
+  },
+  {
+    "id": "carrier-heat-pump-16-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "16 flashes-v2",
+    "displayCode": "16 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Outdoor Coil Sensor Failure",
+    "shortDescription": "Outdoor coil temperature thermistor open or shorted.",
+    "fullDescription": "Sixteen flashes on the Carrier defrost board indicate the outdoor coil temperature sensor reads out of range (open >50k ohm or shorted <500 ohm). The board cannot determine when to initiate or terminate defrost without a valid coil temperature.\n\nThe heat pump may default to time-only defrost or lock heating into emergency electric heat.",
+    "causes": [
+      {
+        "cause": "Coil thermistor wire damaged at clip",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corrosion at sensor pigtail",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Excessive defrost cycles",
+      "Frost build-up on outdoor coil",
+      "Auxiliary heat runs constantly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power off",
+        "instruction": "Cut breaker to outdoor unit and confirm with meter.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Locate sensor",
+        "instruction": "Coil sensor clips to a return bend on the outdoor coil.",
+        "tools": [
+          "flashlight"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Measure resistance",
+        "instruction": "Disconnect at board and measure: 10k at 25C / 32k at 0C.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 4,
+        "title": "Replace if out of spec",
+        "instruction": "Order Carrier P/N HH79NZ039 and clip to same return bend.",
+        "tools": [
+          "nut driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 25,
+        "max": 60
+      },
+      "professional": {
+        "min": 180,
+        "max": 320
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "If unsure of sensor location or readings.",
+    "relatedCodes": [
+      "carrier-heat-pump-3-flashes"
+    ],
+    "faq": [
+      {
+        "q": "Will it heat without this sensor?",
+        "a": "Yes, but only as backup electric heat \u2014 efficiency drops sharply."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-17-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "17 flashes-v2",
+    "displayCode": "17 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Discharge Pressure Switch Trip",
+    "shortDescription": "Compressor discharge pressure exceeded the high-pressure switch setpoint.",
+    "fullDescription": "Seventeen flashes report a high-pressure cutout on the discharge line. The Carrier defrost board opens the contactor circuit until pressure equalizes, then attempts a soft restart after a 5-minute timer.\n\nIn cooling, suspect dirty outdoor coil or stuck condenser fan. In heating, suspect blocked indoor airflow or refrigerant overcharge.",
+    "causes": [
+      {
+        "cause": "Dirty outdoor coil (cooling)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed condenser fan motor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Restricted indoor airflow (heating)",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overcharged refrigerant",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Compressor short-cycles",
+      "Pop/click from contactor",
+      "Discharge line very hot to touch"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect outdoor coil",
+        "instruction": "Rinse coil with garden hose top-down (power off).",
+        "tools": [
+          "garden hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Verify fan operation",
+        "instruction": "On a call, condenser fan must spin freely full speed.",
+        "tools": [
+          "voltmeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Check indoor airflow",
+        "instruction": "Replace filter; confirm registers open.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 4,
+        "title": "Gauge check",
+        "instruction": "If symptoms persist, attach gauges and verify subcool.",
+        "tools": [
+          "manifold gauges"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 220,
+        "max": 480
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 min",
+    "whenToCallPro": "If gauges show overcharge or compressor amp spike.",
+    "relatedCodes": [
+      "carrier-heat-pump-4-flashes"
+    ],
+    "faq": [
+      {
+        "q": "Why does it restart?",
+        "a": "Pressure switch is auto-reset; the board enforces a 5-min anti-short-cycle delay."
+      }
+    ],
+    "safetyWarning": "Refrigerant under high pressure can cause severe injury. Do not open the system without recovery equipment."
+  },
+  {
+    "id": "carrier-heat-pump-18-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "18 flashes-v2",
+    "displayCode": "18 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Suction Pressure Switch Trip",
+    "shortDescription": "Low-pressure switch opened due to loss of charge or low evaporator load.",
+    "fullDescription": "Eighteen flashes flag a low-pressure cutout. The Carrier board allows three trips per call, then locks out for 4 hours. Common causes: loss of refrigerant from a leak, dirty indoor filter (cooling), or iced-up outdoor coil (heating).",
+    "causes": [
+      {
+        "cause": "Refrigerant leak",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty indoor filter / coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stuck reversing valve",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Defrost not initiating",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Indoor coil frost",
+      "Outdoor coil ice block",
+      "Insufficient cooling/heating"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace filter",
+        "instruction": "Most low-suction trips clear after airflow restored.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Thaw outdoor coil",
+        "instruction": "Switch to emergency heat for 30 min, observe for ice clearing.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Leak search",
+        "instruction": "If trips repeat, technician must search with electronic detector.",
+        "tools": [
+          "leak detector"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 250,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Repeat lockouts indicate refrigerant issue requiring EPA cert.",
+    "relatedCodes": [
+      "carrier-heat-pump-5-flashes"
+    ],
+    "faq": [
+      {
+        "q": "How much refrigerant loss triggers this?",
+        "a": "Roughly 15-20% loss of charge will drop suction below 22 psi cutout."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-19-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "19 flashes-v2",
+    "displayCode": "19 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Brownout / Low Line Voltage",
+    "shortDescription": "Incoming 240V line voltage dropped below 187V for more than 4 seconds.",
+    "fullDescription": "Nineteen flashes mean the Carrier outdoor board sensed a brownout. The compressor is locked out to prevent stalled-rotor damage. The board auto-clears once voltage is stable above 200V for 5 minutes.",
+    "causes": [
+      {
+        "cause": "Utility brownout / heat wave demand",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose lug at disconnect or breaker",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Undersized service wire",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Outdoor unit silent during call",
+      "Lights flicker elsewhere in house",
+      "Compressor hum without start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure line voltage",
+        "instruction": "L1-L2 at outdoor disconnect should read 208-253V.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Tighten lugs",
+        "instruction": "Power off, torque lugs at disconnect/breaker to 35 in-lb.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Call utility",
+        "instruction": "If voltage chronic-low, contact utility for transformer check.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 140,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20-40 min",
+    "whenToCallPro": "If voltage low at meter base, utility responsibility.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can a hard-start kit help?",
+        "a": "It reduces inrush but won't fix a true brownout. Address the voltage source."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-20-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "20 flashes-v2",
+    "displayCode": "20 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Reversing Valve Stuck",
+    "shortDescription": "Defrost board commanded mode change but coil temperatures did not respond.",
+    "fullDescription": "Twenty flashes appear when the board energizes the reversing valve solenoid (O signal) but coil sensor delta does not change within 90 seconds. Either the solenoid is bad, the valve slug is stuck, or wire to solenoid is broken.",
+    "causes": [
+      {
+        "cause": "Failed reversing valve solenoid coil",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Slug stuck mid-position",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Broken O wire from indoor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Heats when set to cool (or vice-versa)",
+      "Lukewarm air in heat mode"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check 24V at solenoid",
+        "instruction": "With call active, measure across solenoid terminals - should read 24VAC.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Replace solenoid",
+        "instruction": "Slide off coil and replace; valve body usually does not need replacement.",
+        "tools": [
+          "nut driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Tap valve body",
+        "instruction": "Lightly tap valve with rubber mallet during mode call - sometimes frees stuck slug.",
+        "tools": [
+          "mallet"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 35,
+        "max": 90
+      },
+      "professional": {
+        "min": 280,
+        "max": 750
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "45-90 min",
+    "whenToCallPro": "If valve body itself is stuck, requires brazing to replace.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Is solenoid replaceable separately?",
+        "a": "Yes. The coil slides off the stem - inexpensive part."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-21-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "21 flashes-v2",
+    "displayCode": "21 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Liquid Line Sensor Open",
+    "shortDescription": "Liquid line temperature thermistor open or out of range.",
+    "fullDescription": "Twenty-one flashes indicate the liquid line sensor used for advanced charge monitoring on Infinity-series units is reading open. The unit will run on time-based defrost only and may not stage to higher capacity.",
+    "causes": [
+      {
+        "cause": "Damaged thermistor wire at strap",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Reduced staging on multi-stage units",
+      "Comfort variations"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect strap location",
+        "instruction": "Sensor straps to liquid line at outdoor unit.",
+        "tools": [
+          "flashlight"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Resistance check",
+        "instruction": "Should read 10k at 25C.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace if open",
+        "instruction": "P/N HH79NZ040 typical.",
+        "tools": [
+          "zip ties"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 50
+      },
+      "professional": {
+        "min": 160,
+        "max": 280
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "If wire harness damage extends inside compressor compartment.",
+    "relatedCodes": [
+      "carrier-heat-pump-16-flashes"
+    ],
+    "faq": [
+      {
+        "q": "Will heat still run?",
+        "a": "Yes, but charge monitoring is disabled."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-22-flashes-v2",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "22 flashes-v2",
+    "displayCode": "22 Flashes (v2)",
+    "isBlinkCode": true,
+    "title": "Compressor Phase Loss",
+    "shortDescription": "Three-phase compressor lost a leg or phase reversal detected.",
+    "fullDescription": "Twenty-two flashes appear on Carrier 3-phase commercial heat pumps. Phase monitor in the board sensed loss of one of the three legs or a reversed phase rotation that would spin the scroll backward.",
+    "causes": [
+      {
+        "cause": "Blown fuse in disconnect",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Service wire phase swap after utility work",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Loose lug on one leg",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Compressor will not start",
+      "Loud hum then trip"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check fuses",
+        "instruction": "Pull disconnect; ohm each fuse - should read <1 ohm.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Verify rotation",
+        "instruction": "Use phase-rotation meter at compressor terminals.",
+        "tools": [
+          "phase rotation meter"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Swap any two legs",
+        "instruction": "If reversed, swap any two of L1/L2/L3 at disconnect.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Phase issues require licensed electrician for utility-side work.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Single-phase units affected?",
+        "a": "No - this code only applies to 3-phase commercial models."
+      }
+    ],
+    "safetyWarning": "Reversed phase will destroy a scroll compressor in seconds. Do NOT bypass."
+  },
+  {
+    "id": "carrier-heat-pump-33-flashes",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "33 flashes",
+    "displayCode": "33 Flashes",
+    "isBlinkCode": true,
+    "title": "Cabinet Switch Open (Greenspeed)",
+    "shortDescription": "Service panel cabinet switch detected the panel is removed.",
+    "fullDescription": "Thirty-three flashes on Greenspeed Infinity inverter heat pumps mean the cabinet door switch is open or the door is removed. The inverter board disables operation until the panel is secured.",
+    "causes": [
+      {
+        "cause": "Service panel not fully seated",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed cabinet switch plunger",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broken switch wire",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Unit will not run after service",
+      "Greenspeed indoor display shows 'Outdoor cabinet open'"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat panel",
+        "instruction": "Push panel firmly until plunger fully depresses, secure all screws.",
+        "tools": [
+          "nut driver"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Test switch",
+        "instruction": "With panel off, jumper switch terminals - if unit runs, switch is bad.",
+        "tools": [
+          "jumper"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace switch",
+        "instruction": "P/N HK01CB003.",
+        "tools": [
+          "nut driver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 35
+      },
+      "professional": {
+        "min": 160,
+        "max": 280
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "20 min",
+    "whenToCallPro": "Inverter compressor service should be done by Carrier-trained tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can I jump the switch?",
+        "a": "Only momentarily for diagnostics. Permanent jumper defeats safety lockout."
+      }
+    ],
+    "safetyWarning": "Inverter heat pumps operate at 400-600VDC bus voltage. Panel removal cutoff is critical safety."
+  },
+  {
+    "id": "carrier-heat-pump-45-flashes",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "45 flashes",
+    "displayCode": "45 Flashes",
+    "isBlinkCode": true,
+    "title": "Inverter Compressor Communication Loss",
+    "shortDescription": "Defrost board lost RS-485 communication with the inverter drive.",
+    "fullDescription": "Forty-five flashes flag a comm loss between the outdoor control board and the inverter drive on Greenspeed/Infinity inverter heat pumps. Without comm, the system cannot modulate compressor speed.",
+    "causes": [
+      {
+        "cause": "Loose RS-485 plug at drive",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EMI on comm cable from line voltage routing",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed inverter drive",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No modulation",
+      "Comfort fluctuates",
+      "Energy use spikes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat comm plug",
+        "instruction": "Locate the small 4-pin RS-485 plug at the inverter drive and reseat firmly.",
+        "tools": [
+          "needle nose"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Inspect cable routing",
+        "instruction": "Comm cable must be separated from line voltage by at least 6 inches.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Cycle 240V power",
+        "instruction": "Cut breaker for 60 seconds to reset drive.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 220,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Inverter drive replacement requires Carrier service tool and re-pairing.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Can a generic cable replace it?",
+        "a": "No - Carrier specifies twisted-pair shielded cable, terminated correctly."
+      }
+    ]
+  },
+  {
+    "id": "carrier-heat-pump-47-flashes",
+    "brand": "Carrier",
+    "brandSlug": "carrier",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "47 flashes",
+    "displayCode": "47 Flashes",
+    "isBlinkCode": true,
+    "title": "Inverter Drive Overtemp",
+    "shortDescription": "IGBT heatsink temperature exceeded 95C; drive throttled or stopped.",
+    "fullDescription": "Forty-seven flashes appear when the inverter drive's IGBT heatsink runs too hot. Causes include blocked drive air vents, failed drive cooling fan, or extreme ambient temperature combined with high load.",
+    "causes": [
+      {
+        "cause": "Blocked drive cooling vents (debris)",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed drive heatsink fan",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Drive enclosure ambient >55C",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Compressor speed limited to 60Hz",
+      "Reduced capacity on hot/cold extremes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Clear vents",
+        "instruction": "Power off, remove drive cover, vacuum dust from heatsink fins.",
+        "tools": [
+          "vacuum"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Verify drive fan",
+        "instruction": "Power on briefly during call - drive fan should run.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace fan",
+        "instruction": "P/N HC30GE234 if not running.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 45
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 260,
+        "max": 850
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-2 hr",
+    "whenToCallPro": "Internal drive fan replacement is technician-level.",
+    "relatedCodes": [
+      "carrier-heat-pump-45-flashes"
+    ],
+    "faq": [
+      {
+        "q": "Will it self-recover?",
+        "a": "Yes, when heatsink drops below 80C - but root cause should be addressed."
+      }
+    ],
+    "safetyWarning": "IGBT modules and capacitor banks remain charged for 5 min after power-off. Wait before servicing."
   }
 ]

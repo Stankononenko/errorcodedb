@@ -1711,7 +1711,7 @@
     "isBlinkCode": false,
     "title": "Low Pressure Switch Trip",
     "shortDescription": "Low-side pressure switch opened.",
-    "fullDescription": "LPS indicates suction-side pressure dropped below the cutout — refrigerant leak likely.",
+    "fullDescription": "LPS indicates suction-side pressure dropped below the cutout \u2014 refrigerant leak likely.",
     "causes": [
       {
         "cause": "Refrigerant leak",
@@ -1906,7 +1906,7 @@
       {
         "step": 2,
         "title": "Test",
-        "instruction": "10kΩ at 25°C.",
+        "instruction": "10k\u03a9 at 25\u00b0C.",
         "tools": [
           "multimeter"
         ],
@@ -1987,7 +1987,7 @@
       {
         "step": 2,
         "title": "Test",
-        "instruction": "10kΩ.",
+        "instruction": "10k\u03a9.",
         "tools": [
           "multimeter"
         ],
@@ -2258,7 +2258,7 @@
     "isBlinkCode": false,
     "title": "Inverter Fault",
     "shortDescription": "Inverter board reports a fault.",
-    "fullDescription": "INV groups variable-speed compressor inverter faults — overcurrent, over-temp, bus voltage.",
+    "fullDescription": "INV groups variable-speed compressor inverter faults \u2014 overcurrent, over-temp, bus voltage.",
     "causes": [
       {
         "cause": "Failed bus cap",
@@ -2414,9 +2414,681 @@
     "faq": [
       {
         "q": "Will heat pump still work?",
-        "a": "Yes — but no aux below balance point."
+        "a": "Yes \u2014 but no aux below balance point."
       }
     ],
     "safetyWarning": "240V at heat strips even with thermostat off."
+  },
+  {
+    "id": "ruud-heat-pump-ac1",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC1",
+    "displayCode": "AC1",
+    "isBlinkCode": false,
+    "title": "AC1 \u2014 Inverter Drive Comm Loss",
+    "shortDescription": "Outdoor lost CAN-bus to inverter drive.",
+    "fullDescription": "Ruud Endeavor inverter heat pumps share Rheem platform - AC1 = CAN packets stopped >5 sec.",
+    "causes": [
+      {
+        "cause": "Loose CAN",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EMI",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed drive",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No modulation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat",
+        "instruction": "4-pin Molex.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Routing",
+        "instruction": "Separate from line.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 220,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Drive tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Twisted pair?",
+        "a": "Yes."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-ac2",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC2",
+    "displayCode": "AC2",
+    "isBlinkCode": false,
+    "title": "AC2 \u2014 Compressor Drive Overcurrent",
+    "shortDescription": "Drive amps high.",
+    "fullDescription": "AC2 = inverter overcurrent on Ruud Endeavor.",
+    "causes": [
+      {
+        "cause": "Flood-back",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Crankcase open",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Lockout"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Crankcase",
+        "instruction": "Check warm.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Heat soak",
+        "instruction": "8h.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 480
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 400,
+        "max": 2200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1+ day",
+    "whenToCallPro": "Tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Heat soak?",
+        "a": "Boil off liquid."
+      }
+    ],
+    "safetyWarning": "Bus 600VDC."
+  },
+  {
+    "id": "ruud-heat-pump-hps-v2",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "HPS-v2",
+    "displayCode": "HPS (v2)",
+    "isBlinkCode": false,
+    "title": "HPS \u2014 High Pressure Switch Trip",
+    "shortDescription": "Discharge HPS opened.",
+    "fullDescription": "Ruud HPS code = high pressure cutout. Fan/coil/charge.",
+    "causes": [
+      {
+        "cause": "Fan stopped",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Dirty coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Short cycle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Coil",
+        "instruction": "Rinse.",
+        "tools": [
+          "hose"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Fan",
+        "instruction": "Verify.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 40
+      },
+      "professional": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 2 hr",
+    "whenToCallPro": "Cap common.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Auto?",
+        "a": "Yes, lock at 3."
+      }
+    ],
+    "safetyWarning": "Hot discharge."
+  },
+  {
+    "id": "ruud-heat-pump-lps-v2",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "LPS-v2",
+    "displayCode": "LPS (v2)",
+    "isBlinkCode": false,
+    "title": "LPS \u2014 Low Pressure Switch Trip",
+    "shortDescription": "Suction LPS opened.",
+    "fullDescription": "Ruud LPS code = low pressure cutout.",
+    "causes": [
+      {
+        "cause": "Filter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Iced coil",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Reduced output"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Filter",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Thaw",
+        "instruction": "EM HEAT.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 25
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 min - 2 hr",
+    "whenToCallPro": "Repeat = leak.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Reset?",
+        "a": "Auto."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-dth",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "DTH",
+    "displayCode": "DTH",
+    "isBlinkCode": false,
+    "title": "DTH \u2014 Discharge Temperature High",
+    "shortDescription": "Discharge gas over 250F.",
+    "fullDescription": "Ruud DTH protects compressor at over-temp.",
+    "causes": [
+      {
+        "cause": "Low charge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "TXV stuck",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Short cycle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Filter",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Subcool",
+        "instruction": "Tech.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 30
+      },
+      "professional": {
+        "min": 250,
+        "max": 1400
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "EPA tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Damage?",
+        "a": "Compressor windings."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-brn",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "BRN",
+    "displayCode": "BRN",
+    "isBlinkCode": false,
+    "title": "BRN \u2014 Brownout Lockout",
+    "shortDescription": "Line voltage below 187V.",
+    "fullDescription": "Ruud BRN = brownout protection.",
+    "causes": [
+      {
+        "cause": "Utility",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Loose lugs",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No start"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure",
+        "instruction": "L1-L2.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Lugs",
+        "instruction": "Torque.",
+        "tools": [
+          "screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 140,
+        "max": 280
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "Utility issue.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Auto recover?",
+        "a": "Yes."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-hlo",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "HLO",
+    "displayCode": "HLO",
+    "isBlinkCode": false,
+    "title": "HLO \u2014 Hard Lockout",
+    "shortDescription": "3-strike compressor lockout.",
+    "fullDescription": "Ruud HLO = compressor locked, manual reset.",
+    "causes": [
+      {
+        "cause": "Underlying fault",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No operation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Identify",
+        "instruction": "History.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset",
+        "instruction": "Breaker 30s.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 130,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "Variable",
+    "whenToCallPro": "Repeat = failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Cycle?",
+        "a": "30 sec breaker."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-cch",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "CCH",
+    "displayCode": "CCH",
+    "isBlinkCode": false,
+    "title": "CCH \u2014 Crankcase Heater Open",
+    "shortDescription": "Heater current zero.",
+    "fullDescription": "Ruud CCH on inverter units = open crankcase heater. Risk of flood-back.",
+    "causes": [
+      {
+        "cause": "Burnt heater",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Broken wire",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Cold start fails"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Continuity",
+        "instruction": "50-200 ohms.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Replace",
+        "instruction": "Belly band.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 90
+      },
+      "professional": {
+        "min": 200,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hr",
+    "whenToCallPro": "Relay = board.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Why?",
+        "a": "Liquid in compressor."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-lls",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "LLS",
+    "displayCode": "LLS",
+    "isBlinkCode": false,
+    "title": "LLS \u2014 Liquid Line Sensor Open",
+    "shortDescription": "Liquid line thermistor invalid.",
+    "fullDescription": "Ruud LLS = liquid sensor used for charge calc is open/shorted.",
+    "causes": [
+      {
+        "cause": "Wire damage",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No charge alerts"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect",
+        "instruction": "Liquid line strap.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Resistance",
+        "instruction": "10k at 25C.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 35
+      },
+      "professional": {
+        "min": 140,
+        "max": 240
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "Strap location matters.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Run?",
+        "a": "Yes."
+      }
+    ]
+  },
+  {
+    "id": "ruud-heat-pump-ecn",
+    "brand": "Ruud",
+    "brandSlug": "ruud",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "ECN",
+    "displayCode": "ECN",
+    "isBlinkCode": false,
+    "title": "ECN \u2014 EcoNet Comm Loss",
+    "shortDescription": "Outdoor lost EcoNet bus.",
+    "fullDescription": "Ruud ECN = EcoNet 4-wire bus failure.",
+    "causes": [
+      {
+        "cause": "Loose wire",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Long run",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "X icon on stat"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat",
+        "instruction": "Both ends.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Polarity",
+        "instruction": "Match labels.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 160,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Long runs = shielded.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Cable?",
+        "a": "Standard 18/4 short."
+      }
+    ]
   }
 ]

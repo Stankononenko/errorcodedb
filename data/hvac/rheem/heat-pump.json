@@ -860,7 +860,7 @@
     "isBlinkCode": false,
     "title": "Reversing Valve Failure",
     "shortDescription": "Reversing valve did not shift on command.",
-    "fullDescription": "AC11 indicates the EcoNet board commanded a mode change but coil temperatures did not respond — reversing valve stuck.",
+    "fullDescription": "AC11 indicates the EcoNet board commanded a mode change but coil temperatures did not respond \u2014 reversing valve stuck.",
     "causes": [
       {
         "cause": "Stuck valve slide",
@@ -892,7 +892,7 @@
       {
         "step": 2,
         "title": "Replace Coil",
-        "instruction": "Swap solenoid coil only — slip-off.",
+        "instruction": "Swap solenoid coil only \u2014 slip-off.",
         "tools": [
           "coil"
         ],
@@ -929,7 +929,7 @@
     "faq": [
       {
         "q": "Common failure?",
-        "a": "Yes — reversing valves are top-3 heat-pump failures."
+        "a": "Yes \u2014 reversing valves are top-3 heat-pump failures."
       }
     ]
   },
@@ -944,7 +944,7 @@
     "isBlinkCode": false,
     "title": "Defrost Sensor Fault",
     "shortDescription": "Defrost-initiate thermistor failed.",
-    "fullDescription": "AC12 means the defrost thermistor reading is invalid — heat pump cannot enter defrost properly.",
+    "fullDescription": "AC12 means the defrost thermistor reading is invalid \u2014 heat pump cannot enter defrost properly.",
     "causes": [
       {
         "cause": "Sensor disconnected",
@@ -1025,7 +1025,7 @@
     "isBlinkCode": false,
     "title": "EXV Stall",
     "shortDescription": "Electronic expansion valve out of step.",
-    "fullDescription": "AC13 reports an EXV step-count error — the valve isn't tracking commanded position.",
+    "fullDescription": "AC13 reports an EXV step-count error \u2014 the valve isn't tracking commanded position.",
     "causes": [
       {
         "cause": "Debris in valve",
@@ -1091,14 +1091,14 @@
     },
     "diyDifficulty": "professional",
     "repairTime": "5 min to 4 hours",
-    "whenToCallPro": "Always — EXV swap is sealed-system.",
+    "whenToCallPro": "Always \u2014 EXV swap is sealed-system.",
     "relatedCodes": [
       "rheem-heat-pump-ac11"
     ],
     "faq": [
       {
         "q": "What is EXV?",
-        "a": "Electronic Expansion Valve — replaces traditional TXV in modern heat pumps."
+        "a": "Electronic Expansion Valve \u2014 replaces traditional TXV in modern heat pumps."
       }
     ]
   },
@@ -1179,7 +1179,7 @@
     "faq": [
       {
         "q": "Critical sensor?",
-        "a": "Yes — protects compressor from overheating."
+        "a": "Yes \u2014 protects compressor from overheating."
       }
     ]
   },
@@ -1194,7 +1194,7 @@
     "isBlinkCode": false,
     "title": "Compressor Discharge Over-Temp",
     "shortDescription": "Compressor discharge exceeded safe temp.",
-    "fullDescription": "AC15 fires when discharge temperature is too high — compressor lockout follows to prevent oil breakdown.",
+    "fullDescription": "AC15 fires when discharge temperature is too high \u2014 compressor lockout follows to prevent oil breakdown.",
     "causes": [
       {
         "cause": "Low refrigerant charge",
@@ -1256,7 +1256,7 @@
     "faq": [
       {
         "q": "Recurring?",
-        "a": "Yes — until root cause is fixed."
+        "a": "Yes \u2014 until root cause is fixed."
       }
     ]
   },
@@ -1441,7 +1441,7 @@
     "isBlinkCode": false,
     "title": "Inverter Bus Voltage Fault",
     "shortDescription": "DC bus voltage out of range.",
-    "fullDescription": "AC18 indicates the inverter DC bus is outside operating spec — usually a power-electronics failure.",
+    "fullDescription": "AC18 indicates the inverter DC bus is outside operating spec \u2014 usually a power-electronics failure.",
     "causes": [
       {
         "cause": "Failed bus capacitor",
@@ -1503,14 +1503,14 @@
     },
     "diyDifficulty": "professional",
     "repairTime": "1-3 hours pro",
-    "whenToCallPro": "Always — lethal voltage on inverter.",
+    "whenToCallPro": "Always \u2014 lethal voltage on inverter.",
     "relatedCodes": [
       "rheem-heat-pump-ac17"
     ],
     "faq": [
       {
         "q": "Surge protection prevent this?",
-        "a": "Yes — recommended for inverter heat pumps."
+        "a": "Yes \u2014 recommended for inverter heat pumps."
       }
     ],
     "safetyWarning": "Inverter caps hold lethal voltage. Verify with meter before touching."
@@ -1693,6 +1693,793 @@
       {
         "q": "Switch to legacy thermostat?",
         "a": "Some EcoNet outdoor units don't support legacy 24V mode."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac21",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC21",
+    "displayCode": "AC21",
+    "isBlinkCode": false,
+    "title": "AC21 \u2014 Inverter Drive Communication Loss",
+    "shortDescription": "EcoNet outdoor unit lost CAN-bus to inverter drive.",
+    "fullDescription": "Rheem EcoNet/Prestige inverter heat pumps use CAN-bus between control board and inverter drive. AC21 means CAN packets stopped for >5 sec.",
+    "causes": [
+      {
+        "cause": "Loose CAN cable",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "EMI on cable",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed drive",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Loss of modulation",
+      "EcoNet shows comm error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat",
+        "instruction": "4-pin Molex at drive.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Routing",
+        "instruction": "Separate from line voltage.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Power cycle",
+        "instruction": "Breaker 60 sec.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 220,
+        "max": 1100
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Drive replacement is tech-only.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Twisted pair required?",
+        "a": "Yes - CAN-bus needs twisted shielded pair."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac22",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC22",
+    "displayCode": "AC22",
+    "isBlinkCode": false,
+    "title": "AC22 \u2014 Compressor Drive Overcurrent",
+    "shortDescription": "Inverter drive measured compressor amps above limit.",
+    "fullDescription": "AC22 fires when Rheem inverter drive sees compressor current exceed nameplate. Causes: liquid flood-back, mechanical bind, or low voltage.",
+    "causes": [
+      {
+        "cause": "Liquid refrigerant in compressor",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Crankcase heater open",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Mechanical bind",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "3-strike lockout",
+      "No cooling/heating"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Crankcase",
+        "instruction": "Should be warm.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Heat soak",
+        "instruction": "8h with compressor off.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 480
+      },
+      {
+        "step": 3,
+        "title": "Drive/compressor swap",
+        "instruction": "Tech.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 400,
+        "max": 2200
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1+ day",
+    "whenToCallPro": "Inverter work tech only.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Heat soak?",
+        "a": "Warming compressor to boil off liquid before start."
+      }
+    ],
+    "safetyWarning": "Drive bus 600VDC - 5 min discharge."
+  },
+  {
+    "id": "rheem-heat-pump-ac23",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC23",
+    "displayCode": "AC23",
+    "isBlinkCode": false,
+    "title": "AC23 \u2014 Reversing Valve Sense Fail",
+    "shortDescription": "Mode change commanded but coil temps did not flip.",
+    "fullDescription": "AC23 means after a heat/cool mode change, Rheem EcoNet did not see the expected temperature swap between liquid and suction sensors within 90 sec.",
+    "causes": [
+      {
+        "cause": "Stuck valve slug",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Sensors swapped",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed solenoid coil",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Wrong mode output",
+      "Lukewarm air"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Solenoid",
+        "instruction": "24VAC at coil during call.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Tap valve",
+        "instruction": "Mallet during call.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Replace coil/valve",
+        "instruction": "Coil cheap, valve = brazing.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 60
+      },
+      "professional": {
+        "min": 300,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Brazing requires tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "How common?",
+        "a": "Valve body stuck rare on new units, more common after 10+ years."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac24",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC24",
+    "displayCode": "AC24",
+    "isBlinkCode": false,
+    "title": "AC24 \u2014 DC Bus Voltage Low",
+    "shortDescription": "Inverter drive DC bus below operating threshold.",
+    "fullDescription": "AC24 indicates inverter drive bus capacitors not maintaining voltage. Causes: aged capacitors, low line voltage, or failed rectifier diodes.",
+    "causes": [
+      {
+        "cause": "Aged bus capacitors (>10 yr)",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Brownout",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed rectifier",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Random shutdowns",
+      "May escalate to drive replacement"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Line voltage",
+        "instruction": "L1-L2 208-253V.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Drive ventilation",
+        "instruction": "Clear vents.",
+        "tools": [
+          "vacuum"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Drive replacement",
+        "instruction": "If voltage OK, drive end-of-life.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 650,
+        "max": 1800
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-4 hr",
+    "whenToCallPro": "Drive electronics tech-only.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "How long do drives last?",
+        "a": "10-15 years typical."
+      }
+    ],
+    "safetyWarning": "DC bus retains charge after power-off."
+  },
+  {
+    "id": "rheem-heat-pump-ac25",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC25",
+    "displayCode": "AC25",
+    "isBlinkCode": false,
+    "title": "AC25 \u2014 Discharge Temperature High",
+    "shortDescription": "Discharge gas thermistor over 250F.",
+    "fullDescription": "AC25 protects the compressor: discharge above 250F = low charge, dirty filter, or TXV stuck.",
+    "causes": [
+      {
+        "cause": "Low refrigerant",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Dirty filter / blocked airflow",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "TXV stuck closed",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Short cycling",
+      "Hot smell"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Filter",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Subcool/superheat",
+        "instruction": "Tech.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "TXV swap",
+        "instruction": "If needed.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 180
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "professional": {
+        "min": 250,
+        "max": 1400
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "Refrigerant work EPA-cert.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Damage?",
+        "a": "Compressor windings degrade above 250F discharge - address quickly."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac26",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC26",
+    "displayCode": "AC26",
+    "isBlinkCode": false,
+    "title": "AC26 \u2014 Outdoor Fan Locked Rotor",
+    "shortDescription": "ECM outdoor fan reported locked rotor.",
+    "fullDescription": "AC26 fires when Rheem ECM outdoor fan attempts start but cannot rotate.",
+    "causes": [
+      {
+        "cause": "Ice on blade",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Debris",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bearing seizure",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "No fan",
+      "HPS trip secondary"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Lockout",
+        "instruction": "Breaker off.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Clear",
+        "instruction": "Remove debris/ice.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Free spin",
+        "instruction": "By hand.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 min",
+    "whenToCallPro": "Bearing damage = tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Ice cause?",
+        "a": "Failed defrost - address that too."
+      }
+    ],
+    "safetyWarning": "Power off before clearing fan."
+  },
+  {
+    "id": "rheem-heat-pump-ac27",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC27",
+    "displayCode": "AC27",
+    "isBlinkCode": false,
+    "title": "AC27 \u2014 Outdoor Coil Sensor Drift",
+    "shortDescription": "Coil sensor reading inconsistent.",
+    "fullDescription": "AC27 is a soft fault: outdoor coil thermistor reads suspicious value vs. ambient. Often a loose strap.",
+    "causes": [
+      {
+        "cause": "Loose sensor strap",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Damaged thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Suboptimal defrost"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-strap",
+        "instruction": "Lower return bend.",
+        "tools": [
+          "clip"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Replace",
+        "instruction": "If still drifts.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 25
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 25
+      },
+      "professional": {
+        "min": 130,
+        "max": 220
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "20 min",
+    "whenToCallPro": "Wire routing issues = tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Critical?",
+        "a": "Soft - system runs."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac28",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC28",
+    "displayCode": "AC28",
+    "isBlinkCode": false,
+    "title": "AC28 \u2014 Demand Defrost Algorithm Fault",
+    "shortDescription": "Defrost ran max time 3x without clearing coil.",
+    "fullDescription": "AC28 indicates Rheem demand-defrost algorithm cannot complete defrost. 3 consecutive failures = lockout.",
+    "causes": [
+      {
+        "cause": "Low charge",
+        "likelihood": "high",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Stuck reversing valve",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Iced coil",
+      "Aux heat constantly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Manual thaw",
+        "instruction": "EM HEAT 1 hr.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Charge check",
+        "instruction": "Tech.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 250,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "professional",
+    "repairTime": "1-3 hr",
+    "whenToCallPro": "EPA work tech.",
+    "relatedCodes": [
+      "rheem-heat-pump-ac23"
+    ],
+    "faq": [
+      {
+        "q": "Reset?",
+        "a": "After 4 hr or breaker cycle."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac29",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC29",
+    "displayCode": "AC29",
+    "isBlinkCode": false,
+    "title": "AC29 \u2014 Liquid Line Sensor Open",
+    "shortDescription": "Liquid line thermistor open/shorted.",
+    "fullDescription": "AC29 means the liquid line sensor used for charge calculation is invalid. Charge monitoring disabled.",
+    "causes": [
+      {
+        "cause": "Wire damage",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed thermistor",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "No charge alerts",
+      "Reduced staging"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect",
+        "instruction": "On liquid line at outdoor unit.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Resistance",
+        "instruction": "10k at 25C.",
+        "tools": [
+          "multimeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Rheem 47-104255-04.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 25
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 35
+      },
+      "professional": {
+        "min": 140,
+        "max": 240
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min",
+    "whenToCallPro": "Strap location matters.",
+    "relatedCodes": [
+      "rheem-heat-pump-ac27"
+    ],
+    "faq": [
+      {
+        "q": "Will it run?",
+        "a": "Yes, without charge monitoring."
+      }
+    ]
+  },
+  {
+    "id": "rheem-heat-pump-ac30",
+    "brand": "Rheem",
+    "brandSlug": "rheem",
+    "deviceType": "Heat Pump",
+    "deviceTypeSlug": "heat-pump",
+    "code": "AC30",
+    "displayCode": "AC30",
+    "isBlinkCode": false,
+    "title": "AC30 \u2014 EcoNet Comm Loss to Indoor",
+    "shortDescription": "Outdoor lost EcoNet communication with indoor.",
+    "fullDescription": "AC30 fires when Rheem EcoNet 4-wire bus (R/i+/i-/C) loses signal between outdoor and indoor for >60 sec.",
+    "causes": [
+      {
+        "cause": "Loose connection",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wire run too long",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Failed comm chip",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "EcoNet thermostat shows X icon",
+      "No staging control"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat",
+        "instruction": "Both ends.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Polarity",
+        "instruction": "i+ to i+, i- to i-.",
+        "tools": [
+          "voltmeter"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Power cycle",
+        "instruction": "60 sec.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 25
+      },
+      "professional": {
+        "min": 160,
+        "max": 300
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-60 min",
+    "whenToCallPro": "Wire run fixes may need tech.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Shielded cable?",
+        "a": "Long runs >50 ft yes."
       }
     ]
   }
