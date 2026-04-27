@@ -130,7 +130,7 @@
       {
         "step": 2,
         "title": "Check signal",
-        "instruction": "Camera info screen — should show >2 bars.",
+        "instruction": "Camera info screen \u2014 should show >2 bars.",
         "tools": [],
         "difficulty": "easy",
         "timeMinutes": 3
@@ -252,7 +252,7 @@
     "alternativeCodes": [],
     "title": "Wyze camera weak Wi-Fi signal",
     "shortDescription": "Camera frequently offline or slow to load.",
-    "fullDescription": "Wyze cameras support 2.4GHz only. Weak signal causes dropouts. Check RSSI in camera info — values worse than -70 dBm cause problems. Add Wi-Fi extender or Mesh node near camera.",
+    "fullDescription": "Wyze cameras support 2.4GHz only. Weak signal causes dropouts. Check RSSI in camera info \u2014 values worse than -70 dBm cause problems. Add Wi-Fi extender or Mesh node near camera.",
     "causes": [
       {
         "cause": "Distance to router",
@@ -328,7 +328,7 @@
     "alternativeCodes": [],
     "title": "Wyze firmware update stuck or failing",
     "shortDescription": "Camera won't complete firmware update.",
-    "fullDescription": "OTA updates fail if Wi-Fi drops mid-transfer. Wyze publishes recovery flashing via microSD — copy demo.bin to SD, insert, and power up with setup button held.",
+    "fullDescription": "OTA updates fail if Wi-Fi drops mid-transfer. Wyze publishes recovery flashing via microSD \u2014 copy demo.bin to SD, insert, and power up with setup button held.",
     "causes": [
       {
         "cause": "Wi-Fi drop during OTA",
@@ -410,7 +410,7 @@
     "alternativeCodes": [],
     "title": "Wyze night vision won't activate",
     "shortDescription": "Camera stays in color when dark.",
-    "fullDescription": "Night vision requires IR LEDs active and setting enabled. Toggle Night Vision to Auto. IR LEDs glow dim red if working — if not, check behind glass (IR reflects back) and ensure firmware is current.",
+    "fullDescription": "Night vision requires IR LEDs active and setting enabled. Toggle Night Vision to Auto. IR LEDs glow dim red if working \u2014 if not, check behind glass (IR reflects back) and ensure firmware is current.",
     "causes": [
       {
         "cause": "Night vision disabled",
@@ -1575,6 +1575,813 @@
     "whenToCallPro": "Not required.",
     "relatedCodes": [],
     "videoSearchQuery": "Wyze security camera 2FA LOOP fix",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-error-91",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "ERROR 91",
+    "displayCode": "Error 91",
+    "alternativeCodes": [],
+    "title": "Wyze Error 91 connection lost",
+    "shortDescription": "Camera repeatedly drops connection mid-stream.",
+    "fullDescription": "Error 91 indicates the camera lost authenticated connection to Wyze servers. Usually router DHCP lease cycling, IPv6 conflicts, or transient packet loss. Reserve a DHCP lease for the camera and disable IPv6 on guest network.",
+    "causes": [
+      {
+        "cause": "Router DHCP lease cycling",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "IPv6 conflict",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Packet loss to AWS region",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Live view drops",
+      "Error 91 banner"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Power cycle camera",
+        "instruction": "Unplug 10s, reconnect.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reserve DHCP lease",
+        "instruction": "Router admin > DHCP reservations > add camera MAC.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 3,
+        "title": "Disable IPv6 on SSID",
+        "instruction": "Router settings > IPv6 off if cameras on guest band.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam Pan v3",
+      "Cam OG"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze error 91 fix",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-error-92",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "ERROR 92",
+    "displayCode": "Error 92",
+    "alternativeCodes": [],
+    "title": "Wyze Error 92 device offline",
+    "shortDescription": "App shows camera as offline with code 92.",
+    "fullDescription": "Error 92 means the cloud cannot reach the camera. Most often caused by ISP DNS hijacking, double-NAT, or the camera being on a different VLAN than the phone during setup.",
+    "causes": [
+      {
+        "cause": "Double-NAT",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "ISP DNS issue",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "VLAN isolation",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
+    ],
+    "symptoms": [
+      "Offline icon",
+      "Error 92"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Switch DNS to 1.1.1.1",
+        "instruction": "Router > DNS > 1.1.1.1 / 8.8.8.8.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Disable double-NAT",
+        "instruction": "Set ISP modem to bridge mode.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Re-add camera on same VLAN",
+        "instruction": "Setup phone on same SSID as camera.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam OG",
+      "Cam Outdoor v2"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze error 92 device offline",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-error-95",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "ERROR 95",
+    "displayCode": "Error 95",
+    "alternativeCodes": [],
+    "title": "Wyze Error 95 cannot retrieve device info",
+    "shortDescription": "App returns error 95 opening camera settings.",
+    "fullDescription": "Error 95 occurs when the app cannot pull device metadata. Linked to expired auth tokens, account region drift, or stale app cache.",
+    "causes": [
+      {
+        "cause": "Stale app cache",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Expired auth token",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account region drift",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Settings won't open",
+      "Error 95"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Force-stop app and clear cache",
+        "instruction": "Phone settings > Apps > Wyze > Storage > Clear cache.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-login",
+        "instruction": "Sign out, sign back in.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Contact support for region",
+        "instruction": "If account region was changed support must reset.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v2",
+      "v3",
+      "Cam Pan",
+      "Cam Outdoor"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze error 95 fix",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-error-99",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "ERROR 99",
+    "displayCode": "Error 99",
+    "alternativeCodes": [],
+    "title": "Wyze Error 99 unknown error",
+    "shortDescription": "Generic error 99 banner during live view.",
+    "fullDescription": "Error 99 is a catch-all for unhandled exceptions. Usually firmware mismatch between app and camera or partial firmware download.",
+    "causes": [
+      {
+        "cause": "Firmware mismatch",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Partial firmware download",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "App version outdated",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Error 99",
+      "Camera reboots randomly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Update app",
+        "instruction": "Play Store / App Store > Wyze > update.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-flash firmware",
+        "instruction": "Settings > Device info > Firmware > update.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Factory reset",
+        "instruction": "Hold setup button 20s.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam Pan v3"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze error 99",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-rtsp-failed",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "RTSP FAILED",
+    "displayCode": "RTSP Stream Failed",
+    "alternativeCodes": [],
+    "title": "Wyze RTSP firmware stream not accessible",
+    "shortDescription": "RTSP URL won't open in VLC or NVR.",
+    "fullDescription": "Wyze RTSP firmware is unmaintained. Streams fail when bitrate climbs, or after a normal firmware update overwrites the RTSP build.",
+    "causes": [
+      {
+        "cause": "Wrong firmware flashed",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Username/password wrong",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Bitrate too high for NVR",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "VLC timeout",
+      "NVR no signal"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-flash RTSP firmware",
+        "instruction": "Wyze RTSP firmware page > download .bin > side-load via SD card.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Verify RTSP URL",
+        "instruction": "rtsp://user:pass@ip/live",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Lower bitrate",
+        "instruction": "Camera settings > 360p mode.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v2",
+      "v3",
+      "Cam Pan v2"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze RTSP firmware install",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-person-detection-failed",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "PERSON DETECTION FAILED",
+    "displayCode": "Person Detection Not Working",
+    "alternativeCodes": [],
+    "title": "Wyze person detection misses people",
+    "shortDescription": "Cam Plus person tag never appears.",
+    "fullDescription": "Wyze Edge AI requires v3 or newer hardware and Cam Plus subscription. Older cams use cloud AI which can lag or skip when many cameras share account.",
+    "causes": [
+      {
+        "cause": "Cam Plus expired",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Camera too old for Edge AI",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Detection sensitivity low",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "No person tag",
+      "Motion only tag"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Cam Plus on device",
+        "instruction": "Account > Services > Cam Plus > add device.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Increase sensitivity",
+        "instruction": "Settings > Detection > slider 80+.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Update firmware for Edge AI",
+        "instruction": "Required on v3 Pro / Cam OG.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam OG",
+      "Cam Pan v3"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze person detection not working",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-error-06-v2",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "ERROR 06",
+    "displayCode": "Error 06 Auth Token",
+    "alternativeCodes": [],
+    "title": "Wyze Error 06 invalid auth token",
+    "shortDescription": "Camera prompts to log in repeatedly.",
+    "fullDescription": "Token corruption after Wyze backend updates. Usually clears with sign-out / sign-in. If persistent on iOS, the keychain entry needs deletion.",
+    "causes": [
+      {
+        "cause": "Stale auth token",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "iOS keychain corrupt",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Repeated login prompts",
+      "Error 06"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Sign out",
+        "instruction": "Account > Sign out > sign back in.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Delete keychain entry",
+        "instruction": "iOS settings > passwords > delete Wyze entry.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Reinstall app",
+        "instruction": "Delete and reinstall.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam Pan v3"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze error 06 fix",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-cam-outdoor-base-disconnected",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "CAM OUTDOOR BASE DISCONNECTED",
+    "displayCode": "Outdoor Base Disconnected",
+    "alternativeCodes": [],
+    "title": "Wyze Cam Outdoor base offline",
+    "shortDescription": "Outdoor camera shows base offline.",
+    "fullDescription": "Wyze Cam Outdoor uses a base station hub. Base disconnect comes from Ethernet flapping, base power adapter weak, or base firmware stuck.",
+    "causes": [
+      {
+        "cause": "Ethernet cable loose",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Base power adapter weak",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Base firmware stuck",
+        "likelihood": "low",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Base offline",
+      "Cameras inaccessible"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reseat Ethernet",
+        "instruction": "Unplug and replug LAN cable both ends.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try different power adapter",
+        "instruction": "Use 5V/2A USB-A.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 3,
+        "title": "Reset base",
+        "instruction": "Hold sync button 10s.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 5
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam Outdoor",
+      "Cam Outdoor v2"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze base station offline",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-continuous-recording-stopped",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "CONTINUOUS RECORDING STOPPED",
+    "displayCode": "Continuous Recording Stopped",
+    "alternativeCodes": [],
+    "title": "Wyze continuous recording to SD card stopped",
+    "shortDescription": "SD card recording shows gaps.",
+    "fullDescription": "Continuous recording stops if SD card has bad sectors, format isn't FAT32/exFAT, or scheduled rule paused recording.",
+    "causes": [
+      {
+        "cause": "SD card bad sectors",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong format",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Scheduled rule paused",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Gaps in playback",
+      "SD recording disabled"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Format SD card in camera",
+        "instruction": "Settings > Local storage > Format.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Try high-endurance card",
+        "instruction": "Use SanDisk High Endurance 32-128GB.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check Rules",
+        "instruction": "Wyze Rules > look for paused recording.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v3",
+      "v3 Pro",
+      "Cam Pan",
+      "Cam OG"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze SD card recording fix",
+    "faq": []
+  },
+  {
+    "id": "wyze-security-camera-cam-plus-lite-lapsed",
+    "brand": "Wyze",
+    "brandSlug": "wyze",
+    "deviceType": "Security Camera",
+    "deviceTypeSlug": "security-camera",
+    "code": "CAM PLUS LITE LAPSED",
+    "displayCode": "Cam Plus Lite Lapsed",
+    "alternativeCodes": [],
+    "title": "Wyze Cam Plus Lite recording lapsed",
+    "shortDescription": "Free Cam Plus Lite stopped capturing 12s clips.",
+    "fullDescription": "Cam Plus Lite requires periodic re-confirmation of pay-what-you-want. If billing email lapses, free tier reverts to 5-minute cooldown.",
+    "causes": [
+      {
+        "cause": "Pay-what-you-want lapsed",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account billing email outdated",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "12-sec clip becomes 12-sec on cooldown",
+      "Tag missing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Renew Cam Plus Lite",
+        "instruction": "Services > Cam Plus Lite > set $0 or above.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Update billing info",
+        "instruction": "Account > Payment methods.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
+    ],
+    "affectedModels": [
+      "Wyze Cam v2",
+      "v3",
+      "Cam Pan",
+      "Cam OG"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "whenToCallPro": "Not required.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Wyze Cam Plus Lite renewal",
     "faq": []
   }
 ]
