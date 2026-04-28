@@ -4016,5 +4016,735 @@
         "a": "Possible \u2014 pressure codes need recharge."
       }
     ]
+  },
+  {
+    "id": "ecobee-thermostat-blowercheck",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "BlowerCheck",
+    "displayCode": "BlowerCheck",
+    "isBlinkCode": false,
+    "title": "Blower Test Sequence Failure",
+    "shortDescription": "Periodic blower self-test did not complete.",
+    "fullDescription": "Ecobee BlowerCheck indicates a routine blower run test failed \u2014 fan did not engage when commanded.",
+    "causes": [
+      {
+        "cause": "Failed G wire connection",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Failed fan relay",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Wrong wire mapping",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "BlowerCheck alert",
+      "Fan does not run"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify G wire",
+        "instruction": "Confirm G wire at thermostat and air handler.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Manual fan ON",
+        "instruction": "Set fan to ON and confirm operation.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Tech inspection",
+        "instruction": "If fan dead, tech checks relay.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 60
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 to 90 minutes",
+    "whenToCallPro": "If relay or motor work needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-aux-heat-run"
+    ],
+    "faq": [
+      {
+        "q": "Routine test?",
+        "a": "Yes \u2014 Ecobee runs an exercise weekly."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-compressor-lock",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "Compressor-Lock",
+    "displayCode": "Compressor-Lock",
+    "isBlinkCode": false,
+    "title": "Compressor Anti-Cycle Lock",
+    "shortDescription": "Compressor is locked out for short-cycle protection.",
+    "fullDescription": "Ecobee Compressor-Lock indicates the thermostat is enforcing the minimum off-time (typically 5 min) before the compressor restarts.",
+    "causes": [
+      {
+        "cause": "Power blip",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Setpoint changed quickly",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed contactor",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Compressor-Lock message",
+      "5-minute delay"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Wait",
+        "instruction": "Allow timer to expire.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Set wider setpoint",
+        "instruction": "Avoid frequent setpoint changes.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "If contactor or compressor fails.",
+    "relatedCodes": [
+      "ecobee-thermostat-aux-stuck"
+    ],
+    "faq": [
+      {
+        "q": "Why 5 minutes?",
+        "a": "Allows refrigerant pressures to equalize."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-outdoor-temp-lock",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "Outdoor-Temp-Lock",
+    "displayCode": "Outdoor-Temp-Lock",
+    "isBlinkCode": false,
+    "title": "Outdoor Lockout Active",
+    "shortDescription": "Outdoor temp has triggered heat pump or aux lockout.",
+    "fullDescription": "Ecobee Outdoor-Temp-Lock indicates the heat pump or aux is locked out based on configured outdoor temperature thresholds.",
+    "causes": [
+      {
+        "cause": "Lockout setpoint reached",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Outdoor-Temp-Lock message",
+      "Aux or compressor unavailable"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify lockouts",
+        "instruction": "Settings > Installation Settings > Thresholds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Adjust if wrong",
+        "instruction": "Set per equipment manufacturer.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 to 30 minutes",
+    "whenToCallPro": "Not typically needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-aux-heat-run"
+    ],
+    "faq": [
+      {
+        "q": "Why use lockout?",
+        "a": "Forces efficient heat pump use in mild weather."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-filterchange-auto",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "FilterChange-Auto",
+    "displayCode": "FilterChange-Auto",
+    "isBlinkCode": false,
+    "title": "Smart Filter Reminder",
+    "shortDescription": "Filter reminder triggered by runtime hours.",
+    "fullDescription": "Ecobee FilterChange-Auto indicates the thermostat has tracked enough HVAC runtime to recommend a filter change.",
+    "causes": [
+      {
+        "cause": "Filter due",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "FilterChange-Auto reminder",
+      "App alert"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace filter",
+        "instruction": "Install new filter.",
+        "tools": [
+          "Filter"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reset reminder",
+        "instruction": "Settings > Reminders > Reset.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 50
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-furnace-filter"
+    ],
+    "faq": [
+      {
+        "q": "How does it track?",
+        "a": "By blower runtime hours."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-wi-fi-setup",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "Wi-Fi-Setup",
+    "displayCode": "Wi-Fi-Setup",
+    "isBlinkCode": false,
+    "title": "Wi-Fi Onboarding Failed",
+    "shortDescription": "Initial Wi-Fi pairing did not complete.",
+    "fullDescription": "Ecobee Wi-Fi-Setup indicates the onboarding flow timed out.",
+    "causes": [
+      {
+        "cause": "Wrong password",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "5 GHz network selected",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Captive portal network",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Wi-Fi-Setup error",
+      "Cannot complete setup"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reverify password",
+        "instruction": "Re-enter network password carefully.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Use 2.4 GHz",
+        "instruction": "Connect to 2.4 GHz SSID only.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Restart setup",
+        "instruction": "Reboot thermostat and retry.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "If router work needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-wifi-connect"
+    ],
+    "faq": [
+      {
+        "q": "5 GHz support?",
+        "a": "Newer Ecobees support both, but 2.4 GHz is more reliable."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-apppair",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "AppPair",
+    "displayCode": "AppPair",
+    "isBlinkCode": false,
+    "title": "App Account Pairing Failure",
+    "shortDescription": "Ecobee app could not link to thermostat.",
+    "fullDescription": "AppPair indicates the mobile app could not associate with the thermostat \u2014 typically a server or token issue.",
+    "causes": [
+      {
+        "cause": "Server outage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wrong account",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Stale registration token",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "AppPair error",
+      "Pairing fails repeatedly"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check status page",
+        "instruction": "Verify Ecobee status.ecobee.com.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      },
+      {
+        "step": 2,
+        "title": "Sign out / in",
+        "instruction": "Log out and back into app.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Re-register",
+        "instruction": "Generate new registration code on thermostat.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "If account issues persist.",
+    "relatedCodes": [
+      "ecobee-thermostat-app-disconnect"
+    ],
+    "faq": [
+      {
+        "q": "Multiple accounts?",
+        "a": "One thermostat per primary account."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-voice-reg",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "Voice-Reg",
+    "displayCode": "Voice-Reg",
+    "isBlinkCode": false,
+    "title": "Built-in Voice Registration Issue",
+    "shortDescription": "Built-in Alexa or voice service registration failed.",
+    "fullDescription": "Voice-Reg indicates the SmartThermostat with Voice's voice service could not register.",
+    "causes": [
+      {
+        "cause": "Network restrictions",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Region not supported",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Account region mismatch",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "Voice-Reg error",
+      "No voice response"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Check region",
+        "instruction": "Confirm voice services available in your region.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Re-link voice account",
+        "instruction": "Re-link Alexa account in Ecobee app.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "If account issues recur.",
+    "relatedCodes": [
+      "ecobee-thermostat-voice-activate"
+    ],
+    "faq": [
+      {
+        "q": "Premium only?",
+        "a": "Voice is on SmartThermostat with Voice and Premium."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-reg4",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "Reg4",
+    "displayCode": "Reg4",
+    "isBlinkCode": false,
+    "title": "Equipment Configuration Mismatch",
+    "shortDescription": "Detected equipment differs from configured equipment.",
+    "fullDescription": "Reg4 indicates the thermostat's electrical detection finds wires that conflict with what was selected during setup.",
+    "causes": [
+      {
+        "cause": "Wrong setup choices",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Wires moved post-setup",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
+    ],
+    "symptoms": [
+      "Reg4 alert",
+      "Some equipment not running"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Re-run equipment setup",
+        "instruction": "Settings > Installation > Equipment.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Verify wire detection",
+        "instruction": "Compare wire labels in installer report.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 100,
+        "max": 200
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 to 30 minutes",
+    "whenToCallPro": "If wiring inspection needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-reg2"
+    ],
+    "faq": [
+      {
+        "q": "Will damage equipment?",
+        "a": "Usually not \u2014 but proper setup matters."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-smartsensor-battery",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "SmartSensor-Battery",
+    "displayCode": "SmartSensor-Battery",
+    "isBlinkCode": false,
+    "title": "Smart Sensor Battery Critical",
+    "shortDescription": "A SmartSensor battery is below 10%.",
+    "fullDescription": "SmartSensor-Battery indicates a remote sensor's CR2032 battery needs replacement soon.",
+    "causes": [
+      {
+        "cause": "Battery aged",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "SmartSensor-Battery alert",
+      "Sensor reports stale data"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace CR2032",
+        "instruction": "Open sensor and swap with fresh CR2032.",
+        "tools": [
+          "CR2032"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 2,
+        "max": 8
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-sensor-battery"
+    ],
+    "faq": [
+      {
+        "q": "Battery life?",
+        "a": "About 18 months."
+      }
+    ]
+  },
+  {
+    "id": "ecobee-thermostat-datasync",
+    "brand": "Ecobee",
+    "brandSlug": "ecobee",
+    "deviceType": "Thermostat",
+    "deviceTypeSlug": "thermostat",
+    "code": "DataSync",
+    "displayCode": "DataSync",
+    "isBlinkCode": false,
+    "title": "Cloud Data Sync Failure",
+    "shortDescription": "Thermostat could not sync runtime data to Ecobee cloud.",
+    "fullDescription": "DataSync indicates buffered runtime data could not upload to Ecobee servers \u2014 usually a Wi-Fi or cloud issue.",
+    "causes": [
+      {
+        "cause": "Wi-Fi unstable",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Server outage",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "DataSync warning",
+      "App reports stale data"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify Wi-Fi",
+        "instruction": "Run network test on thermostat.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Reboot thermostat",
+        "instruction": "Pull from base for 30 seconds.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Check status",
+        "instruction": "Visit Ecobee status page.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5 to 30 minutes",
+    "whenToCallPro": "Not needed.",
+    "relatedCodes": [
+      "ecobee-thermostat-wifi-disc"
+    ],
+    "faq": [
+      {
+        "q": "Will it lose data?",
+        "a": "Usually no \u2014 buffer holds 24h of runtime."
+      }
+    ]
   }
 ]
