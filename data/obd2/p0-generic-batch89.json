@@ -1,0 +1,3339 @@
+[
+  {
+    "code": "P0300-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Random/Multiple Cylinder Misfire Detected",
+    "shortDescription": "Crankshaft variation indicates misfires across multiple or random cylinders.",
+    "fullDescription": "P0300 sets when the ECM detects misfires distributed across more than one cylinder, or no clear pattern. The crankshaft position sensor watches for the deceleration signature that occurs when a cylinder fails to fire. Multiple-cylinder misfire often indicates a system-wide cause \u2014 fuel pressure, ignition coil pack on coil-on-plug-pair platforms, MAF, vacuum leak, or low compression \u2014 rather than a single bad coil or plug.",
+    "severity": "high",
+    "safetyImpact": "Catalytic converter damage if MIL flashes (active misfire). Reduce engine load until repaired.",
+    "causes": [
+      {
+        "cause": "Worn spark plugs (gap drift, electrode wear)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Vacuum leak (intake gasket, PCV, brake booster hose)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Low fuel pressure (failing pump, plugged filter)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Contaminated MAF sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Bad gasoline (water, ethanol incompatibility)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon buildup on intake valves (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failing ignition coil pack (waste-spark systems)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "EGR valve stuck open at idle",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Flashing CEL during active misfire",
+      "Steady CEL after event clears",
+      "Rough idle",
+      "Lack of power",
+      "Hesitation under acceleration",
+      "Increased fuel consumption"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read freeze frame and misfire counts",
+        "instruction": "View per-cylinder misfire counters. If counts are roughly equal across cylinders, suspect a system-wide cause (fuel/air/ignition shared component).",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect spark plugs",
+        "instruction": "Pull all plugs. Check for proper gap (spec varies, often 0.040-0.044 in), uniform color, no oil/coolant contamination.",
+        "tools": [
+          "spark plug socket",
+          "feeler gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test fuel pressure",
+        "instruction": "Connect gauge at rail. Verify static pressure within spec, watch for drop under load.",
+        "tools": [
+          "fuel pressure gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check for vacuum leaks",
+        "instruction": "Smoke test intake or use propane near gaskets. Look at idle fuel trims \u2014 over +10% LTFT suggests leak.",
+        "tools": [
+          "smoke machine",
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 5,
+        "title": "Compression / leakdown",
+        "instruction": "If still misfiring after tune-up, run compression test on all cylinders. Mechanical issues (valve, ring) need internal repair.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "P0301",
+      "P0302",
+      "P0303",
+      "P0304",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "Flashing vs steady CEL?",
+        "a": "Flashing = active misfire damaging catalyst. Pull over and reduce load. Steady = misfire occurred but is not currently active."
+      },
+      {
+        "q": "Should I drive with P0300?",
+        "a": "Short, low-load drive only. Continued operation can destroy catalytic converters costing $1000+."
+      }
+    ]
+  },
+  {
+    "code": "P0301-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 1 Misfire Detected",
+    "shortDescription": "Cylinder 1 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0301 sets when the ECM detects misfires concentrated on cylinder 1. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 1's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 1",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 1 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 1",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 1 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 1 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 1 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 1 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 1, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 1 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0351",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 1?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0302-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 2 Misfire Detected",
+    "shortDescription": "Cylinder 2 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0302 sets when the ECM detects misfires concentrated on cylinder 2. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 2's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 2",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 2 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 2",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 2 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 2 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 2 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 2 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 2, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 2 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0352",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 2?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0303-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 3 Misfire Detected",
+    "shortDescription": "Cylinder 3 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0303 sets when the ECM detects misfires concentrated on cylinder 3. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 3's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 3",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 3 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 3",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 3 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 3 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 3 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 3 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 3, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 3 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0353",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 3?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0304-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 4 Misfire Detected",
+    "shortDescription": "Cylinder 4 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0304 sets when the ECM detects misfires concentrated on cylinder 4. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 4's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 4",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 4 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 4",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 4 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 4 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 4 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 4 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 4, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 4 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0354",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 4?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0305-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 5 Misfire Detected",
+    "shortDescription": "Cylinder 5 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0305 sets when the ECM detects misfires concentrated on cylinder 5. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 5's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 5",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 5 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 5",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 5 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 5 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 5 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 5 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 5, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 5 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0355",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 5?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0306-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 6 Misfire Detected",
+    "shortDescription": "Cylinder 6 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0306 sets when the ECM detects misfires concentrated on cylinder 6. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 6's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 6",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 6 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 6",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 6 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 6 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 6 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 6 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 6, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 6 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0356",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 6?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0307-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 7 Misfire Detected",
+    "shortDescription": "Cylinder 7 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0307 sets when the ECM detects misfires concentrated on cylinder 7. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 7's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 7",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 7 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 7",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 7 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 7 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 7 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 7 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 7, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 7 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0357",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 7?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0308-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 8 Misfire Detected",
+    "shortDescription": "Cylinder 8 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0308 sets when the ECM detects misfires concentrated on cylinder 8. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 8's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 8",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 8 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 8",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 8 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 8 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 8 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 8 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 8, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 8 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0358",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 8?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0309-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 9 Misfire Detected",
+    "shortDescription": "Cylinder 9 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P0309 sets when the ECM detects misfires concentrated on cylinder 9. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 9's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 9",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 9 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 9",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 9 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 9 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 9 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 9 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 9, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 9 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0359",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 9?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0310-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 10 Misfire Detected",
+    "shortDescription": "Cylinder 10 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P03010 sets when the ECM detects misfires concentrated on cylinder 10. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 10's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 10",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 10 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 10",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 10 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 10 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 10 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 10 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 10, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 10 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0360",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 10?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0311-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 11 Misfire Detected",
+    "shortDescription": "Cylinder 11 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P03011 sets when the ECM detects misfires concentrated on cylinder 11. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 11's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 11",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 11 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 11",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 11 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 11 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 11 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 11 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 11, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 11 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0361",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 11?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0312-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Cylinder 12 Misfire Detected",
+    "shortDescription": "Cylinder 12 misfire \u2014 crankshaft variation localized to one cylinder.",
+    "fullDescription": "P03012 sets when the ECM detects misfires concentrated on cylinder 12. The crankshaft sensor measures the speed dip during each cylinder's power stroke; when cylinder 12's signature falls below threshold, the misfire counter increments. Single-cylinder misfire usually points to ignition (coil/plug), injector, or compression on that specific cylinder.",
+    "severity": "high",
+    "safetyImpact": "Active flashing MIL = catalyst damage risk. Avoid sustained driving.",
+    "causes": [
+      {
+        "cause": "Worn or fouled spark plug, cylinder 12",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition coil, cylinder 12 (COP)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck or clogged fuel injector, cylinder 12",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder 12 (burnt valve, worn rings, head gasket)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon on intake valve, cylinder 12 (DI engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Vacuum leak local to cylinder 12 (intake runner gasket)",
+        "likelihood": "low"
+      },
+      {
+        "cause": "Wiring fault to coil or injector",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle, vibration felt at steering column",
+      "Flashing CEL under load",
+      "Loss of power",
+      "Possible fuel smell from increased unburnt HC"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Swap coil and plug",
+        "instruction": "Move cylinder 12 ignition coil to a neighboring cylinder and the plug to a different bore. Recheck \u2014 if misfire moves with coil, replace coil. If with plug, replace plug.",
+        "tools": [
+          "spark plug socket",
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test injector",
+        "instruction": "Measure injector resistance (typically 11-16 ohms saturated, 1-3 ohms peak-and-hold). Use NOID light or scope to confirm pulse. Swap injector position to confirm.",
+        "tools": [
+          "DMM",
+          "NOID light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Compression test",
+        "instruction": "Pull plug on cylinder 12, screw in gauge. Crank with throttle open \u2014 should be within 10% of other cylinders. Low compression = cylinder leakdown next.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Cylinder leakdown",
+        "instruction": "Bring cylinder 12 to TDC compression, apply 100 psi shop air. Listen for hiss at intake (valve), exhaust (valve), oil cap (rings), or radiator (head gasket).",
+        "tools": [
+          "leakdown tester"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Repair root cause",
+        "instruction": "Replace coil, plug, injector, or address mechanical fault. Use OEM ignition components on modern engines.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30 min - 4 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0362",
+      "P0316"
+    ],
+    "faq": [
+      {
+        "q": "How do I know which is cylinder 12?",
+        "a": "Consult engine layout for the specific make. Many manufacturers stamp cylinder numbers on the valve cover or intake."
+      }
+    ]
+  },
+  {
+    "code": "P0350-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil Primary/Secondary Circuit Malfunction",
+    "shortDescription": "Generic ignition coil primary/secondary circuit fault.",
+    "fullDescription": "P0350 is the umbrella code for an ignition coil circuit fault when the ECM cannot identify which specific coil. Modern vehicles set P0351-P0362 for specific cylinders; P0350 typically appears on older multi-coil systems or when the fault is shared across coils.",
+    "severity": "medium",
+    "safetyImpact": "Possible misfire, catalyst damage if active.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil shared driver",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed ignition module (waste spark)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Power supply fault to coil rail",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Rough running",
+      "MIL flashing under load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify coil power",
+        "instruction": "All coils should see battery voltage on power pin during cranking and run.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Scope coil drivers",
+        "instruction": "Each driver should pulse low to ground during normal operation.",
+        "tools": [
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace failed coil/module",
+        "instruction": "Use OEM. Apply dielectric grease on COP boots.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 300
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0351",
+      "P0352",
+      "P0353"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0351-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil A (Cylinder 1) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 1 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0351 sets when the ECM detects an electrical fault on the cylinder 1 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0301) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 1 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 1",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 1",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 1. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 1, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 1, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0301",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0352-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil B (Cylinder 2) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 2 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0352 sets when the ECM detects an electrical fault on the cylinder 2 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0302) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 2 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 2",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 2",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 2. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 2, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 2, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0302",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0353-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil C (Cylinder 3) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 3 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0353 sets when the ECM detects an electrical fault on the cylinder 3 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0303) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 3 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 3",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 3",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 3. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 3, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 3, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0303",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0354-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil D (Cylinder 4) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 4 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0354 sets when the ECM detects an electrical fault on the cylinder 4 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0304) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 4 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 4",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 4",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 4. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 4, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 4, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0304",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0355-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil E (Cylinder 5) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 5 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0355 sets when the ECM detects an electrical fault on the cylinder 5 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0305) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 5 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 5",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 5",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 5. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 5, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 5, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0305",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0356-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil F (Cylinder 6) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 6 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0356 sets when the ECM detects an electrical fault on the cylinder 6 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0306) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 6 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 6",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 6",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 6. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 6, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 6, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0306",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0357-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil G (Cylinder 7) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 7 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0357 sets when the ECM detects an electrical fault on the cylinder 7 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0307) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 7 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 7",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 7",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 7. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 7, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 7, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0307",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0358-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil H (Cylinder 8) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 8 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0358 sets when the ECM detects an electrical fault on the cylinder 8 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0308) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 8 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 8",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 8",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 8. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 8, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 8, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0308",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0359-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil I (Cylinder 9) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 9 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0359 sets when the ECM detects an electrical fault on the cylinder 9 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P0309) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 9 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 9",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 9",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 9. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 9, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 9, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0309",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0360-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil J (Cylinder 10) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 10 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0360 sets when the ECM detects an electrical fault on the cylinder 10 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P03010) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 10 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 10",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 10",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 10. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 10, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 10, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0310",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0361-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil K (Cylinder 11) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 11 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0361 sets when the ECM detects an electrical fault on the cylinder 11 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P03011) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 11 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 11",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 11",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 11. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 11, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 11, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0311",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0362-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Ignition System",
+    "title": "Ignition Coil L (Cylinder 12) Primary/Secondary Circuit",
+    "shortDescription": "Cylinder 12 ignition coil primary/secondary circuit electrical fault.",
+    "fullDescription": "P0362 sets when the ECM detects an electrical fault on the cylinder 12 ignition coil \u2014 open coil, shorted primary, or driver-side wiring problem. The ECM monitors current waveform on the coil driver; deviation triggers the code. Distinct from a misfire (P03012) \u2014 this is purely electrical and may exist without a current misfire if the coil only fails intermittently.",
+    "severity": "medium",
+    "safetyImpact": "Probable misfire under load with associated catalyst damage risk.",
+    "causes": [
+      {
+        "cause": "Failed ignition coil on cylinder 12 (open or shorted primary winding)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged or oil-contaminated coil boot, cylinder 12",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open or chafed wiring between ECM and coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded coil connector pins",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on (sometimes flashing)",
+      "Misfire on cylinder 12",
+      "Rough idle",
+      "Hesitation"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect coil and boot",
+        "instruction": "Remove coil from cylinder 12. Inspect boot for cracks, oil intrusion, carbon track. Replace boot if damaged.",
+        "tools": [
+          "coil puller"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Primary typically 0.5-2 ohms, secondary 5-15k ohms (varies \u2014 verify with FSM). Out-of-spec = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Coil swap test",
+        "instruction": "Swap suspect coil to a known-good cylinder. If code follows the coil, the coil is bad. If code stays on cylinder 12, suspect wiring.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Check connector and wiring",
+        "instruction": "Backprobe coil connector. Verify battery voltage on power, ground continuity, and ECM driver pulse.",
+        "tools": [
+          "DMM",
+          "scope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 5,
+        "title": "Replace and torque",
+        "instruction": "Install new OEM coil on cylinder 12, apply dielectric grease in boot, torque coil bolt to spec (typically 7-10 Nm).",
+        "tools": [
+          "torque wrench"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0312",
+      "P0300",
+      "P0350"
+    ],
+    "faq": [
+      {
+        "q": "Replace all coils at once?",
+        "a": "If coils are over 100k miles and one has failed, replacing all of them avoids returning soon."
+      }
+    ]
+  },
+  {
+    "code": "P0363-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Misfire Detected \u2014 Fueling Disabled",
+    "shortDescription": "ECM has disabled fuel injection on cylinders with persistent misfire to protect the catalyst.",
+    "fullDescription": "P0363 sets when the ECM has accumulated enough misfire counts on one or more cylinders to risk catalyst damage; it then disables fuel injection on the affected cylinder(s) until the next key cycle. Always accompanied by a P030x companion identifying the offending cylinder. Treat as urgent \u2014 driving with cylinders disabled stresses the engine.",
+    "severity": "high",
+    "safetyImpact": "Engine running on reduced cylinders. Reduced power, increased vibration.",
+    "causes": [
+      {
+        "cause": "Persistent misfire on a specific cylinder (see companion P030x)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Severe ignition or fuel system fault",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Mechanical failure (compression loss)",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Severe rough running",
+      "Reduced power / limp mode",
+      "Flashing or steady MIL"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read companion code",
+        "instruction": "Identify which cylinder triggered shutdown via accompanying P030x.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Diagnose root cause",
+        "instruction": "Follow misfire diagnostic flow on the affected cylinder.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Repair and clear",
+        "instruction": "Repair, then clear codes \u2014 fueling re-enables next key cycle.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 2000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-5 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0301",
+      "P0302"
+    ],
+    "faq": [
+      {
+        "q": "Will fuel turn back on automatically?",
+        "a": "Yes \u2014 after key cycle. But misfire will return if root cause is not fixed."
+      }
+    ]
+  },
+  {
+    "code": "P0364-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Reserved by SAE J2012 \u2014 Manufacturer Misfire Subset",
+    "shortDescription": "Manufacturer-defined misfire subset code, reserved range.",
+    "fullDescription": "P0364 is a generic SAE-reserved code that some manufacturers use for advanced misfire detection states (e.g., misfire detected but not yet exceeding catalyst-damage threshold). Behavior is platform-specific \u2014 consult OEM service information. Treat any misfire-related code as urgent diagnostically.",
+    "severity": "medium",
+    "safetyImpact": "Possible misfire developing.",
+    "causes": [
+      {
+        "cause": "Early-stage misfire, see companion codes",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Spark plug or coil degradation",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Marginal fuel pressure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Possible mild rough idle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read OEM-specific service info",
+        "instruction": "Behavior varies \u2014 consult factory service manual for the exact platform.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect tune-up parts",
+        "instruction": "Pull plugs, inspect coils, check fuel pressure.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0363"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0300-v3",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Random/Multiple Cylinder Misfire \u2014 Direct-Injection Carbon Pattern",
+    "shortDescription": "Random misfire pattern characteristic of intake-valve carbon on DI engines.",
+    "fullDescription": "Same SAE definition as P0300, but covers the specific failure mode common on direct-injection engines (VW/Audi TSI/TFSI, BMW N54/N55/N20, Ford EcoBoost, Hyundai/Kia GDI) after 60,000-100,000 miles: carbon deposits accumulate on intake valves because no fuel washes them. Misfire occurs random across cylinders depending on which valves seat poorly that cycle. Standard tune-up parts pass tests but misfire continues \u2014 diagnosis requires borescope of intake ports.",
+    "severity": "high",
+    "safetyImpact": "Catalyst damage from sustained misfire.",
+    "causes": [
+      {
+        "cause": "Heavy intake-valve carbon (DI engines)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "PCV system over-feeding oil mist into intake",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Worn high-pressure fuel pump (DI)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failing low-pressure lift pump",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Carbon-fouled or worn spark plugs (DI engines run hotter)",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Cold-start rough idle that smooths warm",
+      "Random per-cylinder misfire counts",
+      "Slight power loss",
+      "Slow throttle response"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Borescope intake ports",
+        "instruction": "Remove intake manifold (or use borescope through removed coil/injector access). Visually confirm carbon depth on intake valves.",
+        "tools": [
+          "borescope"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 2,
+        "title": "Walnut-blast intake valves",
+        "instruction": "With pistons at TDC of compression to seal valves, walnut-shell media blast each port. Vacuum debris between cylinders. Standard service every 60-80k mi on DI engines.",
+        "tools": [
+          "walnut blaster",
+          "shop vac"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace HPFP if low rail pressure",
+        "instruction": "Confirm fuel rail pressure under load matches commanded value. Replace HPFP if low.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Inspect PCV / oil separator",
+        "instruction": "DI engines often have oil separator failures dumping mist into intake. Replace separator if found leaking.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "4-8 hours",
+    "relatedCodes": [
+      "P0300",
+      "P0301",
+      "P0302"
+    ],
+    "faq": [
+      {
+        "q": "Can fuel additive fix this?",
+        "a": "Limited \u2014 port-injected detergents wash valves, but DI engines bypass the intake valves entirely, so carbon must be cleaned mechanically."
+      },
+      {
+        "q": "How often is walnut blasting needed?",
+        "a": "Typically 60,000-100,000 miles on most DI engines."
+      }
+    ]
+  },
+  {
+    "code": "P0316-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Misfire",
+    "title": "Engine Misfire Detected on Startup (First 1000 Revolutions)",
+    "shortDescription": "Misfire detected during the first 1000 crank revolutions after start.",
+    "fullDescription": "P0316 is a Ford-pioneered code now widely used: the ECM watches misfire counts during the first 1000 crank revolutions after engine start. If the count exceeds threshold, P0316 sets along with the specific cylinder code. Typical causes are cold-stiff injectors, weak coils, or low-compression cylinders that recover after warm-up.",
+    "severity": "medium",
+    "safetyImpact": "Cold-start emissions exceedance; possible catalyst damage if misfire is severe.",
+    "causes": [
+      {
+        "cause": "Cold-weak ignition coil that works hot",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Sticky fuel injector (clears with fuel flow)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Carbon-fouled spark plug (recovers when hot)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Low compression cylinder masked by warm expansion",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Insufficient cold-start fuel pressure",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Rough idle for first 30 seconds after cold start",
+      "MIL on",
+      "Smooths after warm-up"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read companion P030x code",
+        "instruction": "Identifies the specific cylinder. Focus diagnosis there.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Cold-start coil/plug swap",
+        "instruction": "Swap suspect coil or plug to neighbor cylinder. Let cool overnight. Cold-start next morning \u2014 see if misfire follows.",
+        "tools": [
+          "coil tools"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Check fuel pressure at cold start",
+        "instruction": "Connect gauge before first start of the day. Pressure should rise within 1-2 seconds and stay in spec.",
+        "tools": [
+          "fuel pressure gauge"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Cold compression test if persistent",
+        "instruction": "Test compression cold (engine sat overnight). A cylinder lower than others when cold but recovering when warm is a worn-ring/bore issue.",
+        "tools": [
+          "compression gauge"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 1500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours (test) up to multiple sessions for cold reproduction",
+    "relatedCodes": [
+      "P0300",
+      "P0301",
+      "P0302"
+    ],
+    "faq": [
+      {
+        "q": "Why does it only set in the morning?",
+        "a": "Components contract when cold; weak ones lose contact or have insufficient flow until warm-up."
+      }
+    ]
+  }
+]

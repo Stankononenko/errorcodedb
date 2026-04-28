@@ -1,0 +1,2762 @@
+[
+  {
+    "code": "P0440-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Malfunction",
+    "shortDescription": "Generic EVAP system fault: ECM cannot complete an evaporative system monitor.",
+    "fullDescription": "P0440 is a generic gross-malfunction code set when the powertrain control module cannot pull or hold vacuum on the EVAP system, indicating a leak, blocked vent, stuck purge, or sensor circuit fault. On most pre-2000 OBD-II vehicles this is the umbrella code; later vehicles set the more specific P0442/P0455/P0456 instead. A loose or non-OEM gas cap is the single most common cause and should always be ruled out first.",
+    "severity": "low",
+    "safetyImpact": "No drivability impact, but the vehicle will fail an OBD-II emissions inspection while the MIL is on.",
+    "causes": [
+      {
+        "cause": "Loose, missing, or aftermarket fuel cap not sealing",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked or disconnected EVAP hose between tank, charcoal canister, and intake",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck-open or stuck-closed canister purge valve",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed canister vent solenoid (CVS)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Leaking fuel filler neck or O-ring at tank",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed fuel tank pressure (FTP) sensor",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Check Engine Light steady on",
+      "Faint fuel odor near tank or filler",
+      "No drivability symptoms",
+      "Fails state OBD-II readiness check"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Tighten or replace fuel cap",
+        "instruction": "Remove cap, inspect O-ring for cuts or fuel deposits, reinstall until it clicks 3 times. Clear codes and drive 1-2 cold starts.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Run EVAP smoke test",
+        "instruction": "Connect a low-pressure smoke machine (0.5 psi max) to the service port. Look for smoke at hoses, canister, vent solenoid, and filler neck.",
+        "tools": [
+          "EVAP smoke machine",
+          "nitrogen or shop air",
+          "UV dye (optional)"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Command purge and vent solenoids",
+        "instruction": "Use bidirectional scan tool to cycle CPV and CVS. Listen for click and verify FTP sensor responds.",
+        "tools": [
+          "bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace failed component",
+        "instruction": "Replace cap, hose, purge or vent solenoid as identified. Use OEM parts. Drive 2 cold-soak drive cycles for monitor to re-run.",
+        "tools": [
+          "socket set",
+          "hose pliers"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 80
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 450
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "15 minutes - 2 hours",
+    "relatedCodes": [
+      "P0441",
+      "P0442",
+      "P0455",
+      "P0456"
+    ],
+    "faq": [
+      {
+        "q": "Can I drive with P0440?",
+        "a": "Yes. EVAP faults do not affect drivability or engine reliability."
+      },
+      {
+        "q": "Why does it keep coming back after a new gas cap?",
+        "a": "If the leak is elsewhere (hose or solenoid), a new cap will not clear it. A smoke test is needed."
+      }
+    ]
+  },
+  {
+    "code": "P0441-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Incorrect Purge Flow",
+    "shortDescription": "Purge flow rate does not match commanded value.",
+    "fullDescription": "P0441 sets when the ECM commands the canister purge valve open and observes either no change in fuel tank pressure (no flow, valve stuck closed or hose blocked) or excessive vacuum (valve stuck open, leaking diaphragm). The test runs during steady-state cruise after the EVAP monitor is enabled.",
+    "severity": "low",
+    "safetyImpact": "No safety impact. May cause minor rough idle if purge valve is stuck open.",
+    "causes": [
+      {
+        "cause": "Stuck-closed canister purge solenoid (electrical or mechanical)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck-open purge solenoid causing vacuum leak at idle",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Plugged or kinked purge line between solenoid and intake",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Saturated charcoal canister",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "FTP sensor reading offset",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Possible rough idle (stuck-open purge)",
+      "Possible hard hot restart",
+      "Fuel odor at engine bay"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bidirectional purge test",
+        "instruction": "Command purge solenoid 0% then 100% with engine running. Idle RPM should drop ~50 RPM at 100%. No drop = no flow.",
+        "tools": [
+          "bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test purge solenoid resistance",
+        "instruction": "Disconnect connector, measure coil resistance. Spec is typically 22-30 ohms at 20C. Out of range = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Vacuum test purge valve",
+        "instruction": "Apply 15 inHg with hand pump. Valve must hold vacuum with no power; release with 12V applied.",
+        "tools": [
+          "Mityvac",
+          "12V test leads"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace purge solenoid",
+        "instruction": "Replace with OEM unit, verify hose routing matches diagram, clear codes, drive cycle.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0440",
+      "P0443",
+      "P0496"
+    ],
+    "faq": [
+      {
+        "q": "Will P0441 cause stalling?",
+        "a": "Stuck-open purge can cause rough idle and stall on cold restart, but the valve itself does not damage the engine."
+      },
+      {
+        "q": "How long does the purge solenoid last?",
+        "a": "Typically 100,000-150,000 miles. Earlier failure suggests contaminated fuel or saturated canister."
+      }
+    ]
+  },
+  {
+    "code": "P0442-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Leak Detected (Small Leak)",
+    "shortDescription": "Small EVAP leak \u2014 0.040 inch (1.0 mm) equivalent orifice.",
+    "fullDescription": "P0442 indicates a leak equivalent to a 0.040-inch (1.0 mm) orifice in the EVAP system. The ECM seals the system, applies vacuum (or pressure on positive systems like Ford LDP), and watches the FTP sensor. If pressure decays faster than the calibrated threshold, the small-leak code sets. The most common source is the gas cap or filler-neck seal.",
+    "severity": "low",
+    "safetyImpact": "No drivability impact. Will fail OBD-II emissions inspection.",
+    "causes": [
+      {
+        "cause": "Loose, worn, or non-OEM fuel cap",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked filler neck or damaged O-ring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Pinhole leak in EVAP hose or quick-connect",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Leaking purge or vent solenoid seat",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Cracked charcoal canister housing",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Rare faint fuel odor",
+      "No driveability change"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify cap and filler neck",
+        "instruction": "Inspect cap O-ring; replace if cracked or compressed flat. Inspect inside of filler neck for rust or fuel deposits.",
+        "tools": [
+          "flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Smoke test at 0.5 psi",
+        "instruction": "Plug fresh-air vent, introduce smoke through service port. Inspect with UV light if dye used. Trace smoke to leak.",
+        "tools": [
+          "EVAP smoke machine",
+          "UV light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Test FTP sensor",
+        "instruction": "With key on, FTP should read approximately 2.5V at atmospheric. Apply 5 inH2O \u2014 voltage should drop to ~1.5V on most platforms.",
+        "tools": [
+          "DMM",
+          "Mityvac"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Repair leak source",
+        "instruction": "Replace cap, hose, solenoid, or canister as found. Recheck with smoke test before clearing codes.",
+        "tools": [
+          "hose tool kit",
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 15,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30 minutes - 2 hours",
+    "relatedCodes": [
+      "P0440",
+      "P0455",
+      "P0456",
+      "P0457"
+    ],
+    "faq": [
+      {
+        "q": "How small is a 0.040 leak?",
+        "a": "About 1mm \u2014 the diameter of a thumbtack pinhole."
+      },
+      {
+        "q": "Why does it take days to come back?",
+        "a": "EVAP monitor only runs once per cold soak under specific fuel-level and ambient conditions."
+      }
+    ]
+  },
+  {
+    "code": "P0443-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Purge Control Valve Circuit",
+    "shortDescription": "Electrical fault in purge solenoid control circuit.",
+    "fullDescription": "P0443 sets when the ECM detects an open or short on the canister purge solenoid driver circuit. Unlike flow codes (P0441), this is purely electrical: the ECM monitors current through the solenoid coil and compares to expected. The companion specific codes (P0444 open, P0445 short) appear on most modern platforms.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Failed (open coil) purge solenoid",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Chafed wiring shorting to ground or power",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Corroded purge solenoid connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver (rare)",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "EVAP monitor will not run"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Measure purge solenoid coil",
+        "instruction": "Disconnect connector. Measure resistance \u2014 should be 22-30 ohms. Open or shorted = replace solenoid.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Check power feed",
+        "instruction": "Key on, backprobe power side of connector. Should see battery voltage.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Check driver circuit",
+        "instruction": "Reconnect, command 50% duty cycle. Backprobe driver wire \u2014 should pulse between 0V and 12V.",
+        "tools": [
+          "scope or DMM with min/max"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace solenoid or repair wiring",
+        "instruction": "Repair chafed wire with solder and heat shrink, or replace solenoid. Clear codes.",
+        "tools": [
+          "solder iron",
+          "heat shrink"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 120,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0441",
+      "P0444",
+      "P0445"
+    ],
+    "faq": [
+      {
+        "q": "Difference between P0441 and P0443?",
+        "a": "P0441 is flow-rate (mechanical or hose), P0443 is purely electrical circuit."
+      }
+    ]
+  },
+  {
+    "code": "P0446-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Vent Control Circuit",
+    "shortDescription": "Vent solenoid (CVS) circuit malfunction.",
+    "fullDescription": "P0446 sets when the canister vent solenoid circuit fails its rationality test. The CVS is normally open, allowing the charcoal canister to breathe atmosphere; the ECM closes it to seal the EVAP system for leak testing. P0446 indicates an electrical fault, blocked vent path, or stuck solenoid. Common on GM trucks where the CVS is mounted near the rear axle and floods or rusts.",
+    "severity": "low",
+    "safetyImpact": "Possible inability to refuel without clicking off (sealed tank).",
+    "causes": [
+      {
+        "cause": "Water or mud contamination of CVS (especially GM trucks)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed vent solenoid coil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Damaged wiring near rear axle",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Plugged charcoal canister filter (dust ingestion)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Pump shuts off repeatedly when refueling",
+      "Possible P0455 or P0442 also set"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Locate and inspect CVS",
+        "instruction": "Find solenoid (typically near canister, often on frame rail). Inspect for water, mud, rust on connector.",
+        "tools": [
+          "floor jack",
+          "jack stands"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Measure coil resistance",
+        "instruction": "Disconnect, measure across pins. Spec ~25 ohms typical. Replace if open or shorted.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Functional test",
+        "instruction": "Apply 12V \u2014 solenoid should click and seal. Blow through both ports \u2014 sealed when energized, open when off.",
+        "tools": [
+          "12V leads"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 4,
+        "title": "Replace and protect connector",
+        "instruction": "Install OEM solenoid, apply dielectric grease, ensure drain holes are clear. Clear codes.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 180
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 500
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0447",
+      "P0449",
+      "P0455"
+    ],
+    "faq": [
+      {
+        "q": "Why is this so common on GM trucks?",
+        "a": "The CVS is exposed under the truck near the canister \u2014 water, salt, and mud pack the connector."
+      }
+    ]
+  },
+  {
+    "code": "P0449-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Vent Valve/Solenoid Circuit",
+    "shortDescription": "CVS circuit open or shorted (electrical only).",
+    "fullDescription": "P0449 reports an open or short on the canister vent solenoid driver circuit. Distinct from P0446 (rationality / flow), P0449 fires immediately on key-on if the ECM cannot detect coil current. Frequently caused by corroded connector pins or chafed harness where it transitions from frame to canister.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Corroded or water-filled CVS connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open vent solenoid coil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Chafed harness on frame rail",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Open ECM ground or driver fault",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "EVAP monitor incomplete",
+      "Often pending before maturing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect connector",
+        "instruction": "Disconnect CVS connector \u2014 look for green corrosion or trapped water. Clean with electrical contact cleaner.",
+        "tools": [
+          "contact cleaner"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance test",
+        "instruction": "Measure across solenoid pins. Replace solenoid if outside 20-30 ohm range.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Wiggle test wiring",
+        "instruction": "With ECM commanding solenoid, wiggle harness while watching live data. Intermittent open = chafed wire.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Repair",
+        "instruction": "Replace solenoid and/or repair harness. Use weatherpack-grade connector and heat shrink.",
+        "tools": [
+          "heat shrink",
+          "crimper"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 40,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-90 minutes",
+    "relatedCodes": [
+      "P0446",
+      "P0447",
+      "P0448"
+    ],
+    "faq": [
+      {
+        "q": "Can a bad CVS prevent fueling?",
+        "a": "Yes \u2014 if stuck closed, the tank cannot vent and the pump shuts off."
+      }
+    ]
+  },
+  {
+    "code": "P0451-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Pressure Sensor Range/Performance",
+    "shortDescription": "FTP sensor signal noisy or out of expected range.",
+    "fullDescription": "P0451 sets when the fuel tank pressure (FTP) sensor signal is rational but noisy, drifts, or fails to track expected pressure changes during refueling and key-off cool down. Often appears alongside P0455 because the ECM cannot trust the leak test. Usually a failing FTP sensor; sometimes a small intermittent leak that creates erratic readings.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "FTP sensor internal drift or wear",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Saturated or contaminated FTP diaphragm (fuel intrusion)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Loose sensor mount or O-ring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring or signal-ground noise",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Frequent EVAP code resets",
+      "Inconsistent fuel gauge on some platforms"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Read FTP voltage at key-on",
+        "instruction": "FTP should be ~2.5V at atmosphere. Less than 0.5V or more than 4.5V = circuit fault.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Apply controlled vacuum",
+        "instruction": "Apply 5 inH2O vacuum to FTP \u2014 voltage should drop ~1V smoothly with no jitter.",
+        "tools": [
+          "hand vacuum pump",
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Verify reference and ground",
+        "instruction": "Backprobe \u2014 5V reference present, signal ground less than 0.1V vs battery ground.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace FTP sensor",
+        "instruction": "On most vehicles requires dropping fuel tank or accessing through rear seat. Use OEM only \u2014 aftermarket sensors often calibrate poorly.",
+        "tools": [
+          "fuel tank straps",
+          "torque wrench"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0450",
+      "P0452",
+      "P0453",
+      "P0454"
+    ],
+    "faq": [
+      {
+        "q": "Where is the FTP sensor?",
+        "a": "Usually on top of the fuel tank or built into the fuel-pump module."
+      }
+    ]
+  },
+  {
+    "code": "P0452-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Pressure Sensor Low Input",
+    "shortDescription": "FTP signal voltage stuck low.",
+    "fullDescription": "P0452 sets when the fuel tank pressure sensor signal is below the low threshold (typically 0.1-0.5V) for several seconds. Indicates a shorted-to-ground signal, failed sensor, or excessive negative tank pressure. Verify that no one recently fueled while the engine was running \u2014 that can momentarily set this code on some platforms.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "FTP signal wire shorted to ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed sensor (internal short)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open 5V reference",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Plugged tank vent causing real vacuum buildup",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Possible P0451 or P0455 companion codes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Disconnect FTP",
+        "instruction": "With sensor disconnected, key on \u2014 signal should rise to ~5V (open circuit). If still 0V, wire is shorted to ground.",
+        "tools": [
+          "DMM",
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Verify 5V ref at sensor",
+        "instruction": "Should read 5V key-on. If 0V, check ECM and wiring for that reference circuit.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "If reference and ground are good but voltage stays low with sensor connected, replace sensor.",
+        "tools": [
+          "fuel-tank service tools"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Check for tank vacuum",
+        "instruction": "Loosen fuel cap with key off \u2014 listen for inrush of air. Strong vacuum indicates blocked vent line.",
+        "tools": [],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0451",
+      "P0453"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0453-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Pressure Sensor High Input",
+    "shortDescription": "FTP signal voltage stuck high.",
+    "fullDescription": "P0453 sets when the FTP sensor signal exceeds the high threshold (typically 4.5V) for several seconds. Most often the result of an open signal wire or open ground at the sensor. Less commonly the tank is over-pressurized due to a seized vent solenoid combined with thermal expansion of fuel.",
+    "severity": "low",
+    "safetyImpact": "No safety impact under normal use; tank over-pressure can cause filler-neck spit-back when cap is removed.",
+    "causes": [
+      {
+        "cause": "Open FTP signal wire",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open sensor ground",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck-closed vent solenoid causing real over-pressure",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Possible loud whoosh on cap removal (if real over-pressure)"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Backprobe signal at sensor",
+        "instruction": "Key on, engine off \u2014 voltage should be ~2.5V. If 5V with sensor connected, sensor or ground is open.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Jumper signal to ground",
+        "instruction": "Briefly jumper signal pin to sensor ground at the harness side \u2014 voltage should drop to 0V at scan tool. If yes, ECM and wiring OK; replace sensor.",
+        "tools": [
+          "jumper wire"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Verify ground at sensor",
+        "instruction": "Key on, measure sensor ground vs battery negative. Less than 0.1V drop. If higher, repair ground.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace sensor",
+        "instruction": "Replace with OEM. Re-test before reinstalling fuel module.",
+        "tools": [
+          "fuel-tank tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 250,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0451",
+      "P0452"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0455-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Leak Detected (Large Leak)",
+    "shortDescription": "Large EVAP leak \u2014 0.080 inch (2.0 mm) equivalent.",
+    "fullDescription": "P0455 indicates a large gross leak \u2014 equivalent to a 0.080-inch (2 mm) hole, or a completely missing/loose gas cap. The ECM seals the EVAP system and watches for any vacuum or pressure change; on a gross leak it sees essentially none. Almost always recoverable with cap inspection and a smoke test.",
+    "severity": "low",
+    "safetyImpact": "No safety impact. Strong fuel odor possible.",
+    "causes": [
+      {
+        "cause": "Missing or unseated gas cap",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Disconnected EVAP hose at canister or purge",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked filler neck or split hose",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Stuck-open vent or purge solenoid",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Damaged charcoal canister",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Strong fuel odor",
+      "Possible failed emissions test"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Cap and visual",
+        "instruction": "Re-seat cap, listen for clicks. Inspect all visible EVAP hoses on top of tank, at canister, and at purge valve.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Smoke test",
+        "instruction": "Apply low-pressure smoke at service port. Large leak will show smoke immediately at the source.",
+        "tools": [
+          "EVAP smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Inspect filler neck",
+        "instruction": "Common rust-out point on older vehicles \u2014 remove inner fender liner and look at filler-to-tank junction.",
+        "tools": [
+          "mirror",
+          "flashlight"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Repair source",
+        "instruction": "Replace cap, hose, neck, or solenoid. Re-smoke before clearing codes.",
+        "tools": [
+          "hose pliers"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 80
+      },
+      "mechanic": {
+        "min": 100,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "10 minutes - 3 hours",
+    "relatedCodes": [
+      "P0440",
+      "P0442",
+      "P0456",
+      "P0457"
+    ],
+    "faq": [
+      {
+        "q": "Is it safe to drive?",
+        "a": "Yes, but you may smell raw fuel \u2014 keep windows cracked."
+      }
+    ]
+  },
+  {
+    "code": "P0456-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Leak Detected (Very Small Leak)",
+    "shortDescription": "Very small EVAP leak \u2014 0.020 inch (0.5 mm).",
+    "fullDescription": "P0456 indicates a tiny leak (0.020 in / 0.5 mm) that took multiple drive cycles to confirm. Often the hardest EVAP code to chase. Causes are usually a marginal fuel-cap seal, a hairline crack in plastic hardware, or a slightly leaking valve seat. A meticulous smoke test with the system pressurized for 5+ minutes is essential.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Marginal fuel cap O-ring",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Hairline crack in EVAP hose, often near heat",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Tiny seat leak in purge or vent solenoid",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Pinhole in canister housing",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Leaking quick-connect O-ring",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on after several drive cycles",
+      "No drivability symptoms"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Replace cap as a baseline",
+        "instruction": "Even if cap looks fine, install OEM new cap as cheap insurance.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Pressurized smoke test, 5 minutes",
+        "instruction": "Smoke at 0.5 psi for at least 5 minutes \u2014 small leaks need time. Use UV dye for confirmation.",
+        "tools": [
+          "EVAP smoke machine",
+          "UV light"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Pinch-test branches",
+        "instruction": "While smoking, sequentially pinch off canister vent, purge, and tank lines to isolate which side leaks.",
+        "tools": [
+          "soft hose clamps"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace identified part",
+        "instruction": "Repair or replace exact source. Avoid generic 'replace charcoal canister' guesses.",
+        "tools": [
+          "various"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 20,
+        "max": 200
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0440",
+      "P0442",
+      "P0455"
+    ],
+    "faq": [
+      {
+        "q": "Why is P0456 so hard to find?",
+        "a": "The leak orifice is the size of a sewing needle \u2014 only patient smoke testing reveals it."
+      }
+    ]
+  },
+  {
+    "code": "P0457-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Leak Detected (Fuel Cap Loose/Off)",
+    "shortDescription": "EVAP leak specifically attributed to fuel cap.",
+    "fullDescription": "P0457 is a code dedicated to gross leaks consistent with a missing or loose fuel cap. Some platforms (Ford, GM) display 'Check Fuel Cap' on the cluster when this sets. Differs from P0455 in that the diagnostic specifically detected the leak signature pattern that matches an open cap rather than a hose disconnection.",
+    "severity": "low",
+    "safetyImpact": "No safety impact. Possible fuel splash if cap is missing.",
+    "causes": [
+      {
+        "cause": "Cap not clicked all the way down",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cap O-ring damaged or compressed",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Aftermarket cap with poor seal",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Damaged filler neck threads",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "'Tighten fuel cap' message on cluster"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Tighten until 3 clicks",
+        "instruction": "Remove and reinstall cap until ratchet has clicked at least 3 times.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Inspect O-ring",
+        "instruction": "Check for cuts, swelling, or fuel deposits. Replace cap if worn.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Inspect filler neck threads",
+        "instruction": "Look down filler neck \u2014 threads should be undamaged. Wire-brush any rust.",
+        "tools": [
+          "flashlight",
+          "wire brush"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 4,
+        "title": "Drive cycle and clear",
+        "instruction": "Many vehicles auto-clear after 2-3 successful EVAP monitors.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 30
+      },
+      "mechanic": {
+        "min": 80,
+        "max": 150
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "5-15 minutes",
+    "relatedCodes": [
+      "P0455",
+      "P0456"
+    ],
+    "faq": [
+      {
+        "q": "Will it clear on its own?",
+        "a": "Yes \u2014 most vehicles auto-clear after a few drive cycles with a tight cap."
+      }
+    ]
+  },
+  {
+    "code": "P0458-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission System Purge Control Valve Circuit Low",
+    "shortDescription": "Purge solenoid driver circuit shorted to ground.",
+    "fullDescription": "P0458 sets when the ECM detects the canister purge solenoid driver pulled to ground when it should be open. Either the solenoid coil is shorted or the wire from solenoid to ECM is grounded. Quick test: unplug solenoid, key on \u2014 code should change to high/open if wiring is fine.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Shorted purge solenoid coil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Driver wire shorted to ground (chafed)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Coil resistance",
+        "instruction": "Measure across solenoid pins. Less than 15 ohms = shorted, replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Wiring short test",
+        "instruction": "Disconnect solenoid AND ECM connector for that circuit. Measure driver wire to chassis ground \u2014 should be infinite.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Repair",
+        "instruction": "Replace solenoid or repair grounded wire with heat-shrink splice.",
+        "tools": [
+          "heat shrink",
+          "solder"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0443",
+      "P0459"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0459-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission System Purge Control Valve Circuit High",
+    "shortDescription": "Purge solenoid driver circuit shorted to power or open.",
+    "fullDescription": "P0459 indicates the ECM sees the purge solenoid driver pulled high (battery voltage) when it should be commanded low, or the circuit is open. Indicates either an open coil, an open driver wire, or a short to power.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Open purge solenoid coil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open driver wire from ECM",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Short to battery on driver wire",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Purge does not function"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify coil",
+        "instruction": "Measure resistance \u2014 open = replace solenoid.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Continuity ECM-to-solenoid",
+        "instruction": "With both ends disconnected, check continuity of driver wire \u2014 should be near 0 ohms.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Short-to-power check",
+        "instruction": "Disconnect both ends, key on, measure driver wire to ground \u2014 should be 0V.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Repair",
+        "instruction": "Replace solenoid or repair wiring. Clear code.",
+        "tools": [
+          "splice tools"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0443",
+      "P0458"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0461-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel System",
+    "title": "Fuel Level Sensor Circuit Range/Performance",
+    "shortDescription": "Fuel level sensor reading is implausible.",
+    "fullDescription": "P0461 sets when the fuel level sensor signal does not change in a manner consistent with fuel consumption \u2014 for example, level stays constant for many miles, or jumps unrealistically. Required because the EVAP monitor uses fuel level to decide when to run leak tests; an unreliable sensor blocks all EVAP diagnostics.",
+    "severity": "low",
+    "safetyImpact": "Inaccurate fuel gauge can lead to running out of fuel.",
+    "causes": [
+      {
+        "cause": "Worn fuel level sender wiper or float (most common after 100k mi)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Bent or detached float arm",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Sulfur deposits on sender resistance card",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring intermittent at fuel pump connector",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Erratic fuel gauge",
+      "EVAP monitor incomplete"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Watch fuel level PID",
+        "instruction": "Drive while watching fuel level percentage on scan tool \u2014 should change smoothly with consumption.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Bench test sender",
+        "instruction": "After dropping tank or accessing through service hole, sweep float manually \u2014 resistance must change smoothly across full range.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace sender or pump module",
+        "instruction": "Most modern senders are integral to fuel pump module \u2014 replace assembly. Use OEM for accurate calibration.",
+        "tools": [
+          "fuel module lock-ring tool"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 1000
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "P0460",
+      "P0462",
+      "P0463"
+    ],
+    "faq": [
+      {
+        "q": "Top-tier gas help?",
+        "a": "Yes \u2014 sulfur deposits on the sender are reduced by using fuels with proper detergents."
+      }
+    ]
+  },
+  {
+    "code": "P0463-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Fuel System",
+    "title": "Fuel Level Sensor Circuit High",
+    "shortDescription": "Fuel level sensor signal stuck high.",
+    "fullDescription": "P0463 indicates the fuel level signal is above the maximum threshold (open circuit). Most commonly the sender's wiper has fallen off the resistance card or the signal wire is open. Also caused by a corroded fuel-pump module connector \u2014 the typical fault on long-running vehicles.",
+    "severity": "low",
+    "safetyImpact": "Possible fuel gauge reading full when nearly empty \u2014 running out of fuel risk.",
+    "causes": [
+      {
+        "cause": "Open fuel-level sender (worn wiper)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Corroded pump module connector pins",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open signal wire to instrument cluster / ECM",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "Fuel gauge reads full or pegged high",
+      "MIL on"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect pump connector",
+        "instruction": "Access fuel pump connector (under rear seat or in trunk). Inspect for melted pins or green corrosion.",
+        "tools": [
+          "seat tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Short-test signal",
+        "instruction": "Disconnect connector at pump, jumper signal pin to ground \u2014 gauge should read empty. If yes, sender is open.",
+        "tools": [
+          "jumper"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace sender or pigtail",
+        "instruction": "Replace fuel pump module if integral, or replace harness pigtail if connector is the only damage.",
+        "tools": [
+          "pigtail repair kit"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0461",
+      "P0462"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0470-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Emissions",
+    "title": "Exhaust Pressure Sensor Malfunction",
+    "shortDescription": "Exhaust back-pressure sensor circuit fault.",
+    "fullDescription": "P0470 sets on diesel and some turbo gas vehicles when the exhaust pressure sensor signal is implausible or out of range. Used for EGR and DPF management. Most often the sensor's tube to the exhaust is plugged with soot, or the sensor itself has failed from heat exposure.",
+    "severity": "medium",
+    "safetyImpact": "May trigger reduced power mode on diesels with active DPF regeneration limits.",
+    "causes": [
+      {
+        "cause": "Soot-plugged exhaust pressure tube",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Heat-failed pressure sensor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked or burnt sensor hose",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring fault near manifold heat",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Reduced power",
+      "Limp mode (some diesels)",
+      "Increased smoke"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect sensor tube",
+        "instruction": "Remove sensor pickup tube from exhaust \u2014 soot blockage is extremely common. Clean with brass brush and brake cleaner.",
+        "tools": [
+          "wrench set",
+          "brake cleaner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Test sensor",
+        "instruction": "Compare static voltage at key-on (atmospheric) to spec. Apply small pressure and observe linear response.",
+        "tools": [
+          "scan tool",
+          "hand pump"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace if failed",
+        "instruction": "Use OEM sensor \u2014 high-temp aftermarket units fail prematurely. Apply anti-seize on threads.",
+        "tools": [
+          "socket set",
+          "anti-seize"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 80,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0471",
+      "P0472",
+      "P0473"
+    ],
+    "faq": [
+      {
+        "q": "Common on which vehicles?",
+        "a": "Ford 6.0 / 6.4 Power Stroke, GM Duramax, VW TDI, Cummins."
+      }
+    ]
+  },
+  {
+    "code": "P0480-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling/Emissions",
+    "title": "Cooling Fan 1 Control Circuit",
+    "shortDescription": "Primary cooling fan relay or driver circuit fault.",
+    "fullDescription": "P0480 sets when the ECM detects an open or short on the primary cooling fan control circuit. Listed under emissions because cooling-fan failure can cause overheating that affects catalyst efficiency and emissions. Pay attention \u2014 this code can precede a no-warning overheat.",
+    "severity": "high",
+    "safetyImpact": "Engine overheating risk if fan does not run during low-speed operation.",
+    "causes": [
+      {
+        "cause": "Failed cooling fan relay",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open fan motor windings",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Blown fan fuse (often 30A or 40A)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Chafed fan motor wiring",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed ECM driver",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Engine temperature climbs at idle / stop",
+      "AC may stop cooling at idle",
+      "Fan does not run after engine off"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect fuse and relay",
+        "instruction": "Pull fan fuse, inspect. Swap fan relay with identical relay and retest.",
+        "tools": [
+          "fuse puller"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Direct-power fan motor",
+        "instruction": "Apply 12V and ground directly to fan motor \u2014 must spin smoothly with no growl.",
+        "tools": [
+          "jumper leads"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Command fan via scan tool",
+        "instruction": "Use bidirectional control to turn fan on. Verify relay clicks and motor runs.",
+        "tools": [
+          "bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace failed component",
+        "instruction": "Replace fan motor, relay, or repair wiring. Verify fan runs at proper coolant temp threshold.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0481",
+      "P0482",
+      "P0483"
+    ],
+    "faq": [
+      {
+        "q": "Drive with this code?",
+        "a": "Only short trips with continuous airflow \u2014 never sit idling. Overheat damage is expensive."
+      }
+    ]
+  },
+  {
+    "code": "P0481-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling/Emissions",
+    "title": "Cooling Fan 2 Control Circuit",
+    "shortDescription": "Secondary cooling fan relay or driver circuit fault.",
+    "fullDescription": "P0481 covers the secondary (high-speed or AC condenser) cooling fan circuit. Same diagnostic flow as P0480 but on the secondary fan. On dual-fan setups, one fan handles low-demand cooling and the other engages for AC or high-load. Failure may cause AC degradation before engine overheating.",
+    "severity": "high",
+    "safetyImpact": "AC may not cool at idle; engine may overheat under high load.",
+    "causes": [
+      {
+        "cause": "Failed secondary fan relay",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open secondary fan motor",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Blown fan-2 fuse",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring fault",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "AC weak at idle",
+      "Coolant temperature creeps up under load"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Test relay and fuse",
+        "instruction": "Swap relay with known good. Inspect fuse.",
+        "tools": [
+          "fuse puller"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Direct-power fan",
+        "instruction": "Apply 12V to fan-2 \u2014 must spin smoothly.",
+        "tools": [
+          "jumpers"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Bidirectional command",
+        "instruction": "Command fan-2 high via scan tool. Confirm operation.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace component",
+        "instruction": "Replace failed fan, relay, or repair wiring.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0482",
+      "P0483"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0483-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Cooling/Emissions",
+    "title": "Cooling Fan Rationality Check",
+    "shortDescription": "Fan output does not match commanded state.",
+    "fullDescription": "P0483 fires when the ECM commands the cooling fan(s) on but the feedback (current draw, RPM signal on PWM fans, or thermostat housing temperature behavior) does not match. Common with electric/PWM fans where the controller reports incorrect status.",
+    "severity": "medium",
+    "safetyImpact": "Possible overheat under high load.",
+    "causes": [
+      {
+        "cause": "Failed fan controller / driver module (PWM fans)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Open fan motor circuit",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Faulty engine coolant temp sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wiring fault between ECM and controller",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Fan runs at wrong speed",
+      "Possible overheat at idle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Verify ECT signal",
+        "instruction": "Confirm coolant temp PID is plausible and stable.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Watch fan duty cycle",
+        "instruction": "On scan tool, observe commanded fan duty vs actual fan PWM signal at controller. Mismatch = controller fault.",
+        "tools": [
+          "scope or scan tool"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Inspect fan controller",
+        "instruction": "Many modern vehicles use a separate fan-control module attached to the shroud. Check for heat damage.",
+        "tools": [],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace controller or fan assembly",
+        "instruction": "Most fan controllers come integrated with the fan shroud \u2014 replace as assembly.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 500
+      },
+      "mechanic": {
+        "min": 300,
+        "max": 900
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0480",
+      "P0481",
+      "P0482"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0496-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission System High Purge Flow",
+    "shortDescription": "Excessive purge flow \u2014 vacuum leak through purge solenoid.",
+    "fullDescription": "P0496 sets when the ECM observes too much fuel tank vacuum during purge testing. Indicates the canister purge valve is leaking when commanded closed, providing a steady vacuum leak to the intake manifold. Common cause of rough idle that may not throw a vacuum leak code immediately.",
+    "severity": "medium",
+    "safetyImpact": "Possible stalling at idle.",
+    "causes": [
+      {
+        "cause": "Stuck-open canister purge valve",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Cracked purge hose downstream of valve (constant vacuum)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Leaking purge valve diaphragm",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "FTP sensor offset",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "Rough idle",
+      "Stalling on cold restart",
+      "MIL on",
+      "Possible long-term fuel trim correction"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Pinch purge hose at idle",
+        "instruction": "Pinch purge hose between intake and solenoid \u2014 if rough idle smooths, purge is leaking.",
+        "tools": [
+          "soft hose clamp"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Vacuum-test valve",
+        "instruction": "Remove valve, apply 15 inHg with no power \u2014 must hold. Energize 12V \u2014 must release.",
+        "tools": [
+          "Mityvac",
+          "jumpers"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace valve",
+        "instruction": "Install OEM purge solenoid. Inspect canister for liquid fuel (saturation can damage the new valve).",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "easy"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0441",
+      "P0497"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0401-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EGR System",
+    "title": "Exhaust Gas Recirculation Flow Insufficient",
+    "shortDescription": "EGR flow lower than commanded.",
+    "fullDescription": "P0401 sets when the ECM commands the EGR valve open and the differential pressure sensor (DPFE) or MAP shows less flow than expected. Typically caused by carbon buildup blocking EGR passages \u2014 extremely common on Ford 4.6 and on direct-injection engines after 80,000 miles.",
+    "severity": "medium",
+    "safetyImpact": "May increase NOx emissions, may cause pinging under load.",
+    "causes": [
+      {
+        "cause": "Carbon-clogged EGR passages or valve seat",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed DPFE sensor (Ford)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck EGR valve (electrical or mechanical)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Cracked or disconnected EGR vacuum hose (older systems)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Plugged EGR tube to intake",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Pinging under load",
+      "Failed emissions test",
+      "Slight power loss"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Command EGR open",
+        "instruction": "Use bidirectional command \u2014 RPM should drop ~150 RPM at hot idle. No drop = no flow.",
+        "tools": [
+          "bidirectional scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Remove and inspect valve",
+        "instruction": "Pull EGR valve, look at pintle and seat. Heavy carbon = clean with chemical and brass brush.",
+        "tools": [
+          "socket set",
+          "EGR cleaner"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Inspect EGR passages",
+        "instruction": "Probe the inlet and outlet ports \u2014 if hard carbon plug present, intake manifold may need to be removed for full clean.",
+        "tools": [
+          "pick set"
+        ],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 4,
+        "title": "Test DPFE (if equipped)",
+        "instruction": "Compare DPFE voltage at idle vs high RPM. Replace DPFE if non-linear or stuck.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 800
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-3 hours",
+    "relatedCodes": [
+      "P0400",
+      "P0402",
+      "P0405"
+    ],
+    "faq": [
+      {
+        "q": "Can I bypass EGR?",
+        "a": "No \u2014 illegal on most public roads, and reduces detonation margin under load."
+      }
+    ]
+  },
+  {
+    "code": "P0420-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Catalytic Converter",
+    "title": "Catalyst System Efficiency Below Threshold (Bank 1)",
+    "shortDescription": "Bank 1 catalyst inefficient \u2014 downstream O2 mirroring upstream.",
+    "fullDescription": "P0420 sets when the rear (post-cat) O2 sensor on Bank 1 oscillates similarly to the front sensor, indicating the catalyst is not storing/releasing oxygen \u2014 i.e., reduced efficiency. Causes range from a worn catalyst to upstream issues like a leaky exhaust, bad upstream O2 sensor, or rich/lean conditions damaging the brick.",
+    "severity": "medium",
+    "safetyImpact": "No drivability impact, but the catalyst may be near complete failure. Will fail emissions.",
+    "causes": [
+      {
+        "cause": "Aged catalytic converter (loss of precious-metal coating)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Exhaust leak before or between O2 sensors",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Aged or contaminated rear O2 sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Engine running rich (failed injector, leaking fuel pressure regulator)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Misfire damaging the cat (look for P030x history)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Coolant or oil consumption coating the catalyst",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Slight rotten-egg smell sometimes",
+      "Fails emissions",
+      "Rare power loss if cat is internally collapsing"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compare O2 traces",
+        "instruction": "View both Bank-1 sensors live. Front should oscillate 0.1-0.9V; rear should be lazy at ~0.6-0.8V. If rear mirrors front = cat low.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Smoke-test exhaust",
+        "instruction": "Confirm no exhaust leaks before catalyst \u2014 even pinhole leaks throw P0420.",
+        "tools": [
+          "smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Cat-temperature check",
+        "instruction": "After warm-up, IR-temp inlet vs outlet of cat. Outlet should be 50-100F hotter on a healthy cat.",
+        "tools": [
+          "IR thermometer"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace catalyst",
+        "instruction": "Use OEM-spec or CARB-certified aftermarket. Replace upstream O2 if 100k+ miles. Address upstream root cause first or new cat will fail again.",
+        "tools": [
+          "O2 socket",
+          "exhaust tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "P0421",
+      "P0422",
+      "P0430"
+    ],
+    "faq": [
+      {
+        "q": "Will an O2 sensor fix it?",
+        "a": "Sometimes \u2014 a lazy rear O2 mimics a bad cat. Test before replacing the converter."
+      },
+      {
+        "q": "Is the cat covered under warranty?",
+        "a": "Federal emissions warranty covers the catalyst for 8 years / 80,000 miles in the US."
+      }
+    ]
+  },
+  {
+    "code": "P0430-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Catalytic Converter",
+    "title": "Catalyst System Efficiency Below Threshold (Bank 2)",
+    "shortDescription": "Bank 2 catalyst inefficient.",
+    "fullDescription": "P0430 is the Bank 2 counterpart to P0420 \u2014 the rear O2 on Bank 2 is mirroring the front, indicating the catalyst is not properly storing/releasing oxygen. Diagnostic flow is identical to P0420 but applies to the bank that does not include cylinder #1.",
+    "severity": "medium",
+    "safetyImpact": "No drivability impact. Fails emissions.",
+    "causes": [
+      {
+        "cause": "Aged Bank 2 catalytic converter",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Bank 2 exhaust leak",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Aged Bank 2 rear O2 sensor",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Bank 2 running rich (injector or fuel-trim issue)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Bank 2 misfire history",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Fails emissions"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compare Bank 2 O2 traces",
+        "instruction": "Same procedure as P0420 but on Bank 2. Identify which bank cylinder #1 is on first \u2014 Bank 2 is the other side.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Inspect for exhaust leaks",
+        "instruction": "Smoke or audible test on Bank 2 manifold and pre-cat pipe.",
+        "tools": [
+          "smoke machine"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Replace catalyst or O2",
+        "instruction": "Replace converter or rear O2 sensor as confirmed. Address fuel-trim issues first.",
+        "tools": [
+          "O2 socket",
+          "exhaust tools"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 600
+      },
+      "mechanic": {
+        "min": 400,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "1-4 hours",
+    "relatedCodes": [
+      "P0420",
+      "P0431",
+      "P0432"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0411-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Secondary Air System",
+    "title": "Secondary Air Injection System Incorrect Flow Detected",
+    "shortDescription": "Secondary air injection (SAI) flow incorrect during cold start.",
+    "fullDescription": "P0411 sets when the ECM commands the SAI pump on at cold start and the upstream O2 sensors do not register the expected lean spike. Indicates the secondary air pump, check valves, or piping are not delivering air to the exhaust during the first ~60 seconds after cold start. Common on BMW, VW, Audi after 80,000 miles.",
+    "severity": "medium",
+    "safetyImpact": "Cold-start emissions affected; will fail emissions in many regions.",
+    "causes": [
+      {
+        "cause": "Failed SAI pump (water-damaged or worn brushes)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck check valve (carbon-fused open or closed)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Failed combination valve (vacuum-actuated)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Cracked SAI hose (post-pump rubber)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed SAI relay",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Loud pump noise at cold start",
+      "Possible cold-start rough idle"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Listen at cold start",
+        "instruction": "Within 30 seconds of cold start, listen for SAI pump whirring near the air filter or under fender. No noise = pump or relay.",
+        "tools": [],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Power test pump",
+        "instruction": "Apply 12V to pump connector \u2014 must run smoothly with no growl or seized rotor.",
+        "tools": [
+          "jumpers"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Check valve test",
+        "instruction": "Remove check valve, apply pressure from pump side \u2014 must allow air through; from exhaust side \u2014 must block. Replace if either fails.",
+        "tools": [
+          "hand pump"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace failed components",
+        "instruction": "Use OEM. Pump location often hidden behind fender liner.",
+        "tools": [
+          "socket set",
+          "wheel removal"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "mechanic": {
+        "min": 350,
+        "max": 1200
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-4 hours",
+    "relatedCodes": [
+      "P0410",
+      "P0412",
+      "P0413"
+    ],
+    "faq": [
+      {
+        "q": "Can I bypass the SAI system?",
+        "a": "No \u2014 emissions equipment removal is illegal under federal law in the US."
+      }
+    ]
+  },
+  {
+    "code": "P0431-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "Catalytic Converter",
+    "title": "Warm-Up Catalyst Efficiency Below Threshold (Bank 2)",
+    "shortDescription": "Bank 2 close-coupled (warm-up) catalyst inefficient.",
+    "fullDescription": "P0431 applies to the warm-up (close-coupled) catalyst on Bank 2 in vehicles equipped with a small pre-cat near the manifold. Diagnostic concept matches P0420/P0430 but specific to the warm-up converter, which sees the highest temperatures and tends to fail first.",
+    "severity": "medium",
+    "safetyImpact": "Fails emissions.",
+    "causes": [
+      {
+        "cause": "Aged warm-up catalyst (highest thermal stress)",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Manifold or pre-cat exhaust leak",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Misfire damage (especially on V-engines)",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Engine oil burning into exhaust",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Fails emissions"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Compare upstream/mid O2 sensors on Bank 2",
+        "instruction": "Mid-bed (between warm-up cat and main cat) O2 should be lazy on a healthy cat.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Identify and address engine-side root cause",
+        "instruction": "Resolve any rich/misfire/oil-burning issue first.",
+        "tools": [],
+        "difficulty": "advanced"
+      },
+      {
+        "step": 3,
+        "title": "Replace warm-up cat",
+        "instruction": "Often integrated with manifold \u2014 costly job. Use OEM if possible.",
+        "tools": [
+          "manifold tools",
+          "torque wrench"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 200,
+        "max": 800
+      },
+      "mechanic": {
+        "min": 600,
+        "max": 2500
+      }
+    },
+    "diyDifficulty": "advanced",
+    "repairTime": "2-5 hours",
+    "relatedCodes": [
+      "P0420",
+      "P0421",
+      "P0430",
+      "P0432"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0444-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Purge Control Valve Circuit Open",
+    "shortDescription": "Open circuit detected on purge solenoid.",
+    "fullDescription": "P0444 reports an open circuit on the purge valve driver \u2014 either an open coil winding, broken wire, or pushed-back terminal in the connector. ECM detects no current flow when commanding the solenoid. Often accompanies P0443 on platforms that store both.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Open purge solenoid coil",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Pushed-back terminal in connector",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Broken wire from chafing or rodent damage",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "EVAP monitor never completes"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect connector pins",
+        "instruction": "Disconnect, look at female terminals \u2014 pushed back is common. Re-tension with pick.",
+        "tools": [
+          "pick set"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Coil resistance",
+        "instruction": "Open circuit = replace solenoid.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Continuity ECM-side",
+        "instruction": "Disconnect ECM connector for that pin and test continuity to solenoid harness end.",
+        "tools": [
+          "DMM",
+          "wiring diagram"
+        ],
+        "difficulty": "advanced"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0443",
+      "P0445"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0445-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Purge Control Valve Circuit Shorted",
+    "shortDescription": "Short circuit on purge solenoid driver.",
+    "fullDescription": "P0445 indicates a short on the purge solenoid driver circuit. Either the coil is internally shorted (low resistance) or the driver wire is touching power or ground. The ECM detects excessive current and disables the driver to protect itself.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Shorted solenoid coil winding",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Driver wire grounded against engine or body",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Driver wire shorted to power",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "Possible blown ECM driver if recurring"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Coil resistance test",
+        "instruction": "Less than 15 ohms typically = shorted, replace solenoid.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Wiring inspection",
+        "instruction": "With both ends disconnected, measure driver wire to chassis ground \u2014 should be infinite. Less than 1 ohm = grounded wire.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Repair and replace",
+        "instruction": "Replace solenoid; repair grounded wire with proper insulation.",
+        "tools": [
+          "heat shrink",
+          "soldering iron"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 120
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 350
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0443",
+      "P0444"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0448-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission Control System Vent Control Circuit Shorted",
+    "shortDescription": "Vent solenoid driver shorted.",
+    "fullDescription": "P0448 sets on a short on the canister vent solenoid driver \u2014 the ECM sees excessive current to ground and disables the driver. Common after off-road use that floods the CVS connector with mud or water.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Water-damaged CVS connector",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Shorted vent solenoid coil",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Wire chafed against frame",
+        "likelihood": "medium"
+      }
+    ],
+    "symptoms": [
+      "MIL on",
+      "EVAP monitor blocked"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Inspect connector",
+        "instruction": "Check for water intrusion or corrosion at CVS connector under vehicle.",
+        "tools": [
+          "flashlight"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 2,
+        "title": "Coil short test",
+        "instruction": "Resistance under 15 ohms = replace solenoid.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "easy"
+      },
+      {
+        "step": 3,
+        "title": "Wiring short-to-ground",
+        "instruction": "Both ends disconnected, driver wire to chassis = should be infinite.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 150
+      },
+      "mechanic": {
+        "min": 150,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "easy",
+    "repairTime": "30-60 minutes",
+    "relatedCodes": [
+      "P0446",
+      "P0449"
+    ],
+    "faq": []
+  },
+  {
+    "code": "P0497-v2",
+    "codeType": "generic",
+    "letter": "P",
+    "system": "powertrain",
+    "subcategory": "EVAP System",
+    "title": "Evaporative Emission System Low Purge Flow",
+    "shortDescription": "Purge flow below expected \u2014 restriction or stuck-closed valve.",
+    "fullDescription": "P0497 indicates the ECM commanded purge but observed insufficient flow. Differs from P0496 (high flow) \u2014 P0497 is restricted/blocked. Common causes are a saturated charcoal canister, plugged purge tube, or a stuck-closed solenoid.",
+    "severity": "low",
+    "safetyImpact": "No safety impact.",
+    "causes": [
+      {
+        "cause": "Saturated/plugged charcoal canister",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Stuck-closed purge solenoid",
+        "likelihood": "high"
+      },
+      {
+        "cause": "Pinched purge line",
+        "likelihood": "medium"
+      },
+      {
+        "cause": "Failed FTP sensor reading offset",
+        "likelihood": "low"
+      }
+    ],
+    "symptoms": [
+      "MIL on"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Bidirectional purge test",
+        "instruction": "100% command should drop idle ~50 RPM. No drop = no flow.",
+        "tools": [
+          "scan tool"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 2,
+        "title": "Solenoid bench test",
+        "instruction": "Apply 12V \u2014 must open. Apply vacuum \u2014 must hold then release.",
+        "tools": [
+          "jumper",
+          "Mityvac"
+        ],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 3,
+        "title": "Inspect canister",
+        "instruction": "Liquid fuel saturation = replace canister and find why fuel got into it (overfilling, faulty rollover valve).",
+        "tools": [],
+        "difficulty": "intermediate"
+      },
+      {
+        "step": 4,
+        "title": "Replace failed component",
+        "instruction": "Replace solenoid, hose, or canister as needed.",
+        "tools": [
+          "socket set"
+        ],
+        "difficulty": "intermediate"
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 50,
+        "max": 250
+      },
+      "mechanic": {
+        "min": 200,
+        "max": 700
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "1-2 hours",
+    "relatedCodes": [
+      "P0441",
+      "P0496"
+    ],
+    "faq": []
+  }
+]
