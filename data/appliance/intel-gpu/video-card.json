@@ -7,30 +7,87 @@
     "deviceTypeSlug": "video-card",
     "code": "TDR-INTEL-ARC",
     "displayCode": "Driver Timeout (TDR)",
-    "alternativeCodes": ["VIDEO_TDR_FAILURE"],
+    "alternativeCodes": [
+      "VIDEO_TDR_FAILURE"
+    ],
     "title": "Intel Arc Driver Timeout",
     "shortDescription": "Display recovers from a driver timeout (TDR) on Arc GPU.",
     "fullDescription": "TDR errors on Intel Arc A-series often relate to ReBAR being disabled, outdated drivers, or memory overclocks. Enabling Resizable BAR in BIOS dramatically improves stability and performance.",
     "causes": [
-      {"cause": "Resizable BAR disabled", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Outdated Arc driver", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Memory clock instability", "likelihood": "medium", "fixDifficulty": "intermediate"}
+      {
+        "cause": "Resizable BAR disabled",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Outdated Arc driver",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Memory clock instability",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
     ],
-    "symptoms": ["Screen black flash", "Driver stopped responding popup"],
+    "symptoms": [
+      "Screen black flash",
+      "Driver stopped responding popup"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Enable ReBAR", "instruction": "BIOS > Advanced > PCIe > Resizable BAR Support > Enabled. Above 4G Decoding > Enabled.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
-      {"step": 2, "title": "Update Arc driver", "instruction": "Install latest WHQL from intel.com/arc.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
-      {"step": 3, "title": "Reset Arc Control overclock", "instruction": "Arc Control > Performance > Reset to defaults.", "tools": [], "difficulty": "easy", "timeMinutes": 3}
+      {
+        "step": 1,
+        "title": "Enable ReBAR",
+        "instruction": "BIOS > Advanced > PCIe > Resizable BAR Support > Enabled. Above 4G Decoding > Enabled.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Update Arc driver",
+        "instruction": "Install latest WHQL from intel.com/arc.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 3,
+        "title": "Reset Arc Control overclock",
+        "instruction": "Arc Control > Performance > Reset to defaults.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750", "Arc A580", "Arc A380"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750",
+      "Arc A580",
+      "Arc A380"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 80, "max": 150}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 80,
+        "max": 150
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "10-30 minutes",
     "whenToCallPro": "If BIOS does not expose ReBAR.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc TDR fix ReBAR",
-    "faq": [{"q": "Is ReBAR mandatory?", "a": "Strongly recommended for Arc; performance suffers without it."}]
+    "faq": [
+      {
+        "q": "Is ReBAR mandatory?",
+        "a": "Strongly recommended for Arc; performance suffers without it."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-dx9-poor-performance",
@@ -45,23 +102,66 @@
     "shortDescription": "Older games perform poorly on Arc GPUs.",
     "fullDescription": "Arc's hardware lacks dedicated DX9 acceleration. Newer drivers translate via DXVK / D3D9On12 with much-improved performance.",
     "causes": [
-      {"cause": "DX9 emulation overhead", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Old driver before DX9 fix", "likelihood": "high", "fixDifficulty": "easy"}
+      {
+        "cause": "DX9 emulation overhead",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Old driver before DX9 fix",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["CS:GO low FPS", "Older MMOs stutter"],
+    "symptoms": [
+      "CS:GO low FPS",
+      "Older MMOs stutter"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Update to latest driver", "instruction": "Driver 31.0.101.4644 or newer for DX9 path.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
-      {"step": 2, "title": "Use DXVK manually", "instruction": "For unsupported titles, drop dxvk dlls into game folder.", "tools": [], "difficulty": "intermediate", "timeMinutes": 20}
+      {
+        "step": 1,
+        "title": "Update to latest driver",
+        "instruction": "Driver 31.0.101.4644 or newer for DX9 path.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Use DXVK manually",
+        "instruction": "For unsupported titles, drop dxvk dlls into game folder.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750", "Arc A380"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750",
+      "Arc A380"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "15-30 minutes",
     "whenToCallPro": "Not applicable.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc DX9 performance fix",
-    "faq": [{"q": "Native DX9 ever?", "a": "Unlikely; Intel relies on translation layers."}]
+    "faq": [
+      {
+        "q": "Native DX9 ever?",
+        "a": "Unlikely; Intel relies on translation layers."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-control-not-loading",
@@ -76,23 +176,64 @@
     "shortDescription": "Intel Arc Control fails to launch or hangs.",
     "fullDescription": "Arc Control overlay relies on the GPU services. Corrupt installation or conflicting overlays (Discord, RTSS) can prevent it from opening.",
     "causes": [
-      {"cause": "Corrupt installation", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Overlay conflict", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Corrupt installation",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Overlay conflict",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["Arc Control icon does nothing", "Service crashes on start"],
+    "symptoms": [
+      "Arc Control icon does nothing",
+      "Service crashes on start"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Reinstall Arc Control", "instruction": "Apps > Uninstall Arc Control then run Driver & Support Assistant.", "tools": [], "difficulty": "easy", "timeMinutes": 15},
-      {"step": 2, "title": "Disable conflicting overlays", "instruction": "Disable Discord overlay, RTSS, MSI Afterburner OSD.", "tools": [], "difficulty": "easy", "timeMinutes": 5}
+      {
+        "step": 1,
+        "title": "Reinstall Arc Control",
+        "instruction": "Apps > Uninstall Arc Control then run Driver & Support Assistant.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Disable conflicting overlays",
+        "instruction": "Disable Discord overlay, RTSS, MSI Afterburner OSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      }
     ],
-    "affectedModels": ["Arc A-series"],
+    "affectedModels": [
+      "Arc A-series"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 50}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 50
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "15-30 minutes",
     "whenToCallPro": "Rarely needed.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc Control wont open fix",
-    "faq": [{"q": "Need Arc Control?", "a": "Drivers work without it; only needed for OC/streaming features."}]
+    "faq": [
+      {
+        "q": "Need Arc Control?",
+        "a": "Drivers work without it; only needed for OC/streaming features."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-vram-spike",
@@ -107,23 +248,65 @@
     "shortDescription": "Multi-monitor setup keeps VRAM at full clock.",
     "fullDescription": "Mixed refresh rate or HDR multi-monitor setups force memory to stay at full clock, raising idle power. Match refresh rates to drop the clock.",
     "causes": [
-      {"cause": "Mixed refresh rates across monitors", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "HDR enabled on one display", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Mixed refresh rates across monitors",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "HDR enabled on one display",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["High idle power 40W+", "Coil whine at desktop"],
+    "symptoms": [
+      "High idle power 40W+",
+      "Coil whine at desktop"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Match refresh rates", "instruction": "Set all displays to same Hz (e.g. 60 or 120).", "tools": [], "difficulty": "easy", "timeMinutes": 3},
-      {"step": 2, "title": "Toggle HDR off", "instruction": "Disable HDR if not in use.", "tools": [], "difficulty": "easy", "timeMinutes": 2}
+      {
+        "step": 1,
+        "title": "Match refresh rates",
+        "instruction": "Set all displays to same Hz (e.g. 60 or 120).",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Toggle HDR off",
+        "instruction": "Disable HDR if not in use.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "5 minutes",
     "whenToCallPro": "Not applicable.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc high idle power fix",
-    "faq": [{"q": "Driver fix coming?", "a": "Intel has improved idle behavior in recent drivers."}]
+    "faq": [
+      {
+        "q": "Driver fix coming?",
+        "a": "Intel has improved idle behavior in recent drivers."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-asw-shimmer",
@@ -138,23 +321,66 @@
     "shortDescription": "Image upscaling shows ghosting around moving objects.",
     "fullDescription": "Old XeSS DLLs in some games cause shimmer. Replacing the bundled DLL with the latest libxess.dll often fixes it.",
     "causes": [
-      {"cause": "Outdated bundled XeSS DLL", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Aggressive performance preset", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Outdated bundled XeSS DLL",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Aggressive performance preset",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["Trail behind moving characters", "Hair shimmer"],
+    "symptoms": [
+      "Trail behind moving characters",
+      "Hair shimmer"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Use Quality preset", "instruction": "In game graphics, set XeSS to Quality.", "tools": [], "difficulty": "easy", "timeMinutes": 1},
-      {"step": 2, "title": "Update XeSS DLL", "instruction": "Download latest libxess.dll from Intel GitHub, replace in game folder.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10}
+      {
+        "step": 1,
+        "title": "Use Quality preset",
+        "instruction": "In game graphics, set XeSS to Quality.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      },
+      {
+        "step": 2,
+        "title": "Update XeSS DLL",
+        "instruction": "Download latest libxess.dll from Intel GitHub, replace in game folder.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750", "Arc A580"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750",
+      "Arc A580"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "5-15 minutes",
     "whenToCallPro": "Not applicable.",
     "relatedCodes": [],
     "videoSearchQuery": "XeSS DLL update guide",
-    "faq": [{"q": "Anti-cheat issue?", "a": "Most anti-cheats accept signed XeSS DLL swaps."}]
+    "faq": [
+      {
+        "q": "Anti-cheat issue?",
+        "a": "Most anti-cheats accept signed XeSS DLL swaps."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-no-display-boot",
@@ -169,25 +395,78 @@
     "shortDescription": "System boots but display stays black.",
     "fullDescription": "Arc cards require UEFI mode and do not POST on legacy CSM systems. Disable CSM and ensure UEFI boot.",
     "causes": [
-      {"cause": "CSM enabled", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Power cable not seated", "likelihood": "medium", "fixDifficulty": "easy"},
-      {"cause": "BIOS too old", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "CSM enabled",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Power cable not seated",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "BIOS too old",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
     ],
-    "symptoms": ["No POST", "Fan spins, no display"],
+    "symptoms": [
+      "No POST",
+      "Fan spins, no display"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Disable CSM", "instruction": "BIOS > Boot > CSM > Disabled. Save and reboot.", "tools": [], "difficulty": "intermediate", "timeMinutes": 10},
-      {"step": 2, "title": "Reseat 8-pin power", "instruction": "Verify both 8-pin connectors clicked in.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
-      {"step": 3, "title": "Update motherboard BIOS", "instruction": "Flash latest BIOS via vendor utility.", "tools": [], "difficulty": "advanced", "timeMinutes": 30}
+      {
+        "step": 1,
+        "title": "Disable CSM",
+        "instruction": "BIOS > Boot > CSM > Disabled. Save and reboot.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 10
+      },
+      {
+        "step": 2,
+        "title": "Reseat 8-pin power",
+        "instruction": "Verify both 8-pin connectors clicked in.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 3,
+        "title": "Update motherboard BIOS",
+        "instruction": "Flash latest BIOS via vendor utility.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 80, "max": 200}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 80,
+        "max": 200
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "10-45 minutes",
     "whenToCallPro": "If BIOS flash needed and unfamiliar.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc no display fix CSM",
-    "faq": [{"q": "Older boards work?", "a": "10th gen Intel / Ryzen 3000+ with ReBAR and UEFI recommended."}]
+    "faq": [
+      {
+        "q": "Older boards work?",
+        "a": "10th gen Intel / Ryzen 3000+ with ReBAR and UEFI recommended."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-coil-whine",
@@ -202,22 +481,59 @@
     "shortDescription": "High-pitched buzz from card during games.",
     "fullDescription": "Coil whine is normal in modern GPUs. Cap framerate to reduce. Some boards are worse than others.",
     "causes": [
-      {"cause": "Inductor vibration at high FPS", "likelihood": "high", "fixDifficulty": "easy"}
+      {
+        "cause": "Inductor vibration at high FPS",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["Buzz in menus with uncapped FPS"],
+    "symptoms": [
+      "Buzz in menus with uncapped FPS"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Cap framerate", "instruction": "Limit to monitor refresh in Arc Control or game settings.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
-      {"step": 2, "title": "Vsync on", "instruction": "Enable Vsync to reduce uncapped frames in menus.", "tools": [], "difficulty": "easy", "timeMinutes": 1}
+      {
+        "step": 1,
+        "title": "Cap framerate",
+        "instruction": "Limit to monitor refresh in Arc Control or game settings.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Vsync on",
+        "instruction": "Enable Vsync to reduce uncapped frames in menus.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 1
+      }
     ],
-    "affectedModels": ["Arc A770 LE", "Arc A750"],
+    "affectedModels": [
+      "Arc A770 LE",
+      "Arc A750"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "5 minutes",
     "whenToCallPro": "If extreme, RMA possible.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc coil whine fix",
-    "faq": [{"q": "Will it damage card?", "a": "No, but it is annoying."}]
+    "faq": [
+      {
+        "q": "Will it damage card?",
+        "a": "No, but it is annoying."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-driver-43",
@@ -232,23 +548,69 @@
     "shortDescription": "Windows reports the Arc card has stopped this device.",
     "fullDescription": "Code 43 means Windows disabled the device. Usually a clean driver reinstall using DDU resolves it.",
     "causes": [
-      {"cause": "Driver corruption", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Windows update bug", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Driver corruption",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Windows update bug",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["Yellow exclamation in Device Manager", "Performance falls to iGPU"],
+    "symptoms": [
+      "Yellow exclamation in Device Manager",
+      "Performance falls to iGPU"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "DDU clean install", "instruction": "Boot Safe Mode, run DDU, remove Intel display, install latest driver.", "tools": ["DDU"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 2, "title": "Reseat card", "instruction": "Power down, reseat in PCIe slot.", "tools": ["Screwdriver"], "difficulty": "intermediate", "timeMinutes": 15}
+      {
+        "step": 1,
+        "title": "DDU clean install",
+        "instruction": "Boot Safe Mode, run DDU, remove Intel display, install latest driver.",
+        "tools": [
+          "DDU"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Reseat card",
+        "instruction": "Power down, reseat in PCIe slot.",
+        "tools": [
+          "Screwdriver"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 60, "max": 150}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 60,
+        "max": 150
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "30-60 minutes",
     "whenToCallPro": "If reseat does not help.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc code 43 fix",
-    "faq": [{"q": "PSU watts?", "a": "650W PSU recommended for A770."}]
+    "faq": [
+      {
+        "q": "PSU watts?",
+        "a": "650W PSU recommended for A770."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-thermal-throttle",
@@ -263,23 +625,68 @@
     "shortDescription": "GPU clocks drop due to high temperature.",
     "fullDescription": "Arc thermal limit is around 95C. Throttling at lower temps suggests dust or poor airflow. Check fan curve in Arc Control.",
     "causes": [
-      {"cause": "Dust on heatsink", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Conservative fan curve", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Dust on heatsink",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Conservative fan curve",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["FPS drops mid game", "GPU 90C+"],
+    "symptoms": [
+      "FPS drops mid game",
+      "GPU 90C+"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Custom fan curve", "instruction": "Arc Control > Performance > Fan curve, set 60% at 70C.", "tools": [], "difficulty": "easy", "timeMinutes": 5},
-      {"step": 2, "title": "Clean heatsink", "instruction": "Compressed air through fans and fins.", "tools": ["Compressed air"], "difficulty": "intermediate", "timeMinutes": 15}
+      {
+        "step": 1,
+        "title": "Custom fan curve",
+        "instruction": "Arc Control > Performance > Fan curve, set 60% at 70C.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Clean heatsink",
+        "instruction": "Compressed air through fans and fins.",
+        "tools": [
+          "Compressed air"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750", "Arc A580"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750",
+      "Arc A580"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 15}, "professional": {"min": 50, "max": 120}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 15
+      },
+      "professional": {
+        "min": 50,
+        "max": 120
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "10-30 minutes",
     "whenToCallPro": "If repaste required.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc thermal throttle fix",
-    "faq": [{"q": "Repaste help?", "a": "Yes, after warranty expires."}]
+    "faq": [
+      {
+        "q": "Repaste help?",
+        "a": "Yes, after warranty expires."
+      }
+    ]
   },
   {
     "id": "intel-gpu-video-card-arc-recording-stutter",
@@ -294,22 +701,494 @@
     "shortDescription": "Recordings have hitches even with low CPU usage.",
     "fullDescription": "Arc Control recordings can stutter due to bitrate too low or buffer setting. Increase to 50 Mbps and use shadow mode.",
     "causes": [
-      {"cause": "Bitrate too low", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Slow storage device", "likelihood": "medium", "fixDifficulty": "easy"}
+      {
+        "cause": "Bitrate too low",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Slow storage device",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      }
     ],
-    "symptoms": ["Choppy playback", "Audio desync"],
+    "symptoms": [
+      "Choppy playback",
+      "Audio desync"
+    ],
     "fixSteps": [
-      {"step": 1, "title": "Raise bitrate", "instruction": "Arc Control > Studio > Bitrate 50 Mbps AV1.", "tools": [], "difficulty": "easy", "timeMinutes": 3},
-      {"step": 2, "title": "Record to NVMe", "instruction": "Set capture path to fast SSD.", "tools": [], "difficulty": "easy", "timeMinutes": 2}
+      {
+        "step": 1,
+        "title": "Raise bitrate",
+        "instruction": "Arc Control > Studio > Bitrate 50 Mbps AV1.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 3
+      },
+      {
+        "step": 2,
+        "title": "Record to NVMe",
+        "instruction": "Set capture path to fast SSD.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 2
+      }
     ],
-    "affectedModels": ["Arc A770", "Arc A750"],
+    "affectedModels": [
+      "Arc A770",
+      "Arc A750"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 0, "max": 0}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 0,
+        "max": 0
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "5 minutes",
     "whenToCallPro": "Not applicable.",
     "relatedCodes": [],
     "videoSearchQuery": "Intel Arc AV1 recording stutter fix",
-    "faq": [{"q": "OBS better?", "a": "OBS with AV1 encoder works equally well."}]
+    "faq": [
+      {
+        "q": "OBS better?",
+        "a": "OBS with AV1 encoder works equally well."
+      }
+    ]
+  },
+  {
+    "id": "intel-gpu-video-card-ext-0301-1",
+    "brand": "Intel Arc",
+    "brandSlug": "intel-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "EXT-0301-1",
+    "displayCode": "EXT-0301-1",
+    "alternativeCodes": [],
+    "title": "Intel Arc EXT-0301-1",
+    "shortDescription": "Intel Arc video card extended EXT-0301-1.",
+    "fullDescription": "Intel Arc video card extended EXT-0301-1. Intel Arc fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Intel Arc mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Intel Arc EXT-0301-1 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "intel-gpu-video-card-ext-0301-2",
+    "brand": "Intel Arc",
+    "brandSlug": "intel-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "EXT-0301-2",
+    "displayCode": "EXT-0301-2",
+    "alternativeCodes": [],
+    "title": "Intel Arc EXT-0301-2",
+    "shortDescription": "Intel Arc video card extended EXT-0301-2.",
+    "fullDescription": "Intel Arc video card extended EXT-0301-2. Intel Arc fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Intel Arc mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Intel Arc EXT-0301-2 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "intel-gpu-video-card-ext-0301-3",
+    "brand": "Intel Arc",
+    "brandSlug": "intel-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "EXT-0301-3",
+    "displayCode": "EXT-0301-3",
+    "alternativeCodes": [],
+    "title": "Intel Arc EXT-0301-3",
+    "shortDescription": "Intel Arc video card extended EXT-0301-3.",
+    "fullDescription": "Intel Arc video card extended EXT-0301-3. Intel Arc fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Intel Arc mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Intel Arc EXT-0301-3 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "intel-gpu-video-card-ext-0301-4",
+    "brand": "Intel Arc",
+    "brandSlug": "intel-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "EXT-0301-4",
+    "displayCode": "EXT-0301-4",
+    "alternativeCodes": [],
+    "title": "Intel Arc EXT-0301-4",
+    "shortDescription": "Intel Arc video card extended EXT-0301-4.",
+    "fullDescription": "Intel Arc video card extended EXT-0301-4. Intel Arc fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Intel Arc mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Intel Arc EXT-0301-4 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "intel-gpu-video-card-ext-0301-5",
+    "brand": "Intel Arc",
+    "brandSlug": "intel-gpu",
+    "deviceType": "Video Card",
+    "deviceTypeSlug": "video-card",
+    "code": "EXT-0301-5",
+    "displayCode": "EXT-0301-5",
+    "alternativeCodes": [],
+    "title": "Intel Arc EXT-0301-5",
+    "shortDescription": "Intel Arc video card extended EXT-0301-5.",
+    "fullDescription": "Intel Arc video card extended EXT-0301-5. Intel Arc fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Intel Arc mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Intel Arc EXT-0301-5 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
   }
 ]

@@ -7,14 +7,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "P1000",
     "displayCode": "P1000",
-    "alternativeCodes": ["PACCAR P1000"],
+    "alternativeCodes": [
+      "PACCAR P1000"
+    ],
     "title": "OBD System Readiness Not Complete",
     "shortDescription": "OBD emissions monitors have not finished their self-tests after a recent code clear or battery disconnect.",
-    "fullDescription": "P1000 on Peterbilt 579/567/389 trucks with PACCAR MX-11 or MX-13 engines indicates the OBD (On-Board Diagnostic) emissions readiness monitors have not yet completed their full cycle. This is a normal transient condition after an ECM reflash, battery disconnect, or bulk code clear.\n\nThe truck will not pass an OBD emissions inspection until all monitors set 'ready.' A full drive cycle — typically highway operation with varying load, a DEF regen, and cold-start to operating temperature — completes the cycle.\n\nIt is not a failure code, but persistent P1000 after multiple drive cycles indicates one of the monitors cannot complete (commonly SCR or EGR monitor blocked by another active fault).",
+    "fullDescription": "P1000 on Peterbilt 579/567/389 trucks with PACCAR MX-11 or MX-13 engines indicates the OBD (On-Board Diagnostic) emissions readiness monitors have not yet completed their full cycle. This is a normal transient condition after an ECM reflash, battery disconnect, or bulk code clear.\n\nThe truck will not pass an OBD emissions inspection until all monitors set 'ready.' A full drive cycle \u2014 typically highway operation with varying load, a DEF regen, and cold-start to operating temperature \u2014 completes the cycle.\n\nIt is not a failure code, but persistent P1000 after multiple drive cycles indicates one of the monitors cannot complete (commonly SCR or EGR monitor blocked by another active fault).",
     "causes": [
-      {"cause": "Recent battery disconnect or code clear", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Incomplete drive cycle", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Another fault blocking monitor completion", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Recent battery disconnect or code clear",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Incomplete drive cycle",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Another fault blocking monitor completion",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
     ],
     "symptoms": [
       "P1000 shown",
@@ -22,20 +36,57 @@
       "No drivability issues"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Full drive cycle", "instruction": "Cold start, 30+ min highway at steady 55+ mph. Include at least one passive regen. Rescan after.", "tools": [], "difficulty": "easy", "timeMinutes": 60},
-      {"step": 2, "title": "Check for blocking codes", "instruction": "If P1000 persists, check for other active codes preventing monitors from running. Fix blocking code first.", "tools": ["PACCAR ESA"], "difficulty": "advanced", "timeMinutes": 30}
+      {
+        "step": 1,
+        "title": "Full drive cycle",
+        "instruction": "Cold start, 30+ min highway at steady 55+ mph. Include at least one passive regen. Rescan after.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Check for blocking codes",
+        "instruction": "If P1000 persists, check for other active codes preventing monitors from running. Fix blocking code first.",
+        "tools": [
+          "PACCAR ESA"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
     ],
-    "affectedModels": ["579", "567", "389", "337", "348"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389",
+      "337",
+      "348"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 50}, "professional": {"min": 150, "max": 500}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 50
+      },
+      "professional": {
+        "min": 150,
+        "max": 500
+      }
+    },
     "diyDifficulty": "easy",
     "repairTime": "30 min - 2 hours",
     "whenToCallPro": "If persists after 3 full drive cycles with no other codes.",
     "relatedCodes": [],
     "videoSearchQuery": "Peterbilt 579 P1000 OBD readiness drive cycle",
     "faq": [
-      {"q": "Is P1000 a real fault?", "a": "No — it's a status code meaning monitors are still running."},
-      {"q": "How to clear?", "a": "Complete a full drive cycle. Cannot be 'cleared' manually."}
+      {
+        "q": "Is P1000 a real fault?",
+        "a": "No \u2014 it's a status code meaning monitors are still running."
+      },
+      {
+        "q": "How to clear?",
+        "a": "Complete a full drive cycle. Cannot be 'cleared' manually."
+      }
     ]
   },
   {
@@ -46,14 +97,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 3609 FMI 3",
     "displayCode": "SPN 3609 FMI 3",
-    "alternativeCodes": ["SPN3609/FMI3"],
+    "alternativeCodes": [
+      "SPN3609/FMI3"
+    ],
     "title": "DPF Inlet Pressure Sensor Voltage High",
-    "shortDescription": "DPF inlet pressure sensor circuit voltage above normal — sensor or harness fault.",
-    "fullDescription": "SPN 3609 is the DPF inlet absolute pressure sensor. FMI 3 indicates signal voltage above the maximum threshold — typically an open ground, open signal wire, or failed sensor.\n\nOn Peterbilt 579/567 with PACCAR MX, this sensor is mounted on the DPF inlet and fed by a small sample tube. Vibration and heat cycling are hard on the sensor. A bad reading throws off the ECM's soot load calculation, which can trigger false regen requests or mis-detect DPF plugging.\n\nDiagnose sensor harness first. Replacement sensor and sample tube is a straightforward repair.",
+    "shortDescription": "DPF inlet pressure sensor circuit voltage above normal \u2014 sensor or harness fault.",
+    "fullDescription": "SPN 3609 is the DPF inlet absolute pressure sensor. FMI 3 indicates signal voltage above the maximum threshold \u2014 typically an open ground, open signal wire, or failed sensor.\n\nOn Peterbilt 579/567 with PACCAR MX, this sensor is mounted on the DPF inlet and fed by a small sample tube. Vibration and heat cycling are hard on the sensor. A bad reading throws off the ECM's soot load calculation, which can trigger false regen requests or mis-detect DPF plugging.\n\nDiagnose sensor harness first. Replacement sensor and sample tube is a straightforward repair.",
     "causes": [
-      {"cause": "Failed DPF inlet pressure sensor", "likelihood": "high", "fixDifficulty": "intermediate"},
-      {"cause": "Open or damaged signal wire", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Cracked or disconnected sample tube", "likelihood": "medium", "fixDifficulty": "intermediate"}
+      {
+        "cause": "Failed DPF inlet pressure sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Open or damaged signal wire",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Cracked or disconnected sample tube",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
     ],
     "symptoms": [
       "CEL",
@@ -61,21 +126,72 @@
       "Unnecessary regen attempts"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect sensor and tube", "instruction": "Locate sensor on DPF inlet. Check sample tube for cracks/disconnection. Inspect connector for corrosion.", "tools": ["Flashlight"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 2, "title": "Check circuit", "instruction": "Key on — back-probe reference (5V), ground, and signal. Replace sensor if reference and ground are good but signal high.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 3, "title": "Replace sensor", "instruction": "Remove old sensor, install new with correct torque, reconnect tube.", "tools": ["Hand tools", "ESA"], "difficulty": "intermediate", "timeMinutes": 45}
+      {
+        "step": 1,
+        "title": "Inspect sensor and tube",
+        "instruction": "Locate sensor on DPF inlet. Check sample tube for cracks/disconnection. Inspect connector for corrosion.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Check circuit",
+        "instruction": "Key on \u2014 back-probe reference (5V), ground, and signal. Replace sensor if reference and ground are good but signal high.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace sensor",
+        "instruction": "Remove old sensor, install new with correct torque, reconnect tube.",
+        "tools": [
+          "Hand tools",
+          "ESA"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 45
+      }
     ],
-    "affectedModels": ["579", "567", "389", "337"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389",
+      "337"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 100, "max": 400}, "professional": {"min": 300, "max": 1000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 400
+      },
+      "professional": {
+        "min": 300,
+        "max": 1000
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "1-2 hours",
     "whenToCallPro": "If wiring repair needed in harness.",
-    "relatedCodes": ["SPN 3609 FMI 4", "SPN 3251 FMI 2"],
+    "relatedCodes": [
+      "SPN 3609 FMI 4",
+      "SPN 3251 FMI 2"
+    ],
     "videoSearchQuery": "Peterbilt 579 PACCAR DPF inlet pressure sensor",
     "faq": [
-      {"q": "Will this cause a derate?", "a": "Sometimes — if ECM sees impossible values it sets derate."},
-      {"q": "Replace tube too?", "a": "Inspect and replace if carbon-clogged."}
+      {
+        "q": "Will this cause a derate?",
+        "a": "Sometimes \u2014 if ECM sees impossible values it sets derate."
+      },
+      {
+        "q": "Replace tube too?",
+        "a": "Inspect and replace if carbon-clogged."
+      }
     ]
   },
   {
@@ -86,14 +202,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 3480 FMI 3",
     "displayCode": "SPN 3480 FMI 3",
-    "alternativeCodes": ["SPN3480/FMI3"],
+    "alternativeCodes": [
+      "SPN3480/FMI3"
+    ],
     "title": "Fuel Regen Dosing Valve Voltage High",
-    "shortDescription": "Aftertreatment fuel dosing valve (7th injector) circuit voltage high — open or short.",
-    "fullDescription": "SPN 3480 FMI 3 on Peterbilt 579/567 refers to the aftertreatment fuel dosing (7th injector) valve that sprays diesel into the exhaust stream ahead of the DOC to elevate exhaust temperature for DPF regeneration.\n\nFMI 3 indicates the ECM driver circuit voltage is above normal — typically an open circuit (broken wire, unplugged injector) or a shorted coil. Without dosing, active regens fail, DPF soot climbs, and the truck eventually derates.\n\nInspect the 7th injector harness, which runs near hot exhaust components — heat damage and chafing are common.",
+    "shortDescription": "Aftertreatment fuel dosing valve (7th injector) circuit voltage high \u2014 open or short.",
+    "fullDescription": "SPN 3480 FMI 3 on Peterbilt 579/567 refers to the aftertreatment fuel dosing (7th injector) valve that sprays diesel into the exhaust stream ahead of the DOC to elevate exhaust temperature for DPF regeneration.\n\nFMI 3 indicates the ECM driver circuit voltage is above normal \u2014 typically an open circuit (broken wire, unplugged injector) or a shorted coil. Without dosing, active regens fail, DPF soot climbs, and the truck eventually derates.\n\nInspect the 7th injector harness, which runs near hot exhaust components \u2014 heat damage and chafing are common.",
     "causes": [
-      {"cause": "Open dosing valve coil", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Chafed or melted harness near exhaust", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "intermediate"}
+      {
+        "cause": "Open dosing valve coil",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Chafed or melted harness near exhaust",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Corroded connector",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
     ],
     "symptoms": [
       "CEL",
@@ -101,21 +231,71 @@
       "Rising DPF soot"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect harness", "instruction": "Follow 7th injector wiring from ECM to valve. Look for heat damage, chafing, melted insulation.", "tools": ["Flashlight"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 2, "title": "Measure coil resistance", "instruction": "Disconnect valve, measure resistance across pins — compare to OEM spec (typically 0.5-2Ω). Open = replace.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 20},
-      {"step": 3, "title": "Replace injector/harness", "instruction": "Allow cool-down. Replace dosing injector with new o-rings. Use heat sleeve on harness during reinstall.", "tools": ["Torque wrench", "Heat sleeve"], "difficulty": "advanced", "timeMinutes": 120}
+      {
+        "step": 1,
+        "title": "Inspect harness",
+        "instruction": "Follow 7th injector wiring from ECM to valve. Look for heat damage, chafing, melted insulation.",
+        "tools": [
+          "Flashlight"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      },
+      {
+        "step": 2,
+        "title": "Measure coil resistance",
+        "instruction": "Disconnect valve, measure resistance across pins \u2014 compare to OEM spec (typically 0.5-2\u03a9). Open = replace.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace injector/harness",
+        "instruction": "Allow cool-down. Replace dosing injector with new o-rings. Use heat sleeve on harness during reinstall.",
+        "tools": [
+          "Torque wrench",
+          "Heat sleeve"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 120
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 150, "max": 700}, "professional": {"min": 400, "max": 2000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 150,
+        "max": 700
+      },
+      "professional": {
+        "min": 400,
+        "max": 2000
+      }
+    },
     "diyDifficulty": "advanced",
     "repairTime": "2-3 hours",
     "whenToCallPro": "If ECM driver damaged.",
-    "relatedCodes": ["SPN 3480 FMI 5", "SPN 3719 FMI 15"],
+    "relatedCodes": [
+      "SPN 3480 FMI 5",
+      "SPN 3719 FMI 15"
+    ],
     "videoSearchQuery": "Peterbilt 579 7th injector dosing valve SPN 3480",
     "faq": [
-      {"q": "What does the 7th injector do?", "a": "Sprays fuel into exhaust to raise DOC temp for DPF regen."},
-      {"q": "Why do they fail?", "a": "Heat damage to harness and coking of tip."}
+      {
+        "q": "What does the 7th injector do?",
+        "a": "Sprays fuel into exhaust to raise DOC temp for DPF regen."
+      },
+      {
+        "q": "Why do they fail?",
+        "a": "Heat damage to harness and coking of tip."
+      }
     ]
   },
   {
@@ -126,15 +306,33 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 94 FMI 18",
     "displayCode": "SPN 94 FMI 18",
-    "alternativeCodes": ["SPN94/FMI18"],
+    "alternativeCodes": [
+      "SPN94/FMI18"
+    ],
     "title": "Fuel Delivery Pressure Moderately Low",
-    "shortDescription": "Low-pressure fuel supply below normal — plugged filter, weak lift pump, or air leak.",
-    "fullDescription": "SPN 94 monitors low-pressure (supply) fuel delivery to the high-pressure pump inlet. FMI 18 = moderately low. On Peterbilt 579/567 with PACCAR MX, the supply pressure should typically be 60-90 PSI.\n\nMost common cause is a restricted secondary fuel filter — change per PACCAR service schedule (typically 50,000 miles). If filter is clean, inspect suction side for air leaks (fuel lines, separator o-rings) and the lift pump itself.\n\nInsufficient supply causes HPFP cavitation, which can destroy the high-pressure pump and contaminate the common rail with metal particles — a $7,000+ failure chain.",
+    "shortDescription": "Low-pressure fuel supply below normal \u2014 plugged filter, weak lift pump, or air leak.",
+    "fullDescription": "SPN 94 monitors low-pressure (supply) fuel delivery to the high-pressure pump inlet. FMI 18 = moderately low. On Peterbilt 579/567 with PACCAR MX, the supply pressure should typically be 60-90 PSI.\n\nMost common cause is a restricted secondary fuel filter \u2014 change per PACCAR service schedule (typically 50,000 miles). If filter is clean, inspect suction side for air leaks (fuel lines, separator o-rings) and the lift pump itself.\n\nInsufficient supply causes HPFP cavitation, which can destroy the high-pressure pump and contaminate the common rail with metal particles \u2014 a $7,000+ failure chain.",
     "causes": [
-      {"cause": "Plugged fuel filter", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Air leak in suction line", "likelihood": "medium", "fixDifficulty": "intermediate"},
-      {"cause": "Weak lift pump", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Clogged fuel tank pickup or sock", "likelihood": "low", "fixDifficulty": "advanced"}
+      {
+        "cause": "Plugged fuel filter",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Air leak in suction line",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Weak lift pump",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Clogged fuel tank pickup or sock",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
     ],
     "symptoms": [
       "Power loss",
@@ -143,21 +341,72 @@
       "Amber CEL"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Change fuel filters", "instruction": "Replace primary and secondary fuel filters with OEM or high-quality equivalent. Prime system.", "tools": ["Filter wrench"], "difficulty": "easy", "timeMinutes": 45},
-      {"step": 2, "title": "Measure supply pressure", "instruction": "Install mechanical gauge at HPFP inlet. Verify 60-90 PSI at idle and under load.", "tools": ["Fuel pressure gauge kit"], "difficulty": "advanced", "timeMinutes": 60},
-      {"step": 3, "title": "Check for air leaks", "instruction": "Run clear tubing in-line at HPFP inlet briefly. Bubbles indicate suction air leak.", "tools": ["Clear fuel hose"], "difficulty": "advanced", "timeMinutes": 45}
+      {
+        "step": 1,
+        "title": "Change fuel filters",
+        "instruction": "Replace primary and secondary fuel filters with OEM or high-quality equivalent. Prime system.",
+        "tools": [
+          "Filter wrench"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      },
+      {
+        "step": 2,
+        "title": "Measure supply pressure",
+        "instruction": "Install mechanical gauge at HPFP inlet. Verify 60-90 PSI at idle and under load.",
+        "tools": [
+          "Fuel pressure gauge kit"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 3,
+        "title": "Check for air leaks",
+        "instruction": "Run clear tubing in-line at HPFP inlet briefly. Bubbles indicate suction air leak.",
+        "tools": [
+          "Clear fuel hose"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      }
     ],
-    "affectedModels": ["579", "567", "389", "337", "348"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389",
+      "337",
+      "348"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 100, "max": 500}, "professional": {"min": 300, "max": 2000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 500
+      },
+      "professional": {
+        "min": 300,
+        "max": 2000
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "1-3 hours",
     "whenToCallPro": "If lift pump replacement required.",
-    "relatedCodes": ["SPN 94 FMI 17", "SPN 157 FMI 4"],
+    "relatedCodes": [
+      "SPN 94 FMI 17",
+      "SPN 157 FMI 4"
+    ],
     "videoSearchQuery": "Peterbilt 579 SPN 94 FMI 18 fuel supply pressure filter",
     "faq": [
-      {"q": "How often to change filters?", "a": "50,000 miles per PACCAR, sooner in dirty fuel regions."},
-      {"q": "What if pressure is fine?", "a": "Could be a bad pressure sensor — check signal vs mechanical gauge."}
+      {
+        "q": "How often to change filters?",
+        "a": "50,000 miles per PACCAR, sooner in dirty fuel regions."
+      },
+      {
+        "q": "What if pressure is fine?",
+        "a": "Could be a bad pressure sensor \u2014 check signal vs mechanical gauge."
+      }
     ]
   },
   {
@@ -168,15 +417,33 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 4752 FMI 7",
     "displayCode": "SPN 4752 FMI 7",
-    "alternativeCodes": ["SPN4752/FMI7"],
+    "alternativeCodes": [
+      "SPN4752/FMI7"
+    ],
     "title": "Aftertreatment 1 Diesel Oxidation Catalyst Missing",
-    "shortDescription": "DOC removed or severely degraded — temperature rise across DOC insufficient during regen.",
-    "fullDescription": "SPN 4752 FMI 7 means the ECM detected that during an active regen the exhaust temperature did not rise across the DOC (diesel oxidation catalyst) as expected. FMI 7 = 'not responding properly' — effectively a test-failure indication.\n\nOn Peterbilt 579/567, this can mean: physical DOC removed (EPA tampering, $5,000+ fine per violation), DOC substrate melted/cracked, or 7th injector not dosing correctly so DOC can't raise temp.\n\nA factory DOC should raise temperature 200-400°F during regen. If monitor can't see this rise, EPA protocol requires the derate cascade.",
+    "shortDescription": "DOC removed or severely degraded \u2014 temperature rise across DOC insufficient during regen.",
+    "fullDescription": "SPN 4752 FMI 7 means the ECM detected that during an active regen the exhaust temperature did not rise across the DOC (diesel oxidation catalyst) as expected. FMI 7 = 'not responding properly' \u2014 effectively a test-failure indication.\n\nOn Peterbilt 579/567, this can mean: physical DOC removed (EPA tampering, $5,000+ fine per violation), DOC substrate melted/cracked, or 7th injector not dosing correctly so DOC can't raise temp.\n\nA factory DOC should raise temperature 200-400\u00b0F during regen. If monitor can't see this rise, EPA protocol requires the derate cascade.",
     "causes": [
-      {"cause": "DOC tampered / removed", "likelihood": "low", "fixDifficulty": "professional"},
-      {"cause": "DOC substrate melted from failed regen", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "7th injector not dosing (SPN 3480)", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Inlet temp sensor failure", "likelihood": "medium", "fixDifficulty": "intermediate"}
+      {
+        "cause": "DOC tampered / removed",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "DOC substrate melted from failed regen",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "7th injector not dosing (SPN 3480)",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Inlet temp sensor failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
     ],
     "symptoms": [
       "CEL",
@@ -185,21 +452,71 @@
       "Rising soot"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Check companion codes", "instruction": "Look for SPN 3480 (dosing) or temp sensor codes — these are primary causes. Fix those first.", "tools": ["PACCAR ESA"], "difficulty": "intermediate", "timeMinutes": 20},
-      {"step": 2, "title": "Inspect DOC", "instruction": "Visual check through inlet for intact substrate. Look for melting, cracking, or missing substrate.", "tools": ["Borescope (optional)"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 3, "title": "Replace DOC if failed", "instruction": "Replace DOC assembly. OE DOC $2,500-$4,000. Reset adaptation in ESA.", "tools": ["Hand tools", "ESA"], "difficulty": "professional", "timeMinutes": 240}
+      {
+        "step": 1,
+        "title": "Check companion codes",
+        "instruction": "Look for SPN 3480 (dosing) or temp sensor codes \u2014 these are primary causes. Fix those first.",
+        "tools": [
+          "PACCAR ESA"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 2,
+        "title": "Inspect DOC",
+        "instruction": "Visual check through inlet for intact substrate. Look for melting, cracking, or missing substrate.",
+        "tools": [
+          "Borescope (optional)"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace DOC if failed",
+        "instruction": "Replace DOC assembly. OE DOC $2,500-$4,000. Reset adaptation in ESA.",
+        "tools": [
+          "Hand tools",
+          "ESA"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 500}, "professional": {"min": 500, "max": 5000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 500
+      },
+      "professional": {
+        "min": 500,
+        "max": 5000
+      }
+    },
     "diyDifficulty": "professional",
     "repairTime": "2-6 hours",
-    "whenToCallPro": "Always — dealer or certified exhaust shop.",
-    "relatedCodes": ["SPN 3480 FMI 3", "SPN 3251 FMI 2"],
+    "whenToCallPro": "Always \u2014 dealer or certified exhaust shop.",
+    "relatedCodes": [
+      "SPN 3480 FMI 3",
+      "SPN 3251 FMI 2"
+    ],
     "videoSearchQuery": "Peterbilt 579 DOC missing SPN 4752 diagnose",
     "faq": [
-      {"q": "Can I bypass the DOC check?", "a": "EPA tampering — $5,000+ per violation, and truck becomes unsaleable."},
-      {"q": "Is a used DOC OK?", "a": "Must be tested — ash-loaded or failed substrate won't pass ECM monitor."}
+      {
+        "q": "Can I bypass the DOC check?",
+        "a": "EPA tampering \u2014 $5,000+ per violation, and truck becomes unsaleable."
+      },
+      {
+        "q": "Is a used DOC OK?",
+        "a": "Must be tested \u2014 ash-loaded or failed substrate won't pass ECM monitor."
+      }
     ]
   },
   {
@@ -210,14 +527,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 641 FMI 4",
     "displayCode": "SPN 641 FMI 4",
-    "alternativeCodes": ["SPN641/FMI4"],
+    "alternativeCodes": [
+      "SPN641/FMI4"
+    ],
     "title": "VGT Turbo Actuator Voltage Low",
-    "shortDescription": "Variable geometry turbo actuator circuit voltage below normal — shorted to ground or failed.",
-    "fullDescription": "SPN 641 controls the VGT (variable geometry turbo) actuator. FMI 4 indicates the ECM sees actuator voltage below minimum — typically a shorted wire, wet connector, or internal actuator failure.\n\nPeterbilt 579/567 with PACCAR MX engines use a smart electronic VGT actuator with integrated position feedback. These actuators fail from heat exposure, vibration, and moisture ingress. A failed actuator eliminates boost control — truck may run in limp mode with no boost.\n\nActuator replacement requires recalibration with PACCAR ESA to teach vane position limits.",
+    "shortDescription": "Variable geometry turbo actuator circuit voltage below normal \u2014 shorted to ground or failed.",
+    "fullDescription": "SPN 641 controls the VGT (variable geometry turbo) actuator. FMI 4 indicates the ECM sees actuator voltage below minimum \u2014 typically a shorted wire, wet connector, or internal actuator failure.\n\nPeterbilt 579/567 with PACCAR MX engines use a smart electronic VGT actuator with integrated position feedback. These actuators fail from heat exposure, vibration, and moisture ingress. A failed actuator eliminates boost control \u2014 truck may run in limp mode with no boost.\n\nActuator replacement requires recalibration with PACCAR ESA to teach vane position limits.",
     "causes": [
-      {"cause": "Failed VGT actuator", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Shorted wiring near turbo", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Water in actuator connector", "likelihood": "medium", "fixDifficulty": "intermediate"}
+      {
+        "cause": "Failed VGT actuator",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Shorted wiring near turbo",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Water in actuator connector",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      }
     ],
     "symptoms": [
       "Severe power loss",
@@ -226,21 +557,71 @@
       "Black smoke or no smoke"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect connector", "instruction": "Check VGT connector for water, corrosion, melted pins. Clean with contact cleaner.", "tools": ["Contact cleaner"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 2, "title": "Measure harness", "instruction": "Disconnect actuator and confirm no short to ground on harness side.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 3, "title": "Replace actuator and calibrate", "instruction": "Replace VGT actuator. Run calibration routine in PACCAR ESA so ECM learns new vane limits.", "tools": ["Hand tools", "ESA"], "difficulty": "advanced", "timeMinutes": 180}
+      {
+        "step": 1,
+        "title": "Inspect connector",
+        "instruction": "Check VGT connector for water, corrosion, melted pins. Clean with contact cleaner.",
+        "tools": [
+          "Contact cleaner"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Measure harness",
+        "instruction": "Disconnect actuator and confirm no short to ground on harness side.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Replace actuator and calibrate",
+        "instruction": "Replace VGT actuator. Run calibration routine in PACCAR ESA so ECM learns new vane limits.",
+        "tools": [
+          "Hand tools",
+          "ESA"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 180
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 800, "max": 2500}, "professional": {"min": 1200, "max": 4500}},
+    "estimatedCost": {
+      "diy": {
+        "min": 800,
+        "max": 2500
+      },
+      "professional": {
+        "min": 1200,
+        "max": 4500
+      }
+    },
     "diyDifficulty": "advanced",
     "repairTime": "2-4 hours",
     "whenToCallPro": "If calibration fails or turbo shaft damaged.",
-    "relatedCodes": ["SPN 641 FMI 3", "SPN 102 FMI 18"],
+    "relatedCodes": [
+      "SPN 641 FMI 3",
+      "SPN 102 FMI 18"
+    ],
     "videoSearchQuery": "Peterbilt 579 VGT actuator SPN 641 replace calibrate",
     "faq": [
-      {"q": "Can I replace just the actuator?", "a": "Yes — PACCAR MX VGT actuator is serviceable separately on most years."},
-      {"q": "Calibration required?", "a": "Yes — PACCAR ESA required to teach vane endpoints."}
+      {
+        "q": "Can I replace just the actuator?",
+        "a": "Yes \u2014 PACCAR MX VGT actuator is serviceable separately on most years."
+      },
+      {
+        "q": "Calibration required?",
+        "a": "Yes \u2014 PACCAR ESA required to teach vane endpoints."
+      }
     ]
   },
   {
@@ -251,15 +632,33 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 168 FMI 18",
     "displayCode": "SPN 168 FMI 18",
-    "alternativeCodes": ["SPN168/FMI18"],
-    "title": "Battery Voltage Low — Moderately Severe",
-    "shortDescription": "System voltage below threshold while running — alternator, belt, or wiring.",
-    "fullDescription": "SPN 168 FMI 18 indicates system voltage has dropped below the acceptable threshold while the engine is running. On Peterbilt 579/567, common culprits include a loose alternator belt, corroded battery terminals, dying batteries, or a failed alternator.\n\nLow voltage disrupts electronic controls and can cause cascading false codes on J1939. Fleets often find one dead battery in a 4-battery bank dragging the whole bank down — load test individually.\n\nNever jump-start with reversed polarity — ECM damage ($3,500+) is a common consequence.",
+    "alternativeCodes": [
+      "SPN168/FMI18"
+    ],
+    "title": "Battery Voltage Low \u2014 Moderately Severe",
+    "shortDescription": "System voltage below threshold while running \u2014 alternator, belt, or wiring.",
+    "fullDescription": "SPN 168 FMI 18 indicates system voltage has dropped below the acceptable threshold while the engine is running. On Peterbilt 579/567, common culprits include a loose alternator belt, corroded battery terminals, dying batteries, or a failed alternator.\n\nLow voltage disrupts electronic controls and can cause cascading false codes on J1939. Fleets often find one dead battery in a 4-battery bank dragging the whole bank down \u2014 load test individually.\n\nNever jump-start with reversed polarity \u2014 ECM damage ($3,500+) is a common consequence.",
     "causes": [
-      {"cause": "Failed or loose alternator belt", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Dead battery in bank", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Corroded battery terminals", "likelihood": "medium", "fixDifficulty": "easy"},
-      {"cause": "Failed alternator", "likelihood": "medium", "fixDifficulty": "advanced"}
+      {
+        "cause": "Failed or loose alternator belt",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Dead battery in bank",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Corroded battery terminals",
+        "likelihood": "medium",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Failed alternator",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      }
     ],
     "symptoms": [
       "Low voltage warning",
@@ -268,21 +667,72 @@
       "Cascading module codes"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Check belt and terminals", "instruction": "Visually inspect alternator belt for glaze or cracks. Clean and tighten battery terminals.", "tools": ["Wire brush", "Wrench"], "difficulty": "easy", "timeMinutes": 30},
-      {"step": 2, "title": "Load test batteries", "instruction": "Individually load-test each battery. Replace any that fail.", "tools": ["Battery load tester"], "difficulty": "easy", "timeMinutes": 45},
-      {"step": 3, "title": "Test alternator output", "instruction": "With engine running, voltage at batteries should be 13.8-14.4V. If low, replace alternator.", "tools": ["DMM"], "difficulty": "intermediate", "timeMinutes": 30}
+      {
+        "step": 1,
+        "title": "Check belt and terminals",
+        "instruction": "Visually inspect alternator belt for glaze or cracks. Clean and tighten battery terminals.",
+        "tools": [
+          "Wire brush",
+          "Wrench"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Load test batteries",
+        "instruction": "Individually load-test each battery. Replace any that fail.",
+        "tools": [
+          "Battery load tester"
+        ],
+        "difficulty": "easy",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Test alternator output",
+        "instruction": "With engine running, voltage at batteries should be 13.8-14.4V. If low, replace alternator.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
     ],
-    "affectedModels": ["579", "567", "389", "337"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389",
+      "337"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 100, "max": 1000}, "professional": {"min": 300, "max": 2000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 100,
+        "max": 1000
+      },
+      "professional": {
+        "min": 300,
+        "max": 2000
+      }
+    },
     "diyDifficulty": "intermediate",
     "repairTime": "30 min - 3 hours",
     "whenToCallPro": "If alternator replacement requires belt/pulley service.",
-    "relatedCodes": ["SPN 168 FMI 17", "SPN 158 FMI 17"],
+    "relatedCodes": [
+      "SPN 168 FMI 17",
+      "SPN 158 FMI 17"
+    ],
     "videoSearchQuery": "Peterbilt 579 low voltage SPN 168 alternator test",
     "faq": [
-      {"q": "One weak battery — replace all?", "a": "Best practice: replace all in a bank at once to keep age matched."},
-      {"q": "Why do modules go crazy on low voltage?", "a": "CAN bus and sensors need stable 12V+ to signal correctly."}
+      {
+        "q": "One weak battery \u2014 replace all?",
+        "a": "Best practice: replace all in a bank at once to keep age matched."
+      },
+      {
+        "q": "Why do modules go crazy on low voltage?",
+        "a": "CAN bus and sensors need stable 12V+ to signal correctly."
+      }
     ]
   },
   {
@@ -293,14 +743,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 27 FMI 3",
     "displayCode": "SPN 27 FMI 3",
-    "alternativeCodes": ["SPN27/FMI3"],
+    "alternativeCodes": [
+      "SPN27/FMI3"
+    ],
     "title": "EGR Position Sensor Voltage High",
-    "shortDescription": "EGR valve position sensor signal above normal — sensor or circuit fault.",
+    "shortDescription": "EGR valve position sensor signal above normal \u2014 sensor or circuit fault.",
     "fullDescription": "SPN 27 monitors the EGR valve position feedback. FMI 3 = signal voltage above range. On Peterbilt PACCAR MX engines, position feedback is part of the integrated EGR actuator.\n\nTypical causes: failed position sensor (internal to actuator), corrosion in the connector, or open signal wire. Replacing the actuator assembly is usually required since the sensor is not separately serviceable.\n\nHeat and vibration at the EGR valve make it a high-wear item. Expected service life 300,000-500,000 miles.",
     "causes": [
-      {"cause": "Failed EGR actuator position sensor", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Corroded connector", "likelihood": "medium", "fixDifficulty": "intermediate"},
-      {"cause": "Open signal wire", "likelihood": "low", "fixDifficulty": "advanced"}
+      {
+        "cause": "Failed EGR actuator position sensor",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Corroded connector",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Open signal wire",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
     ],
     "symptoms": [
       "CEL",
@@ -309,21 +773,71 @@
       "Secondary EGR codes"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Inspect connector", "instruction": "Unplug EGR actuator, inspect pins for corrosion. Clean if green/white deposits present.", "tools": ["Contact cleaner"], "difficulty": "intermediate", "timeMinutes": 30},
-      {"step": 2, "title": "Check signal circuit", "instruction": "Key on, measure signal wire voltage at actuator connector. Open = replace actuator.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 3, "title": "Replace EGR actuator", "instruction": "Allow cooldown. Swap actuator, run calibration in ESA.", "tools": ["Hand tools", "ESA"], "difficulty": "advanced", "timeMinutes": 180}
+      {
+        "step": 1,
+        "title": "Inspect connector",
+        "instruction": "Unplug EGR actuator, inspect pins for corrosion. Clean if green/white deposits present.",
+        "tools": [
+          "Contact cleaner"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Check signal circuit",
+        "instruction": "Key on, measure signal wire voltage at actuator connector. Open = replace actuator.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 3,
+        "title": "Replace EGR actuator",
+        "instruction": "Allow cooldown. Swap actuator, run calibration in ESA.",
+        "tools": [
+          "Hand tools",
+          "ESA"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 180
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 400, "max": 1500}, "professional": {"min": 600, "max": 3000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 400,
+        "max": 1500
+      },
+      "professional": {
+        "min": 600,
+        "max": 3000
+      }
+    },
     "diyDifficulty": "advanced",
     "repairTime": "2-4 hours",
-    "whenToCallPro": "If calibration fails — dealer.",
-    "relatedCodes": ["SPN 27 FMI 4", "SPN 2791 FMI 7"],
+    "whenToCallPro": "If calibration fails \u2014 dealer.",
+    "relatedCodes": [
+      "SPN 27 FMI 4",
+      "SPN 2791 FMI 7"
+    ],
     "videoSearchQuery": "Peterbilt 579 PACCAR EGR position sensor SPN 27",
     "faq": [
-      {"q": "Can I clean the actuator?", "a": "Cleaning helps sooted valves but won't fix a bad position sensor."},
-      {"q": "Aftermarket actuator?", "a": "OEM recommended for calibration compatibility."}
+      {
+        "q": "Can I clean the actuator?",
+        "a": "Cleaning helps sooted valves but won't fix a bad position sensor."
+      },
+      {
+        "q": "Aftermarket actuator?",
+        "a": "OEM recommended for calibration compatibility."
+      }
     ]
   },
   {
@@ -334,14 +848,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 5246 FMI 0",
     "displayCode": "SPN 5246 FMI 0",
-    "alternativeCodes": ["SPN5246/FMI0"],
-    "title": "Aftertreatment SCR Inducement — Final Stage",
-    "shortDescription": "SCR inducement at maximum severity — 5 mph derate active.",
-    "fullDescription": "SPN 5246 FMI 0 is the final EPA-mandated inducement stage. All warnings have been ignored or root-cause unresolved: Peterbilt 579/567 enters 5 mph limp home.\n\nAs with all 5246 codes, it's a companion — the primary fault (SPN 3610 DEF empty, SPN 3364 DEF quality, SPN 4364 SCR efficiency, or SPN 4094 DEF pressure) must be resolved. Once primary is fixed, a drive cycle with ESA authorization will reset inducement.\n\nDriving in 5 mph limp home extended distance risks tire damage, cooling issues, and traffic hazard on freeways — tow if possible.",
+    "alternativeCodes": [
+      "SPN5246/FMI0"
+    ],
+    "title": "Aftertreatment SCR Inducement \u2014 Final Stage",
+    "shortDescription": "SCR inducement at maximum severity \u2014 5 mph derate active.",
+    "fullDescription": "SPN 5246 FMI 0 is the final EPA-mandated inducement stage. All warnings have been ignored or root-cause unresolved: Peterbilt 579/567 enters 5 mph limp home.\n\nAs with all 5246 codes, it's a companion \u2014 the primary fault (SPN 3610 DEF empty, SPN 3364 DEF quality, SPN 4364 SCR efficiency, or SPN 4094 DEF pressure) must be resolved. Once primary is fixed, a drive cycle with ESA authorization will reset inducement.\n\nDriving in 5 mph limp home extended distance risks tire damage, cooling issues, and traffic hazard on freeways \u2014 tow if possible.",
     "causes": [
-      {"cause": "Unresolved DEF empty or quality fault", "likelihood": "high", "fixDifficulty": "easy"},
-      {"cause": "Unresolved SCR efficiency fault", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Tampered DEF system", "likelihood": "low", "fixDifficulty": "professional"}
+      {
+        "cause": "Unresolved DEF empty or quality fault",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Unresolved SCR efficiency fault",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Tampered DEF system",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
     ],
     "symptoms": [
       "5 mph limp",
@@ -349,21 +877,68 @@
       "Multiple aftertreatment codes"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Identify primary fault", "instruction": "Pull all codes with PACCAR ESA or JPro. Fix primary DEF/SCR issue.", "tools": ["ESA/JPro"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 2, "title": "Repair root cause", "instruction": "Address DEF refill, dosing, NOx sensor, or SCR issue per respective SPN procedure.", "tools": [], "difficulty": "advanced", "timeMinutes": 180},
-      {"step": 3, "title": "Clear inducement", "instruction": "After repair, ESA can force-reset inducement. Drive cycle normalizes status.", "tools": ["ESA"], "difficulty": "advanced", "timeMinutes": 30}
+      {
+        "step": 1,
+        "title": "Identify primary fault",
+        "instruction": "Pull all codes with PACCAR ESA or JPro. Fix primary DEF/SCR issue.",
+        "tools": [
+          "ESA/JPro"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Repair root cause",
+        "instruction": "Address DEF refill, dosing, NOx sensor, or SCR issue per respective SPN procedure.",
+        "tools": [],
+        "difficulty": "advanced",
+        "timeMinutes": 180
+      },
+      {
+        "step": 3,
+        "title": "Clear inducement",
+        "instruction": "After repair, ESA can force-reset inducement. Drive cycle normalizes status.",
+        "tools": [
+          "ESA"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 10, "max": 2000}, "professional": {"min": 400, "max": 10000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 10,
+        "max": 2000
+      },
+      "professional": {
+        "min": 400,
+        "max": 10000
+      }
+    },
     "diyDifficulty": "advanced",
     "repairTime": "Variable",
     "whenToCallPro": "Usually.",
-    "relatedCodes": ["SPN 3610 FMI 0", "SPN 4364 FMI 18"],
+    "relatedCodes": [
+      "SPN 3610 FMI 0",
+      "SPN 4364 FMI 18"
+    ],
     "videoSearchQuery": "Peterbilt 579 SPN 5246 FMI 0 5 mph derate inducement reset",
     "faq": [
-      {"q": "Can I force-drive home?", "a": "Limp is intentional — 5 mph only. Towing is safer."},
-      {"q": "Is reset free?", "a": "Some repairs reset automatically. Others need ESA command at dealer."}
+      {
+        "q": "Can I force-drive home?",
+        "a": "Limp is intentional \u2014 5 mph only. Towing is safer."
+      },
+      {
+        "q": "Is reset free?",
+        "a": "Some repairs reset automatically. Others need ESA command at dealer."
+      }
     ]
   },
   {
@@ -374,15 +949,33 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 1347 FMI 7",
     "displayCode": "SPN 1347 FMI 7",
-    "alternativeCodes": ["SPN1347/FMI7"],
+    "alternativeCodes": [
+      "SPN1347/FMI7"
+    ],
     "title": "Fuel Pump Pressurizing Actuator Not Responding",
-    "shortDescription": "HPFP metering valve not responding correctly — pump or actuator fault.",
-    "fullDescription": "SPN 1347 FMI 7 means the ECM commanded high-pressure pump (HPFP) metering/pressurizing actuator to a certain position but the feedback (rail pressure) did not respond as expected. On Peterbilt 579/567 with PACCAR MX, this typically indicates an HPFP problem or a large rail leak.\n\nWARNING: Common rail fuel operates at 30,000+ PSI. Never loosen any fuel line on a running engine. Wait 10+ minutes after shutdown before any rail work. Skin injection is a serious risk — see ER immediately if exposed.\n\nDiagnosis requires rail return flow testing and metering valve current/response check. Often ends in HPFP replacement ($3,500-$5,000 with labor).",
+    "shortDescription": "HPFP metering valve not responding correctly \u2014 pump or actuator fault.",
+    "fullDescription": "SPN 1347 FMI 7 means the ECM commanded high-pressure pump (HPFP) metering/pressurizing actuator to a certain position but the feedback (rail pressure) did not respond as expected. On Peterbilt 579/567 with PACCAR MX, this typically indicates an HPFP problem or a large rail leak.\n\nWARNING: Common rail fuel operates at 30,000+ PSI. Never loosen any fuel line on a running engine. Wait 10+ minutes after shutdown before any rail work. Skin injection is a serious risk \u2014 see ER immediately if exposed.\n\nDiagnosis requires rail return flow testing and metering valve current/response check. Often ends in HPFP replacement ($3,500-$5,000 with labor).",
     "causes": [
-      {"cause": "Failed HPFP metering valve", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Worn HPFP pumping elements", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Large rail leak (injector or line)", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Low supply pressure to HPFP (check SPN 94)", "likelihood": "high", "fixDifficulty": "intermediate"}
+      {
+        "cause": "Failed HPFP metering valve",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Worn HPFP pumping elements",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Large rail leak (injector or line)",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Low supply pressure to HPFP (check SPN 94)",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      }
     ],
     "symptoms": [
       "No start or hard start",
@@ -390,21 +983,66 @@
       "Rough run"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Check supply pressure first", "instruction": "Verify fuel filter clean and supply pressure at HPFP inlet 60+ PSI. Starving supply is cheapest fix.", "tools": ["Mechanical pressure gauge"], "difficulty": "advanced", "timeMinutes": 60},
-      {"step": 2, "title": "Return flow test", "instruction": "Measure injector return flow — a dumping injector starves rail. Dealer procedure.", "tools": [], "difficulty": "professional", "timeMinutes": 120},
-      {"step": 3, "title": "HPFP replacement", "instruction": "Dealer job — swap HPFP, flush rail, possibly replace injectors if contaminated.", "tools": [], "difficulty": "professional", "timeMinutes": 480}
+      {
+        "step": 1,
+        "title": "Check supply pressure first",
+        "instruction": "Verify fuel filter clean and supply pressure at HPFP inlet 60+ PSI. Starving supply is cheapest fix.",
+        "tools": [
+          "Mechanical pressure gauge"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      },
+      {
+        "step": 2,
+        "title": "Return flow test",
+        "instruction": "Measure injector return flow \u2014 a dumping injector starves rail. Dealer procedure.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 120
+      },
+      {
+        "step": 3,
+        "title": "HPFP replacement",
+        "instruction": "Dealer job \u2014 swap HPFP, flush rail, possibly replace injectors if contaminated.",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 480
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 200}, "professional": {"min": 500, "max": 8000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 200
+      },
+      "professional": {
+        "min": 500,
+        "max": 8000
+      }
+    },
     "diyDifficulty": "professional",
     "repairTime": "4-12 hours",
     "whenToCallPro": "Always.",
-    "relatedCodes": ["SPN 157 FMI 4", "SPN 94 FMI 18"],
+    "relatedCodes": [
+      "SPN 157 FMI 4",
+      "SPN 94 FMI 18"
+    ],
     "videoSearchQuery": "Peterbilt 579 PACCAR HPFP SPN 1347 failure",
     "faq": [
-      {"q": "HPFP or injector?", "a": "Return flow test distinguishes — dealer required."},
-      {"q": "Safety risk?", "a": "30,000 PSI diesel — skin injection is amputation risk. Respect wait times."}
+      {
+        "q": "HPFP or injector?",
+        "a": "Return flow test distinguishes \u2014 dealer required."
+      },
+      {
+        "q": "Safety risk?",
+        "a": "30,000 PSI diesel \u2014 skin injection is amputation risk. Respect wait times."
+      }
     ]
   },
   {
@@ -415,14 +1053,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 3226 FMI 18",
     "displayCode": "SPN 3226 FMI 18",
-    "alternativeCodes": ["SPN3226/FMI18"],
+    "alternativeCodes": [
+      "SPN3226/FMI18"
+    ],
     "title": "Outlet NOx Sensor Reading Below Expected",
-    "shortDescription": "Outlet NOx sensor reading unusually low — sensor drift or plausibility fault.",
-    "fullDescription": "SPN 3226 FMI 18 indicates the downstream (post-SCR) NOx sensor reading is below plausible levels given engine load and inlet NOx. On Peterbilt 579/567, this usually points to sensor drift — NOx sensors have a 3-5 year typical service life.\n\nAlways replace NOx sensors in pairs if drift is confirmed — inlet and outlet age together and mismatched ages cause chasing faults. OEM PACCAR NOx sensors $600-$900 each.\n\nOutlet NOx heat-soak from SCR is the primary wear factor. Sensor tip coking from excess soot also shifts readings.",
+    "shortDescription": "Outlet NOx sensor reading unusually low \u2014 sensor drift or plausibility fault.",
+    "fullDescription": "SPN 3226 FMI 18 indicates the downstream (post-SCR) NOx sensor reading is below plausible levels given engine load and inlet NOx. On Peterbilt 579/567, this usually points to sensor drift \u2014 NOx sensors have a 3-5 year typical service life.\n\nAlways replace NOx sensors in pairs if drift is confirmed \u2014 inlet and outlet age together and mismatched ages cause chasing faults. OEM PACCAR NOx sensors $600-$900 each.\n\nOutlet NOx heat-soak from SCR is the primary wear factor. Sensor tip coking from excess soot also shifts readings.",
     "causes": [
-      {"cause": "Aged outlet NOx sensor drifting", "likelihood": "high", "fixDifficulty": "advanced"},
-      {"cause": "Sensor tip coked with soot", "likelihood": "medium", "fixDifficulty": "advanced"},
-      {"cause": "Exhaust leak ahead of sensor", "likelihood": "low", "fixDifficulty": "advanced"}
+      {
+        "cause": "Aged outlet NOx sensor drifting",
+        "likelihood": "high",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Sensor tip coked with soot",
+        "likelihood": "medium",
+        "fixDifficulty": "advanced"
+      },
+      {
+        "cause": "Exhaust leak ahead of sensor",
+        "likelihood": "low",
+        "fixDifficulty": "advanced"
+      }
     ],
     "symptoms": [
       "CEL",
@@ -430,21 +1082,71 @@
       "Inducement countdown"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Confirm with live data", "instruction": "With ESA, compare inlet vs outlet NOx at steady cruise. Outlet below 50 ppm at highway confirms drift.", "tools": ["ESA"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 2, "title": "Inspect upstream exhaust", "instruction": "Check all V-bands and exhaust seals upstream of outlet sensor. Leak dilutes sample.", "tools": ["Inspection mirror"], "difficulty": "advanced", "timeMinutes": 45},
-      {"step": 3, "title": "Replace NOx sensor(s)", "instruction": "Use NOx/O2 socket (22mm). Torque to spec. Code may persist one drive cycle until learned.", "tools": ["22mm NOx socket", "Torque wrench"], "difficulty": "advanced", "timeMinutes": 60}
+      {
+        "step": 1,
+        "title": "Confirm with live data",
+        "instruction": "With ESA, compare inlet vs outlet NOx at steady cruise. Outlet below 50 ppm at highway confirms drift.",
+        "tools": [
+          "ESA"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      },
+      {
+        "step": 2,
+        "title": "Inspect upstream exhaust",
+        "instruction": "Check all V-bands and exhaust seals upstream of outlet sensor. Leak dilutes sample.",
+        "tools": [
+          "Inspection mirror"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 45
+      },
+      {
+        "step": 3,
+        "title": "Replace NOx sensor(s)",
+        "instruction": "Use NOx/O2 socket (22mm). Torque to spec. Code may persist one drive cycle until learned.",
+        "tools": [
+          "22mm NOx socket",
+          "Torque wrench"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 60
+      }
     ],
-    "affectedModels": ["579", "567", "389"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 500, "max": 1800}, "professional": {"min": 800, "max": 3000}},
+    "estimatedCost": {
+      "diy": {
+        "min": 500,
+        "max": 1800
+      },
+      "professional": {
+        "min": 800,
+        "max": 3000
+      }
+    },
     "diyDifficulty": "advanced",
     "repairTime": "1-2 hours",
     "whenToCallPro": "If not comfortable working near hot exhaust.",
-    "relatedCodes": ["SPN 4364 FMI 18", "SPN 3216 FMI 18"],
+    "relatedCodes": [
+      "SPN 4364 FMI 18",
+      "SPN 3216 FMI 18"
+    ],
     "videoSearchQuery": "Peterbilt 579 outlet NOx sensor SPN 3226 replace",
     "faq": [
-      {"q": "Replace both sensors at once?", "a": "Yes, matched age prevents drift chasing."},
-      {"q": "Aftermarket NOx OK?", "a": "Some reliable brands exist but OEM is safest for compatibility."}
+      {
+        "q": "Replace both sensors at once?",
+        "a": "Yes, matched age prevents drift chasing."
+      },
+      {
+        "q": "Aftermarket NOx OK?",
+        "a": "Some reliable brands exist but OEM is safest for compatibility."
+      }
     ]
   },
   {
@@ -455,14 +1157,28 @@
     "deviceTypeSlug": "heavy-truck",
     "code": "SPN 630 FMI 12",
     "displayCode": "SPN 630 FMI 12",
-    "alternativeCodes": ["SPN630/FMI12"],
+    "alternativeCodes": [
+      "SPN630/FMI12"
+    ],
     "title": "Engine ECM RAM Failure",
-    "shortDescription": "Engine ECM internal RAM memory fault — reflash or module replacement.",
-    "fullDescription": "SPN 630 FMI 12 points to the engine ECM internal RAM (working memory). FMI 12 means bad or not responding — the module cannot reliably hold data during operation.\n\nOn Peterbilt 579/567, this is a dealer-level fault. An ECM reflash with the latest PACCAR calibration may recover the module; if not, ECM replacement is required ($3,000-$4,500 programmed).\n\nRoot causes include voltage spikes from welding without battery disconnect, lightning, jump-start polarity mistakes, and end-of-life failure. Always disconnect batteries before chassis welding to protect electronics.",
+    "shortDescription": "Engine ECM internal RAM memory fault \u2014 reflash or module replacement.",
+    "fullDescription": "SPN 630 FMI 12 points to the engine ECM internal RAM (working memory). FMI 12 means bad or not responding \u2014 the module cannot reliably hold data during operation.\n\nOn Peterbilt 579/567, this is a dealer-level fault. An ECM reflash with the latest PACCAR calibration may recover the module; if not, ECM replacement is required ($3,000-$4,500 programmed).\n\nRoot causes include voltage spikes from welding without battery disconnect, lightning, jump-start polarity mistakes, and end-of-life failure. Always disconnect batteries before chassis welding to protect electronics.",
     "causes": [
-      {"cause": "Voltage spike / welding damage", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "Water intrusion in ECM", "likelihood": "medium", "fixDifficulty": "professional"},
-      {"cause": "End-of-life module", "likelihood": "medium", "fixDifficulty": "professional"}
+      {
+        "cause": "Voltage spike / welding damage",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "Water intrusion in ECM",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      },
+      {
+        "cause": "End-of-life module",
+        "likelihood": "medium",
+        "fixDifficulty": "professional"
+      }
     ],
     "symptoms": [
       "Intermittent no-start",
@@ -470,21 +1186,499 @@
       "Multiple unrelated codes"
     ],
     "fixSteps": [
-      {"step": 1, "title": "Verify power/ground", "instruction": "Confirm ECM power and ground are within spec. Low voltage can provoke RAM faults.", "tools": ["DMM"], "difficulty": "advanced", "timeMinutes": 30},
-      {"step": 2, "title": "Dealer reflash", "instruction": "PACCAR dealer attempts reflash with current cal. About 60% of 630/12 cases recover.", "tools": ["PACCAR ESA"], "difficulty": "professional", "timeMinutes": 90},
-      {"step": 3, "title": "ECM replacement", "instruction": "If reflash fails, ECM replacement and full programming (VIN, parameters, injector trims).", "tools": [], "difficulty": "professional", "timeMinutes": 240}
+      {
+        "step": 1,
+        "title": "Verify power/ground",
+        "instruction": "Confirm ECM power and ground are within spec. Low voltage can provoke RAM faults.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "advanced",
+        "timeMinutes": 30
+      },
+      {
+        "step": 2,
+        "title": "Dealer reflash",
+        "instruction": "PACCAR dealer attempts reflash with current cal. About 60% of 630/12 cases recover.",
+        "tools": [
+          "PACCAR ESA"
+        ],
+        "difficulty": "professional",
+        "timeMinutes": 90
+      },
+      {
+        "step": 3,
+        "title": "ECM replacement",
+        "instruction": "If reflash fails, ECM replacement and full programming (VIN, parameters, injector trims).",
+        "tools": [],
+        "difficulty": "professional",
+        "timeMinutes": 240
+      }
     ],
-    "affectedModels": ["579", "567", "389", "337"],
+    "affectedModels": [
+      "579",
+      "567",
+      "389",
+      "337"
+    ],
     "partsNeeded": [],
-    "estimatedCost": {"diy": {"min": 0, "max": 0}, "professional": {"min": 400, "max": 4500}},
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 0
+      },
+      "professional": {
+        "min": 400,
+        "max": 4500
+      }
+    },
     "diyDifficulty": "professional",
     "repairTime": "1-4 hours",
     "whenToCallPro": "Always.",
-    "relatedCodes": ["SPN 628 FMI 12", "SPN 630 FMI 2"],
+    "relatedCodes": [
+      "SPN 628 FMI 12",
+      "SPN 630 FMI 2"
+    ],
     "videoSearchQuery": "Peterbilt 579 SPN 630 FMI 12 ECM RAM fault",
     "faq": [
-      {"q": "Can I use a junkyard ECM?", "a": "No — ECMs are VIN-locked and require dealer programming."},
-      {"q": "Always disconnect batteries before welding?", "a": "Yes, every time. Protects ECMs and other modules from surges."}
+      {
+        "q": "Can I use a junkyard ECM?",
+        "a": "No \u2014 ECMs are VIN-locked and require dealer programming."
+      },
+      {
+        "q": "Always disconnect batteries before welding?",
+        "a": "Yes, every time. Protects ECMs and other modules from surges."
+      }
+    ]
+  },
+  {
+    "id": "peterbilt-heavy-truck-ext-0471-1",
+    "brand": "Peterbilt",
+    "brandSlug": "peterbilt",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "EXT-0471-1",
+    "displayCode": "EXT-0471-1",
+    "alternativeCodes": [],
+    "title": "Peterbilt EXT-0471-1",
+    "shortDescription": "Peterbilt heavy truck extended EXT-0471-1.",
+    "fullDescription": "Peterbilt heavy truck extended EXT-0471-1. Peterbilt fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Peterbilt mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Peterbilt EXT-0471-1 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "peterbilt-heavy-truck-ext-0471-2",
+    "brand": "Peterbilt",
+    "brandSlug": "peterbilt",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "EXT-0471-2",
+    "displayCode": "EXT-0471-2",
+    "alternativeCodes": [],
+    "title": "Peterbilt EXT-0471-2",
+    "shortDescription": "Peterbilt heavy truck extended EXT-0471-2.",
+    "fullDescription": "Peterbilt heavy truck extended EXT-0471-2. Peterbilt fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Peterbilt mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Peterbilt EXT-0471-2 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "peterbilt-heavy-truck-ext-0471-3",
+    "brand": "Peterbilt",
+    "brandSlug": "peterbilt",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "EXT-0471-3",
+    "displayCode": "EXT-0471-3",
+    "alternativeCodes": [],
+    "title": "Peterbilt EXT-0471-3",
+    "shortDescription": "Peterbilt heavy truck extended EXT-0471-3.",
+    "fullDescription": "Peterbilt heavy truck extended EXT-0471-3. Peterbilt fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Peterbilt mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Peterbilt EXT-0471-3 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "peterbilt-heavy-truck-ext-0471-4",
+    "brand": "Peterbilt",
+    "brandSlug": "peterbilt",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "EXT-0471-4",
+    "displayCode": "EXT-0471-4",
+    "alternativeCodes": [],
+    "title": "Peterbilt EXT-0471-4",
+    "shortDescription": "Peterbilt heavy truck extended EXT-0471-4.",
+    "fullDescription": "Peterbilt heavy truck extended EXT-0471-4. Peterbilt fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Peterbilt mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Peterbilt EXT-0471-4 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
+    ]
+  },
+  {
+    "id": "peterbilt-heavy-truck-ext-0471-5",
+    "brand": "Peterbilt",
+    "brandSlug": "peterbilt",
+    "deviceType": "Heavy Truck",
+    "deviceTypeSlug": "heavy-truck",
+    "code": "EXT-0471-5",
+    "displayCode": "EXT-0471-5",
+    "alternativeCodes": [],
+    "title": "Peterbilt EXT-0471-5",
+    "shortDescription": "Peterbilt heavy truck extended EXT-0471-5.",
+    "fullDescription": "Peterbilt heavy truck extended EXT-0471-5. Peterbilt fault.",
+    "causes": [
+      {
+        "cause": "Sensor",
+        "likelihood": "high",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Wiring",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Component",
+        "likelihood": "low",
+        "fixDifficulty": "professional"
+      }
+    ],
+    "symptoms": [
+      "Error"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Reset",
+        "instruction": "Power cycle.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 5
+      },
+      {
+        "step": 2,
+        "title": "Inspect",
+        "instruction": "Check.",
+        "tools": [
+          "DMM"
+        ],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "Replace",
+        "instruction": "Replace.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 30
+      }
+    ],
+    "affectedModels": [
+      "Peterbilt mainline"
+    ],
+    "partsNeeded": [],
+    "estimatedCost": {
+      "diy": {
+        "min": 30,
+        "max": 200
+      },
+      "professional": {
+        "min": 200,
+        "max": 600
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "30-90 minutes",
+    "whenToCallPro": "Contact service.",
+    "relatedCodes": [],
+    "videoSearchQuery": "Peterbilt EXT-0471-5 fix",
+    "faq": [
+      {
+        "q": "Continue?",
+        "a": "Resolve."
+      }
     ]
   }
 ]
