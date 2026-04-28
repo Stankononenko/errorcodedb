@@ -4865,7 +4865,7 @@
     "displayCode": "0x80071A91",
     "title": "Windows Update Error - Transaction Not Active",
     "shortDescription": "A transactional file system operation failed because the transaction is no longer active.",
-    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity — if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
+    "fullDescription": "Error 0x80071A91 (ERROR_TRANSACTIONAL_CONFLICT or ERROR_TRANSACTION_NOT_ACTIVE) occurs when the Transactional NTFS (TxF) subsystem encounters an inactive or conflicting transaction during a Windows Update operation. Windows Update uses transactional file operations to ensure atomicity \u2014 if the transaction state becomes corrupted, the update cannot proceed.\n\nThis error is often associated with corruption in the Windows component store (WinSxS folder) where the transaction log has become inconsistent. It can occur after a sudden power loss during an update, after disk errors corrupt the transaction log, or when the component store's internal state tracking becomes desynchronized.\n\nDISM with the StartComponentCleanup and RestoreHealth options is the primary remedy, as it can rebuild corrupted transaction state in the component store. In severe cases, an in-place upgrade may be needed.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5015,7 +5015,7 @@
       {
         "step": 1,
         "title": "Run DISM RestoreHealth",
-        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete — it may take 15-30 minutes.",
+        "instruction": "Open elevated Command Prompt. Run: DISM /Online /Cleanup-Image /RestoreHealth. Wait for the process to complete \u2014 it may take 15-30 minutes.",
         "tools": [
           "Command Prompt",
           "DISM"
@@ -5202,7 +5202,7 @@
     "displayCode": "0x80072F8F",
     "title": "Windows Update Error - SSL Certificate Validation Failed",
     "shortDescription": "Windows Update could not validate the SSL certificate from the update server.",
-    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock — if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
+    "fullDescription": "Error 0x80072F8F (WININET_E_DECODING_ERROR or certificate date validation failure) occurs when the Windows Update client cannot validate the SSL/TLS certificate presented by Microsoft's update servers. The most common cause is an incorrect system clock \u2014 if the date and time are significantly wrong, the certificate appears expired or not yet valid. Corrupted root certificates, missing certificate updates, or proxy servers that perform SSL inspection can also cause this error.\n\nThe error prevents Windows Update from establishing a trusted connection, blocking all update downloads and metadata retrieval. Since Windows requires a valid SSL connection to download and verify updates, this error effectively disables automatic updates until resolved.\n\nCorrecting the system clock, updating root certificates, and ensuring no SSL-intercepting software is interfering are the primary solutions.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -5260,7 +5260,7 @@
       {
         "step": 3,
         "title": "Check for SSL-intercepting software",
-        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites — the issuer should be a Microsoft or DigiCert CA, not your proxy.",
+        "instruction": "Disable any proxy, VPN, or security software that performs SSL/TLS inspection. Check browser certificate details for Microsoft sites \u2014 the issuer should be a Microsoft or DigiCert CA, not your proxy.",
         "tools": [
           "Browser",
           "Network Settings"
@@ -5534,7 +5534,7 @@
     "displayCode": "0x800F0984",
     "title": "Windows Update Error - Applicable Update Not Found",
     "shortDescription": "Windows Update could not find an applicable update package for this system configuration.",
-    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state — some components have been updated while others have not — making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
+    "fullDescription": "Error 0x800F0984 (PSFX_E_MATCHING_BINARY_MISSING) indicates that Windows Update cannot locate a binary or package that matches the current system's component versions. This typically occurs when the system is in a mixed state \u2014 some components have been updated while others have not \u2014 making it impossible for the differential update to find a matching baseline.\n\nThe error frequently appears with cumulative updates when a previous update was partially applied or when the servicing stack is out of date. It can also occur when the system's edition or architecture does not match what the update package expects, or when custom Windows images have been modified in ways that break the component versioning chain.\n\nInstalling the latest Servicing Stack Update, running DISM to repair the component store, and using the full cumulative update package instead of a differential are the recommended fixes.",
     "affectedVersions": [
       "Windows 10",
       "Windows 11"
@@ -6296,7 +6296,7 @@
       },
       {
         "q": "Can I force install an update that says not applicable?",
-        "a": "No. The applicability check exists for good reason — installing an incompatible update can cause system instability or failure. Always use the matching update version."
+        "a": "No. The applicability check exists for good reason \u2014 installing an incompatible update can cause system instability or failure. Always use the matching update version."
       }
     ]
   },
@@ -11297,7 +11297,7 @@
       },
       {
         "q": "Does disabling VPN help?",
-        "a": "Often yes — VPN filter drivers can disrupt BITS."
+        "a": "Often yes \u2014 VPN filter drivers can disrupt BITS."
       },
       {
         "q": "Can I restart just BITS?",
@@ -11537,7 +11537,7 @@
       },
       {
         "q": "Is a reset enough?",
-        "a": "Often not — credentials or certs must be addressed."
+        "a": "Often not \u2014 credentials or certs must be addressed."
       }
     ]
   },
@@ -11648,7 +11648,7 @@
     "faq": [
       {
         "q": "Can GPO cause this?",
-        "a": "Yes — WSUS-managed devices with strict policies often hit 0x80200005."
+        "a": "Yes \u2014 WSUS-managed devices with strict policies often hit 0x80200005."
       },
       {
         "q": "Should I disable AV permanently?",
@@ -11892,7 +11892,7 @@
       },
       {
         "q": "Will VPN help?",
-        "a": "Usually it makes things worse — disable for updates."
+        "a": "Usually it makes things worse \u2014 disable for updates."
       }
     ]
   },
@@ -11903,7 +11903,7 @@
     "displayCode": "0x80200015",
     "title": "BITS Insufficient Resources",
     "shortDescription": "BITS ran out of resources (typically disk space or memory).",
-    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources — most often disk space. Feature updates commonly need 20+ GB free.",
+    "fullDescription": "0x80200015 is raised when BITS cannot complete a transfer because of insufficient resources \u2014 most often disk space. Feature updates commonly need 20+ GB free.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -12010,7 +12010,7 @@
       },
       {
         "q": "Can I skip feature updates?",
-        "a": "For a time, yes — but security updates still apply."
+        "a": "For a time, yes \u2014 but security updates still apply."
       }
     ]
   },
@@ -12170,7 +12170,7 @@
       {
         "step": 1,
         "title": "Check optional updates",
-        "instruction": "Settings > Windows Update > Advanced options > Optional updates — review and accept any pending EULAs.",
+        "instruction": "Settings > Windows Update > Advanced options > Optional updates \u2014 review and accept any pending EULAs.",
         "tools": [
           "Settings"
         ],
@@ -12243,7 +12243,7 @@
       },
       {
         "q": "Will Catalog install work?",
-        "a": "Usually yes — direct MSU install bypasses the EULA workflow."
+        "a": "Usually yes \u2014 direct MSU install bypasses the EULA workflow."
       },
       {
         "q": "Is EULA acceptance reversible?",
@@ -12368,7 +12368,7 @@
       },
       {
         "q": "Will a Windows version mismatch cause it?",
-        "a": "Yes — very old clients may not parse newer WSUS metadata."
+        "a": "Yes \u2014 very old clients may not parse newer WSUS metadata."
       }
     ]
   },
@@ -12600,7 +12600,7 @@
     "faq": [
       {
         "q": "What is SSU?",
-        "a": "Servicing Stack Update — maintains the install engine that processes other updates."
+        "a": "Servicing Stack Update \u2014 maintains the install engine that processes other updates."
       },
       {
         "q": "Will reregistering DLLs help?",
@@ -12660,7 +12660,7 @@
       {
         "step": 2,
         "title": "Check GPO",
-        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update — set to Not Configured.",
+        "instruction": "gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Windows Update \u2014 set to Not Configured.",
         "tools": [
           "Group Policy Editor"
         ],
@@ -12690,7 +12690,7 @@
       {
         "step": 5,
         "title": "Re-enable WU service",
-        "instruction": "Services.msc — set Windows Update to Automatic and start.",
+        "instruction": "Services.msc \u2014 set Windows Update to Automatic and start.",
         "tools": [
           "Services.msc"
         ],
@@ -12718,7 +12718,7 @@
     "faq": [
       {
         "q": "Can malware disable WU?",
-        "a": "Yes — many malware families disable WU to block remediation."
+        "a": "Yes \u2014 many malware families disable WU to block remediation."
       },
       {
         "q": "Is removing the reg key safe?",
@@ -13422,7 +13422,7 @@
       },
       {
         "q": "Is deleting pending.xml safe?",
-        "a": "Risky — only do it after DISM fails."
+        "a": "Risky \u2014 only do it after DISM fails."
       },
       {
         "q": "Will SFC fix it?",
@@ -13648,7 +13648,7 @@
     "faq": [
       {
         "q": "What is CBS?",
-        "a": "Component-Based Servicing — the engine installing updates."
+        "a": "Component-Based Servicing \u2014 the engine installing updates."
       },
       {
         "q": "Will DISM source help?",
@@ -13667,7 +13667,7 @@
     "displayCode": "0x80242011",
     "title": "Handler Post-Reboot Initialization Not Required",
     "shortDescription": "The update handler reported that post-reboot initialization was not required.",
-    "fullDescription": "0x80242011 is often informational — the handler determined no post-reboot work was needed. It can appear as a false failure.",
+    "fullDescription": "0x80242011 is often informational \u2014 the handler determined no post-reboot work was needed. It can appear as a false failure.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -13762,7 +13762,7 @@
     "faq": [
       {
         "q": "Is this a real error?",
-        "a": "Often not — confirm the KB is installed before troubleshooting."
+        "a": "Often not \u2014 confirm the KB is installed before troubleshooting."
       },
       {
         "q": "Does it repeat?",
@@ -13877,11 +13877,11 @@
     "faq": [
       {
         "q": "Does RevertPendingActions delete work?",
-        "a": "It undoes pending servicing operations — use with care."
+        "a": "It undoes pending servicing operations \u2014 use with care."
       },
       {
         "q": "Is a reboot really enough?",
-        "a": "Often yes — let Windows finish its post-reboot work."
+        "a": "Often yes \u2014 let Windows finish its post-reboot work."
       },
       {
         "q": "Will a repair install fix it?",
@@ -14001,7 +14001,7 @@
       },
       {
         "q": "Can I download fresh?",
-        "a": "Yes — a WU reset does exactly that."
+        "a": "Yes \u2014 a WU reset does exactly that."
       },
       {
         "q": "Is disk at fault?",
@@ -14162,7 +14162,7 @@
       {
         "step": 1,
         "title": "Start services",
-        "instruction": "services.msc — start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
+        "instruction": "services.msc \u2014 start BITS, Windows Update, Cryptographic Services, and set to Automatic.",
         "tools": [
           "Services.msc"
         ],
@@ -14234,7 +14234,7 @@
       },
       {
         "q": "Are policies common?",
-        "a": "On domain PCs yes — check with IT."
+        "a": "On domain PCs yes \u2014 check with IT."
       },
       {
         "q": "Is manual start enough?",
@@ -14458,7 +14458,7 @@
     "faq": [
       {
         "q": "Is DataStore critical?",
-        "a": "Yes — it tracks update history and state."
+        "a": "Yes \u2014 it tracks update history and state."
       },
       {
         "q": "Does deletion cause data loss?",
@@ -14688,7 +14688,7 @@
     "faq": [
       {
         "q": "Can I bypass?",
-        "a": "Not recommended — the block exists because a known issue can cause data loss or crashes."
+        "a": "Not recommended \u2014 the block exists because a known issue can cause data loss or crashes."
       }
     ]
   },
@@ -14699,7 +14699,7 @@
     "displayCode": "0x8024A224",
     "title": "Windows 11 Deferred for Hardware Not Ready",
     "shortDescription": "Upgrade deferred because hardware reports not ready.",
-    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet — often reflecting firmware or driver updates needed before proceeding.",
+    "fullDescription": "0x8024A224 is a sibling of A220 specifically when Windows Update decides hardware is 'not ready' yet \u2014 often reflecting firmware or driver updates needed before proceeding.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -15227,7 +15227,7 @@
     "faq": [
       {
         "q": "Wire helps?",
-        "a": "Yes — wired Ethernet often cures flaky OTA downloads."
+        "a": "Yes \u2014 wired Ethernet often cures flaky OTA downloads."
       }
     ]
   },
@@ -15346,7 +15346,7 @@
     "displayCode": "0x80244020",
     "title": "WU Client Not Allowed Methods",
     "shortDescription": "Windows Update client used an HTTP method the server doesn't allow.",
-    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method — typically outdated WSUS or a proxy stripping headers.",
+    "fullDescription": "0x80244020 WU_E_PT_HTTP_STATUS_NOT_SUPPORTED is returned when a WSUS/WU endpoint rejects the client's HTTP method \u2014 typically outdated WSUS or a proxy stripping headers.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15663,7 +15663,7 @@
     "displayCode": "0x80070079",
     "title": "Semaphore Timeout During Update",
     "shortDescription": "Network semaphore timeout while transferring update content.",
-    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout — commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
+    "fullDescription": "0x80070079 ERROR_SEM_TIMEOUT indicates a TCP/SMB-layer timeout \u2014 commonly with WSUS behind slow load balancers or Wi-Fi with high packet loss.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -15759,7 +15759,7 @@
     "faq": [
       {
         "q": "Retry helps?",
-        "a": "Usually yes — transient. If persistent, switch to a wired connection."
+        "a": "Usually yes \u2014 transient. If persistent, switch to a wired connection."
       }
     ]
   },
@@ -16207,7 +16207,7 @@
     "displayCode": "0x800F0988",
     "title": "CBS_E_INSTALLERS_FAILED_VALIDATION",
     "shortDescription": "CBS rejected an update because an installer failed validation.",
-    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution — often a corrupted download.",
+    "fullDescription": "0x800F0988 is a CBS error meaning a servicing installer failed the integrity check prior to execution \u2014 often a corrupted download.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16303,7 +16303,7 @@
     "faq": [
       {
         "q": "Re-download?",
-        "a": "Yes — delete SoftwareDistribution\\Download and retry."
+        "a": "Yes \u2014 delete SoftwareDistribution\\Download and retry."
       }
     ]
   },
@@ -16743,7 +16743,7 @@
     "displayCode": "0x80248011",
     "title": "DataStore Read Failure",
     "shortDescription": "Windows Update could not read its DataStore.edb.",
-    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted — rename SoftwareDistribution\\DataStore to force rebuild.",
+    "fullDescription": "0x80248011 WU_E_DS_UNABLEPOPULATE indicates the WU DataStore is corrupted \u2014 rename SoftwareDistribution\\DataStore to force rebuild.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16850,7 +16850,7 @@
     "displayCode": "0x80248030",
     "title": "DataStore Table Missing",
     "shortDescription": "WU DataStore is missing expected tables.",
-    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables — typically from partial corruption.",
+    "fullDescription": "0x80248030 indicates DataStore.edb is present but missing tables \u2014 typically from partial corruption.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -16941,7 +16941,7 @@
     "faq": [
       {
         "q": "Same fix?",
-        "a": "Yes — rebuild DataStore by renaming SoftwareDistribution."
+        "a": "Yes \u2014 rebuild DataStore by renaming SoftwareDistribution."
       }
     ]
   },
@@ -17146,7 +17146,7 @@
     "faq": [
       {
         "q": "Use external drive?",
-        "a": "Yes — Windows Setup can use a USB drive as scratch space."
+        "a": "Yes \u2014 Windows Setup can use a USB drive as scratch space."
       }
     ]
   },
@@ -17478,7 +17478,7 @@
     "displayCode": "0x8024A215",
     "title": "Feature Update Postponed",
     "shortDescription": "Feature update postponed by update policy or deadline.",
-    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed — either by user snooze, active hours, or policy.",
+    "fullDescription": "0x8024A215 is returned when a feature update is temporarily postponed \u2014 either by user snooze, active hours, or policy.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17583,7 +17583,7 @@
     "displayCode": "0xC1900223",
     "title": "Feature Update Download Issue",
     "shortDescription": "Feature update content couldn't be downloaded.",
-    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download — network or DO issue.",
+    "fullDescription": "0xC1900223 typically means the ESD or install content failed to download \u2014 network or DO issue.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -17677,7 +17677,7 @@
     "faq": [
       {
         "q": "Retry later?",
-        "a": "Yes — CDN blips are common; try again after a few hours."
+        "a": "Yes \u2014 CDN blips are common; try again after a few hours."
       }
     ]
   },
@@ -18542,7 +18542,7 @@
     "displayCode": "0xC1900101-0x4000D",
     "title": "Safe OS SECOND_BOOT Rollback",
     "shortDescription": "Rollback during the SECOND_BOOT phase from the Safe OS environment.",
-    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry — MOSETUP rolls back to the prior build.",
+    "fullDescription": "Indicates the update could not migrate drivers or settings during the second boot. Disconnect peripherals, uninstall antivirus, and retry \u2014 MOSETUP rolls back to the prior build.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -21545,7 +21545,7 @@
       {
         "step": 2,
         "title": "Clear PendingFileRenameOperations",
-        "instruction": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager — delete the value (advanced).",
+        "instruction": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager \u2014 delete the value (advanced).",
         "tools": [
           "Registry Editor"
         ],
@@ -21614,7 +21614,7 @@
       {
         "step": 1,
         "title": "Run chkdsk",
-        "instruction": "chkdsk C: /f /r — schedule on next reboot.",
+        "instruction": "chkdsk C: /f /r \u2014 schedule on next reboot.",
         "tools": [
           "chkdsk"
         ],
@@ -21869,7 +21869,7 @@
     "displayCode": "0x800F0824",
     "title": "PSFX_E_MATCHING_COMPONENT_NOT_FOUND",
     "shortDescription": "CBS could not find a component required by an update package.",
-    "fullDescription": "0x800F0824 is similar to 0x800F0247 — CBS needs a component that is not present in the store. The fix is the same: refresh the store via RestoreHealth or in-place upgrade.\n\nThis often appears after partial uninstalls of language packs or features.",
+    "fullDescription": "0x800F0824 is similar to 0x800F0247 \u2014 CBS needs a component that is not present in the store. The fix is the same: refresh the store via RestoreHealth or in-place upgrade.\n\nThis often appears after partial uninstalls of language packs or features.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10"
@@ -23105,7 +23105,7 @@
     "displayCode": "0x80244014",
     "title": "WU_E_PT_REFRESH_CACHE_REQUIRED",
     "shortDescription": "WUA must refresh its cache to continue.",
-    "fullDescription": "0x80244014 is a transient state — the agent recognized that its catalog cache is stale and needs refresh. Clearing SoftwareDistribution forces a fresh sync.",
+    "fullDescription": "0x80244014 is a transient state \u2014 the agent recognized that its catalog cache is stale and needs refresh. Clearing SoftwareDistribution forces a fresh sync.",
     "affectedVersions": [
       "Windows 11",
       "Windows 10",
@@ -26096,6 +26096,2436 @@
       {
         "q": "Should I use the Media Creation Tool?",
         "a": "Yes, an in-place upgrade is a reliable last resort that preserves files and apps."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244022-v2",
+    "category": "update",
+    "code": "0x80244022-v2",
+    "displayCode": "0x80244022-v2",
+    "title": "SOAP service unavailable",
+    "shortDescription": "SOAP service unavailable.",
+    "fullDescription": "SOAP service unavailable. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244020-v2",
+    "category": "update",
+    "code": "0x80244020-v2",
+    "displayCode": "0x80244020-v2",
+    "title": "SOAP server unreachable",
+    "shortDescription": "SOAP server unreachable.",
+    "fullDescription": "SOAP server unreachable. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244019-v2",
+    "category": "update",
+    "code": "0x80244019-v2",
+    "displayCode": "0x80244019-v2",
+    "title": "SOAP HTTP forbidden",
+    "shortDescription": "SOAP HTTP forbidden.",
+    "fullDescription": "SOAP HTTP forbidden. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244018-v2",
+    "category": "update",
+    "code": "0x80244018-v2",
+    "displayCode": "0x80244018-v2",
+    "title": "SOAP HTTP not found",
+    "shortDescription": "SOAP HTTP not found.",
+    "fullDescription": "SOAP HTTP not found. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024b102",
+    "category": "update",
+    "code": "0x8024B102",
+    "displayCode": "0x8024B102",
+    "title": "Update has been deferred",
+    "shortDescription": "Update has been deferred.",
+    "fullDescription": "Update has been deferred. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246001-v2",
+    "category": "update",
+    "code": "0x80246001-v2",
+    "displayCode": "0x80246001-v2",
+    "title": "Update download fail",
+    "shortDescription": "Update download fail.",
+    "fullDescription": "Update download fail. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246007-v2",
+    "category": "update",
+    "code": "0x80246007-v2",
+    "displayCode": "0x80246007-v2",
+    "title": "Update file not found",
+    "shortDescription": "Update file not found.",
+    "fullDescription": "Update file not found. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246008-v2",
+    "category": "update",
+    "code": "0x80246008-v2",
+    "displayCode": "0x80246008-v2",
+    "title": "Update bits transfer error",
+    "shortDescription": "Update bits transfer error.",
+    "fullDescription": "Update bits transfer error. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244024",
+    "category": "update",
+    "code": "0x80244024",
+    "displayCode": "0x80244024",
+    "title": "SOAP HTTP method not allowed",
+    "shortDescription": "SOAP HTTP method not allowed.",
+    "fullDescription": "SOAP HTTP method not allowed. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244025",
+    "category": "update",
+    "code": "0x80244025",
+    "displayCode": "0x80244025",
+    "title": "SOAP HTTP file not found",
+    "shortDescription": "SOAP HTTP file not found.",
+    "fullDescription": "SOAP HTTP file not found. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80244026",
+    "category": "update",
+    "code": "0x80244026",
+    "displayCode": "0x80244026",
+    "title": "SOAP HTTP service",
+    "shortDescription": "SOAP HTTP service.",
+    "fullDescription": "SOAP HTTP service. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024a005",
+    "category": "update",
+    "code": "0x8024A005",
+    "displayCode": "0x8024A005",
+    "title": "Auto update fail",
+    "shortDescription": "Auto update fail.",
+    "fullDescription": "Auto update fail. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d007-v2",
+    "category": "update",
+    "code": "0x8024D007-v2",
+    "displayCode": "0x8024D007-v2",
+    "title": "Update not registered",
+    "shortDescription": "Update not registered.",
+    "fullDescription": "Update not registered. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d008",
+    "category": "update",
+    "code": "0x8024D008",
+    "displayCode": "0x8024D008",
+    "title": "Self-update offline",
+    "shortDescription": "Self-update offline.",
+    "fullDescription": "Self-update offline. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d009-v2",
+    "category": "update",
+    "code": "0x8024D009-v2",
+    "displayCode": "0x8024D009-v2",
+    "title": "Update registration fail",
+    "shortDescription": "Update registration fail.",
+    "fullDescription": "Update registration fail. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d00a",
+    "category": "update",
+    "code": "0x8024D00A",
+    "displayCode": "0x8024D00A",
+    "title": "Servicing certificate",
+    "shortDescription": "Servicing certificate.",
+    "fullDescription": "Servicing certificate. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d00b",
+    "category": "update",
+    "code": "0x8024D00B",
+    "displayCode": "0x8024D00B",
+    "title": "Self-update download",
+    "shortDescription": "Self-update download.",
+    "fullDescription": "Self-update download. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d00c-v2",
+    "category": "update",
+    "code": "0x8024D00C-v2",
+    "displayCode": "0x8024D00C-v2",
+    "title": "Self-update install",
+    "shortDescription": "Self-update install.",
+    "fullDescription": "Self-update install. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d00d",
+    "category": "update",
+    "code": "0x8024D00D",
+    "displayCode": "0x8024D00D",
+    "title": "Self-update revert",
+    "shortDescription": "Self-update revert.",
+    "fullDescription": "Self-update revert. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x8024d013",
+    "category": "update",
+    "code": "0x8024D013",
+    "displayCode": "0x8024D013",
+    "title": "Servicing required",
+    "shortDescription": "Servicing required.",
+    "fullDescription": "Servicing required. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0xd0000034-v2",
+    "category": "update",
+    "code": "0xD0000034-v2",
+    "displayCode": "0xD0000034-v2",
+    "title": "Update package corrupt",
+    "shortDescription": "Update package corrupt.",
+    "fullDescription": "Update package corrupt. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0xc1900200-v2",
+    "category": "update",
+    "code": "0xC1900200-v2",
+    "displayCode": "0xC1900200-v2",
+    "title": "Setup compatibility",
+    "shortDescription": "Setup compatibility.",
+    "fullDescription": "Setup compatibility. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0xc1900208-v2",
+    "category": "update",
+    "code": "0xC1900208-v2",
+    "displayCode": "0xC1900208-v2",
+    "title": "Compatibility issue",
+    "shortDescription": "Compatibility issue.",
+    "fullDescription": "Compatibility issue. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80072f8f-v2",
+    "category": "update",
+    "code": "0x80072F8F-v2",
+    "displayCode": "0x80072F8F-v2",
+    "title": "Date/time wrong",
+    "shortDescription": "Date/time wrong.",
+    "fullDescription": "Date/time wrong. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x800f0922",
+    "category": "update",
+    "code": "0x800F0922",
+    "displayCode": "0x800F0922",
+    "title": "Boot manager",
+    "shortDescription": "Boot manager.",
+    "fullDescription": "Boot manager. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x800f0900-v2",
+    "category": "update",
+    "code": "0x800F0900-v2",
+    "displayCode": "0x800F0900-v2",
+    "title": "Component cleanup",
+    "shortDescription": "Component cleanup.",
+    "fullDescription": "Component cleanup. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80070103",
+    "category": "update",
+    "code": "0x80070103",
+    "displayCode": "0x80070103",
+    "title": "Driver already installed",
+    "shortDescription": "Driver already installed.",
+    "fullDescription": "Driver already installed. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0x80246005-v2",
+    "category": "update",
+    "code": "0x80246005-v2",
+    "displayCode": "0x80246005-v2",
+    "title": "Update transient error",
+    "shortDescription": "Update transient error.",
+    "fullDescription": "Update transient error. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0xc1900223-v2",
+    "category": "update",
+    "code": "0xC1900223-v2",
+    "displayCode": "0xC1900223-v2",
+    "title": "Update download fail",
+    "shortDescription": "Update download fail.",
+    "fullDescription": "Update download fail. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
+      }
+    ]
+  },
+  {
+    "id": "windows-update-0xc1900401-v2",
+    "category": "update",
+    "code": "0xC1900401-v2",
+    "displayCode": "0xC1900401-v2",
+    "title": "Update no payload",
+    "shortDescription": "Update no payload.",
+    "fullDescription": "Update no payload. Common Windows error.",
+    "affectedVersions": [
+      "Windows 10",
+      "Windows 11"
+    ],
+    "causes": [
+      {
+        "cause": "Driver issue",
+        "likelihood": "high",
+        "fixDifficulty": "easy"
+      },
+      {
+        "cause": "Hardware failure",
+        "likelihood": "medium",
+        "fixDifficulty": "intermediate"
+      },
+      {
+        "cause": "Corruption",
+        "likelihood": "low",
+        "fixDifficulty": "easy"
+      }
+    ],
+    "symptoms": [
+      "BSOD",
+      "System crash",
+      "Reboot loop"
+    ],
+    "fixSteps": [
+      {
+        "step": 1,
+        "title": "Boot to safe mode",
+        "instruction": "Boot in Safe Mode.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 15
+      },
+      {
+        "step": 2,
+        "title": "Update drivers",
+        "instruction": "Update or rollback drivers.",
+        "tools": [],
+        "difficulty": "intermediate",
+        "timeMinutes": 20
+      },
+      {
+        "step": 3,
+        "title": "SFC scan",
+        "instruction": "Run sfc /scannow.",
+        "tools": [],
+        "difficulty": "easy",
+        "timeMinutes": 30
+      }
+    ],
+    "estimatedCost": {
+      "diy": {
+        "min": 0,
+        "max": 100
+      },
+      "professional": {
+        "min": 100,
+        "max": 400
+      }
+    },
+    "diyDifficulty": "intermediate",
+    "repairTime": "15-60 minutes",
+    "whenToCallPro": "Persistent BSODs may indicate hardware failure.",
+    "relatedCodes": [],
+    "faq": [
+      {
+        "q": "Will reset fix?",
+        "a": "Sometimes \u2014 try driver rollback first."
       }
     ]
   }
